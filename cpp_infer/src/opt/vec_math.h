@@ -133,8 +133,15 @@ inline __m256 log256_ps(__m256 x) {
 // residual correction: w = fl(1+u), d = w-1 and cd = u-d are EXACT (Sterbenz),
 // and log1p(u) = log(w) + log(w)*cd/d + O(cd^2). The correction is applied
 // ADDITIVELY (a multiplicative u/d factor cannot be represented finely enough
-// near 1.0), with 1/d from vrcpps (the correction term is ~1 ulp, so its
-// 5e-4 relative error is negligible). If w == 1 the result is u itself.
+// near 1.0). If w == 1 the result is u itself.
+//
+// cd/d is a true IEEE divide, NOT vrcpps: the accuracy of the reciprocal is
+// irrelevant here (the correction is ~1 ulp), but its exact bits are not.
+// RCPPS/RSQRTPS are only specified to a relative error bound; the value they
+// return is implementation-defined and differs between CPU vendors, so a
+// compressor and a decompressor running on different machines would disagree
+// on the last bit of a probability and the arithmetic coder would
+// desynchronise. Nothing in this file may use a reciprocal estimate.
 // ---------------------------------------------------------------------------
 inline __m256 log1p256_ps(__m256 u) {
   const __m256 one = _mm256_set1_ps(1.0f);
@@ -152,7 +159,7 @@ inline __m256 log1p256_ps(__m256 u) {
   __m256 w = _mm256_add_ps(u, one);
   __m256 d = _mm256_sub_ps(w, one);   // exact
   __m256 cd = _mm256_sub_ps(u, d);    // exact
-  __m256 f = _mm256_mul_ps(cd, _mm256_rcp_ps(d));
+  __m256 f = _mm256_div_ps(cd, d);
   __m256 lw = log256_ps(w);
   __m256 res_g = _mm256_fmadd_ps(lw, f, lw);  // lw*(1 + cd/d), single rounding
   return _mm256_blendv_ps(res_g, res_s, small);
@@ -160,12 +167,13 @@ inline __m256 log1p256_ps(__m256 u) {
 
 namespace vecdetail {
 // num / (den + cd) where |cd| << den is the exact residual of den's rounding:
-// r0*(1 - cd/den), with 1/den from vrcpps (the correction is ~1 ulp of the
-// result, so rcp's 5e-4 relative error contributes ~1e-4 ulp). The factor
-// cd/den is computed in parallel with the division; final fnmadd is a single
-// rounding.
+// r0*(1 - cd/den). Both quotients are true IEEE divides: a reciprocal
+// estimate would be accurate enough but is not bit-reproducible across CPU
+// vendors (see the note on log1p256_ps above), and the compressor and the
+// decompressor must agree bit for bit. The two divides are independent, so
+// they still overlap in the divider.
 inline __m256 div_corrected(__m256 num, __m256 den, __m256 cd) {
-  __m256 f = _mm256_mul_ps(cd, _mm256_rcp_ps(den));  // overlaps the divide
+  __m256 f = _mm256_div_ps(cd, den);
   __m256 r0 = _mm256_div_ps(num, den);
   return _mm256_fnmadd_ps(r0, f, r0);
 }

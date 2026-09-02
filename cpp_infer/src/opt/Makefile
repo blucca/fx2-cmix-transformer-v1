@@ -1,7 +1,11 @@
 # Optimized quantized-matmul kernel suite (qmat). clang++-17 is the
 # production compiler (MACHINE.md: gcc spills in the inner loops).
 CXX      ?= clang++-17
-CXXFLAGS ?= -O3 -march=znver2 -std=c++17 -Wall -Wextra -fno-math-errno
+CXXFLAGS ?= -O3 -march=znver2 -std=c++17 -Wall -Wextra -fno-math-errno -mrecip=none
+# -mrecip=none: never let the compiler substitute RCPPS/RSQRTPS estimates for
+# a divide or a square root. Their results are only specified to a relative
+# error bound and differ between Intel and AMD, which would make the
+# compressor and the decompressor disagree on a CPU of the other vendor.
 # NO -ffast-math (SPEC forbids it)
 
 BIN := ../../bin/opt

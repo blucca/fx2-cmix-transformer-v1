@@ -30,7 +30,7 @@ typedef unsigned long long qword;
 // This will reduce RAM usage, but will be slower as well. *Warning*: this will
 // write a *lot* of data to disk, so can reduce the lifespan of SSDs. Not
 // recommended for normal usage.
-bool mmap_to_disk = false;
+bool mmap_to_disk = true;
 qword mmap_size;
 static constexpr char mmap_path[] = "ppm.temp";
 
@@ -1389,12 +1389,21 @@ void PPMD::ByteUpdate() {
   ByteModel::ByteUpdate();
   probs_ /= probs_.sum();
   if (mmap_to_disk && counter_ % 20000 == 0) {
-    int err = munmap(ppmd_model_->HeapStart, mmap_size);
-    if(err != 0) {
+    // The suballocator keeps absolute pointers into the heap (pText,
+    // UnitsStart, LoUnit, HiUnit, AuxUnit, MinContext, MaxContext,
+    // FoundState), and none of them are rebased here -- so the remap has to
+    // land on exactly the old address. Asking for NULL merely *happened* to
+    // return the old address on the machine this was developed on; where the
+    // kernel picks a different gap, every one of those pointers dangles and
+    // the process dies at byte 20000. MAP_FIXED turns the assumption into a
+    // guarantee, and replaces the old mapping atomically so there is no
+    // window in which the range could be taken by something else.
+    byte* base = ppmd_model_->HeapStart;
+    int fd = open(mmap_path, O_RDWR);
+    if(fd < 0) {
       exit(EXIT_FAILURE);
     }
-    int fd = open(mmap_path, O_RDWR);
-    ppmd_model_->HeapStart = (byte*) mmap(NULL, mmap_size, PROT_READ|PROT_WRITE, MAP_SHARED, fd, 0);
+    ppmd_model_->HeapStart = (byte*) mmap(base, mmap_size, PROT_READ|PROT_WRITE, MAP_SHARED|MAP_FIXED, fd, 0);
     if(ppmd_model_->HeapStart == MAP_FAILED) {
       exit(EXIT_FAILURE);
     }

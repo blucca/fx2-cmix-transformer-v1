@@ -7,8 +7,15 @@ This is a submission for the Hutter Prize. Our contribution is replacing the LST
 ## Compiling
 
 1. Run `./setup.sh` once to install requirements.
-2. If you need to comply with the Hutter Prize's 10GB RAM limit, replace `bool mmap_to_disk = false;` by `bool mmap_to_disk = false;` in file `src/models/ppmd.cpp`. This may crash on some machines and will write a lot to the disk, which may reduce SSD's lifespans. We recommend leaving it at `false`.
-3. Run `./build_and_construct_comp.sh` to compile. It produces file `./run/cmix`, which is the enwik9-specialized compressor. Beware that it is different from `./cmix` or `./run/cmix_orig`.
+2. We recommend replacing `bool mmap_to_disk = true;` by `bool mmap_to_disk = false;` in file `src/models/ppmd.cpp`. Leaving it at `true` strores some state on the disk instead of RAM. It is necessary to comply with the Hutter Prize's 10GB RAM limit but is not useful while development unless you have under 20GB of RAM+swap. If left at `true`, it will write a lot to the disk and **can reduce SSDs' lifespans**.
+3. Do not change the compiler flags in `makefile`. In particular, `-mrecip=none`
+   is required: without it the compiler implements divisions and square roots
+   with the `RCPPS`/`RSQRTPS` approximation instructions, whose results are not
+   the same on Intel and AMD processors, and an archive produced on one vendor's
+   CPU then decompresses to garbage on the other's. `build_and_construct_comp.sh`
+   checks the compiled binary for these instructions and refuses to build a
+   submission that contains them.
+4. Run `./build_and_construct_comp.sh` to compile. It produces file `./run/cmix`, which is the enwik9-specialized compressor. Beware that it is different from `./cmix` or `./run/cmix_orig`.
 
 ## Compressing
 
@@ -51,4 +58,8 @@ If you have less than 8 GPUs, you have two options:
 
 ## Development Environment
 
-Setting `bool mmap_to_disk = true;` in file `src/models/ppmd.cpp` makes the compressor and decompressor crash on some machines. We tested it on a google cloud machine with os image `ubuntu-2004-focal-v20240731`, on which it worked.
+We tested the code on a google cloud machine with os image `ubuntu-2004-focal-v20240731`, on which it worked. The full command for creating it was:
+
+```bash
+gcloud compute instances create fast-vm-decomp --zone=us-central1-b --machine-type=n4d-highmem-2 --boot-disk-size=90GB --boot-disk-type=hyperdisk-balanced --image=ubuntu-2004-focal-v20240731 --image-project=ubuntu-os-cloud
+```

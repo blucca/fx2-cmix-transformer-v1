@@ -123,9 +123,9 @@ def main() -> None:
     # important: do not torch compile the model as it removes the .to(torch.bfloat16).to(torch.float32) conversion applied to the quantization scales
 
     learning_rate: float = 2.5e-6
-    warmup_epochs: int = 32
-    epochs: int = 96
-    warmup_learning_rate_multiplier: int = 25
+    warmup_epochs: int = 128
+    epochs: int = 128
+    warmup_learning_rate_multiplier: int = 10
     final_learning_rate_multiplier: float = 0.0
 
     data = CollatedArticlesDataLoader(

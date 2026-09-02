@@ -4,18 +4,50 @@ ROOT_DIR:=$(shell dirname $(realpath $(firstword $(MAKEFILE_LIST))))
 
 CPPFLAGS_PART-THAT-SHOULD-BE-FAST := $(CFLAGS_DEFINES) -m64 -Wall -std=c++17 -ffp-model=fast -fno-exceptions -fno-threadsafe-statics -Wno-unknown-escape-sequence -Wno-unused-variable -ffp-model=fast -fno-exceptions -fno-threadsafe-statics -Wno-unneeded-internal-declaration -Wno-unused-but-set-variable -Wno-format 
 
+# Instruction set. The default is the portable AVX2 baseline x86-64-v3
+# (SSE*, AVX, AVX2, FMA, F16C, BMI1/2, LZCNT, MOVBE, POPCNT) -- exactly what
+# the kernels are written against, and the largest set both Hutter Prize test
+# machines have: the Intel Core i7-1165G7 (Tiger Lake) and the AMD Ryzen 7
+# (Zen 2). The other three settings are for development only -- a submission
+# must use the default. NATIVE=1 in particular bakes in whatever the *build*
+# machine happens to support, and anything a test machine lacks is an illegal
+# instruction (SIGILL) there: Zen 2 has no AVX-512 at all, and Tiger Lake has
+# no AVX-VNNI -- and clang does fold the transformer's
+# _mm256_add_epi32(_mm256_madd_epi16(..)) into an AVX-VNNI vpdpwssd whenever
+# the build machine offers it. (ZEN2=1 is likewise AMD-only: znver2 enables
+# SSE4A, which Tiger Lake does not have.)
+ifdef NATIVE
+$(info NATIVE defined -- development only, the binary is NOT portable)
+ARCHFLAGS := -march=native -mtune=native
+else
 ifdef COREI7
 $(info COREI7 defined)
-CPPFLAGS_PART-THAT-SHOULD-BE-FAST += -march=corei7
+ARCHFLAGS := -march=corei7 -mavx2 -mfma -mf16c -mbmi2
 else
 ifdef ZEN2
 $(info ZEN2 defined)
-CPPFLAGS_PART-THAT-SHOULD-BE-FAST += -march=znver2
+ARCHFLAGS := -march=znver2
 else
-CPPFLAGS_PART-THAT-SHOULD-BE-FAST += -march=native -mtune=native
-$(info native used)
+ARCHFLAGS := -march=x86-64-v3 -mtune=generic
+$(info portable AVX2 baseline (x86-64-v3) used)
 endif
 endif
+endif
+
+# Bit-reproducibility across CPU vendors. -ffp-model=fast lets clang compute
+# x/y and 1/sqrt(x) with the RCPPS/RCPSS/RSQRTPS/RSQRTSS *estimate*
+# instructions plus a Newton-Raphson step. Those instructions are only
+# specified to a relative error bound (1.5*2^-12); the bits they actually
+# return come from a vendor-specific lookup table, so the same binary gives
+# different low-order bits on Intel and on AMD. Every one of those bits feeds
+# a model prediction, so an archive compressed on one vendor's CPU cannot be
+# decompressed on the other's: the arithmetic coder desynchronises and the
+# output is garbage. -mrecip=none forces true IEEE divides and square roots,
+# which are exactly specified and therefore identical on every x86-64 CPU.
+# Do not remove this; build_and_construct_comp.sh re-checks the built binary.
+ARCHFLAGS += -mrecip=none
+
+CPPFLAGS_PART-THAT-SHOULD-BE-FAST += $(ARCHFLAGS)
 
 CPPFLAGS_PART-THAT-CAN-BE-SLOW    := $(CPPFLAGS_PART-THAT-SHOULD-BE-FAST)
 CPPFLAGS_PART-THAT-CAN-BE-SLOW    += -Os -fdata-sections -ffunction-sections
@@ -29,17 +61,9 @@ LFLAGS := -m64 -Wl,--gc-sections -std=c++17
 # matches the validated cpp_infer build), and NO PGO/LTO (the profiling run
 # never exercises this code, and excluding it keeps its code generation
 # identical to the hand-optimized, benchmarked cpp_infer objects).
-# The kernels require AVX2/FMA/F16C, so the COREI7 build adds them on top.
+# The kernels require AVX2/FMA/F16C, which every ARCHFLAGS variant provides.
 CPPFLAGS_TRANSFORMER := -m64 -O3 -std=c++17 -Wall -Wextra -fno-math-errno -fdata-sections -ffunction-sections
-ifdef COREI7
-CPPFLAGS_TRANSFORMER += -march=corei7 -mavx2 -mfma -mf16c -mbmi2
-else
-ifdef ZEN2
-CPPFLAGS_TRANSFORMER += -march=znver2
-else
-CPPFLAGS_TRANSFORMER += -march=native -mtune=native
-endif
-endif
+CPPFLAGS_TRANSFORMER += $(ARCHFLAGS)
 
 TRANSFORMER_OBJS := tf_weights_io.o tf_weights_io_compressed.o tf_qmat_dense.o tf_qmat_sparse.o tf_attn.o tf_kda.o tf_glue.o tf_arena_build.o tf_model_opt.o
 
