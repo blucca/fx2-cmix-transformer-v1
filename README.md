@@ -1,3 +1,13 @@
+# Hutter research: transformer × statistical experts
+
+Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
+
+[Research protocol and reproducible experiments](research/README.md). The first experiment holds the original dictionary, article order, PPMd, neural weights and outer mixer fixed. Current progress: the pinned original builds with Clang 17; the exact 1,000,000,000-byte enwik9 dataset is downloaded and verified; the full-stream preparation and paired compression/decompression experiment are running.
+
+The original champion’s documentation follows, with its authorship and results preserved.
+
+---
+
 # fx2-cmix-transformer
 
 ## TL;DR

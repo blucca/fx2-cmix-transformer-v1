@@ -437,10 +437,19 @@ float Predictor::Predict() {
   auto bracket_model_output = bracket_model_->Predict()[0];
   layers_[0].SetInput(input_index++, bracket_model_output);
 
-  const auto& fxcm_model_outputs = fxcm_model_->Predict();
-  for (unsigned int j = 0; j < fxcm_model_outputs.size(); ++j) {
-    layers_[0].SetInput(input_index, fxcm_model_outputs[j]);
-    ++input_index;
+  // cmix-lex fxcm_v26 (370e698f): Predict() is a neutral compatibility
+  // mirror. Its dense active outputs are raw logits; keep the champion's
+  // probability-to-mixer conversion and fill unused slots with exactly 0.5.
+  const unsigned int fxcm_model_outputs = fxcm_model_->NumOutputs();
+  const short* fxcm_raw_outputs = fxcm_model_->RawPredictions();
+  unsigned int fxcm_active_outputs = fxcm_model_->ActivePredictions();
+  if (fxcm_active_outputs > fxcm_model_outputs) fxcm_active_outputs = fxcm_model_outputs;
+  for (unsigned int j = 0; j < fxcm_active_outputs; ++j) {
+    layers_[0].SetInput(input_index++,
+        fxcm_model_->RawPredictionProbability(fxcm_raw_outputs[j]));
+  }
+  for (unsigned int j = fxcm_active_outputs; j < fxcm_model_outputs; ++j) {
+    layers_[0].SetInput(input_index++, 0.5f);
   }
   auto fxcm_model_index = input_index - 1;
   
