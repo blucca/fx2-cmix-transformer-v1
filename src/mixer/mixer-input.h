@@ -12,6 +12,8 @@ class MixerInput {
   void SetNumModels(int num_models);
   void SetInput(int index, float p);
   void SetStretchedInput(int index, float p);
+  // For lookup entries produced by this class's clamped SetInput path.
+  void SetStretchedInputUnchecked(int index, float p) { inputs_[index] = p; }
   void SetZero(int index);
   void SetExtraInput(size_t index, float p);
   void SetExtraInputSize(size_t size) { extra_inputs_.resize(size);};

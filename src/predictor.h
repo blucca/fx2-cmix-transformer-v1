@@ -163,6 +163,9 @@ class Predictor {
   std::vector<unsigned int> auxiliary_;
   ContextManager manager_;
   Sigmoid sigmoid_;
+#ifdef HUTTER_FAST_FXCM
+  std::valarray<float> fxcm_stretched_inputs_;
+#endif
   std::optional<PPMD::PPMD> byte_model_;
   std::optional<ByteMixer> byte_mixer_;
   std::vector<bool> vocab_;

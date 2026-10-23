@@ -83,9 +83,24 @@ already round-trip-verified encoded file byte for byte before evaluation.
 `replay.cpp` screens six small online intercept calibrators: global, bit
 position, confidence, neural disagreement and pre-SSE disagreement, with fixed
 priors. Each prediction is scored before its label updates a bounded Newton
-intercept. Vocabulary overrides retain the base probability. The screen
-changes neither the base model nor its future feature stream; promising
-corrections still receive a real encoder/decoder experiment.
+intercept. Vocabulary overrides retain the base probability. An exact range
+counter reproduces the encoder's inclusive intervals, renormalization and final
+byte; each complete replay must match its source `encoded.bin` size in
+`base_coded_bytes`. Candidate `coded_bytes` and signed `saved_bytes` accompany
+the log-loss diagnostics. Intermediate reports close a copy of the live range
+state and report cumulative prefix sizes.
+
+The base mixers and SSE update from their own cached predictions and the
+observed bit. A correction placed after SSE and vocabulary override therefore
+leaves the future feature stream unchanged. This placement permits exact
+causal codelength screening from frozen traces. The selected correction still
+receives a real encoder/decoder experiment.
+
+**Integer boundary:** replay emits `round(65536*q)` frequencies. Install a
+correction after the original `Discretize`, shared by encoder and decoder;
+feeding `q` through the original float API quantizes it a second time. Keep
+replay's strict floating-point semantics in that shared implementation. At
+zero correction, all 65,535 legal frequencies must remain unchanged.
 
 ```sh
 c++ -O3 -std=c++17 research/replay.cpp -o /YOUR/temp/replay
@@ -93,6 +108,32 @@ c++ -O3 -std=c++17 research/replay.cpp -o /YOUR/temp/replay
 /YOUR/temp/replay /YOUR/temp/run/trace.bin
 ```
 
-The source builds and synthetic known-bias/override check pass. Real auxiliary
-round trips, trace equivalence and causal-calibration gains are queued; their
-results will be added after execution.
+The source builds and synthetic known-bias/override/range-counter checks pass.
+Real auxiliary round trips, trace equivalence and causal-calibration gains are
+queued; their results will be added after execution.
+
+## Output-neutral throughput experiment
+
+Two independent compile definitions retain the original paths by default:
+
+- `HUTTER_FAST_FXCM`: cmix-lex-style raw-to-stretched lookup, initialized through
+  the existing `MixerInput::SetInput` clamp and logit table. Raw-value clamping
+  and the exact neutral padding value are preserved.
+- `HUTTER_CACHE_MIXER`: retain the context selected by `Mix` until `Perceive`.
+  Context updates and that mixer's next possible map insertion occur later.
+  All weight arithmetic and update ordering remain unchanged.
+
+`fast-path-check.cpp` checks all 4,096 possible FXCM probability values plus
+neutral padding. Link it with `src/mixer/{mixer,mixer-input,sigmoid}.cpp` and
+`-I src`, once with and once without `-DHUTTER_CACHE_MIXER`; compare the two
+stdout streams. The local check produced 50,000 byte-identical float
+predictions, covering context-map growth, reuse and the 10,000-context fallback.
+This is an equivalence check; end-to-end speed is measured by the probe.
+
+The queued real gate builds both definitions on the selected v26/aux variant,
+round-trips the existing 256 KiB prefix, and compares its compressed bytes
+against the original verified stream. Adoption for the 8 MiB run requires
+identical bytes and at least 3% less combined encode/decode coding time in this
+short paired measurement. The larger run records actual wall/CPU/RSS and, when
+trace-enabled, the longer causal-calibration curve. Final package size and
+formal resource qualification remain full-data measurements.

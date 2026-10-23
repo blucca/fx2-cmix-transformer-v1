@@ -20,18 +20,49 @@ double logit(double p) {
 double logistic(double z) { return 1 / (1 + std::exp(-z)); }
 double cost(double p, int bit) { return -std::log2(bit ? p : 1 - p); }
 
+// src/coder/encoder.cpp's inclusive intervals, without retaining output bytes.
+struct RangeCounter {
+  std::uint32_t low = 0, high = 0xffffffff;
+  std::uint64_t bytes = 0;
+  void normalize() {
+    while (((low ^ high) & 0xff000000) == 0) {
+      ++bytes;
+      low <<= 8;
+      high = (high << 8) + 255;
+    }
+  }
+  void encode(std::uint32_t p, int bit) {
+    const std::uint32_t mid = low + ((high - low) >> 16) * p +
+        (((high - low) & 0xffff) * p >> 16);
+    if (bit) high = mid;
+    else low = mid + 1;
+    normalize();
+  }
+  std::uint64_t flushed_bytes() const {
+    // A block report closes a copy; the live interval continues unchanged.
+    auto copy = *this;
+    copy.normalize();
+    return copy.bytes + 1;  // Encoder::Flush writes the final high byte.
+  }
+};
+
 struct Cell { double delta = 0, information; };
 struct Calibrator {
   const char* name;
   int kind;
   std::vector<Cell> cells;
   double loss = 0;
+  RangeCounter coder;
   Calibrator(const char* name, int kind, int count, double prior)
       : name(name), kind(kind), cells(count, Cell{0, prior}) {}
 
   void observe(const HutterTraceRecord& r, std::uint64_t i, double p, double z) {
     const int bit = r.flags & 1;
-    if (r.flags & 2) { loss += cost(p, bit); return; }
+    if (r.flags & 2) {
+      coder.encode(r.probability, bit);
+      loss += cost(p, bit);
+      return;
+    }
     const int bitpos = i & 7;
     const int bin = std::clamp(static_cast<int>((z + 10) * 0.8), 0, 15);
     int key = kind == 0 ? 0 : (kind == 1 ? bitpos : bitpos * 16 + bin);
@@ -43,6 +74,7 @@ struct Calibrator {
     const double raw = logistic(z + c.delta);
     const auto coded = std::clamp(std::lround(raw * 65536), 1L, 65535L);
     const double q = coded / 65536.0;
+    coder.encode(coded, bit);
     loss += cost(q, bit);  // Score BEFORE observing the current label.
     c.information += q * (1 - q);
     // ponytail: one bounded intercept per cell; no hidden head or optimizer.
@@ -54,6 +86,7 @@ struct Calibrator {
 struct Replay {
   std::uint64_t bits = 0, overrides = 0;
   double base_loss = 0, neural_loss = 0, fxcm_loss = 0, mixer_loss = 0;
+  RangeCounter base_coder;
   float fxcm_min = 1, fxcm_max = 0;
   std::vector<Calibrator> models{
       {"global_64", 0, 1, 64}, {"bitpos_64", 1, 8, 64},
@@ -67,6 +100,7 @@ struct Replay {
       throw std::runtime_error("invalid trace record");
     const int bit = r.flags & 1;
     const double p = r.probability / 65536.0, z = logit(p);
+    base_coder.encode(r.probability, bit);
     base_loss += cost(p, bit);
     neural_loss += cost(logistic(logit(r.neural)), bit);
     fxcm_loss += cost(logistic(logit(r.fxcm)), bit);
@@ -80,6 +114,7 @@ struct Replay {
   void report(const char* stage) const {
     std::cout << std::setprecision(12) << "{\"stage\":\"" << stage
         << "\",\"bits\":" << bits << ",\"base_bits\":" << base_loss
+        << ",\"base_coded_bytes\":" << base_coder.flushed_bytes()
         << ",\"override_bits\":" << overrides
         << ",\"neural_bits\":" << neural_loss << ",\"fxcm_bits\":" << fxcm_loss
         << ",\"pre_sse_bits\":" << mixer_loss
@@ -89,6 +124,9 @@ struct Replay {
       const auto& m = models[i];
       if (i) std::cout << ',';
       std::cout << "{\"name\":\"" << m.name << "\",\"loss_bits\":" << m.loss
+          << ",\"coded_bytes\":" << m.coder.flushed_bytes()
+          << ",\"saved_bytes\":" << static_cast<std::int64_t>(base_coder.flushed_bytes()) -
+              static_cast<std::int64_t>(m.coder.flushed_bytes())
           << ",\"saved_bits\":" << base_loss - m.loss
           << ",\"saved_fraction\":" << (base_loss - m.loss) / base_loss << '}';
     }
@@ -101,15 +139,46 @@ int main(int argc, char** argv) {
     if (argc != 2) throw std::runtime_error("usage: replay TRACE.bin | --self-test");
     Replay replay;
     if (std::string(argv[1]) == "--self-test") {
+      // Zero correction preserves every legal coder frequency. Compare the
+      // counter with byte-emitting Encoder arithmetic using a 64-bit product.
+      RangeCounter counted;
+      std::uint32_t low = 0, high = 0xffffffff;
+      std::vector<unsigned char> reference;
+      for (std::uint32_t p = 1; p <= 65535; ++p) {
+        assert(std::lround(logistic(logit(p / 65536.0)) * 65536) == p);
+        const int bit = (p * 2654435761u) >> 31;
+        const std::uint32_t mid = low + (std::uint64_t(high - low) * p >> 16);
+        if (bit) high = mid;
+        else low = mid + 1;
+        while (((low ^ high) & 0xff000000) == 0) {
+          reference.push_back(high >> 24);
+          low <<= 8;
+          high = (high << 8) + 255;
+        }
+        counted.encode(p, bit);
+        assert(counted.low == low && counted.high == high);
+        assert(counted.bytes == reference.size());
+      }
+      reference.push_back(high >> 24);
+      assert(counted.flushed_bytes() == reference.size());
       // A known intercept error must improve; overrides must remain untouched.
       for (unsigned i = 0; i < 80000; ++i) {
         HutterTraceRecord r{26214, std::uint16_t(i % 10 < 6), 0.6f, 0.5f, 0.0f};
         replay.observe(r);
       }
       assert(replay.base_loss - replay.models[0].loss > 1000);
+      assert(replay.base_coder.flushed_bytes() > replay.models[0].coder.flushed_bytes());
       Replay forced;
-      for (unsigned i = 0; i < 80; ++i) forced.observe({65535, 3, 1, 0.5f, 0});
-      for (const auto& m : forced.models) assert(m.loss == forced.base_loss);
+      for (unsigned i = 0; i < 80; ++i) {
+        forced.observe(i & 1 ? HutterTraceRecord{65535, 2, 1, 0.5f, 0} :
+                              HutterTraceRecord{1, 3, 0, 0.5f, 0});
+      }
+      assert(forced.base_coder.flushed_bytes() == 161);
+      for (const auto& m : forced.models) {
+        assert(m.loss == forced.base_loss);
+        assert(m.coder.flushed_bytes() == forced.base_coder.flushed_bytes());
+        for (const auto& c : m.cells) assert(c.delta == 0);
+      }
       assert(logistic(logit(0.5)) == 0.5);
       replay.report("self_test_passed");
       return 0;

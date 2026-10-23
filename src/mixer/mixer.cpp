@@ -42,6 +42,11 @@ ContextData* Mixer::GetContextData() {
 
 float Mixer::Mix() {
   ContextData* data = GetContextData();
+#ifdef HUTTER_CACHE_MIXER
+  // Predictor updates contexts after every mixer's Perceive. This map is
+  // private to this mixer and cannot rehash between Mix and Perceive.
+  current_data_ = data;
+#endif
   float p = 0;
   for (int i = 0; i < inputs_.size(); ++i) {
     p += inputs_[i] * data->weights[i];
@@ -77,7 +82,11 @@ void Mixer::Perceive(int bit) {
   }
    // ++data->steps;
   update = decay * update;
+#ifdef HUTTER_CACHE_MIXER
+  ContextData* data = current_data_;
+#else
   ContextData* data = GetContextData();
+#endif
   
   data->weights -= update * inputs_;
   data->extra_weights -= update * extra_inputs_vec_[std::slice(0,extra_inputs_size_,1)];

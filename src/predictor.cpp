@@ -6,6 +6,7 @@
 #include <cstdlib>
 #include <cstring>
 #include <cstdarg>
+#include <algorithm>
 #ifdef __F16C__
 #include <immintrin.h>
 #endif
@@ -258,6 +259,18 @@ Predictor::Predictor(const std::vector<bool>& vocab,
   AddDoubleIndirect();
   AddMixers();
   auxiliary_size_ = 2;
+#ifdef HUTTER_FAST_FXCM
+  // cmix-lex's raw-to-stretched lookup, built through the original SetInput
+  // path so its probability clamp and logit-table rounding stay identical.
+  MixerInput lookup(sigmoid_, 1.0e-4f);
+  lookup.SetNumModels(4096);
+  for (int raw = -2047; raw <= 2047; ++raw) {
+    lookup.SetInput(raw + 2047,
+        fxcm_model_->RawPredictionProbability(static_cast<short>(raw)));
+  }
+  lookup.SetInput(4095, 0.5f);
+  fxcm_stretched_inputs_ = lookup.Inputs();
+#endif
 }
 
 unsigned long long Predictor::GetNumModels() {
@@ -444,6 +457,17 @@ float Predictor::Predict() {
   const short* fxcm_raw_outputs = fxcm_model_->RawPredictions();
   unsigned int fxcm_active_outputs = fxcm_model_->ActivePredictions();
   if (fxcm_active_outputs > fxcm_model_outputs) fxcm_active_outputs = fxcm_model_outputs;
+#ifdef HUTTER_FAST_FXCM
+  for (unsigned int j = 0; j < fxcm_active_outputs; ++j) {
+    const int raw = std::clamp<int>(fxcm_raw_outputs[j], -2047, 2047);
+    layers_[0].SetStretchedInputUnchecked(input_index++,
+        fxcm_stretched_inputs_[raw + 2047]);
+  }
+  for (unsigned int j = fxcm_active_outputs; j < fxcm_model_outputs; ++j) {
+    layers_[0].SetStretchedInputUnchecked(input_index++,
+        fxcm_stretched_inputs_[4095]);
+  }
+#else
   for (unsigned int j = 0; j < fxcm_active_outputs; ++j) {
     layers_[0].SetInput(input_index++,
         fxcm_model_->RawPredictionProbability(fxcm_raw_outputs[j]));
@@ -451,6 +475,7 @@ float Predictor::Predict() {
   for (unsigned int j = fxcm_active_outputs; j < fxcm_model_outputs; ++j) {
     layers_[0].SetInput(input_index++, 0.5f);
   }
+#endif
   auto fxcm_model_index = input_index - 1;
 #ifdef HUTTER_ACTIVE_AUX
   // cmix-obias KH_FXCM_FIX: expose the final active expert to the skip

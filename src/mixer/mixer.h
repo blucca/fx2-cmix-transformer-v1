@@ -36,6 +36,9 @@ class Mixer {
   unsigned long long /*max_steps_,*/ steps_;
   emhash6::HashMap<unsigned int, ContextData> context_map_;
   ContextData context_base_;
+#ifdef HUTTER_CACHE_MIXER
+  ContextData* current_data_ = nullptr;
+#endif
 };
 
 #endif
