@@ -129,12 +129,19 @@ c++ -O3 -std=c++17 research/replay.cpp -o /YOUR/temp/replay
 ```
 
 The source builds and synthetic known-bias/override/range-counter checks pass.
-Real auxiliary round trips, trace equivalence and causal-calibration gains are
-queued; their results will be added after execution.
+
+The first auxiliary-wiring runs round-tripped at **20,959 B / 84,853 B** on
+the 256 KiB / 1 MiB prefixes: 5 B / 14 B larger than the original v26 port.
+Exact replay matched both real encoded sizes. `neural_gap_64` saved 4 B / 34 B;
+its cumulative 256 KiB-block savings were 4, 9, 21 and 34 B. These prefixes
+overlap; independent middle-span and champion-trace results remain queued.
+Calibration is still replay-only. [Initial receipts](results/initial-auxiliary-prefixes.json).
 
 ### One frozen history-conditioned head
 
-An additional research-only experiment fits 18 coefficients using the same
+Inspired by the historical-error feature families in
+[cmix-obias BITLSTM32](https://huggingface.co/dfreelan/cmix-obias/blob/51488a0c1228dbeab7c1be837fc90ceaed351728/cmix-obias/BITLSTM32_SPEC.md),
+an additional research-only experiment fits 18 coefficients using the same
 trace. Its features combine bit position, current neural/pre-SSE disagreement,
 and **past** base residuals, surprise changes and relative expert loss. Each
 bit is scored before its label enters the bias-corrected exponential averages.

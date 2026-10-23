@@ -1,0 +1,536 @@
+{
+  "source": "HUTTER_ACTIVE_AUX; online replay from 84dae0e, strict local C++ build",
+  "scope": "Two overlapping prefixes. Calibration remains replay-only; independent and long-stream comparisons remain queued.",
+  "cases": {
+    "prefix-256k": {
+      "trial": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "44421d60cf67b6c9bd5152bb2365985f2c3b3fd262e4bc9635d562ded892d716",
+          "sample": {
+            "name": "prefix-256k",
+            "offset": 0,
+            "length": 262144
+          },
+          "variant": "v26aux",
+          "trace_record_bytes": 16
+        },
+        "status": "passed",
+        "started_at": 1792783543.8660235,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 262144,
+          "output_bytes": 20959,
+          "seconds": 145.183527,
+          "coding_seconds": 95.951001,
+          "cpu_seconds": 144.871773,
+          "max_rss_kib": 7886460
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 262144,
+          "output_bytes": 262144,
+          "seconds": 146.65189,
+          "coding_seconds": 96.076435,
+          "cpu_seconds": 146.292268,
+          "max_rss_kib": 7892968
+        },
+        "trace_bytes": 33554432,
+        "encoded_bytes": 20959,
+        "bits_per_stream_byte": 0.639617919921875,
+        "original_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+        "restored_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+        "elapsed_seconds": 293.8981590270996
+      },
+      "replay": {
+        "stage": "complete",
+        "bits": 2097152,
+        "base_bits": 167668.222873,
+        "base_coded_bytes": 20959,
+        "override_bits": 85087,
+        "neural_bits": 170345.249536,
+        "fxcm_bits": 228140.039667,
+        "pre_sse_bits": 167611.794847,
+        "fxcm_min": 0.000244997558184,
+        "fxcm_max": 0.999904990196,
+        "models": [
+          {
+            "name": "global_64",
+            "loss_bits": 167672.044603,
+            "coded_bytes": 20959,
+            "saved_bytes": 0,
+            "saved_bits": -3.82172974525,
+            "saved_fraction": -2.27934052127e-05
+          },
+          {
+            "name": "bitpos_64",
+            "loss_bits": 167683.686726,
+            "coded_bytes": 20961,
+            "saved_bytes": -2,
+            "saved_bits": -15.46385306,
+            "saved_fraction": -9.22288838935e-05
+          },
+          {
+            "name": "confidence_64",
+            "loss_bits": 167668.460736,
+            "coded_bytes": 20959,
+            "saved_bytes": 0,
+            "saved_bits": -0.237862814305,
+            "saved_fraction": -1.41865172916e-06
+          },
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 167640.167067,
+            "coded_bytes": 20955,
+            "saved_bytes": 4,
+            "saved_bits": 28.0558065514,
+            "saved_fraction": 0.000167329301108
+          },
+          {
+            "name": "neural_gap_256",
+            "loss_bits": 167647.251305,
+            "coded_bytes": 20956,
+            "saved_bytes": 3,
+            "saved_bits": 20.9715684491,
+            "saved_fraction": 0.000125077776156
+          },
+          {
+            "name": "pre_sse_gap_256",
+            "loss_bits": 167658.690564,
+            "coded_bytes": 20958,
+            "saved_bytes": 1,
+            "saved_bits": 9.53230935612,
+            "saved_fraction": 5.68522120218e-05
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "stage": "block",
+          "bits": 2097152,
+          "base_bits": 167668.222873,
+          "base_coded_bytes": 20959,
+          "override_bits": 85087,
+          "neural_bits": 170345.249536,
+          "fxcm_bits": 228140.039667,
+          "pre_sse_bits": 167611.794847,
+          "fxcm_min": 0.000244997558184,
+          "fxcm_max": 0.999904990196,
+          "models": [
+            {
+              "name": "global_64",
+              "loss_bits": 167672.044603,
+              "coded_bytes": 20959,
+              "saved_bytes": 0,
+              "saved_bits": -3.82172974525,
+              "saved_fraction": -2.27934052127e-05
+            },
+            {
+              "name": "bitpos_64",
+              "loss_bits": 167683.686726,
+              "coded_bytes": 20961,
+              "saved_bytes": -2,
+              "saved_bits": -15.46385306,
+              "saved_fraction": -9.22288838935e-05
+            },
+            {
+              "name": "confidence_64",
+              "loss_bits": 167668.460736,
+              "coded_bytes": 20959,
+              "saved_bytes": 0,
+              "saved_bits": -0.237862814305,
+              "saved_fraction": -1.41865172916e-06
+            },
+            {
+              "name": "neural_gap_64",
+              "loss_bits": 167640.167067,
+              "coded_bytes": 20955,
+              "saved_bytes": 4,
+              "saved_bits": 28.0558065514,
+              "saved_fraction": 0.000167329301108
+            },
+            {
+              "name": "neural_gap_256",
+              "loss_bits": 167647.251305,
+              "coded_bytes": 20956,
+              "saved_bytes": 3,
+              "saved_bits": 20.9715684491,
+              "saved_fraction": 0.000125077776156
+            },
+            {
+              "name": "pre_sse_gap_256",
+              "loss_bits": 167658.690564,
+              "coded_bytes": 20958,
+              "saved_bytes": 1,
+              "saved_bits": 9.53230935612,
+              "saved_fraction": 5.68522120218e-05
+            }
+          ]
+        }
+      ]
+    },
+    "prefix-1m": {
+      "trial": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "44421d60cf67b6c9bd5152bb2365985f2c3b3fd262e4bc9635d562ded892d716",
+          "sample": {
+            "name": "prefix-1m",
+            "offset": 0,
+            "length": 1048576
+          },
+          "variant": "v26aux",
+          "trace_record_bytes": 16
+        },
+        "status": "passed",
+        "started_at": 1792783837.769483,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 84853,
+          "seconds": 434.048057,
+          "coding_seconds": 385.560132,
+          "cpu_seconds": 432.628566,
+          "max_rss_kib": 7894552
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 1048576,
+          "seconds": 442.839371,
+          "coding_seconds": 393.008797,
+          "cpu_seconds": 433.972267,
+          "max_rss_kib": 7867544
+        },
+        "trace_bytes": 134217728,
+        "encoded_bytes": 84853,
+        "bits_per_stream_byte": 0.6473770141601562,
+        "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "elapsed_seconds": 879.3849964141846
+      },
+      "replay": {
+        "stage": "complete",
+        "bits": 8388608,
+        "base_bits": 678819.494728,
+        "base_coded_bytes": 84853,
+        "override_bits": 319771,
+        "neural_bits": 702602.025162,
+        "fxcm_bits": 867567.328448,
+        "pre_sse_bits": 678706.803562,
+        "fxcm_min": 0.000244997558184,
+        "fxcm_max": 0.999904990196,
+        "models": [
+          {
+            "name": "global_64",
+            "loss_bits": 678823.17391,
+            "coded_bytes": 84853,
+            "saved_bytes": 0,
+            "saved_bits": -3.67918168742,
+            "saved_fraction": -5.41997057538e-06
+          },
+          {
+            "name": "bitpos_64",
+            "loss_bits": 678829.001683,
+            "coded_bytes": 84854,
+            "saved_bytes": -1,
+            "saved_bits": -9.50695536553,
+            "saved_fraction": -1.40051301404e-05
+          },
+          {
+            "name": "confidence_64",
+            "loss_bits": 678703.845985,
+            "coded_bytes": 84839,
+            "saved_bytes": 14,
+            "saved_bits": 115.648742619,
+            "saved_fraction": 0.000170367444537
+          },
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 678550.98568,
+            "coded_bytes": 84819,
+            "saved_bytes": 34,
+            "saved_bits": 268.50904843,
+            "saved_fraction": 0.000395552942299
+          },
+          {
+            "name": "neural_gap_256",
+            "loss_bits": 678689.035507,
+            "coded_bytes": 84837,
+            "saved_bytes": 16,
+            "saved_bits": 130.459220825,
+            "saved_fraction": 0.000192185436391
+          },
+          {
+            "name": "pre_sse_gap_256",
+            "loss_bits": 678757.460602,
+            "coded_bytes": 84845,
+            "saved_bytes": 8,
+            "saved_bits": 62.034125603,
+            "saved_fraction": 9.13853035819e-05
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "stage": "block",
+          "bits": 2097152,
+          "base_bits": 167668.222873,
+          "base_coded_bytes": 20959,
+          "override_bits": 85087,
+          "neural_bits": 170345.249536,
+          "fxcm_bits": 228140.039667,
+          "pre_sse_bits": 167611.794847,
+          "fxcm_min": 0.000244997558184,
+          "fxcm_max": 0.999904990196,
+          "models": [
+            {
+              "name": "global_64",
+              "loss_bits": 167672.044603,
+              "coded_bytes": 20959,
+              "saved_bytes": 0,
+              "saved_bits": -3.82172974525,
+              "saved_fraction": -2.27934052127e-05
+            },
+            {
+              "name": "bitpos_64",
+              "loss_bits": 167683.686726,
+              "coded_bytes": 20961,
+              "saved_bytes": -2,
+              "saved_bits": -15.46385306,
+              "saved_fraction": -9.22288838935e-05
+            },
+            {
+              "name": "confidence_64",
+              "loss_bits": 167668.460736,
+              "coded_bytes": 20959,
+              "saved_bytes": 0,
+              "saved_bits": -0.237862814305,
+              "saved_fraction": -1.41865172916e-06
+            },
+            {
+              "name": "neural_gap_64",
+              "loss_bits": 167640.167067,
+              "coded_bytes": 20955,
+              "saved_bytes": 4,
+              "saved_bits": 28.0558065514,
+              "saved_fraction": 0.000167329301108
+            },
+            {
+              "name": "neural_gap_256",
+              "loss_bits": 167647.251305,
+              "coded_bytes": 20956,
+              "saved_bytes": 3,
+              "saved_bits": 20.9715684491,
+              "saved_fraction": 0.000125077776156
+            },
+            {
+              "name": "pre_sse_gap_256",
+              "loss_bits": 167658.690564,
+              "coded_bytes": 20958,
+              "saved_bytes": 1,
+              "saved_bits": 9.53230935612,
+              "saved_fraction": 5.68522120218e-05
+            }
+          ]
+        },
+        {
+          "stage": "block",
+          "bits": 4194304,
+          "base_bits": 325932.892099,
+          "base_coded_bytes": 40742,
+          "override_bits": 161378,
+          "neural_bits": 334852.234276,
+          "fxcm_bits": 427771.948863,
+          "pre_sse_bits": 325892.206716,
+          "fxcm_min": 0.000244997558184,
+          "fxcm_max": 0.999904990196,
+          "models": [
+            {
+              "name": "global_64",
+              "loss_bits": 325936.381133,
+              "coded_bytes": 40742,
+              "saved_bytes": 0,
+              "saved_bits": -3.48903411051,
+              "saved_fraction": -1.07047622228e-05
+            },
+            {
+              "name": "bitpos_64",
+              "loss_bits": 325952.37623,
+              "coded_bytes": 40744,
+              "saved_bytes": -2,
+              "saved_bits": -19.4841310829,
+              "saved_fraction": -5.97795790336e-05
+            },
+            {
+              "name": "confidence_64",
+              "loss_bits": 325901.417243,
+              "coded_bytes": 40738,
+              "saved_bytes": 4,
+              "saved_bits": 31.4748560556,
+              "saved_fraction": 9.6568517074e-05
+            },
+            {
+              "name": "neural_gap_64",
+              "loss_bits": 325856.728915,
+              "coded_bytes": 40733,
+              "saved_bytes": 9,
+              "saved_bits": 76.1631840066,
+              "saved_fraction": 0.000233677501881
+            },
+            {
+              "name": "neural_gap_256",
+              "loss_bits": 325895.613924,
+              "coded_bytes": 40737,
+              "saved_bytes": 5,
+              "saved_bits": 37.2781746044,
+              "saved_fraction": 0.00011437377297
+            },
+            {
+              "name": "pre_sse_gap_256",
+              "loss_bits": 325912.577097,
+              "coded_bytes": 40740,
+              "saved_bytes": 2,
+              "saved_bits": 20.315002387,
+              "saved_fraction": 6.23287887766e-05
+            }
+          ]
+        },
+        {
+          "stage": "block",
+          "bits": 6291456,
+          "base_bits": 479538.077203,
+          "base_coded_bytes": 59942,
+          "override_bits": 238205,
+          "neural_bits": 497129.896527,
+          "fxcm_bits": 618687.73951,
+          "pre_sse_bits": 479471.043121,
+          "fxcm_min": 0.000244997558184,
+          "fxcm_max": 0.999904990196,
+          "models": [
+            {
+              "name": "global_64",
+              "loss_bits": 479541.838814,
+              "coded_bytes": 59943,
+              "saved_bytes": -1,
+              "saved_bits": -3.76161150966,
+              "saved_fraction": -7.84423946395e-06
+            },
+            {
+              "name": "bitpos_64",
+              "loss_bits": 479551.617127,
+              "coded_bytes": 59944,
+              "saved_bytes": -2,
+              "saved_bits": -13.5399246773,
+              "saved_fraction": -2.82353483925e-05
+            },
+            {
+              "name": "confidence_64",
+              "loss_bits": 479467.326283,
+              "coded_bytes": 59933,
+              "saved_bytes": 9,
+              "saved_bits": 70.7509201869,
+              "saved_fraction": 0.000147539733653
+            },
+            {
+              "name": "neural_gap_64",
+              "loss_bits": 479363.018088,
+              "coded_bytes": 59921,
+              "saved_bytes": 21,
+              "saved_bits": 175.059114323,
+              "saved_fraction": 0.000365057797588
+            },
+            {
+              "name": "neural_gap_256",
+              "loss_bits": 479456.098516,
+              "coded_bytes": 59933,
+              "saved_bytes": 9,
+              "saved_bits": 81.9786868888,
+              "saved_fraction": 0.000170953446214
+            },
+            {
+              "name": "pre_sse_gap_256",
+              "loss_bits": 479501.000112,
+              "coded_bytes": 59938,
+              "saved_bytes": 4,
+              "saved_bits": 37.077090962,
+              "saved_fraction": 7.73183459764e-05
+            }
+          ]
+        },
+        {
+          "stage": "block",
+          "bits": 8388608,
+          "base_bits": 678819.494728,
+          "base_coded_bytes": 84853,
+          "override_bits": 319771,
+          "neural_bits": 702602.025162,
+          "fxcm_bits": 867567.328448,
+          "pre_sse_bits": 678706.803562,
+          "fxcm_min": 0.000244997558184,
+          "fxcm_max": 0.999904990196,
+          "models": [
+            {
+              "name": "global_64",
+              "loss_bits": 678823.17391,
+              "coded_bytes": 84853,
+              "saved_bytes": 0,
+              "saved_bits": -3.67918168742,
+              "saved_fraction": -5.41997057538e-06
+            },
+            {
+              "name": "bitpos_64",
+              "loss_bits": 678829.001683,
+              "coded_bytes": 84854,
+              "saved_bytes": -1,
+              "saved_bits": -9.50695536553,
+              "saved_fraction": -1.40051301404e-05
+            },
+            {
+              "name": "confidence_64",
+              "loss_bits": 678703.845985,
+              "coded_bytes": 84839,
+              "saved_bytes": 14,
+              "saved_bits": 115.648742619,
+              "saved_fraction": 0.000170367444537
+            },
+            {
+              "name": "neural_gap_64",
+              "loss_bits": 678550.98568,
+              "coded_bytes": 84819,
+              "saved_bytes": 34,
+              "saved_bits": 268.50904843,
+              "saved_fraction": 0.000395552942299
+            },
+            {
+              "name": "neural_gap_256",
+              "loss_bits": 678689.035507,
+              "coded_bytes": 84837,
+              "saved_bytes": 16,
+              "saved_bits": 130.459220825,
+              "saved_fraction": 0.000192185436391
+            },
+            {
+              "name": "pre_sse_gap_256",
+              "loss_bits": 678757.460602,
+              "coded_bytes": 84845,
+              "saved_bytes": 8,
+              "saved_bits": 62.034125603,
+              "saved_fraction": 9.13853035819e-05
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
