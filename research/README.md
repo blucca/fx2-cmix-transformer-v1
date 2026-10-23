@@ -54,6 +54,16 @@ The two prefixes overlap. The remaining cold-start article-aligned span and long
 measurements are running/queued. Full-file S and
 formal resource qualification are pending.
 
+### Executable byte budget
+
+The same non-PGO Clang 17 development builds, packed with UPX 5.2.1 `-9`,
+measure 181,644 B for v22 and 202,304 B for v26. The champion's packaging
+includes the executable twice, so this comparison adds **41,320 B** to the
+v26 byte budget before compressed dictionary/order differences. This is a
+development estimate; final PGO/LTO packaging supplies the official sizes.
+The cold-start coding gains therefore need a continuous long-stream test
+and a complete package comparison. [Size receipt](results/development-binary-sizes.json).
+
 ## Next controlled mechanism: the FXCM auxiliary skip
 
 The fixed-capacity last FXCM slot is used twice: as a stage-1 skip input and in

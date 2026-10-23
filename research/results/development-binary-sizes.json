@@ -1,0 +1,27 @@
+{
+  "scope": "Development Clang17 non-PGO binaries; matched UPX -9. Official PGO/LTO and compressed dictionary/order deltas still pending. v26aux includes trace instrumentation.",
+  "upx_release": "v5.2.1",
+  "results": {
+    "baseline": {
+      "raw_bytes": 456096,
+      "packed_bytes": 181644,
+      "binary_sha256": "64f4375c47b3ea1de721e7ebadbb8960aa58b1f8273cc2bc29d9c9a141c20033",
+      "packed_delta_one_copy": 0,
+      "packed_delta_two_copies": 0
+    },
+    "v26": {
+      "raw_bytes": 509920,
+      "packed_bytes": 202304,
+      "binary_sha256": "752c8df205ba4835899e69a53776dd584d313d583bb2eff1d63508401e1812c0",
+      "packed_delta_one_copy": 20660,
+      "packed_delta_two_copies": 41320
+    },
+    "v26aux": {
+      "raw_bytes": 509968,
+      "packed_bytes": 203052,
+      "binary_sha256": "7d057690b226f3defd744288f053c087cded022bb99bae5b7b780bc3353ec2ed",
+      "packed_delta_one_copy": 21408,
+      "packed_delta_two_copies": 42816
+    }
+  }
+}
