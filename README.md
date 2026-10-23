@@ -2,7 +2,7 @@
 
 Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
 
-[Research protocol and reproducible experiments](research/README.md). The first experiment holds the original dictionary, article order, PPMd, neural weights and outer mixer fixed. Current progress: the pinned original builds with Clang 17; the exact 1,000,000,000-byte enwik9 dataset is downloaded and verified; the full-stream preparation and paired compression/decompression experiment are running.
+[Research protocol and reproducible experiments](research/README.md). The first experiment holds the original dictionary, article order, PPMd, neural weights and outer mixer fixed. Initial lossless prefix comparisons save 18 bytes at 256 KiB and 149 bytes at 1 MiB with v26; longer spans, auxiliary-skip wiring and causal-calibration experiments are in progress. Full-file prize measurements are pending.
 
 The original champion’s documentation follows, with its authorship and results preserved.
 

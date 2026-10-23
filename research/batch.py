@@ -40,9 +40,16 @@ def main():
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
+    parser.add_argument("--variants", nargs="+", default=["baseline", "v26"])
+    parser.add_argument("--trace", action="store_true",
+                        help="Record 16-byte/bit diagnostics; binaries require HUTTER_TRACE")
     parser.add_argument("--timeout", type=int, default=18000,
                         help="Maximum seconds for one real encode/decode command")
     args = parser.parse_args()
+    if len(args.variants) != len(set(args.variants)) or any(
+            not name or Path(name).name != name or name in (".", "..")
+            for name in args.variants):
+        raise ValueError("variants must be unique plain directory names")
     root, out = args.root.resolve(), args.out.resolve()
     out.mkdir(parents=True, exist_ok=True)
     lock = (out / "batch.lock").open("a")
@@ -69,9 +76,11 @@ def main():
         if not isinstance(offset, int) or not isinstance(length, int) or offset < 0 or length <= 0:
             raise ValueError("sample offset/length must be nonnegative/positive integers")
         reference = digest(stream, offset, length)
-        for variant in ("baseline", "v26"):
+        for variant in args.variants:
             binary = root / "build" / variant / "probe"
             identity = {**shared, "binary_sha256": digest(binary), "sample": sample, "variant": variant}
+            if args.trace:
+                identity["trace_record_bytes"] = 16
             trial = out / name / variant
             trial.mkdir(parents=True, exist_ok=True)
             receipt = trial / "result.json"
@@ -97,7 +106,10 @@ def main():
                     with (trial / f"{mode}.log").open("w") as log:
                         subprocess.run(command, cwd=trial, stdout=log, stderr=subprocess.STDOUT,
                                        timeout=args.timeout, check=True,
-                                       env=dict(os.environ, TMPDIR=str(trial), OMP_NUM_THREADS="1",
+                                       env=dict(os.environ,
+                                                HUTTER_TRACE_PATH=str(trial / "trace.bin")
+                                                if args.trace and mode == "encode" else "",
+                                                TMPDIR=str(trial), OMP_NUM_THREADS="1",
                                                 OPENBLAS_NUM_THREADS="1"))
                     text = (trial / f"{mode}.log").read_text()
                     marker = next(line.split("PROBE_RESULT ", 1)[1]
@@ -106,6 +118,10 @@ def main():
                     save(receipt, row)
                 if decoded.stat().st_size != length or digest(decoded) != reference:
                     raise ValueError("lossless round-trip mismatch")
+                if args.trace:
+                    row["trace_bytes"] = (trial / "trace.bin").stat().st_size
+                    if row["trace_bytes"] != length * 8 * 16:
+                        raise ValueError("trace must contain exactly one record per coded bit")
                 row.update(status="passed", encoded_bytes=encoded.stat().st_size,
                            bits_per_stream_byte=8 * encoded.stat().st_size / length,
                            original_slice_sha256=reference, restored_slice_sha256=digest(decoded),
@@ -120,12 +136,13 @@ def main():
                 save(receipt, row)
                 event("trial_failed", sample=name, variant=variant, error=str(error))
                 raise
-        base = json.loads((out / name / "baseline/result.json").read_text())
-        candidate = json.loads((out / name / "v26/result.json").read_text())
-        event("comparison", sample=name,
-              baseline_bytes=base["encoded_bytes"], v26_bytes=candidate["encoded_bytes"],
-              saved_bytes=base["encoded_bytes"] - candidate["encoded_bytes"],
-              saved_fraction=1 - candidate["encoded_bytes"] / base["encoded_bytes"])
+        base = json.loads((out / name / args.variants[0] / "result.json").read_text())
+        for variant in args.variants[1:]:
+            candidate = json.loads((out / name / variant / "result.json").read_text())
+            event("comparison", sample=name, baseline=args.variants[0], candidate=variant,
+                  baseline_bytes=base["encoded_bytes"], candidate_bytes=candidate["encoded_bytes"],
+                  saved_bytes=base["encoded_bytes"] - candidate["encoded_bytes"],
+                  saved_fraction=1 - candidate["encoded_bytes"] / base["encoded_bytes"])
     event("batch_complete", samples=len(plan))
 
 

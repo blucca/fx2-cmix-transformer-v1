@@ -123,6 +123,11 @@ class Predictor {
   float Predict();
   void Perceive(int bit);
   void Pretrain(int bit);
+#ifdef HUTTER_TRACE
+  float TraceNeural() const { return trace_neural_; }
+  float TraceFxcm() const { return trace_fxcm_; }
+  float TraceMixer() const { return trace_mixer_; }
+#endif
 
  private:
   unsigned long long GetNumModels();
@@ -147,6 +152,9 @@ class Predictor {
   llvm::SmallVector<Match, 10> match_models_;
   
   std::optional<Bracket> bracket_model_;
+#ifdef HUTTER_TRACE
+  float trace_neural_ = 0.5f, trace_fxcm_ = 0.5f, trace_mixer_ = 0.0f;
+#endif
   size_t auxiliary_size_ = 2; // 0 -> fxcm, 1 -> byte_mixer
   SSE sse_;
   llvm::SmallVector<MixerInput,2> layers_;

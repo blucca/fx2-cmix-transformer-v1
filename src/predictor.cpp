@@ -452,6 +452,13 @@ float Predictor::Predict() {
     layers_[0].SetInput(input_index++, 0.5f);
   }
   auto fxcm_model_index = input_index - 1;
+#ifdef HUTTER_ACTIVE_AUX
+  // cmix-obias KH_FXCM_FIX: expose the final active expert to the skip
+  // connection and auxiliary context. Keep padding in the full input row.
+  if (fxcm_active_outputs) {
+    fxcm_model_index -= fxcm_model_outputs - fxcm_active_outputs;
+  }
+#endif
   
 
   for (unsigned int i = 0; i < direct_models_.size(); ++i) {
@@ -506,7 +513,13 @@ float Predictor::Predict() {
   layers_[1].SetStretchedInput(mixer_0_.size(), layers_[0].Inputs()[fxcm_model_index]);
   layers_[1].SetStretchedInput(mixer_0_.size() + 1, layers_[0].Inputs()[byte_mixer_index]);
 
-  float p = Sigmoid::Logistic(mixer_1_[0].Mix());
+  const float mixer_logit = mixer_1_[0].Mix();
+#ifdef HUTTER_TRACE
+  trace_neural_ = byte_mixer_output;
+  trace_fxcm_ = Sigmoid::Logistic(layers_[0].Inputs()[fxcm_model_index]);
+  trace_mixer_ = mixer_logit;
+#endif
+  float p = Sigmoid::Logistic(mixer_logit);
   p = sse_.Predict(p);
   if (byte_mixer_override >= 0) {
     return byte_mixer_override;

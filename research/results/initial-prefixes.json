@@ -1,0 +1,172 @@
+{
+  "baseline_commit": "83f2603f3f7751da5f429fd32669807eb8510494",
+  "candidate_commit": "ae5489d667f2dc9d4d3cd53ce7ab65c466232bb1",
+  "scope": "dictionary-pretrained cold-start prefixes of the exact 586459020-byte prepared stream; payload-only probe sizes",
+  "resource_event": "v26 initially hit global OOM on an 8 GiB VM without swap. The same binary completed after adding 4 GiB disk swap.",
+  "trials": {
+    "prefix-256k": {
+      "baseline": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+          "sample": {
+            "name": "prefix-256k",
+            "offset": 0,
+            "length": 262144
+          },
+          "variant": "baseline"
+        },
+        "status": "passed",
+        "started_at": 1792775925.544459,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 262144,
+          "output_bytes": 20972,
+          "seconds": 88.604444,
+          "coding_seconds": 63.764909,
+          "max_rss_kib": 5598396
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 262144,
+          "output_bytes": 262144,
+          "seconds": 86.804926,
+          "coding_seconds": 64.308152,
+          "max_rss_kib": 5598364
+        },
+        "encoded_bytes": 20972,
+        "bits_per_stream_byte": 0.6400146484375,
+        "original_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+        "restored_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+        "elapsed_seconds": 176.6792495250702
+      },
+      "v26": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+          "sample": {
+            "name": "prefix-256k",
+            "offset": 0,
+            "length": 262144
+          },
+          "variant": "v26"
+        },
+        "status": "passed",
+        "started_at": 1792777135.700305,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 262144,
+          "output_bytes": 20954,
+          "seconds": 133.179436,
+          "coding_seconds": 86.689014,
+          "max_rss_kib": 7765620
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 262144,
+          "output_bytes": 262144,
+          "seconds": 130.871276,
+          "coding_seconds": 86.337098,
+          "max_rss_kib": 7810252
+        },
+        "encoded_bytes": 20954,
+        "bits_per_stream_byte": 0.63946533203125,
+        "original_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+        "restored_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+        "elapsed_seconds": 266.0307800769806
+      }
+    },
+    "prefix-1m": {
+      "baseline": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+          "sample": {
+            "name": "prefix-1m",
+            "offset": 0,
+            "length": 1048576
+          },
+          "variant": "baseline"
+        },
+        "status": "passed",
+        "started_at": 1792777401.7413213,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 84988,
+          "seconds": 288.666675,
+          "coding_seconds": 265.681912,
+          "max_rss_kib": 5779760
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 1048576,
+          "seconds": 281.244932,
+          "coding_seconds": 258.556592,
+          "max_rss_kib": 5779608
+        },
+        "encoded_bytes": 84988,
+        "bits_per_stream_byte": 0.648406982421875,
+        "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "elapsed_seconds": 571.1819562911987
+      },
+      "v26": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+          "sample": {
+            "name": "prefix-1m",
+            "offset": 0,
+            "length": 1048576
+          },
+          "variant": "v26"
+        },
+        "status": "passed",
+        "started_at": 1792777972.924387,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 84839,
+          "seconds": 415.696962,
+          "coding_seconds": 371.028989,
+          "max_rss_kib": 7821208
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 1048576,
+          "seconds": 443.459671,
+          "coding_seconds": 393.836385,
+          "max_rss_kib": 7875420
+        },
+        "encoded_bytes": 84839,
+        "bits_per_stream_byte": 0.6472702026367188,
+        "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "elapsed_seconds": 861.5633952617645
+      }
+    }
+  }
+}

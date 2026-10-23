@@ -10,10 +10,11 @@ import subprocess
 import time
 
 
-def commands(source, compiler):
+def commands(source, compiler, defines=()):
     plan = subprocess.check_output(
         ["make", "-n", "cmix", f"CC={compiler}",
-         "CFLAGS_DEFINES=-DSEED=923 -DUPDATE_LIMIT=3000"],
+         "CFLAGS_DEFINES=-DSEED=923 -DUPDATE_LIMIT=3000 " +
+         " ".join("-D" + value for value in defines)],
         cwd=source, text=True,
     )
     result = []
@@ -34,12 +35,14 @@ def main():
     parser.add_argument("--source", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--compiler", default="clang++-17")
+    parser.add_argument("--define", action="append", default=[],
+                        help="Additional compiler definition for an explicit ablation")
     parser.add_argument("--extra", type=Path, action="append", default=[],
                         help="Build a research main, linking all upstream objects except runner.o")
     args = parser.parse_args()
     source, out = args.source.resolve(), args.out.resolve()
     out.mkdir(parents=True, exist_ok=True)
-    plan = commands(source, args.compiler)
+    plan = commands(source, args.compiler, args.define)
     started = time.time()
     manifest = {
         "source": str(source),

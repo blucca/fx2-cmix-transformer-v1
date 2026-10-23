@@ -81,9 +81,12 @@ int main(int argc, char** argv) {
   struct rusage usage;
   getrusage(RUSAGE_SELF, &usage);
   std::printf("\nPROBE_RESULT {\"mode\":\"%s\",\"offset\":%llu,\"input_bytes\":%llu,"
-              "\"output_bytes\":%llu,\"seconds\":%.6f,\"coding_seconds\":%.6f,\"max_rss_kib\":%ld}\n",
+              "\"output_bytes\":%llu,\"seconds\":%.6f,\"coding_seconds\":%.6f,"
+              "\"cpu_seconds\":%.6f,\"max_rss_kib\":%ld}\n",
               encode ? "encode" : "decode", offset, length,
               static_cast<unsigned long long>(output.tellp()),
               std::chrono::duration<double>(finished - started).count(),
-              std::chrono::duration<double>(finished - coding_started).count(), usage.ru_maxrss);
+              std::chrono::duration<double>(finished - coding_started).count(),
+              usage.ru_utime.tv_sec + usage.ru_utime.tv_usec * 1e-6 +
+              usage.ru_stime.tv_sec + usage.ru_stime.tv_usec * 1e-6, usage.ru_maxrss);
 }

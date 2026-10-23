@@ -20,5 +20,8 @@ class Encoder {
   std::ofstream* os_;
   unsigned int x1_, x2_;
   Predictor* p_;
+#ifdef HUTTER_TRACE
+  std::ofstream trace_;
+#endif
 };
 #endif
