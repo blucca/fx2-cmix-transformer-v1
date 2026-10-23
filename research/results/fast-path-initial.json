@@ -1,0 +1,86 @@
+{
+  "gate": {
+    "status": "passed",
+    "winner": "v26",
+    "fast": "v26-fast",
+    "byte_identical": true,
+    "old_coding_seconds": 173.026112,
+    "new_coding_seconds": 179.785661,
+    "speedup": 0.9624021795598038,
+    "adopted": false,
+    "threshold": "at least 3% shorter combined coding time",
+    "source": {
+      "public_commit": "c599c798722f06e5584d2dc1bb1d0ca4ac0c8431",
+      "base_copy": "candidate-next",
+      "overlay_files": [
+        "src/predictor.cpp",
+        "src/predictor.h",
+        "src/mixer/mixer.cpp",
+        "src/mixer/mixer.h",
+        "src/mixer/mixer-input.h",
+        "research/replay.cpp",
+        "research/trace.h",
+        "research/fast-path-check.cpp",
+        "research/README.md"
+      ]
+    }
+  },
+  "trial": {
+    "identity": {
+      "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+      "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+      "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+      "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+      "binary_sha256": "0d9846041115a0a74fb4fad3fbbe6844a4f023791f4dd49b6f00a191d56f8c9c",
+      "sample": {
+        "name": "prefix-256k",
+        "offset": 0,
+        "length": 262144
+      },
+      "variant": "v26-fast",
+      "trace_record_bytes": 16
+    },
+    "status": "passed",
+    "started_at": 1792786328.2580066,
+    "encode": {
+      "mode": "encode",
+      "offset": 0,
+      "input_bytes": 262144,
+      "output_bytes": 20954,
+      "seconds": 142.397124,
+      "coding_seconds": 90.719527,
+      "cpu_seconds": 141.928766,
+      "max_rss_kib": 7839452
+    },
+    "decode": {
+      "mode": "decode",
+      "offset": 0,
+      "input_bytes": 262144,
+      "output_bytes": 262144,
+      "seconds": 140.141822,
+      "coding_seconds": 89.066134,
+      "cpu_seconds": 139.862697,
+      "max_rss_kib": 7885672
+    },
+    "trace_bytes": 33554432,
+    "encoded_bytes": 20954,
+    "bits_per_stream_byte": 0.63946533203125,
+    "original_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+    "restored_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+    "elapsed_seconds": 284.73344349861145
+  },
+  "selection": {
+    "common_samples": [
+      "prefix-1m",
+      "article-q2-1m"
+    ],
+    "encoded_bytes": {
+      "baseline": 293757,
+      "v26": 293535,
+      "v26aux": 293567
+    },
+    "winner": "v26",
+    "rule": "minimum summed coded bytes on prespecified prefix-1m and article-q2-1m; then compare to pristine baseline on continuous 8MiB",
+    "execution_winner": "v26"
+  }
+}

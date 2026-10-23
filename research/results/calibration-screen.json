@@ -1,0 +1,525 @@
+{
+  "experiment": "Five exact online-calibration replays and one fixed pre-SSE ablation",
+  "online_replay_source": "c599c79; strict Clang 17 build on the research VM",
+  "pre_sse_source": "research/replay.cpp in this commit; strict local C++ build",
+  "pre_sse_rule": "Override bits keep original frequency; otherwise clamp(round(65536*sigmoid(clamp(raw_mixer_logit,-log(65535),log(65535)))),1,65535).",
+  "scope": "Cold-start 1 MiB prefix and disjoint middle span; the 256 KiB prefix overlaps. All five base counts match real encoded sizes. Corrections and SSE bypass remain replay-only.",
+  "online_controls": {
+    "aux-prefix-256k": {
+      "stage": "complete",
+      "bits": 2097152,
+      "base_bits": 167668.222873,
+      "base_coded_bytes": 20959,
+      "override_bits": 85087,
+      "neural_bits": 170345.249536,
+      "fxcm_bits": 228140.039667,
+      "pre_sse_bits": 167611.794847,
+      "fxcm_min": 0.000244997558184,
+      "fxcm_max": 0.999904990196,
+      "models": [
+        {
+          "name": "global_64",
+          "loss_bits": 167672.044603,
+          "coded_bytes": 20959,
+          "saved_bytes": 0,
+          "saved_bits": -3.82172974525,
+          "saved_fraction": -2.27934052127e-05
+        },
+        {
+          "name": "bitpos_64",
+          "loss_bits": 167683.686726,
+          "coded_bytes": 20961,
+          "saved_bytes": -2,
+          "saved_bits": -15.46385306,
+          "saved_fraction": -9.22288838935e-05
+        },
+        {
+          "name": "confidence_64",
+          "loss_bits": 167668.460736,
+          "coded_bytes": 20959,
+          "saved_bytes": 0,
+          "saved_bits": -0.237862814305,
+          "saved_fraction": -1.41865172916e-06
+        },
+        {
+          "name": "neural_gap_64",
+          "loss_bits": 167640.167067,
+          "coded_bytes": 20955,
+          "saved_bytes": 4,
+          "saved_bits": 28.0558065514,
+          "saved_fraction": 0.000167329301108
+        },
+        {
+          "name": "neural_gap_256",
+          "loss_bits": 167647.251305,
+          "coded_bytes": 20956,
+          "saved_bytes": 3,
+          "saved_bits": 20.9715684491,
+          "saved_fraction": 0.000125077776156
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "loss_bits": 167658.690564,
+          "coded_bytes": 20958,
+          "saved_bytes": 1,
+          "saved_bits": 9.53230935612,
+          "saved_fraction": 5.68522120218e-05
+        }
+      ]
+    },
+    "aux-prefix-1m": {
+      "stage": "complete",
+      "bits": 8388608,
+      "base_bits": 678819.494728,
+      "base_coded_bytes": 84853,
+      "override_bits": 319771,
+      "neural_bits": 702602.025162,
+      "fxcm_bits": 867567.328448,
+      "pre_sse_bits": 678706.803562,
+      "fxcm_min": 0.000244997558184,
+      "fxcm_max": 0.999904990196,
+      "models": [
+        {
+          "name": "global_64",
+          "loss_bits": 678823.17391,
+          "coded_bytes": 84853,
+          "saved_bytes": 0,
+          "saved_bits": -3.67918168742,
+          "saved_fraction": -5.41997057538e-06
+        },
+        {
+          "name": "bitpos_64",
+          "loss_bits": 678829.001683,
+          "coded_bytes": 84854,
+          "saved_bytes": -1,
+          "saved_bits": -9.50695536553,
+          "saved_fraction": -1.40051301404e-05
+        },
+        {
+          "name": "confidence_64",
+          "loss_bits": 678703.845985,
+          "coded_bytes": 84839,
+          "saved_bytes": 14,
+          "saved_bits": 115.648742619,
+          "saved_fraction": 0.000170367444537
+        },
+        {
+          "name": "neural_gap_64",
+          "loss_bits": 678550.98568,
+          "coded_bytes": 84819,
+          "saved_bytes": 34,
+          "saved_bits": 268.50904843,
+          "saved_fraction": 0.000395552942299
+        },
+        {
+          "name": "neural_gap_256",
+          "loss_bits": 678689.035507,
+          "coded_bytes": 84837,
+          "saved_bytes": 16,
+          "saved_bits": 130.459220825,
+          "saved_fraction": 0.000192185436391
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "loss_bits": 678757.460602,
+          "coded_bytes": 84845,
+          "saved_bytes": 8,
+          "saved_bits": 62.034125603,
+          "saved_fraction": 9.13853035819e-05
+        }
+      ]
+    },
+    "aux-article-q2-1m": {
+      "stage": "complete",
+      "bits": 8388608,
+      "base_bits": 1669710.66428,
+      "base_coded_bytes": 208714,
+      "override_bits": 357585,
+      "neural_bits": 1679546.91048,
+      "fxcm_bits": 2193924.75271,
+      "pre_sse_bits": 1669520.26028,
+      "fxcm_min": 0.000244997558184,
+      "fxcm_max": 0.999904990196,
+      "models": [
+        {
+          "name": "global_64",
+          "loss_bits": 1669715.08927,
+          "coded_bytes": 208714,
+          "saved_bytes": 0,
+          "saved_bits": -4.42499034852,
+          "saved_fraction": -2.65015397169e-06
+        },
+        {
+          "name": "bitpos_64",
+          "loss_bits": 1669684.20126,
+          "coded_bytes": 208711,
+          "saved_bytes": 3,
+          "saved_bits": 26.4630231196,
+          "saved_fraction": 1.58488675228e-05
+        },
+        {
+          "name": "confidence_64",
+          "loss_bits": 1669400.50013,
+          "coded_bytes": 208675,
+          "saved_bytes": 39,
+          "saved_bits": 310.164146201,
+          "saved_fraction": 0.000185759217352
+        },
+        {
+          "name": "neural_gap_64",
+          "loss_bits": 1669374.98695,
+          "coded_bytes": 208672,
+          "saved_bytes": 42,
+          "saved_bits": 335.677326554,
+          "saved_fraction": 0.000201039218192
+        },
+        {
+          "name": "neural_gap_256",
+          "loss_bits": 1669448.02308,
+          "coded_bytes": 208681,
+          "saved_bytes": 33,
+          "saved_bits": 262.641195838,
+          "saved_fraction": 0.000157297429702
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "loss_bits": 1669454.6066,
+          "coded_bytes": 208682,
+          "saved_bytes": 32,
+          "saved_bits": 256.057680312,
+          "saved_fraction": 0.000153354521708
+        }
+      ]
+    },
+    "baseline-prefix-1m": {
+      "stage": "complete",
+      "bits": 8388608,
+      "base_bits": 679899.804974,
+      "base_coded_bytes": 84988,
+      "override_bits": 319771,
+      "neural_bits": 702602.025162,
+      "fxcm_bits": 8388608,
+      "pre_sse_bits": 679615.101364,
+      "fxcm_min": 0.5,
+      "fxcm_max": 0.5,
+      "models": [
+        {
+          "name": "global_64",
+          "loss_bits": 679905.09109,
+          "coded_bytes": 84989,
+          "saved_bytes": -1,
+          "saved_bits": -5.28611614543,
+          "saved_fraction": -7.7748458034e-06
+        },
+        {
+          "name": "bitpos_64",
+          "loss_bits": 679918.213986,
+          "coded_bytes": 84990,
+          "saved_bytes": -2,
+          "saved_bits": -18.4090113653,
+          "saved_fraction": -2.70760650769e-05
+        },
+        {
+          "name": "confidence_64",
+          "loss_bits": 679767.125459,
+          "coded_bytes": 84971,
+          "saved_bytes": 17,
+          "saved_bits": 132.679515677,
+          "saved_fraction": 0.000195145688682
+        },
+        {
+          "name": "neural_gap_64",
+          "loss_bits": 679587.519498,
+          "coded_bytes": 84949,
+          "saved_bytes": 39,
+          "saved_bits": 312.285476662,
+          "saved_fraction": 0.000459311025504
+        },
+        {
+          "name": "neural_gap_256",
+          "loss_bits": 679753.652139,
+          "coded_bytes": 84970,
+          "saved_bytes": 18,
+          "saved_bits": 146.152835177,
+          "saved_fraction": 0.000214962313723
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "loss_bits": 679838.480981,
+          "coded_bytes": 84980,
+          "saved_bytes": 8,
+          "saved_bits": 61.3239933887,
+          "saved_fraction": 9.01956331507e-05
+        }
+      ]
+    },
+    "baseline-article-q2-1m": {
+      "stage": "complete",
+      "bits": 8388608,
+      "base_bits": 1670148.84643,
+      "base_coded_bytes": 208769,
+      "override_bits": 357585,
+      "neural_bits": 1679546.91048,
+      "fxcm_bits": 8388608,
+      "pre_sse_bits": 1669663.94341,
+      "fxcm_min": 0.5,
+      "fxcm_max": 0.5,
+      "models": [
+        {
+          "name": "global_64",
+          "loss_bits": 1670154.34922,
+          "coded_bytes": 208770,
+          "saved_bytes": -1,
+          "saved_bits": -5.50278949179,
+          "saved_fraction": -3.29478986472e-06
+        },
+        {
+          "name": "bitpos_64",
+          "loss_bits": 1670136.05518,
+          "coded_bytes": 208767,
+          "saved_bytes": 2,
+          "saved_bits": 12.7912518999,
+          "saved_fraction": 7.6587496541e-06
+        },
+        {
+          "name": "confidence_64",
+          "loss_bits": 1669781.84788,
+          "coded_bytes": 208723,
+          "saved_bytes": 46,
+          "saved_bits": 366.998555132,
+          "saved_fraction": 0.000219740028511
+        },
+        {
+          "name": "neural_gap_64",
+          "loss_bits": 1669749.65336,
+          "coded_bytes": 208719,
+          "saved_bytes": 50,
+          "saved_bits": 399.193073924,
+          "saved_fraction": 0.000239016465375
+        },
+        {
+          "name": "neural_gap_256",
+          "loss_bits": 1669841.84112,
+          "coded_bytes": 208730,
+          "saved_bytes": 39,
+          "saved_bits": 307.005311649,
+          "saved_fraction": 0.000183819132232
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "loss_bits": 1669853.20889,
+          "coded_bytes": 208732,
+          "saved_bytes": 37,
+          "saved_bits": 295.637541506,
+          "saved_fraction": 0.000177012690897
+        }
+      ]
+    }
+  },
+  "pre_sse_ablation": {
+    "prefix-1m": {
+      "blocks": [
+        {
+          "stage": "block",
+          "bits": 2097152,
+          "base_coded_bytes": 20972,
+          "pre_sse_coded_bytes": 20958,
+          "pre_sse_saved_bytes": 14
+        },
+        {
+          "stage": "block",
+          "bits": 4194304,
+          "base_coded_bytes": 40797,
+          "pre_sse_coded_bytes": 40778,
+          "pre_sse_saved_bytes": 19
+        },
+        {
+          "stage": "block",
+          "bits": 6291456,
+          "base_coded_bytes": 60029,
+          "pre_sse_coded_bytes": 60000,
+          "pre_sse_saved_bytes": 29
+        },
+        {
+          "stage": "block",
+          "bits": 8388608,
+          "base_coded_bytes": 84988,
+          "pre_sse_coded_bytes": 84948,
+          "pre_sse_saved_bytes": 40
+        },
+        {
+          "stage": "complete",
+          "bits": 8388608,
+          "base_coded_bytes": 84988,
+          "pre_sse_coded_bytes": 84948,
+          "pre_sse_saved_bytes": 40
+        }
+      ],
+      "trace_trial": {
+        "status": "trace_verified",
+        "identity": {
+          "binary_sha256": "8a05d0de7c834b63f70d9db1346257798431287606f6478fb5927d32c95eb82b",
+          "golden_identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+            "sample": {
+              "name": "prefix-1m",
+              "offset": 0,
+              "length": 1048576
+            },
+            "variant": "baseline"
+          },
+          "trace_record_bytes": 16
+        },
+        "encoded_bytes": 84988,
+        "trace_bytes": 134217728,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 84988,
+          "seconds": 304.341881,
+          "coding_seconds": 278.89792,
+          "cpu_seconds": 304.101326,
+          "max_rss_kib": 5779408
+        },
+        "verified_against": "first-ab/prefix-1m/baseline",
+        "completed_at": 1792785971.8450491
+      }
+    },
+    "article-q2-1m": {
+      "blocks": [
+        {
+          "stage": "block",
+          "bits": 2097152,
+          "base_coded_bytes": 64186,
+          "pre_sse_coded_bytes": 64159,
+          "pre_sse_saved_bytes": 27
+        },
+        {
+          "stage": "block",
+          "bits": 4194304,
+          "base_coded_bytes": 120832,
+          "pre_sse_coded_bytes": 120784,
+          "pre_sse_saved_bytes": 48
+        },
+        {
+          "stage": "block",
+          "bits": 6291456,
+          "base_coded_bytes": 168618,
+          "pre_sse_coded_bytes": 168558,
+          "pre_sse_saved_bytes": 60
+        },
+        {
+          "stage": "block",
+          "bits": 8388608,
+          "base_coded_bytes": 208769,
+          "pre_sse_coded_bytes": 208703,
+          "pre_sse_saved_bytes": 66
+        },
+        {
+          "stage": "complete",
+          "bits": 8388608,
+          "base_coded_bytes": 208769,
+          "pre_sse_coded_bytes": 208703,
+          "pre_sse_saved_bytes": 66
+        }
+      ],
+      "trace_trial": {
+        "status": "trace_verified",
+        "identity": {
+          "binary_sha256": "8a05d0de7c834b63f70d9db1346257798431287606f6478fb5927d32c95eb82b",
+          "golden_identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+            "sample": {
+              "name": "article-q2-1m",
+              "offset": 293232482,
+              "length": 1048576
+            },
+            "variant": "baseline"
+          },
+          "trace_record_bytes": 16
+        },
+        "encoded_bytes": 208769,
+        "trace_bytes": 134217728,
+        "encode": {
+          "mode": "encode",
+          "offset": 293232482,
+          "input_bytes": 1048576,
+          "output_bytes": 208769,
+          "seconds": 325.501204,
+          "coding_seconds": 301.651452,
+          "cpu_seconds": 325.295813,
+          "max_rss_kib": 5828164
+        },
+        "verified_against": "first-ab/article-q2-1m/baseline",
+        "completed_at": 1792786298.0935879
+      }
+    }
+  },
+  "auxiliary_q2_trial": {
+    "identity": {
+      "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+      "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+      "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+      "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+      "binary_sha256": "44421d60cf67b6c9bd5152bb2365985f2c3b3fd262e4bc9635d562ded892d716",
+      "sample": {
+        "name": "article-q2-1m",
+        "offset": 293232482,
+        "length": 1048576
+      },
+      "variant": "v26aux",
+      "trace_record_bytes": 16
+    },
+    "status": "passed",
+    "started_at": 1792784717.1952724,
+    "encode": {
+      "mode": "encode",
+      "offset": 293232482,
+      "input_bytes": 1048576,
+      "output_bytes": 208714,
+      "seconds": 469.732666,
+      "coding_seconds": 419.721279,
+      "cpu_seconds": 464.981107,
+      "max_rss_kib": 7883352
+    },
+    "decode": {
+      "mode": "decode",
+      "offset": 293232482,
+      "input_bytes": 1048576,
+      "output_bytes": 1048576,
+      "seconds": 474.319385,
+      "coding_seconds": 426.514449,
+      "cpu_seconds": 470.135113,
+      "max_rss_kib": 7881796
+    },
+    "trace_bytes": 134217728,
+    "encoded_bytes": 208714,
+    "bits_per_stream_byte": 1.5923614501953125,
+    "original_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+    "restored_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+    "elapsed_seconds": 947.7391378879547
+  },
+  "selection": {
+    "common_samples": [
+      "prefix-1m",
+      "article-q2-1m"
+    ],
+    "encoded_bytes": {
+      "baseline": 293757,
+      "v26": 293535,
+      "v26aux": 293567
+    },
+    "winner": "v26",
+    "rule": "minimum summed coded bytes on prespecified prefix-1m and article-q2-1m; then compare to pristine baseline on continuous 8MiB"
+  },
+  "decision": "The auxiliary-skip change loses 5, 14 and 18 bytes against v26 on all three tested cases; retain v26 for the queued long comparison. Small correction gains are components, not full-file prize measurements."
+}

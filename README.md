@@ -2,7 +2,7 @@
 
 Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
 
-[Research protocol and reproducible experiments](research/README.md). The first experiment holds the original dictionary, article order, PPMd, neural weights and outer mixer fixed. Initial lossless prefix comparisons save 18 bytes at 256 KiB and 149 bytes at 1 MiB with v26; longer spans, auxiliary-skip wiring and causal-calibration experiments are in progress. Full-file prize measurements are pending.
+[Research protocol and reproducible experiments](research/README.md). The first experiment holds the original dictionary, article order, PPMd, neural weights and outer mixer fixed. Initial lossless prefix comparisons save 18 bytes at 256 KiB and 149 bytes at 1 MiB with v26; three disjoint 1 MiB spans also improve. Auxiliary-skip wiring and an 18-weight history head failed their initial selection gates; their results are public. A continuous 8 MiB comparison is queued. Full-file prize measurements are pending.
 
 The original champion’s documentation follows, with its authorship and results preserved.
 

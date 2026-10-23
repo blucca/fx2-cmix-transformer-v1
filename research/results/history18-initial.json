@@ -1,0 +1,173 @@
+{
+  "source": "84dae0eb2c8cea0fa0888680587a9bea9e1ff27c",
+  "scores": {
+    "prefix-1m": {
+      "stage": "history_complete",
+      "bits": 8388608,
+      "base_coded_bytes": 84988,
+      "head_coded_bytes": 84962,
+      "saved_bytes": 26,
+      "holdout_input_bytes": 262144,
+      "holdout_base_coded_bytes": 22583,
+      "holdout_head_coded_bytes": 22579,
+      "holdout_saved_bytes": 4,
+      "controls": [
+        {
+          "name": "global_64",
+          "coded_bytes": 84989,
+          "holdout_coded_bytes": 22583,
+          "holdout_saved_bytes": 0
+        },
+        {
+          "name": "bitpos_64",
+          "coded_bytes": 84990,
+          "holdout_coded_bytes": 22584,
+          "holdout_saved_bytes": -1
+        },
+        {
+          "name": "confidence_64",
+          "coded_bytes": 84971,
+          "holdout_coded_bytes": 22578,
+          "holdout_saved_bytes": 5
+        },
+        {
+          "name": "neural_gap_64",
+          "coded_bytes": 84949,
+          "holdout_coded_bytes": 22571,
+          "holdout_saved_bytes": 12
+        },
+        {
+          "name": "neural_gap_256",
+          "coded_bytes": 84970,
+          "holdout_coded_bytes": 22577,
+          "holdout_saved_bytes": 6
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "coded_bytes": 84980,
+          "holdout_coded_bytes": 22581,
+          "holdout_saved_bytes": 2
+        }
+      ]
+    },
+    "article-q2-1m": {
+      "stage": "history_complete",
+      "bits": 8388608,
+      "base_coded_bytes": 208769,
+      "head_coded_bytes": 208674,
+      "saved_bytes": 95,
+      "holdout_input_bytes": 262144,
+      "holdout_base_coded_bytes": 45625,
+      "holdout_head_coded_bytes": 45614,
+      "holdout_saved_bytes": 11,
+      "controls": [
+        {
+          "name": "global_64",
+          "coded_bytes": 208770,
+          "holdout_coded_bytes": 45625,
+          "holdout_saved_bytes": 0
+        },
+        {
+          "name": "bitpos_64",
+          "coded_bytes": 208767,
+          "holdout_coded_bytes": 45624,
+          "holdout_saved_bytes": 1
+        },
+        {
+          "name": "confidence_64",
+          "coded_bytes": 208723,
+          "holdout_coded_bytes": 45613,
+          "holdout_saved_bytes": 12
+        },
+        {
+          "name": "neural_gap_64",
+          "coded_bytes": 208719,
+          "holdout_coded_bytes": 45613,
+          "holdout_saved_bytes": 12
+        },
+        {
+          "name": "neural_gap_256",
+          "coded_bytes": 208730,
+          "holdout_coded_bytes": 45617,
+          "holdout_saved_bytes": 8
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "coded_bytes": 208732,
+          "holdout_coded_bytes": 45617,
+          "holdout_saved_bytes": 8
+        }
+      ]
+    }
+  },
+  "fit": {
+    "schema": "history18-ema-f32-v1",
+    "cases": [
+      {
+        "trace": "baseline-prefix-1m/trace.bin",
+        "features": "baseline-prefix-1m/features.f32",
+        "bits": 8388608,
+        "fitted_bits": 6050845
+      },
+      {
+        "trace": "baseline-article-q2-1m/trace.bin",
+        "features": "baseline-article-q2-1m/features.f32",
+        "bits": 8388608,
+        "fitted_bits": 6035156
+      }
+    ],
+    "holdout_rule": "128 KiB input-byte blocks 3 and 7 of each eight; history keeps running",
+    "fitted_bits": 12086001,
+    "ridge_hessian": 64,
+    "coefficient_bound": 2,
+    "max_iterations": 64,
+    "iterations": 64,
+    "evaluations": 67,
+    "success": false,
+    "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+    "seconds": 79.5283567905426,
+    "weights_bytes": 72,
+    "weights_f32": [
+      0.0008601075387559831,
+      -0.022556902840733528,
+      0.006261876784265041,
+      0.03096303716301918,
+      -0.012512222863733768,
+      -0.0014570503262802958,
+      0.006944702006876469,
+      -0.004265379160642624,
+      -0.12402352690696716,
+      1.0579379796981812,
+      1.382900595664978,
+      0.07939774543046951,
+      8.207470091292635e-05,
+      -0.006264414172619581,
+      -0.06674470007419586,
+      0.06947395205497742,
+      -0.10771054029464722,
+      -0.09389975666999817
+    ],
+    "zero_objective": 0.10348329166871695,
+    "frozen_objective": 0.10344308075708003,
+    "frozen_gradient_max_abs": 2.809269602414022e-07,
+    "measurement": "Regularized training NLL only. Use strict integer replay for coded bytes."
+  },
+  "holdout_saved_bytes": 15,
+  "holdout_input_bytes": 524288,
+  "holdout_saved_bits_per_input_byte": 0.0002288818359375,
+  "online_controls_holdout_saved_bytes": {
+    "global_64": 0,
+    "bitpos_64": 0,
+    "confidence_64": 17,
+    "neural_gap_64": 24,
+    "neural_gap_256": 14,
+    "pre_sse_gap_256": 10
+  },
+  "best_control": "neural_gap_64",
+  "code_reserve_bytes_assumption": 20480,
+  "head_net_S_proxy": -3845.272850036621,
+  "best_control_gross_S_proxy": 26845.963439941406,
+  "preliminary_gate": false,
+  "scope": "Two cold/prefix holdouts; full-data proxies are scenarios. No main coder integration or long run started.",
+  "decision": "Stop this head after its prespecified initial screen: 4/11 held-out bytes saved, versus 12/12 for neural_gap_64; below the 0.003 bits/input-byte continuation threshold."
+}

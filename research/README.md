@@ -133,9 +133,24 @@ The source builds and synthetic known-bias/override/range-counter checks pass.
 The first auxiliary-wiring runs round-tripped at **20,959 B / 84,853 B** on
 the 256 KiB / 1 MiB prefixes: 5 B / 14 B larger than the original v26 port.
 Exact replay matched both real encoded sizes. `neural_gap_64` saved 4 B / 34 B;
-its cumulative 256 KiB-block savings were 4, 9, 21 and 34 B. These prefixes
-overlap; independent middle-span and champion-trace results remain queued.
-Calibration is still replay-only. [Initial receipts](results/initial-auxiliary-prefixes.json).
+its cumulative 256 KiB-block savings were 4, 9, 21 and 34 B. These prefixes overlap. The independent middle span also
+round-tripped at
+**208,714 B**, 18 B larger than v26. The two prespecified 1 MiB cases sum to
+293,757 / 293,535 / 293,567 B for the champion / v26 / v26aux: **retain v26**.
+
+All five traces passed exact base-counter checks. On the champion's 1 MiB
+prefix / middle span, the six online controls save −1/−1, −2/2, 17/46,
+**39/50**, 18/39 and 8/37 B, respectively. On v26aux the best control saves
+34/42 B. These small causal gains remain replay-only.
+[Full screening receipts](results/calibration-screen.json).
+
+The raw pre-SSE loss was lower than the final loss in both champion cases.
+A fixed ablation now reports `pre_sse_coded_bytes` and `pre_sse_saved_bytes`:
+override frequencies stay unchanged; other bits use
+`clamp(round(65536*sigmoid(clamp(raw_logit, ±log(65535)))), 1, 65535)`.
+It saves **40/66 B** on the same two cases. This is an explicit strict-integer
+candidate, with no fitted parameters. Its full-stream usefulness depends on
+SSE's longer adaptation curve; a real SSE-removal build has not been run.
 
 ### One frozen history-conditioned head
 
@@ -179,8 +194,19 @@ bytes for the frozen head and all six online controls. Only block counters
 reset; model histories keep running. Each whole-trace base count must still
 equal the real `encoded.bin` size. The existing C++ self-check covers label
 causality, overrides and zero-head frequencies; `fit-history.py --self-test`
-checks the regularized objective gradient. Real head fitting and coding gains
-are pending. The main encoder/decoder do not include this prototype.
+checks the regularized objective gradient.
+
+The first fit finished its fixed **64-iteration limit** in 79.53s, rather than
+reaching the optimizer's convergence criterion. Its frozen 72-byte head saves
+26/95 B on the full prefix / middle traces, which include training blocks.
+The held-out 256 KiB from each case save only **4/11 B**, versus **12/12 B**
+for `neural_gap_64`. Combined held-out gain is **0.000228882 bits/input-byte**,
+below the prespecified 0.003 continuation threshold. A provisional 20 KiB
+code reserve plus both copies of the weights also exceeds the extrapolated
+held-out payload saving. **Stop this head after the initial screen.**
+The main encoder/decoder remain unchanged.
+[Fit and exact held-out results](results/history18-initial.json) ·
+[Frozen f32 weights](results/history18-weights.f32).
 
 ## Output-neutral throughput experiment
 
@@ -207,3 +233,9 @@ identical bytes and at least 3% less combined encode/decode coding time in this
 short paired measurement. The larger run records actual wall/CPU/RSS and, when
 trace-enabled, the longer causal-calibration curve. Final package size and
 formal resource qualification remain full-data measurements.
+
+The first trace-enabled v26-fast 256 KiB run restored the input and reproduced
+the original v26 compressed stream byte for byte. Combined coding time was
+**179.786s versus 173.026s** for the original untraced probe, about 3.9% longer.
+It failed the adoption criterion in this paired measurement, so the queued
+8 MiB run uses the original v26 binary. [Gate and receipt](results/fast-path-initial.json).

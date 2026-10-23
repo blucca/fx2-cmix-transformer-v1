@@ -20,6 +20,15 @@ double logit(double p) {
 double logistic(double z) { return 1 / (1 + std::exp(-z)); }
 double cost(double p, int bit) { return -std::log2(bit ? p : 1 - p); }
 
+// Fixed ablation prompted by measured SSE regressions. This defines a new
+// strict integer boundary, rather than reproducing the original float API.
+std::uint32_t pre_sse_frequency(const HutterTraceRecord& r) {
+  if (r.flags & 2) return r.probability;
+  const double limit = std::log(65535.0);
+  return std::clamp(std::lround(65536 * logistic(
+      std::clamp(double(r.mixer), -limit, limit))), 1L, 65535L);
+}
+
 void validate(const HutterTraceRecord& r) {
   if (!r.probability || r.flags > 3 || !std::isfinite(r.neural) ||
       !std::isfinite(r.fxcm) || !std::isfinite(r.mixer) ||
@@ -95,6 +104,7 @@ struct Replay {
   std::uint64_t bits = 0, overrides = 0;
   double base_loss = 0, neural_loss = 0, fxcm_loss = 0, mixer_loss = 0;
   RangeCounter base_coder;
+  RangeCounter pre_sse_coder;
   float fxcm_min = 1, fxcm_max = 0;
   std::vector<Calibrator> models{
       {"global_64", 0, 1, 64}, {"bitpos_64", 1, 8, 64},
@@ -106,6 +116,7 @@ struct Replay {
     const int bit = r.flags & 1;
     const double p = r.probability / 65536.0, z = logit(p);
     base_coder.encode(r.probability, bit);
+    pre_sse_coder.encode(pre_sse_frequency(r), bit);
     base_loss += cost(p, bit);
     neural_loss += cost(logistic(logit(r.neural)), bit);
     fxcm_loss += cost(logistic(logit(r.fxcm)), bit);
@@ -120,6 +131,9 @@ struct Replay {
     std::cout << std::setprecision(12) << "{\"stage\":\"" << stage
         << "\",\"bits\":" << bits << ",\"base_bits\":" << base_loss
         << ",\"base_coded_bytes\":" << base_coder.flushed_bytes()
+        << ",\"pre_sse_coded_bytes\":" << pre_sse_coder.flushed_bytes()
+        << ",\"pre_sse_saved_bytes\":" << std::int64_t(base_coder.flushed_bytes()) -
+            std::int64_t(pre_sse_coder.flushed_bytes())
         << ",\"override_bits\":" << overrides
         << ",\"neural_bits\":" << neural_loss << ",\"fxcm_bits\":" << fxcm_loss
         << ",\"pre_sse_bits\":" << mixer_loss
@@ -339,6 +353,10 @@ int main(int argc, char** argv) {
                               HutterTraceRecord{1, 3, 0, 0.5f, 0});
       }
       assert(forced.base_coder.flushed_bytes() == 161);
+      assert(forced.pre_sse_coder.flushed_bytes() == forced.base_coder.flushed_bytes());
+      assert(pre_sse_frequency({1, 0, 0.5f, 0.5f, 0}) == 32768);
+      assert(pre_sse_frequency({1, 0, 0.5f, 0.5f, -100}) == 1);
+      assert(pre_sse_frequency({1, 0, 0.5f, 0.5f, 100}) == 65535);
       for (const auto& m : forced.models) {
         assert(m.loss == forced.base_loss);
         assert(m.coder.flushed_bytes() == forced.base_coder.flushed_bytes());
