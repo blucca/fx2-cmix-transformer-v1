@@ -45,13 +45,18 @@ The middle article-aligned 1 MiB span (offset 293,232,482) also round-tripped:
 [Full receipt](results/initial-article-q2.json). Its two-way times were
 648.28s versus 930.58s.
 
+The final article-aligned 1 MiB span (offset 439,844,819) round-tripped:
+153,766 → 153,544 B, saving 222 B / 0.1444%.
+[Full receipt](results/initial-article-q3.json). Its two-way times were
+672.61s versus 908.12s. All three disjoint cold-start cases improve, with
+substantial variation in the size of the gain.
+
 Both variants restored each prefix exactly. At 256 KiB, coding time was 63.765s
 versus 86.689s; peak RSS across encode/decode was about 5.34 versus 7.45 GiB.
 The unmodified v26 binary first hit global OOM on an 8 GiB machine with no swap;
 4 GiB disk swap let the same experiment finish. The 1 MiB round trips took
 571.18s and 861.56s including initialization, dictionary pretraining and I/O.
-The two prefixes overlap. The remaining cold-start article-aligned span and longer continuous-prefix
-measurements are running/queued. Full-file S and
+The two prefixes overlap. Longer continuous-prefix measurements are queued. Full-file S and
 formal resource qualification are pending.
 
 ### Executable byte budget
@@ -126,6 +131,49 @@ c++ -O3 -std=c++17 research/replay.cpp -o /YOUR/temp/replay
 The source builds and synthetic known-bias/override/range-counter checks pass.
 Real auxiliary round trips, trace equivalence and causal-calibration gains are
 queued; their results will be added after execution.
+
+### One frozen history-conditioned head
+
+An additional research-only experiment fits 18 coefficients using the same
+trace. Its features combine bit position, current neural/pre-SSE disagreement,
+and **past** base residuals, surprise changes and relative expert loss. Each
+bit is scored before its label enters the bias-corrected exponential averages.
+Overrides retain their frequency and still advance history. The underlying
+predictor remains unchanged.
+
+The fixed features are: eight bit-position indicators; normalized base logit
+and two expert gaps; each expert gap times its past relative loss; residual
+averages at 32/512/8192-bit scales; and base logit/neural gap times the
+64-versus-4096-bit surprise difference. Expert-loss averages use scale 512.
+`HistoryHead` in `replay.cpp` fixes their normalization and update order.
+
+Feature state is computed in strict double arithmetic, then rounded to 18 f32
+values shared by fitting and scoring. `fit-history.py` uses the existing
+NumPy/SciPy stack, streaming 64K-bit chunks through one bounded L-BFGS-B fit:
+zero initialization, coefficient bounds ±2, NLL + 32‖weights‖², at most 64
+iterations. It saves optimizer status and freezes 72 bytes of f32 weights.
+Each 1 MiB case reserves input-byte blocks 3 and 7 of eight 128 KiB blocks.
+Feature history continues through those blocks; their labels are excluded
+from the fitting objective.
+
+```sh
+replay --history-features PREFIX_TRACE.bin /YOUR/temp/prefix.features.f32
+replay --history-features MIDDLE_TRACE.bin /YOUR/temp/middle.features.f32
+python3 research/fit-history.py \
+  --case PREFIX_TRACE.bin /YOUR/temp/prefix.features.f32 \
+  --case MIDDLE_TRACE.bin /YOUR/temp/middle.features.f32 \
+  --out /YOUR/temp/history-fit
+replay --history-score PREFIX_TRACE.bin /YOUR/temp/history-fit/weights.f32
+replay --history-score MIDDLE_TRACE.bin /YOUR/temp/history-fit/weights.f32
+```
+
+The scoring mode reports exact whole-trace bytes and separate held-out block
+bytes for the frozen head and all six online controls. Only block counters
+reset; model histories keep running. Each whole-trace base count must still
+equal the real `encoded.bin` size. The existing C++ self-check covers label
+causality, overrides and zero-head frequencies; `fit-history.py --self-test`
+checks the regularized objective gradient. Real head fitting and coding gains
+are pending. The main encoder/decoder do not include this prototype.
 
 ## Output-neutral throughput experiment
 

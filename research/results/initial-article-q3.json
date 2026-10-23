@@ -1,0 +1,82 @@
+{
+  "baseline": {
+    "identity": {
+      "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+      "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+      "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+      "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+      "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+      "sample": {
+        "name": "article-q3-1m",
+        "offset": 439844819,
+        "length": 1048576
+      },
+      "variant": "baseline"
+    },
+    "status": "passed",
+    "started_at": 1792781960.5060532,
+    "encode": {
+      "mode": "encode",
+      "offset": 439844819,
+      "input_bytes": 1048576,
+      "output_bytes": 153766,
+      "seconds": 333.896299,
+      "coding_seconds": 308.682341,
+      "max_rss_kib": 5829224
+    },
+    "decode": {
+      "mode": "decode",
+      "offset": 439844819,
+      "input_bytes": 1048576,
+      "output_bytes": 1048576,
+      "seconds": 337.331369,
+      "coding_seconds": 312.774591,
+      "max_rss_kib": 5829104
+    },
+    "encoded_bytes": 153766,
+    "bits_per_stream_byte": 1.1731414794921875,
+    "original_slice_sha256": "ba52df3b83a66e8d9eb757a7c86649e24ccddd1af3263b8f1287dced6c4b1ed9",
+    "restored_slice_sha256": "ba52df3b83a66e8d9eb757a7c86649e24ccddd1af3263b8f1287dced6c4b1ed9",
+    "elapsed_seconds": 672.6052062511444
+  },
+  "v26": {
+    "identity": {
+      "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+      "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+      "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+      "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+      "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+      "sample": {
+        "name": "article-q3-1m",
+        "offset": 439844819,
+        "length": 1048576
+      },
+      "variant": "v26"
+    },
+    "status": "passed",
+    "started_at": 1792782633.1128259,
+    "encode": {
+      "mode": "encode",
+      "offset": 439844819,
+      "input_bytes": 1048576,
+      "output_bytes": 153544,
+      "seconds": 445.266013,
+      "coding_seconds": 396.754828,
+      "max_rss_kib": 7877260
+    },
+    "decode": {
+      "mode": "decode",
+      "offset": 439844819,
+      "input_bytes": 1048576,
+      "output_bytes": 1048576,
+      "seconds": 460.612108,
+      "coding_seconds": 413.138981,
+      "max_rss_kib": 7880964
+    },
+    "encoded_bytes": 153544,
+    "bits_per_stream_byte": 1.17144775390625,
+    "original_slice_sha256": "ba52df3b83a66e8d9eb757a7c86649e24ccddd1af3263b8f1287dced6c4b1ed9",
+    "restored_slice_sha256": "ba52df3b83a66e8d9eb757a7c86649e24ccddd1af3263b8f1287dced6c4b1ed9",
+    "elapsed_seconds": 908.1187777519226
+  }
+}
