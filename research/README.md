@@ -40,13 +40,18 @@ round-tripped: 231,075 → 231,016 B, saving 59 B / 0.0255%.
 [Full receipt](results/initial-article-q1.json). Its two-way times were
 642.79s versus 904.20s.
 
+The middle article-aligned 1 MiB span (offset 293,232,482) also round-tripped:
+208,769 → 208,696 B, saving 73 B / 0.0350%.
+[Full receipt](results/initial-article-q2.json). Its two-way times were
+648.28s versus 930.58s.
+
 Both variants restored each prefix exactly. At 256 KiB, coding time was 63.765s
 versus 86.689s; peak RSS across encode/decode was about 5.34 versus 7.45 GiB.
 The unmodified v26 binary first hit global OOM on an 8 GiB machine with no swap;
 4 GiB disk swap let the same experiment finish. The 1 MiB round trips took
 571.18s and 861.56s including initialization, dictionary pretraining and I/O.
-The two prefixes overlap. The remaining two cold-start article-aligned spans and longer
-continuous-prefix measurements are running/queued. Full-file S and
+The two prefixes overlap. The remaining cold-start article-aligned span and longer continuous-prefix
+measurements are running/queued. Full-file S and
 formal resource qualification are pending.
 
 ## Next controlled mechanism: the FXCM auxiliary skip
