@@ -132,7 +132,7 @@ class Predictor {
  private:
   unsigned long long GetNumModels();
   void AddMixer(int layer, const unsigned long long& context,
-      float learning_rate);
+      float learning_rate, unsigned context_limit = 10000);
   void AddAuxiliary();
   void AddPPMD();
   void AddBracket();

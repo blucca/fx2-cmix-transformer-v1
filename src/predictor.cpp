@@ -290,15 +290,15 @@ unsigned long long Predictor::GetNumModels() {
 }
 
 void Predictor::AddMixer(int layer, const unsigned long long& context,
-    float learning_rate) {
+    float learning_rate, unsigned context_limit) {
   if (layer == 0) {
     mixer_0_.emplace_back(
         layers_[layer].Inputs(), layers_[layer].ExtraInputs(), context,
-      learning_rate, mixer_0_.size());
+      learning_rate, mixer_0_.size(), context_limit);
   } else {
     mixer_1_.emplace_back(
         layers_[layer].Inputs(), layers_[layer].ExtraInputs(), context,
-      learning_rate, mixer_1_.size());
+      learning_rate, mixer_1_.size(), context_limit);
   }
 }
 
@@ -404,7 +404,11 @@ void Predictor::AddMixers() {
   std::cout << "num models " << input_size << "\n";
   layers_[0].SetNumModels(input_size);
 
-  AddMixer(0, manager_.mx9, 0.005); 
+#ifdef HUTTER_MX9_FULL_CONTEXT
+  AddMixer(0, manager_.mx9, 0.005, 65536);
+#else
+  AddMixer(0, manager_.mx9, 0.005);
+#endif
   AddMixer(0, manager_.mx10, 0.0005); 
   AddMixer(0, manager_.mx11, 0.005); 
   AddMixer(0, manager_.mx12, 0.0005); 

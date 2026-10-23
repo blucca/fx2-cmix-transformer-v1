@@ -21,7 +21,8 @@ class Mixer {
  public:
   Mixer(const std::valarray<float>& inputs,
       const std::valarray<float>& extra_inputs, const unsigned long long& context,
-      float learning_rate, unsigned int extra_input_size);
+      float learning_rate, unsigned int extra_input_size,
+      unsigned context_limit = 10000);
   float Mix();
   void Perceive(int bit);
 
@@ -36,6 +37,7 @@ class Mixer {
   unsigned long long /*max_steps_,*/ steps_;
   emhash6::HashMap<unsigned int, ContextData> context_map_;
   ContextData context_base_;
+  const unsigned context_limit_;
 #ifdef HUTTER_CACHE_MIXER
   ContextData* current_data_ = nullptr;
 #endif

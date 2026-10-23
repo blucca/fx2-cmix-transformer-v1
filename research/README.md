@@ -239,3 +239,42 @@ the original v26 compressed stream byte for byte. Combined coding time was
 **179.786s versus 173.026s** for the original untraced probe, about 3.9% longer.
 It failed the adoption criterion in this paired measurement, so the queued
 8 MiB run uses the original v26 binary. [Gate and receipt](results/fast-path-initial.json).
+
+## Next structural experiment: retain all mx9 contexts
+
+`Mixer::GetContextData` keeps the first 10,000 distinct contexts forever.
+Every unseen context after that shares one fallback weight vector. In the
+first-layer mx9 mixer, the key is
+`(((previous2*16 + previous1) & 255)*256 + byte_prefix)`: at most **65,280**
+possible keys. Dictionary pretraining updates byte context but leaves these
+outer mixer maps empty.
+
+Reconstructing keys from the actual prefix / disjoint middle traces finds:
+
+| 1 MiB case | Distinct mx9 keys | Fallback bits | Share of final loss on those bits |
+|---|---:|---:|---:|
+| Prefix | 33,088 | 6.52% | 13.22% |
+| Middle | 44,322 | 11.92% | 17.34% |
+
+Pretraining state, MSB-first reconstruction, original input hashes and the
+complete key domain were checked. These loss shares locate the bottleneck;
+the next paired run measures how much separate weight vectors recover.
+[Observation and validation](results/context-admission-observation.json).
+Reproduce key counts with `python3 research/context-cap-observe.py TRACE.bin`.
+
+`HUTTER_MX9_FULL_CONTEXT` raises **only mx9** to a 65,536-context capacity.
+Other caps remain 10,000; learning rates, SSE and neural/statistical experts
+stay fixed. `context-cap-check.cpp` checks original fallback behavior and
+retention of all 16-bit keys. The first coding trial applies this isolated
+patch to the **pristine v22 champion**, using its existing 1 MiB prefix/middle
+goldens. At 461 input weights, all remaining legal mx9 keys would add about
+97.2 MiB of weight storage, plus map/allocator overhead. There are no frozen
+weights to append to an archive.
+
+The two genuine round trips are queued after the existing v26 scale-up,
+subject to the same compute window. Their first pre-cap trace records must
+match the original trace; complete coded-byte counts and restored input must
+also match their respective contracts. A combined saving of 0.003
+bits/input-byte (about 787 B across both cases), positive results on both,
+and measured memory/runtime costs will guide the decision on an 8 MiB test.
+Further cap values and learning-rate variants are not queued.

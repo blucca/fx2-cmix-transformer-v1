@@ -1,0 +1,559 @@
+{
+  "method": "Reconstruct stream-defined keys from coded-bit flags, starting from dictionary-pretrained ContextManager state. Simulate the original first-10000-distinct admission; loss is from each named real trace.",
+  "prefix": {
+    "trace": "temp/round230/history/aux-prefix-1m.trace",
+    "input_bytes": 1048576,
+    "scope": "actual stream-defined keys, same dictionary pretraining and 10000 first-distinct admission; losses from observed v26aux probability trace; contexts other than named subset not measured",
+    "dictionary_does_not_allocate_external_mixer_keys": true,
+    "models": {
+      "mx9": {
+        "cap_at": 132949,
+        "fallback_bits": 546562,
+        "loss_bits": 678819.4947279602,
+        "fallback_loss_bits": 89749.45828896698,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.05150175094604492,
+            "base_loss_bits": 167668.22287329548,
+            "fallback_loss_fraction": 0.11709514880805767
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.07656049728393555,
+            "base_loss_bits": 158264.6692261503,
+            "fallback_loss_fraction": 0.1345204238097449
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.07064342498779297,
+            "base_loss_bits": 153605.18510699895,
+            "fallback_loss_fraction": 0.14435583806734895
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.06191539764404297,
+            "base_loss_bits": 199281.4175303054,
+            "fallback_loss_fraction": 0.1337439662233488
+          }
+        ],
+        "distinct_total": 33088,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.0651552677154541,
+        "fallback_loss_fraction": 0.13221402594652126,
+        "kept_keys_seen_under_32_bits": 2196,
+        "unkept_keys_seen_at_least_256_bits": 264
+      },
+      "mx10=mx11": {
+        "cap_at": 1724359,
+        "fallback_bits": 20595,
+        "loss_bits": 678819.4947279602,
+        "fallback_loss_bits": 3222.231645252135,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.000179290771484375,
+            "base_loss_bits": 167668.22287329548,
+            "fallback_loss_fraction": 0.0006301814152341565
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.0023317337036132812,
+            "base_loss_bits": 158264.6692261503,
+            "fallback_loss_fraction": 0.005434854478243892
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.0033416748046875,
+            "base_loss_bits": 153605.18510699895,
+            "fallback_loss_fraction": 0.008203500655640907
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.003967761993408203,
+            "base_loss_bits": 199281.4175303054,
+            "fallback_loss_fraction": 0.0049995858951275085
+          }
+        ],
+        "distinct_total": 12767,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.00245511531829834,
+        "fallback_loss_fraction": 0.004746816598930262,
+        "kept_keys_seen_under_32_bits": 4234,
+        "unkept_keys_seen_at_least_256_bits": 12
+      },
+      "mx14": {
+        "cap_at": null,
+        "fallback_bits": 0,
+        "loss_bits": 678819.4947279602,
+        "fallback_loss_bits": 0.0,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 167668.22287329548,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 158264.6692261503,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 153605.18510699895,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 199281.4175303054,
+            "fallback_loss_fraction": 0.0
+          }
+        ],
+        "distinct_total": 6987,
+        "kept_keys": 6987,
+        "fallback_fraction": 0.0,
+        "fallback_loss_fraction": 0.0,
+        "kept_keys_seen_under_32_bits": 2404,
+        "unkept_keys_seen_at_least_256_bits": 0
+      },
+      "mx15": {
+        "cap_at": null,
+        "fallback_bits": 0,
+        "loss_bits": 678819.4947279602,
+        "fallback_loss_bits": 0.0,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 167668.22287329548,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 158264.6692261503,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 153605.18510699895,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 199281.4175303054,
+            "fallback_loss_fraction": 0.0
+          }
+        ],
+        "distinct_total": 6987,
+        "kept_keys": 6987,
+        "fallback_fraction": 0.0,
+        "fallback_loss_fraction": 0.0,
+        "kept_keys_seen_under_32_bits": 2404,
+        "unkept_keys_seen_at_least_256_bits": 0
+      },
+      "mx16": {
+        "cap_at": 276295,
+        "fallback_bits": 172160,
+        "loss_bits": 678819.4947279602,
+        "fallback_loss_bits": 34015.71176418824,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.015860557556152344,
+            "base_loss_bits": 167668.22287329548,
+            "fallback_loss_fraction": 0.04475726810726885
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.027068138122558594,
+            "base_loss_bits": 158264.6692261503,
+            "fallback_loss_fraction": 0.057037499830628766
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.02048349380493164,
+            "base_loss_bits": 153605.18510699895,
+            "fallback_loss_fraction": 0.056491307771629105
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.018680095672607422,
+            "base_loss_bits": 199281.4175303054,
+            "fallback_loss_fraction": 0.04419359033948049
+          }
+        ],
+        "distinct_total": 23351,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.0205230712890625,
+        "fallback_loss_fraction": 0.050110098528947204,
+        "kept_keys_seen_under_32_bits": 2792,
+        "unkept_keys_seen_at_least_256_bits": 71
+      },
+      "wordscxt": {
+        "cap_at": 358983,
+        "fallback_bits": 109880,
+        "loss_bits": 678819.4947279602,
+        "fallback_loss_bits": 30161.44516771124,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.009804248809814453,
+            "base_loss_bits": 167668.22287329548,
+            "fallback_loss_fraction": 0.03865631746911235
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.012701034545898438,
+            "base_loss_bits": 158264.6692261503,
+            "fallback_loss_fraction": 0.04790322324431952
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.0158843994140625,
+            "base_loss_bits": 153605.18510699895,
+            "fallback_loss_fraction": 0.049745407780167755
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.014005184173583984,
+            "base_loss_bits": 199281.4175303054,
+            "fallback_loss_fraction": 0.04243982639090421
+          }
+        ],
+        "distinct_total": 19130,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.013098716735839844,
+        "fallback_loss_fraction": 0.04443220237774487,
+        "kept_keys_seen_under_32_bits": 2624,
+        "unkept_keys_seen_at_least_256_bits": 18
+      }
+    },
+    "elapsed_seconds": 84.04444472503383
+  },
+  "middle": {
+    "trace": "temp/round230/history/baseline-article-q2-1m/trace.bin",
+    "input_bytes": 1048576,
+    "scope": "actual stream-defined keys, same dictionary pretraining and 10000 first-distinct admission; losses from the named probability trace; contexts other than named subset not measured",
+    "dictionary_does_not_allocate_external_mixer_keys": true,
+    "models": {
+      "mx9": {
+        "cap_at": 60295,
+        "fallback_bits": 999884,
+        "loss_bits": 1670148.8464310705,
+        "fallback_loss_bits": 289631.7275030919,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.14204692840576172,
+            "base_loss_bits": 513483.0190604584,
+            "fallback_loss_fraction": 0.1881146584128166
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.13159704208374023,
+            "base_loss_bits": 453169.8771060012,
+            "fallback_loss_fraction": 0.18380229269979845
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.10878133773803711,
+            "base_loss_bits": 382284.6392723941,
+            "fallback_loss_fraction": 0.16268357295440183
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.09435653686523438,
+            "base_loss_bits": 321211.3109869561,
+            "fallback_loss_fraction": 0.1480425805329225
+          }
+        ],
+        "distinct_total": 44322,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.11919546127319336,
+        "fallback_loss_fraction": 0.1734167155951423,
+        "kept_keys_seen_under_32_bits": 1378,
+        "unkept_keys_seen_at_least_256_bits": 588
+      },
+      "mx10=mx11": {
+        "cap_at": 513839,
+        "fallback_bits": 61304,
+        "loss_bits": 1670148.8464310705,
+        "fallback_loss_bits": 15626.476454433085,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.007433891296386719,
+            "base_loss_bits": 513483.0190604584,
+            "fallback_loss_fraction": 0.009449907320783026
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.009081363677978516,
+            "base_loss_bits": 453169.8771060012,
+            "fallback_loss_fraction": 0.012959579475633955
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.006577968597412109,
+            "base_loss_bits": 382284.6392723941,
+            "fallback_loss_fraction": 0.007921296799414093
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.006138801574707031,
+            "base_loss_bits": 321211.3109869561,
+            "fallback_loss_fraction": 0.005831140814786343
+          }
+        ],
+        "distinct_total": 16262,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.007308006286621094,
+        "fallback_loss_fraction": 0.009356337602977839,
+        "kept_keys_seen_under_32_bits": 2092,
+        "unkept_keys_seen_at_least_256_bits": 4
+      },
+      "mx14": {
+        "cap_at": null,
+        "fallback_bits": 0,
+        "loss_bits": 1670148.8464310705,
+        "fallback_loss_bits": 0.0,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 513483.0190604584,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 453169.8771060012,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 382284.6392723941,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 321211.3109869561,
+            "fallback_loss_fraction": 0.0
+          }
+        ],
+        "distinct_total": 9829,
+        "kept_keys": 9829,
+        "fallback_fraction": 0.0,
+        "fallback_loss_fraction": 0.0,
+        "kept_keys_seen_under_32_bits": 2572,
+        "unkept_keys_seen_at_least_256_bits": 0
+      },
+      "mx15": {
+        "cap_at": null,
+        "fallback_bits": 0,
+        "loss_bits": 1670148.8464310705,
+        "fallback_loss_bits": 0.0,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 513483.0190604584,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 453169.8771060012,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 382284.6392723941,
+            "fallback_loss_fraction": 0.0
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.0,
+            "base_loss_bits": 321211.3109869561,
+            "fallback_loss_fraction": 0.0
+          }
+        ],
+        "distinct_total": 9829,
+        "kept_keys": 9829,
+        "fallback_fraction": 0.0,
+        "fallback_loss_fraction": 0.0,
+        "kept_keys_seen_under_32_bits": 2572,
+        "unkept_keys_seen_at_least_256_bits": 0
+      },
+      "mx16": {
+        "cap_at": 119499,
+        "fallback_bits": 458265,
+        "loss_bits": 1670148.8464310705,
+        "fallback_loss_bits": 151913.5219886636,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.07405233383178711,
+            "base_loss_bits": 513483.0190604584,
+            "fallback_loss_fraction": 0.11813985844137466
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.0644989013671875,
+            "base_loss_bits": 453169.8771060012,
+            "fallback_loss_fraction": 0.10632488549813274
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.046213626861572266,
+            "base_loss_bits": 382284.6392723941,
+            "fallback_loss_fraction": 0.07415914862878564
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.0337529182434082,
+            "base_loss_bits": 321211.3109869561,
+            "fallback_loss_fraction": 0.045818972198538054
+          }
+        ],
+        "distinct_total": 30997,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.05462944507598877,
+        "fallback_loss_fraction": 0.09095807377485339,
+        "kept_keys_seen_under_32_bits": 1411,
+        "unkept_keys_seen_at_least_256_bits": 105
+      },
+      "wordscxt": {
+        "cap_at": 130374,
+        "fallback_bits": 366376,
+        "loss_bits": 1670148.8464310705,
+        "fallback_loss_bits": 124739.23327202915,
+        "blocks": [
+          {
+            "end_input_byte": 262144,
+            "fallback_fraction": 0.05854988098144531,
+            "base_loss_bits": 513483.0190604584,
+            "fallback_loss_fraction": 0.09040703366025399
+          },
+          {
+            "end_input_byte": 524288,
+            "fallback_fraction": 0.05232429504394531,
+            "base_loss_bits": 453169.8771060012,
+            "fallback_loss_fraction": 0.08706424873001448
+          },
+          {
+            "end_input_byte": 786432,
+            "fallback_fraction": 0.036015987396240234,
+            "base_loss_bits": 382284.6392723941,
+            "fallback_loss_fraction": 0.06349173383242977
+          },
+          {
+            "end_input_byte": 1048576,
+            "fallback_fraction": 0.027811527252197266,
+            "base_loss_bits": 321211.3109869561,
+            "fallback_loss_fraction": 0.045421648374544814
+          }
+        ],
+        "distinct_total": 22759,
+        "kept_keys": 10000,
+        "fallback_fraction": 0.04367542266845703,
+        "fallback_loss_fraction": 0.07468749479340332,
+        "kept_keys_seen_under_32_bits": 1137,
+        "unkept_keys_seen_at_least_256_bits": 94
+      }
+    },
+    "elapsed_seconds": 85.01880637800787
+  },
+  "validation": {
+    "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+    "dictionary_last_8_bytes_after_newline_replacement": "796f726b69737420",
+    "dictionary_terminal_mx9cxt": 96,
+    "initial_byte_prefix": 1,
+    "header_and_full_dictionary_recurrence_matches_last_two_bytes": true,
+    "mx9_legal_domain": {
+      "count": 65280,
+      "min": 1,
+      "max": 65535
+    },
+    "MSB_first_probe": {
+      "byte": 165,
+      "prefixes": [
+        1,
+        3,
+        6,
+        13,
+        26,
+        52,
+        105,
+        210
+      ]
+    },
+    "cases": [
+      {
+        "case": "prefix-1m",
+        "trace": "temp/round230/history/aux-prefix-1m.trace",
+        "decoded_bytes": 1048576,
+        "decoded_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "golden_slice_sha256_matches": true,
+        "cap_10000_at_bit": 132949,
+        "first_rejected_key_at_bit": 132950,
+        "first_16_prediction_keys": [
+          24577,
+          24578,
+          24580,
+          24584,
+          24592,
+          24608,
+          24641,
+          24707,
+          1793,
+          1794,
+          1796,
+          1801,
+          1811,
+          1830,
+          1869,
+          1947
+        ]
+      },
+      {
+        "case": "article-q2-1m",
+        "trace": "temp/round230/history/baseline-article-q2-1m/trace.bin",
+        "decoded_bytes": 1048576,
+        "decoded_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+        "golden_slice_sha256_matches": true,
+        "cap_10000_at_bit": 60295,
+        "first_rejected_key_at_bit": 60301,
+        "first_16_prediction_keys": [
+          24577,
+          24578,
+          24580,
+          24585,
+          24595,
+          24614,
+          24652,
+          24728,
+          12545,
+          12546,
+          12548,
+          12553,
+          12563,
+          12583,
+          12622,
+          12700
+        ]
+      }
+    ]
+  },
+  "scope": "These are key coverage and loss-location measurements, not savings from expanding the map. Only mx9 is selected for the next real coding experiment."
+}

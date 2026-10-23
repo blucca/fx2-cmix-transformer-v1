@@ -9,15 +9,15 @@
 Mixer::Mixer(const std::valarray<float>& inputs,
     const std::valarray<float>& extra_inputs,
     const unsigned long long& context, float learning_rate,
-    unsigned int extra_input_size) : inputs_(inputs),
+    unsigned int extra_input_size, unsigned context_limit) : inputs_(inputs),
     extra_inputs_vec_(extra_inputs), extra_inputs_size_(extra_input_size),/*extra_inputs_(extra_input_size),*/ p_(0.5),
     learning_rate_(learning_rate), context_(context), /*max_steps_(1),*/ steps_(0),
-    context_base_(inputs.size(), extra_inputs_size_)
+    context_base_(inputs.size(), extra_inputs_size_), context_limit_(context_limit)
     {}
 
 ContextData* Mixer::GetContextData() {
   ContextData* data;
-  unsigned long long limit = 10000;
+  const auto limit = context_limit_;
   auto it = context_map_.find(context_); 
   if (context_map_.size() >= limit && it == context_map_.end()) {
     data = &context_base_;
