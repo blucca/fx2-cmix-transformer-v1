@@ -134,6 +134,12 @@ class Predictor {
     return byte_model_->Trace();
   }
 #endif
+#ifdef HUTTER_MIXER_TRACE
+  const HutterMixerTraceRecord& TraceMixers() const {
+    if (mixer_0_.size() != 23) Fail("mixer trace requires 23 first-layer mixers");
+    return trace_mixers_;
+  }
+#endif
 
  private:
   unsigned long long GetNumModels();
@@ -160,6 +166,9 @@ class Predictor {
   std::optional<Bracket> bracket_model_;
 #ifdef HUTTER_TRACE
   float trace_neural_ = 0.5f, trace_fxcm_ = 0.5f, trace_mixer_ = 0.0f;
+#endif
+#ifdef HUTTER_MIXER_TRACE
+  HutterMixerTraceRecord trace_mixers_{};
 #endif
   size_t auxiliary_size_ = 2; // 0 -> fxcm, 1 -> byte_mixer
   SSE sse_;

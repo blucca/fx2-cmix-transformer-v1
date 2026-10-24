@@ -26,5 +26,8 @@ class Encoder {
 #ifdef HUTTER_PPMD_TRACE
   std::ofstream ppmd_trace_;
 #endif
+#ifdef HUTTER_MIXER_TRACE
+  std::ofstream mixer_trace_;
+#endif
 };
 #endif

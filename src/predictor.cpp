@@ -438,6 +438,9 @@ void Predictor::AddMixers() {
   AddMixer(1,manager_.zero_context_, 0.0003);
 
   layers_[0].SetExtraInputSize(mixer_0_.size());
+#ifdef HUTTER_MIXER_TRACE
+  TraceMixers();  // Validate the frozen 23-output layout once at construction.
+#endif
 
 }
 int lstmpr=0, lstmex=0;
@@ -538,7 +541,14 @@ float Predictor::Predict() {
     float p = mixer_0_[i].Mix();
     layers_[0].SetExtraInput(i, p);
     layers_[1].SetStretchedInput(i, p);
+#ifdef HUTTER_MIXER_TRACE
+    trace_mixers_.logits[i] = HutterMixerLogitHalf(layers_[1].Inputs()[i]);
+    trace_mixers_.support[i] = mixer_0_[i].TraceSupport();
+#endif
   }
+#ifdef HUTTER_MIXER_TRACE
+  trace_mixers_.flags = 1;
+#endif
   layers_[1].SetStretchedInput(mixer_0_.size(), layers_[0].Inputs()[fxcm_model_index]);
   layers_[1].SetStretchedInput(mixer_0_.size() + 1, layers_[0].Inputs()[byte_mixer_index]);
 

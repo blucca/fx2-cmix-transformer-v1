@@ -400,3 +400,89 @@ prefix. The fixed next screen is prefix1MiB plus the middle article1MiB; its
 choice is frozen before the two independent article spans and continuous8MiB
 are scored. Full archive size, runtime qualification and prize eligibility
 remain later measurements.
+
+
+### Frozen PPMd heads: independent 1 MiB cold validation
+
+The fixed prefix1MiB + middle1MiB screen selected `ppmd_quality_64` for
+baseline and `ppmd_reliability_64` for v26 **before** either validation span.
+All four new observation streams equal their original, losslessly verified
+golden files; each base replay size is exact.
+[Selections, receipts and 128 KiB curves](results/ppmd-cold-validation.json).
+
+| Family | Selected head: q1 / q3 saved | Combined bits/input-byte | Old-info combined | Neural control combined |
+|---|---:|---:|---:|---:|
+| Baseline | 92 / 72 B | 0.0006256 | 98 B | 128 B |
+| v26 | 98 / 76 B | 0.0006638 | 75 B | 99 B |
+
+Both heads improve both cold spans and beat the old-information control.
+The magnitude falls below the prespecified 0.003 bits/input-byte cold gate.
+The original continuous 8 MiB experiment remains active under its previously
+fixed alternative gate: at least 0.003 bits/input-byte and positive last-4MiB
+increment. The middle screen's gains concentrate near startup and its last
+128 KiB regresses slightly, making the long curve especially informative.
+These heads remain outside the main coder.
+
+### Byte-level mixture capacity: completed, stopped
+
+A separate diagnostic asks whether the eight bit predictions hide useful
+within-byte expert correlation. A fixed prior over base/neural/PPMd byte
+likelihoods yields a causal Bayesian expert-posterior update as bits arrive.
+`byte-simplex-budget.cpp` fits the convex constant-prior optimum over the
+same two screening traces; its self-check covers an interior simplex edge,
+a dominated-expert boundary and the Bayesian likelihood identity.
+
+```sh
+c++ -O3 -std=c++17 research/byte-simplex-budget.cpp -o "$SCRATCH/byte-budget"
+"$SCRATCH/byte-budget" --self-test
+"$SCRATCH/byte-budget" "$SCRATCH/runs/ppmd-observe/v26/prefix-1m" \
+  "$SCRATCH/runs/ppmd-observe/v26/article-q2-1m"
+```
+
+The best baseline/v26 priors assign **0.10359 / 0.08880** to the neural
+expert, **zero to PPMd**, and the remainder to base. Best in-screen ideal
+savings total only **73.51 / 57.54 B** across 2 MiB, below the existing
+PPMd-quality heads' **167 / 181 B** exact savings. Stop the constant-prior
+mixture here. [Full capacity results](results/byte-simplex-capacity.json).
+
+### Profile-guided CM3 prefetch: queued experiment
+
+A 30-second, 2,938-sample user CPU-clock profile of the v26 PPMd observer
+attributes 15.15% to `ContextMap3::mix` and 9.33% to `E1<14,128>::get`.
+Within the latter, 67.15% lands immediately after the initial bucket load.
+This motivates one opt-in `HUTTER_CM3_PREFETCH` experiment: prefetch current
+state bytes and imminent hash buckets before the original serial updates.
+Prediction arithmetic, update order and capacities stay fixed.
+
+The planned gate is a real 256 KiB golden-stream round trip, then a same-machine
+1 MiB encode/decode timing pair. A gain of at least 3% triggers one disjoint
+1 MiB confirmation in reversed variant order. Golden bytes must match in all
+cases; aggregate coding gain must reach 3% with a positive confirmation.
+The flag stays off by default. Local syntax checking passed; these real
+compression and performance checks are queued after the existing observer.
+
+
+## First-layer mixer support: observation-only interface
+
+The single second-layer mixer globally combines 23 first-layer predictions.
+The next information experiment asks whether each selected context's actual
+update count and shared-fallback status explain residual reliability.
+`HUTTER_MIXER_TRACE` (requires `HUTTER_TRACE`) adds a separate
+`HUTTER_MIXER_TRACE_PATH` file; the normal build keeps these counters and I/O off.
+
+Each 72-byte record contains 23 IEEE binary16, ties-to-even **clamped logits
+actually received by layer two**, followed by 23 support bytes, flags=1 and
+two zero bytes. Each support byte uses bits 0–5 for
+`floor(log2(1 + saturated_uint32_applied_updates))` (0–32), bit 7 for shared
+fallback, and leaves bit 6 zero. The snapshot belongs to the current Mix,
+before its label; an early-returned Perceive applies no counted update.
+Dictionary pretraining produces no rows. Quantization affects the sidecar only.
+
+`mixer-support-check.cpp`, linked as described in its header, produced identical
+49,152-byte prediction streams with and without observation across 4,096
+selections and three mixers. It checks context reuse/fallback, pre-label
+snapshots, early returns, count saturation, half rounding and layout.
+[Local check receipt](results/mixer-support-interface.json).
+Full-model acceptance starts with an original 256 KiB golden-stream match,
+exact base replay and sidecar length; screen acquisition follows that gate.
+The residual fitting protocol and independent validation are subsequent work.

@@ -5,6 +5,9 @@
 #include <valarray>
 #include "../ds/emhash_map.hpp"
 #include <memory>
+#ifdef HUTTER_MIXER_TRACE
+#include "../../research/trace.h"
+#endif
 
 struct ContextData {
   ContextData(unsigned long long input_size,
@@ -14,6 +17,9 @@ struct ContextData {
   ContextData(const ContextData&) = default;
   //unsigned long long steps;
   std::valarray<float> weights, extra_weights;
+#ifdef HUTTER_MIXER_TRACE
+  std::uint32_t trace_applied_updates = 0;
+#endif
   
 };
 
@@ -25,6 +31,9 @@ class Mixer {
       unsigned context_limit = 10000);
   float Mix();
   void Perceive(int bit);
+#ifdef HUTTER_MIXER_TRACE
+  std::uint8_t TraceSupport() const { return trace_support_; }
+#endif
 
  private:
   ContextData* GetContextData();
@@ -38,6 +47,9 @@ class Mixer {
   emhash6::HashMap<unsigned int, ContextData> context_map_;
   ContextData context_base_;
   const unsigned context_limit_;
+#ifdef HUTTER_MIXER_TRACE
+  std::uint8_t trace_support_ = 0;
+#endif
 #ifdef HUTTER_CACHE_MIXER
   ContextData* current_data_ = nullptr;
 #endif

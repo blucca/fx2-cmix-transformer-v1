@@ -42,6 +42,10 @@ ContextData* Mixer::GetContextData() {
 
 float Mixer::Mix() {
   ContextData* data = GetContextData();
+#ifdef HUTTER_MIXER_TRACE
+  trace_support_ = HutterMixerSupport(data->trace_applied_updates,
+      data == &context_base_);
+#endif
 #ifdef HUTTER_CACHE_MIXER
   // Predictor updates contexts after every mixer's Perceive. This map is
   // private to this mixer and cannot rehash between Mix and Perceive.
@@ -90,6 +94,9 @@ void Mixer::Perceive(int bit) {
   
   data->weights -= update * inputs_;
   data->extra_weights -= update * extra_inputs_vec_[std::slice(0,extra_inputs_size_,1)];
+#ifdef HUTTER_MIXER_TRACE
+  HutterMixerAppliedUpdate(data->trace_applied_updates);
+#endif
  /*if ((data->steps & 1023) == 0) {
     data->weights *= 1.0f - 3.0e-6f;
     data->extra_weights *= 1.0f - 3.0e-6f;

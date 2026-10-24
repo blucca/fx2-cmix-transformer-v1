@@ -24,6 +24,16 @@ Encoder::Encoder(std::ofstream* os, Predictor* p) : os_(os), x1_(0),
     if (!ppmd_trace_) Fail("cannot create PPMd trace: %s", ppmd_path);
   }
 #endif
+#ifdef HUTTER_MIXER_TRACE
+  const char* mixer_path = std::getenv("HUTTER_MIXER_TRACE_PATH");
+  if (mixer_path && *mixer_path) {
+    if (!trace_.is_open()) Fail("mixer sidecar requires HUTTER_TRACE_PATH");
+    p_->TraceMixers();
+    if (std::ifstream(mixer_path).good()) Fail("mixer trace path already exists: %s", mixer_path);
+    mixer_trace_.open(mixer_path, std::ios::binary);
+    if (!mixer_trace_) Fail("cannot create mixer trace: %s", mixer_path);
+  }
+#endif
 }
 
 void Encoder::WriteByte(unsigned int byte) {
@@ -52,6 +62,13 @@ void Encoder::Encode(int bit) {
     const auto& record = p_->TracePpmd();
     ppmd_trace_.write(reinterpret_cast<const char*>(&record), sizeof(record));
     if (!ppmd_trace_) Fail("PPMd trace write failed");
+  }
+#endif
+#ifdef HUTTER_MIXER_TRACE
+  if (mixer_trace_.is_open()) {
+    const auto& record = p_->TraceMixers();
+    mixer_trace_.write(reinterpret_cast<const char*>(&record), sizeof(record));
+    if (!mixer_trace_) Fail("mixer trace write failed");
   }
 #endif
 #else
@@ -93,6 +110,12 @@ void Encoder::Flush() {
   if (ppmd_trace_.is_open()) {
     ppmd_trace_.flush();
     if (!ppmd_trace_) Fail("PPMd trace flush failed");
+  }
+#endif
+#ifdef HUTTER_MIXER_TRACE
+  if (mixer_trace_.is_open()) {
+    mixer_trace_.flush();
+    if (!mixer_trace_) Fail("mixer trace flush failed");
   }
 #endif
 }

@@ -1287,6 +1287,17 @@ struct ContextMap3 {
     }
     // Update the model with bit y1, and predict next bit to mixer m.
     int __attribute__ ((noinline)) mix() {
+#ifdef HUTTER_CM3_PREFETCH
+        // All addresses are already determined by the decoded prefix. Warm
+        // independent context buckets before the serial state updates below.
+        const bool new_bucket = x.bpos==0 || x.bpos==2 || x.bpos==5;
+        for (int i=0; i<cn; ++i) {
+            if ((cxtMask>>(cn-i))&1) continue;
+            if (cp[i]) __builtin_prefetch(cp[i], 0, 3);
+            if (new_bucket)
+                __builtin_prefetch(&t[(cxt[i]+x.c0)&tmask], 0, 3);
+        }
+#endif
         // Update model with y
         result=0;
         upd(); // update statemap

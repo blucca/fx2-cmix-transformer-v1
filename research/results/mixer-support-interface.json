@@ -1,0 +1,21 @@
+{
+  "status": "passed",
+  "mixer_selections": 4096,
+  "mixers": 3,
+  "prediction_bytes": 49152,
+  "byte_identical": true,
+  "record_bytes": 72,
+  "compiler": "c++ -O3 -std=c++17 -march=x86-64-v3",
+  "checks": [
+    "prediction neutrality",
+    "pre-label selection snapshot",
+    "initial state",
+    "map fallback sharing",
+    "early-return skips applied count",
+    "uint32 saturation",
+    "binary16 ties/subnormals",
+    "record offsets/flags/reserved"
+  ],
+  "predictor_encoder_syntax": "passed with original SEED=923 UPDATE_LIMIT=3000 and TRACE+MIXER+PPMD macros",
+  "initial_syntax_failure": "missing original UPDATE_LIMIT build define; retried syntax only with original value"
+}

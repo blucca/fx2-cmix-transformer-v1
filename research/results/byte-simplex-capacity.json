@@ -1,0 +1,128 @@
+{
+  "schema": "hutter.byte-mixture-budget-results.v1",
+  "source_sha256": "694f4d553ab9eea834904827d634b57a5ed89939073771e168ad554c7f3cb14b",
+  "screen": [
+    "prefix-1m",
+    "article-q2-1m"
+  ],
+  "objective": "Maximum-likelihood constant prior over full-byte base/neural/PPMd likelihoods, independently fitted for each family; log-loss capacity, not candidate coded bytes.",
+  "decision": "stop constant-prior byte mixture after screen",
+  "families": {
+    "baseline": {
+      "schema": "hutter.byte-simplex-capacity.v1",
+      "input_bytes": 2097152,
+      "weights": {
+        "base": 0.896409165641785,
+        "neural": 0.103590834358215,
+        "ppmd": 0
+      },
+      "nll_saved_bytes": 73.5088267655572,
+      "kkt_per_byte": 3.09055276605956e-15,
+      "interior_iterations": 0,
+      "bn_control": {
+        "neural_prior": 0.103590834358215,
+        "nll_saved_bytes": 73.5088267655572
+      },
+      "bp_control": {
+        "ppmd_prior": 0,
+        "nll_saved_bytes": 0
+      },
+      "cases": [
+        {
+          "case": "prefix-1m",
+          "base_loss_bits": 679899.804979483,
+          "neural_loss_bits": 702602.026278346,
+          "ppmd_loss_bits": 1230467.55269202,
+          "nll_saved_bytes": 12.4331460182345,
+          "blocks_128k_saved_bytes": [
+            19.9031578236412,
+            -1.81523667979607,
+            -0.0994445608237231,
+            -0.604507537237137,
+            0.218306192643251,
+            -14.2768469843315,
+            6.2167855889481,
+            2.89093217519033
+          ]
+        },
+        {
+          "case": "article-q2-1m",
+          "base_loss_bits": 1670148.84642567,
+          "neural_loss_bits": 1679546.90935118,
+          "ppmd_loss_bits": 2719151.47877811,
+          "nll_saved_bytes": 61.0756807473244,
+          "blocks_128k_saved_bytes": [
+            30.6868453741357,
+            7.76472203297596,
+            7.66408850065123,
+            8.01743478211673,
+            5.57810047409624,
+            2.84506461893332,
+            -0.0731499650477998,
+            -1.40742507053897
+          ]
+        }
+      ],
+      "elapsed_seconds": 3.664601261,
+      "scope": "screen-only shared maximum-likelihood prior; ideal log loss; all experts use exact base on cold byte and neural overrides; remaining probabilities clamped to 1/65536..65535/65536; no candidate range counting"
+    },
+    "v26": {
+      "schema": "hutter.byte-simplex-capacity.v1",
+      "input_bytes": 2097152,
+      "weights": {
+        "base": 0.911204987582892,
+        "neural": 0.0887950124171084,
+        "ppmd": 0
+      },
+      "nll_saved_bytes": 57.5358783897332,
+      "kkt_per_byte": 2.8523062812469e-16,
+      "interior_iterations": 0,
+      "bn_control": {
+        "neural_prior": 0.0887950124171084,
+        "nll_saved_bytes": 57.5358783897332
+      },
+      "bp_control": {
+        "ppmd_prior": 1.61465902692726e-06,
+        "nll_saved_bytes": 0.000614724709184739
+      },
+      "cases": [
+        {
+          "case": "prefix-1m",
+          "base_loss_bits": 678705.132324497,
+          "neural_loss_bits": 702602.025353584,
+          "ppmd_loss_bits": 1230467.55176726,
+          "nll_saved_bytes": 9.1284760514761,
+          "blocks_128k_saved_bytes": [
+            17.6182746802726,
+            -0.779091202995296,
+            0.732443634617487,
+            -0.582997886811194,
+            -0.195294360047425,
+            -11.2066009299027,
+            3.01041969264907,
+            0.531322423695549
+          ]
+        },
+        {
+          "case": "article-q2-1m",
+          "base_loss_bits": 1669560.19496201,
+          "neural_loss_bits": 1679546.91018702,
+          "ppmd_loss_bits": 2719151.47961395,
+          "nll_saved_bytes": 48.4074023382479,
+          "blocks_128k_saved_bytes": [
+            26.1229716338033,
+            6.57802518181863,
+            6.34170291038777,
+            6.49056211838705,
+            4.79459021718877,
+            0.804214417864536,
+            -1.04637410081581,
+            -1.67829004038272
+          ]
+        }
+      ],
+      "elapsed_seconds": 3.913495117,
+      "scope": "screen-only shared maximum-likelihood prior; ideal log loss; all experts use exact base on cold byte and neural overrides; remaining probabilities clamped to 1/65536..65535/65536; no candidate range counting"
+    }
+  }
+}
