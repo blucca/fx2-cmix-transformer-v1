@@ -393,6 +393,7 @@ int main(int argc, char** argv) {
     if (!input.eof()) throw std::runtime_error("trace read failed");
     if (!replay.bits || replay.bits % 8) throw std::runtime_error("trace must contain whole bytes");
     replay.report("complete");
+    return 0;
   } catch (const std::exception& error) {
     std::cerr << error.what() << '\n';
     return 1;
