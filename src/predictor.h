@@ -128,6 +128,12 @@ class Predictor {
   float TraceFxcm() const { return trace_fxcm_; }
   float TraceMixer() const { return trace_mixer_; }
 #endif
+#ifdef HUTTER_PPMD_TRACE
+  const HutterPpmdTraceRecord& TracePpmd() const {
+    if (!byte_model_) Fail("PPMd trace requires the PPMd model");
+    return byte_model_->Trace();
+  }
+#endif
 
  private:
   unsigned long long GetNumModels();

@@ -11,6 +11,9 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <cstdio>
+#ifdef HUTTER_PPMD_TRACE
+#include <cmath>
+#endif
 
 namespace PPMD {
 
@@ -1388,6 +1391,28 @@ void PPMD::ByteUpdate() {
   }
   ByteModel::ByteUpdate();
   probs_ /= probs_.sum();
+#ifdef HUTTER_PPMD_TRACE
+  // Only read the completed prior. Re-normalize in double for the entropy;
+  // retain the original float probabilities passed to every model consumer.
+  double total = 0, entropy = 0;
+  for (int i = 0; i < 256; ++i) total += probs_[i];
+  for (int i = 0; i < 256; ++i) {
+    if (probs_[i] > 0) {
+      const double p = probs_[i] / total;
+      entropy -= p * std::log2(p);
+    }
+  }
+  trace_.entropy = entropy;
+  trace_.suffix_depth = 0;
+  for (auto* context = ppmd_model_->MaxContext; context->iSuffix;
+       context = ppmd_model_->suff(context)) {
+    ++trace_.suffix_depth;
+  }
+  // Both first-layer paths append NumStats+1 symbols followed by an escape.
+  const auto& escape = ppmd_model_->SQ[ppmd_model_->MaxContext->NumStats + 1];
+  trace_.escape = static_cast<float>(escape.freq) / escape.total;
+  trace_.flags = 1;
+#endif
   if (mmap_to_disk && counter_ % 20000 == 0) {
     // The suballocator keeps absolute pointers into the heap (pText,
     // UnitsStart, LoUnit, HiUnit, AuxUnit, MinContext, MaxContext,

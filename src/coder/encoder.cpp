@@ -14,6 +14,16 @@ Encoder::Encoder(std::ofstream* os, Predictor* p) : os_(os), x1_(0),
     if (!trace_) Fail("cannot create trace: %s", path);
   }
 #endif
+#ifdef HUTTER_PPMD_TRACE
+  const char* ppmd_path = std::getenv("HUTTER_PPMD_TRACE_PATH");
+  if (ppmd_path && *ppmd_path) {
+    if (!trace_.is_open()) Fail("PPMd sidecar requires HUTTER_TRACE_PATH");
+    p_->TracePpmd();  // Fail early when the run loads probabilities without PPMd.
+    if (std::ifstream(ppmd_path).good()) Fail("PPMd trace path already exists: %s", ppmd_path);
+    ppmd_trace_.open(ppmd_path, std::ios::binary);
+    if (!ppmd_trace_) Fail("cannot create PPMd trace: %s", ppmd_path);
+  }
+#endif
 }
 
 void Encoder::WriteByte(unsigned int byte) {
@@ -37,6 +47,13 @@ void Encoder::Encode(int bit) {
     trace_.write(reinterpret_cast<const char*>(&record), sizeof(record));
     if (!trace_) Fail("trace write failed");
   }
+#ifdef HUTTER_PPMD_TRACE
+  if (ppmd_trace_.is_open()) {
+    const auto& record = p_->TracePpmd();
+    ppmd_trace_.write(reinterpret_cast<const char*>(&record), sizeof(record));
+    if (!ppmd_trace_) Fail("PPMd trace write failed");
+  }
+#endif
 #else
   const unsigned int p = Discretize(p_->Predict());
 #endif
@@ -70,6 +87,12 @@ void Encoder::Flush() {
   if (trace_.is_open()) {
     trace_.flush();
     if (!trace_) Fail("trace flush failed");
+  }
+#endif
+#ifdef HUTTER_PPMD_TRACE
+  if (ppmd_trace_.is_open()) {
+    ppmd_trace_.flush();
+    if (!ppmd_trace_) Fail("PPMd trace flush failed");
   }
 #endif
 }

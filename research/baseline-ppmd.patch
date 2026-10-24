@@ -1,0 +1,229 @@
+diff --git a/src/coder/encoder.cpp b/src/coder/encoder.cpp
+index 16a33c7..e0667c4 100644
+--- a/src/coder/encoder.cpp
++++ b/src/coder/encoder.cpp
+@@ -1,7 +1,30 @@
+ #include "encoder.h"
++#ifdef HUTTER_TRACE
++#include "../../research/trace.h"
++#include <cstdlib>
++#endif
+ 
+ Encoder::Encoder(std::ofstream* os, Predictor* p) : os_(os), x1_(0),
+-    x2_(0xffffffff), p_(p) {}
++    x2_(0xffffffff), p_(p) {
++#ifdef HUTTER_TRACE
++  const char* path = std::getenv("HUTTER_TRACE_PATH");
++  if (path && *path) {
++    if (std::ifstream(path).good()) Fail("trace path already exists: %s", path);
++    trace_.open(path, std::ios::binary);
++    if (!trace_) Fail("cannot create trace: %s", path);
++  }
++#endif
++#ifdef HUTTER_PPMD_TRACE
++  const char* ppmd_path = std::getenv("HUTTER_PPMD_TRACE_PATH");
++  if (ppmd_path && *ppmd_path) {
++    if (!trace_.is_open()) Fail("PPMd sidecar requires HUTTER_TRACE_PATH");
++    p_->TracePpmd();  // Fail early when the run loads probabilities without PPMd.
++    if (std::ifstream(ppmd_path).good()) Fail("PPMd trace path already exists: %s", ppmd_path);
++    ppmd_trace_.open(ppmd_path, std::ios::binary);
++    if (!ppmd_trace_) Fail("cannot create PPMd trace: %s", ppmd_path);
++  }
++#endif
++}
+ 
+ void Encoder::WriteByte(unsigned int byte) {
+   out_.push_back(byte);
+@@ -12,7 +35,28 @@ unsigned int Encoder::Discretize(float p) {
+ }
+ 
+ void Encoder::Encode(int bit) {
++#ifdef HUTTER_TRACE
++  const float probability = p_->Predict();
++  const unsigned int p = Discretize(probability);
++  if (trace_.is_open()) {
++    const float neural = p_->TraceNeural();
++    HutterTraceRecord record{
++        static_cast<std::uint16_t>(p),
++        static_cast<std::uint16_t>(bit | ((neural == 0 || neural == 1) ? 2 : 0)),
++        neural, p_->TraceFxcm(), p_->TraceMixer()};
++    trace_.write(reinterpret_cast<const char*>(&record), sizeof(record));
++    if (!trace_) Fail("trace write failed");
++  }
++#ifdef HUTTER_PPMD_TRACE
++  if (ppmd_trace_.is_open()) {
++    const auto& record = p_->TracePpmd();
++    ppmd_trace_.write(reinterpret_cast<const char*>(&record), sizeof(record));
++    if (!ppmd_trace_) Fail("PPMd trace write failed");
++  }
++#endif
++#else
+   const unsigned int p = Discretize(p_->Predict());
++#endif
+   const unsigned int xmid = x1_ + ((x2_ - x1_) >> 16) * p +
+       (((x2_ - x1_) & 0xffff) * p >> 16);
+   if (bit) {
+@@ -39,5 +83,17 @@ void Encoder::Flush() {
+ 
+   auto* data = reinterpret_cast<const char*>(out_.data());
+   os_->write(data, out_.size());
++#ifdef HUTTER_TRACE
++  if (trace_.is_open()) {
++    trace_.flush();
++    if (!trace_) Fail("trace flush failed");
++  }
++#endif
++#ifdef HUTTER_PPMD_TRACE
++  if (ppmd_trace_.is_open()) {
++    ppmd_trace_.flush();
++    if (!ppmd_trace_) Fail("PPMd trace flush failed");
++  }
++#endif
+ }
+ 
+diff --git a/src/coder/encoder.h b/src/coder/encoder.h
+index ea662b1..007ce57 100644
+--- a/src/coder/encoder.h
++++ b/src/coder/encoder.h
+@@ -20,5 +20,11 @@ class Encoder {
+   std::ofstream* os_;
+   unsigned int x1_, x2_;
+   Predictor* p_;
++#ifdef HUTTER_TRACE
++  std::ofstream trace_;
++#endif
++#ifdef HUTTER_PPMD_TRACE
++  std::ofstream ppmd_trace_;
++#endif
+ };
+ #endif
+diff --git a/src/models/ppmd.cpp b/src/models/ppmd.cpp
+index e6fbf91..1f1a139 100644
+--- a/src/models/ppmd.cpp
++++ b/src/models/ppmd.cpp
+@@ -11,6 +11,9 @@
+ #include <unistd.h>
+ #include <fcntl.h>
+ #include <cstdio>
++#ifdef HUTTER_PPMD_TRACE
++#include <cmath>
++#endif
+ 
+ namespace PPMD {
+ 
+@@ -1388,6 +1391,28 @@ void PPMD::ByteUpdate() {
+   }
+   ByteModel::ByteUpdate();
+   probs_ /= probs_.sum();
++#ifdef HUTTER_PPMD_TRACE
++  // Only read the completed prior. Re-normalize in double for the entropy;
++  // retain the original float probabilities passed to every model consumer.
++  double total = 0, entropy = 0;
++  for (int i = 0; i < 256; ++i) total += probs_[i];
++  for (int i = 0; i < 256; ++i) {
++    if (probs_[i] > 0) {
++      const double p = probs_[i] / total;
++      entropy -= p * std::log2(p);
++    }
++  }
++  trace_.entropy = entropy;
++  trace_.suffix_depth = 0;
++  for (auto* context = ppmd_model_->MaxContext; context->iSuffix;
++       context = ppmd_model_->suff(context)) {
++    ++trace_.suffix_depth;
++  }
++  // Both first-layer paths append NumStats+1 symbols followed by an escape.
++  const auto& escape = ppmd_model_->SQ[ppmd_model_->MaxContext->NumStats + 1];
++  trace_.escape = static_cast<float>(escape.freq) / escape.total;
++  trace_.flags = 1;
++#endif
+   if (mmap_to_disk && counter_ % 20000 == 0) {
+     // The suballocator keeps absolute pointers into the heap (pText,
+     // UnitsStart, LoUnit, HiUnit, AuxUnit, MinContext, MaxContext,
+diff --git a/src/models/ppmd.h b/src/models/ppmd.h
+index 6c626d9..a93f89b 100644
+--- a/src/models/ppmd.h
++++ b/src/models/ppmd.h
+@@ -2,6 +2,9 @@
+ #define PPMD_H
+ 
+ #include "byte-model.h"
++#ifdef HUTTER_PPMD_TRACE
++#include "../../research/trace.h"
++#endif
+ 
+ #include <memory>
+ 
+@@ -15,10 +18,21 @@ class PPMD : public ByteModel {
+       const std::vector<bool>& vocab);
+   ~PPMD();
+   void ByteUpdate();
++#ifdef HUTTER_PPMD_TRACE
++  std::valarray<float>& Predict() {
++    auto& output = ByteModel::Predict();
++    trace_.ppmd = output[0];
++    return output;
++  }
++  const HutterPpmdTraceRecord& Trace() const { return trace_; }
++#endif
+  private:
+   const unsigned int& byte_;
+   std::unique_ptr<ppmd_Model> ppmd_model_;
+   std::valarray<int> byte_map_;
++#ifdef HUTTER_PPMD_TRACE
++  HutterPpmdTraceRecord trace_{0.5f, 8.0f, -1.0f, 0, 0};
++#endif
+ };
+ 
+ } // namespace PPMD
+diff --git a/src/predictor.cpp b/src/predictor.cpp
+index b353426..6028a81 100644
+--- a/src/predictor.cpp
++++ b/src/predictor.cpp
+@@ -497,7 +497,13 @@ float Predictor::Predict() {
+   layers_[1].SetStretchedInput(mixer_0_.size(), layers_[0].Inputs()[fxcm_model_index]);
+   layers_[1].SetStretchedInput(mixer_0_.size() + 1, layers_[0].Inputs()[byte_mixer_index]);
+ 
+-  float p = Sigmoid::Logistic(mixer_1_[0].Mix());
++  const float mixer_logit = mixer_1_[0].Mix();
++#ifdef HUTTER_TRACE
++  trace_neural_ = byte_mixer_output;
++  trace_fxcm_ = Sigmoid::Logistic(layers_[0].Inputs()[fxcm_model_index]);
++  trace_mixer_ = mixer_logit;
++#endif
++  float p = Sigmoid::Logistic(mixer_logit);
+   p = sse_.Predict(p);
+   if (byte_mixer_override >= 0) {
+     return byte_mixer_override;
+diff --git a/src/predictor.h b/src/predictor.h
+index 73d3a61..d2ac265 100644
+--- a/src/predictor.h
++++ b/src/predictor.h
+@@ -123,6 +123,17 @@ class Predictor {
+   float Predict();
+   void Perceive(int bit);
+   void Pretrain(int bit);
++#ifdef HUTTER_TRACE
++  float TraceNeural() const { return trace_neural_; }
++  float TraceFxcm() const { return trace_fxcm_; }
++  float TraceMixer() const { return trace_mixer_; }
++#endif
++#ifdef HUTTER_PPMD_TRACE
++  const HutterPpmdTraceRecord& TracePpmd() const {
++    if (!byte_model_) Fail("PPMd trace requires the PPMd model");
++    return byte_model_->Trace();
++  }
++#endif
+ 
+  private:
+   unsigned long long GetNumModels();
+@@ -147,6 +158,9 @@ class Predictor {
+   llvm::SmallVector<Match, 10> match_models_;
+   
+   std::optional<Bracket> bracket_model_;
++#ifdef HUTTER_TRACE
++  float trace_neural_ = 0.5f, trace_fxcm_ = 0.5f, trace_mixer_ = 0.0f;
++#endif
+   size_t auxiliary_size_ = 2; // 0 -> fxcm, 1 -> byte_mixer
+   SSE sse_;
+   llvm::SmallVector<MixerInput,2> layers_;

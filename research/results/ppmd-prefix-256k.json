@@ -1,0 +1,203 @@
+{
+  "scope": "Read-only PPMd observation on the same 256 KiB prepared prefix. Each instrumented coded stream equals its previously real-roundtrip-verified golden byte for byte. Candidate heads are causal replay only; independent and longer evaluation are queued.",
+  "replay_source_sha256": "1f68afa7f9f58280864cd397404ca5369de34486750b6f1792c030553466e32e",
+  "protocol": {
+    "at": "2026-10-25T06:53:00+08:00",
+    "families": [
+      "baseline",
+      "v26"
+    ],
+    "models": "Six fixed trajectories in ppmd-replay protocol, prior64, clip1, no hyperparameter sweep",
+    "screen": [
+      "prefix-1m",
+      "article-q2-1m"
+    ],
+    "validation": [
+      "article-q1-1m",
+      "article-q3-1m"
+    ],
+    "scale": "prefix-8m",
+    "selection": "Choose new-information candidate on summed screen coded bytes per family. Freeze before consulting validation or scale. Compare exact absolute codelength to old-info and neural_gap_64 controls.",
+    "main_coder_gate": "Both independent cold cases nonnegative vs original, superiority to old-info control, plus >=0.003 bits/input-byte on pooled cold validation OR on the continuous 8MiB with positive last4MiB incremental gain. Code-size and decode cost assessed before adoption.",
+    "golden_gate": "Every trace build encoded stream byte-identical to the original real-roundtrip verified binary golden; base replay bytes identical to that file. Instrumentation does not change prediction/model feedback.",
+    "output": "Small JSONL analyzed on remote; full paired traces retained remote. First byte and vocab override preserve original integer frequencies."
+  },
+  "trials": {
+    "baseline": {
+      "identity": {
+        "golden_identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+          "sample": {
+            "name": "prefix-256k",
+            "offset": 0,
+            "length": 262144
+          },
+          "variant": "baseline"
+        },
+        "instrumented_binary_sha256": "4febea33b796ec6ac5d2e9c7bd49911eb829facb5d51c2e235b0ae5eddfeb090",
+        "trace_record_bytes": 16,
+        "ppmd_record_bytes": 16
+      },
+      "status": "complete",
+      "started_at": 1792882649.049749,
+      "encode": {
+        "mode": "encode",
+        "offset": 0,
+        "input_bytes": 262144,
+        "output_bytes": 20972,
+        "seconds": 111.328496,
+        "coding_seconds": 70.776676,
+        "cpu_seconds": 111.158773,
+        "max_rss_kib": 5598312
+      },
+      "encoded_bytes": 20972,
+      "trace_bytes": 33554432,
+      "ppmd_bytes": 33554432,
+      "golden_byte_identical": true,
+      "trace_completed_at": 1792882760.9775221,
+      "replay": {
+        "schema": "hutter.ppmd-replay.v1",
+        "stage": "complete",
+        "rows": 2097152,
+        "input_bytes": 262144,
+        "active_rows": 2012058,
+        "override_rows": 85087,
+        "cold_rows": 8,
+        "base_loss_bits": 167769.68790885,
+        "base_coded_bytes": 20972,
+        "raw_ppmd_loss_bits": 316683.196208283,
+        "models": [
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 167736.166414618,
+            "coded_bytes": 20967,
+            "saved_bits": 33.5214942326711,
+            "saved_bytes": 5
+          },
+          {
+            "name": "old_info_64",
+            "loss_bits": 167677.593930701,
+            "coded_bytes": 20960,
+            "saved_bits": 92.0939781495836,
+            "saved_bytes": 12
+          },
+          {
+            "name": "ppmd_gap_64",
+            "loss_bits": 167606.488295939,
+            "coded_bytes": 20951,
+            "saved_bits": 163.199612911034,
+            "saved_bytes": 21
+          },
+          {
+            "name": "ppmd_quality_64",
+            "loss_bits": 167607.022223245,
+            "coded_bytes": 20951,
+            "saved_bits": 162.665685605316,
+            "saved_bytes": 21
+          },
+          {
+            "name": "ppmd_reliability_64",
+            "loss_bits": 167606.862325748,
+            "coded_bytes": 20951,
+            "saved_bits": 162.825583101949,
+            "saved_bytes": 21
+          }
+        ]
+      },
+      "replay_binary_sha256": "2a51e966d570b08457dcbfbf9cefd311df6da6c1215f73282d55f6e4009c9365",
+      "completed_at": 1792882761.6437101
+    },
+    "v26": {
+      "identity": {
+        "golden_identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+          "sample": {
+            "name": "prefix-256k",
+            "offset": 0,
+            "length": 262144
+          },
+          "variant": "v26"
+        },
+        "instrumented_binary_sha256": "6b79a466a55342cdb7d402c208084b7c2a4a56e69a558fdfab6a89fe2fc49651",
+        "trace_record_bytes": 16,
+        "ppmd_record_bytes": 16
+      },
+      "status": "complete",
+      "started_at": 1792882648.9860861,
+      "encode": {
+        "mode": "encode",
+        "offset": 0,
+        "input_bytes": 262144,
+        "output_bytes": 20954,
+        "seconds": 159.067138,
+        "coding_seconds": 89.323283,
+        "cpu_seconds": 158.452128,
+        "max_rss_kib": 7752956
+      },
+      "encoded_bytes": 20954,
+      "trace_bytes": 33554432,
+      "ppmd_bytes": 33554432,
+      "golden_byte_identical": true,
+      "trace_completed_at": 1792882809.059174,
+      "replay": {
+        "schema": "hutter.ppmd-replay.v1",
+        "stage": "complete",
+        "rows": 2097152,
+        "input_bytes": 262144,
+        "active_rows": 2012058,
+        "override_rows": 85087,
+        "cold_rows": 8,
+        "base_loss_bits": 167629.860079998,
+        "base_coded_bytes": 20954,
+        "raw_ppmd_loss_bits": 316683.196208283,
+        "models": [
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 167608.689653733,
+            "coded_bytes": 20951,
+            "saved_bits": 21.1704262652784,
+            "saved_bytes": 3
+          },
+          {
+            "name": "old_info_64",
+            "loss_bits": 167541.279118122,
+            "coded_bytes": 20943,
+            "saved_bits": 88.5809618763742,
+            "saved_bytes": 11
+          },
+          {
+            "name": "ppmd_gap_64",
+            "loss_bits": 167420.509145457,
+            "coded_bytes": 20927,
+            "saved_bits": 209.350934540911,
+            "saved_bytes": 27
+          },
+          {
+            "name": "ppmd_quality_64",
+            "loss_bits": 167421.574069618,
+            "coded_bytes": 20928,
+            "saved_bits": 208.286010380398,
+            "saved_bytes": 26
+          },
+          {
+            "name": "ppmd_reliability_64",
+            "loss_bits": 167421.493902846,
+            "coded_bytes": 20928,
+            "saved_bits": 208.366177152115,
+            "saved_bytes": 26
+          }
+        ]
+      },
+      "replay_binary_sha256": "2a51e966d570b08457dcbfbf9cefd311df6da6c1215f73282d55f6e4009c9365",
+      "completed_at": 1792882809.7942061
+    }
+  }
+}

@@ -318,3 +318,85 @@ The combined saving was 0.00001144 bits/input-byte versus the prespecified
 0.003 gate. Stop this cap increase; keep the default 10,000-context cap. Its
 fallback traffic was a real structural observation, while the additional
 contexts brought almost no final coding gain in these samples.
+
+## PPMd reliability: observe first, calibrate causally
+
+`HUTTER_PPMD_TRACE`, together with `HUTTER_TRACE`, adds an independent
+16-byte observation sidecar. The original trace layout stays unchanged.
+The new native little-endian x86 record is `<fffHH>`:
+
+| Field | Available information |
+|---|---|
+| `ppmd` | Actual raw PPMd P(bit=1), before mixer/coder clamping |
+| `entropy` | Current byte prior's vocabulary-masked, normalized entropy in bits |
+| `escape` | First prepared PPMd SQ escape frequency/total, before masking |
+| `suffix_depth` | Actual suffix-link count from MaxContext to the root |
+| `flags` | Bit 0: a real ByteUpdate has prepared this prior |
+
+The three byte-level features are prepared after the preceding byte and remain
+fixed for the current eight bits. Both records are written before Perceive.
+The initial byte retains ByteModel's uniform 256-symbol prior:
+`(.5, 8, -1, 0, 0)`. Dictionary pretraining contributes no records.
+The observer reads the existing PPMd result and distribution; it preserves
+the model feedback and the original arithmetic coding path.
+
+For a scratch root containing the original prepared data and golden trials:
+
+```sh
+# SCRATCH is an absolute caller-owned scratch directory.
+python3 research/build.py --source . --out "$SCRATCH/build/v26-ppmd" \
+  --extra research/probe.cpp --define HUTTER_TRACE --define HUTTER_PPMD_TRACE
+mkdir -p "$SCRATCH/ppmd-trial"
+HUTTER_TRACE_PATH="$SCRATCH/ppmd-trial/trace.bin" \
+HUTTER_PPMD_TRACE_PATH="$SCRATCH/ppmd-trial/ppmd.bin" \
+TMPDIR="$SCRATCH/ppmd-trial" \
+  "$SCRATCH/build/v26-ppmd/probe" encode "$SCRATCH/prepared/stream.bin" \
+  "$SCRATCH/ppmd-trial/encoded.bin" "$SCRATCH/prepared/vocab.bin" \
+  dictionary/english.dic models/6m-q4-fp32.tfwc2 0 262144
+cmp "$SCRATCH/ppmd-trial/encoded.bin" \
+  "$SCRATCH/runs/first-ab/prefix-256k/v26/encoded.bin"
+c++ -O3 -std=c++17 research/ppmd-replay.cpp -o "$SCRATCH/ppmd-replay"
+"$SCRATCH/ppmd-replay" --self-test
+"$SCRATCH/ppmd-replay" "$SCRATCH/ppmd-trial/trace.bin" \
+  "$SCRATCH/ppmd-trial/ppmd.bin"
+```
+
+For the unchanged v22 expert, apply [baseline-ppmd.patch](baseline-ppmd.patch)
+to a separate checkout of the pinned `83f2603` champion, then copy this
+repository's `research/{build.py,probe.cpp,trace.h}` into its research folder.
+Build that source with the same two definitions. The patch changes observation
+only and preserves the original v22 expert and mixer wiring.
+
+The fixed replay bank contains base, the existing `neural_gap_64` control,
+a four-dimensional old-information Newton head, and three nested additions:
+PPMd gap; gap times entropy/escape/depth; and gap times its past relative-loss
+EMA512. All heads start at zero, use prior64, clip weights to ±16 and the
+logit correction to ±1, and update after scoring the current bit. Cold-first-byte
+and vocabulary-override frequencies stay exact, with no fitting or EMA update.
+The JSONL protocol line records every feature and parameter. Every 128 KiB
+reports cumulative and separately closed block range counts; model history
+continues across block boundaries.
+
+The observation check compares plain/traced PPMd predictions on 1,024 bytes.
+The replay self-test covers the integer boundary, label causality, overrides
+and a synthetic case with genuinely new side information. Real evaluations
+add two gates: byte-identical golden encoded output and exact base replay size.
+
+### First real observation gate: 256 KiB
+
+Both instrumented encoders reproduced their already losslessly verified
+golden streams exactly. Both paired traces have one 16-byte record per real bit.
+[Full receipts and prespecified protocol](results/ppmd-prefix-256k.json).
+
+| Expert family | Real/base bytes | Old-info replay bytes | PPMd-gap replay bytes |
+|---|---:|---:|---:|
+| Champion v22 | 20,972 | 20,960 | 20,951 |
+| v26 | 20,954 | 20,943 | 20,927 |
+
+The added PPMd gap saves 9/16 B beyond the old-information control on this
+one prefix. Quality and reliability additions give 20,951/20,951 B for v22
+and 20,928/20,928 B for v26. These are replay-only results on a small, overlapping
+prefix. The fixed next screen is prefix1MiB plus the middle article1MiB; its
+choice is frozen before the two independent article spans and continuous8MiB
+are scored. Full archive size, runtime qualification and prize eligibility
+remain later measurements.
