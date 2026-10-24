@@ -41,6 +41,8 @@ def main():
     parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--variants", nargs="+", default=["baseline", "v26"])
+    parser.add_argument("--phase", choices=("both", "encode", "decode"), default="both",
+                        help="Persist encoded output for a later-window decode; default runs both")
     parser.add_argument("--trace", action="store_true",
                         help="Record 16-byte/bit diagnostics; binaries require HUTTER_TRACE")
     parser.add_argument("--timeout", type=int, default=18000,
@@ -84,23 +86,38 @@ def main():
             trial = out / name / variant
             trial.mkdir(parents=True, exist_ok=True)
             receipt = trial / "result.json"
+            previous = None
             if receipt.exists():
                 previous = json.loads(receipt.read_text())
                 if previous.get("status") == "passed" and previous.get("identity") == identity:
                     event("reused_verified_trial", sample=name, variant=variant)
                     continue
-                if previous.get("status") == "running" and previous.get("identity") == identity:
+                if previous.get("status") == "encoded" and previous.get("identity") == identity:
+                    if args.phase == "encode":
+                        event("reused_encoded_trial", sample=name, variant=variant)
+                        continue
+                elif previous.get("status") == "running" and previous.get("identity") == identity:
                     trial.rename(trial.with_name(variant + f"-interrupted-{time.time_ns()}"))
                     trial.mkdir()
                     event("resuming_interrupted_trial", sample=name, variant=variant)
+                    previous = None
                 else:
                     raise ValueError(f"Existing failed or different trial: inspect {receipt}; use a new run directory")
-            row = {"identity": identity, "status": "running", "started_at": time.time()}
+            if args.phase == "decode" and (not previous or previous.get("status") != "encoded"):
+                raise ValueError(f"Decode needs a completed matching encode: {receipt}")
+            row = previous if previous and previous.get("status") == "encoded" else {
+                "identity": identity, "status": "running", "started_at": time.time()}
             save(receipt, row)
             event("trial_started", sample=name, variant=variant, offset=offset, length=length)
             encoded, decoded = trial / "encoded.bin", trial / "decoded.bin"
             try:
                 for mode, source, target in (("encode", stream, encoded), ("decode", encoded, decoded)):
+                    if mode == "encode" and row.get("encode"):
+                        continue
+                    if mode == "decode" and args.phase == "encode":
+                        continue
+                    if mode == "decode" and encoded.stat().st_size != row["encoded_bytes"]:
+                        raise ValueError("Saved encoded size changed before decode")
                     command = [str(binary), mode, str(source), str(target), str(vocab),
                                str(dictionary), str(weights), str(offset), str(length)]
                     with (trial / f"{mode}.log").open("w") as log:
@@ -115,7 +132,14 @@ def main():
                     marker = next(line.split("PROBE_RESULT ", 1)[1]
                                   for line in reversed(text.splitlines()) if line.startswith("PROBE_RESULT "))
                     row[mode] = json.loads(marker)
+                    if mode == "encode":
+                        row.update(status="encoded", encoded_bytes=encoded.stat().st_size,
+                                   encode_completed_at=time.time())
                     save(receipt, row)
+                if args.phase == "encode":
+                    event("encode_complete", sample=name, variant=variant,
+                          encoded_bytes=row["encoded_bytes"], verification="decode_pending")
+                    continue
                 if decoded.stat().st_size != length or digest(decoded) != reference:
                     raise ValueError("lossless round-trip mismatch")
                 if args.trace:
@@ -125,7 +149,8 @@ def main():
                 row.update(status="passed", encoded_bytes=encoded.stat().st_size,
                            bits_per_stream_byte=8 * encoded.stat().st_size / length,
                            original_slice_sha256=reference, restored_slice_sha256=digest(decoded),
-                           elapsed_seconds=time.time() - row["started_at"])
+                           elapsed_seconds=time.time() - row["started_at"],
+                           active_seconds=sum(row[m]["seconds"] for m in ("encode", "decode")))
                 save(receipt, row)
                 event("trial_passed", sample=name, variant=variant,
                       encoded_bytes=row["encoded_bytes"], seconds=row["elapsed_seconds"])
@@ -142,8 +167,9 @@ def main():
             event("comparison", sample=name, baseline=args.variants[0], candidate=variant,
                   baseline_bytes=base["encoded_bytes"], candidate_bytes=candidate["encoded_bytes"],
                   saved_bytes=base["encoded_bytes"] - candidate["encoded_bytes"],
-                  saved_fraction=1 - candidate["encoded_bytes"] / base["encoded_bytes"])
-    event("batch_complete", samples=len(plan))
+                  saved_fraction=1 - candidate["encoded_bytes"] / base["encoded_bytes"],
+                  verification_status={args.variants[0]: base["status"], variant: candidate["status"]})
+    event("batch_complete", samples=len(plan), phase=args.phase)
 
 
 if __name__ == "__main__":

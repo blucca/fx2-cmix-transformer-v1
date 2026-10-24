@@ -1,0 +1,264 @@
+{
+  "comparisons": {
+    "prefix-1m": {
+      "sample": {
+        "name": "prefix-1m",
+        "offset": 0,
+        "length": 1048576
+      },
+      "candidate": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "3bc19e43523d8b6688d2e0df7539cf4dd2e96c23f469319b26bf9700da52415e",
+          "sample": {
+            "name": "prefix-1m",
+            "offset": 0,
+            "length": 1048576
+          },
+          "variant": "v22-mx9",
+          "trace_record_bytes": 16
+        },
+        "status": "passed",
+        "started_at": 1792798248.3568738,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 84988,
+          "seconds": 291.325876,
+          "coding_seconds": 267.218354,
+          "cpu_seconds": 291.216734,
+          "max_rss_kib": 5824132
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 1048576,
+          "output_bytes": 1048576,
+          "seconds": 287.945682,
+          "coding_seconds": 264.603228,
+          "cpu_seconds": 287.849459,
+          "max_rss_kib": 5824004
+        },
+        "trace_bytes": 134217728,
+        "encoded_bytes": 84988,
+        "bits_per_stream_byte": 0.648406982421875,
+        "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+        "elapsed_seconds": 580.5983560085297
+      },
+      "baseline_coded_bytes": 84988,
+      "saved_bytes": 0,
+      "unchanged_initial_trace_bits": 132950,
+      "baseline_coding_seconds": 524.238504,
+      "candidate_coding_seconds": 531.821582,
+      "coding_time_ratio": 1.0144649390346956,
+      "rss_increase_kib": 44372,
+      "replay": {
+        "stage": "complete",
+        "bits": 8388608,
+        "base_bits": 679900.445912,
+        "base_coded_bytes": 84988,
+        "override_bits": 319771,
+        "neural_bits": 702602.025162,
+        "fxcm_bits": 8388608,
+        "pre_sse_bits": 679633.752383,
+        "fxcm_min": 0.5,
+        "fxcm_max": 0.5,
+        "models": [
+          {
+            "name": "global_64",
+            "loss_bits": 679905.819372,
+            "coded_bytes": 84989,
+            "saved_bytes": -1,
+            "saved_bits": -5.3734603452,
+            "saved_fraction": -7.90330463455e-06
+          },
+          {
+            "name": "bitpos_64",
+            "loss_bits": 679918.701099,
+            "coded_bytes": 84990,
+            "saved_bytes": -2,
+            "saved_bits": -18.2551876638,
+            "saved_fraction": -2.6849795104e-05
+          },
+          {
+            "name": "confidence_64",
+            "loss_bits": 679765.926655,
+            "coded_bytes": 84971,
+            "saved_bytes": 17,
+            "saved_bits": 134.519256134,
+            "saved_fraction": 0.000197851401543
+          },
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 679584.231661,
+            "coded_bytes": 84948,
+            "saved_bytes": 40,
+            "saved_bits": 316.214250132,
+            "saved_fraction": 0.000465089046541
+          },
+          {
+            "name": "neural_gap_256",
+            "loss_bits": 679752.017745,
+            "coded_bytes": 84969,
+            "saved_bytes": 19,
+            "saved_bits": 148.428166025,
+            "saved_fraction": 0.000218308675803
+          },
+          {
+            "name": "pre_sse_gap_256",
+            "loss_bits": 679838.092643,
+            "coded_bytes": 84980,
+            "saved_bytes": 8,
+            "saved_bits": 62.3532684847,
+            "saved_fraction": 9.1709409605e-05
+          }
+        ]
+      },
+      "source": {
+        "public_patch_commit": "11402d8efbbb1b6e560f7dc68c3f0dccbf07839f",
+        "baseline_source_commit": "83f2603f3f7751da5f429fd32669807eb8510494",
+        "base_copy": "baseline-trace-source",
+        "mechanism_patch_sha256": "4f638bd2441d9ccbf1b4cf17cc403087462388c256b0242e0d2c83541a0f7fbc",
+        "changes": "Only mx9 context capacity 10000 -> 65536; trace observations retained; default learning rates, other caps, v22, weights and SSE unchanged."
+      }
+    },
+    "article-q2-1m": {
+      "sample": {
+        "name": "article-q2-1m",
+        "offset": 293232482,
+        "length": 1048576
+      },
+      "candidate": {
+        "identity": {
+          "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+          "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+          "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+          "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+          "binary_sha256": "3bc19e43523d8b6688d2e0df7539cf4dd2e96c23f469319b26bf9700da52415e",
+          "sample": {
+            "name": "article-q2-1m",
+            "offset": 293232482,
+            "length": 1048576
+          },
+          "variant": "v22-mx9",
+          "trace_record_bytes": 16
+        },
+        "status": "passed",
+        "started_at": 1792798830.5050256,
+        "encode": {
+          "mode": "encode",
+          "offset": 293232482,
+          "input_bytes": 1048576,
+          "output_bytes": 208766,
+          "seconds": 318.250286,
+          "coding_seconds": 295.160301,
+          "cpu_seconds": 318.151741,
+          "max_rss_kib": 5893400
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 293232482,
+          "input_bytes": 1048576,
+          "output_bytes": 1048576,
+          "seconds": 324.505179,
+          "coding_seconds": 301.315283,
+          "cpu_seconds": 324.388818,
+          "max_rss_kib": 5893260
+        },
+        "trace_bytes": 134217728,
+        "encoded_bytes": 208766,
+        "bits_per_stream_byte": 1.5927581787109375,
+        "original_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+        "restored_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+        "elapsed_seconds": 644.1603891849518
+      },
+      "baseline_coded_bytes": 208769,
+      "saved_bytes": 3,
+      "unchanged_initial_trace_bits": 60301,
+      "baseline_coding_seconds": 599.463328,
+      "candidate_coding_seconds": 596.475584,
+      "coding_time_ratio": 0.9950159686832419,
+      "rss_increase_kib": 65416,
+      "replay": {
+        "stage": "complete",
+        "bits": 8388608,
+        "base_bits": 1670128.12281,
+        "base_coded_bytes": 208766,
+        "override_bits": 357585,
+        "neural_bits": 1679546.91048,
+        "fxcm_bits": 8388608,
+        "pre_sse_bits": 1669653.77731,
+        "fxcm_min": 0.5,
+        "fxcm_max": 0.5,
+        "models": [
+          {
+            "name": "global_64",
+            "loss_bits": 1670133.70183,
+            "coded_bytes": 208767,
+            "saved_bytes": -1,
+            "saved_bits": -5.57902032114,
+            "saved_fraction": -3.34047444919e-06
+          },
+          {
+            "name": "bitpos_64",
+            "loss_bits": 1670114.95171,
+            "coded_bytes": 208765,
+            "saved_bytes": 1,
+            "saved_bits": 13.1710989715,
+            "saved_fraction": 7.88628057429e-06
+          },
+          {
+            "name": "confidence_64",
+            "loss_bits": 1669768.4672,
+            "coded_bytes": 208722,
+            "saved_bytes": 44,
+            "saved_bits": 359.655615724,
+            "saved_fraction": 0.000215346122739
+          },
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 1669736.7708,
+            "coded_bytes": 208717,
+            "saved_bytes": 49,
+            "saved_bits": 391.352011104,
+            "saved_fraction": 0.000234324544182
+          },
+          {
+            "name": "neural_gap_256",
+            "loss_bits": 1669828.47249,
+            "coded_bytes": 208729,
+            "saved_bytes": 37,
+            "saved_bits": 299.650325394,
+            "saved_fraction": 0.000179417567611
+          },
+          {
+            "name": "pre_sse_gap_256",
+            "loss_bits": 1669839.05448,
+            "coded_bytes": 208730,
+            "saved_bytes": 36,
+            "saved_bits": 289.06833502,
+            "saved_fraction": 0.000173081532532
+          }
+        ]
+      },
+      "source": {
+        "public_patch_commit": "11402d8efbbb1b6e560f7dc68c3f0dccbf07839f",
+        "baseline_source_commit": "83f2603f3f7751da5f429fd32669807eb8510494",
+        "base_copy": "baseline-trace-source",
+        "mechanism_patch_sha256": "4f638bd2441d9ccbf1b4cf17cc403087462388c256b0242e0d2c83541a0f7fbc",
+        "changes": "Only mx9 context capacity 10000 -> 65536; trace observations retained; default learning rates, other caps, v22, weights and SSE unchanged."
+      }
+    }
+  },
+  "saved_bytes": 3,
+  "input_bytes": 2097152,
+  "saved_bits_per_input_byte": 1.1444091796875e-05,
+  "payload_gate": false,
+  "scope": "Two real cold-start round trips. Runtime/RSS reported for review; no long run or combination is automatically started.",
+  "decision": "Stop this cap increase after the prespecified short-screen gate failed; retain the original 10000-context cap. No new long run or cap grid is started."
+}

@@ -20,6 +20,15 @@ Use a Linux CPU environment with Clang 17, make, Python 3 and sufficient memory/
 5. A probe uses `probe encode|decode INPUT OUTPUT VOCAB DICTIONARY WEIGHTS OFFSET LENGTH`. Both sides use the same exact full-stream vocabulary and dictionary pretraining. Output paths must be fresh.
 6. `python3 research/batch.py --root /YOUR/temp/hutter --plan PLAN.json --out /YOUR/temp/hutter/runs/first-ab` processes baseline/candidate serially, verifies every round trip, and checkpoints results. Root contains `upstream`, `prepared`, and `build/{baseline,v26}`. Each plan entry has `name`, `offset`, and `length`. Completed identical trials are reused; interrupted trials are preserved and restarted. A recorded real failure stops the batch for inspection.
 
+For long runs, `--phase encode` checkpoints completed compressed files with
+status `encoded` (decode pending). A later identical invocation with
+`--phase decode` reuses those files and validates exact restoration; the
+source, binary, vocabulary, dictionary and weights identities must match.
+`--phase both` remains the default. `active_seconds` sums completed probe
+phases; `elapsed_seconds` also includes any wait between execution windows.
+Run the small orchestration check with
+`python3 research/batch-phase-check.py --work /YOUR/temp/batch-phase-check`.
+
 The first plan compares a 256KiB prefix, a 1MiB prefix, and 1MiB article-aligned spans near each quartile of the complete stream. Prefixes overlap deliberately for scale diagnostics. Non-prefix spans restart statistical models and measure cold-start behavior. Larger continuous-prefix and full-file experiments follow the initial measurements.
 
 ## Measurement contract
@@ -59,6 +68,22 @@ The unmodified v26 binary first hit global OOM on an 8 GiB machine with no swap;
 The two prefixes overlap. Longer continuous-prefix measurements are queued. Full-file S and
 formal resource qualification are pending.
 
+### First long prefix: 8 MiB
+
+Both unchanged, untraced binaries completed real lossless round trips on the
+same VM. [Full receipts](results/initial-prefix-8m.json):
+
+| Prepared input | Baseline | v26 | Saved | Combined encode/decode wall time |
+|---|---:|---:|---:|---:|
+| Prefix, 8 MiB | 1,072,279 B | 1,068,581 B | 3,698 B (0.3449%) | 4,850.31 / 6,740.03 s |
+
+Combined coding time was 4,799.20 / 6,634.04 s; peak RSS was 6,018,532 /
+7,883,680 KiB. The 8 MiB prefix contains the earlier 1 MiB sample. Cumulative
+savings grew from 149 to 3,698 B across those prefix lengths, a further
+3,549 B. The payload gain is 0.0035267 bits per prepared input byte. The
+complete archive, its runtime, and the 1% prize gate remain unmeasured.
+The next scale check retains these binaries and changes only prefix length.
+
 ### Executable byte budget
 
 The same non-PGO Clang 17 development builds, packed with UPX 5.2.1 `-9`,
@@ -69,7 +94,7 @@ development estimate; final PGO/LTO packaging supplies the official sizes.
 The cold-start coding gains therefore need a continuous long-stream test
 and a complete package comparison. [Size receipt](results/development-binary-sizes.json).
 
-## Next controlled mechanism: the FXCM auxiliary skip
+## Completed controlled mechanism: the FXCM auxiliary skip
 
 The fixed-capacity last FXCM slot is used twice: as a stage-1 skip input and in
 the auxiliary-context selector. The imported v26 implementation emits a dense
@@ -79,10 +104,11 @@ selects the last *active* output instead. `HUTTER_ACTIVE_AUX` enables this one
 intervention here; the full input row, padding, predictor internals and neural
 weights stay fixed. The default remains the original port for comparison.
 
-Build with `research/build.py --define HUTTER_ACTIVE_AUX`. The queued test uses
-the 256 KiB prefix, 1 MiB prefix and middle article-aligned 1 MiB span. Selection
-between v26 and v26aux uses summed coded bytes on the two 1 MiB cases, followed
-by a scale-up comparison with the champion on a continuous 8 MiB prefix.
+Build with `research/build.py --define HUTTER_ACTIVE_AUX`. The completed test
+increased coded sizes by 5 / 14 / 18 B relative to the original v26 on the
+256 KiB prefix, 1 MiB prefix and middle article-aligned 1 MiB span. The two
+common 1 MiB cases therefore selected the original v26 for the 8 MiB run.
+The auxiliary variant is stopped; full receipts accompany the calibration screen below.
 
 ## Small causal-calibration traces
 
@@ -237,10 +263,10 @@ formal resource qualification remain full-data measurements.
 The first trace-enabled v26-fast 256 KiB run restored the input and reproduced
 the original v26 compressed stream byte for byte. Combined coding time was
 **179.786s versus 173.026s** for the original untraced probe, about 3.9% longer.
-It failed the adoption criterion in this paired measurement, so the queued
-8 MiB run uses the original v26 binary. [Gate and receipt](results/fast-path-initial.json).
+It failed the adoption criterion in this paired measurement, so the completed
+8 MiB run used the original v26 binary. [Gate and receipt](results/fast-path-initial.json).
 
-## Next structural experiment: retain all mx9 contexts
+## Completed structural experiment: retain all mx9 contexts
 
 `Mixer::GetContextData` keeps the first 10,000 distinct contexts forever.
 Every unseen context after that shares one fallback weight vector. In the
@@ -258,7 +284,7 @@ Reconstructing keys from the actual prefix / disjoint middle traces finds:
 
 Pretraining state, MSB-first reconstruction, original input hashes and the
 complete key domain were checked. These loss shares locate the bottleneck;
-the next paired run measures how much separate weight vectors recover.
+the completed paired run below measures the actual coding effect.
 [Observation and validation](results/context-admission-observation.json).
 Reproduce key counts with `python3 research/context-cap-observe.py TRACE.bin`.
 
@@ -271,10 +297,24 @@ goldens. At 461 input weights, all remaining legal mx9 keys would add about
 97.2 MiB of weight storage, plus map/allocator overhead. There are no frozen
 weights to append to an archive.
 
-The two genuine round trips are queued after the existing v26 scale-up,
-subject to the same compute window. Their first pre-cap trace records must
-match the original trace; complete coded-byte counts and restored input must
-also match their respective contracts. A combined saving of 0.003
+The prespecified short-screen required a combined saving of 0.003
 bits/input-byte (about 787 B across both cases), positive results on both,
-and measured memory/runtime costs will guide the decision on an 8 MiB test.
-Further cap values and learning-rate variants are not queued.
+and acceptable measured memory/runtime costs before an 8 MiB test.
+The completed decision is below. Further cap values and learning-rate
+variants remain unqueued.
+
+### mx9 capacity screen: completed, stopped
+
+[Full receipts](results/mx9-cap-initial.json). The two candidate round trips
+passed, the first 132,950 / 60,301 trace records matched the original baseline,
+and exact range replay matched both actual compressed sizes.
+
+| 1 MiB case | Baseline | cap 65,536 | Saved | Peak RSS increase |
+|---|---:|---:|---:|---:|
+| Prefix | 84,988 B | 84,988 B | 0 B | 44,372 KiB |
+| Independent q2 | 208,769 B | 208,766 B | 3 B | 65,416 KiB |
+
+The combined saving was 0.00001144 bits/input-byte versus the prespecified
+0.003 gate. Stop this cap increase; keep the default 10,000-context cap. Its
+fallback traffic was a real structural observation, while the additional
+contexts brought almost no final coding gain in these samples.
