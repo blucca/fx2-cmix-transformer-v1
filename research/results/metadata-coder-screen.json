@@ -1,0 +1,82 @@
+{
+  "experiment": "fixed-online-metadata-two-case-screen",
+  "date": "2026-10-25",
+  "model": "unchanged original v26 probe, fixed 6M weights and 205-byte vocabulary",
+  "cases": [
+    {
+      "case": "page-last-16384",
+      "record_count": 16384,
+      "source_offset": 569560117,
+      "original_bytes": 1024947,
+      "transformed_bytes": 930865,
+      "baseline_encoded_bytes": 72595,
+      "candidate_encoded_bytes": 74095,
+      "candidate_framing_bytes": 16,
+      "saved_bytes": -1516,
+      "roundtrip_to_original": true,
+      "coding_ratio": 0.899956622658664,
+      "cpu_seconds": 1430.796688,
+      "elapsed_seconds": 2064.061665534973,
+      "variants": {
+        "candidate": {
+          "status": "passed",
+          "encoded_bytes": 74095,
+          "coding_seconds": 590.175776,
+          "cpu_seconds": 683.5610039999999,
+          "max_rss_kib": 7557048
+        },
+        "baseline": {
+          "status": "passed",
+          "encoded_bytes": 72595,
+          "coding_seconds": 655.782469,
+          "cpu_seconds": 747.067991,
+          "max_rss_kib": 7579704
+        }
+      }
+    },
+    {
+      "case": "clock-first-16384",
+      "record_count": 16384,
+      "source_offset": 554867462,
+      "original_bytes": 1077456,
+      "transformed_bytes": 966396,
+      "baseline_encoded_bytes": 134517,
+      "candidate_encoded_bytes": 129905,
+      "candidate_framing_bytes": 16,
+      "saved_bytes": 4596,
+      "roundtrip_to_original": true,
+      "coding_ratio": 0.9027584516305684,
+      "cpu_seconds": 1521.592476,
+      "elapsed_seconds": 2035.9512832164764,
+      "variants": {
+        "baseline": {
+          "status": "passed",
+          "encoded_bytes": 134517,
+          "coding_seconds": 702.6721,
+          "cpu_seconds": 796.467944,
+          "max_rss_kib": 7711952
+        },
+        "candidate": {
+          "status": "passed",
+          "encoded_bytes": 129905,
+          "coding_seconds": 634.343177,
+          "cpu_seconds": 724.923214,
+          "max_rss_kib": 7698680
+        }
+      }
+    }
+  ],
+  "combined_baseline_bytes": 207112,
+  "combined_charged_candidate_bytes": 204032,
+  "combined_net_saved_bytes": 3080,
+  "combined_fraction_saved": 0.014871180810382788,
+  "all_roundtrips_to_original": true,
+  "gate": {
+    "each_nonnegative": false,
+    "combined_minimum_bytes": 32768,
+    "passed": false
+  },
+  "decision": "stop-fixed-online-recipe; no full-tail run",
+  "total_child_cpu_seconds": 2952.389164,
+  "timing_note": "Each case is paired on its original host; elapsed includes the controller repair wait. CPU comes from controller child rusage because the original probe predates the cpu_seconds field."
+}

@@ -5,6 +5,33 @@ The prepared header carries two different revision-ID processes. Below
 Separating these regimes repairs a previously poor single-clock predictor.
 The resulting numeric rewrite uses **zero offline weights or lookup tables**.
 
+## Real-v26 result: stop this rewrite
+
+Both original and candidate streams completed real encode/decode, followed
+by exact restoration of the same source records. Each candidate pays 16 B
+for framing.
+
+| 16,384-record case | Original coded B | Candidate coded B | Net saved B |
+|---|---:|---:|---:|
+| New-clock-heavy first records | 134,517 | 129,905 | **4,596** |
+| Old-page-heavy last records | 72,595 | 74,095 | **−1,516** |
+| Combined | 207,112 | 204,000 + 32 framing | **3,080** |
+
+The fixed gate required each case to save bytes and a combined saving of at
+least 32,768 B. It failed both requirements. **The online ASCII recipe stops;
+no full-tail run or production integration was started.** Same-host coding
+time fell about 10% in each case as the input became shorter.
+
+The whole-header zlib result below remains a useful structural observation.
+The stronger model retains almost all of its advantage on the original
+format; further work starts with its actual field-level coding costs.
+[Complete paired result](results/metadata-coder-screen.json).
+
+The old probe predates the CPU field in newer probe reports. A controller
+aggregation error was repaired after the first variant on each host; all
+completed phases were reused, then the missing variants ran within their
+original one-hour envelopes. Total child CPU was 2,952.39 seconds.
+
 ## Complete-header observation
 
 The original PHDA9 already delta-codes page IDs, normalizes timestamps and
@@ -18,8 +45,7 @@ for the general-purpose predictor to discover.
 
 The **823,081 B / 19.76% zlib saving** includes every residual and all 243,425
 `@` markers. The entire header restores byte for byte. This is a fast-codec
-direction measurement; the original v26 coder and the full-file score require
-their own measurements. [Observation and frozen screen](results/metadata-residual-observation.json).
+direction measurement; the real-v26 result is reported above. [Observation and frozen screen](results/metadata-residual-observation.json).
 
 There are 87,813 old and 155,612 new revisions. The old page-offset predictor
 is exact 77.26% of the time and within one ID 89.29%. The new-only clock has
@@ -57,8 +83,8 @@ python3 -B research/metadata-residual.py decode residual.bin restored.bin
 ```
 
 The research helpers handle this header grammar and leave the production
-preprocessor unchanged. A successful coder screen would justify runner
-integration and an actual double-binary size measurement.
+preprocessor unchanged. The completed coder screen stops this recipe before
+runner integration or a double-binary package measurement.
 
 ### C++ parity prototype
 

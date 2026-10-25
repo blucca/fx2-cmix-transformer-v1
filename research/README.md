@@ -885,3 +885,13 @@ This direction measurement precedes the unchanged v26 coder test. The fixed
 screen uses two disjoint 16,384-record cases, charges 16 B framing per
 candidate, verifies real compression plus inverse restoration, and requires
 at least 32,768 B pooled savings before any longer run.
+
+
+### Metadata screen outcome
+
+The fixed two-regime ASCII rewrite completed all four real coder round trips.
+Clock-heavy records saved 4,596 B and page-heavy records grew 1,516 B, after
+16 B framing per case. The 3,080 B combined saving missed the 32,768 B gate.
+This recipe and its full-tail extension stop. The unchanged-model,
+original-header field-cost observation follows the small [result](results/metadata-coder-screen.json)
+and [mechanism report](metadata-residual.md).
