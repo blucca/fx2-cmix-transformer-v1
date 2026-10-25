@@ -721,3 +721,50 @@ with convergence status and training/held-out results kept separate.
 The 5.5 GiB feature expansion has been removed; paired traces and the
 [frozen 5,764-byte weights](results/mixer-mlp16.f32) remain reusable.
 [Exact scores, optimizer and process receipts](results/mixer-mlp-screen.json).
+
+
+### Bit-level recurrent residual: fixed LSTM32 experiment
+
+The next hypothesis uses information absent from the earlier MLP: the previous
+coded bit, a 64-bit recurrent state, and individual experts' recent losses.
+The content/history features follow the [cmix-obias BITLSTM32 specification](https://huggingface.co/dfreelan/cmix-obias/blob/51488a0c1228dbeab7c1be837fc90ceaed351728/cmix-obias/BITLSTM32_SPEC.md),
+with its constant XML and corpus-specific position columns removed. Our neural
+expert is explicitly the half-rounded logit of the raw neural probability;
+it differs from the champion's table-stretched layer input.
+
+**78 inputs → 32 SiLU → LSTM32 → 1 residual**, with 11,009 f32 weights and
+original base-logit offset. The previous bit and completed-byte history are
+strictly causal. Each aligned 64-bit sequence starts with zero recurrent state;
+feature windows continue. Vocabulary overrides retain their exact base frequency
+while advancing all state. One shared C++ feature implementation produces both
+training data and strict-double frozen replay. Its frequency rule preserves
+all 65,535 base frequencies for a zero head.
+
+```sh
+c++ -O3 -ffp-contract=off -std=c++17 research/bit-recurrent-replay.cpp \
+  -o "$SCRATCH/bit-recurrent"
+"$SCRATCH/bit-recurrent" --self-test
+python3 research/fit-bit-recurrent.py --self-test
+"$SCRATCH/bit-recurrent" --export BASE_TRACE.bin MIXER_SIDECAR.bin FEATURES.f32
+python3 research/fit-bit-recurrent.py \
+  --case PREFIX_BASE.bin PREFIX_FEATURES.f32 \
+  --case Q2_BASE.bin Q2_FEATURES.f32 --out "$SCRATCH/recurrent-fit"
+"$SCRATCH/bit-recurrent" --score BASE_TRACE.bin MIXER_SIDECAR.bin \
+  "$SCRATCH/recurrent-fit/weights.f32"
+```
+
+The [fixed protocol](results/bit-recurrent-protocol.json) uses two existing
+1 MiB v26 traces, their first 768 KiB for training, and their last 256 KiB
+for one final frozen integer evaluation. AdamW runs exactly 10 epochs
+(15,360 steps), batch 128 sequences, seed 237, within a 7,200 CPU-second
+fitting ceiling. Checkpoints save optimizer, RNG and next sequence position.
+A budget-interrupted fit is recorded as incomplete. The initial screen requires
+nonnegative savings on both tails and at least 197 B combined. Full compression
+and integration require separate mature/independent-data and resource evidence.
+
+[Implementation checks](results/bit-recurrent-check.json) cover causal state,
+integer identity, nonzero Torch/C++ inference parity, training-only access, and
+exact next-step checkpoint continuation. The 78-float expansion occupies
+4.875 GiB and is removed after scoring; original paired traces remain.
+Training and inference use CPU only. The initial live job is collecting/fitting;
+new payload and full-package results are pending.

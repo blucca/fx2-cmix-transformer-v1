@@ -1,0 +1,76 @@
+{
+  "schema": "hutter.bit-recurrent-protocol.v1",
+  "fixed_at": "2026-10-25T09:38:26.563139+08:00",
+  "cases": [
+    "prefix-1m",
+    "article-q2-1m"
+  ],
+  "model": {
+    "inputs": 78,
+    "projection": 32,
+    "activation": "SiLU",
+    "hidden": 32,
+    "sequence": 64,
+    "weights_f32": 11009,
+    "offset": "original exact base logit; no theta27"
+  },
+  "features": {
+    "content": 77,
+    "previous_bit": 1,
+    "source": "cmix-obias BITLSTM32_SPEC content/history; omit XML and stream zones",
+    "neural": "half(float(logit(clamp(raw neural,1/65536,65535/65536))))",
+    "pre_sse": "half(original f32 raw logit)",
+    "rings": "f32 entries/double sums; strictly prior labels",
+    "normalization": 12.203,
+    "override": "exact base coding; all feature/network/history updates retained"
+  },
+  "fit": {
+    "epochs": 10,
+    "seed": 237,
+    "sequence_batch": 128,
+    "optimizer": "AdamW",
+    "lr": 0.001,
+    "lr_floor": 1e-05,
+    "weight_decay": 0,
+    "grad_clip": 1,
+    "train_input_bytes_per_case": 786432,
+    "test_input_bytes_per_case": 262144,
+    "fit_cpu_seconds": 7200,
+    "tail_reads_during_fit": 0,
+    "checkpoint": "every64 optimizer steps and epoch, exact optimizer/RNG/next position"
+  },
+  "budget": {
+    "total_cpu_seconds": 9000,
+    "address_space_bytes": 7516192768,
+    "max_fit_wall_seconds": 8100,
+    "export_seconds_each": 600,
+    "score_seconds_each": 1200
+  },
+  "screen": {
+    "tail_total_saved_bytes_min": 197,
+    "tail_each_min": 0,
+    "reference_best_old_head_tail_bytes": 47,
+    "measurement": "strict f64 inference of exact f32 weights, original RangeCounter, both full base byte counts exact",
+    "pass": "retain for mature and independent cold validation; no coder integration yet",
+    "fail": "stop this cold fit; one preapproved mature-data mechanism diagnosis remains, no width/seed sweep"
+  },
+  "packing_scenario": {
+    "double_f32_weights_bytes": 88072,
+    "additional_double_code_allowance": 32768,
+    "total_allowance": 120840,
+    "full_stream_bytes": 586459020,
+    "component_bpb": 0.003
+  },
+  "probe": {
+    "torch": "2.6.0+debian",
+    "steps": 64,
+    "cpu_seconds": 1.5029045909999998,
+    "projected_10epoch_model_compute_seconds": 360.69710183999996,
+    "rss_high_water_kib": 374884,
+    "excludes": [
+      "file IO",
+      "validation",
+      "checkpoint"
+    ]
+  }
+}

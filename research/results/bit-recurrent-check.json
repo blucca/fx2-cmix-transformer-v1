@@ -1,0 +1,45 @@
+{
+  "cpp": {
+    "stage": "self-test",
+    "passed": true,
+    "features": 78,
+    "weights": 11009,
+    "checks": "causal-label/history/ring,all-integer-frequencies,override,seq64-reset"
+  },
+  "torch": {
+    "status": "self_test_passed",
+    "parameters": 11009,
+    "zero_head_exact": true,
+    "override_mask": true,
+    "strict_previous_bit": true,
+    "train_only_mapping": true,
+    "checkpoint_next_step_exact": true
+  },
+  "nonzero_network_parity": {
+    "status": "passed",
+    "rows": 8192,
+    "f32_torch_vs_strict_f64_delta_max_abs": 1.8495357023695647e-07,
+    "sequence_reset": 64,
+    "weights_count": 11009,
+    "strict_previous_bit": true,
+    "infer_cpu_seconds": 0.037086,
+    "infer_wall_seconds": 0.037590117999570793,
+    "measurement": "nonzero frozen weights, synthetic feature stream; cached inference only"
+  },
+  "training_throughput": {
+    "status": "probe_complete",
+    "torch_version": "2.6.0+debian",
+    "steps": 64,
+    "batch_sequences": 128,
+    "sequence_bits": 64,
+    "parameters": 11009,
+    "threads": 1,
+    "mkldnn": true,
+    "cpu_seconds": 1.5029045909999998,
+    "wall_seconds": 1.5040691800004424,
+    "cpu_seconds_per_step": 0.023482884234374998,
+    "projected_10epoch_compute_cpu_seconds": 360.69710183999996,
+    "projection_excludes": "file IO, per-batch validation and checkpoints",
+    "rss_high_water_kib": 374884
+  }
+}
