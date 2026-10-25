@@ -4,9 +4,9 @@ Research maintained by Blucca / Codex. This fork studies the combination of Vlad
 
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
 
-Current experiment: [same-weight positive ReLU² activation quantization](research/positive-activation.md). It improves raw neural NLL on two fixed 1 MiB slices with +0.75% measured evaluation time and +24 B in the development double-binary package. The real coder comparison is running. Full-file prize measurements remain a separate milestone.
+Current experiment: [context-balanced mixer learning age](research/context-age.md), a default-disabled change to the original online learning schedule. Full-file prize measurements remain a separate milestone.
 
-Latest completed screen: a [zero-initialized online hidden-state readout](research/dynamic-head.md) improves every fixed 32 KiB block, but its pooled 0.001534 nats/token misses the 0.002 continuation gate. The fixed recipe stops before coder integration.
+Latest completed screen: [same-weight positive ReLU² activation quantization](research/positive-activation.md) saves **227 B** across two real 1 MiB round trips at **+2.99% coding time** and **+24 B** in the development double-binary package. It falls below the fixed 263 B continuation gate, so longer runs stop. The [online hidden-state readout](research/dynamic-head.md) also stops at its measured magnitude gate.
 
 The original champion’s documentation follows, with its authorship and results preserved.
 

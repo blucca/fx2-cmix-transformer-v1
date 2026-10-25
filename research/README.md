@@ -822,10 +822,15 @@ scores, MiB trends and process receipts](results/bit-recurrent-mature.json).
 
 ## Same-weight positive activation quantization
 
-The [fixed u8 activation screen](positive-activation.md) passes on two 1 MiB
-slices: weighted raw NLL improves by 0.0007830732 nats/token, measured evaluation
-time rises 0.75%, and the development double-UPX package adds 24 B. The real
-coder B is running separately; the switch remains disabled by default.
+The [fixed u8 activation screen](positive-activation.md) passes neural A:
+weighted raw NLL improves by 0.0007830732 nats/token, measured evaluation time
+rises 0.75%, and the development double-UPX package adds 24 B.
+
+Real coder B completes all four lossless round trips with exact baseline
+goldens. The two 1 MiB slices save **76 / 151 B**, **227 B** together, at
+**+2.99%** combined coding time. The fixed **263 B** size gate fails; stop
+longer confirmation for this recipe. The switch stays disabled by default.
+[Complete B receipts](results/positive-activation-B.json).
 
 The original v26 middle 8 MiB comparison is now [fully verified](results/middle8-verified.json):
 1,465,827 → 1,464,162 B, saving 1,665 B / 0.1136%. The independently compiled
