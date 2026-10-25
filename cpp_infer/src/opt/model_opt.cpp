@@ -38,7 +38,7 @@ namespace opt {
 
 namespace {
 constexpr int V = 205, D = 192, NL = 12, DH = 64, NH = 3, DMLP = 768;
-constexpr int WIN = 1024, ROPE_LEN = 131072;
+constexpr int WIN = ATTN_WIN, ROPE_LEN = 131072;
 // density thresholds for the sparse column kernels (qmat.h)
 constexpr int DOWN_DENSE_NNZ =
     static_cast<int>(QMAT_SPARSE_DENSITY_THRESHOLD * DMLP);  // 729

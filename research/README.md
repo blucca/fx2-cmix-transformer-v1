@@ -24,6 +24,11 @@ of the two held-out samples' local diagonal output energy, above the 0.1%
 continuation gate. Only one unit is unobserved in both samples. Original
 probabilities and model weights are preserved.
 
+The original QAT model also loses accuracy when its three native attention
+windows are [extended directly to 2048](attention-window.md). On the q2 1 MiB
+sample, NLL rises by **0.014237 nats/token**, with **20.81%** extra raw-network
+CPU time. The default 1024 window stays; this direct extension stops.
+
 - Transformer champion: `astOwOlfo/fx2-cmix-transformer-v1@83f2603f3f7751da5f429fd32669807eb8510494`.
 - Statistical expert: `blahem/cmix-lex@370e698f7ea62168cc64326ff97950c3dc212691`.
 - Exact enwik9: 1,000,000,000 bytes, MD5 `e206c3450ac99950df65bf70ef61a12d`.

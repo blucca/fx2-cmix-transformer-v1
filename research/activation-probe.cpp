@@ -2,6 +2,9 @@
 // eval scores raw fp32 outputs, separately from the coder's f16/guarded output.
 // Compile this main without fast-math; reuse the production model objects.
 #include "predictor.h"
+#ifdef FX2_WINDOW_PROBE
+#include "../cpp_infer/src/opt/attn.h"
+#endif
 #ifdef FX2_MLP_UNIT_STATS
 #include "../cpp_infer/src/weights_io.h"
 #endif
@@ -261,6 +264,9 @@ int Eval(char** argv) {
   std::vector<Block> blocks((length + BLOCK - 1) / BLOCK);
 #endif
   U64 probability_hash = 14695981039346656037ULL;
+#ifdef FX2_WINDOW_PROBE
+  U64 short_context_hash = 14695981039346656037ULL, short_context_count = 0;
+#endif
   struct Sample { U64 target_offset; unsigned target; float prob, logit; };
   std::vector<Sample> samples;
   const auto started = Clock::now();
@@ -284,6 +290,13 @@ int Eval(char** argv) {
       // Every raw fp32 probability, in step/vocabulary order; hash work is
       // included in eval time. x86-64 emits little-endian float bytes.
       probability_hash = HashBytes(probability_hash, probs.data(), sizeof(probs));
+#ifdef FX2_WINDOW_PROBE
+      // Both variants use the same variable-length kernel before position 1023.
+      if (i - begin < 1023) {
+        short_context_hash = HashBytes(short_context_hash, probs.data(), sizeof(probs));
+        ++short_context_count;
+      }
+#endif
       const unsigned target = tokens[i + 1];
       const float* logits = model.last_logits();
       double ln = LogitNll(logits, target);
@@ -373,6 +386,11 @@ int Eval(char** argv) {
   std::printf(","); PrintLoss("total", total);
   std::printf(","); PrintLoss("first_half", halves[0]);
   std::printf(","); PrintLoss("second_half", halves[1]);
+#ifdef FX2_WINDOW_PROBE
+  std::printf(",\"training_window\":1024,\"inference_window\":%d,"
+              "\"short_context_hash\":\"%016llx\",\"short_context_count\":%llu",
+              fx2::opt::ATTN_WIN, short_context_hash, short_context_count);
+#endif
 #if FX2_NEURAL_CACHE
   std::printf(",\"neural_cache\":true,\"cache_capacity_per_token\":%u,"
               "\"cache_ram_bytes\":%zu,\"cache_updates\":%llu,"

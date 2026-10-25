@@ -1,5 +1,5 @@
 // Optimized vanilla sliding-window attention (SPEC.md section 3.5) for the
-// 3 vanilla layers (3/7/11): W=1024, 3 heads x d_head 64, int8 q/k/v with
+// 3 vanilla layers (3/7/11): default W=1024, 3 heads x d_head 64, int8 q/k/v with
 // per-head static scales. Single-threaded; the score/exp scratch buffers are
 // file-static (NOT reentrant).
 //
@@ -82,7 +82,12 @@ namespace opt {
 // [3]=number of per-head iterations profiled
 extern uint64_t g_attn_prof[4];
 
-constexpr int ATTN_WIN = 1024;
+#ifndef FX2_ATTN_WINDOW
+#define FX2_ATTN_WINDOW 1024
+#endif
+// Fixed research override; trained weights keep their original 1024 config.
+constexpr int ATTN_WIN = FX2_ATTN_WINDOW;
+static_assert(ATTN_WIN == 1024 || ATTN_WIN == 2048);
 constexpr int ATTN_NH = 3;
 constexpr int ATTN_DH = 64;
 constexpr int ATTN_BLK = 16;  // positions per K block
@@ -121,7 +126,7 @@ void attn_kv_insert(AttnKVF32& kv, int slot, const int8_t* k192,
 // output (pre output-projection). kept3 (optional): number of positions that
 // entered the softmax per head (for skip statistics).
 //
-// variable-shape kernel: n = t+1 in [1, 1024) valid slots (prefix of the ring)
+// variable-shape kernel: n = t+1 in [1, ATTN_WIN) valid slots (prefix of ring)
 void attn_step_var(const AttnKV& kv, const int8_t* q192, const float* coef3,
                    const float* sv3, int n, float* out192,
                    float skip_threshold, int* kept3 = nullptr);
@@ -132,7 +137,7 @@ void attn_step_var(const AttnKVF32& kv, const int8_t* q192, const float* coef3,
                    const float* sv3, int n, float* out192,
                    float skip_threshold, int* kept3 = nullptr);
 
-// fixed-shape kernel: exactly 1024 valid slots, fully specialized loops
+// fixed-shape kernel: exactly ATTN_WIN valid slots, fully specialized loops
 void attn_step_fixed(const AttnKV& kv, const int8_t* q192, const float* coef3,
                      const float* sv3, float* out192, float skip_threshold,
                      int* kept3 = nullptr);
