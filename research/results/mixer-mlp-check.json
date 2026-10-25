@@ -1,0 +1,113 @@
+{
+  "schema": "hutter.mixer-mlp-check.v1",
+  "date": "2026-10-25",
+  "fit_gradient": {
+    "stage": "mixer_mlp_fit_gradient_passed",
+    "features": 88,
+    "hidden": 16,
+    "parameters": 1441,
+    "gradient_max_error": 4.615353932369004e-11,
+    "zero_output_exact": true,
+    "synthetic_initial_objective": 8.46004795458013,
+    "synthetic_fitted_objective": 0.7670784719956494
+  },
+  "fit_io": {
+    "stage": "mixer_mlp_fit_io_passed",
+    "fitted_rows": 1316,
+    "tail_nan_and_invalid_trace_unread": true,
+    "iterations": 64,
+    "evaluations": 66,
+    "weights_bytes": 5764,
+    "seconds": 0.26617554598487914,
+    "cpu_seconds": 0.264650871
+  },
+  "cli": {
+    "stage": "mixer_mlp_cli_check_passed",
+    "input_bytes": 32,
+    "feature_bytes": 90112,
+    "base_coded_bytes": 49,
+    "linear27_coded_bytes": 49,
+    "zero_mlp_coded_bytes": 49,
+    "override_rows": 24,
+    "exported_history_checked_rows": 256
+  },
+  "exact_replay": [
+    {
+      "stage": "self_test_passed",
+      "bits": 80000,
+      "base_bits": 87036.0346124,
+      "base_coded_bytes": 10880,
+      "pre_sse_coded_bytes": 10001,
+      "pre_sse_saved_bytes": 879,
+      "override_bits": 0,
+      "neural_bits": 77676.0475564,
+      "fxcm_bits": 80000,
+      "pre_sse_bits": 80000,
+      "fxcm_min": 0.5,
+      "fxcm_max": 0.5,
+      "models": [
+        {
+          "name": "global_64",
+          "loss_bits": 77710.441875,
+          "coded_bytes": 9714,
+          "saved_bytes": 1166,
+          "saved_bits": 9325.59273738,
+          "saved_fraction": 0.107146342074
+        },
+        {
+          "name": "bitpos_64",
+          "loss_bits": 77933.5573019,
+          "coded_bytes": 9742,
+          "saved_bytes": 1138,
+          "saved_bits": 9102.47731044,
+          "saved_fraction": 0.104582858709
+        },
+        {
+          "name": "confidence_64",
+          "loss_bits": 77933.5573019,
+          "coded_bytes": 9742,
+          "saved_bytes": 1138,
+          "saved_bits": 9102.47731044,
+          "saved_fraction": 0.104582858709
+        },
+        {
+          "name": "neural_gap_64",
+          "loss_bits": 77933.5573019,
+          "coded_bytes": 9742,
+          "saved_bytes": 1138,
+          "saved_bits": 9102.47731044,
+          "saved_fraction": 0.104582858709
+        },
+        {
+          "name": "neural_gap_256",
+          "loss_bits": 78565.8871749,
+          "coded_bytes": 9821,
+          "saved_bytes": 1059,
+          "saved_bits": 8470.14743747,
+          "saved_fraction": 0.0973177084089
+        },
+        {
+          "name": "pre_sse_gap_256",
+          "loss_bits": 78565.8871749,
+          "coded_bytes": 9821,
+          "saved_bytes": 1059,
+          "saved_bits": 8470.14743747,
+          "saved_fraction": 0.0973177084089
+        }
+      ]
+    },
+    {
+      "stage": "mixer_support_self_test_passed",
+      "features": 73,
+      "all_zero_frequencies_exact": 65535,
+      "synthetic_saved_bytes": 3824
+    },
+    {
+      "stage": "mixer_mlp_self_test_passed",
+      "features": 88,
+      "new_weights": 1441,
+      "zero_head_matches_linear_frequencies": 65535,
+      "history": "causal, MSB-first, includes overrides"
+    }
+  ]
+}

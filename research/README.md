@@ -547,8 +547,9 @@ The first full-model 256 KiB observation has passed: **20,954 B**, exactly
 the original golden stream and base replay, with 2,097,152 valid 72-byte rows.
 [Real observation receipt](results/mixer-support-prefix-256k.json).
 Each following screen repeats the exact base-count and sidecar-layout checks.
-The two 1 MiB traces feed the fixed residual fitting protocol below; scored
-head gains are pending.
+Both 1 MiB traces have now passed those checks. Their fixed linear heads
+missed the held-out magnitude gate below; one nonlinear interaction screen
+reuses the same traces.
 
 
 ### Fixed support screen: contiguous tails, then frozen cold validation
@@ -612,3 +613,58 @@ frequencies exactly match base; support/fallback, half decode, overrides and
 current-label independence pass. The 73-dimensional analytic gradient matches
 finite differences. A 65,536-row paired-file smoke check reproduces the f32
 features, exact zero-head range counts and the contiguous tail split.
+
+### Fixed linear screen result: stop both heads
+
+| Frozen head | Full two-screen savings | Prefix tail | q2 tail | Combined tail |
+|---|---:|---:|---:|---:|
+| `logit27` | 323 B | 16 B | 15 B | 31 B |
+| `support73` | 434 B | 23 B | 24 B | 47 B |
+
+Both tails are positive and both heads fall below the prespecified **197 B**
+gate. Stop their integration and cold collection. The full-screen totals include
+training data; the held-out tails decide the gate. Both fits reached the fixed
+64-iteration cap, with 73/75 evaluations and projected gradients
+4.14e-7/7.89e-7. These are bounded-fit results.
+[Exact scores, fits and process receipts](results/mixer-support-screen.json),
+[frozen logit27 weights](results/mixer-support-logit27.f32),
+[frozen support73 weights](results/mixer-support-support73.f32).
+
+### One nonlinear interaction screen: MLP16
+
+The same first-layer traces also support a distinct hypothesis: expert reliability
+depends jointly on other experts and completed-byte context. The frozen
+[MLP16 protocol](results/mixer-mlp-protocol.json) tests **88 → 16 tanh → 1**,
+with 1,441 f32 parameters, above the existing frozen `logit27` offset.
+Inputs are its 26 nonconstant features, 23 support buckets, 23 fallback flags,
+eight bit-position indicators, and eight completed bytes. Current/incomplete
+bytes stay out of that history; overrides advance history but retain base coding.
+
+```sh
+c++ -O3 -ffp-contract=off -std=c++17 research/mixer-mlp-replay.cpp \
+  -o "$SCRATCH/mixer-mlp-replay"
+"$SCRATCH/mixer-mlp-replay" --self-test
+python3 research/fit-mixer-mlp.py --self-test
+for name in prefix-1m article-q2-1m; do
+  "$SCRATCH/mixer-mlp-replay" --features \
+    "$SCRATCH/runs/mixer-support/v26/$name/trace.bin" \
+    "$SCRATCH/runs/mixer-support/v26/$name/mixer.bin" \
+    "$SCRATCH/$name-mlp88.f32"
+done
+python3 research/fit-mixer-mlp.py \
+  --case "$SCRATCH/runs/mixer-support/v26/prefix-1m/trace.bin" "$SCRATCH/prefix-1m-mlp88.f32" \
+  --case "$SCRATCH/runs/mixer-support/v26/article-q2-1m/trace.bin" "$SCRATCH/article-q2-1m-mlp88.f32" \
+  --theta27 research/results/mixer-support-logit27.f32 --out "$SCRATCH/mlp16-fit"
+"$SCRATCH/mixer-mlp-replay" --score BASE_TRACE.bin MIXER_SIDECAR.bin \
+  research/results/mixer-support-logit27.f32 "$SCRATCH/mlp16-fit/weights.f32"
+```
+
+The first 768 KiB per screen supply the training rows; the final 256 KiB remain
+held out. A single seed, width and 64-iteration/96-evaluation fit is capped at
+30 CPU minutes, within a 45 CPU minute experiment. Its 5.5 GiB expanded features
+are temporary and use the existing paired traces. The exact replay must save
+at least 197 B across both tails, each nonnegative, and at least 48 B beyond
+the best linear head. A pass freezes weights for a separate cold-validation
+decision. A failure stops this fixed head. Original heavy-model binaries stay
+unchanged. [Small implementation checks](results/mixer-mlp-check.json) cover
+the gradient, causal byte history, untouched holdout, and exact zero-head coding.

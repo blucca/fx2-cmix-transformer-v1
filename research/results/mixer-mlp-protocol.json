@@ -1,0 +1,57 @@
+{
+  "schema": "hutter.mixer-mlp-protocol.v1",
+  "frozen_at": "2026-10-25T00:53:59.760808+00:00",
+  "root": "/data/workspace/temp/hutter",
+  "deadline": "2026-10-25T14:20:00+08:00",
+  "architecture": {
+    "input": 88,
+    "hidden": 16,
+    "activation": "tanh",
+    "parameters": 1441,
+    "offset": "original z plus frozen theta27 dot phi27",
+    "features": {
+      "0:26": "phi27[1:27]",
+      "26:49": "23 support buckets/32",
+      "49:72": "23 fallback flags",
+      "72:80": "MSB-first bitpos one-hot",
+      "80:88": "previous 8 completed prepared bytes/255, oldest first, zero-filled; update after byte completion including overrides"
+    },
+    "weights": "f32 W[16,88] row-major,b16,v16,c1; ordered double inference",
+    "initialization": "np.random.default_rng(236), W normal std 1/sqrt(88), b/v/c zero"
+  },
+  "fit": {
+    "cases": [
+      "prefix-1m",
+      "article-q2-1m"
+    ],
+    "train_bytes_each": 786432,
+    "tail_bytes_each": 262144,
+    "ridge_hessian": 64,
+    "coefficient_bound": 16,
+    "iterations": 64,
+    "evaluations": 96,
+    "fit_cpu_seconds": 1800,
+    "theta27_sha256": "a1ad0c1778a9b6e28cf7fe7da0513d6b881d9e04b40d83f1c9fddf0e76a50eea"
+  },
+  "gate": {
+    "tail_total_saved_bytes_min": 197,
+    "extra_over_best_linear_min": 48,
+    "tail_each_nonnegative": true,
+    "best_existing_tail_bytes": 47
+  },
+  "budget": {
+    "total_cpu_seconds": 2700,
+    "address_space_bytes": 7516192768,
+    "blas_threads": 1,
+    "new_heavy_model_encodes": 0,
+    "expanded_feature_bytes": 5905580032
+  },
+  "stop": "One frozen screen; failed gate stops this fixed head, passed gate awaits a separate cold/long continuation decision. No seed/feature/width sweep or automatic whole-budget retry.",
+  "packaging_scenario": {
+    "new_weight_bytes": 5764,
+    "both_copies_with_theta27": 11744,
+    "two_sided_code_reserve_bytes": 32768,
+    "total_reserve_bytes": 44512
+  },
+  "evidence": "27/73 fixed screens completed with small positive tails 31/47 B. Reuse the acquired first-layer vectors to test new nonlinear expert/decoded-byte interactions."
+}

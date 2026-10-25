@@ -1,0 +1,394 @@
+{
+  "schema": "hutter.mixer-support-screen.v1",
+  "date": "2026-10-25",
+  "selection": {
+    "frozen_at": "2026-10-25T00:42:26.028985+00:00",
+    "identity": {
+      "protocol_sha256": "b95b731532e5d6be5d0f9674fe9cecedce616cca34b9d5b12f7b44d500ef0d29",
+      "sources": {
+        "fit-mixer-support.py": "eaef02748c28d59cfaeadf0269cc95904ad66083c099b98472b06df3d3d05179",
+        "mixer-support-replay.cpp": "44b190903a074d4f0d2a4b992cc21f32940cca7e64f0fd670afea2fb2df73fad",
+        "replay.cpp": "89e1e1bc312c66f841d796a111eade6a8d7473bd69f0f9161d32fde59b688e39",
+        "trace.h": "ab92ad7d10ac712933ce013ed6a0fe533b74c4e6ec2aad981e01ede20c37dd11"
+      }
+    },
+    "selected": null,
+    "eligible": {
+      "logit27": false,
+      "support73": false
+    },
+    "tail_input_bytes": 524288,
+    "tail_saved_bytes": {
+      "logit27": 31,
+      "support73": 47
+    },
+    "support_extra_bytes": 16,
+    "scores": {
+      "prefix-1m": {
+        "schema": "hutter.mixer-support.v1",
+        "stage": "complete",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 319771,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 84839,
+        "block_index": 7,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 84839,
+            "loss_bits": 678705.132318191,
+            "saved_bytes": 0,
+            "block_coded_bytes": 12965,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_coded_bytes": 24908,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "logit27",
+            "coded_bytes": 84734,
+            "loss_bits": 677872.184577387,
+            "saved_bytes": 105,
+            "block_coded_bytes": 12958,
+            "block_saved_bytes": 7,
+            "block_saved_bits": 54.9702752530284,
+            "tail_coded_bytes": 24892,
+            "tail_saved_bytes": 16,
+            "tail_saved_bits": 132.789321620687
+          },
+          {
+            "name": "support73",
+            "coded_bytes": 84674,
+            "loss_bits": 677391.389729717,
+            "saved_bytes": 165,
+            "block_coded_bytes": 12954,
+            "block_saved_bytes": 11,
+            "block_saved_bits": 83.6009485760442,
+            "tail_coded_bytes": 24885,
+            "tail_saved_bytes": 23,
+            "tail_saved_bits": 184.94590473728
+          }
+        ]
+      },
+      "article-q2-1m": {
+        "schema": "hutter.mixer-support.v1",
+        "stage": "complete",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 357585,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 208696,
+        "block_index": 7,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 208696,
+            "loss_bits": 1669560.19497127,
+            "saved_bytes": 0,
+            "block_coded_bytes": 19894,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_coded_bytes": 40100,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "logit27",
+            "coded_bytes": 208478,
+            "loss_bits": 1667823.96529995,
+            "saved_bytes": 218,
+            "block_coded_bytes": 19891,
+            "block_saved_bytes": 3,
+            "block_saved_bits": 27.8881789590523,
+            "tail_coded_bytes": 40085,
+            "tail_saved_bytes": 15,
+            "tail_saved_bits": 124.300029710575
+          },
+          {
+            "name": "support73",
+            "coded_bytes": 208427,
+            "loss_bits": 1667410.80066177,
+            "saved_bytes": 269,
+            "block_coded_bytes": 19887,
+            "block_saved_bytes": 7,
+            "block_saved_bits": 62.7904812267516,
+            "tail_coded_bytes": 40076,
+            "tail_saved_bytes": 24,
+            "tail_saved_bits": 195.109712499892
+          }
+        ]
+      }
+    },
+    "fits": {
+      "logit27": {
+        "schema": "hutter.mixer-support-fit.v1",
+        "model": "logit27",
+        "cases": [
+          {
+            "trace": "/data/workspace/temp/hutter/runs/mixer-support/v26/prefix-1m/trace.bin",
+            "features": "/data/workspace/temp/hutter/round235/mixer-support/features/prefix-1m.f32",
+            "training_rows_end_exclusive": 6291456,
+            "fitted_rows": 6053251
+          },
+          {
+            "trace": "/data/workspace/temp/hutter/runs/mixer-support/v26/article-q2-1m/trace.bin",
+            "features": "/data/workspace/temp/hutter/round235/mixer-support/features/article-q2-1m.f32",
+            "training_rows_end_exclusive": 6291456,
+            "fitted_rows": 6040708
+          }
+        ],
+        "fitted_rows": 12093959,
+        "dimensions": 27,
+        "holdout": "last 256 KiB of each 1 MiB screen; never read by optimizer",
+        "warmup_rows": 0,
+        "ridge_hessian": 64,
+        "coefficient_bound": 16,
+        "delta_clip": false,
+        "max_iterations": 64,
+        "max_evaluations": 96,
+        "iterations": 64,
+        "evaluations": 73,
+        "success": false,
+        "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+        "seconds": 72.94544056199993,
+        "weights_bytes": 108,
+        "weights_f32": [
+          0.002999809104949236,
+          -0.10199329257011414,
+          1.5517966747283936,
+          -0.13552753627300262,
+          -0.05898366868495941,
+          -0.07638493925333023,
+          0.007665281184017658,
+          0.13466380536556244,
+          -0.05665409937500954,
+          0.17552079260349274,
+          0.029685528948903084,
+          -0.014954520389437675,
+          1.484870433807373,
+          0.16286376118659973,
+          1.0991021394729614,
+          0.6682164072990417,
+          0.26179561018943787,
+          0.08570128679275513,
+          0.17140504717826843,
+          0.0370650477707386,
+          0.0999673530459404,
+          0.20596128702163696,
+          -0.004249221179634333,
+          0.06638669967651367,
+          0.10010704398155212,
+          0.04804709181189537,
+          0.064143106341362
+        ],
+        "zero_objective": 0.10478012483906553,
+        "frozen_objective": 0.10466488856117535,
+        "projected_gradient_max_abs": 4.14119745208843e-07,
+        "measurement": "Bounded regularized training fit; exact integer tail replay decides screening."
+      },
+      "support73": {
+        "schema": "hutter.mixer-support-fit.v1",
+        "model": "support73",
+        "cases": [
+          {
+            "trace": "/data/workspace/temp/hutter/runs/mixer-support/v26/prefix-1m/trace.bin",
+            "features": "/data/workspace/temp/hutter/round235/mixer-support/features/prefix-1m.f32",
+            "training_rows_end_exclusive": 6291456,
+            "fitted_rows": 6053251
+          },
+          {
+            "trace": "/data/workspace/temp/hutter/runs/mixer-support/v26/article-q2-1m/trace.bin",
+            "features": "/data/workspace/temp/hutter/round235/mixer-support/features/article-q2-1m.f32",
+            "training_rows_end_exclusive": 6291456,
+            "fitted_rows": 6040708
+          }
+        ],
+        "fitted_rows": 12093959,
+        "dimensions": 73,
+        "holdout": "last 256 KiB of each 1 MiB screen; never read by optimizer",
+        "warmup_rows": 0,
+        "ridge_hessian": 64,
+        "coefficient_bound": 16,
+        "delta_clip": false,
+        "max_iterations": 64,
+        "max_evaluations": 96,
+        "iterations": 64,
+        "evaluations": 75,
+        "success": false,
+        "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+        "seconds": 178.3812107270005,
+        "weights_bytes": 292,
+        "weights_f32": [
+          0.003323557786643505,
+          -0.14494776725769043,
+          1.5796517133712769,
+          -0.20828798413276672,
+          -0.1281028836965561,
+          -0.05260130390524864,
+          0.02560937963426113,
+          0.2901613712310791,
+          -0.13033416867256165,
+          0.25233542919158936,
+          0.01724126748740673,
+          0.1401522010564804,
+          1.3619778156280518,
+          0.20747241377830505,
+          1.1435574293136597,
+          0.6248619556427002,
+          0.2409956157207489,
+          0.1426829844713211,
+          0.2470470815896988,
+          0.22506511211395264,
+          0.1701854169368744,
+          0.276176780462265,
+          0.2209663838148117,
+          0.11811213195323944,
+          0.18362636864185333,
+          0.08789107203483582,
+          0.09901655465364456,
+          -0.40824443101882935,
+          -0.2737487852573395,
+          -0.27513453364372253,
+          -0.15102332830429077,
+          -0.11007142812013626,
+          -0.28131839632987976,
+          -0.20345675945281982,
+          -0.21466971933841705,
+          -0.009037592448294163,
+          -0.6436452269554138,
+          -0.01617991179227829,
+          -0.08280950784683228,
+          -0.1658748984336853,
+          -0.5488937497138977,
+          -0.4029170274734497,
+          -0.8147330284118652,
+          -0.5036879777908325,
+          -0.29861292243003845,
+          -0.7679951786994934,
+          -0.41610953211784363,
+          -0.5304323434829712,
+          -0.3954277038574219,
+          -0.45578083395957947,
+          0.42703184485435486,
+          0.03970128670334816,
+          0.07054942846298218,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.0,
+          0.08139128237962723,
+          0.0,
+          0.07927730679512024,
+          -0.007259436417371035,
+          0.0,
+          0.009489242918789387,
+          0.0,
+          0.07740020751953125,
+          0.0,
+          0.0
+        ],
+        "zero_objective": 0.10478012483906553,
+        "frozen_objective": 0.1046320303177462,
+        "projected_gradient_max_abs": 7.891373241823348e-07,
+        "measurement": "Bounded regularized training fit; exact integer tail replay decides screening."
+      }
+    },
+    "weights_sha256": {
+      "logit27": "a1ad0c1778a9b6e28cf7fe7da0513d6b881d9e04b40d83f1c9fddf0e76a50eea",
+      "support73": "23a527117835bb970599b6d6c368feccdc73a567ebe0fcc37bf9932484f9daee"
+    },
+    "scope": "fixed-budget contiguous-tail screen; selection precedes cold collection"
+  },
+  "state": {
+    "status": "stopped",
+    "at": "2026-10-25T00:42:26.173651+00:00",
+    "deadline": "2026-10-25T14:20:00+08:00",
+    "reason": "fixed-screen-tail-gate-failed",
+    "saved": {
+      "logit27": 31,
+      "support73": 47
+    }
+  },
+  "processes": {
+    "article-q2-1m-export.process.json": {
+      "seconds": 2.120273894001002,
+      "user_seconds": 0.9376699999999998,
+      "system_seconds": 1.165082,
+      "returncode": 0,
+      "error": null
+    },
+    "article-q2-1m-score.process.json": {
+      "seconds": 1.8195185610002227,
+      "user_seconds": 1.7263149999999996,
+      "system_seconds": 0.047986999999999114,
+      "returncode": 0,
+      "error": null
+    },
+    "build.process.json": {
+      "seconds": 2.8207110410003224,
+      "user_seconds": 0.799667,
+      "system_seconds": 0.114923,
+      "returncode": 0,
+      "error": null
+    },
+    "fit-dependencies.process.json": {
+      "seconds": 5.377642940000442,
+      "user_seconds": 3.8212509999999997,
+      "system_seconds": 0.7289889999999999,
+      "returncode": 0,
+      "error": null
+    },
+    "fit-self-test.process.json": {
+      "seconds": 0.6666777800001,
+      "user_seconds": 0.3584860000000001,
+      "system_seconds": 0.19519600000000015,
+      "returncode": 0,
+      "error": null
+    },
+    "logit27-fit.process.json": {
+      "seconds": 73.22041834599986,
+      "user_seconds": 69.217545,
+      "system_seconds": 3.9059450000000004,
+      "returncode": 0,
+      "error": null
+    },
+    "prefix-1m-export.process.json": {
+      "seconds": 4.027786519998699,
+      "user_seconds": 0.8794740000000001,
+      "system_seconds": 1.1472259999999999,
+      "returncode": 0,
+      "error": null
+    },
+    "prefix-1m-score.process.json": {
+      "seconds": 1.718200817998877,
+      "user_seconds": 1.6209130000000016,
+      "system_seconds": 0.0600340000000017,
+      "returncode": 0,
+      "error": null
+    },
+    "replay-self-test.process.json": {
+      "seconds": 0.06384581700149283,
+      "user_seconds": 0.030232999999999954,
+      "system_seconds": 0.004319000000000003,
+      "returncode": 0,
+      "error": null
+    },
+    "support73-fit.process.json": {
+      "seconds": 178.64733872099896,
+      "user_seconds": 123.984063,
+      "system_seconds": 54.544295,
+      "returncode": 0,
+      "error": null
+    }
+  },
+  "decision": "stop-both-frozen-linear-heads",
+  "cold_collected": false
+}

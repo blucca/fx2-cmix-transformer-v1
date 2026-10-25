@@ -241,6 +241,7 @@ void self_test() {
 }
 }  // namespace mixer_support
 
+#ifndef HUTTER_MIXER_SUPPORT_LIBRARY
 int main(int argc, char** argv) try {
   using namespace mixer_support;
   if (argc == 2 && std::string(argv[1]) == "--self-test") { self_test(); return 0; }
@@ -252,3 +253,4 @@ int main(int argc, char** argv) try {
       "usage: mixer-replay --export BASE SIDE FEATURES | --score BASE SIDE CONTROL27.f32 SUPPORT73.f32 | --self-test");
   return 0;
 } catch (const std::exception& e) { std::cerr << e.what() << '\n'; return 1; }
+#endif
