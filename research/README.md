@@ -1,4 +1,6 @@
-# First experiment: does fxcm_v26 complement the 6M transformer?
+# Hutter compression research
+
+[Full-model CPU backward](cpu-backward.md) now passes on one complete real article: all 429 parameter gradients are finite and nonzero, at 50.8 targets per CPU second. This provides a reference for a faster, bounded-memory learning path; optimizer updates remain at zero.
 
 ## Fixed sources
 
