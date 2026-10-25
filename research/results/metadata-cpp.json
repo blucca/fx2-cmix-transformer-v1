@@ -1,0 +1,40 @@
+{
+  "runs": [
+    {
+      "mode": "encode",
+      "exit_code": 0,
+      "wall_seconds": 0.3370848299819045,
+      "user_seconds": 0.299322,
+      "system_seconds": 0.035782,
+      "peak_rss_kib": 63668,
+      "stdout": "{\"input_bytes\":15717602,\"output_bytes\":14060752}\n",
+      "stderr": ""
+    },
+    {
+      "mode": "decode",
+      "exit_code": 0,
+      "wall_seconds": 0.3620744780055247,
+      "user_seconds": 0.314344,
+      "system_seconds": 0.045689,
+      "peak_rss_kib": 71600,
+      "stdout": "{\"input_bytes\":14060752,\"output_bytes\":15717602}\n",
+      "stderr": ""
+    }
+  ],
+  "original_bytes": 15717602,
+  "candidate_bytes": 14060752,
+  "frozen_candidate_byte_equal": true,
+  "restored_original_byte_equal": true,
+  "object_flags": "-std=c++17 -Os -fno-rtti",
+  "object_text_bytes": 8421,
+  "object_data_bytes": 48,
+  "object_bss_bytes": 0,
+  "compiler": "g++ (GCC) 16.2.1 20260810",
+  "core_no_exceptions_flags": "-std=c++17 -Os -fno-rtti -fno-exceptions -ffunction-sections -fdata-sections",
+  "core_no_exceptions_text_bytes": 7725,
+  "core_no_exceptions_data_bytes": 0,
+  "core_no_exceptions_bss_bytes": 0,
+  "self_check_passed": true,
+  "source": "research/metadata-residual.cpp",
+  "runner_integrated": false
+}

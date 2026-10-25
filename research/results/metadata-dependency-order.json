@@ -1,0 +1,34 @@
+{
+  "schema": "hutter.metadata-dependency-order-observation.v1",
+  "transform": "old page-sorted predecessor; new revision-sorted endpoints then recursive medians",
+  "target_fields_and_output_order": "unchanged from online-residual contract",
+  "external_tables_or_weights_bytes": 0,
+  "extra_frame_over_online_bytes": 0,
+  "original_bytes": 15717602,
+  "online_candidate_bytes": 14060752,
+  "block_candidate_bytes": 14061507,
+  "original_zlib9_bytes": 4165276,
+  "online_zlib9_bytes": 3342195,
+  "block_zlib9_bytes": 3335512,
+  "incremental_zlib9_saved_bytes": 6683,
+  "roundtrip_exact": true,
+  "residuals": {
+    "old": {
+      "records": 87813,
+      "exact": 69855,
+      "within_1": 81114,
+      "empirical_entropy_bytes": 11819.84745214728,
+      "zigzag_gamma_bytes": 17570
+    },
+    "new": {
+      "records": 155612,
+      "exact": 22725,
+      "within_1": 57557,
+      "empirical_entropy_bytes": 102230.48967305041,
+      "zigzag_gamma_bytes": 115635
+    }
+  },
+  "cpu_seconds": 10.082597009999999,
+  "peak_rss_kib": 232944,
+  "strong_coder_runs": 0
+}

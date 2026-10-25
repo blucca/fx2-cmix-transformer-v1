@@ -28,8 +28,9 @@ records retain a two-second median. One mixed clock had large late errors.
 
 ## Fixed reversible transform
 
-[metadata-residual.py](metadata-residual.py) accepts complete canonical
-PHDA9-WRT header records. Each call starts with empty maps and a signed
+[metadata-residual.py](metadata-residual.py) and its
+[C++ port](metadata-residual.cpp) accept complete canonical PHDA9-WRT header
+records. Each call starts with empty maps and a signed
 relative page coordinate of zero. Page-delta bytes and all other fields stay
 unchanged. Coordinate translation preserves old-ID predictions, so a cold
 mid-header slice needs no previous-page seed.
@@ -55,9 +56,39 @@ python3 -B research/metadata-residual.py encode header.bin residual.bin
 python3 -B research/metadata-residual.py decode residual.bin restored.bin
 ```
 
-The research helper intentionally handles this header grammar. It leaves the
-production preprocessor unchanged. A successful coder screen would justify a
-small C++ integration and an actual double-binary size measurement.
+The research helpers handle this header grammar and leave the production
+preprocessor unchanged. A successful coder screen would justify runner
+integration and an actual double-binary size measurement.
+
+### C++ parity prototype
+
+The single C++17 implementation exports
+`metadata_residual::Rewrite(std::string_view, bool decode)`. It uses ordered
+maps and signed 64-bit integer arithmetic. The CLI and one runnable self-check
+are included only when `METADATA_RESIDUAL_MAIN` is defined:
+
+```sh
+mkdir -p temp
+c++ -std=c++17 -O2 -DMETADATA_RESIDUAL_MAIN research/metadata-residual.cpp -o temp/metadata-residual
+temp/metadata-residual --self-test
+temp/metadata-residual encode header.bin residual.bin
+temp/metadata-residual decode residual.bin restored.bin
+```
+
+On the complete 243,425-record header, C++ produces the same **14,060,752
+bytes** as the frozen Python candidate and restores the **15,717,602 original
+bytes**, both checked by direct byte comparison. The self-check covers both
+branches, half-away rounding, nearest-page ties, coordinate translation,
+optional/IP lines, canonical dates/numbers and duplicate-key rejection.
+
+One local GCC 16.2.1 CLI run took **0.337 s encode / 0.362 s decode** including
+file I/O, with peak RSS **63,668 / 71,600 KiB**. This is a transform-cost sample,
+separate from the strong-coder screen. With `-Os -fno-exceptions -fno-rtti
+-ffunction-sections -fdata-sections`, the no-CLI object's code/constant sections
+total **7,725 B**, or **15,450 B** for two copies before linking. The actual
+linked package increment remains a later measurement. The core also builds
+with the runner's exception-disabled flags; malformed input reports an error
+and exits in that build.
 
 ## Real-coder screen
 
@@ -86,3 +117,23 @@ A longer test must include the following language tail: shortening the
 header shifts forced Transformer piece boundaries, even where those later
 bytes themselves stay unchanged. Article-body bytes and the original model
 weights remain fixed.
+
+
+## Whole-block dependency-order observation
+
+The preprocessor can collect the complete header before reconstruction, so
+residual dependencies can follow an order derived from already-visible keys.
+One fixed observation used page-sorted predecessors for old revisions and
+revision-sorted endpoint clocks followed by recursive medians for new clocks.
+The output kept the same row order, markers and target fields. No permutation
+or external table was transmitted; the decoder reconstructed the same
+dependency order from page keys, branch markers and verbatim new revision IDs.
+
+The complete header round-tripped exactly. Its zlib-9 size was **3,335,512 B**,
+just **6,683 B** below the online recipe's 3,342,195 B. Most of the useful
+cross-field information is already exposed by the simpler online predictor.
+This whole-block variant stops at the observation stage; the real-coder queue
+and C++ implementation retain the original online recipe. The observation used
+10.08 CPU seconds and 227.5 MiB peak RSS. [Small result](results/metadata-dependency-order.json).
+
+[Complete-header C++ check and build sizes](results/metadata-cpp.json).
