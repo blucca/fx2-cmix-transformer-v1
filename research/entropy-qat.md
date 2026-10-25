@@ -85,3 +85,17 @@ coordinates and the actual tiny-scale regime.
 This is one trajectory with fixed learning rate, temperature and quantization.
 Its measured learning and native-score results follow the run; the zero-step
 check itself leaves the model and compression result unchanged.
+
+## First 16 updates
+
+All 429 gradient tensors and scale checks passed through **595,718 targets**
+in **804.47 CPU seconds** (740.5 targets/CPU-second). Peak RSS was
+**5.190 GiB**, within the 6 GiB address-space limit;
+the model, AdamW moments, RNG and next piece were saved at updates 8 and 16.
+
+**1,372,455 / 5,868,864 integer weight symbols changed.**
+Hard weight entropy rose by **27,411.67 nats**
+(0.178%). This is the current adverse
+rate signal; new compressed weight sizes and held-out native NLL arrive at
+the epoch boundary. The original production weights remain retained.
+[First-16 measurements](results/entropy-qat-first16.json).
