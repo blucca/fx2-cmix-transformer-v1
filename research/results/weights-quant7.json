@@ -36,12 +36,58 @@
     "final_dict_order_pgo_changes": "pending full package"
   },
   "default_lossless_file_byte_equal": true,
-  "payload_status": "running",
+  "payload_status": "complete",
   "sample": {
     "name": "article-q2-1m",
     "offset": 293232482,
     "length": 1048576
   },
   "cpu_budget_seconds": 1200,
-  "runtime_decoder_change": "none beyond the previously measured v3 loader"
+  "runtime_decoder_change": "none beyond the previously measured v3 loader",
+  "coder": {
+    "original_v26_bytes": 208696,
+    "candidate_bytes": 252814,
+    "delta_bytes": 44118,
+    "delta_fraction": 0.2113983976693372,
+    "original_slice_byte_equal": true,
+    "reference_probe_relink_byte_equal": true,
+    "encode": {
+      "mode": "encode",
+      "offset": 293232482,
+      "input_bytes": 1048576,
+      "output_bytes": 252814,
+      "seconds": 451.202779,
+      "coding_seconds": 403.186222,
+      "max_rss_kib": 7889032,
+      "cpu_seconds": 434.394021
+    },
+    "decode": {
+      "mode": "decode",
+      "offset": 293232482,
+      "input_bytes": 1048576,
+      "output_bytes": 1048576,
+      "seconds": 486.844012,
+      "coding_seconds": 439.561206,
+      "max_rss_kib": 7904348,
+      "cpu_seconds": 440.23376299999995
+    },
+    "total_cpu_seconds_including_link": 874.754471,
+    "elapsed_seconds": 941.3451936244965,
+    "decision": "stop-fixed-quant7",
+    "allowed_regression_bytes": 1297.1371311707337,
+    "gate_multiple": 34.01182414705931
+  },
+  "read_only_scale_diagnostic": {
+    "scope": "read-only per-tensor unweighted I8-space diagnostic, no new model or payload run",
+    "fixed_scale": 2.3333333333333335,
+    "aggregate_squared_error_fixed": 2432869.3333333335,
+    "aggregate_squared_error_tensor_lsq": 2300548.8969466262,
+    "fraction_error_removed_by_tensor_lsq": 0.05438863262146998,
+    "min_tensor_lsq": 2.223842690576057,
+    "max_tensor_lsq": 2.2557908511715428,
+    "actual_q2_payload_delta_bytes": 44118,
+    "gate_bytes": 1297.1371311707337,
+    "regression_to_gate_ratio": 34.01182414705931,
+    "decision": "stop this untrained all-matrix seven-value route; tensor LSQ is a small weight-space correction against the observed payload gap"
+  }
 }

@@ -6,8 +6,9 @@
 saves 26,327 B per weight file and **52,022 B** across the two weight/executable
 copies in the measured development package. All 434 tensor payloads are identical.
 
-The separate [seven-value weight screen](weights-quant7.md) has a verified
-2,044,814-byte model file; its fixed real-coder rate/distortion gate is in progress.
+The separate [seven-value weight screen](weights-quant7.md) saves 885,838 B per
+model copy but adds 44,118 B on the verified q2 1 MiB round trip, exceeding its
+1,297-byte payload budget. This fixed mapping stops; the original model stays.
 
 - Transformer champion: `astOwOlfo/fx2-cmix-transformer-v1@83f2603f3f7751da5f429fd32669807eb8510494`.
 - Statistical expert: `blahem/cmix-lex@370e698f7ea62168cc64326ff97950c3dc212691`.

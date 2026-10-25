@@ -48,9 +48,28 @@ length **1,048,576**, original v26 code **208,696 B**. The gate is a verified
 new code of **209,993 B or less**. Both encode and decode run, with direct
 comparison to the original slice, within 1,200 CPU seconds.
 
-**Payload status: in progress.** A passing screen triggers a separate
-independent-sample decision; a failure stops this fixed mapping. Complete
-enwik9 size and final packaging remain the prize-level measurements.
+## Real-coder result: stop this fixed mapping
+
+The complete q2 round trip produces **252,814 B**, up **44,118 B / 21.14%**
+from the original v26 code. The regression is **34.01 times** the 1,297-byte
+budget. Decoding restores the original 1 MiB slice byte for byte.
+
+| Phase | Wall seconds | CPU seconds | Coding seconds | Peak RSS, KiB |
+|---|---:|---:|---:|---:|
+| Encode | 451.203 | 434.394 | 403.186 | 7,889,032 |
+| Decode | 486.844 | 440.234 | 439.561 | 7,904,348 |
+
+Both phases plus the probe relinks consume **874.754 CPU seconds**. A reference
+relink reproduces the original probe byte for byte; the experimental probe
+reuses those model objects and changes only the previously measured v3 loader.
+
+**Stop additional slices and long runs for this fixed mapping.** The original
+model and lossless static15 component remain in use. A read-only calculation
+on the old tensor histograms finds that one least-squares scale per tensor
+removes just 5.44% of its unweighted INT8-space squared error. That is a
+weight-space diagnostic; the measured coder loss decides this experiment.
+No scale or bit-depth sweep follows this result. Complete enwik9 size and
+final packaging remain the prize-level measurements.
 
 ## Reproduce the weight file
 
