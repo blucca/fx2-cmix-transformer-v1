@@ -84,6 +84,18 @@ savings grew from 149 to 3,698 B across those prefix lengths, a further
 complete archive, its runtime, and the 1% prize gate remain unmeasured.
 The next scale check retains these binaries and changes only prefix length.
 
+### 32 MiB run: in-flight prefix curve
+
+The already-running 32 MiB pair exposes cumulative emitted coder bytes every
+256 KiB. At the 2026-10-25 snapshot, common 8 / 16 / 24 / 28 MiB prefixes
+save **3,698 / 4,451 / 5,695 / 6,590 B**. The 8→28 MiB increment is just
+**2,892 B across 20 MiB**, or **0.001103 bits/input-byte**; relative gain drops
+from 0.345% at 8 MiB to 0.136% at 28 MiB. These are RAM-buffer counts before
+final coder flush; the complete 32 MiB encode/decode comparison is pending.
+[Snapshot and full common-prefix curve](results/prefix32-inflight.json).
+Complete the existing runs; defer automatic 64 MiB/full-data expansion until
+independent long-span or combined-model gains justify it.
+
 ### Executable byte budget
 
 The same non-PGO Clang 17 development builds, packed with UPX 5.2.1 `-9`,
@@ -93,6 +105,13 @@ v26 byte budget before compressed dictionary/order differences. This is a
 development estimate; final PGO/LTO packaging supplies the official sizes.
 The cold-start coding gains therefore need a continuous long-stream test
 and a complete package comparison. [Size receipt](results/development-binary-sizes.json).
+
+The upstream packaging structure is `S = raw_payload + 2B + 2D + O + 2W + 69`:
+packed binary B and compressed dictionary D occur twice, compressed article
+order O once, and the 2,930,652 B neural weights W twice. The 69 bytes cover
+two 16-byte package headers and the 37-byte stream header. Actual release B,
+D and O are measured during final packaging.
+
 
 ## Completed controlled mechanism: the FXCM auxiliary skip
 
@@ -469,7 +488,7 @@ savings total only **73.51 / 57.54 B** across 2 MiB, below the existing
 PPMd-quality heads' **167 / 181 B** exact savings. Stop the constant-prior
 mixture here. [Full capacity results](results/byte-simplex-capacity.json).
 
-### Profile-guided CM3 prefetch: first timing gate passed
+### Profile-guided CM3 prefetch: pooled timing gate failed
 
 A 30-second, 2,938-sample user CPU-clock profile of the v26 PPMd observer
 attributes 15.15% to `ContextMap3::mix` and 9.33% to `E1<14,128>::get`.
@@ -486,11 +505,15 @@ The flag stays off by default. The 256 KiB round trip and both 1 MiB round
 trips have now passed, all byte-identical to the original golden streams.
 The fresh same-machine pair measures **718.483 → 690.875 s** of combined
 encode/decode coding time, a **3.8425%** improvement. The independent q2
-reverse-order confirmation is running; adoption waits for that fixed gate.
-[Initial measured receipts](results/cm3-prefetch-initial.json).
+reverse-order confirmation then measured **778.837 → 773.432 s**, a **0.6940%**
+improvement, with both 208,696 B streams exactly golden. Together the pairs
+measure **1,497.320 → 1,464.308 s**, only **2.2048%**, below the 3% gate.
+**Stop this prefetch variant**; its opt-in macro remains off.
+[Initial measured receipts](results/cm3-prefetch-initial.json) and
+[completed paired experiment](results/cm3-prefetch-screen.json).
 
 
-### Upstream PGO/LTO flags: separate queued comparison
+### Upstream PGO/LTO flags: a separate arithmetic family
 
 `build.py` now supports the upstream `prof_gen` / `prof_use` compiler plans
 without changing the source checkout. The 30 ordinary objects use PGO (and
@@ -519,7 +542,21 @@ gain reaches 3%. Final retention requires all original golden bytes,
 aggregate gain of at least 3%, and positive q2 gain. A changed stream ends
 this output-neutral comparison and is recorded as a separate compile family.
 [Prespecified protocol](results/release-flags-protocol.json).
-Actual PGO binaries, throughput and full-data resource qualification are pending.
+The actual build and single profile training completed. Its 256 KiB real round
+trip passes at **20,954 B**, matching the old size while changing the encoded
+bytes. Combined coding is **166.987 s**; fresh same-machine baseline timing
+is still needed. The original neutral comparison therefore stops as prescribed.
+[Initial measurement](results/release-flags-initial.json).
+
+A [separate fixed-family protocol](results/release-family-protocol.json) reuses
+these two built binaries, with zero retraining or flag sweeps. A fresh prefix
+pair must gain at least 3% coding speed while adding at most 16 encoded bytes
+to trigger reverse-order q2. Retention requires the pooled 3% speed gate,
+positive q2 speed gain, each byte delta ≤16 B, and real lossless round trips.
+The original variant still reproduces its old golden; the PGO variant stores
+its own golden stream and hash. This tests a speed/size tradeoff while keeping
+the old traces and arithmetic family separate. Full-data qualification follows
+a retained candidate.
 
 
 ## First-layer mixer support: observation-only interface

@@ -1,0 +1,75 @@
+{
+  "schema": "hutter.release-family.v1",
+  "frozen_at": "2026-10-25T01:13:46.620116+00:00",
+  "hypothesis": "The existing upstream PGO/LTO build is a new arithmetic family; same-machine throughput gains may justify its bounded compressed-size difference.",
+  "root": "/data/workspace/temp/hutter",
+  "job": "round236/release-family",
+  "batch": "round236/release-flags/batch.py",
+  "output": "runs/release-family",
+  "deadline": "2026-10-25T14:20:00+08:00",
+  "prerequisite": {
+    "neutral_state": "round236/release-flags/state.json",
+    "neutral_required": {
+      "status": "complete",
+      "stage": "changed-compilation-family",
+      "decision": "stop-neutral-comparison"
+    },
+    "prefetch_state": "round234/prefetch/state.json",
+    "prefetch_required_status": "complete",
+    "pgo_256k_receipt": "runs/release-flags/prefix-256k/v26pgo/result.json",
+    "pgo_256k_required": {
+      "status": "passed",
+      "encoded_bytes": 20954
+    },
+    "observed": "PGO 256 KiB real round trip passed; size 20954B, coding 166.987498s, bytes changed against the old golden. The original neutral comparison remains stopped."
+  },
+  "binaries": {
+    "v26": {
+      "path": "build/v26/probe",
+      "sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d"
+    },
+    "v26pgo": {
+      "path": "build/v26pgo/probe",
+      "sha256": "c77bab20e51de2f565b8fe4e6fab32f7fe55148e90f3820ce7e3a64fb3cdcef5"
+    }
+  },
+  "build_policy": "Reuse these two built binaries; zero retraining, rebuilding, flag sweeps or prefetch combination.",
+  "resource": {
+    "heavy_processes_at_once": 1,
+    "cpu_affinity": "minimum available CPU, inherited by every trial",
+    "blas_threads": 1,
+    "maximum_cpu_hours": 1.2,
+    "wall_envelope_seconds": 4320,
+    "wall_envelope_policy": "One CPU plus a conservative 4320-second wall envelope from first launch bounds CPU usage; explicit inspected resumes retain the same envelope.",
+    "timeout_policy": "GNU timeout kills each stage process group before the earlier research deadline or wall envelope; remote logs and outputs remain.",
+    "admission_estimate": "1.2 times the existing same-size original-trial wall time, plus 60 seconds; only missing encode/decode stages count."
+  },
+  "sequence": [
+    {
+      "name": "prefix-1m",
+      "length": 1048576,
+      "offset": 0,
+      "variants": [
+        "v26",
+        "v26pgo"
+      ],
+      "purpose": "fresh same-machine original then PGO pair"
+    },
+    {
+      "name": "article-q2-1m",
+      "length": 1048576,
+      "offset": 293232482,
+      "variants": [
+        "v26pgo",
+        "v26"
+      ],
+      "purpose": "conditional disjoint-content reverse-order pair"
+    }
+  ],
+  "verification": "Each trial must pass real encode/decode with the original full stream/vocabulary/dictionary/weights identity and exact restored slice. Original v26 must reproduce its original golden bytes. Save each PGO encoded SHA-256 as the new family golden, its original-golden equality flag, and PGO-minus-v26 encoded-byte delta.",
+  "continue_gate": "Prefix encode+decode coding seconds improve by >=3% and PGO adds <=16B; otherwise stop-at-screen.",
+  "accept_gate": "Both samples together improve encode+decode coding seconds by >=3%; q2 speed gain is positive; each sample adds <=16B. Retain-for-long-confirmation only; no automatic long run.",
+  "size_budget_context": "16B per 1MiB is roughly 9KB when linearly scaled to the prepared full stream; this is an experimental budget, not an observed full-stream result.",
+  "resume": "Existing encoded/passed trials are reused by the original batch.py. Failed/deferred/interrupted states require the main Agent to inspect real receipts before explicit --resume-inspected. Preserve all original outputs, profiles, binaries and the old neutral-stop state.",
+  "reporting": "Report coding and wall time, CPU where emitted, RSS, executable bytes, both candidate golden hashes and per-sample encoded-byte deltas separately. Full S and formal normalized runtime remain full-data measurements."
+}

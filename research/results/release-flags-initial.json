@@ -1,0 +1,62 @@
+{
+  "schema": "hutter.release-flags-initial.v1",
+  "date": "2026-10-25",
+  "state": {
+    "at": "2026-10-25T01:02:58.364879+00:00",
+    "stage": "changed-compilation-family",
+    "deadline": "2026-10-25T14:20:00+08:00",
+    "status": "complete",
+    "decision": "stop-neutral-comparison"
+  },
+  "results": {
+    "prefix-256k": {
+      "trials": {
+        "v26pgo": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "c77bab20e51de2f565b8fe4e6fab32f7fe55148e90f3820ce7e3a64fb3cdcef5",
+            "sample": {
+              "name": "prefix-256k",
+              "offset": 0,
+              "length": 262144
+            },
+            "variant": "v26pgo"
+          },
+          "status": "passed",
+          "started_at": 1792889917.97516,
+          "encode": {
+            "mode": "encode",
+            "offset": 0,
+            "input_bytes": 262144,
+            "output_bytes": 20954,
+            "seconds": 131.400704,
+            "coding_seconds": 84.31633,
+            "max_rss_kib": 7873476
+          },
+          "encoded_bytes": 20954,
+          "encode_completed_at": 1792890050.3210409,
+          "decode": {
+            "mode": "decode",
+            "offset": 0,
+            "input_bytes": 262144,
+            "output_bytes": 262144,
+            "seconds": 126.979351,
+            "coding_seconds": 82.671168,
+            "max_rss_kib": 7900144
+          },
+          "bits_per_stream_byte": 0.63946533203125,
+          "original_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+          "restored_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+          "elapsed_seconds": 260.3015012741089,
+          "active_seconds": 258.38005499999997,
+          "golden_byte_identical": false
+        }
+      },
+      "golden_byte_identical": false
+    }
+  },
+  "decision": "stop-neutral-comparison; retain built artifact as a separate arithmetic family"
+}
