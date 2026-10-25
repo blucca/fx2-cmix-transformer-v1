@@ -22,10 +22,26 @@ required both slice improvements, at least 0.0005 pooled, and at most 5% more ti
 The full screen, compilation and smoke test took 370 seconds on one pinned CPU.
 [Exact measurements and frozen protocol](results/positive-activation-A.json).
 
-These are raw neural likelihoods. The real arithmetic-coder comparison is a
-separate running experiment. Its fixed gate is nonnegative savings on each
-slice, at least 263 B combined, at most 5% extra two-way coding time, exact
-restoration, and at most 4 KiB additional double-binary packaging.
+## Real coder screen: 227 B saved; continuation gate missed
+
+Fresh paired trials used the same machine and one pinned CPU. The prefix ran
+original then u8; the second slice reversed that order. Each variant completed
+real encoding and decoding, and both original streams match their saved
+goldens byte for byte.
+
+| Slice | Original bytes | u8 bytes | Saved bytes | Original / u8 coding seconds |
+|---|---:|---:|---:|---:|
+| Prefix, 1 MiB | 84,839 | 84,763 | 76 | 691.210 / 705.345 |
+| Middle, 1 MiB | 208,696 | 208,545 | 151 | 744.624 / 773.476 |
+| Total | 293,535 | 293,308 | **227** | **1,435.834 / 1,478.821** |
+
+The verified saving is **0.000866 bits/input-byte**, with **2.99%** more two-way
+coding time. The frozen screen required nonnegative savings on each slice,
+**at least 263 B combined**, at most 5% extra coding time, exact restoration,
+and at most 4 KiB additional double-binary packaging. The size gate misses by
+36 B; all other gates pass. **Stop this fixed recipe before long confirmation.**
+The 227 B improvement remains a verified result, and the switch stays disabled
+by default. [Exact paired measurements and protocol](results/positive-activation-B.json).
 
 The development packaging check already measures **202,304 → 202,316 B** with
 the same UPX 5.2.1 `-9`: **+24 B across the two executable copies**. Neural
