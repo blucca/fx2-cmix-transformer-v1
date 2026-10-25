@@ -2,6 +2,9 @@
 // eval scores raw fp32 outputs, separately from the coder's f16/guarded output.
 // Compile this main without fast-math; reuse the production model objects.
 #include "predictor.h"
+#ifdef FX2_MLP_UNIT_STATS
+#include "../cpp_infer/src/weights_io.h"
+#endif
 
 #include <array>
 #include <cerrno>
@@ -274,6 +277,9 @@ int Eval(char** argv) {
       // Piece-last rows cannot predict the next piece's first token. The
       // final EOF row has no target; skip it like the upstream e2e test.
       if (i + 1 == end) continue;
+#ifdef FX2_MLP_UNIT_STATS
+      model.unit_stats_half((i + 1) >= length / 2);
+#endif
       model.step(tokens[i], row.data(), probs.data());
       // Every raw fp32 probability, in step/vocabulary order; hash work is
       // included in eval time. x86-64 emits little-endian float bytes.
@@ -313,6 +319,42 @@ int Eval(char** argv) {
   if (total.count != length - (pieces.bounds.size() - 1))
     Fail("predicted-token count mismatch");
   if (!total.count) Fail("no predicted tokens");
+#ifdef FX2_MLP_UNIT_STATS
+  Fresh(argv[5]);
+  FILE* units = std::fopen(argv[5], "w");
+  if (!units) Fail("cannot create unit statistics");
+  std::fprintf(units, "layer,unit,first_hits,first_q2,second_hits,second_q2,norm2\n");
+  const auto wf = fx2::WeightsFile::load_compressed(weights_path);
+  const auto& us = model.activation_stats();
+  for (unsigned l = 0; l < 12; ++l) {
+    const std::string prefix = "blocks." + std::to_string(l) + ".mlp.down";
+    const auto& w = wf.get(prefix + ".weight.q", fx2::DT_I8, {192, 768});
+    const auto& s = wf.get(prefix + ".weight.scale", fx2::DT_BF16, {192});
+    const auto& a = wf.get(prefix + ".quantize_activation.scale", fx2::DT_BF16, {1});
+    U64 hits = 0;
+    for (unsigned u = 0; u < 768; ++u) {
+      double norm = 0;
+      for (unsigned o = 0; o < 192; ++o) {
+        const float fold = fx2::bf16_to_f32(a.bf16_bits()[0]) *
+                           fx2::bf16_to_f32(s.bf16_bits()[o]);
+        const double v = double(w.i8()[o * 768 + u]) * double(fold);
+        norm += v * v;
+      }
+      if (!std::isfinite(norm) || norm < 0) Fail("invalid column norm");
+      for (unsigned h = 0; h < 2; ++h) {
+        const U64 n = us.hit[h][l][u], q2 = us.q2[h][l][u];
+        if (n > halves[h].count || q2 < n || q2 > n * 127 * 127)
+          Fail("unit count/q2 mismatch");
+        hits += n;
+      }
+      std::fprintf(units, "%u,%u,%llu,%llu,%llu,%llu,%.17g\n", l, u,
+          U64(us.hit[0][l][u]), U64(us.q2[0][l][u]),
+          U64(us.hit[1][l][u]), U64(us.q2[1][l][u]), norm);
+    }
+    if (hits != us.down_nnz[l]) Fail("unit hit total mismatch");
+  }
+  if (std::ferror(units) || std::fclose(units)) Fail("unit output write failed");
+#endif
 #if FX2_NEURAL_CACHE
   pairs.close();
   if (!pairs || Size(argv[5]) != total.count * 2 * sizeof(float) ||
@@ -466,9 +508,13 @@ int SelfTest() {
 int main(int argc, char** argv) {
   if (argc == 2 && std::string(argv[1]) == "--self-test") return SelfTest();
   if (argc == 8 && std::string(argv[1]) == "capture") return Capture(argv);
+#ifdef FX2_MLP_UNIT_STATS
+  if (argc == 6 && std::string(argv[1]) == "eval") return Eval(argv);
+#else
   if (argc == 5+FX2_NEURAL_CACHE && std::string(argv[1]) == "eval") return Eval(argv);
+#endif
   std::fprintf(stderr, "usage:\n  %s --self-test\n"
       "  %s capture INPUT TOKENS PRIORS VOCAB OFFSET LENGTH\n"
-      "  %s eval TOKENS PRIORS WEIGHTS [CACHE_PAIRS, when enabled]\n", argv[0], argv[0], argv[0]);
+      "  %s eval TOKENS PRIORS WEIGHTS [CACHE_PAIRS or UNIT_CSV, when enabled]\n", argv[0], argv[0], argv[0]);
   return 2;
 }

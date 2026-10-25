@@ -18,6 +18,12 @@ A separate [bounded neural-cache screen](neural-cache.md) improves held-out
 halves by 0.00054394 nats/token at an added 3.054 microseconds/token. This is
 4.53% of its 0.012 quality gate, so the fixed cache recipe stops as well.
 
+A [read-only MLP unit census](mlp-unit-budget.md) also closes its fixed pruning
+branch. The lowest-energy 3,686 of 9,216 units still carry **9.65% / 11.66%**
+of the two held-out samples' local diagonal output energy, above the 0.1%
+continuation gate. Only one unit is unobserved in both samples. Original
+probabilities and model weights are preserved.
+
 - Transformer champion: `astOwOlfo/fx2-cmix-transformer-v1@83f2603f3f7751da5f429fd32669807eb8510494`.
 - Statistical expert: `blahem/cmix-lex@370e698f7ea62168cc64326ff97950c3dc212691`.
 - Exact enwik9: 1,000,000,000 bytes, MD5 `e206c3450ac99950df65bf70ef61a12d`.

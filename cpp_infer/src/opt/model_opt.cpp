@@ -484,6 +484,14 @@ struct TransformerOptImpl {
     }
 #ifdef FX2_ACTIVATION_STATS
     activation_stats.down_nnz[l] += static_cast<uint64_t>(nnz);
+#ifdef FX2_MLP_UNIT_STATS
+    const unsigned half = activation_stats.second_half;
+    for (int k = 0; k < nnz; ++k) {
+      const unsigned u = idx768[k], q = q768[u];
+      activation_stats.hit[half][l][u]++;
+      activation_stats.q2[half][l][u] += q * q;
+    }
+#endif
 #endif
     {
       PSCOPE(PS_MM_MLP_DOWN);
@@ -587,6 +595,11 @@ AttnKind TransformerOpt::attn_kind() const { return impl->kind; }
 const ActivationStats& TransformerOpt::activation_stats() const {
   return impl->activation_stats;
 }
+#ifdef FX2_MLP_UNIT_STATS
+void TransformerOpt::unit_stats_half(bool second_half) {
+  impl->activation_stats.second_half = second_half;
+}
+#endif
 #endif
 
 }  // namespace opt

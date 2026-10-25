@@ -1,0 +1,213 @@
+{
+  "selected_count": 3686,
+  "selected_per_layer": [
+    107,
+    183,
+    593,
+    293,
+    86,
+    71,
+    111,
+    203,
+    413,
+    510,
+    635,
+    481
+  ],
+  "samples": {
+    "prefix-1m": {
+      "first": {
+        "energy_share": 0.09295278123681862,
+        "total_energy": 9238083.754931511,
+        "selected_energy": 858705.5783195567,
+        "per_layer_energy_share": [
+          0.04870025052321173,
+          0.045503825266543896,
+          0.38732057087920696,
+          0.09972140776200242,
+          0.010209350963835247,
+          0.011942233071360522,
+          0.03372488835268022,
+          0.058931577416145284,
+          0.2611505206585129,
+          0.3474160907448446,
+          0.37475829848704995,
+          0.189886752827193
+        ]
+      },
+      "second": {
+        "energy_share": 0.096480610591526,
+        "total_energy": 9414488.538062708,
+        "selected_energy": 908315.6025592131,
+        "per_layer_energy_share": [
+          0.04846128370421151,
+          0.04665892108623167,
+          0.40772362416352415,
+          0.10438636255164671,
+          0.010312515001597806,
+          0.012102573901960737,
+          0.03451059469481495,
+          0.06085120710247466,
+          0.26621293906837085,
+          0.3526877278498482,
+          0.39401972343885755,
+          0.20011507860917457
+        ]
+      },
+      "zero_observed_units": 1,
+      "golden_checks": {
+        "probability_hash": "60d7b09837e874ff",
+        "mlp_steps": 1047237,
+        "down_nnz_sum": [
+          369545978,
+          136100039,
+          90517986,
+          113535998,
+          153031596,
+          177914027,
+          127500303,
+          138333686,
+          119826435,
+          112212542,
+          113673392,
+          170674598
+        ],
+        "total": {
+          "count": 1047237,
+          "logits_sum": 485701.75128205464,
+          "probs_sum": 485701.7148811954,
+          "logits_mean": 0.4637935360210293,
+          "probs_mean": 0.4637935012620786
+        },
+        "first_half": {
+          "count": 523584,
+          "logits_sum": 231397.09512524755,
+          "probs_sum": 231397.076951279,
+          "logits_mean": 0.44194836955531025,
+          "probs_mean": 0.4419483348446076
+        },
+        "second_half": {
+          "count": 523653,
+          "logits_sum": 254304.6561568069,
+          "probs_sum": 254304.6379299882,
+          "logits_mean": 0.4856358240224097,
+          "probs_mean": 0.48563578921535483
+        },
+        "eval_seconds": 78.140768,
+        "eval_cpu_seconds": 78.02394,
+        "max_rss_kib": 132108
+      }
+    },
+    "article-q2-1m": {
+      "first": {
+        "energy_share": 0.12495759341911913,
+        "total_energy": 10977964.988003118,
+        "selected_energy": 1371780.0855402187,
+        "per_layer_energy_share": [
+          0.04080009585783566,
+          0.05976075837846971,
+          0.5710602403982344,
+          0.1393935185334793,
+          0.02035390966897147,
+          0.025195861335656173,
+          0.055673141341549014,
+          0.09928481495526383,
+          0.3169547106134592,
+          0.44541950989727047,
+          0.48077022911089945,
+          0.21722917490171062
+        ]
+      },
+      "second": {
+        "energy_share": 0.1165999127433951,
+        "total_energy": 10189126.75148352,
+        "selected_energy": 1188051.2901543712,
+        "per_layer_energy_share": [
+          0.04517824049986894,
+          0.05107045658539993,
+          0.5338120087249201,
+          0.1178295871698311,
+          0.015613116461936142,
+          0.015061711178761438,
+          0.046862478363104136,
+          0.07880692383108352,
+          0.29996454296325187,
+          0.4115449512633007,
+          0.48444791073409493,
+          0.22995967216888147
+        ]
+      },
+      "zero_observed_units": 1,
+      "golden_checks": {
+        "probability_hash": "1f71c5696e152c73",
+        "mlp_steps": 1048367,
+        "down_nnz_sum": [
+          324459810,
+          122480073,
+          91154285,
+          109752119,
+          158128270,
+          186473440,
+          144462189,
+          157634695,
+          137055320,
+          130152164,
+          127357603,
+          161174994
+        ],
+        "total": {
+          "count": 1048367,
+          "logits_sum": 1163964.5218370666,
+          "probs_sum": 1163964.4948392136,
+          "logits_mean": 1.1102643652814965,
+          "probs_mean": 1.1102643395292044
+        },
+        "first_half": {
+          "count": 524183,
+          "logits_sum": 672134.9122207774,
+          "probs_sum": 672134.9006872748,
+          "logits_mean": 1.2822524046387949,
+          "probs_mean": 1.2822523826359777
+        },
+        "second_half": {
+          "count": 524184,
+          "logits_sum": 491829.6096163636,
+          "probs_sum": 491829.5941520206,
+          "logits_mean": 0.9382766540305763,
+          "probs_mean": 0.9382766245288306
+        },
+        "eval_seconds": 90.34422,
+        "eval_cpu_seconds": 90.225127,
+        "max_rss_kib": 132180
+      }
+    }
+  },
+  "protocol": {
+    "name": "mlp-unit-read-only",
+    "cpu_limit_seconds": 600,
+    "deadline": "2026-10-25T14:44:00+08:00",
+    "unit_count": 9216,
+    "selected_count": 3686,
+    "max_second_half_energy_share": 0.001,
+    "selection": "joint first halves; global ascending energy; tie layer then unit",
+    "zero_unit_bound": "2 copies * 384 weights * 4 bit; bitmap/coding savings ignored",
+    "mask_or_pack_started": false
+  },
+  "mask_or_pack_started": false,
+  "joint_zero_observed_units": 1,
+  "joint_zero_two_copy_raw_nibble_upper_bytes": 384,
+  "decision": "stop-fixed-near-zero-unit-pruning",
+  "total_cpu_seconds": 170.83461899999998,
+  "elapsed_seconds": 173.41948628425598,
+  "started_at": 1792910355.1640778,
+  "finished_at": 1792910528.5835662,
+  "all_base_goldens_equal": true,
+  "joint_zero_units_zero_based": [
+    [
+      2,
+      201
+    ]
+  ],
+  "remaining_bytes_after_static15_v22": 952225,
+  "zero_unit_budget_note": "384 B is two copies of 384 raw 4-bit symbols per observed-zero unit, before scales, metadata and coding effects; not a measured new package."
+}

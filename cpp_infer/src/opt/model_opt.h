@@ -29,6 +29,11 @@ struct TransformerOptImpl;
 struct ActivationStats {
   uint64_t steps = 0;
   uint64_t down_nnz[12] = {};
+#ifdef FX2_MLP_UNIT_STATS
+  bool second_half = false;
+  uint64_t hit[2][12][768] = {};
+  uint64_t q2[2][12][768] = {};
+#endif
 };
 #endif
 
@@ -59,6 +64,9 @@ struct TransformerOpt {
   AttnKind attn_kind() const;
 #ifdef FX2_ACTIVATION_STATS
   const ActivationStats& activation_stats() const;
+#ifdef FX2_MLP_UNIT_STATS
+  void unit_stats_half(bool second_half);
+#endif
 #endif
 
  private:
