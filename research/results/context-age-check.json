@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "compiler": "g++ (GCC) 16.2.1 20260810",
+  "flags": "-O2 -std=c++17 -I src -DHUTTER_CONTEXT_AGE_CHECK",
+  "variants": [
+    "HUTTER_CONTEXT_AGE=0",
+    "HUTTER_CONTEXT_AGE=1",
+    "HUTTER_CONTEXT_AGE=1 + HUTTER_CACHE_MIXER",
+    "HUTTER_CONTEXT_AGE=1 + HUTTER_CACHE_MIXER + HUTTER_TRACE + HUTTER_MIXER_TRACE"
+  ],
+  "checks": [
+    "zero initialization",
+    "thresholds 1m/5m/25m, pre-visit side",
+    "K=1 original schedule",
+    "late independent key",
+    "fallback global schedule",
+    "uint64 product: 512 * 8388608",
+    "early-return exposures and global steps",
+    "25m saturation",
+    "trace applied-update counter remains independent"
+  ],
+  "macro0_assembly_matches_prechange_except_file_directive": true,
+  "context_data_bytes": {
+    "age0": 32,
+    "age1": 40
+  },
+  "bucket_bytes": {
+    "age0": 40,
+    "age1": 48
+  },
+  "sha256": {
+    "src/mixer/mixer.h": "7da3b6b9ea99a663fa0cda66ccadf9c7409a5e461ab6cc362dd83df94985ab7b",
+    "src/mixer/mixer.cpp": "c3e2d089a9434790a4ebc70d34962d85d24d773a42ea159e256f8956997c6757",
+    "research/context-age-check.cpp": "d35f4896b31c20307c05e381348a92204637ff171030305376ffd2f12ae3e5b1"
+  }
+}

@@ -5,6 +5,10 @@
 #include <valarray>
 #include "../ds/emhash_map.hpp"
 #include <memory>
+#include <cstdint>
+#ifndef HUTTER_CONTEXT_AGE
+#define HUTTER_CONTEXT_AGE 0
+#endif
 #ifdef HUTTER_MIXER_TRACE
 #include "../../research/trace.h"
 #endif
@@ -17,6 +21,9 @@ struct ContextData {
   ContextData(const ContextData&) = default;
   //unsigned long long steps;
   std::valarray<float> weights, extra_weights;
+#if HUTTER_CONTEXT_AGE
+  std::uint32_t exposures = 0;  // Visits, including skipped gradient updates.
+#endif
 #ifdef HUTTER_MIXER_TRACE
   std::uint32_t trace_applied_updates = 0;
 #endif
@@ -36,6 +43,9 @@ class Mixer {
 #endif
 
  private:
+#ifdef HUTTER_CONTEXT_AGE_CHECK
+  friend struct ContextAgeCheck;
+#endif
   ContextData* GetContextData();
   const std::valarray<float>& inputs_;
   const std::valarray<float>& extra_inputs_vec_;

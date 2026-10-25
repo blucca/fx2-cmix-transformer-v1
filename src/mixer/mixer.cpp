@@ -69,12 +69,26 @@ float Mixer::Mix() {
 
 void Mixer::Perceive(int bit) {
 
+#if HUTTER_CONTEXT_AGE
+#ifdef HUTTER_CACHE_MIXER
+  ContextData* data = current_data_;
+#else
+  ContextData* data = GetContextData();
+#endif
+  // Balance a key's pre-label visits by the current number of admitted keys.
+  // Shared fallback keeps the original global schedule; K=1 does too.
+  const auto age = data == &context_base_ ? steps_ :
+      std::uint64_t(data->exposures) * context_map_.size();
+  if (data->exposures < 25000000) ++data->exposures;
+#else
+  const auto age = steps_;
+#endif
   float decay=0.2f;
-  if ( steps_ < 25000000) {
+  if ( age < 25000000) {
       decay = 0.3f;
-      if ( steps_ < 5000000) { 
+      if ( age < 5000000) {
           decay = 0.7f;
-          if ( steps_ < 1000000)  
+          if ( age < 1000000)
               decay = 1.0f;
       }
   }
@@ -86,10 +100,12 @@ void Mixer::Perceive(int bit) {
   }
    // ++data->steps;
   update = decay * update;
+#if !HUTTER_CONTEXT_AGE
 #ifdef HUTTER_CACHE_MIXER
   ContextData* data = current_data_;
 #else
   ContextData* data = GetContextData();
+#endif
 #endif
   
   data->weights -= update * inputs_;

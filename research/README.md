@@ -842,3 +842,12 @@ their four halves and all 64 blocks improve; pooled gain is 0.0015339819
 nats/token against the predeclared 0.002 gate. Stop this recipe before paired
 timing/coder integration. Original base probability fingerprints and NLL sums
 are preserved. [Frozen protocol and measurements](results/dynamic-head-A.json).
+
+
+## Context-balanced learning age: fixed coder screen running
+
+A [default-disabled schedule experiment](context-age.md) replaces the global
+learning age of an independent mixer key with its own exposure count times
+the number of admitted keys. Shared fallback keeps its original schedule.
+The same-source default golden, candidate smoke round trip and fixed two-slice
+size gate precede any further timing or mature-prefix work.

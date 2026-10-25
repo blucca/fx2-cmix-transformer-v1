@@ -1,0 +1,50 @@
+{
+  "schema": "hutter.context-age-protocol.v1",
+  "candidate": {
+    "macro": "HUTTER_CONTEXT_AGE=1",
+    "stored_counter": "uint32 exposures per ContextData, saturating at 25000000",
+    "age": "independent map key: uint64(exposures_before_current_bit)*current_map_size; fallback: old global steps",
+    "order": "age from past observations; increment exposures before old small-gradient early return; original steps always increments",
+    "decay": [
+      [
+        1000000,
+        1.0
+      ],
+      [
+        5000000,
+        0.7
+      ],
+      [
+        25000000,
+        0.3
+      ],
+      [
+        "otherwise",
+        0.2
+      ]
+    ],
+    "unchanged": "original learning rates, gradient, context capacity, global clock, SSE, neural model/weights, priors, data/order; other research macros disabled"
+  },
+  "samples": [
+    {
+      "name": "prefix-1m",
+      "offset": 0,
+      "length": 1048576
+    },
+    {
+      "name": "article-q2-1m",
+      "offset": 293232482,
+      "length": 1048576
+    }
+  ],
+  "quality_gate": {
+    "each_saved_bytes": ">=0",
+    "combined_saved_bytes": ">=263",
+    "candidate_decode": "exact",
+    "default_256k_golden": "exact original20954B",
+    "prefix_negative": "stop before q2"
+  },
+  "following_steps": "if quality passes, separately decide paired same-host timing <=5%, package delta and mature 8MiB; this queue does none",
+  "status": "running-coder-size-screen",
+  "pretrained_weights_added_bytes": 0
+}
