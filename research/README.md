@@ -14,6 +14,10 @@ raw-network gate: regressions are **40.07× and 53.58×** the remaining byte-bud
 proxy on the two 1 MiB samples. The seven-value/GPTQ preparation branch stops;
 [six measured evaluations](results/weights-quant7-protect39.json) preserve the result.
 
+A separate [bounded neural-cache screen](neural-cache.md) improves held-out
+halves by 0.00054394 nats/token at an added 3.054 microseconds/token. This is
+4.53% of its 0.012 quality gate, so the fixed cache recipe stops as well.
+
 - Transformer champion: `astOwOlfo/fx2-cmix-transformer-v1@83f2603f3f7751da5f429fd32669807eb8510494`.
 - Statistical expert: `blahem/cmix-lex@370e698f7ea62168cc64326ff97950c3dc212691`.
 - Exact enwik9: 1,000,000,000 bytes, MD5 `e206c3450ac99950df65bf70ef61a12d`.

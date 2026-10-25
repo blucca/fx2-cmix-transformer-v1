@@ -29,6 +29,12 @@
 #if FX2_DYNAMIC_HEAD
 #include "dynamic-head.h"
 #endif
+#ifndef FX2_NEURAL_CACHE
+#define FX2_NEURAL_CACHE 0
+#endif
+#if FX2_NEURAL_CACHE
+#include "neural-cache.h"
+#endif
 
 namespace {
 using U64 = unsigned long long;
@@ -238,6 +244,12 @@ int Eval(char** argv) {
   std::array<uint16_t, V> row;
   std::array<float, V> probs;
   Loss total, halves[2];
+#if FX2_NEURAL_CACHE
+  NeuralCache cache;
+  Fresh(argv[5]);
+  std::ofstream pairs(argv[5], std::ios::binary);
+  if (!pairs) Fail("cannot create cache probability pairs");
+#endif
 #if FX2_DYNAMIC_HEAD
   DynamicHead head;  // Zero once per independent slice; retained across pieces.
   Loss shadow, shadow_halves[2];
@@ -273,6 +285,14 @@ int Eval(char** argv) {
       if (!std::isfinite(ln) || !std::isfinite(pn)) Fail("nonfinite NLL at %llu", i + 1);
       total.Add(ln, pn);
       halves[(i + 1) >= length / 2].Add(ln, pn);
+#if FX2_NEURAL_CACHE
+      cache.Predict(tokens[i], model.last_hidden(), probs.data());
+      const float pair[2] = {probs[target], cache.probs[target]};
+      if (!std::isfinite(pair[1]) || pair[1] < 0 || pair[1] > 1)
+        Fail("invalid cache probability at %llu", i+1);
+      pairs.write(reinterpret_cast<const char*>(pair), sizeof(pair));
+      cache.Observe(target);
+#endif
 #if FX2_DYNAMIC_HEAD
       head.Predict(model.last_hidden(), logits);
       const double sn = head.Nll(target), sp = -std::log(double(head.probs[target]));
@@ -293,6 +313,12 @@ int Eval(char** argv) {
   if (total.count != length - (pieces.bounds.size() - 1))
     Fail("predicted-token count mismatch");
   if (!total.count) Fail("no predicted tokens");
+#if FX2_NEURAL_CACHE
+  pairs.close();
+  if (!pairs || Size(argv[5]) != total.count * 2 * sizeof(float) ||
+      cache.pending || cache.updates != total.count)
+    Fail("cache pair/count mismatch");
+#endif
   std::printf("ACTIVATION_RESULT {\"mode\":\"eval\",\"positive_u8\":%d,"
               "\"input_bytes\":%llu,\"prior_bytes\":%llu,\"vocab\":205,"
               "\"attention\":\"KVI8\",\"rope_offset\":0,\"half_split\":%llu,"
@@ -305,6 +331,14 @@ int Eval(char** argv) {
   std::printf(","); PrintLoss("total", total);
   std::printf(","); PrintLoss("first_half", halves[0]);
   std::printf(","); PrintLoss("second_half", halves[1]);
+#if FX2_NEURAL_CACHE
+  std::printf(",\"neural_cache\":true,\"cache_capacity_per_token\":%u,"
+              "\"cache_ram_bytes\":%zu,\"cache_updates\":%llu,"
+              "\"cache_comparisons\":%llu,\"empty_cache_queries\":%llu,"
+              "\"pair_format\":\"base-cache-f32le\"", NeuralCache::K,
+              cache.entries.size()*sizeof(NeuralCache::Entry), cache.updates,
+              cache.comparisons, cache.empty_queries);
+#endif
 #if FX2_DYNAMIC_HEAD
   if (head.pending || head.updates != total.count || shadow.count != total.count)
     Fail("dynamic head prediction/update count mismatch");
@@ -375,6 +409,32 @@ int SelfTest() {
   Loss loss;
   loss.Add(LogitNll(logits.data(), 0), -std::log(double(prob)));
   check(loss.count == 1 && std::abs(loss.probs - expected) < 1e-7);
+#if FX2_NEURAL_CACHE
+  {
+    NeuralCache cache;
+    std::array<float, NeuralCache::D> hidden;
+    hidden.fill(1);
+    std::array<float, V> base;
+    base.fill(1.0f/V);
+    cache.Predict(3, hidden.data(), base.data());
+    check(cache.probs == base && cache.updates == 0 && cache.sizes[3] == 0);
+    cache.Observe(7);
+    cache.Predict(3, hidden.data(), base.data());
+    check(cache.probs[7] == 1 && cache.probs[8] == 0 && cache.updates == 1);
+    cache.Observe(8);
+    cache.Predict(4, hidden.data(), base.data());
+    check(cache.probs == base && cache.sizes[3] == 2);
+    cache.Observe(9);
+    for (unsigned i = 0; i < NeuralCache::K; ++i) {
+      cache.Predict(3, hidden.data(), base.data());
+      cache.Observe(8);
+    }
+    cache.Predict(3, hidden.data(), base.data());
+    check(cache.sizes[3] == NeuralCache::K && cache.probs[7] == 0 && cache.probs[8] == 1);
+    cache.Observe(8);
+    check(!cache.pending && cache.updates == NeuralCache::K+4);
+  }
+#endif
 #if FX2_DYNAMIC_HEAD
   DynamicHead head;
   std::array<float, DynamicHead::D> hidden;
@@ -406,9 +466,9 @@ int SelfTest() {
 int main(int argc, char** argv) {
   if (argc == 2 && std::string(argv[1]) == "--self-test") return SelfTest();
   if (argc == 8 && std::string(argv[1]) == "capture") return Capture(argv);
-  if (argc == 5 && std::string(argv[1]) == "eval") return Eval(argv);
+  if (argc == 5+FX2_NEURAL_CACHE && std::string(argv[1]) == "eval") return Eval(argv);
   std::fprintf(stderr, "usage:\n  %s --self-test\n"
       "  %s capture INPUT TOKENS PRIORS VOCAB OFFSET LENGTH\n"
-      "  %s eval TOKENS PRIORS WEIGHTS\n", argv[0], argv[0], argv[0]);
+      "  %s eval TOKENS PRIORS WEIGHTS [CACHE_PAIRS, when enabled]\n", argv[0], argv[0], argv[0]);
   return 2;
 }

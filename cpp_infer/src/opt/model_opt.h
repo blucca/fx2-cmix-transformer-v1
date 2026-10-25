@@ -51,7 +51,7 @@ struct TransformerOpt {
 
   // the 205 post-softcap logits of the last step (valid until the next step)
   const float* last_logits() const;
-#if defined(FX2_DYNAMIC_HEAD) && FX2_DYNAMIC_HEAD
+#if (defined(FX2_DYNAMIC_HEAD) && FX2_DYNAMIC_HEAD) || (defined(FX2_NEURAL_CACHE) && FX2_NEURAL_CACHE)
   // Research-only, final RMS-normalized state; valid until the next step.
   const float* last_hidden() const;
 #endif
