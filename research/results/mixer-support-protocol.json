@@ -1,0 +1,96 @@
+{
+  "schema": "hutter.mixer-support-protocol.v1",
+  "frozen_at": "2026-10-25T07:58:34.004416+08:00",
+  "scope": "v26; first-layer logit information versus local-support interactions; protocol fixed before reading new screening labels or fitting",
+  "screen": [
+    {
+      "sample": "prefix-1m",
+      "offset": 0,
+      "length": 1048576
+    },
+    {
+      "sample": "article-q2-1m",
+      "offset": 293232482,
+      "length": 1048576
+    }
+  ],
+  "training": "128 KiB blocks 0..5 of each screen; exclude vocabulary overrides; warmup 0",
+  "tail_holdout": "blocks 6..7 of each screen, contiguous 256 KiB per screen; never accessed by optimizer",
+  "features": {
+    "scale": "T=log(65535)",
+    "old4": [
+      "1",
+      "z/T",
+      "(logit(neural)-z)/T",
+      "(clamp(preSSE,-T,T)-z)/T"
+    ],
+    "gaps23": "g_j=f32((IEEE-half-decode(first_layer_logit_j)-z)/T)",
+    "independent23": "f32((1-fallback_j)*g_j*2^(-bucket_j/2))",
+    "fallback23": "fallback_j*g_j",
+    "order": [
+      "old4",
+      "gaps23",
+      "independent23",
+      "fallback23"
+    ],
+    "boundaries": "features f32, weights f32, ordered strict-double dot; future integration preserves half roundtrip"
+  },
+  "models": [
+    "logit27",
+    "support73"
+  ],
+  "fit": {
+    "optimizer": "L-BFGS-B, zero initialization",
+    "objective": "sum offset logistic NLL + 32*||w||^2",
+    "ridge_hessian": 64,
+    "bounds": [
+      -16,
+      16
+    ],
+    "maxiter": 64,
+    "maxfun": 96,
+    "ftol": 1e-12,
+    "gtol": 1e-09,
+    "delta_clip": false
+  },
+  "score": "exact original RangeCounter; clamp(lround(65536*sigmoid(z+dot)),1,65535); vocabulary overrides exact base; base must equal original golden coded size",
+  "screen_gate": {
+    "each_tail_saved_bytes_at_least": 0,
+    "combined_tail_bpb_at_least": 0.003,
+    "combined_tail_input_bytes": 524288,
+    "minimum_integer_saved_bytes": 197,
+    "support73_extra_vs_logit27_at_least_bytes": 16,
+    "support_extra_package_reserve_bytes_assumption": 16384,
+    "selection": "support73 if its gate plus incremental reserve pass, else logit27 if its gate passes, else stop fixed mechanism"
+  },
+  "cold_validation": {
+    "only_after_selection_frozen": true,
+    "samples": [
+      {
+        "sample": "article-q1-1m",
+        "offset": 146621076,
+        "length": 1048576
+      },
+      {
+        "sample": "article-q3-1m",
+        "offset": 439844819,
+        "length": 1048576
+      }
+    ],
+    "each_saved_bytes_at_least": 0,
+    "combined_bpb_at_least": 0.003,
+    "support_selected_requires_extra_vs_logit27_positive": true,
+    "no_refit": true,
+    "after_pass": "stop at cold-validated; compare actual code cost and queue continuous 8 MiB separately"
+  },
+  "resources": {
+    "vm": "existing 8 GiB VM; wait for original heavy queues and mixer data-ready",
+    "blas_threads": 1,
+    "fit_cpu_seconds_combined": 1800,
+    "fit_address_space_bytes": 7516192768,
+    "feature_disk_bytes": 4898947072,
+    "feature_cleanup": "after both frozen fits and screen scores; raw traces retained",
+    "deadline": "2026-10-25T14:20:00+08:00"
+  },
+  "interpretation": "This is a fixed-budget fit, not a certified optimum. Screen and cold savings remain replay measurements; full archive S and cash are separate."
+}

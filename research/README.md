@@ -485,4 +485,67 @@ snapshots, early returns, count saturation, half rounding and layout.
 [Local check receipt](results/mixer-support-interface.json).
 Full-model acceptance starts with an original 256 KiB golden-stream match,
 exact base replay and sidecar length; screen acquisition follows that gate.
-The residual fitting protocol and independent validation are subsequent work.
+The residual fitting protocol is now fixed below; full-model traces and scored gains are pending.
+
+
+### Fixed support screen: contiguous tails, then frozen cold validation
+
+The [prespecified protocol](results/mixer-support-protocol.json) compares just
+two nested, frozen offset heads. `logit27` adds the 23 first-layer gaps to the
+same four old-information features. `support73` adds, per mixer, an independent
+context's gap times `2^(-support_bucket/2)` and a separate shared-fallback gap.
+This keeps a fallback's aggregate update count separate from local reliability.
+All gaps come from the sidecar's **half-rounded** logits; the common feature and
+weight boundary is f32, followed by an ordered double-precision dot product.
+
+Each of the two 1 MiB screens uses its first 768 KiB for fitting and its last
+256 KiB as a contiguous holdout. Later training features therefore never absorb
+updates from these holdout labels. Both fits start at zero and use the same
+convex offset-logistic loss, ridge Hessian 64, coefficient box ±16,
+64 L-BFGS-B iterations / 96 function evaluations, and no logit-correction clip.
+Vocabulary overrides keep their exact original frequency and skip fitting.
+
+```sh
+c++ -O3 -ffp-contract=off -std=c++17 research/mixer-support-replay.cpp \
+  -o "$SCRATCH/mixer-replay"
+"$SCRATCH/mixer-replay" --self-test
+# Python fitting uses NumPy and SciPy; BLAS is limited to one thread.
+python3 research/fit-mixer-support.py --self-test
+for name in prefix-1m article-q2-1m; do
+  "$SCRATCH/mixer-replay" --export \
+    "$SCRATCH/runs/mixer-support/v26/$name/trace.bin" \
+    "$SCRATCH/runs/mixer-support/v26/$name/mixer.bin" \
+    "$SCRATCH/$name-features.f32"
+done
+for model in logit27 support73; do
+  python3 research/fit-mixer-support.py \
+    --case "$SCRATCH/runs/mixer-support/v26/prefix-1m/trace.bin" "$SCRATCH/prefix-1m-features.f32" \
+    --case "$SCRATCH/runs/mixer-support/v26/article-q2-1m/trace.bin" "$SCRATCH/article-q2-1m-features.f32" \
+    --model "$model" --out "$SCRATCH/$model-fit"
+done
+"$SCRATCH/mixer-replay" --score BASE_TRACE.bin MIXER_SIDECAR.bin \
+  "$SCRATCH/logit27-fit/weights.f32" "$SCRATCH/support73-fit/weights.f32"
+```
+
+The two held-out tails must each save at least zero exact coded bytes and
+jointly save at least 0.003 bits/input-byte: **197 B across 524,288 input B**.
+Select the support head only if it also saves at least 16 B beyond `logit27`,
+a screening allowance for a provisional 16 KiB incremental package cost.
+Otherwise select `logit27` if it passes, or stop this fixed experiment. Selection
+and both weight files are frozen before collecting q1/q3; these cold spans must
+again be individually nonnegative and jointly reach 0.003 bits/input-byte.
+A selected support head must keep a positive cold increment over `logit27`.
+Actual package cost and continuous-length behavior follow a cold pass.
+
+The feature expansion occupies 4.5625 GiB for both screens, is streamed through
+64K-row batches, and is discarded after freezing/scoring; original traces stay.
+Fit after the heavy encoder exits on an 8 GiB machine, with a combined 30 CPU
+minute fitting cap. Completed fits include iteration, evaluation, convergence
+and elapsed-time receipts. This measures a fixed-budget fit rather than a
+certified capacity optimum.
+
+[Local check receipt](results/mixer-support-fit-check.json): all 65,535 zero-head
+frequencies exactly match base; support/fallback, half decode, overrides and
+current-label independence pass. The 73-dimensional analytic gradient matches
+finite differences. A 65,536-row paired-file smoke check reproduces the f32
+features, exact zero-head range counts and the contiguous tail split.

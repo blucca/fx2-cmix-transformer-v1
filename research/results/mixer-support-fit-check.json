@@ -1,0 +1,25 @@
+{
+  "scope": "Synthetic/integer/gradient checks only; no new enwik9 support-head gain measured",
+  "replay": {
+    "stage": "mixer_support_self_test_passed",
+    "features": 73,
+    "all_zero_frequencies_exact": 65535,
+    "synthetic_saved_bytes": 3824
+  },
+  "gradient_and_rate": {
+    "stage": "mixer_fit_gradient_passed",
+    "dimensions": 73,
+    "synthetic_rows": 262144,
+    "objective_seconds": 0.18249020300572738,
+    "estimated_screen_seconds_per_evaluation": 8.759529744274914
+  },
+  "paired_stream": {
+    "stage": "mixer_paired_stream_smoke_passed",
+    "rows": 65536,
+    "tail_input_bytes": 2048,
+    "shared_feature_bytes": 19136512,
+    "current_labels_do_not_change_features": true,
+    "zero_heads_exact": true,
+    "invalid_pair_and_weight_lengths_rejected": true
+  }
+}
