@@ -1,0 +1,65 @@
+{
+  "experiment": "fixed entropy-constrained CPU QAT preflight",
+  "production_inference": "unchanged",
+  "zero_step": {
+    "learned_tensors": 429,
+    "total_tensors": 434,
+    "quantized_matrices": 111,
+    "quantized_symbols": 5868864,
+    "static15_bytes": 2904325,
+    "identical_to_original_static15": true
+  },
+  "native_decoder_check": {
+    "targets": 65439,
+    "recompiled": "weight decoder only",
+    "neural_objects": "original objects reused",
+    "compared_fields": [
+      "input_bytes",
+      "prior_bytes",
+      "pieces",
+      "piece_bounds",
+      "total",
+      "first_half",
+      "second_half",
+      "samples",
+      "probability_hash",
+      "probability_bytes"
+    ],
+    "exact_match": true
+  },
+  "first_attempt": {
+    "optimizer_updates": 0,
+    "stop": "nonfinite FP32 total gradient norm",
+    "individual_entropy_gradients_finite": true,
+    "peak_scale_gradient": 4.676289254362092e+22
+  },
+  "entropy_implementation_fix": {
+    "objective": "same squared-distance softmax with shared -z^2 cancelled before FP32 evaluation",
+    "stable_logits": "(2*z*center - center^2)/tau",
+    "entropy_gradient_norm": 0.03373323008418083,
+    "all_finite": true,
+    "before_soft_entropy_nats": 15411588.51171875,
+    "after_soft_entropy_nats": 15411497.89453125,
+    "regression_check": "ordinary-coordinate gradient agreement and 6e-15-scale saturated endpoint gradients"
+  },
+  "recipe": {
+    "learning_rate": 5e-05,
+    "adamw_betas": [
+      0.9,
+      0.99
+    ],
+    "weight_decay": 0,
+    "batch_targets_minimum": 32768,
+    "training_pieces": 807,
+    "training_targets": 1044469,
+    "epochs_maximum": 8,
+    "cpu_seconds_maximum": 43200,
+    "address_space_gib": 6,
+    "loss": "CE_mean + 2*H_nats/586459020",
+    "tau": "0.5 * (0.15/0.5)**(epoch/7)"
+  },
+  "continuation_gate": {
+    "double_weight_saved_bytes_minimum": 1500000,
+    "raw_nll_increase_each_maximum": 0.004
+  }
+}

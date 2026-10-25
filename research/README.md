@@ -926,3 +926,12 @@ Clock-heavy records saved 4,596 B and page-heavy records grew 1,516 B, after
 This recipe and its full-tail extension stop. The unchanged-model,
 original-header field-cost observation follows the small [result](results/metadata-coder-screen.json)
 and [mechanism report](metadata-residual.md).
+
+## Fixed entropy-constrained CPU QAT
+
+The [single fixed continuation](entropy-qat.md) adds the packaged weight
+entropy to the original QAT objective. Whole-piece backpropagation uses the
+bounded CPU backend; every epoch exports the real static15 package and runs
+two held-out native scores. The CPU zero-step export reproduces the original
+2,904,325 B weight file byte for byte. Training has a 12 CPU-hour / eight-epoch
+cap, with resumable optimizer checkpoints and the original inference retained.
