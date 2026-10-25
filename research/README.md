@@ -9,6 +9,10 @@ copies in the measured development package. All 434 tensor payloads are identica
 The separate [seven-value weight screen](weights-quant7.md) saves 885,838 B per
 model copy but adds 44,118 B on the verified q2 1 MiB round trip, exceeding its
 1,297-byte payload budget. This fixed mapping stops; the original model stays.
+Protecting 39 recurrent-gate and input/output matrices also fails the fixed
+raw-network gate: regressions are **40.07× and 53.58×** the remaining byte-budget
+proxy on the two 1 MiB samples. The seven-value/GPTQ preparation branch stops;
+[six measured evaluations](results/weights-quant7-protect39.json) preserve the result.
 
 - Transformer champion: `astOwOlfo/fx2-cmix-transformer-v1@83f2603f3f7751da5f429fd32669807eb8510494`.
 - Statistical expert: `blahem/cmix-lex@370e698f7ea62168cc64326ff97950c3dc212691`.

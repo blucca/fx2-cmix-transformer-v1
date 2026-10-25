@@ -85,3 +85,37 @@ g++ -O2 -std=c++17 research/weights-recode.cpp \
 
 Use a fresh output path and the v3-capable loader for the experiment.
 The original model and previous compressed streams stay available.
+
+## Fixed protection of recurrent gates: stop the seven-value branch
+
+A second, predeclared screen protects **39 matrices**: all 36 KDA forget/output
+gate up/down projections, plus embedding, prior embedding and unembedding.
+The remaining **72 matrices** (24 MLP and 48 full-rank attention projections)
+use the same seven-value mapping and BF16 rounding. The recoder option is
+`--quant7-protect39`; default lossless and full-quant7 outputs remain byte-identical
+to the previous files. All 434 decoded tensors match their expected values.
+
+The protected file is **2,128,320 B**. Its two-copy weight saving is 1,604,664 B;
+after the same executable cost and record threshold, the payload budget is
+**558,465 B**, or **998.52 B per MiB** of the prepared stream. This defines the
+raw-network proxy `g = B * 8 * ln(2) / 586459020 = 0.0052804841` nats/token.
+The fixed stop rule is either sample's NLL regression exceeding `2g`.
+
+| Raw NN NLL, nats/token | Original | All seven-value | Protected 39 | Protected regression / g |
+|---|---:|---:|---:|---:|
+| Prefix 1 MiB | 0.4637935360 | 0.8297741349 | 0.6753779435 | **40.07** |
+| Article q2, 1 MiB | 1.1102643653 | 1.5361276057 | 1.3931772905 | **53.58** |
+
+Protecting the small sensitive matrices removes 42.2% and 33.6% of the original
+seven-value regression, respectively. The remaining loss is far above the
+fixed continuation gate. **Stop this seven-value/GPTQ preparation branch.**
+There is no additional coder run, layer search or scale sweep for this mapping.
+
+All six evaluations reuse the exact captured PPMd priors, 205-token vocabulary,
+article/2^17 splits and KVI8 production kernels. Both original-weight evaluations
+reproduce the earlier full probability hashes and all NLL totals exactly. A
+reference relink is byte-identical to the old probe; the candidate changes only
+the v3 weight loader. Recoding, builds and all evaluations take **513.824 CPU
+seconds**; peak evaluator RSS is **94,392 KiB**.
+[Full receipt](results/weights-quant7-protect39.json). Original weights and the
+52,022-byte lossless development-package saving remain available.

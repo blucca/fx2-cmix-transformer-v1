@@ -1,5 +1,5 @@
 // Convert v2 to static-per-tensor INT4 v3, preserving order and (by default) values.
-// --quant7 is an explicit rate/distortion experiment; defaults stay lossless.
+// Explicit quant7 modes are rate/distortion experiments; defaults stay lossless.
 // Reuse the existing decoder and model definitions in this translation unit.
 // Link weights_io.cpp only; weights_io_compressed.cpp is included below.
 #include "../cpp_infer/src/weights_io_compressed.cpp"
@@ -74,9 +74,10 @@ struct Encoder {
 };
 
 int main(int argc, char** argv) {
-  const bool quant7 = argc == 4 && std::string(argv[3]) == "--quant7";
+  const bool protect39 = argc == 4 && std::string(argv[3]) == "--quant7-protect39";
+  const bool quant7 = protect39 || (argc == 4 && std::string(argv[3]) == "--quant7");
   if (argc != 3 && !quant7) {
-    std::cerr << "usage: weights-recode INPUT.tfwc2 OUTPUT.tfwc3 [--quant7]\n"; return 2;
+    std::cerr << "usage: weights-recode INPUT.tfwc2 OUTPUT.tfwc3 [--quant7|--quant7-protect39]\n"; return 2;
   }
   if (std::string(argv[1]) == argv[2]) { std::cerr << "use a separate output file\n"; return 2; }
   std::ifstream in(argv[1], std::ios::binary);
@@ -86,7 +87,7 @@ int main(int argc, char** argv) {
     std::cerr << "input must be FX2TFWC2\n"; return 1;
   }
   const auto before = fx2::WeightsFile::load_compressed(argv[1]);
-  std::unordered_set<std::string> scale_names;
+  std::unordered_set<std::string> weight_names, scale_names;
   if (quant7) {
     const int expected[] = {-3,-3,-2,-2,-1,-1,0,0,0,1,1,2,2,3,3};
     for (int q = -7; q <= 7; ++q) assert(quant7_value(q) == expected[q + 7]);
@@ -98,12 +99,19 @@ int main(int argc, char** argv) {
     for (const auto& [name, tensor] : before.tensors) {
       if (tensor.dtype != fx2::DT_I8) continue;
       assert(tensor.shape.size() == 2 && name.size() > 2 && name.substr(name.size() - 2) == ".q");
+      // One frozen structural group: KDA recurrent gates and small I/O matrices.
+      if (protect39 && (name == "embedding.weight.q" ||
+          name == "prior_embedding.weight.q" || name == "unembedding.weight.q" ||
+          name.find(".attention.forget_gate_projection.") != std::string::npos ||
+          name.find(".attention.output_gate_projection.") != std::string::npos)) continue;
+      weight_names.insert(name);
       const auto scale = name.substr(0, name.size() - 2) + ".scale";
       const auto& s = before.get(scale);
       assert(s.dtype == fx2::DT_BF16 && s.shape == std::vector<uint32_t>{tensor.shape[0]});
       const bool inserted = scale_names.insert(scale).second;
       assert(inserted);
     }
+    assert(weight_names.size() == (protect39 ? 72 : 111));
   }
   fx2::Reader r{data.data() + 8, data.size() - 8, argv[1]};
   const auto nt = r.u32();
@@ -150,7 +158,7 @@ int main(int argc, char** argv) {
       std::vector<uint8_t> symbols(numel);
       for (auto& s : symbols) {
         s = dec.decode_tree(old.int4.data(), 4); assert(s < 15);
-        if (quant7) s = uint8_t(quant7_value(int(s) - 7) + 7);
+        if (weight_names.count(name)) s = uint8_t(quant7_value(int(s) - 7) + 7);
         ++counts[s];
       }
       const auto freq = static15_frequencies(counts);
@@ -190,7 +198,7 @@ int main(int argc, char** argv) {
   for (const auto& [name, tensor] : before.tensors) {
     const auto& other = after.get(name);
     assert(tensor.dtype == other.dtype && tensor.shape == other.shape);
-    if (quant7 && tensor.dtype == fx2::DT_I8) {
+    if (weight_names.count(name)) {
       for (size_t k = 0; k < tensor.numel; ++k)
         assert(other.i8()[k] == quant7_value(tensor.i8()[k]));
     } else if (scale_names.count(name)) {
@@ -200,8 +208,9 @@ int main(int argc, char** argv) {
   }
   assert(scale_tensors == scale_names.size());
   std::cout << "{\"status\":\"passed\",\"tensor_count\":" << nt
-            << ",\"mode\":\"" << (quant7 ? "quant7" : "lossless") << "\""
+            << ",\"mode\":\"" << (protect39 ? "quant7-protect39" : quant7 ? "quant7" : "lossless") << "\""
             << ",\"int4_tensors\":" << int4_tensors << ",\"int4_values\":" << int4_values
+            << ",\"quantized_tensors\":" << weight_names.size()
             << ",\"rescaled_tensors\":" << scale_tensors << ",\"rescaled_values\":" << scale_values
             << ",\"input_bytes\":" << data.size() << ",\"output_bytes\":" << enc.out.size() + 12
             << ",\"saved_bytes\":" << int64_t(data.size()) - int64_t(enc.out.size()) - 12
