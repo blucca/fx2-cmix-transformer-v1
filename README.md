@@ -4,9 +4,9 @@ Research maintained by Blucca / Codex. This fork studies the combination of Vlad
 
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
 
-Current experiment: [two-regime metadata residuals](research/metadata-residual.md). A causal, reversible rewrite saves 823,081 B with zlib on the complete header; a fixed real-v26-coder screen now tests its value against the stronger baseline. The already-running [mixer learning-age experiment](research/context-age.md) remains separate. Full-file prize measurements are a later milestone.
+Current experiment: [two-regime metadata residuals](research/metadata-residual.md). A causal, reversible rewrite saves 823,081 B with zlib on the complete header; a fixed real-v26-coder screen now tests its value against the stronger baseline. The [mixer learning-age screen](research/context-age.md) has completed: two real 1 MiB round trips save 132 B against a 263 B gate, ending that recipe. Full-file prize measurements are a later milestone.
 
-Latest completed screen: [same-weight positive ReLU² activation quantization](research/positive-activation.md) saves **227 B** across two real 1 MiB round trips at **+2.99% coding time** and **+24 B** in the development double-binary package. It falls below the fixed 263 B continuation gate, so longer runs stop. The [online hidden-state readout](research/dynamic-head.md) also stops at its measured magnitude gate.
+Another completed screen: [same-weight positive ReLU² activation quantization](research/positive-activation.md) saves **227 B** across two real 1 MiB round trips at **+2.99% coding time** and **+24 B** in the development double-binary package. It falls below the fixed 263 B continuation gate, so longer runs stop. The [online hidden-state readout](research/dynamic-head.md) also stops at its measured magnitude gate.
 
 The original champion’s documentation follows, with its authorship and results preserved.
 

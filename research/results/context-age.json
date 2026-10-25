@@ -1,0 +1,68 @@
+{
+  "experiment": "context-balanced-learning-age",
+  "protocol": "context-age-protocol.json",
+  "completed_at": "2026-10-25T04:02:57.557532+00:00",
+  "status": "complete",
+  "decision": "stop-fixed-recipe",
+  "candidate_macro": "HUTTER_CONTEXT_AGE=1",
+  "default_disabled": true,
+  "default_off_256k_golden": {
+    "status": "passed",
+    "encoded_bytes": 20954
+  },
+  "candidate_64k_round_trip": "passed",
+  "gate": {
+    "each_saved_bytes_min": 0,
+    "total_saved_bytes_min": 263
+  },
+  "saved_bytes": 132,
+  "all_round_trips_passed": true,
+  "measurements": [
+    {
+      "name": "prefix-1m",
+      "offset": 0,
+      "length": 1048576,
+      "baseline_bytes": 84839,
+      "candidate_bytes": 84796,
+      "saved_bytes": 43,
+      "round_trip": "passed",
+      "encode": {
+        "seconds": 392.186462,
+        "coding_seconds": 345.768848,
+        "cpu_seconds": 390.840767,
+        "max_rss_kib": 7877668
+      },
+      "decode": {
+        "seconds": 398.019843,
+        "coding_seconds": 350.788855,
+        "cpu_seconds": 396.446543,
+        "max_rss_kib": 7893024
+      }
+    },
+    {
+      "name": "article-q2-1m",
+      "offset": 293232482,
+      "length": 1048576,
+      "baseline_bytes": 208696,
+      "candidate_bytes": 208607,
+      "saved_bytes": 89,
+      "round_trip": "passed",
+      "encode": {
+        "seconds": 429.576779,
+        "coding_seconds": 383.176254,
+        "cpu_seconds": 427.281889,
+        "max_rss_kib": 7892056
+      },
+      "decode": {
+        "seconds": 447.014549,
+        "coding_seconds": 399.919337,
+        "cpu_seconds": 444.645049,
+        "max_rss_kib": 7891020
+      }
+    }
+  ],
+  "paired_timing_done": false,
+  "package_delta_measured": false,
+  "long_run_started": false,
+  "pretrained_weights_added_bytes": 0
+}

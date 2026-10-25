@@ -1,8 +1,28 @@
 # Context-balanced learning age
 
-**Fixed real-coder screen running.** This experiment changes the learning
-schedule of the original mixers, with zero added pretrained weights.
-[Protocol](results/context-age-protocol.json) · [Focused checks](results/context-age-check.json)
+**Stopped at the fixed size gate.** The candidate saves 132 B across two
+verified 1 MiB round trips, below the predeclared 263 B continuation threshold.
+This experiment changes the learning schedule of the original mixers, with
+zero added pretrained weights.
+[Results](results/context-age.json) · [Protocol](results/context-age-protocol.json) · [Focused checks](results/context-age-check.json)
+
+## Real-coder result
+
+| Input slice | Original v26 | Context age | Saved | Round trip |
+|---|---:|---:|---:|---|
+| Prefix 1 MiB | 84,839 B | 84,796 B | 43 B | Passed |
+| Middle 1 MiB | 208,696 B | 208,607 B | 89 B | Passed |
+| Total | 293,535 B | 293,403 B | **132 B (0.0450%)** | Both passed |
+
+The disabled 256 KiB stream matches the original 20,954-byte golden exactly;
+the candidate 64 KiB smoke round trip also passes. Candidate encode/decode
+wall times are 392.19 / 398.02 seconds for the prefix and 429.58 / 447.01 seconds
+for the middle slice; peak measured RSS is 7.53 GiB. These are candidate-only
+measurements. Same-host paired timing and package measurements were reserved
+for a passing size screen.
+
+The fixed recipe stops here, before paired timing or a longer run. The
+implementation remains disabled by default.
 
 ## Hypothesis
 
@@ -43,9 +63,9 @@ The small check covers all three thresholds, a late key, the shared fallback,
 one-key equivalence, 64-bit multiplication, early returns and saturation.
 The default-disabled GCC assembly matches the prior implementation after
 excluding the source filename directive. The real default-path golden check
-is part of the running screen.
+also passed.
 
-## Fixed measurement sequence
+## Predeclared measurement sequence
 
 1. Build both variants from the same source and ordinary compiler family.
 2. Disabled 256 KiB encoding must equal the original 20,954-byte stream exactly.
@@ -54,8 +74,9 @@ is part of the running screen.
    zero bytes each and at least 263 bytes together against their original
    84,839 / 208,696-byte references. A larger prefix stream stops the screen.
 
-Only a passing size screen proceeds to a separately approved paired timing,
-packaging and mature-prefix comparison. The current queue stops at this gate.
+The predeclared continuation required a passing size screen before paired
+timing, packaging and mature-prefix comparisons. The measured result stops
+the queue at this gate.
 The original neural weights, PPMd, article order and other research switches
 remain unchanged.
 

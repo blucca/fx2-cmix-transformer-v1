@@ -865,13 +865,15 @@ timing/coder integration. Original base probability fingerprints and NLL sums
 are preserved. [Frozen protocol and measurements](results/dynamic-head-A.json).
 
 
-## Context-balanced learning age: fixed coder screen running
+## Context-balanced learning age: stopped at the size gate
 
 A [default-disabled schedule experiment](context-age.md) replaces the global
 learning age of an independent mixer key with its own exposure count times
 the number of admitted keys. Shared fallback keeps its original schedule.
-The same-source default golden, candidate smoke round trip and fixed two-slice
-size gate precede any further timing or mature-prefix work.
+The default golden and all candidate round trips pass. The two 1 MiB slices
+save 43 / 89 B, totaling **132 B against the fixed 263 B gate**. This recipe
+stops before paired timing, packaging or longer work.
+[Measured results](results/context-age.json).
 
 
 ## Metadata: old page order and a new revision clock
