@@ -44,9 +44,8 @@ struct WeightsFile {
   // parses the whole file; aborts with a message on any format error
   static WeightsFile load(const char* path);
 
-  // parses a losslessly compressed file (magic FX2TFWC1/FX2TFWC2, written by
-  // pysrc/weights_compress.py); yields tensors bit-identical to load() on the
-  // matching uncompressed file (weights_io_compressed.cpp)
+  // Parses FX2TFWC1/2 (pysrc/weights_compress.py) or research FX2TFWC3
+  // (research/weights-recode.cpp), yielding identical tensor bytes.
   static WeightsFile load_compressed(const char* path);
 
   bool has(const std::string& name) const { return tensors.count(name) != 0; }

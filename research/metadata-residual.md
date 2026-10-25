@@ -163,3 +163,41 @@ and C++ implementation retain the original online recipe. The observation used
 10.08 CPU seconds and 227.5 MiB peak RSS. [Small result](results/metadata-dependency-order.json).
 
 [Complete-header C++ check and build sizes](results/metadata-cpp.json).
+
+## Exact original-field costs
+
+The completed observation re-encodes both original 16,384-record slices with
+the existing v26 observer. Both encoded files equal their verified originals
+byte for byte. The exact inclusive range counter reproduces 72,595 / 134,517
+bytes, every observed bit matches its source byte, and field labels cover the
+entire input. [Full field receipts](results/metadata-field-cost.json).
+
+Selected interval costs, in fractional coded-byte equivalents:
+
+| Original field | Page-dominated slice | Clock-dominated slice |
+|---|---:|---:|
+| Old revision | 2,767.7 B | 520.8 B |
+| New timestamp | 3,366.5 B | 21,047.2 B |
+| Same user ID after an already-seen username | **21.3 B** | **21.8 B** |
+| New revision | 6,447.7 B | 43,480.1 B |
+| Old timestamp | 27,952.5 B | 636.1 B |
+
+The repeated-username association covers **114,223 original ID bytes** across
+22,852 records, yet its actual coding cost totals **43.1 B**. That elimination
+route stops. The original old-revision predictor and new-clock rewrite retain
+their failed screen result; this observation starts no new transform or long
+tail run. The two complete observation jobs used 782.1 CPU seconds combined.
+
+For an already golden-verified trace, reproduce attribution with:
+
+```sh
+python3 research/metadata-field-labels.py research/metadata-residual.py \
+  ORIGINAL.bin /YOUR/temp/labels.bin
+c++ -O3 -std=c++17 research/metadata-field-cost.cpp \
+  -o /YOUR/temp/field-cost
+/YOUR/temp/field-cost TRACE.bin ORIGINAL.bin /YOUR/temp/labels.bin GOLDEN_BYTES
+```
+
+Negative log-probability and exact interval costs are both reported. The
+interval columns telescope to the complete coder cost apart from termination;
+individual fields share one range stream and have no separate flush overhead.

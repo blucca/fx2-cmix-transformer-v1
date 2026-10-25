@@ -1,0 +1,391 @@
+{
+  "status": "complete",
+  "input_contract": "Original two 16384-record cold slices; v26 encoded streams equal round-trip-verified originals byte for byte.",
+  "results": [
+    {
+      "status": "complete",
+      "trace_bits": 8199576,
+      "base_coded_bytes": 72595,
+      "bit_input_alignment": true,
+      "field_byte_coverage": true,
+      "total": {
+        "name": "all",
+        "input_bytes": 1024947,
+        "probability_bits": 580758.594043,
+        "interval_bits": 580759.299098,
+        "override_bits": 319148
+      },
+      "fields": [
+        {
+          "name": "format",
+          "input_bytes": 504498,
+          "probability_bits": 14490.9876187,
+          "interval_bits": 14491.3633723,
+          "override_bits": 130211
+        },
+        {
+          "name": "page_delta",
+          "input_bytes": 17923,
+          "probability_bits": 47401.1640246,
+          "interval_bits": 47401.1701393,
+          "override_bits": 1758
+        },
+        {
+          "name": "old_revision",
+          "input_bytes": 115296,
+          "probability_bits": 22141.540054,
+          "interval_bits": 22141.6787442,
+          "override_bits": 31140
+        },
+        {
+          "name": "new_revision",
+          "input_bytes": 15776,
+          "probability_bits": 51581.639963,
+          "interval_bits": 51581.6427646,
+          "override_bits": 5512
+        },
+        {
+          "name": "old_timestamp",
+          "input_bytes": 154501,
+          "probability_bits": 223620.300939,
+          "interval_bits": 223620.385632,
+          "override_bits": 50126
+        },
+        {
+          "name": "new_timestamp",
+          "input_bytes": 20765,
+          "probability_bits": 26931.9452515,
+          "interval_bits": 26931.9530938,
+          "override_bits": 6688
+        },
+        {
+          "name": "username_first",
+          "input_bytes": 15938,
+          "probability_bits": 67430.7303085,
+          "interval_bits": 67430.7124523,
+          "override_bits": 8954
+        },
+        {
+          "name": "username_repeat",
+          "input_bytes": 97591,
+          "probability_bits": 74432.4021461,
+          "interval_bits": 74432.4590649,
+          "override_bits": 57311
+        },
+        {
+          "name": "user_id_first",
+          "input_bytes": 10164,
+          "probability_bits": 35379.8389649,
+          "interval_bits": 35379.8372986,
+          "override_bits": 3598
+        },
+        {
+          "name": "user_id_repeat",
+          "input_bytes": 60988,
+          "probability_bits": 184.293200072,
+          "interval_bits": 184.342061395,
+          "override_bits": 21318
+        },
+        {
+          "name": "ip",
+          "input_bytes": 11507,
+          "probability_bits": 17163.7515791,
+          "interval_bits": 17163.7544745,
+          "override_bits": 2532
+        }
+      ],
+      "user_id_by_username_history": [
+        {
+          "name": "new_username",
+          "input_bytes": 10169,
+          "probability_bits": 35394.0866381,
+          "interval_bits": 35394.0849721,
+          "override_bits": 3598
+        },
+        {
+          "name": "seen_username_same_id",
+          "input_bytes": 60983,
+          "probability_bits": 170.045526877,
+          "interval_bits": 170.094387913,
+          "override_bits": 21318
+        },
+        {
+          "name": "seen_username_changed_id",
+          "input_bytes": 0,
+          "probability_bits": 0,
+          "interval_bits": 0,
+          "override_bits": 0
+        }
+      ],
+      "case": "page-last-16384",
+      "original_bytes": 1024947,
+      "observer_golden_byte_equal": true,
+      "labels": {
+        "records": 16384,
+        "input_bytes": 1024947,
+        "names": [
+          "format",
+          "page_delta",
+          "old_revision",
+          "new_revision",
+          "old_timestamp",
+          "new_timestamp",
+          "username_first",
+          "username_repeat",
+          "user_id_first",
+          "user_id_repeat",
+          "ip"
+        ],
+        "field_occurrences": [
+          0,
+          16384,
+          14412,
+          1972,
+          14412,
+          1972,
+          1967,
+          13542,
+          1966,
+          13543,
+          875
+        ],
+        "field_bytes": [
+          504498,
+          17923,
+          115296,
+          15776,
+          154501,
+          20765,
+          15938,
+          97591,
+          10164,
+          60988,
+          11507
+        ],
+        "association_names": [
+          "outside_user_id",
+          "new_username",
+          "seen_username_same_id",
+          "seen_username_changed_id"
+        ],
+        "association_records": [
+          0,
+          1967,
+          13542,
+          0
+        ],
+        "unique_usernames": 1967,
+        "unique_user_ids": 1966,
+        "labels_cover_every_input_byte": true,
+        "repeat_definition": "same raw username / same integer user-ID seen earlier in this cold slice"
+      },
+      "encode": {
+        "mode": "encode",
+        "offset": 0,
+        "input_bytes": 1024947,
+        "output_bytes": 72595,
+        "seconds": 377.877663,
+        "coding_seconds": 332.376451,
+        "cpu_seconds": 377.405223,
+        "max_rss_kib": 7580044
+      },
+      "observer_origin": "v26-mixer observer, extra sidecars disabled",
+      "extra_sidecars_enabled": false,
+      "cpu_seconds": 379.08828800000003,
+      "elapsed_seconds": 381.1399097442627
+    },
+    {
+      "status": "complete",
+      "trace_bits": 8619648,
+      "base_coded_bytes": 134517,
+      "bit_input_alignment": true,
+      "field_byte_coverage": true,
+      "total": {
+        "name": "all",
+        "input_bytes": 1077456,
+        "probability_bits": 1076127.46637,
+        "interval_bits": 1076128.63552,
+        "override_bits": 337330
+      },
+      "fields": [
+        {
+          "name": "format",
+          "input_bytes": 494754,
+          "probability_bits": 38307.7531102,
+          "interval_bits": 38308.3102774,
+          "override_bits": 127736
+        },
+        {
+          "name": "page_delta",
+          "input_bytes": 65534,
+          "probability_bits": 167575.205215,
+          "interval_bits": 167575.230635,
+          "override_bits": 14902
+        },
+        {
+          "name": "old_revision",
+          "input_bytes": 1800,
+          "probability_bits": 4166.4270521,
+          "interval_bits": 4166.42856662,
+          "override_bits": 604
+        },
+        {
+          "name": "new_revision",
+          "input_bytes": 129272,
+          "probability_bits": 347840.94162,
+          "interval_bits": 347840.990149,
+          "override_bits": 44890
+        },
+        {
+          "name": "old_timestamp",
+          "input_bytes": 2386,
+          "probability_bits": 5089.0048635,
+          "interval_bits": 5089.00588302,
+          "override_bits": 771
+        },
+        {
+          "name": "new_timestamp",
+          "input_bytes": 160092,
+          "probability_bits": 168377.477782,
+          "interval_bits": 168377.574397,
+          "override_bits": 50815
+        },
+        {
+          "name": "username_first",
+          "input_bytes": 31049,
+          "probability_bits": 129016.729922,
+          "interval_bits": 129016.719935,
+          "override_bits": 16821
+        },
+        {
+          "name": "username_repeat",
+          "input_bytes": 73637,
+          "probability_bits": 53656.3227192,
+          "interval_bits": 53656.7210153,
+          "override_bits": 43475
+        },
+        {
+          "name": "user_id_first",
+          "input_bytes": 20953,
+          "probability_bits": 71576.7735044,
+          "interval_bits": 71576.7789019,
+          "override_bits": 8202
+        },
+        {
+          "name": "user_id_repeat",
+          "input_bytes": 53240,
+          "probability_bits": 174.734997027,
+          "interval_bits": 174.768517463,
+          "override_bits": 19060
+        },
+        {
+          "name": "ip",
+          "input_bytes": 44739,
+          "probability_bits": 90346.095619,
+          "interval_bits": 90346.1072437,
+          "override_bits": 10054
+        }
+      ],
+      "user_id_by_username_history": [
+        {
+          "name": "new_username",
+          "input_bytes": 20953,
+          "probability_bits": 71576.7735044,
+          "interval_bits": 71576.7789019,
+          "override_bits": 8202
+        },
+        {
+          "name": "seen_username_same_id",
+          "input_bytes": 53240,
+          "probability_bits": 174.734997027,
+          "interval_bits": 174.768517463,
+          "override_bits": 19060
+        },
+        {
+          "name": "seen_username_changed_id",
+          "input_bytes": 0,
+          "probability_bits": 0,
+          "interval_bits": 0,
+          "override_bits": 0
+        }
+      ],
+      "case": "clock-first-16384",
+      "original_bytes": 1077456,
+      "observer_golden_byte_equal": true,
+      "labels": {
+        "records": 16384,
+        "input_bytes": 1077456,
+        "names": [
+          "format",
+          "page_delta",
+          "old_revision",
+          "new_revision",
+          "old_timestamp",
+          "new_timestamp",
+          "username_first",
+          "username_repeat",
+          "user_id_first",
+          "user_id_repeat",
+          "ip"
+        ],
+        "field_occurrences": [
+          0,
+          16384,
+          225,
+          16159,
+          225,
+          16159,
+          3628,
+          9310,
+          3628,
+          9310,
+          3446
+        ],
+        "field_bytes": [
+          494754,
+          65534,
+          1800,
+          129272,
+          2386,
+          160092,
+          31049,
+          73637,
+          20953,
+          53240,
+          44739
+        ],
+        "association_names": [
+          "outside_user_id",
+          "new_username",
+          "seen_username_same_id",
+          "seen_username_changed_id"
+        ],
+        "association_records": [
+          0,
+          3628,
+          9310,
+          0
+        ],
+        "unique_usernames": 3628,
+        "unique_user_ids": 3628,
+        "labels_cover_every_input_byte": true,
+        "repeat_definition": "same raw username / same integer user-ID seen earlier in this cold slice"
+      },
+      "encode": {
+        "mode": "encode",
+        "offset": 0,
+        "input_bytes": 1077456,
+        "output_bytes": 134517,
+        "seconds": 401.887355,
+        "coding_seconds": 355.761444,
+        "cpu_seconds": 401.362521,
+        "max_rss_kib": 7712340
+      },
+      "observer_origin": "v26-mixer observer, extra sidecars disabled",
+      "extra_sidecars_enabled": false,
+      "cpu_seconds": 403.030929,
+      "elapsed_seconds": 405.28900384902954
+    }
+  ],
+  "cpu_seconds": 782.119217
+}

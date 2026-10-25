@@ -1,0 +1,37 @@
+{
+  "status": "passed",
+  "recode": {
+    "status": "passed",
+    "tensor_count": 434,
+    "int4_tensors": 111,
+    "int4_values": 5868864,
+    "input_bytes": 2930652,
+    "output_bytes": 2904325,
+    "saved_bytes": 26327,
+    "all_tensor_bytes_equal": true,
+    "elapsed_seconds": 3.333027009968646,
+    "cpu_seconds": 3.291121,
+    "max_rss_kib": 189192
+  },
+  "development_packaging": {
+    "status": "passed",
+    "reference_relink_byte_equal": true,
+    "reference_binary_bytes": 509920,
+    "candidate_binary_bytes": 509920,
+    "reference_object_bytes": 37088,
+    "candidate_object_bytes": 37816,
+    "cpu_seconds": 0.6136959999999999,
+    "elapsed_seconds": 1.734708056999807,
+    "max_rss_kib": 120552,
+    "base_build": "v26 non-PGO Clang17 portable AVX2",
+    "reference_packed_binary_bytes": 202304,
+    "candidate_packed_binary_bytes": 202620,
+    "upx": "5.2.1 -9",
+    "reference_matches_previous_development_binary": true,
+    "packing_elapsed_seconds": 0.3501800039666705,
+    "double_binary_added_bytes": 632,
+    "double_weights_saved_bytes": 52654,
+    "net_development_package_saved_bytes": 52022
+  },
+  "scope": "Lossless weight component. Full enwik9 S and prize qualification are separate measurements."
+}

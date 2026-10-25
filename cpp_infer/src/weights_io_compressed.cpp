@@ -12,6 +12,11 @@
 // __nv_sinf/__nv_cosf; DT_I8 uses an adaptive 15-symbol tree, DT_BF16 hi/lo
 // byte models, DT_F32/DT_I32 per-byte-plane models, names an order-2
 // character model and metadata an order-1 byte model.
+//
+// Research format v3, magic FX2TFWC3: v2 with ENC_INT4_STATIC15. Each INT4
+// tensor carries 14 uint16 frequencies through the metadata model; the last
+// frequency is implied by total 4096. Tensor values and other encodings stay
+// unchanged. research/weights-recode.cpp converts an existing v2 stream.
 
 #include "weights_io.h"
 
@@ -125,6 +130,7 @@ enum : uint8_t {
   ENC_PLANE4 = 3,
   ENC_ROPE_SIN = 4,
   ENC_ROPE_COS = 5,
+  ENC_INT4_STATIC15 = 6,
 };
 
 // --- bit-exact host port of CUDA libdevice __nv_sinf/__nv_cosf --------------
@@ -230,6 +236,20 @@ struct BinDecoder {
     for (int i = 0; i < 4; i++) code = (code << 8) | byte();
   }
   uint8_t byte() { return p < end ? *p++ : 0; }
+  uint32_t decode_static15(const uint16_t* freq) {
+    const uint32_t unit = range >> 12;
+    const uint32_t value = code / unit;
+    uint32_t symbol = 0, cum = 0;
+    while (symbol < 14 && value >= cum + freq[symbol]) cum += freq[symbol++];
+    if (value >= cum + freq[symbol]) die("invalid static15 range code");
+    code -= unit * cum;
+    range = unit * freq[symbol];
+    while (range < (1u << 24)) {
+      code = (code << 8) | byte();
+      range <<= 8;
+    }
+    return symbol;
+  }
   int decode_bit(uint16_t* prob) {
     uint32_t bound = (range >> 11) * *prob;
     int bit;
@@ -321,6 +341,23 @@ WeightsFile load_v2(Reader& r, const char* path) {
     uint8_t encoding = get_meta();
 
     switch (encoding) {
+      case ENC_INT4_STATIC15: {
+        if (t.dtype != DT_I8) die("%s: %s: static15 on dtype %u", path,
+                                  name.c_str(), unsigned(t.dtype));
+        uint16_t freq[15];
+        uint32_t total = 0;
+        for (int s = 0; s < 14; ++s) {
+          freq[s] = get_meta();
+          freq[s] |= uint16_t(get_meta()) << 8;
+          total += freq[s];
+          if (!freq[s] || total >= 4096) die("invalid static15 frequencies");
+        }
+        freq[14] = uint16_t(4096 - total);
+        auto* out = reinterpret_cast<int8_t*>(t.data.data());
+        for (size_t k = 0; k < numel; ++k)
+          out[k] = int8_t(int(dec.decode_static15(freq)) - 7);
+        break;
+      }
       case ENC_INT4: {
         if (t.dtype != DT_I8) die("%s: %s: ENC_INT4 on dtype %u", path,
                                   name.c_str(), unsigned(t.dtype));
@@ -399,7 +436,8 @@ WeightsFile WeightsFile::load_compressed(const char* path) {
   Reader r{buf.data(), buf.size(), path};
   char magic[8];
   r.read(magic, 8);
-  if (std::memcmp(magic, "FX2TFWC2", 8) == 0) return load_v2(r, path);
+  if (std::memcmp(magic, "FX2TFWC2", 8) == 0 ||
+      std::memcmp(magic, "FX2TFWC3", 8) == 0) return load_v2(r, path);
   if (std::memcmp(magic, "FX2TFWC1", 8) != 0) die("%s: bad magic", path);
 
   uint32_t n_tensors = r.u32();
