@@ -75,3 +75,9 @@ The recoder reloads both files and compares every tensor before reporting
 success. Keep assertions enabled for this research check. The existing
 Python v2 writer and default model path stay unchanged; use the new C++
 loader with an explicitly selected v3 file.
+
+## Opt-in model-size experiment
+
+The separate [seven-value rate/distortion screen](weights-quant7.md) adds an
+explicit `--quant7` recoder mode. Its tensor values change; the default mode
+and all lossless results above stay unchanged.

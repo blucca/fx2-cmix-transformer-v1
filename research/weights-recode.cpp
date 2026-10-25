@@ -1,4 +1,5 @@
-// Convert the original v2 file to static-per-tensor INT4 v3, preserving order.
+// Convert v2 to static-per-tensor INT4 v3, preserving order and (by default) values.
+// --quant7 is an explicit rate/distortion experiment; defaults stay lossless.
 // Reuse the existing decoder and model definitions in this translation unit.
 // Link weights_io.cpp only; weights_io_compressed.cpp is included below.
 #include "../cpp_infer/src/weights_io_compressed.cpp"
@@ -7,6 +8,29 @@
 #include <fstream>
 #include <iostream>
 #include <iterator>
+#include <unordered_set>
+
+int8_t quant7_value(int q) {
+  assert(q >= -7 && q <= 7);
+  const int magnitude = (3 * std::abs(q) + 3) / 7;
+  return int8_t(q < 0 ? -magnitude : magnitude);
+}
+
+uint16_t quant7_scale(uint16_t bits) {
+  // ponytail: this experiment accepts the model's finite, nonzero normal BF16 scales.
+  // Multiply the exact significand by 7/3 and round ties to even in integers.
+  unsigned exponent = (bits >> 7) & 255;
+  assert(exponent > 0 && exponent < 255);
+  const unsigned numerator = 7 * (128 + (bits & 127));
+  unsigned denominator = 6;
+  ++exponent;
+  if (numerator >= 256 * denominator) { denominator = 12; ++exponent; }
+  unsigned q = numerator / denominator, remainder = numerator % denominator;
+  q += 2 * remainder > denominator || (2 * remainder == denominator && (q & 1));
+  if (q == 256) { q = 128; ++exponent; }
+  assert(exponent < 255);
+  return uint16_t((bits & 0x8000) | (exponent << 7) | (q - 128));
+}
 
 struct Encoder {
   uint64_t low = 0;
@@ -50,13 +74,36 @@ struct Encoder {
 };
 
 int main(int argc, char** argv) {
-  if (argc != 3) { std::cerr << "usage: weights-recode INPUT.tfwc2 OUTPUT.tfwc3\n"; return 2; }
+  const bool quant7 = argc == 4 && std::string(argv[3]) == "--quant7";
+  if (argc != 3 && !quant7) {
+    std::cerr << "usage: weights-recode INPUT.tfwc2 OUTPUT.tfwc3 [--quant7]\n"; return 2;
+  }
   if (std::string(argv[1]) == argv[2]) { std::cerr << "use a separate output file\n"; return 2; }
   std::ifstream in(argv[1], std::ios::binary);
   if (!in) { std::cerr << "cannot open input\n"; return 1; }
   const std::vector<uint8_t> data((std::istreambuf_iterator<char>(in)), {});
   if (data.size() < 12 || std::memcmp(data.data(), "FX2TFWC2", 8)) {
     std::cerr << "input must be FX2TFWC2\n"; return 1;
+  }
+  const auto before = fx2::WeightsFile::load_compressed(argv[1]);
+  std::unordered_set<std::string> scale_names;
+  if (quant7) {
+    const int expected[] = {-3,-3,-2,-2,-1,-1,0,0,0,1,1,2,2,3,3};
+    for (int q = -7; q <= 7; ++q) assert(quant7_value(q) == expected[q + 7]);
+    assert(quant7_scale(0x3f80) == 0x4015);  // 1 * 7/3
+    assert(quant7_scale(0x3f81) == 0x4016);  // exact tie, round down to even
+    assert(quant7_scale(0x3f87) == 0x401e);  // exact tie, round up to even
+    assert(quant7_scale(0x3fdb) == 0x4080);  // rounded exponent boundary
+    assert(quant7_scale(0xbf81) == 0xc016);  // retain learned negative scales
+    for (const auto& [name, tensor] : before.tensors) {
+      if (tensor.dtype != fx2::DT_I8) continue;
+      assert(tensor.shape.size() == 2 && name.size() > 2 && name.substr(name.size() - 2) == ".q");
+      const auto scale = name.substr(0, name.size() - 2) + ".scale";
+      const auto& s = before.get(scale);
+      assert(s.dtype == fx2::DT_BF16 && s.shape == std::vector<uint32_t>{tensor.shape[0]});
+      const bool inserted = scale_names.insert(scale).second;
+      assert(inserted);
+    }
   }
   fx2::Reader r{data.data() + 8, data.size() - 8, argv[1]};
   const auto nt = r.u32();
@@ -75,13 +122,15 @@ int main(int argc, char** argv) {
   auto copy_tree = [&](uint16_t* a, uint16_t* b, unsigned bits) {
     const auto v = dec.decode_tree(a, bits); enc.tree(b, bits, v); return v;
   };
-  size_t int4_tensors = 0, int4_values = 0;
+  size_t int4_tensors = 0, int4_values = 0, scale_tensors = 0, scale_values = 0;
   for (uint32_t i = 0; i < nt; ++i) {
     const auto name_len = copy_meta();
+    std::string name;
     uint32_t c2 = 0, c1 = 0;
     for (uint32_t k = 0; k < name_len; ++k) {
       const auto context = size_t((c2 << 8) | c1) * 256;
       const auto ch = copy_tree(&old.name[context], &next.name[context], 8);
+      name.push_back(char(ch));
       c2 = c1; c1 = ch;
     }
     const auto dtype = copy_meta(), ndim = copy_meta();
@@ -99,7 +148,11 @@ int main(int argc, char** argv) {
       assert(dtype == fx2::DT_I8 && numel > 0);
       Counts counts{};
       std::vector<uint8_t> symbols(numel);
-      for (auto& s : symbols) { s = dec.decode_tree(old.int4.data(), 4); assert(s < 15); ++counts[s]; }
+      for (auto& s : symbols) {
+        s = dec.decode_tree(old.int4.data(), 4); assert(s < 15);
+        if (quant7) s = uint8_t(quant7_value(int(s) - 7) + 7);
+        ++counts[s];
+      }
       const auto freq = static15_frequencies(counts);
       Counts cum{};
       for (int s = 1; s < 15; ++s) cum[s] = cum[s - 1] + freq[s - 1];
@@ -107,10 +160,15 @@ int main(int argc, char** argv) {
       for (auto s : symbols) enc.static15(cum[s], freq[s]);
       ++int4_tensors; int4_values += numel;
     } else if (encoding == fx2::ENC_BF16) {
+      const bool rescale = scale_names.count(name);
       for (size_t k = 0; k < numel; ++k) {
-        const auto hi = copy_tree(old.bf16_hi.data(), next.bf16_hi.data(), 8);
-        copy_tree(&old.bf16_lo[hi * 256], &next.bf16_lo[hi * 256], 8);
+        const auto hi = dec.decode_tree(old.bf16_hi.data(), 8);
+        const auto lo = dec.decode_tree(&old.bf16_lo[hi * 256], 8);
+        const uint16_t value = rescale ? quant7_scale((hi << 8) | lo) : (hi << 8) | lo;
+        enc.tree(next.bf16_hi.data(), 8, value >> 8);
+        enc.tree(&next.bf16_lo[(value >> 8) * 256], 8, value & 255);
       }
+      if (rescale) { ++scale_tensors; scale_values += numel; }
     } else if (encoding == fx2::ENC_PLANE4) {
       for (size_t k = 0; k < bytes; ++k)
         copy_tree(&old.plane[(k & 3) * 256], &next.plane[(k & 3) * 256], 8);
@@ -127,16 +185,26 @@ int main(int argc, char** argv) {
   out.write(reinterpret_cast<const char*>(enc.out.data()), enc.out.size());
   out.close();
   if (!out) { std::cerr << "output write failed\n"; return 1; }
-  const auto before = fx2::WeightsFile::load_compressed(argv[1]);
   const auto after = fx2::WeightsFile::load_compressed(argv[2]);
   assert(before.tensors.size() == after.tensors.size());
   for (const auto& [name, tensor] : before.tensors) {
     const auto& other = after.get(name);
-    assert(tensor.dtype == other.dtype && tensor.shape == other.shape && tensor.data == other.data);
+    assert(tensor.dtype == other.dtype && tensor.shape == other.shape);
+    if (quant7 && tensor.dtype == fx2::DT_I8) {
+      for (size_t k = 0; k < tensor.numel; ++k)
+        assert(other.i8()[k] == quant7_value(tensor.i8()[k]));
+    } else if (scale_names.count(name)) {
+      for (size_t k = 0; k < tensor.numel; ++k)
+        assert(other.bf16_bits()[k] == quant7_scale(tensor.bf16_bits()[k]));
+    } else assert(tensor.data == other.data);
   }
+  assert(scale_tensors == scale_names.size());
   std::cout << "{\"status\":\"passed\",\"tensor_count\":" << nt
+            << ",\"mode\":\"" << (quant7 ? "quant7" : "lossless") << "\""
             << ",\"int4_tensors\":" << int4_tensors << ",\"int4_values\":" << int4_values
+            << ",\"rescaled_tensors\":" << scale_tensors << ",\"rescaled_values\":" << scale_values
             << ",\"input_bytes\":" << data.size() << ",\"output_bytes\":" << enc.out.size() + 12
             << ",\"saved_bytes\":" << int64_t(data.size()) - int64_t(enc.out.size()) - 12
-            << ",\"all_tensor_bytes_equal\":true}\n";
+            << ",\"all_tensor_bytes_equal\":" << (quant7 ? "false" : "true")
+            << ",\"expected_tensor_bytes_equal\":true,\"other_tensor_bytes_equal\":true}\n";
 }

@@ -6,6 +6,9 @@
 saves 26,327 B per weight file and **52,022 B** across the two weight/executable
 copies in the measured development package. All 434 tensor payloads are identical.
 
+The separate [seven-value weight screen](weights-quant7.md) has a verified
+2,044,814-byte model file; its fixed real-coder rate/distortion gate is in progress.
+
 - Transformer champion: `astOwOlfo/fx2-cmix-transformer-v1@83f2603f3f7751da5f429fd32669807eb8510494`.
 - Statistical expert: `blahem/cmix-lex@370e698f7ea62168cc64326ff97950c3dc212691`.
 - Exact enwik9: 1,000,000,000 bytes, MD5 `e206c3450ac99950df65bf70ef61a12d`.

@@ -1,0 +1,47 @@
+{
+  "transformation": {
+    "status": "passed",
+    "tensor_count": 434,
+    "mode": "quant7",
+    "int4_tensors": 111,
+    "int4_values": 5868864,
+    "rescaled_tensors": 111,
+    "rescaled_values": 25946,
+    "input_bytes": 2930652,
+    "output_bytes": 2044814,
+    "saved_bytes": 885838,
+    "all_tensor_bytes_equal": false,
+    "expected_tensor_bytes_equal": true,
+    "other_tensor_bytes_equal": true
+  },
+  "row_scale_census": {
+    "values": 25946,
+    "negative": 16,
+    "zero": 0,
+    "subnormal": 0,
+    "nonfinite": 0,
+    "min_abs_bits": 10201,
+    "max_abs_bits": 15940
+  },
+  "budget": {
+    "weight_saving_two_copies_bytes": 1771676,
+    "development_binary_increase_vs_v22_bytes": 41952,
+    "required_record_improvement_bytes": 1004247,
+    "payload_regression_budget_bytes": 725477,
+    "prepared_stream_bytes": 586459020,
+    "q2_length_bytes": 1048576,
+    "q2_v26_golden_bytes": 208696,
+    "allowed_regression_bytes_per_mib": 1297.1371311707337,
+    "v26_payload_improvement_assumed_bytes": 0,
+    "final_dict_order_pgo_changes": "pending full package"
+  },
+  "default_lossless_file_byte_equal": true,
+  "payload_status": "running",
+  "sample": {
+    "name": "article-q2-1m",
+    "offset": 293232482,
+    "length": 1048576
+  },
+  "cpu_budget_seconds": 1200,
+  "runtime_decoder_change": "none beyond the previously measured v3 loader"
+}
