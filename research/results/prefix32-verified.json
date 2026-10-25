@@ -1,0 +1,121 @@
+{
+  "schema": "hutter.prefix32-verified.v1",
+  "sample": {
+    "name": "prefix-32m",
+    "offset": 0,
+    "length": 33554432
+  },
+  "trials": {
+    "baseline": {
+      "identity": {
+        "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+        "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+        "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+        "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+        "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+        "sample": {
+          "name": "prefix-32m",
+          "offset": 0,
+          "length": 33554432
+        },
+        "variant": "baseline"
+      },
+      "status": "passed",
+      "started_at": 1792882298.3710487,
+      "encode": {
+        "mode": "encode",
+        "offset": 0,
+        "input_bytes": 33554432,
+        "output_bytes": 5703804,
+        "seconds": 8992.896921,
+        "coding_seconds": 8953.913958,
+        "max_rss_kib": 6484164
+      },
+      "encoded_bytes": 5703804,
+      "encode_completed_at": 1792891291.9622176,
+      "decode": {
+        "mode": "decode",
+        "offset": 0,
+        "input_bytes": 33554432,
+        "output_bytes": 33554432,
+        "seconds": 9092.429171,
+        "coding_seconds": 9070.195118,
+        "max_rss_kib": 6471444
+      },
+      "bits_per_stream_byte": 1.3598928451538086,
+      "original_slice_sha256": "0a7b215847202fb75437e66b2cc0080ca3149fe4cace6fe6b8bc88a139b8af86",
+      "restored_slice_sha256": "0a7b215847202fb75437e66b2cc0080ca3149fe4cace6fe6b8bc88a139b8af86",
+      "elapsed_seconds": 18087.164955615997,
+      "active_seconds": 18085.326092
+    },
+    "v26": {
+      "identity": {
+        "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+        "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+        "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+        "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+        "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+        "sample": {
+          "name": "prefix-32m",
+          "offset": 0,
+          "length": 33554432
+        },
+        "variant": "v26"
+      },
+      "status": "passed",
+      "started_at": 1792852129.5151355,
+      "encode": {
+        "mode": "encode",
+        "offset": 0,
+        "input_bytes": 33554432,
+        "output_bytes": 5696316,
+        "seconds": 15414.95654,
+        "coding_seconds": 15334.592843,
+        "max_rss_kib": 7881448
+      },
+      "encoded_bytes": 5696316,
+      "encode_completed_at": 1792867547.7613795,
+      "decode": {
+        "mode": "decode",
+        "offset": 0,
+        "input_bytes": 33554432,
+        "output_bytes": 33554432,
+        "seconds": 13464.82082,
+        "coding_seconds": 13392.444295,
+        "max_rss_kib": 7839360
+      },
+      "bits_per_stream_byte": 1.358107566833496,
+      "original_slice_sha256": "0a7b215847202fb75437e66b2cc0080ca3149fe4cace6fe6b8bc88a139b8af86",
+      "restored_slice_sha256": "0a7b215847202fb75437e66b2cc0080ca3149fe4cace6fe6b8bc88a139b8af86",
+      "elapsed_seconds": 43381.0694797039,
+      "active_seconds": 28879.77736
+    }
+  },
+  "saved_bytes": 7488,
+  "saved_bits_per_input_byte": 0.0017852783203125,
+  "saved_percent_of_baseline": 0.13128080838682396,
+  "verified": true,
+  "timing": {
+    "same_machine": false,
+    "interpretation": "Independent machine measurements; phase times are reported separately. No cross-machine speed ratio is computed.",
+    "active_seconds": {
+      "baseline": 18085.326092,
+      "v26": 28879.77736
+    },
+    "coding_seconds": {
+      "baseline": 18024.109076,
+      "v26": 28727.037138
+    }
+  },
+  "growth_from_prefix8": {
+    "earlier_receipt": "initial-prefix-8m.json",
+    "earlier_input_bytes": 8388608,
+    "earlier_saved_bytes": 3698,
+    "additional_input_bytes": 25165824,
+    "additional_saved_bytes": 3790,
+    "incremental_saved_bits_per_input_byte": 0.0012048085530598958
+  },
+  "inflight_curve": "prefix32-inflight.json",
+  "decision": "stop-automatic-64m-full-expansion",
+  "reconsider_when": "Independent long-span or combined-model gains justify the additional run."
+}

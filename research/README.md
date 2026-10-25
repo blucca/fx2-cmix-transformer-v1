@@ -84,17 +84,33 @@ savings grew from 149 to 3,698 B across those prefix lengths, a further
 complete archive, its runtime, and the 1% prize gate remain unmeasured.
 The next scale check retains these binaries and changes only prefix length.
 
-### 32 MiB run: in-flight prefix curve
+### 32 MiB prefix: both lossless round trips verified
 
-The already-running 32 MiB pair exposes cumulative emitted coder bytes every
-256 KiB. At the 2026-10-25 snapshot, common 8 / 16 / 24 / 28 MiB prefixes
-save **3,698 / 4,451 / 5,695 / 6,590 B**. The 8→28 MiB increment is just
-**2,892 B across 20 MiB**, or **0.001103 bits/input-byte**; relative gain drops
-from 0.345% at 8 MiB to 0.136% at 28 MiB. These are RAM-buffer counts before
-final coder flush; the complete 32 MiB encode/decode comparison is pending.
-[Snapshot and full common-prefix curve](results/prefix32-inflight.json).
-Complete the existing runs; defer automatic 64 MiB/full-data expansion until
-independent long-span or combined-model gains justify it.
+Both unchanged binaries completed real encoding and decoding of the same
+33,554,432-byte prefix. Input, vocabulary, dictionary and weight identities
+agree, and both restored slices match the original. [Complete receipts](results/prefix32-verified.json).
+
+| Prepared input | Baseline | v26 | Saved |
+|---|---:|---:|---:|
+| Prefix, 32 MiB | 5,703,804 B | 5,696,316 B | **7,488 B (0.1313%)** |
+
+The payload gain is **0.0017853 bits/input-byte**. These runs used different
+machines; their measured phase times are reported separately:
+
+| Variant | Encode wall seconds | Decode wall seconds | Combined coding seconds |
+|---|---:|---:|---:|
+| Baseline | 8,992.897 | 9,092.429 | 18,024.109 |
+| v26 | 15,414.957 | 13,464.821 | 28,727.037 |
+
+The **8→32 MiB increment is 3,790 B across 24 MiB**, or **0.001205
+bits/input-byte**. Relative savings fall from 0.3449% at 8 MiB to 0.1313%
+at 32 MiB. The earlier in-flight emitted-byte curve at common 8 / 16 / 24 /
+28 MiB prefixes saved 3,698 / 4,451 / 5,695 / 6,590 B; its pre-flush
+[snapshot remains available](results/prefix32-inflight.json).
+
+**Stop automatic 64 MiB/full-data expansion.** Reconsider after independent
+long-span or combined-model gains justify it. Complete archive size and the
+full-file prize gate remain separate measurements.
 
 ### Executable byte budget
 
