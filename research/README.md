@@ -417,11 +417,35 @@ golden files; each base replay size is exact.
 
 Both heads improve both cold spans and beat the old-information control.
 The magnitude falls below the prespecified 0.003 bits/input-byte cold gate.
-The original continuous 8 MiB experiment remains active under its previously
-fixed alternative gate: at least 0.003 bits/input-byte and positive last-4MiB
-increment. The middle screen's gains concentrate near startup and its last
+The original continuous 8 MiB experiment used its previously fixed alternative
+gate: at least 0.003 bits/input-byte and positive last-4MiB increment. Its
+completed decision follows below. The middle screen's gains concentrate near startup and its last
 128 KiB regresses slightly, making the long curve especially informative.
 These heads remain outside the main coder.
+
+
+### Frozen PPMd heads: 8 MiB long gate completed
+
+[Long trials, fixed decisions and cumulative curves](results/ppmd-long-validation.json).
+Both observer encodes exactly reproduce the already verified 8 MiB golden
+streams; both base range replays match their actual compressed sizes.
+
+| Family / frozen head | Replay saving | Bits per prepared byte | Saving in the last 4 MiB |
+|---|---:|---:|---:|
+| v22 / `ppmd_quality_64` | 435 B | 0.000415 | 288 B |
+| v26 / `ppmd_reliability_64` | 345 B | 0.000329 | 209 B |
+
+The prespecified long gate requires 0.003 bits/input-byte (3,146 B here)
+and a positive second-half increment. Both fail the magnitude gate, so
+**stop these frozen PPMd heads**. Relative to the old-information linear
+control, their extra savings are 35 / 53 B. The separate neural-gap control
+saves 907 / 720 B in the PPMd replay convention, also below the component gate.
+
+Reusing the same traces for the previously specified pre-SSE bypass gives
+428 / 111 B on the long prefix. On v26's disjoint q1/q3 cold spans it loses
+3 / 12 B. Keep the original SSE and main coder; its removal is not selected.
+The original six-control replay's baseline neural-gap count differs by one
+byte because the PPMd experiment additionally bypasses the first byte.
 
 ### Byte-level mixture capacity: completed, stopped
 
@@ -445,7 +469,7 @@ savings total only **73.51 / 57.54 B** across 2 MiB, below the existing
 PPMd-quality heads' **167 / 181 B** exact savings. Stop the constant-prior
 mixture here. [Full capacity results](results/byte-simplex-capacity.json).
 
-### Profile-guided CM3 prefetch: queued experiment
+### Profile-guided CM3 prefetch: first timing gate passed
 
 A 30-second, 2,938-sample user CPU-clock profile of the v26 PPMd observer
 attributes 15.15% to `ContextMap3::mix` and 9.33% to `E1<14,128>::get`.
@@ -458,8 +482,44 @@ The planned gate is a real 256 KiB golden-stream round trip, then a same-machine
 1 MiB encode/decode timing pair. A gain of at least 3% triggers one disjoint
 1 MiB confirmation in reversed variant order. Golden bytes must match in all
 cases; aggregate coding gain must reach 3% with a positive confirmation.
-The flag stays off by default. Local syntax checking passed; these real
-compression and performance checks are queued after the existing observer.
+The flag stays off by default. The 256 KiB round trip and both 1 MiB round
+trips have now passed, all byte-identical to the original golden streams.
+The fresh same-machine pair measures **718.483 → 690.875 s** of combined
+encode/decode coding time, a **3.8425%** improvement. The independent q2
+reverse-order confirmation is running; adoption waits for that fixed gate.
+[Initial measured receipts](results/cm3-prefetch-initial.json).
+
+
+### Upstream PGO/LTO flags: separate queued comparison
+
+`build.py` now supports the upstream `prof_gen` / `prof_use` compiler plans
+without changing the source checkout. The 30 ordinary objects use PGO (and
+LTO for profile-use); all nine transformer objects keep their original flags.
+A research main stays unprofiled and non-LTO, while its final link and shared
+objects retain the release flags. This keeps the probe caller stable and
+avoids confusing its `main` with the profiled upstream runner.
+
+```sh
+SOURCE=$(pwd)
+python3 research/build.py --source "$SOURCE" --out "$SCRATCH/build/profile-gen" \
+  --profile-generate "$SCRATCH/pgo"
+(cd "$SCRATCH"; ./build/profile-gen/cmix -c "$SOURCE/prof_input/input" profile.cmix)
+llvm-profdata-17 merge -output="$SCRATCH/pgo/default.profdata" "$SCRATCH/pgo/"*.profraw
+python3 research/build.py --source "$SOURCE" --out "$SCRATCH/build/v26pgo" \
+  --profile-use "$SCRATCH/pgo/default.profdata" --extra research/probe.cpp
+python3 research/build-profile-check.py --work "$SCRATCH/build-plan-check"
+```
+
+The fixed experiment uses the original 50,051-byte profile input and training
+command once, with no dictionary or transformer, matching upstream's recipe.
+It retains the original v26 algorithm, independently of the prefetch variant.
+After the existing timing queue finishes, one CPU runs a 256 KiB golden
+round trip, a fresh prefix1MiB A/B, and a reverse-order q2 only if the prefix
+gain reaches 3%. Final retention requires all original golden bytes,
+aggregate gain of at least 3%, and positive q2 gain. A changed stream ends
+this output-neutral comparison and is recorded as a separate compile family.
+[Prespecified protocol](results/release-flags-protocol.json).
+Actual PGO binaries, throughput and full-data resource qualification are pending.
 
 
 ## First-layer mixer support: observation-only interface
@@ -483,9 +543,12 @@ Dictionary pretraining produces no rows. Quantization affects the sidecar only.
 selections and three mixers. It checks context reuse/fallback, pre-label
 snapshots, early returns, count saturation, half rounding and layout.
 [Local check receipt](results/mixer-support-interface.json).
-Full-model acceptance starts with an original 256 KiB golden-stream match,
-exact base replay and sidecar length; screen acquisition follows that gate.
-The residual fitting protocol is now fixed below; full-model traces and scored gains are pending.
+The first full-model 256 KiB observation has passed: **20,954 B**, exactly
+the original golden stream and base replay, with 2,097,152 valid 72-byte rows.
+[Real observation receipt](results/mixer-support-prefix-256k.json).
+Each following screen repeats the exact base-count and sidecar-layout checks.
+The two 1 MiB traces feed the fixed residual fitting protocol below; scored
+head gains are pending.
 
 
 ### Fixed support screen: contiguous tails, then frozen cold validation

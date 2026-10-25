@@ -1,0 +1,67 @@
+{
+  "schema": "hutter.release-flags.v1",
+  "frozen_at": "2026-10-25T00:30:19.744737+00:00",
+  "hypothesis": "The existing upstream PGO/LTO recipe can improve throughput of the original v26 shared objects without changing its compressed stream.",
+  "source": "original candidate checkout used by the existing v26 experiment; all algorithm macros stay at their original defaults",
+  "root": "/data/workspace/temp/hutter",
+  "machine": "instabox-hutter-3",
+  "prerequisite": "round234/prefetch/state.json: status=complete; preserve the entire prefetch A/B and reverse-order confirmation",
+  "deadline": "2026-10-25T14:20:00+08:00",
+  "profile": {
+    "input": "candidate/prof_input/input",
+    "input_bytes": 50051,
+    "command": "cmix -c INPUT OUTPUT",
+    "dictionary": false,
+    "transformer": false,
+    "training_runs": 1,
+    "compiler": "clang++-17",
+    "merge": "llvm-profdata-17",
+    "profiled_objects": 30,
+    "transformer_objects_unchanged": 9,
+    "research_main": "Original probe main stays non-PGO and non-LTO; shared ordinary objects and final link use upstream PGO/LTO."
+  },
+  "resource": {
+    "heavy_processes_at_once": 1,
+    "cpu_affinity": "one available core, identical for all new trials",
+    "compile_address_space_bytes": 2147483648,
+    "blas_threads": 1,
+    "first_screen_estimated_cpu_hours": 0.7,
+    "conditional_confirmation_estimated_cpu_hours": 0.5,
+    "timeout_policy": "remote GNU timeout kills each stage process group; logs and receipts stay on the remote disk"
+  },
+  "sequence": [
+    {
+      "name": "prefix-256k",
+      "length": 262144,
+      "offset": 0,
+      "variants": [
+        "v26pgo"
+      ],
+      "purpose": "real encode/decode, exact original golden compressed stream"
+    },
+    {
+      "name": "prefix-1m",
+      "length": 1048576,
+      "offset": 0,
+      "variants": [
+        "v26",
+        "v26pgo"
+      ],
+      "purpose": "same-machine fresh original -> PGO pair"
+    },
+    {
+      "name": "article-q2-1m",
+      "length": 1048576,
+      "offset": 293232482,
+      "variants": [
+        "v26pgo",
+        "v26"
+      ],
+      "purpose": "only after >=3% prefix gain; reverse order on disjoint content"
+    }
+  ],
+  "continue_gate": "All golden streams and real restorations exact; prefix sum of encode/decode coding seconds improves by at least 3%.",
+  "accept_gate": "All outputs exactly match original goldens; sum across both 1 MiB pairs improves by at least 3%, with positive q2 gain.",
+  "stop": "A changed golden stream stops this neutral comparison and retains the separate compile-family files; a failed speed gate stops this recipe. No training-input or compiler-flag sweep.",
+  "reporting": "Wall/coding time, CPU when emitted by original probe, RSS and executable bytes separately. This is an experimental probe using final shared objects; full S and formal normalized runtime require full-data measurements."
+}

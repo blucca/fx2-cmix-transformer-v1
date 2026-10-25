@@ -1,0 +1,116 @@
+{
+  "identity": {
+    "golden_identity": {
+      "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+      "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+      "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+      "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+      "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+      "sample": {
+        "name": "prefix-256k",
+        "offset": 0,
+        "length": 262144
+      },
+      "variant": "v26"
+    },
+    "observer": {
+      "base_source": "v26-ppmd-source",
+      "observer_patch_sha256": "e8ed4f358065dc3abe10d5d1410cbd6402316a19269dca1d17670b6055b6aaa6",
+      "defines": [
+        "HUTTER_TRACE",
+        "HUTTER_MIXER_TRACE"
+      ]
+    },
+    "binary_sha256": "dd31523ec222e11992a43392c51ac583785ce555cd63a57ced6357b26deddf76",
+    "base_record_bytes": 16,
+    "mixer_record_bytes": 72
+  },
+  "status": "complete",
+  "started_at": 1792887661.9290543,
+  "golden_byte_identical": true,
+  "encode": {
+    "mode": "encode",
+    "offset": 0,
+    "input_bytes": 262144,
+    "output_bytes": 20954,
+    "seconds": 136.93061,
+    "coding_seconds": 91.193579,
+    "cpu_seconds": 136.182436,
+    "max_rss_kib": 7807848
+  },
+  "encoded_bytes": 20954,
+  "trace_bytes": 33554432,
+  "mixer_bytes": 150994944,
+  "layout": {
+    "status": "passed",
+    "rows": 2097152,
+    "record_bytes": 72,
+    "first_support_zero": true,
+    "finite_half_and_layout": true
+  },
+  "replay": {
+    "stage": "complete",
+    "bits": 2097152,
+    "base_bits": 167629.86008,
+    "base_coded_bytes": 20954,
+    "pre_sse_coded_bytes": 20944,
+    "pre_sse_saved_bytes": 10,
+    "override_bits": 85087,
+    "neural_bits": 170345.249536,
+    "fxcm_bits": 2097152,
+    "pre_sse_bits": 167577.766119,
+    "fxcm_min": 0.5,
+    "fxcm_max": 0.5,
+    "models": [
+      {
+        "name": "global_64",
+        "loss_bits": 167633.752786,
+        "coded_bytes": 20955,
+        "saved_bytes": -1,
+        "saved_bits": -3.8927056159,
+        "saved_fraction": -2.32220298582e-05
+      },
+      {
+        "name": "bitpos_64",
+        "loss_bits": 167645.616957,
+        "coded_bytes": 20956,
+        "saved_bytes": -2,
+        "saved_bits": -15.7568770868,
+        "saved_fraction": -9.39980328046e-05
+      },
+      {
+        "name": "confidence_64",
+        "loss_bits": 167630.731397,
+        "coded_bytes": 20954,
+        "saved_bytes": 0,
+        "saved_bits": -0.871316776786,
+        "saved_fraction": -5.19786138561e-06
+      },
+      {
+        "name": "neural_gap_64",
+        "loss_bits": 167608.646214,
+        "coded_bytes": 20951,
+        "saved_bytes": 3,
+        "saved_bits": 21.2138656145,
+        "saved_fraction": 0.00012655183035
+      },
+      {
+        "name": "neural_gap_256",
+        "loss_bits": 167613.239452,
+        "coded_bytes": 20952,
+        "saved_bytes": 2,
+        "saved_bits": 16.6206276034,
+        "saved_fraction": 9.91507574812e-05
+      },
+      {
+        "name": "pre_sse_gap_256",
+        "loss_bits": 167621.370556,
+        "coded_bytes": 20953,
+        "saved_bytes": 1,
+        "saved_bits": 8.489523995,
+        "saved_fraction": 5.06444614996e-05
+      }
+    ]
+  },
+  "completed_at": 1792887800.3047996
+}

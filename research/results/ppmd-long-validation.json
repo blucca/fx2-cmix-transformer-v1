@@ -1,0 +1,1014 @@
+{
+  "schema": "hutter.ppmd-long-validation.v1",
+  "date": "2026-10-25",
+  "decision": "stop-frozen-ppmd-heads",
+  "scope": "Frozen online heads on unchanged instrumented baseline/v26 probabilities. Each base exactly reproduces its existing verified 8 MiB compressed stream. Candidate sizes are exact replay, not integrated new-model round trips.",
+  "gate": {
+    "cold_bpb": 0.003,
+    "long_bpb": 0.003,
+    "long_bytes_required": 3146,
+    "long_second_half_positive": true
+  },
+  "families": {
+    "baseline": {
+      "selection": {
+        "at": "2026-10-24T23:09:21.582950+00:00",
+        "screen": [
+          "prefix-1m",
+          "article-q2-1m"
+        ],
+        "summed_coded_bytes": {
+          "ppmd_gap_64": 293596,
+          "ppmd_quality_64": 293590,
+          "ppmd_reliability_64": 293590
+        },
+        "selected": "ppmd_quality_64",
+        "rule": "minimum screen bytes, freeze before cold-validation and long-prefix traces"
+      },
+      "long_trial": {
+        "identity": {
+          "golden_identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "583b44d2286bd4742f478f0f135a9679f340edd378da86615df93f0c97778760",
+            "sample": {
+              "name": "prefix-8m",
+              "offset": 0,
+              "length": 8388608
+            },
+            "variant": "baseline"
+          },
+          "instrumented_binary_sha256": "4febea33b796ec6ac5d2e9c7bd49911eb829facb5d51c2e235b0ae5eddfeb090",
+          "trace_record_bytes": 16,
+          "ppmd_record_bytes": 16
+        },
+        "status": "complete",
+        "started_at": 1792883972.5294762,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 8388608,
+          "output_bytes": 1072279,
+          "seconds": 2179.226954,
+          "coding_seconds": 2157.392446,
+          "cpu_seconds": 2178.35354,
+          "max_rss_kib": 6018652
+        },
+        "encoded_bytes": 1072279,
+        "trace_bytes": 1073741824,
+        "ppmd_bytes": 1073741824,
+        "golden_byte_identical": true,
+        "trace_completed_at": 1792886152.4248326,
+        "replay": {
+          "schema": "hutter.ppmd-replay.v1",
+          "stage": "complete",
+          "rows": 67108864,
+          "input_bytes": 8388608,
+          "active_rows": 64662126,
+          "override_rows": 2446731,
+          "cold_rows": 8,
+          "base_loss_bits": 8578225.45816902,
+          "base_coded_bytes": 1072279,
+          "raw_ppmd_loss_bits": 14874465.4952611,
+          "models": [
+            {
+              "name": "neural_gap_64",
+              "loss_bits": 8570975.53323949,
+              "coded_bytes": 1071372,
+              "saved_bits": 7249.92492952757,
+              "saved_bytes": 907
+            },
+            {
+              "name": "old_info_64",
+              "loss_bits": 8575022.99188767,
+              "coded_bytes": 1071879,
+              "saved_bits": 3202.46628134511,
+              "saved_bytes": 400
+            },
+            {
+              "name": "ppmd_gap_64",
+              "loss_bits": 8574738.21345674,
+              "coded_bytes": 1071843,
+              "saved_bits": 3487.24471227825,
+              "saved_bytes": 436
+            },
+            {
+              "name": "ppmd_quality_64",
+              "loss_bits": 8574741.64668474,
+              "coded_bytes": 1071844,
+              "saved_bits": 3483.81148427166,
+              "saved_bytes": 435
+            },
+            {
+              "name": "ppmd_reliability_64",
+              "loss_bits": 8574740.33821324,
+              "coded_bytes": 1071843,
+              "saved_bits": 3485.11995577253,
+              "saved_bytes": 436
+            }
+          ]
+        },
+        "replay_binary_sha256": "2a51e966d570b08457dcbfbf9cefd311df6da6c1215f73282d55f6e4009c9365",
+        "completed_at": 1792886174.3552933
+      },
+      "decision": {
+        "selected": "ppmd_quality_64",
+        "saved_bytes": 435,
+        "saved_bits_per_input_byte": 0.00041484832763671875,
+        "second_half_saved_bytes": 288,
+        "passes_long_magnitude": false,
+        "decision": "stop"
+      },
+      "cumulative_1m": [
+        {
+          "input_bytes": 1048576,
+          "base_coded_bytes": 84988,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 84949,
+              "saved_bytes": 39,
+              "saved_bits": 312.307084037689
+            },
+            "old_info_64": {
+              "coded_bytes": 84971,
+              "saved_bytes": 17,
+              "saved_bits": 138.637865639641
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 84951,
+              "saved_bytes": 37,
+              "saved_bits": 293.798240406904
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 84951,
+              "saved_bytes": 37,
+              "saved_bits": 296.513588767149
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 84951,
+              "saved_bytes": 37,
+              "saved_bits": 296.800299664377
+            }
+          }
+        },
+        {
+          "input_bytes": 2097152,
+          "base_coded_bytes": 206040,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 205921,
+              "saved_bytes": 119,
+              "saved_bits": 951.424933120375
+            },
+            "old_info_64": {
+              "coded_bytes": 205988,
+              "saved_bytes": 52,
+              "saved_bits": 407.526573513402
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 205964,
+              "saved_bytes": 76,
+              "saved_bits": 602.695871105883
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 205965,
+              "saved_bytes": 75,
+              "saved_bits": 601.525762751233
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 205964,
+              "saved_bytes": 76,
+              "saved_bits": 602.078165054554
+            }
+          }
+        },
+        {
+          "input_bytes": 3145728,
+          "base_coded_bytes": 321827,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 321591,
+              "saved_bytes": 236,
+              "saved_bits": 1888.24766754126
+            },
+            "old_info_64": {
+              "coded_bytes": 321732,
+              "saved_bytes": 95,
+              "saved_bits": 753.575462049339
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 321698,
+              "saved_bytes": 129,
+              "saved_bits": 1033.64737696014
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 321699,
+              "saved_bytes": 128,
+              "saved_bits": 1031.7169533642
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 321698,
+              "saved_bytes": 129,
+              "saved_bits": 1032.20955950348
+            }
+          }
+        },
+        {
+          "input_bytes": 4194304,
+          "base_coded_bytes": 427276,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 426935,
+              "saved_bytes": 341,
+              "saved_bits": 2726.23350014025
+            },
+            "old_info_64": {
+              "coded_bytes": 427154,
+              "saved_bytes": 122,
+              "saved_bits": 977.073226972483
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 427129,
+              "saved_bytes": 147,
+              "saved_bits": 1181.01540660299
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 427129,
+              "saved_bytes": 147,
+              "saved_bits": 1179.5645639482
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 427129,
+              "saved_bytes": 147,
+              "saved_bits": 1180.27473484026
+            }
+          }
+        },
+        {
+          "input_bytes": 5242880,
+          "base_coded_bytes": 607674,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 607165,
+              "saved_bytes": 509,
+              "saved_bits": 4067.62771359924
+            },
+            "old_info_64": {
+              "coded_bytes": 607487,
+              "saved_bytes": 187,
+              "saved_bits": 1502.02472676709
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 607459,
+              "saved_bytes": 215,
+              "saved_bits": 1721.42673001532
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 607460,
+              "saved_bytes": 214,
+              "saved_bits": 1717.78107242938
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 607459,
+              "saved_bytes": 215,
+              "saved_bits": 1719.07919065095
+            }
+          }
+        },
+        {
+          "input_bytes": 6291456,
+          "base_coded_bytes": 710933,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 710316,
+              "saved_bytes": 617,
+              "saved_bits": 4931.92254384514
+            },
+            "old_info_64": {
+              "coded_bytes": 710691,
+              "saved_bytes": 242,
+              "saved_bits": 1929.08347420394
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 710662,
+              "saved_bytes": 271,
+              "saved_bits": 2168.14151503798
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 710663,
+              "saved_bytes": 270,
+              "saved_bits": 2165.30732367188
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 710662,
+              "saved_bytes": 271,
+              "saved_bits": 2166.5515218284
+            }
+          }
+        },
+        {
+          "input_bytes": 7340032,
+          "base_coded_bytes": 893453,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 892695,
+              "saved_bytes": 758,
+              "saved_bits": 6053.94015697762
+            },
+            "old_info_64": {
+              "coded_bytes": 893122,
+              "saved_bytes": 331,
+              "saved_bits": 2646.99902001023
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 893088,
+              "saved_bytes": 365,
+              "saved_bits": 2908.91127378773
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 893090,
+              "saved_bytes": 363,
+              "saved_bits": 2903.95824125409
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 893089,
+              "saved_bytes": 364,
+              "saved_bits": 2904.91094928328
+            }
+          }
+        },
+        {
+          "input_bytes": 8388608,
+          "base_coded_bytes": 1072279,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 1071372,
+              "saved_bytes": 907,
+              "saved_bits": 7249.92492952757
+            },
+            "old_info_64": {
+              "coded_bytes": 1071879,
+              "saved_bytes": 400,
+              "saved_bits": 3202.46628134511
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 1071843,
+              "saved_bytes": 436,
+              "saved_bits": 3487.24471227825
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 1071844,
+              "saved_bytes": 435,
+              "saved_bits": 3483.81148427166
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 1071843,
+              "saved_bytes": 436,
+              "saved_bits": 3485.11995577253
+            }
+          }
+        }
+      ],
+      "original_controls_long": {
+        "stage": "complete",
+        "bits": 67108864,
+        "base_bits": 8578225.45817,
+        "base_coded_bytes": 1072279,
+        "pre_sse_coded_bytes": 1071851,
+        "pre_sse_saved_bytes": 428,
+        "override_bits": 2446731,
+        "neural_bits": 8845895.81123,
+        "fxcm_bits": 67108864,
+        "pre_sse_bits": 8574915.84091,
+        "fxcm_min": 0.5,
+        "fxcm_max": 0.5,
+        "models": [
+          {
+            "name": "global_64",
+            "loss_bits": 8578233.40758,
+            "coded_bytes": 1072280,
+            "saved_bytes": -1,
+            "saved_bits": -7.9494062867,
+            "saved_fraction": -9.26695891297e-07
+          },
+          {
+            "name": "bitpos_64",
+            "loss_bits": 8578230.08546,
+            "coded_bytes": 1072280,
+            "saved_bytes": -1,
+            "saved_bits": -4.62729020417,
+            "saved_fraction": -5.39422777675e-07
+          },
+          {
+            "name": "confidence_64",
+            "loss_bits": 8575665.84718,
+            "coded_bytes": 1071959,
+            "saved_bytes": 320,
+            "saved_bits": 2559.61098952,
+            "saved_fraction": 0.000298384671981
+          },
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 8570975.52068,
+            "coded_bytes": 1071373,
+            "saved_bytes": 906,
+            "saved_bits": 7249.93748668,
+            "saved_fraction": 0.000845155856772
+          },
+          {
+            "name": "neural_gap_256",
+            "loss_bits": 8573299.29728,
+            "coded_bytes": 1071663,
+            "saved_bytes": 616,
+            "saved_bits": 4926.16089256,
+            "saved_fraction": 0.000574263397084
+          },
+          {
+            "name": "pre_sse_gap_256",
+            "loss_bits": 8576628.3363,
+            "coded_bytes": 1072080,
+            "saved_bytes": 199,
+            "saved_bits": 1597.12186457,
+            "saved_fraction": 0.000186183246449
+          }
+        ]
+      },
+      "pre_sse_all_cases": {
+        "prefix-256k": {
+          "base_coded_bytes": 20972,
+          "pre_sse_coded_bytes": 20958,
+          "pre_sse_saved_bytes": 14
+        },
+        "prefix-1m": {
+          "base_coded_bytes": 84988,
+          "pre_sse_coded_bytes": 84948,
+          "pre_sse_saved_bytes": 40
+        },
+        "article-q2-1m": {
+          "base_coded_bytes": 208769,
+          "pre_sse_coded_bytes": 208703,
+          "pre_sse_saved_bytes": 66
+        },
+        "article-q1-1m": {
+          "base_coded_bytes": 231075,
+          "pre_sse_coded_bytes": 231022,
+          "pre_sse_saved_bytes": 53
+        },
+        "article-q3-1m": {
+          "base_coded_bytes": 153766,
+          "pre_sse_coded_bytes": 153726,
+          "pre_sse_saved_bytes": 40
+        },
+        "prefix-8m": {
+          "base_coded_bytes": 1072279,
+          "pre_sse_coded_bytes": 1071851,
+          "pre_sse_saved_bytes": 428
+        }
+      },
+      "pre_sse_cumulative_1m": [
+        {
+          "input_bytes": 1048576,
+          "base_coded_bytes": 84988,
+          "pre_sse_saved_bytes": 40
+        },
+        {
+          "input_bytes": 2097152,
+          "base_coded_bytes": 206040,
+          "pre_sse_saved_bytes": 70
+        },
+        {
+          "input_bytes": 3145728,
+          "base_coded_bytes": 321827,
+          "pre_sse_saved_bytes": 138
+        },
+        {
+          "input_bytes": 4194304,
+          "base_coded_bytes": 427276,
+          "pre_sse_saved_bytes": 155
+        },
+        {
+          "input_bytes": 5242880,
+          "base_coded_bytes": 607674,
+          "pre_sse_saved_bytes": 213
+        },
+        {
+          "input_bytes": 6291456,
+          "base_coded_bytes": 710933,
+          "pre_sse_saved_bytes": 253
+        },
+        {
+          "input_bytes": 7340032,
+          "base_coded_bytes": 893453,
+          "pre_sse_saved_bytes": 352
+        },
+        {
+          "input_bytes": 8388608,
+          "base_coded_bytes": 1072279,
+          "pre_sse_saved_bytes": 428
+        }
+      ]
+    },
+    "v26": {
+      "selection": {
+        "at": "2026-10-24T23:14:30.952317+00:00",
+        "screen": [
+          "prefix-1m",
+          "article-q2-1m"
+        ],
+        "summed_coded_bytes": {
+          "ppmd_gap_64": 293363,
+          "ppmd_quality_64": 293354,
+          "ppmd_reliability_64": 293353
+        },
+        "selected": "ppmd_reliability_64",
+        "rule": "minimum screen bytes, freeze before cold-validation and long-prefix traces"
+      },
+      "long_trial": {
+        "identity": {
+          "golden_identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+            "sample": {
+              "name": "prefix-8m",
+              "offset": 0,
+              "length": 8388608
+            },
+            "variant": "v26"
+          },
+          "instrumented_binary_sha256": "6b79a466a55342cdb7d402c208084b7c2a4a56e69a558fdfab6a89fe2fc49651",
+          "trace_record_bytes": 16,
+          "ppmd_record_bytes": 16
+        },
+        "status": "complete",
+        "started_at": 1792884519.2067807,
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 8388608,
+          "output_bytes": 1068581,
+          "seconds": 3038.193794,
+          "coding_seconds": 2991.813956,
+          "cpu_seconds": 3019.402626,
+          "max_rss_kib": 7869436
+        },
+        "encoded_bytes": 1068581,
+        "trace_bytes": 1073741824,
+        "ppmd_bytes": 1073741824,
+        "golden_byte_identical": true,
+        "trace_completed_at": 1792887558.8549914,
+        "replay": {
+          "schema": "hutter.ppmd-replay.v1",
+          "stage": "complete",
+          "rows": 67108864,
+          "input_bytes": 8388608,
+          "active_rows": 64662126,
+          "override_rows": 2446731,
+          "cold_rows": 8,
+          "base_loss_bits": 8548639.95316524,
+          "base_coded_bytes": 1068581,
+          "raw_ppmd_loss_bits": 14874465.4952611,
+          "models": [
+            {
+              "name": "neural_gap_64",
+              "loss_bits": 8542876.56959758,
+              "coded_bytes": 1067861,
+              "saved_bits": 5763.38356765918,
+              "saved_bytes": 720
+            },
+            {
+              "name": "old_info_64",
+              "loss_bits": 8546305.41037397,
+              "coded_bytes": 1068289,
+              "saved_bits": 2334.54279127344,
+              "saved_bytes": 292
+            },
+            {
+              "name": "ppmd_gap_64",
+              "loss_bits": 8545929.70676792,
+              "coded_bytes": 1068243,
+              "saved_bits": 2710.24639731459,
+              "saved_bytes": 338
+            },
+            {
+              "name": "ppmd_quality_64",
+              "loss_bits": 8545881.10339384,
+              "coded_bytes": 1068236,
+              "saved_bits": 2758.84977140091,
+              "saved_bytes": 345
+            },
+            {
+              "name": "ppmd_reliability_64",
+              "loss_bits": 8545881.14212721,
+              "coded_bytes": 1068236,
+              "saved_bits": 2758.81103802472,
+              "saved_bytes": 345
+            }
+          ]
+        },
+        "replay_binary_sha256": "2a51e966d570b08457dcbfbf9cefd311df6da6c1215f73282d55f6e4009c9365",
+        "completed_at": 1792887581.2352588
+      },
+      "decision": {
+        "selected": "ppmd_reliability_64",
+        "saved_bytes": 345,
+        "saved_bits_per_input_byte": 0.00032901763916015625,
+        "second_half_saved_bytes": 209,
+        "passes_long_magnitude": false,
+        "decision": "stop"
+      },
+      "cumulative_1m": [
+        {
+          "input_bytes": 1048576,
+          "base_coded_bytes": 84839,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 84806,
+              "saved_bytes": 33,
+              "saved_bits": 263.671565327444
+            },
+            "old_info_64": {
+              "coded_bytes": 84826,
+              "saved_bytes": 13,
+              "saved_bits": 98.2874889911618
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 84793,
+              "saved_bytes": 46,
+              "saved_bits": 369.042600966292
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 84791,
+              "saved_bytes": 48,
+              "saved_bits": 377.061544595403
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 84791,
+              "saved_bytes": 48,
+              "saved_bits": 377.245155217825
+            }
+          }
+        },
+        {
+          "input_bytes": 2097152,
+          "base_coded_bytes": 205603,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 205502,
+              "saved_bytes": 101,
+              "saved_bits": 795.703957165126
+            },
+            "old_info_64": {
+              "coded_bytes": 205568,
+              "saved_bytes": 35,
+              "saved_bits": 273.193447879283
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 205528,
+              "saved_bytes": 75,
+              "saved_bits": 595.741337324027
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 205524,
+              "saved_bytes": 79,
+              "saved_bits": 621.426585149951
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 205524,
+              "saved_bytes": 79,
+              "saved_bits": 621.76523137209
+            }
+          }
+        },
+        {
+          "input_bytes": 3145728,
+          "base_coded_bytes": 321120,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 320920,
+              "saved_bytes": 200,
+              "saved_bits": 1598.8103178665
+            },
+            "old_info_64": {
+              "coded_bytes": 321051,
+              "saved_bytes": 69,
+              "saved_bits": 538.805634550285
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 321003,
+              "saved_bytes": 117,
+              "saved_bits": 935.684296522755
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 320998,
+              "saved_bytes": 122,
+              "saved_bits": 955.975083293393
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 321000,
+              "saved_bytes": 120,
+              "saved_bits": 956.168005368672
+            }
+          }
+        },
+        {
+          "input_bytes": 4194304,
+          "base_coded_bytes": 425071,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 424793,
+              "saved_bytes": 278,
+              "saved_bits": 2226.86643571453
+            },
+            "old_info_64": {
+              "coded_bytes": 424981,
+              "saved_bytes": 90,
+              "saved_bits": 713.506103911437
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 424942,
+              "saved_bytes": 129,
+              "saved_bits": 1032.52731891489
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 424935,
+              "saved_bytes": 136,
+              "saved_bits": 1083.10503859818
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 424935,
+              "saved_bytes": 136,
+              "saved_bits": 1083.3462410341
+            }
+          }
+        },
+        {
+          "input_bytes": 5242880,
+          "base_coded_bytes": 604749,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 604347,
+              "saved_bytes": 402,
+              "saved_bits": 3217.05474486388
+            },
+            "old_info_64": {
+              "coded_bytes": 604615,
+              "saved_bytes": 134,
+              "saved_bits": 1068.3806594843
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 604577,
+              "saved_bytes": 172,
+              "saved_bits": 1376.1555753015
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 604572,
+              "saved_bytes": 177,
+              "saved_bits": 1412.96863793675
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 604572,
+              "saved_bytes": 177,
+              "saved_bits": 1413.1599046262
+            }
+          }
+        },
+        {
+          "input_bytes": 6291456,
+          "base_coded_bytes": 707512,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 707016,
+              "saved_bytes": 496,
+              "saved_bits": 3968.14563374221
+            },
+            "old_info_64": {
+              "coded_bytes": 707343,
+              "saved_bytes": 169,
+              "saved_bits": 1345.14045153465
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 707304,
+              "saved_bytes": 208,
+              "saved_bits": 1659.88398702629
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 707295,
+              "saved_bytes": 217,
+              "saved_bits": 1721.32279852312
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 707296,
+              "saved_bytes": 216,
+              "saved_bits": 1721.39464140311
+            }
+          }
+        },
+        {
+          "input_bytes": 7340032,
+          "base_coded_bytes": 889867,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 889268,
+              "saved_bytes": 599,
+              "saved_bits": 4791.0402704943
+            },
+            "old_info_64": {
+              "coded_bytes": 889630,
+              "saved_bytes": 237,
+              "saved_bits": 1894.76804626826
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 889590,
+              "saved_bytes": 277,
+              "saved_bits": 2218.51915112138
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 889584,
+              "saved_bytes": 283,
+              "saved_bits": 2262.14935520664
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 889584,
+              "saved_bytes": 283,
+              "saved_bits": 2262.16516045667
+            }
+          }
+        },
+        {
+          "input_bytes": 8388608,
+          "base_coded_bytes": 1068581,
+          "models": {
+            "neural_gap_64": {
+              "coded_bytes": 1067861,
+              "saved_bytes": 720,
+              "saved_bits": 5763.38356765918
+            },
+            "old_info_64": {
+              "coded_bytes": 1068289,
+              "saved_bytes": 292,
+              "saved_bits": 2334.54279127344
+            },
+            "ppmd_gap_64": {
+              "coded_bytes": 1068243,
+              "saved_bytes": 338,
+              "saved_bits": 2710.24639731459
+            },
+            "ppmd_quality_64": {
+              "coded_bytes": 1068236,
+              "saved_bytes": 345,
+              "saved_bits": 2758.84977140091
+            },
+            "ppmd_reliability_64": {
+              "coded_bytes": 1068236,
+              "saved_bytes": 345,
+              "saved_bits": 2758.81103802472
+            }
+          }
+        }
+      ],
+      "original_controls_long": {
+        "stage": "complete",
+        "bits": 67108864,
+        "base_bits": 8548639.95317,
+        "base_coded_bytes": 1068581,
+        "pre_sse_coded_bytes": 1068470,
+        "pre_sse_saved_bytes": 111,
+        "override_bits": 2446731,
+        "neural_bits": 8845895.81123,
+        "fxcm_bits": 67108864,
+        "pre_sse_bits": 8547841.37451,
+        "fxcm_min": 0.5,
+        "fxcm_max": 0.5,
+        "models": [
+          {
+            "name": "global_64",
+            "loss_bits": 8548645.72562,
+            "coded_bytes": 1068581,
+            "saved_bytes": 0,
+            "saved_bits": -5.77245805226,
+            "saved_fraction": -6.75248704342e-07
+          },
+          {
+            "name": "bitpos_64",
+            "loss_bits": 8548630.44782,
+            "coded_bytes": 1068580,
+            "saved_bytes": 1,
+            "saved_bits": 9.50534815341,
+            "saved_fraction": 1.11191349799e-06
+          },
+          {
+            "name": "confidence_64",
+            "loss_bits": 8546406.22056,
+            "coded_bytes": 1068301,
+            "saved_bytes": 280,
+            "saved_bits": 2233.73260481,
+            "saved_fraction": 0.000261296839854
+          },
+          {
+            "name": "neural_gap_64",
+            "loss_bits": 8542876.54987,
+            "coded_bytes": 1067861,
+            "saved_bytes": 720,
+            "saved_bits": 5763.40329975,
+            "saved_fraction": 0.000674189500473
+          },
+          {
+            "name": "neural_gap_256",
+            "loss_bits": 8544701.53504,
+            "coded_bytes": 1068089,
+            "saved_bytes": 492,
+            "saved_bits": 3938.41812276,
+            "saved_fraction": 0.000460706983139
+          },
+          {
+            "name": "pre_sse_gap_256",
+            "loss_bits": 8547306.56702,
+            "coded_bytes": 1068414,
+            "saved_bytes": 167,
+            "saved_bits": 1333.38614129,
+            "saved_fraction": 0.00015597640661
+          }
+        ]
+      },
+      "pre_sse_all_cases": {
+        "prefix-256k": {
+          "base_coded_bytes": 20954,
+          "pre_sse_coded_bytes": 20944,
+          "pre_sse_saved_bytes": 10
+        },
+        "prefix-1m": {
+          "base_coded_bytes": 84839,
+          "pre_sse_coded_bytes": 84823,
+          "pre_sse_saved_bytes": 16
+        },
+        "article-q2-1m": {
+          "base_coded_bytes": 208696,
+          "pre_sse_coded_bytes": 208670,
+          "pre_sse_saved_bytes": 26
+        },
+        "article-q1-1m": {
+          "base_coded_bytes": 231016,
+          "pre_sse_coded_bytes": 231019,
+          "pre_sse_saved_bytes": -3
+        },
+        "article-q3-1m": {
+          "base_coded_bytes": 153544,
+          "pre_sse_coded_bytes": 153556,
+          "pre_sse_saved_bytes": -12
+        },
+        "prefix-8m": {
+          "base_coded_bytes": 1068581,
+          "pre_sse_coded_bytes": 1068470,
+          "pre_sse_saved_bytes": 111
+        }
+      },
+      "pre_sse_cumulative_1m": [
+        {
+          "input_bytes": 1048576,
+          "base_coded_bytes": 84839,
+          "pre_sse_saved_bytes": 16
+        },
+        {
+          "input_bytes": 2097152,
+          "base_coded_bytes": 205603,
+          "pre_sse_saved_bytes": -3
+        },
+        {
+          "input_bytes": 3145728,
+          "base_coded_bytes": 321120,
+          "pre_sse_saved_bytes": 29
+        },
+        {
+          "input_bytes": 4194304,
+          "base_coded_bytes": 425071,
+          "pre_sse_saved_bytes": 17
+        },
+        {
+          "input_bytes": 5242880,
+          "base_coded_bytes": 604749,
+          "pre_sse_saved_bytes": 20
+        },
+        {
+          "input_bytes": 6291456,
+          "base_coded_bytes": 707512,
+          "pre_sse_saved_bytes": 11
+        },
+        {
+          "input_bytes": 7340032,
+          "base_coded_bytes": 889867,
+          "pre_sse_saved_bytes": 75
+        },
+        {
+          "input_bytes": 8388608,
+          "base_coded_bytes": 1068581,
+          "pre_sse_saved_bytes": 111
+        }
+      ]
+    }
+  }
+}

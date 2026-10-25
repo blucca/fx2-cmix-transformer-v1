@@ -1,0 +1,150 @@
+{
+  "schema": "hutter.cm3-prefetch-initial.v1",
+  "date": "2026-10-25",
+  "status": "prefix-screen-passed-q2-confirmation-running",
+  "samples": {
+    "prefix-256k": {
+      "trials": {
+        "v26prefetch": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "34289a8eb0341b8b0428061d6a4107f7122464be4533167b7b129231738c1277",
+            "sample": {
+              "name": "prefix-256k",
+              "length": 262144,
+              "offset": 0
+            },
+            "variant": "v26prefetch"
+          },
+          "status": "passed",
+          "started_at": 1792886214.8648884,
+          "encode": {
+            "mode": "encode",
+            "offset": 0,
+            "input_bytes": 262144,
+            "output_bytes": 20954,
+            "seconds": 138.781603,
+            "coding_seconds": 90.526055,
+            "max_rss_kib": 7532864
+          },
+          "encoded_bytes": 20954,
+          "encode_completed_at": 1792886354.7934709,
+          "decode": {
+            "mode": "decode",
+            "offset": 0,
+            "input_bytes": 262144,
+            "output_bytes": 262144,
+            "seconds": 131.081264,
+            "coding_seconds": 85.675325,
+            "max_rss_kib": 7828520
+          },
+          "bits_per_stream_byte": 0.63946533203125,
+          "original_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+          "restored_slice_sha256": "9fbe4f110ad0f896acd0097e7bc65713911097082b1bceea8ec8c103715f2d6c",
+          "elapsed_seconds": 272.0223557949066,
+          "active_seconds": 269.862867,
+          "golden_byte_identical": true
+        }
+      }
+    },
+    "prefix-1m": {
+      "trials": {
+        "v26": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+            "sample": {
+              "name": "prefix-1m",
+              "length": 1048576,
+              "offset": 0
+            },
+            "variant": "v26"
+          },
+          "status": "passed",
+          "started_at": 1792886487.5763044,
+          "encode": {
+            "mode": "encode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 84839,
+            "seconds": 413.680024,
+            "coding_seconds": 366.329294,
+            "max_rss_kib": 7852108
+          },
+          "encoded_bytes": 84839,
+          "encode_completed_at": 1792886902.6041274,
+          "decode": {
+            "mode": "decode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 1048576,
+            "seconds": 420.507825,
+            "coding_seconds": 352.153746,
+            "max_rss_kib": 7874692
+          },
+          "bits_per_stream_byte": 0.6472702026367188,
+          "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "elapsed_seconds": 837.0433249473572,
+          "active_seconds": 834.187849,
+          "golden_byte_identical": true
+        },
+        "v26prefetch": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "34289a8eb0341b8b0428061d6a4107f7122464be4533167b7b129231738c1277",
+            "sample": {
+              "name": "prefix-1m",
+              "length": 1048576,
+              "offset": 0
+            },
+            "variant": "v26prefetch"
+          },
+          "status": "passed",
+          "started_at": 1792887324.6656044,
+          "encode": {
+            "mode": "encode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 84839,
+            "seconds": 390.371794,
+            "coding_seconds": 344.97686,
+            "max_rss_kib": 7896672
+          },
+          "encoded_bytes": 84839,
+          "encode_completed_at": 1792887716.1745987,
+          "decode": {
+            "mode": "decode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 1048576,
+            "seconds": 392.869407,
+            "coding_seconds": 345.898378,
+            "max_rss_kib": 7886132
+          },
+          "bits_per_stream_byte": 0.6472702026367188,
+          "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "elapsed_seconds": 785.4188277721405,
+          "active_seconds": 783.241201,
+          "golden_byte_identical": true
+        }
+      },
+      "coding_seconds": {
+        "v26": 718.4830400000001,
+        "v26prefetch": 690.875238
+      },
+      "speed_gain": 0.038425126917400965
+    }
+  },
+  "scope": "Same-machine original v26 then prefetch. All four 1 MiB encode/decode phases verified; original golden bytes exact. Accept only after the prespecified reverse-order q2 confirmation."
+}
