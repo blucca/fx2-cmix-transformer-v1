@@ -1,0 +1,239 @@
+{
+  "schema": "hutter.metadata-residual-observe.v1",
+  "threshold": 16777216,
+  "old_predictor": "nearest earlier-observed page; r_hat = r_neighbor + page - page_neighbor; tie smaller page; empty=0",
+  "new_predictor": "two earlier-observed revision neighbours bracketing current or two nearest end IDs; signed integer round-nearest ties away from zero; empty=0; singleton timestamp",
+  "source_bytes": 15717602,
+  "transformed_bytes": 14060752,
+  "marker_byte": 64,
+  "marker_count": 243425,
+  "schema_side_information_bytes": 0,
+  "original_zlib9_bytes": 4165276,
+  "transformed_zlib9_bytes": 3342195,
+  "exact_roundtrip": true,
+  "residuals": {
+    "old": {
+      "n": 87813,
+      "exact": 67844,
+      "within_1": 78408,
+      "within_8": 86030,
+      "within_32": 87299,
+      "within_60": 87532,
+      "abs_quantiles": {
+        "0": 0,
+        "0.1": 0,
+        "0.25": 0,
+        "0.5": 0,
+        "0.75": 0,
+        "0.9": 2,
+        "0.95": 3,
+        "0.99": 19,
+        "1": 15930660
+      },
+      "signed_empirical_entropy_bits": 136900.42436358397,
+      "elias_gamma_zz_bits": 162943,
+      "elias_gamma_zz_bytes_rounded": 20368,
+      "varint_zz_bytes": 88077
+    },
+    "new": {
+      "n": 155612,
+      "exact": 22330,
+      "within_1": 57184,
+      "within_8": 121525,
+      "within_32": 142953,
+      "within_60": 147496,
+      "abs_quantiles": {
+        "0": 0,
+        "0.1": 0,
+        "0.25": 1,
+        "0.5": 2,
+        "0.75": 7,
+        "0.9": 24,
+        "0.95": 64,
+        "0.99": 791,
+        "1": 160188182
+      },
+      "signed_empirical_entropy_bits": 822031.6711457614,
+      "elias_gamma_zz_bits": 930982,
+      "elias_gamma_zz_bytes_rounded": 116373,
+      "varint_zz_bytes": 163496
+    }
+  },
+  "field_sizes": {
+    "old": {
+      "original_chars": 702504,
+      "rewritten_chars": 192305,
+      "original_column_zlib9": 218791,
+      "rewritten_column_zlib9": 24569
+    },
+    "new": {
+      "original_chars": 1563574,
+      "rewritten_chars": 416923,
+      "original_column_zlib9": 643095,
+      "rewritten_column_zlib9": 138840
+    }
+  },
+  "arrival": [
+    {
+      "range": [
+        0,
+        100000
+      ],
+      "old": {
+        "n": 2252,
+        "exact": 497,
+        "within_1": 647,
+        "within_8": 1185,
+        "within_32": 1780,
+        "within_60": 1978,
+        "abs_quantiles": {
+          "0": 0,
+          "0.1": 0,
+          "0.25": 1,
+          "0.5": 7,
+          "0.75": 27,
+          "0.9": 71,
+          "0.95": 148,
+          "0.99": 577,
+          "1": 15930660
+        },
+        "signed_empirical_entropy_bits": 13968.53362276266,
+        "elias_gamma_zz_bits": 17604,
+        "elias_gamma_zz_bytes_rounded": 2201,
+        "varint_zz_bytes": 2509
+      },
+      "new": {
+        "n": 97748,
+        "exact": 13880,
+        "within_1": 35614,
+        "within_8": 76034,
+        "within_32": 88810,
+        "within_60": 91541,
+        "abs_quantiles": {
+          "0": 0,
+          "0.1": 0,
+          "0.25": 1,
+          "0.5": 2,
+          "0.75": 7,
+          "0.9": 28,
+          "0.95": 93,
+          "0.99": 1477,
+          "1": 160188182
+        },
+        "signed_empirical_entropy_bits": 525545.9122595926,
+        "elias_gamma_zz_bits": 599082,
+        "elias_gamma_zz_bytes_rounded": 74886,
+        "varint_zz_bytes": 103845
+      }
+    },
+    {
+      "range": [
+        100000,
+        243425
+      ],
+      "old": {
+        "n": 85561,
+        "exact": 67347,
+        "within_1": 77761,
+        "within_8": 84845,
+        "within_32": 85519,
+        "within_60": 85554,
+        "abs_quantiles": {
+          "0": 0,
+          "0.1": 0,
+          "0.25": 0,
+          "0.5": 0,
+          "0.75": 0,
+          "0.9": 1,
+          "0.95": 3,
+          "0.99": 8,
+          "1": 420
+        },
+        "signed_empirical_entropy_bits": 116840.0658461718,
+        "elias_gamma_zz_bits": 145339,
+        "elias_gamma_zz_bytes_rounded": 18168,
+        "varint_zz_bytes": 85568
+      },
+      "new": {
+        "n": 57864,
+        "exact": 8450,
+        "within_1": 21570,
+        "within_8": 45491,
+        "within_32": 54143,
+        "within_60": 55955,
+        "abs_quantiles": {
+          "0": 0,
+          "0.1": 0,
+          "0.25": 1,
+          "0.5": 2,
+          "0.75": 7,
+          "0.9": 21,
+          "0.95": 41,
+          "0.99": 161,
+          "1": 5043
+        },
+        "signed_empirical_entropy_bits": 294122.85887900315,
+        "elias_gamma_zz_bits": 331900,
+        "elias_gamma_zz_bytes_rounded": 41488,
+        "varint_zz_bytes": 59651
+      }
+    }
+  ],
+  "cpu_seconds": 18.984423953,
+  "peak_rss_kib": 280964,
+  "scope": "Exploratory zlib-9 comparison of the complete PHDA9-WRT header; the real v26 codelength and full-file score are separate measurements.",
+  "prepared_header_range": [
+    554867462,
+    570585064
+  ],
+  "coder_screen": {
+    "records_per_case": 16384,
+    "cases": [
+      {
+        "name": "clock-first-16384",
+        "record_range": [
+          0,
+          16384
+        ],
+        "offset": 554867462,
+        "end": 555944918,
+        "original_bytes": 1077456,
+        "candidate_bytes": 966396,
+        "old_records": 225,
+        "new_records": 16159,
+        "page_seed_used": 0,
+        "physical_previous_page_id": 0,
+        "seed_translation_same_bytes": true,
+        "extra_seed_bytes": 0,
+        "states": "Both maps empty at slice start; original page delta bytes preserved; relative page key starts from zero; signed integer page keys",
+        "original_zlib9_bytes": 310867,
+        "candidate_zlib9_bytes": 259394,
+        "roundtrip": true
+      },
+      {
+        "name": "page-last-16384",
+        "record_range": [
+          227041,
+          243425
+        ],
+        "offset": 569560117,
+        "end": 570585064,
+        "original_bytes": 1024947,
+        "candidate_bytes": 930865,
+        "old_records": 14412,
+        "new_records": 1972,
+        "page_seed_used": 0,
+        "physical_previous_page_id": 257969,
+        "seed_translation_same_bytes": true,
+        "extra_seed_bytes": 0,
+        "states": "Both maps empty at slice start; original page delta bytes preserved; relative page key starts from zero; signed integer page keys",
+        "original_zlib9_bytes": 224763,
+        "candidate_zlib9_bytes": 182499,
+        "roundtrip": true
+      }
+    ],
+    "candidate_framing_bytes_per_case": 16,
+    "gate": "Both real round-trip net savings nonnegative; pooled savings >=32768 bytes. No automatic longer run."
+  },
+  "boundary_correction": "The exploratory extractor included the first language byte after the header. Removing it changes each zlib size by -4 bytes and leaves the 823081-byte saving unchanged. These are the corrected complete-record boundaries."
+}

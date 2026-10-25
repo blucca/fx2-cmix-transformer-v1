@@ -856,3 +856,14 @@ learning age of an independent mixer key with its own exposure count times
 the number of admitted keys. Shared fallback keeps its original schedule.
 The same-source default golden, candidate smoke round trip and fixed two-slice
 size gate precede any further timing or mature-prefix work.
+
+
+## Metadata: old page order and a new revision clock
+
+A [causal numeric rewrite](metadata-residual.md) separates two observed
+revision-ID regimes. On all 243,425 header records, the complete reversible
+rewrite saves **823,081 B with zlib-9**, including every residual marker.
+This direction measurement precedes the unchanged v26 coder test. The fixed
+screen uses two disjoint 16,384-record cases, charges 16 B framing per
+candidate, verifies real compression plus inverse restoration, and requires
+at least 32,768 B pooled savings before any longer run.
