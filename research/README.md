@@ -585,8 +585,8 @@ the original golden stream and base replay, with 2,097,152 valid 72-byte rows.
 [Real observation receipt](results/mixer-support-prefix-256k.json).
 Each following screen repeats the exact base-count and sidecar-layout checks.
 Both 1 MiB traces have now passed those checks. Their fixed linear heads
-missed the held-out magnitude gate below; one nonlinear interaction screen
-reuses the same traces.
+missed the held-out magnitude gate below; the single nonlinear interaction
+screen also failed that gate, reusing the same traces.
 
 
 ### Fixed support screen: contiguous tails, then frozen cold validation
@@ -705,3 +705,19 @@ the best linear head. A pass freezes weights for a separate cold-validation
 decision. A failure stops this fixed head. Original heavy-model binaries stay
 unchanged. [Small implementation checks](results/mixer-mlp-check.json) cover
 the gradient, causal byte history, untouched holdout, and exact zero-head coding.
+
+
+### MLP16 screen result: stop this fixed head
+
+Exact held-out savings are **15 / 14 B**, totaling **29 B** against the 197 B
+floor. This is 2 B worse than `logit27` and 18 B worse than `support73`.
+The full screens save 112 / 244 B, including training rows: only 33 B beyond
+the linear control. Stop this fixed head's cold collection and integration.
+
+The fit reached its prescribed 64-iteration cap after 70 evaluations,
+with projected gradient 3.08e-5; it used 1,355.18 CPU seconds, and the full
+experiment used 1,382.05. This records the completed bounded optimization,
+with convergence status and training/held-out results kept separate.
+The 5.5 GiB feature expansion has been removed; paired traces and the
+[frozen 5,764-byte weights](results/mixer-mlp16.f32) remain reusable.
+[Exact scores, optimizer and process receipts](results/mixer-mlp-screen.json).

@@ -1,0 +1,280 @@
+{
+  "schema": "hutter.mixer-mlp-screen.v1",
+  "date": "2026-10-25",
+  "state": {
+    "at": "2026-10-25T01:17:36.489470+00:00",
+    "status": "stopped",
+    "deadline": "2026-10-25T14:20:00+08:00",
+    "saved": {
+      "prefix-1m": 15,
+      "article-q2-1m": 14
+    },
+    "total_saved_bytes": 29,
+    "extra_over_best_linear": -18,
+    "decision": "stop-this-fixed-head",
+    "cpu_seconds": 1382.046225
+  },
+  "summary": {
+    "identity": {
+      "theta27_sha256": "a1ad0c1778a9b6e28cf7fe7da0513d6b881d9e04b40d83f1c9fddf0e76a50eea",
+      "sources": {
+        "mixer-mlp-replay.cpp": "3a1ce2b10399d5fef071d1eb133cad87bfd18eb4f41719d9a7f425dc9d4361ef",
+        "fit-mixer-mlp.py": "f36172d271e534dafd11911a78e6f6dfb335b131aecfb6219a5a41686904302e",
+        "mixer-support-replay.cpp": "d0505d43b5334660931a318146705e4e78484406eef6bcafd3ddff627ee9ce35",
+        "trace.h": "ab92ad7d10ac712933ce013ed6a0fe533b74c4e6ec2aad981e01ede20c37dd11",
+        "replay.cpp": "89e1e1bc312c66f841d796a111eade6a8d7473bd69f0f9161d32fde59b688e39"
+      },
+      "runtime_protocol_sha256": "566f0d2daa26f836357cdd608ef70f9b3eef6bafccf4ea71a4d05b8cd65cd123",
+      "public_research_protocol_sha256": "172bdbd1d935b096b5cb13137eebb568273d186ea29ed10b6a8aaca064d02fad",
+      "protocol_scope": "The public protocol contains the same model, fit and score contract; the runtime copy also records local execution bookkeeping."
+    },
+    "fit": {
+      "schema": "hutter.mixer-mlp-fit.v1",
+      "model": "mlp16",
+      "cases": [
+        {
+          "trace": "/data/workspace/temp/hutter/runs/mixer-support/v26/prefix-1m/trace.bin",
+          "features": "/data/workspace/temp/hutter/round236/mixer-mlp/features/prefix-1m.f32",
+          "training_rows_end_exclusive": 6291456,
+          "fitted_rows": 6053251
+        },
+        {
+          "trace": "/data/workspace/temp/hutter/runs/mixer-support/v26/article-q2-1m/trace.bin",
+          "features": "/data/workspace/temp/hutter/round236/mixer-mlp/features/article-q2-1m.f32",
+          "training_rows_end_exclusive": 6291456,
+          "fitted_rows": 6040708
+        }
+      ],
+      "fitted_rows": 12093959,
+      "features": 88,
+      "hidden": 16,
+      "parameters": 1441,
+      "activation": "tanh",
+      "weight_order": "W[16,88] row-major,b[16],v[16],c[1]",
+      "theta27": "/data/workspace/temp/hutter/round235/mixer-support/logit27/weights.f32",
+      "theta27_sha256": "a1ad0c1778a9b6e28cf7fe7da0513d6b881d9e04b40d83f1c9fddf0e76a50eea",
+      "theta27_f32": [
+        0.002999809104949236,
+        -0.10199329257011414,
+        1.5517966747283936,
+        -0.13552753627300262,
+        -0.05898366868495941,
+        -0.07638493925333023,
+        0.007665281184017658,
+        0.13466380536556244,
+        -0.05665409937500954,
+        0.17552079260349274,
+        0.029685528948903084,
+        -0.014954520389437675,
+        1.484870433807373,
+        0.16286376118659973,
+        1.0991021394729614,
+        0.6682164072990417,
+        0.26179561018943787,
+        0.08570128679275513,
+        0.17140504717826843,
+        0.0370650477707386,
+        0.0999673530459404,
+        0.20596128702163696,
+        -0.004249221179634333,
+        0.06638669967651367,
+        0.10010704398155212,
+        0.04804709181189537,
+        0.064143106341362
+      ],
+      "offset": "base logit plus frozen theta27 dot phi27",
+      "holdout": "last 256 KiB of each 1 MiB screen; never read by optimizer",
+      "warmup_rows": 0,
+      "seed": 236,
+      "initial_W_std": 0.10660035817780521,
+      "initial_other_parameters": 0,
+      "ridge_hessian": 64,
+      "coefficient_bound": 16,
+      "delta_clip": false,
+      "max_iterations": 64,
+      "max_evaluations": 96,
+      "iterations": 64,
+      "evaluations": 70,
+      "total_objective_evaluations": 72,
+      "success": false,
+      "message": "STOP: TOTAL NO. OF ITERATIONS REACHED LIMIT",
+      "seconds": 1355.9370830100015,
+      "cpu_seconds": 1355.17609372,
+      "weights_bytes": 5764,
+      "zero_objective": 0.10464751710383625,
+      "initial_objective": 0.10468821892664171,
+      "frozen_objective": 0.10463817525561361,
+      "frozen_train_nll": 0.10463142291194204,
+      "frozen_ridge_penalty_per_row": 6.752343671575604e-06,
+      "projected_gradient_max_abs": 3.0817749509440345e-05,
+      "measurement": "Fixed-budget nonconvex training fit; zero objective includes theta27; exact integer tail replay decides screening.",
+      "weights_artifact": "mixer-mlp16.f32"
+    },
+    "scores": {
+      "prefix-1m": {
+        "schema": "hutter.mixer-mlp.v1",
+        "stage": "complete",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 319771,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 84839,
+        "block_index": 7,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 84839,
+            "loss_bits": 678705.132318191,
+            "saved_bytes": 0,
+            "block_coded_bytes": 12965,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_coded_bytes": 24908,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "linear27",
+            "coded_bytes": 84734,
+            "loss_bits": 677872.184577387,
+            "saved_bytes": 105,
+            "block_coded_bytes": 12958,
+            "block_saved_bytes": 7,
+            "block_saved_bits": 54.9702752530284,
+            "tail_coded_bytes": 24892,
+            "tail_saved_bytes": 16,
+            "tail_saved_bits": 132.789321620687
+          },
+          {
+            "name": "mlp16",
+            "coded_bytes": 84727,
+            "loss_bits": 677814.486640321,
+            "saved_bytes": 112,
+            "block_coded_bytes": 12958,
+            "block_saved_bytes": 7,
+            "block_saved_bits": 49.5724340031156,
+            "tail_coded_bytes": 24893,
+            "tail_saved_bytes": 15,
+            "tail_saved_bits": 125.152915757877
+          }
+        ]
+      },
+      "article-q2-1m": {
+        "schema": "hutter.mixer-mlp.v1",
+        "stage": "complete",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 357585,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 208696,
+        "block_index": 7,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 208696,
+            "loss_bits": 1669560.19497127,
+            "saved_bytes": 0,
+            "block_coded_bytes": 19894,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_coded_bytes": 40100,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "linear27",
+            "coded_bytes": 208478,
+            "loss_bits": 1667823.96529995,
+            "saved_bytes": 218,
+            "block_coded_bytes": 19891,
+            "block_saved_bytes": 3,
+            "block_saved_bits": 27.8881789590523,
+            "tail_coded_bytes": 40085,
+            "tail_saved_bytes": 15,
+            "tail_saved_bits": 124.300029710575
+          },
+          {
+            "name": "mlp16",
+            "coded_bytes": 208452,
+            "loss_bits": 1667617.24512966,
+            "saved_bytes": 244,
+            "block_coded_bytes": 19893,
+            "block_saved_bytes": 1,
+            "block_saved_bits": 14.5620238820266,
+            "tail_coded_bytes": 40086,
+            "tail_saved_bytes": 14,
+            "tail_saved_bits": 113.35714980209
+          }
+        ]
+      }
+    },
+    "tail_saved_bytes": {
+      "prefix-1m": 15,
+      "article-q2-1m": 14
+    },
+    "total_tail_saved_bytes": 29,
+    "extra_over_best_linear": -18,
+    "weights_sha256": "2702fd08b944adcf90838556d9f547d0ce5199f922e448669842353c17313ec8",
+    "cpu_seconds": 1382.046225,
+    "screen_gate": false,
+    "decision": "stop-this-fixed-head"
+  },
+  "processes": {
+    "prefix-1m-export.process.json": {
+      "seconds": 2.420070726000631,
+      "user_seconds": 1.469077,
+      "system_seconds": 0.924056,
+      "returncode": 0,
+      "error": null
+    },
+    "fit-self-test.process.json": {
+      "seconds": 0.26449718399999256,
+      "user_seconds": 0.17701900000000004,
+      "system_seconds": 0.034201999999999996,
+      "returncode": 0,
+      "error": null
+    },
+    "build.process.json": {
+      "seconds": 2.0696273670000664,
+      "user_seconds": 1.5453299999999999,
+      "system_seconds": 0.087078,
+      "returncode": 0,
+      "error": null
+    },
+    "article-q2-1m-export.process.json": {
+      "seconds": 3.170732370999758,
+      "user_seconds": 1.4904439999999997,
+      "system_seconds": 1.5571469999999998,
+      "returncode": 0,
+      "error": null
+    },
+    "self-test.process.json": {
+      "seconds": 0.11402643300061754,
+      "user_seconds": 0.07442400000000005,
+      "system_seconds": 0.0,
+      "returncode": 0,
+      "error": null
+    },
+    "fit.process.json": {
+      "seconds": 1356.2687699199996,
+      "user_seconds": 1297.81566,
+      "system_seconds": 57.632435,
+      "returncode": 0,
+      "error": null
+    },
+    "prefix-1m-score.process.json": {
+      "seconds": 10.09180539800036,
+      "user_seconds": 9.61289099999999,
+      "system_seconds": 0.04897400000000118,
+      "returncode": 0,
+      "error": null
+    },
+    "article-q2-1m-score.process.json": {
+      "seconds": 9.590628788999311,
+      "user_seconds": 9.52855199999999,
+      "system_seconds": 0.04893599999999765,
+      "returncode": 0,
+      "error": null
+    }
+  }
+}
