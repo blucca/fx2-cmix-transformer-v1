@@ -24,6 +24,14 @@ enum class AttnKind : int { KVF32 = 0, KVI8 = 1 };
 
 struct TransformerOptImpl;
 
+#ifdef FX2_ACTIVATION_STATS
+// Research-only totals; retained across article resets, absent from production.
+struct ActivationStats {
+  uint64_t steps = 0;
+  uint64_t down_nnz[12] = {};
+};
+#endif
+
 struct TransformerOpt {
   explicit TransformerOpt(const char* weights_path,
                           AttnKind attn = AttnKind::KVF32);
@@ -45,6 +53,9 @@ struct TransformerOpt {
   const float* last_logits() const;
 
   AttnKind attn_kind() const;
+#ifdef FX2_ACTIVATION_STATS
+  const ActivationStats& activation_stats() const;
+#endif
 
  private:
   std::unique_ptr<TransformerOptImpl> impl;

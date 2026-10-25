@@ -87,8 +87,16 @@
 #include <cstddef>
 #include <cstdint>
 
+// Same-weight research ablation: twice the positive MLP activation resolution.
+// The default preserves the original arithmetic and compressed streams.
+#ifndef FX2_POSITIVE_U8
+#define FX2_POSITIVE_U8 0
+#endif
+
 namespace fx2 {
 namespace opt {
+
+constexpr int QMAT_RELU2_MAX = FX2_POSITIVE_U8 ? 254 : 127;
 
 // mapped slack required after every arena (prefetch overrun)
 constexpr size_t QMAT_TAIL_SLACK = 4096;
@@ -144,7 +152,9 @@ QSparse qsparse_build(int8_t* dst_cols, float* dst_fold, const int8_t* qw,
 // (activation pair as the signed one) and subtracts the exact global
 // correction 7 * sum(processed act values) once in the int32 epilogue:
 // results are bit-identical to the int8 column kernels. The one-sided s16
-// bound (2*14*127 = 3556 per pair) means it widens every 9 pairs.
+// bound (2*14*127 = 3556 per pair) fits 18 pairs with the biased accumulator.
+// FX2_POSITIVE_U8 decodes signed weights, accepts raw u8 in [0,254], and
+// widens signed sums every 9 pairs. The packed weight format stays unchanged.
 struct QSparse4 {
   const uint8_t* cols = nullptr;  // 64B-aligned, d_in * 128 bytes
   const float* fold = nullptr;    // 64B-aligned fp32[192]

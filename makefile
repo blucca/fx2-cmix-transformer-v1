@@ -64,6 +64,7 @@ LFLAGS := -m64 -Wl,--gc-sections -std=c++17
 # The kernels require AVX2/FMA/F16C, which every ARCHFLAGS variant provides.
 CPPFLAGS_TRANSFORMER := -m64 -O3 -std=c++17 -Wall -Wextra -fno-math-errno -fdata-sections -ffunction-sections
 CPPFLAGS_TRANSFORMER += $(ARCHFLAGS)
+CPPFLAGS_TRANSFORMER += $(filter -DFX2_POSITIVE_U8% -DFX2_ACTIVATION_STATS%, $(CFLAGS_DEFINES))
 
 TRANSFORMER_OBJS := tf_weights_io.o tf_weights_io_compressed.o tf_qmat_dense.o tf_qmat_sparse.o tf_attn.o tf_kda.o tf_glue.o tf_arena_build.o tf_model_opt.o
 

@@ -1,0 +1,699 @@
+{
+  "schema": "hutter.positive-activation-A.v1",
+  "source": "83f2603f3f7751da5f429fd32669807eb8510494",
+  "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+  "weights_bytes": 2930652,
+  "candidate": {
+    "positive_levels": [
+      0,
+      254
+    ],
+    "scale_multiplier": 0.5,
+    "sparse4_flush_pairs": 9,
+    "layers": 12,
+    "trained_parameters_added": 0
+  },
+  "samples": [
+    {
+      "name": "prefix-1m",
+      "offset": 0,
+      "length": 1048576,
+      "order": [
+        "baseline",
+        "u8"
+      ]
+    },
+    {
+      "name": "article-q2-1m",
+      "offset": 293232482,
+      "length": 1048576,
+      "order": [
+        "u8",
+        "baseline"
+      ]
+    }
+  ],
+  "gates": {
+    "both_deltas_positive": true,
+    "weighted_nll_delta_min": 0.0005,
+    "seconds_ratio_max": 1.05
+  },
+  "summary": {
+    "decision": "pass-for-coder-B",
+    "weighted_delta_nats_per_token": 0.000783073221375283,
+    "seconds_ratio": 1.0074782770316686,
+    "predicted_tokens": 2095604,
+    "samples": [
+      {
+        "sample": "prefix-1m",
+        "delta_nats_per_token": 0.0006555513111567873,
+        "seconds_ratio": 1.0058481295873616,
+        "half_deltas": [
+          0.0005757816037507933,
+          0.0007353105076004701
+        ]
+      },
+      {
+        "sample": "article-q2-1m",
+        "delta_nats_per_token": 0.0009104576799584765,
+        "seconds_ratio": 1.008881796865392,
+        "half_deltas": [
+          0.0010095903405942228,
+          0.0008113252084715484
+        ]
+      }
+    ],
+    "status": "complete",
+    "elapsed_seconds": 369.93992018699646,
+    "default_off_golden": {
+      "status": "passed",
+      "probability_hash": "49a3cefb8447dac8",
+      "count": 65439
+    },
+    "standalone_only": true,
+    "coder_B_started": false,
+    "weights_added_bytes": 0
+  },
+  "measurements": {
+    "smoke-64k-capture": {
+      "mode": "capture",
+      "offset": 0,
+      "input_bytes": 65536,
+      "vocab": 205,
+      "prior_bytes": 26869760,
+      "capture_seconds": 0.166434,
+      "capture_cpu_seconds": 0.166259,
+      "pieces": 97,
+      "separator_ends": 96,
+      "length_cuts": 0,
+      "seconds": 0.484846,
+      "cpu_seconds": 0.484233,
+      "max_rss_kib": 1131772
+    },
+    "smoke-64k-original": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 65536,
+      "prior_bytes": 26869760,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 32768,
+      "eval_seconds": 4.591889,
+      "eval_cpu_seconds": 4.588023,
+      "pieces": 97,
+      "separator_ends": 96,
+      "length_cuts": 0,
+      "probability_hash": "49a3cefb8447dac8",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 53659980,
+      "total": {
+        "count": 65439,
+        "logits_sum": 32174.425661140824,
+        "probs_sum": 32174.423386518785,
+        "logits_mean": 0.49167049712160676,
+        "probs_mean": 0.49167046236218137
+      },
+      "first_half": {
+        "count": 32720,
+        "logits_sum": 17085.160160352472,
+        "probs_sum": 17085.159031002335,
+        "logits_mean": 0.5221625965877895,
+        "probs_mean": 0.5221625620721985
+      },
+      "second_half": {
+        "count": 32719,
+        "logits_sum": 15089.265500788255,
+        "probs_sum": 15089.26435551607,
+        "logits_mean": 0.46117746571680845,
+        "probs_mean": 0.4611774307135325
+      },
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.96224719e-05,
+          "logit": 0.469729513
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.00187715935,
+          "logit": 6.81341028
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0698251873,
+          "logit": 9.97822666
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0692297891,
+          "logit": 9.1072979
+        }
+      ],
+      "seconds": 4.801397,
+      "cpu_seconds": 4.797244,
+      "max_rss_kib": 93012
+    },
+    "smoke-64k-baseline": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 65536,
+      "prior_bytes": 26869760,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 32768,
+      "eval_seconds": 4.512745,
+      "eval_cpu_seconds": 4.507553,
+      "pieces": 97,
+      "separator_ends": 96,
+      "length_cuts": 0,
+      "probability_hash": "49a3cefb8447dac8",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 53659980,
+      "total": {
+        "count": 65439,
+        "logits_sum": 32174.425661140824,
+        "probs_sum": 32174.423386518785,
+        "logits_mean": 0.49167049712160676,
+        "probs_mean": 0.49167046236218137
+      },
+      "first_half": {
+        "count": 32720,
+        "logits_sum": 17085.160160352472,
+        "probs_sum": 17085.159031002335,
+        "logits_mean": 0.5221625965877895,
+        "probs_mean": 0.5221625620721985
+      },
+      "second_half": {
+        "count": 32719,
+        "logits_sum": 15089.265500788255,
+        "probs_sum": 15089.26435551607,
+        "logits_mean": 0.46117746571680845,
+        "probs_mean": 0.4611774307135325
+      },
+      "mlp_steps": 65439,
+      "down_nnz_sum": [
+        22588482,
+        8563931,
+        5598891,
+        7082163,
+        9477529,
+        11097580,
+        7867895,
+        8587781,
+        7460107,
+        6973633,
+        7089188,
+        10696257
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.96224719e-05,
+          "logit": 0.469729513
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.00187715935,
+          "logit": 6.81341028
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0698251873,
+          "logit": 9.97822666
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0692297891,
+          "logit": 9.1072979
+        }
+      ],
+      "seconds": 4.715385,
+      "cpu_seconds": 4.709955,
+      "max_rss_kib": 93000
+    },
+    "smoke-64k-u8": {
+      "mode": "eval",
+      "positive_u8": 1,
+      "input_bytes": 65536,
+      "prior_bytes": 26869760,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 32768,
+      "eval_seconds": 4.67084,
+      "eval_cpu_seconds": 4.665299,
+      "pieces": 97,
+      "separator_ends": 96,
+      "length_cuts": 0,
+      "probability_hash": "9cf6e2a757d6037e",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 53659980,
+      "total": {
+        "count": 65439,
+        "logits_sum": 32167.484881198823,
+        "probs_sum": 32167.482590079304,
+        "logits_mean": 0.49156443223763846,
+        "probs_mean": 0.49156439722610834
+      },
+      "first_half": {
+        "count": 32720,
+        "logits_sum": 17085.192122052984,
+        "probs_sum": 17085.190982952707,
+        "logits_mean": 0.5221635734123773,
+        "probs_mean": 0.5221635385987992
+      },
+      "second_half": {
+        "count": 32719,
+        "logits_sum": 15082.292759145697,
+        "probs_sum": 15082.291607126022,
+        "logits_mean": 0.4609643558527369,
+        "probs_mean": 0.4609643206432355
+      },
+      "mlp_steps": 65439,
+      "down_nnz_sum": [
+        24207953,
+        9880115,
+        6339103,
+        8136514,
+        10763359,
+        12349380,
+        8931571,
+        9663820,
+        8386032,
+        7801697,
+        7922595,
+        11795904
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.98233502e-05,
+          "logit": 0.51798296
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.0015360947,
+          "logit": 6.45217752
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0666783974,
+          "logit": 10.0420036
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0604820102,
+          "logit": 9.01461983
+        }
+      ],
+      "seconds": 4.873249,
+      "cpu_seconds": 4.867118,
+      "max_rss_kib": 93092
+    },
+    "prefix-1m-capture": {
+      "mode": "capture",
+      "offset": 0,
+      "input_bytes": 1048576,
+      "vocab": 205,
+      "prior_bytes": 429916160,
+      "capture_seconds": 3.183256,
+      "capture_cpu_seconds": 3.176751,
+      "pieces": 1339,
+      "separator_ends": 1338,
+      "length_cuts": 0,
+      "seconds": 3.48181,
+      "cpu_seconds": 3.474727,
+      "max_rss_kib": 1152536
+    },
+    "prefix-1m-baseline": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 1048576,
+      "prior_bytes": 429916160,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 524288,
+      "eval_seconds": 76.029266,
+      "eval_cpu_seconds": 75.961271,
+      "pieces": 1339,
+      "separator_ends": 1338,
+      "length_cuts": 0,
+      "probability_hash": "60d7b09837e874ff",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 858734340,
+      "total": {
+        "count": 1047237,
+        "logits_sum": 485701.75128205464,
+        "probs_sum": 485701.7148811954,
+        "logits_mean": 0.4637935360210293,
+        "probs_mean": 0.4637935012620786
+      },
+      "first_half": {
+        "count": 523584,
+        "logits_sum": 231397.09512524755,
+        "probs_sum": 231397.076951279,
+        "logits_mean": 0.44194836955531025,
+        "probs_mean": 0.4419483348446076
+      },
+      "second_half": {
+        "count": 523653,
+        "logits_sum": 254304.6561568069,
+        "probs_sum": 254304.6379299882,
+        "logits_mean": 0.4856358240224097,
+        "probs_mean": 0.48563578921535483
+      },
+      "mlp_steps": 1047237,
+      "down_nnz_sum": [
+        369545978,
+        136100039,
+        90517986,
+        113535998,
+        153031596,
+        177914027,
+        127500303,
+        138333686,
+        119826435,
+        112212542,
+        113673392,
+        170674598
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.96224719e-05,
+          "logit": 0.469729513
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.00187715935,
+          "logit": 6.81341028
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0698251873,
+          "logit": 9.97822666
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0692297891,
+          "logit": 9.1072979
+        }
+      ],
+      "seconds": 76.257329,
+      "cpu_seconds": 76.188731,
+      "max_rss_kib": 94200
+    },
+    "prefix-1m-u8": {
+      "mode": "eval",
+      "positive_u8": 1,
+      "input_bytes": 1048576,
+      "prior_bytes": 429916160,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 524288,
+      "eval_seconds": 76.473895,
+      "eval_cpu_seconds": 76.399912,
+      "pieces": 1339,
+      "separator_ends": 1338,
+      "length_cuts": 0,
+      "probability_hash": "0c2ec878905ebcfe",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 858734340,
+      "total": {
+        "count": 1047237,
+        "logits_sum": 485015.23369361274,
+        "probs_sum": 485015.19731678715,
+        "logits_mean": 0.4631379847098725,
+        "probs_mean": 0.46313794997387137
+      },
+      "first_half": {
+        "count": 523584,
+        "logits_sum": 231095.6250900293,
+        "probs_sum": 231095.60690961953,
+        "logits_mean": 0.4413725879515594,
+        "probs_mean": 0.44137255322855456
+      },
+      "second_half": {
+        "count": 523653,
+        "logits_sum": 253919.60860357038,
+        "probs_sum": 253919.59040727615,
+        "logits_mean": 0.4849005135148092,
+        "probs_mean": 0.48490047876604575
+      },
+      "mlp_steps": 1047237,
+      "down_nnz_sum": [
+        394955518,
+        157129097,
+        102549727,
+        130520714,
+        173760027,
+        198036787,
+        144505832,
+        155530777,
+        134683972,
+        125570001,
+        127041359,
+        188313973
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.98233502e-05,
+          "logit": 0.51798296
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.0015360947,
+          "logit": 6.45217752
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0666783974,
+          "logit": 10.0420036
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0604820102,
+          "logit": 9.01461983
+        }
+      ],
+      "seconds": 76.677761,
+      "cpu_seconds": 76.603696,
+      "max_rss_kib": 94072
+    },
+    "article-q2-1m-capture": {
+      "mode": "capture",
+      "offset": 293232482,
+      "input_bytes": 1048576,
+      "vocab": 205,
+      "prior_bytes": 429916160,
+      "capture_seconds": 3.601012,
+      "capture_cpu_seconds": 3.594734,
+      "pieces": 209,
+      "separator_ends": 208,
+      "length_cuts": 0,
+      "seconds": 3.898023,
+      "cpu_seconds": 3.89151,
+      "max_rss_kib": 1155716
+    },
+    "article-q2-1m-u8": {
+      "mode": "eval",
+      "positive_u8": 1,
+      "input_bytes": 1048576,
+      "prior_bytes": 429916160,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 524288,
+      "eval_seconds": 89.090094,
+      "eval_cpu_seconds": 89.005665,
+      "pieces": 209,
+      "separator_ends": 208,
+      "length_cuts": 0,
+      "probability_hash": "5499640e94475c02",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 859660940,
+      "total": {
+        "count": 1048367,
+        "logits_sum": 1163010.0280505016,
+        "probs_sum": 1163010.0011407381,
+        "logits_mean": 1.109353907601538,
+        "probs_mean": 1.1093538819332716
+      },
+      "first_half": {
+        "count": 524183,
+        "logits_sum": 671605.7021272737,
+        "probs_sum": 671605.6906006126,
+        "logits_mean": 1.2812428142982006,
+        "probs_mean": 1.2812427923084353
+      },
+      "second_half": {
+        "count": 524184,
+        "logits_sum": 491404.32592328615,
+        "probs_sum": 491404.3105402389,
+        "logits_mean": 0.9374653288221048,
+        "probs_mean": 0.9374652994754493
+      },
+      "mlp_steps": 1048367,
+      "down_nnz_sum": [
+        351591986,
+        142436532,
+        103341947,
+        126830756,
+        179091729,
+        207455932,
+        161958348,
+        175457924,
+        152629725,
+        144603108,
+        141487535,
+        177931286
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 33,
+          "prob": 0.01851606,
+          "logit": 4.87708855
+        },
+        {
+          "target_offset": 2,
+          "target": 27,
+          "prob": 0.0188225824,
+          "logit": 8.89851761
+        },
+        {
+          "target_offset": 3,
+          "target": 25,
+          "prob": 0.0894921646,
+          "logit": 10.699811
+        },
+        {
+          "target_offset": 4,
+          "target": 37,
+          "prob": 0.00741170673,
+          "logit": 8.45113659
+        }
+      ],
+      "seconds": 89.303591,
+      "cpu_seconds": 89.218951,
+      "max_rss_kib": 94064
+    },
+    "article-q2-1m-baseline": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 1048576,
+      "prior_bytes": 429916160,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 524288,
+      "eval_seconds": 88.30578,
+      "eval_cpu_seconds": 88.22192,
+      "pieces": 209,
+      "separator_ends": 208,
+      "length_cuts": 0,
+      "probability_hash": "1f71c5696e152c73",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 859660940,
+      "total": {
+        "count": 1048367,
+        "logits_sum": 1163964.5218370666,
+        "probs_sum": 1163964.4948392136,
+        "logits_mean": 1.1102643652814965,
+        "probs_mean": 1.1102643395292044
+      },
+      "first_half": {
+        "count": 524183,
+        "logits_sum": 672134.9122207774,
+        "probs_sum": 672134.9006872748,
+        "logits_mean": 1.2822524046387949,
+        "probs_mean": 1.2822523826359777
+      },
+      "second_half": {
+        "count": 524184,
+        "logits_sum": 491829.6096163636,
+        "probs_sum": 491829.5941520206,
+        "logits_mean": 0.9382766540305763,
+        "probs_mean": 0.9382766245288306
+      },
+      "mlp_steps": 1048367,
+      "down_nnz_sum": [
+        324459810,
+        122480073,
+        91154285,
+        109752119,
+        158128270,
+        186473440,
+        144462189,
+        157634695,
+        137055320,
+        130152164,
+        127357603,
+        161174994
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 33,
+          "prob": 0.0218345691,
+          "logit": 4.60456514
+        },
+        {
+          "target_offset": 2,
+          "target": 27,
+          "prob": 0.0149528738,
+          "logit": 8.53730106
+        },
+        {
+          "target_offset": 3,
+          "target": 25,
+          "prob": 0.0912576988,
+          "logit": 10.4178925
+        },
+        {
+          "target_offset": 4,
+          "target": 37,
+          "prob": 0.0241002068,
+          "logit": 9.35726738
+        }
+      ],
+      "seconds": 88.510322,
+      "cpu_seconds": 88.426232,
+      "max_rss_kib": 94056
+    }
+  },
+  "package_proxy": {
+    "build": "same non-PGO Clang17 development executable",
+    "packer": "UPX 5.2.1 -9",
+    "baseline_bytes": 202304,
+    "u8_bytes": 202316,
+    "double_binary_delta_bytes": 24,
+    "weight_file_delta_bytes": 0
+  },
+  "coder_B_status": "running; independent real encode/decode gate"
+}

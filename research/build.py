@@ -45,6 +45,8 @@ def main():
                         help="Additional compiler definition for an explicit ablation")
     parser.add_argument("--extra", type=Path, action="append", default=[],
                         help="Build an unprofiled, non-LTO research main; link all upstream objects except runner.o")
+    parser.add_argument("--strict-extra", action="store_true",
+                        help="Compile research mains with strict FP for likelihood measurements; model flags stay unchanged")
     profile = parser.add_mutually_exclusive_group()
     profile.add_argument("--profile-generate", type=Path,
                          help="Use upstream prof_gen flags with this raw-profile directory")
@@ -66,6 +68,9 @@ def main():
                  for command in plan if any(a.endswith("/src/runner.cpp") for a in command))
     flags = [arg for arg in flags if arg != "-flto"
              and not arg.startswith(("-fprofile-generate=", "-fprofile-use="))]
+    if args.strict_extra:
+        flags = [arg for arg in flags if not arg.startswith("-ffp-model=")]
+        flags += ["-fno-fast-math", "-ffp-contract=off"]
     # Research executables remain unstripped, matching the development build.
     link = [arg for arg in plan[-1][:-2] if arg not in ("runner.o", "-s")]
     for extra in args.extra:
@@ -84,7 +89,7 @@ def main():
             "mode": "generate" if profile_generate else "use" if profile_use else "none",
             "path": str(profile_generate or profile_use) if profile_generate or profile_use else None,
             "sha256": hashlib.sha256(profile_use.read_bytes()).hexdigest() if profile_use else None,
-            "extra_main": "unprofiled-no-lto",
+            "extra_main": "unprofiled-no-lto-strict" if args.strict_extra else "unprofiled-no-lto",
         },
         "commands": plan, "started_at": started, "status": "building",
     }

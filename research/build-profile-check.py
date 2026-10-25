@@ -90,6 +90,16 @@ invalid = subprocess.run([*command, "--out", str(work / "invalid"),
                           "--profile-generate", str(raw), "--profile-use", str(profile)],
                          capture_output=True)
 assert invalid.returncode == 2
+# Likelihood-only mains opt out of fast FP; every production command is kept.
+strict_dir = work / "strict-extra"
+subprocess.run([*command, "--out", str(strict_dir), "--strict-extra"],
+               capture_output=True, check=True)
+strict = json.loads((strict_dir / "build.json").read_text())
+assert strict["commands"][:-2] == baseline[:-2]
+extra = strict["commands"][-2]
+assert "-fno-fast-math" in extra and "-ffp-contract=off" in extra
+assert not any(arg.startswith("-ffp-model=") for arg in extra)
+assert strict["profile"]["extra_main"] == "unprofiled-no-lto-strict"
 print(json.dumps({"status": "passed", "modes": list(records), "ordinary_objects": 30,
                   "transformer_objects": 9, "extra_main": "unprofiled-no-lto",
-                  "default_commands_unchanged": True}))
+                  "default_commands_unchanged": True, "strict_extra_model_unchanged": True}))

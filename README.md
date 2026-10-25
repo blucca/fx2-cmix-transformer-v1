@@ -2,7 +2,9 @@
 
 Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
 
-[Research protocol and reproducible experiments](research/README.md). The first experiment holds the original dictionary, article order, PPMd, neural weights and outer mixer fixed. Initial lossless prefix comparisons save 18 bytes at 256 KiB and 149 bytes at 1 MiB with v26; three disjoint 1 MiB spans also improve. Auxiliary-skip wiring and an 18-weight history head failed their initial selection gates; their results are public. A continuous 8 MiB comparison is queued. Full-file prize measurements are pending.
+[Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
+
+Current experiment: [same-weight positive ReLU² activation quantization](research/positive-activation.md). It improves raw neural NLL on two fixed 1 MiB slices with +0.75% measured evaluation time and +24 B in the development double-binary package. The real coder comparison is running. Full-file prize measurements remain a separate milestone.
 
 The original champion’s documentation follows, with its authorship and results preserved.
 

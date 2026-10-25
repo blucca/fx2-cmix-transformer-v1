@@ -320,7 +320,7 @@ int qgemv_relu2q(const QDense& m, const uint8_t* act, float s_next,
   run_g8<6, PFN_DEFAULT>(m, act, e);
   // phase 2a: relu^2 + quantize, two groups (16 outputs) per iteration
   const __m256 vs = _mm256_set1_ps(s_next);
-  const __m256 v127 = _mm256_set1_ps(127.0f);
+  const __m256 vmax = _mm256_set1_ps(float(QMAT_RELU2_MAX));
   const __m256 vz = _mm256_setzero_ps();
   const int ng2 = m.ngroups & ~1;
   for (int g = 0; g < ng2; g += 2) {
@@ -328,8 +328,8 @@ int qgemv_relu2q(const QDense& m, const uint8_t* act, float s_next,
     __m256 y1 = _mm256_max_ps(_mm256_load_ps(y + 8 * g + 8), vz);
     __m256 t0 = _mm256_div_ps(_mm256_mul_ps(y0, y0), vs);  // IEEE div
     __m256 t1 = _mm256_div_ps(_mm256_mul_ps(y1, y1), vs);
-    __m256i q0 = _mm256_cvtps_epi32(_mm256_min_ps(t0, v127));  // rte
-    __m256i q1 = _mm256_cvtps_epi32(_mm256_min_ps(t1, v127));
+    __m256i q0 = _mm256_cvtps_epi32(_mm256_min_ps(t0, vmax));  // rte
+    __m256i q1 = _mm256_cvtps_epi32(_mm256_min_ps(t1, vmax));
     __m256i q16 = _mm256_packs_epi32(q0, q1);  // lanes [q0lo q1lo|q0hi q1hi]
     q16 = _mm256_permute4x64_epi64(q16, _MM_SHUFFLE(3, 1, 2, 0));
     __m128i q8v = _mm_packus_epi16(_mm256_castsi256_si128(q16),
@@ -340,7 +340,7 @@ int qgemv_relu2q(const QDense& m, const uint8_t* act, float s_next,
     const int g = m.ngroups - 1;
     __m256 yv = _mm256_max_ps(_mm256_load_ps(y + 8 * g), vz);
     __m256 t = _mm256_div_ps(_mm256_mul_ps(yv, yv), vs);
-    __m256i q = _mm256_cvtps_epi32(_mm256_min_ps(t, v127));
+    __m256i q = _mm256_cvtps_epi32(_mm256_min_ps(t, vmax));
     __m128i q16 = _mm_packs_epi32(_mm256_castsi256_si128(q),
                                   _mm256_extracti128_si256(q, 1));
     _mm_storel_epi64(reinterpret_cast<__m128i*>(q_out + 8 * g),

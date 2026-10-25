@@ -786,3 +786,17 @@ capacity before deciding further data-dependent work. The 4.875 GiB feature
 expansion has been removed; the original traces, optimizer checkpoints and
 [frozen 44,036-byte weights](results/bit-recurrent-cold.f32) remain.
 [Exact block scores, training metrics and process receipts](results/bit-recurrent-screen.json).
+
+
+## Same-weight positive activation quantization
+
+The [fixed u8 activation screen](positive-activation.md) passes on two 1 MiB
+slices: weighted raw NLL improves by 0.0007830732 nats/token, measured evaluation
+time rises 0.75%, and the development double-UPX package adds 24 B. The real
+coder B is running separately; the switch remains disabled by default.
+
+The original v26 middle 8 MiB comparison is now [fully verified](results/middle8-verified.json):
+1,465,827 → 1,464,162 B, saving 1,665 B / 0.1136%. The independently compiled
+[PGO family](results/release-family-verified.json) also completes both paired
+1 MiB round trips: total coding time improves 4.50%, with 0 / -1 B size deltas.
+It retains its separate stream family and awaits any justified long confirmation.

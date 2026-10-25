@@ -104,6 +104,10 @@ void OptModel::load(const char* weights_path) {
         wf.get(prefix + ".quantize_activation.scale", DT_BF16, {1});
     float s_act = bf16_to_f32(sa.bf16_bits()[0]);
     if (!(s_act > 0.0f)) die("activation scale not positive");
+#if FX2_POSITIVE_U8
+    // The other qsp4 site is the 205-input prior; its scale stays unchanged.
+    if (d_in == DMLP) s_act *= 0.5f;
+#endif
     *s_act_out = s_act;
     std::vector<float> fold(D);
     for (int o = 0; o < D; o++)

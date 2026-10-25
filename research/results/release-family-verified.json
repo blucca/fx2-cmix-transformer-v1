@@ -1,0 +1,214 @@
+{
+  "verdict": {
+    "status": "complete",
+    "decision": "retain-for-long-confirmation",
+    "speed_gain": 0.04497487730544503,
+    "q2_speed_gain": 0.04441079307492701,
+    "coding_seconds": {
+      "v26": 1504.2389229999999,
+      "v26pgo": 1436.585962
+    },
+    "byte_deltas": {
+      "prefix-1m": 0,
+      "article-q2-1m": -1
+    }
+  },
+  "samples": {
+    "prefix-1m": {
+      "trials": {
+        "v26": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+            "sample": {
+              "name": "prefix-1m",
+              "offset": 0,
+              "length": 1048576
+            },
+            "variant": "v26"
+          },
+          "status": "passed",
+          "started_at": 1792890862.0259576,
+          "encode": {
+            "mode": "encode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 84839,
+            "seconds": 403.294237,
+            "coding_seconds": 354.021749,
+            "max_rss_kib": 7891864
+          },
+          "encoded_bytes": 84839,
+          "decode": {
+            "mode": "decode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 1048576,
+            "seconds": 407.870866,
+            "coding_seconds": 361.615292,
+            "max_rss_kib": 7896756
+          },
+          "bits_per_stream_byte": 0.6472702026367188,
+          "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "elapsed_seconds": 813.2862763404846,
+          "active_seconds": 811.165103,
+          "encoded_sha256": "760821cb9d3f29474f67363b915cfbe05dfc9401ffac38656b4634d2ea9d3860",
+          "original_golden_byte_identical": true
+        },
+        "v26pgo": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "c77bab20e51de2f565b8fe4e6fab32f7fe55148e90f3820ce7e3a64fb3cdcef5",
+            "sample": {
+              "name": "prefix-1m",
+              "offset": 0,
+              "length": 1048576
+            },
+            "variant": "v26pgo"
+          },
+          "status": "passed",
+          "started_at": 1792891675.3202162,
+          "encode": {
+            "mode": "encode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 84839,
+            "seconds": 388.771068,
+            "coding_seconds": 343.268698,
+            "max_rss_kib": 7911152
+          },
+          "encoded_bytes": 84839,
+          "decode": {
+            "mode": "decode",
+            "offset": 0,
+            "input_bytes": 1048576,
+            "output_bytes": 1048576,
+            "seconds": 385.737299,
+            "coding_seconds": 339.737817,
+            "max_rss_kib": 7899012
+          },
+          "bits_per_stream_byte": 0.6472702026367188,
+          "original_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "restored_slice_sha256": "552d7d1a66e40a9a21ec52fb05a695c33f7a5ea3744c70ec2d5733c1713dce4b",
+          "elapsed_seconds": 776.6649174690247,
+          "active_seconds": 774.508367,
+          "encoded_sha256": "bc8a3612e0099a34fff889e74ca249d70e3e57d97e8de29d3c260968e0aea852",
+          "original_golden_byte_identical": false
+        }
+      },
+      "baseline_golden_byte_identical": true,
+      "reference_golden_sha256": "760821cb9d3f29474f67363b915cfbe05dfc9401ffac38656b4634d2ea9d3860",
+      "candidate_golden_sha256": "bc8a3612e0099a34fff889e74ca249d70e3e57d97e8de29d3c260968e0aea852",
+      "byte_delta": 0,
+      "coding_seconds": {
+        "v26": 715.637041,
+        "v26pgo": 683.006515
+      }
+    },
+    "article-q2-1m": {
+      "trials": {
+        "v26pgo": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "c77bab20e51de2f565b8fe4e6fab32f7fe55148e90f3820ce7e3a64fb3cdcef5",
+            "sample": {
+              "name": "article-q2-1m",
+              "offset": 293232482,
+              "length": 1048576
+            },
+            "variant": "v26pgo"
+          },
+          "status": "passed",
+          "started_at": 1792892455.0146391,
+          "encode": {
+            "mode": "encode",
+            "offset": 293232482,
+            "input_bytes": 1048576,
+            "output_bytes": 208695,
+            "seconds": 424.883833,
+            "coding_seconds": 379.889328,
+            "max_rss_kib": 7895000
+          },
+          "encoded_bytes": 208695,
+          "decode": {
+            "mode": "decode",
+            "offset": 293232482,
+            "input_bytes": 1048576,
+            "output_bytes": 1048576,
+            "seconds": 417.799376,
+            "coding_seconds": 373.690119,
+            "max_rss_kib": 7887472
+          },
+          "bits_per_stream_byte": 1.5922164916992188,
+          "original_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+          "restored_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+          "elapsed_seconds": 845.1453814506531,
+          "active_seconds": 842.683209,
+          "encoded_sha256": "4e94a0c5498c99002760cfd3584d5c4ed8a33ac3e94cb02f7a755398fcbc07d0",
+          "original_golden_byte_identical": false
+        },
+        "v26": {
+          "identity": {
+            "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+            "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+            "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+            "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+            "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+            "sample": {
+              "name": "article-q2-1m",
+              "offset": 293232482,
+              "length": 1048576
+            },
+            "variant": "v26"
+          },
+          "status": "passed",
+          "started_at": 1792893300.186304,
+          "encode": {
+            "mode": "encode",
+            "offset": 293232482,
+            "input_bytes": 1048576,
+            "output_bytes": 208696,
+            "seconds": 445.186664,
+            "coding_seconds": 397.951192,
+            "max_rss_kib": 7885772
+          },
+          "encoded_bytes": 208696,
+          "decode": {
+            "mode": "decode",
+            "offset": 293232482,
+            "input_bytes": 1048576,
+            "output_bytes": 1048576,
+            "seconds": 436.596334,
+            "coding_seconds": 390.65069,
+            "max_rss_kib": 7909732
+          },
+          "bits_per_stream_byte": 1.59222412109375,
+          "original_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+          "restored_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+          "elapsed_seconds": 883.925710439682,
+          "active_seconds": 881.782998,
+          "encoded_sha256": "c8d97f9cf913fb635dafa511ee90c595171a918a292ec15871a51f3f1bf2b2bc",
+          "original_golden_byte_identical": true
+        }
+      },
+      "baseline_golden_byte_identical": true,
+      "reference_golden_sha256": "c8d97f9cf913fb635dafa511ee90c595171a918a292ec15871a51f3f1bf2b2bc",
+      "candidate_golden_sha256": "4e94a0c5498c99002760cfd3584d5c4ed8a33ac3e94cb02f7a755398fcbc07d0",
+      "byte_delta": -1,
+      "coding_seconds": {
+        "v26pgo": 753.579447,
+        "v26": 788.6018819999999
+      }
+    }
+  }
+}

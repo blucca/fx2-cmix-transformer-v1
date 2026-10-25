@@ -202,7 +202,17 @@ inline void epi_add(const int32_t* acc, const float* fold, float* out) {
 // [0, 65535], stored as x - 32768), recovered at flush by xor 0x8000 +
 // zero-extend. 18 * 3556 = 64008 <= 65535 -> same flush cadence as int8.
 // ---------------------------------------------------------------------------
-constexpr int FLUSH_PAIRS4 = 18;
+constexpr int FLUSH_PAIRS4 = FX2_POSITIVE_U8 ? 9 : 18;
+
+#if FX2_POSITIVE_U8
+// 9 * (2 * 254 * 7) = 32004: each signed int16 accumulator stays in range.
+#define QS4_MADD(w, a) \
+  _mm256_maddubs_epi16(a, _mm256_sub_epi8(w, _mm256_set1_epi8(7)))
+#define QS4_WIDEN(x) _mm256_cvtepi16_epi32(x)
+#else
+#define QS4_MADD(w, a) _mm256_maddubs_epi16(w, a)
+#define QS4_WIDEN(x) _mm256_cvtepu16_epi32(x)
+#endif
 
 // block b covers rows [32b,32b+32) (low nibbles) and [96+32b,96+32b+32)
 #define QS4_BLOCK(b, AL0, AL1, AH0, AH1)                                     \
@@ -212,15 +222,15 @@ constexpr int FLUSH_PAIRS4 = 18;
     __m256i wl = _mm256_and_si256(w, m0F);                                   \
     __m256i xl = _mm256_and_si256(x, m0F);                                   \
     __m256i t = _mm256_unpacklo_epi8(wl, xl);                                \
-    AL0 = _mm256_add_epi16(AL0, _mm256_maddubs_epi16(t, av));                \
+    AL0 = _mm256_add_epi16(AL0, QS4_MADD(t, av));                            \
     t = _mm256_unpackhi_epi8(wl, xl);                                        \
-    AL1 = _mm256_add_epi16(AL1, _mm256_maddubs_epi16(t, av));                \
+    AL1 = _mm256_add_epi16(AL1, QS4_MADD(t, av));                            \
     w = _mm256_and_si256(_mm256_srli_epi16(w, 4), m0F);                      \
     x = _mm256_and_si256(_mm256_srli_epi16(x, 4), m0F);                      \
     t = _mm256_unpacklo_epi8(w, x);                                          \
-    AH0 = _mm256_add_epi16(AH0, _mm256_maddubs_epi16(t, av));                \
+    AH0 = _mm256_add_epi16(AH0, QS4_MADD(t, av));                            \
     t = _mm256_unpackhi_epi8(w, x);                                          \
-    AH1 = _mm256_add_epi16(AH1, _mm256_maddubs_epi16(t, av));                \
+    AH1 = _mm256_add_epi16(AH1, QS4_MADD(t, av));                            \
   }
 
 #define QS4_PAIR()                                                           \
@@ -231,12 +241,13 @@ constexpr int FLUSH_PAIRS4 = 18;
   }
 
 // biased-s16 flush: true 16-bit sum bits = acc ^ 0x8000; zero-extend; reset
-// the accumulator to the -32768 bias.
+// the accumulator to the -32768 bias. The u8 ablation uses zero bias and
+// sign-extension; xor with zero is eliminated by the compiler.
 #define QS4_FLUSH1(A, base_lo, base_hi)                                      \
   {                                                                          \
     __m256i ux = _mm256_xor_si256(A, vbias);                                 \
-    __m256i lo32 = _mm256_cvtepu16_epi32(_mm256_castsi256_si128(ux));        \
-    __m256i hi32 = _mm256_cvtepu16_epi32(_mm256_extracti128_si256(ux, 1));   \
+    __m256i lo32 = QS4_WIDEN(_mm256_castsi256_si128(ux));                     \
+    __m256i hi32 = QS4_WIDEN(_mm256_extracti128_si256(ux, 1));                \
     _mm256_store_si256(                                                      \
         reinterpret_cast<__m256i*>(acc + (base_lo)),                         \
         _mm256_add_epi32(lo32, _mm256_load_si256(reinterpret_cast<          \
@@ -272,7 +283,8 @@ int32_t sparse4_accum(const uint8_t* __restrict cols,
                       int32_t* __restrict acc) {
   std::memset(acc, 0, sizeof(int32_t) * 192);
   const __m256i m0F = _mm256_set1_epi8(0x0F);
-  const __m256i vbias = _mm256_set1_epi16(static_cast<short>(0x8000));
+  const __m256i vbias = _mm256_set1_epi16(
+      FX2_POSITIVE_U8 ? 0 : static_cast<short>(0x8000));
   __m256i a0 = vbias, a1 = vbias, a2 = vbias, a3 = vbias, a4 = vbias,
           a5 = vbias, a6 = vbias, a7 = vbias, a8 = vbias, a9 = vbias,
           a10 = vbias, a11 = vbias;
@@ -312,7 +324,7 @@ int32_t sparse4_accum(const uint8_t* __restrict cols,
     QS4_PAIR()
     QS4_FLUSH_ALL()
   }
-  return static_cast<int32_t>(7u * asum);
+  return FX2_POSITIVE_U8 ? 0 : static_cast<int32_t>(7u * asum);
 }
 
 int32_t dense4_accum(const uint8_t* __restrict cols,
@@ -320,7 +332,8 @@ int32_t dense4_accum(const uint8_t* __restrict cols,
                      int32_t* __restrict acc) {
   std::memset(acc, 0, sizeof(int32_t) * 192);
   const __m256i m0F = _mm256_set1_epi8(0x0F);
-  const __m256i vbias = _mm256_set1_epi16(static_cast<short>(0x8000));
+  const __m256i vbias = _mm256_set1_epi16(
+      FX2_POSITIVE_U8 ? 0 : static_cast<short>(0x8000));
   __m256i a0 = vbias, a1 = vbias, a2 = vbias, a3 = vbias, a4 = vbias,
           a5 = vbias, a6 = vbias, a7 = vbias, a8 = vbias, a9 = vbias,
           a10 = vbias, a11 = vbias;
@@ -355,7 +368,7 @@ int32_t dense4_accum(const uint8_t* __restrict cols,
     QS4_PAIR()
     QS4_FLUSH_ALL()
   }
-  return static_cast<int32_t>(7u * asum);
+  return FX2_POSITIVE_U8 ? 0 : static_cast<int32_t>(7u * asum);
 }
 
 inline void epi4_f32(const int32_t* acc, int32_t corr, const float* fold,

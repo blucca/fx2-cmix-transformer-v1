@@ -5,6 +5,7 @@
 #include <cassert>
 #include <cmath>
 
+#include "qmat.h"
 #include "vec_math.h"
 
 namespace fx2 {
@@ -182,8 +183,18 @@ void relu2_quant768(const float* h, float s, uint8_t* q) {
     __m256 b = _mm256_max_ps(_mm256_loadu_ps(h + i + 8), vz);
     a = _mm256_mul_ps(a, a);  // relu(h)^2, bit-equal to (h>0 ? h*h : 0)
     b = _mm256_mul_ps(b, b);
+#if FX2_POSITIVE_U8
+    const __m256 vmax = _mm256_set1_ps(254.0f);
+    __m256i qa = _mm256_cvtps_epi32(_mm256_min_ps(_mm256_div_ps(a, vs), vmax));
+    __m256i qb = _mm256_cvtps_epi32(_mm256_min_ps(_mm256_div_ps(b, vs), vmax));
+    __m256i q16 = _mm256_packs_epi32(qa, qb);
+    q16 = _mm256_permute4x64_epi64(q16, _MM_SHUFFLE(3, 1, 2, 0));
+    __m128i w8 = _mm_packus_epi16(_mm256_castsi256_si128(q16),
+                                   _mm256_extracti128_si256(q16, 1));
+#else
     __m128i w8 = quant16_i8(a, b, vs, vlo, vhi);
-    // values in [0,127]: unbiased u8 store for the unsigned mlp-down kernel
+#endif
+    // Raw positive quantized values; no 128 bias.
     _mm_storeu_si128(reinterpret_cast<__m128i*>(q + i), w8);
   }
 }

@@ -221,6 +221,9 @@ void prof_print(double tsc_to_core, long tokens) {
 struct TransformerOptImpl {
   OptModel M;
   AttnKind kind;
+#ifdef FX2_ACTIVATION_STATS
+  ActivationStats activation_stats;
+#endif
 
   // streaming state (hugepage pool: KDA states, then KV caches)
   HugeBuf spool;
@@ -479,6 +482,9 @@ struct TransformerOptImpl {
       PSCOPE(PS_MM_MLP_UP);
       nnz = qgemv_relu2q(mm.up.m, q5, mm.down_s_act, q768, idx768);
     }
+#ifdef FX2_ACTIVATION_STATS
+    activation_stats.down_nnz[l] += static_cast<uint64_t>(nnz);
+#endif
     {
       PSCOPE(PS_MM_MLP_DOWN);
       if (nnz > DOWN_DENSE_NNZ)
@@ -543,6 +549,9 @@ struct TransformerOptImpl {
       std::memcpy(probs_out, probs208, sizeof(float) * V);
     }
     t++;
+#ifdef FX2_ACTIVATION_STATS
+    activation_stats.steps++;
+#endif
   }
 };
 
@@ -571,6 +580,11 @@ void TransformerOpt::step(uint8_t token, const float* prior205,
 const float* TransformerOpt::last_logits() const { return impl->logits; }
 
 AttnKind TransformerOpt::attn_kind() const { return impl->kind; }
+#ifdef FX2_ACTIVATION_STATS
+const ActivationStats& TransformerOpt::activation_stats() const {
+  return impl->activation_stats;
+}
+#endif
 
 }  // namespace opt
 }  // namespace fx2
