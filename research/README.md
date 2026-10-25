@@ -766,5 +766,23 @@ and integration require separate mature/independent-data and resource evidence.
 integer identity, nonzero Torch/C++ inference parity, training-only access, and
 exact next-step checkpoint continuation. The 78-float expansion occupies
 4.875 GiB and is removed after scoring; original paired traces remain.
-Training and inference use CPU only. The initial live job is collecting/fitting;
-new payload and full-package results are pending.
+Training and inference use CPU only. The completed cold-screen result follows;
+full-package results remain pending.
+
+
+### LSTM32 cold screen: positive signal, size gate failed
+
+The fixed **10 epochs / 15,360 optimizer updates** completed in 418.4 CPU
+seconds; the full experiment used 521.2. Frozen exact savings are **52 / 65 B**
+on the two held-out tails, totaling **117 B**, below the 197 B screen floor.
+The full screens save 408 / 510 B (918 B), including training rows. Both base
+range counts reproduce their original 84,839 / 208,696-byte streams exactly.
+
+This improves on the earlier best linear tail total of 47 B, while its larger
+weight/runtime cost makes the current cold fit too small for adoption. Stop
+this cold fit's integration and parameter sweep. A separately planned mature
+prefix8 observation will distinguish cold-training distribution from recurrent
+capacity before deciding further data-dependent work. The 4.875 GiB feature
+expansion has been removed; the original traces, optimizer checkpoints and
+[frozen 44,036-byte weights](results/bit-recurrent-cold.f32) remain.
+[Exact block scores, training metrics and process receipts](results/bit-recurrent-screen.json).

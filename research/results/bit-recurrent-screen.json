@@ -1,0 +1,867 @@
+{
+  "identity": {
+    "protocol_sha256": "ccb693baff92c5ddda1a13d6ce75815622256a9f655b1844c1a843ef46580f7d",
+    "sources": {
+      "fit-bit-recurrent.py": "a34effc5079afb39e12beb06c7a4d19ea68cdb93ee7b90174f8f8aae0df55a38",
+      "mixer-support-replay.cpp": "d0505d43b5334660931a318146705e4e78484406eef6bcafd3ddff627ee9ce35",
+      "trace.h": "ab92ad7d10ac712933ce013ed6a0fe533b74c4e6ec2aad981e01ede20c37dd11",
+      "bit-recurrent-replay.cpp": "81127bf373f1f2fff0ff6d835428e5f4fa50bd8f6e145a4fc1dde5acd8fd3067",
+      "replay.cpp": "89e1e1bc312c66f841d796a111eade6a8d7473bd69f0f9161d32fde59b688e39"
+    },
+    "replay_sha256": "234c1c86c8fa3f016e06509ad742fdc39afecc9dfa69376f9cf8bd136057be2e"
+  },
+  "fit": {
+    "schema": "hutter.bit-recurrent-fit.v1",
+    "seed": 237,
+    "features": 78,
+    "hidden": 32,
+    "parameters": 11009,
+    "sequence_bits": 64,
+    "batch_sequences": 128,
+    "epochs": 10,
+    "case_rows": 8388608,
+    "train_rows_per_case": 6291456,
+    "block_rows": 1048576,
+    "optimizer": "AdamW",
+    "weight_decay": 0,
+    "lr": 0.001,
+    "lr_floor": 1e-05,
+    "gradient_clip_norm": 1.0,
+    "lr_schedule": "floor+(base-floor)/(1+completed_training_epochs)",
+    "gate_order": "ifgo",
+    "activation": "SiLU",
+    "state_reset": "zero h/c for every absolute aligned 64-bit sequence",
+    "previous_bit": "feature[77], true preceding coded bit; case start=0.5",
+    "offset": "log(p/(65536-p)) evaluated in f64 then cast to f32",
+    "override": "zero loss weight; features and recurrent transitions retained",
+    "sampling": "seed+epoch block permutation, Torch RNG sequence permutation",
+    "holdout": "last 256 KiB per case, never mapped/read by this program",
+    "torch_version": "2.6.0+debian",
+    "mkldnn": true,
+    "threads": 1,
+    "status": "complete",
+    "cases": [
+      {
+        "train_rows": 6291456,
+        "trace": "runs/mixer-support/v26/prefix-1m/trace.bin",
+        "trace_size": 134217728,
+        "features": "round237/bit-recurrent/features/prefix-1m.f32",
+        "features_size": 2617245696
+      },
+      {
+        "train_rows": 6291456,
+        "trace": "runs/mixer-support/v26/article-q2-1m/trace.bin",
+        "trace_size": 134217728,
+        "features": "round237/bit-recurrent/features/article-q2-1m.f32",
+        "features_size": 2617245696
+      }
+    ],
+    "completed_epochs": 10,
+    "steps": 15360,
+    "cpu_seconds": 418.40540572599997,
+    "wall_seconds": 418.8732717230014,
+    "rss_high_water_kib": 710148,
+    "weights_bytes": 44036,
+    "weights_sha256": "8c211280b6d60574224817a2464ba5c0caeedbb8e4dd01eb137545d75257c0b7",
+    "weight_order": [
+      {
+        "name": "in_proj.weight",
+        "shape": [
+          32,
+          78
+        ]
+      },
+      {
+        "name": "in_proj.bias",
+        "shape": [
+          32
+        ]
+      },
+      {
+        "name": "lstm.weight_ih_l0",
+        "shape": [
+          128,
+          32
+        ]
+      },
+      {
+        "name": "lstm.weight_hh_l0",
+        "shape": [
+          128,
+          32
+        ]
+      },
+      {
+        "name": "lstm.bias_ih_l0",
+        "shape": [
+          128
+        ]
+      },
+      {
+        "name": "lstm.bias_hh_l0",
+        "shape": [
+          128
+        ]
+      },
+      {
+        "name": "out.weight",
+        "shape": [
+          1,
+          32
+        ]
+      },
+      {
+        "name": "out.bias",
+        "shape": [
+          1
+        ]
+      }
+    ],
+    "epochs_online": [
+      {
+        "epoch": 1,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.435802298,
+        "head_nll_bits": 1827876.9767509543
+      },
+      {
+        "epoch": 2,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.435802296,
+        "head_nll_bits": 1826279.2175005232
+      },
+      {
+        "epoch": 3,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358023014,
+        "head_nll_bits": 1824629.916832457
+      },
+      {
+        "epoch": 4,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358022984,
+        "head_nll_bits": 1823805.3830263093
+      },
+      {
+        "epoch": 5,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358022998,
+        "head_nll_bits": 1823140.3632995186
+      },
+      {
+        "epoch": 6,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358023012,
+        "head_nll_bits": 1822708.2689739289
+      },
+      {
+        "epoch": 7,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358023028,
+        "head_nll_bits": 1822308.9084096074
+      },
+      {
+        "epoch": 8,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358022988,
+        "head_nll_bits": 1822039.1339649197
+      },
+      {
+        "epoch": 9,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358022972,
+        "head_nll_bits": 1821790.34107077
+      },
+      {
+        "epoch": 10,
+        "scored_bits": 12093959,
+        "base_nll_bits": 1828192.4358022988,
+        "head_nll_bits": 1821553.0179084241
+      }
+    ],
+    "measurement": "training online NLL only; final C++ integer tail replay decides"
+  },
+  "scores": {
+    "prefix-1m": {
+      "schema": "hutter.bit-recurrent.v1",
+      "stage": "complete",
+      "rows": 8388608,
+      "input_bytes": 1048576,
+      "override_rows": 319771,
+      "tail_input_bytes": 262144,
+      "base_coded_bytes": 84839,
+      "models": [
+        {
+          "name": "base",
+          "coded_bytes": 84839,
+          "saved_bytes": 0,
+          "loss_bits": 678705.132318191,
+          "block_saved_bytes": 0,
+          "block_saved_bits": 0,
+          "tail_saved_bytes": 0,
+          "tail_saved_bits": 0
+        },
+        {
+          "name": "lstm32",
+          "coded_bytes": 84431,
+          "saved_bytes": 408,
+          "loss_bits": 675447.118230668,
+          "block_saved_bytes": 31,
+          "block_saved_bits": 246.427963074864,
+          "tail_saved_bytes": 52,
+          "tail_saved_bits": 412.118743299681
+        }
+      ]
+    },
+    "article-q2-1m": {
+      "schema": "hutter.bit-recurrent.v1",
+      "stage": "complete",
+      "rows": 8388608,
+      "input_bytes": 1048576,
+      "override_rows": 357585,
+      "tail_input_bytes": 262144,
+      "base_coded_bytes": 208696,
+      "models": [
+        {
+          "name": "base",
+          "coded_bytes": 208696,
+          "saved_bytes": 0,
+          "loss_bits": 1669560.19497127,
+          "block_saved_bytes": 0,
+          "block_saved_bits": 0,
+          "tail_saved_bytes": 0,
+          "tail_saved_bits": 0
+        },
+        {
+          "name": "lstm32",
+          "coded_bytes": 208186,
+          "saved_bytes": 510,
+          "loss_bits": 1665486.5029268,
+          "block_saved_bytes": 32,
+          "block_saved_bits": 264.346402539493,
+          "tail_saved_bytes": 65,
+          "tail_saved_bits": 519.908976861043
+        }
+      ]
+    }
+  },
+  "tail_saved_bytes": {
+    "prefix-1m": 52,
+    "article-q2-1m": 65
+  },
+  "total_tail_saved_bytes": 117,
+  "screen_gate": false,
+  "weights_sha256": "8c211280b6d60574224817a2464ba5c0caeedbb8e4dd01eb137545d75257c0b7",
+  "cpu_seconds": 521.180169,
+  "decision": "stop-cold-fit; mature-data-diagnosis-remains",
+  "cash_received": 0,
+  "full_S": null,
+  "status": "complete-cold-fit-stopped",
+  "scope": "Two cold 1 MiB screens; full results include training rows, tails were untouched by fitting.",
+  "blocks": {
+    "prefix-1m": [
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 1048576,
+        "input_bytes": 131072,
+        "override_rows": 45343,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 11115,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 11115,
+            "saved_bytes": 0,
+            "loss_bits": 88920.7405590274,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 11022,
+            "saved_bytes": 93,
+            "loss_bits": 88172.7400601925,
+            "block_saved_bytes": 93,
+            "block_saved_bits": 748.000498834837,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 2097152,
+        "input_bytes": 262144,
+        "override_rows": 85087,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 20954,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 20954,
+            "saved_bytes": 0,
+            "loss_bits": 167629.860079998,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 20802,
+            "saved_bytes": 152,
+            "loss_bits": 166411.225129705,
+            "block_saved_bytes": 59,
+            "block_saved_bits": 470.634448676312,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 3145728,
+        "input_bytes": 393216,
+        "override_rows": 123942,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 31170,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 31170,
+            "saved_bytes": 0,
+            "loss_bits": 249356.377802104,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 30953,
+            "saved_bytes": 217,
+            "loss_bits": 247616.724823989,
+            "block_saved_bytes": 65,
+            "block_saved_bits": 521.018021269352,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 4194304,
+        "input_bytes": 524288,
+        "override_rows": 161378,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 40734,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 40734,
+            "saved_bytes": 0,
+            "loss_bits": 325866.249030676,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 40473,
+            "saved_bytes": 261,
+            "loss_bits": 323779.15877105,
+            "block_saved_bytes": 43,
+            "block_saved_bits": 347.437284689149,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 5242880,
+        "input_bytes": 655360,
+        "override_rows": 199587,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 49425,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 49425,
+            "saved_bytes": 0,
+            "loss_bits": 395397.924312022,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 49127,
+            "saved_bytes": 298,
+            "loss_bits": 393009.227119685,
+            "block_saved_bytes": 39,
+            "block_saved_bits": 301.606938659199,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 6291456,
+        "input_bytes": 786432,
+        "override_rows": 238205,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 59931,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 59931,
+            "saved_bytes": 0,
+            "loss_bits": 479441.551317604,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 59575,
+            "saved_bytes": 356,
+            "loss_bits": 476595.655957639,
+            "block_saved_bytes": 58,
+            "block_saved_bits": 457.198173496668,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 7340032,
+        "input_bytes": 917504,
+        "override_rows": 278047,
+        "tail_input_bytes": 131072,
+        "base_coded_bytes": 71875,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 71875,
+            "saved_bytes": 0,
+            "loss_bits": 574991.66442468,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 71498,
+            "saved_bytes": 377,
+            "loss_bits": 571980.078294979,
+            "block_saved_bytes": 21,
+            "block_saved_bits": 165.690775747018,
+            "tail_saved_bytes": 21,
+            "tail_saved_bits": 165.690775747018
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 319771,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 84839,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 84839,
+            "saved_bytes": 0,
+            "loss_bits": 678705.132318191,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 84431,
+            "saved_bytes": 408,
+            "loss_bits": 675447.118230668,
+            "block_saved_bytes": 31,
+            "block_saved_bits": 246.427963074864,
+            "tail_saved_bytes": 52,
+            "tail_saved_bits": 412.118743299681
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "complete",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 319771,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 84839,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 84839,
+            "saved_bytes": 0,
+            "loss_bits": 678705.132318191,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 84431,
+            "saved_bytes": 408,
+            "loss_bits": 675447.118230668,
+            "block_saved_bytes": 31,
+            "block_saved_bits": 246.427963074864,
+            "tail_saved_bytes": 52,
+            "tail_saved_bits": 412.118743299681
+          }
+        ]
+      }
+    ],
+    "article-q2-1m": [
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 1048576,
+        "input_bytes": 131072,
+        "override_rows": 40153,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 30926,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 30926,
+            "saved_bytes": 0,
+            "loss_bits": 247407.114709234,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 30801,
+            "saved_bytes": 125,
+            "loss_bits": 246408.942431567,
+            "block_saved_bytes": 125,
+            "block_saved_bits": 998.172277667065,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 2097152,
+        "input_bytes": 262144,
+        "override_rows": 72395,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 64188,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 64188,
+            "saved_bytes": 0,
+            "loss_bits": 513504.113674067,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 63990,
+            "saved_bytes": 198,
+            "loss_bits": 511913.174395247,
+            "block_saved_bytes": 74,
+            "block_saved_bits": 592.767000886262,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 3145728,
+        "input_bytes": 393216,
+        "override_rows": 106790,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 95123,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 95123,
+            "saved_bytes": 0,
+            "loss_bits": 760982.436496104,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 94838,
+            "saved_bytes": 285,
+            "loss_bits": 758698.229530226,
+            "block_saved_bytes": 86,
+            "block_saved_bits": 693.267689638189,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 4194304,
+        "input_bytes": 524288,
+        "override_rows": 154660,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 120825,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 120825,
+            "saved_bytes": 0,
+            "loss_bits": 966593.048972451,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 120487,
+            "saved_bytes": 338,
+            "loss_bits": 963892.695487077,
+            "block_saved_bytes": 52,
+            "block_saved_bits": 416.146524211916,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 5242880,
+        "input_bytes": 655360,
+        "override_rows": 200462,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 146874,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 146874,
+            "saved_bytes": 0,
+            "loss_bits": 1174990.7880214,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 146474,
+            "saved_bytes": 400,
+            "loss_bits": 1171787.98308014,
+            "block_saved_bytes": 63,
+            "block_saved_bits": 502.45145740232,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 6291456,
+        "input_bytes": 786432,
+        "override_rows": 250748,
+        "tail_input_bytes": 0,
+        "base_coded_bytes": 168596,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 168596,
+            "saved_bytes": 0,
+            "loss_bits": 1348761.79459605,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 168151,
+            "saved_bytes": 445,
+            "loss_bits": 1345208.01153382,
+            "block_saved_bytes": 44,
+            "block_saved_bits": 350.978118158615,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 7340032,
+        "input_bytes": 917504,
+        "override_rows": 304170,
+        "tail_input_bytes": 131072,
+        "base_coded_bytes": 188801,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 188801,
+            "saved_bytes": 0,
+            "loss_bits": 1510405.37715724,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 188325,
+            "saved_bytes": 476,
+            "loss_bits": 1506596.03151726,
+            "block_saved_bytes": 32,
+            "block_saved_bits": 255.562574732001,
+            "tail_saved_bytes": 32,
+            "tail_saved_bits": 255.562574732001
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "block",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 357585,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 208696,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 208696,
+            "saved_bytes": 0,
+            "loss_bits": 1669560.19497127,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 208186,
+            "saved_bytes": 510,
+            "loss_bits": 1665486.5029268,
+            "block_saved_bytes": 32,
+            "block_saved_bits": 264.346402539493,
+            "tail_saved_bytes": 65,
+            "tail_saved_bits": 519.908976861043
+          }
+        ]
+      },
+      {
+        "schema": "hutter.bit-recurrent.v1",
+        "stage": "complete",
+        "rows": 8388608,
+        "input_bytes": 1048576,
+        "override_rows": 357585,
+        "tail_input_bytes": 262144,
+        "base_coded_bytes": 208696,
+        "models": [
+          {
+            "name": "base",
+            "coded_bytes": 208696,
+            "saved_bytes": 0,
+            "loss_bits": 1669560.19497127,
+            "block_saved_bytes": 0,
+            "block_saved_bits": 0,
+            "tail_saved_bytes": 0,
+            "tail_saved_bits": 0
+          },
+          {
+            "name": "lstm32",
+            "coded_bytes": 208186,
+            "saved_bytes": 510,
+            "loss_bits": 1665486.5029268,
+            "block_saved_bytes": 32,
+            "block_saved_bits": 264.346402539493,
+            "tail_saved_bytes": 65,
+            "tail_saved_bits": 519.908976861043
+          }
+        ]
+      }
+    ]
+  },
+  "processes": [
+    {
+      "stage": "export-prefix-1m",
+      "wall_seconds": 6.53102053099974,
+      "cpu_seconds": 6.487201,
+      "exit_code": 0,
+      "error": null,
+      "at": "2026-10-25T01:39:57.625638+00:00"
+    },
+    {
+      "stage": "export-article-q2-1m",
+      "wall_seconds": 7.581733347999034,
+      "cpu_seconds": 7.505760999999998,
+      "exit_code": 0,
+      "error": null,
+      "at": "2026-10-25T01:40:05.207843+00:00"
+    },
+    {
+      "stage": "fit",
+      "wall_seconds": 420.1938304540017,
+      "cpu_seconds": 419.589206,
+      "exit_code": 0,
+      "error": null,
+      "at": "2026-10-25T01:47:05.402392+00:00"
+    },
+    {
+      "stage": "score-prefix-1m",
+      "wall_seconds": 43.272779171000366,
+      "cpu_seconds": 43.219662000000014,
+      "exit_code": 0,
+      "error": null,
+      "at": "2026-10-25T01:47:48.676031+00:00"
+    },
+    {
+      "stage": "score-article-q2-1m",
+      "wall_seconds": 44.43414031199973,
+      "cpu_seconds": 44.37833899999997,
+      "exit_code": 0,
+      "error": null,
+      "at": "2026-10-25T01:48:33.110663+00:00"
+    }
+  ]
+}

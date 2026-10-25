@@ -799,5 +799,34 @@
       "saved_fraction": 0.001369576690653916
     }
   ],
-  "current_decision": "Await the already-running complete round trips; no automatic 64MiB/full run. Tail gain flattened relative to the first 8MiB."
+  "current_decision": "Await the already-running complete round trips; no automatic 64MiB/full run. Tail gain flattened relative to the first 8MiB.",
+  "full_encode_update": {
+    "at": "2026-10-25T09:50:30.435035+08:00",
+    "status": "both-encoded; both-decodes-pending",
+    "sample_input_bytes": 33554432,
+    "baseline": {
+      "encoded_bytes": 5703804,
+      "encode_seconds": 8992.896921,
+      "coding_seconds": 8953.913958,
+      "max_rss_kib": 6484164
+    },
+    "v26": {
+      "encoded_bytes": 5696316,
+      "encode_seconds": 15414.95654,
+      "coding_seconds": 15334.592843,
+      "max_rss_kib": 7881448
+    },
+    "saved_bytes": 7488,
+    "saved_percent": 0.13128080838682396,
+    "prefix8_saved_bytes": 3698,
+    "increment_8_to_32_bytes": 3790,
+    "increment_8_to_32_bpb": 0.0012048085530598958,
+    "timing_note": "different hosts and encode windows; report individual timings, no paired speed claim",
+    "full_roundtrip_verified": false,
+    "constant_tail_slope_scenario": {
+      "gross_full_bytes": 90756.02208105722,
+      "net_after_development_code_bytes": 49436.02208105722,
+      "scope": "planning scenario; final full-stream result pending"
+    }
+  }
 }
