@@ -1,0 +1,252 @@
+{
+  "schema": "hutter.bit-recurrent-mature.v1",
+  "status": "complete",
+  "completed_at": "2026-10-25T03:14:13.947579+00:00",
+  "decision": "stop-frozen-cold-mature-extension",
+  "protocol": {
+    "fixed_at": "2026-10-25T11:07:01.618970+08:00",
+    "frozen_before_new_lstm_scores": true,
+    "weights": {
+      "path": "research/results/bit-recurrent-cold.f32",
+      "bytes": 44036,
+      "sha256": "8c211280b6d60574224817a2464ba5c0caeedbb8e4dd01eb137545d75257c0b7"
+    },
+    "replay": {
+      "sha256": "234c1c86c8fa3f016e06509ad742fdc39afecc9dfa69376f9cf8bd136057be2e",
+      "origin": "exact strict-double ELF used for the original cold screen",
+      "arithmetic": "original strict f64; all 8MiB in chronological order; seq64 resets and continuous feature history"
+    },
+    "original_training": {
+      "reference": "bit-recurrent-screen.json",
+      "prefix_train_interval": [
+        0,
+        786432
+      ],
+      "q2_train_interval": [
+        0,
+        786432
+      ],
+      "old_cold_tail_interval_per_case": [
+        786432,
+        1048576
+      ],
+      "old_cold_tail_saved_bytes": {
+        "prefix": 52,
+        "q2": 65
+      },
+      "old_cold_gate_bytes": 197,
+      "old_cold_gate_passed": false
+    },
+    "new_mature_holdout": {
+      "input_byte_interval": [
+        7340032,
+        8388608
+      ],
+      "role": "sole new decision holdout in this replay"
+    },
+    "diagnostic_prefix": {
+      "input_byte_interval": [
+        0,
+        7340032
+      ],
+      "role": "diagnostic only; includes original prefix training and previously observed cold tail"
+    },
+    "sequence_processing": "all 8 MiB in original order, unchanged features and aligned 64-bit recurrent resets",
+    "budget": {
+      "single_cpu_wall_envelope_seconds": 720,
+      "build_seconds": 0,
+      "address_space_limit_bytes": 1073741824
+    },
+    "new_training": false,
+    "feature_export": false,
+    "candidate_coder_integration": false
+  },
+  "data_collection": {
+    "identity": {
+      "sample": {
+        "name": "prefix-8m",
+        "offset": 0,
+        "length": 8388608
+      },
+      "golden_identity": {
+        "stream_sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+        "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+        "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a",
+        "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+        "binary_sha256": "b000ea632a3939c964e040be2e23874593b216dc3f7dc648127e33672f78997d",
+        "sample": {
+          "name": "prefix-8m",
+          "offset": 0,
+          "length": 8388608
+        },
+        "variant": "v26"
+      },
+      "observer_binary_sha256": "dd31523ec222e11992a43392c51ac583785ce555cd63a57ced6357b26deddf76",
+      "observer_build_sha256": "9504546aa0229d1e04e0dda062cba5806529739fecd607e78c733be73186f9f7",
+      "base_record_bytes": 16,
+      "mixer_record_bytes": 72
+    },
+    "encoded_bytes": 1068581,
+    "encoded_sha256": "2da7def3c8b20f0ce2d1ff1b02097036b532134f6972e103bc3172b6fbab1d33",
+    "golden_byte_identical": true,
+    "golden_roundtrip": "original v26 prefix8 encode/decode, initial-prefix-8m.json",
+    "trace_bytes": 1073741824,
+    "mixer_bytes": 4831838208,
+    "layout": {
+      "status": "passed",
+      "rows": 67108864,
+      "record_bytes": 72,
+      "first_support_zero": true,
+      "finite_half_and_layout": true
+    },
+    "original_replay_base_bytes": 1068581,
+    "encode": {
+      "mode": "encode",
+      "offset": 0,
+      "input_bytes": 8388608,
+      "output_bytes": 1068581,
+      "seconds": 3140.183258,
+      "coding_seconds": 3091.75499,
+      "cpu_seconds": 3100.949479,
+      "max_rss_kib": 7898740
+    }
+  },
+  "gate": {
+    "measurement": "exact integer RangeCounter savings; mature tail is scored after state burn-in through the first 7 MiB",
+    "new_mature_tail_bytes": 1048576,
+    "new_mature_tail_saved_bytes": 154,
+    "previously_observed_q2_tail_bytes": 262144,
+    "previously_observed_q2_tail_saved_bytes": 65,
+    "combined_tail_bytes": 1310720,
+    "combined_tail_saved_bytes": 219,
+    "each_tail_nonnegative": true,
+    "required_combined_saved_bytes": 492,
+    "target_component_bits_per_input_byte": 0.003,
+    "observed_combined_bits_per_input_byte": 0.001336669921875,
+    "passed": false
+  },
+  "full_replay": {
+    "schema": "hutter.bit-recurrent.v1",
+    "stage": "complete",
+    "rows": 67108864,
+    "input_bytes": 8388608,
+    "override_rows": 2446731,
+    "tail_input_bytes": 1048576,
+    "base_coded_bytes": 1068581,
+    "models": [
+      {
+        "name": "base",
+        "coded_bytes": 1068581,
+        "saved_bytes": 0,
+        "loss_bits": 8548639.95316524,
+        "block_saved_bytes": 0,
+        "block_saved_bits": 0,
+        "tail_saved_bytes": 0,
+        "tail_saved_bits": 0
+      },
+      {
+        "name": "lstm32",
+        "coded_bytes": 1067352,
+        "saved_bytes": 1229,
+        "loss_bits": 8538810.39403139,
+        "block_saved_bytes": 13,
+        "block_saved_bits": 106.656834224705,
+        "tail_saved_bytes": 154,
+        "tail_saved_bits": 1231.10050929897
+      }
+    ]
+  },
+  "full_replay_role": "diagnostic; includes the original prefix training interval and previously observed tail, separate from the new [7,8) MiB decision holdout",
+  "mib_trend_definition": "differences of cumulative prefix range-byte savings, with continuous model/coder state; interval loss-bit differences also shown",
+  "mib_trend": [
+    {
+      "prefix_mib": 1,
+      "base_prefix_range_bytes": 84839,
+      "head_prefix_range_bytes": 84431,
+      "cumulative_saved_bytes": 408,
+      "change_in_cumulative_saved_bytes": 408,
+      "cumulative_saved_bits": 3258.0140875229845,
+      "interval_saved_bits": 3258.0140875229845
+    },
+    {
+      "prefix_mib": 2,
+      "base_prefix_range_bytes": 205603,
+      "head_prefix_range_bytes": 204982,
+      "cumulative_saved_bytes": 621,
+      "change_in_cumulative_saved_bytes": 213,
+      "cumulative_saved_bits": 4961.631655510049,
+      "interval_saved_bits": 1703.6175679870648
+    },
+    {
+      "prefix_mib": 3,
+      "base_prefix_range_bytes": 321120,
+      "head_prefix_range_bytes": 320295,
+      "cumulative_saved_bytes": 825,
+      "change_in_cumulative_saved_bytes": 204,
+      "cumulative_saved_bits": 6589.024927190039,
+      "interval_saved_bits": 1627.39327167999
+    },
+    {
+      "prefix_mib": 4,
+      "base_prefix_range_bytes": 425071,
+      "head_prefix_range_bytes": 424321,
+      "cumulative_saved_bytes": 750,
+      "change_in_cumulative_saved_bytes": -75,
+      "cumulative_saved_bits": 5995.750579239801,
+      "interval_saved_bits": -593.2743479502387
+    },
+    {
+      "prefix_mib": 5,
+      "base_prefix_range_bytes": 604749,
+      "head_prefix_range_bytes": 603757,
+      "cumulative_saved_bytes": 992,
+      "change_in_cumulative_saved_bytes": 242,
+      "cumulative_saved_bits": 7931.377177690156,
+      "interval_saved_bits": 1935.6265984503552
+    },
+    {
+      "prefix_mib": 6,
+      "base_prefix_range_bytes": 707512,
+      "head_prefix_range_bytes": 706508,
+      "cumulative_saved_bytes": 1004,
+      "change_in_cumulative_saved_bytes": 12,
+      "cumulative_saved_bits": 8024.476460590027,
+      "interval_saved_bits": 93.09928289987147
+    },
+    {
+      "prefix_mib": 7,
+      "base_prefix_range_bytes": 889867,
+      "head_prefix_range_bytes": 888792,
+      "cumulative_saved_bytes": 1075,
+      "change_in_cumulative_saved_bytes": 71,
+      "cumulative_saved_bits": 8598.45818279963,
+      "interval_saved_bits": 573.9817222096026
+    },
+    {
+      "prefix_mib": 8,
+      "base_prefix_range_bytes": 1068581,
+      "head_prefix_range_bytes": 1067352,
+      "cumulative_saved_bytes": 1229,
+      "change_in_cumulative_saved_bytes": 154,
+      "cumulative_saved_bits": 9829.559133850038,
+      "interval_saved_bits": 1231.1009510504082
+    }
+  ],
+  "usage": [
+    {
+      "stage": "self-test",
+      "wall_seconds": 0.06536246600080631,
+      "cpu_seconds": 0.039363999999999996,
+      "exit_code": 0
+    },
+    {
+      "stage": "score",
+      "wall_seconds": 353.3750455779991,
+      "cpu_seconds": 352.99356600000004,
+      "exit_code": 0
+    }
+  ],
+  "total_cpu_seconds": 353.03293,
+  "total_wall_seconds": 353.44726157188416,
+  "conclusion": "Stop this frozen cold-weight mature extension. Keep the original cold-screen failure. Further fitting or integration requires a separate decision."
+}

@@ -780,12 +780,44 @@ range counts reproduce their original 84,839 / 208,696-byte streams exactly.
 
 This improves on the earlier best linear tail total of 47 B, while its larger
 weight/runtime cost makes the current cold fit too small for adoption. Stop
-this cold fit's integration and parameter sweep. A separately planned mature
-prefix8 observation will distinguish cold-training distribution from recurrent
-capacity before deciding further data-dependent work. The 4.875 GiB feature
-expansion has been removed; the original traces, optimizer checkpoints and
+this cold fit's integration and parameter sweep. The separately planned mature
+prefix8 observation and frozen-weight diagnosis are complete below. The
+4.875 GiB feature expansion has been removed; the original traces, optimizer checkpoints and
 [frozen 44,036-byte weights](results/bit-recurrent-cold.f32) remain.
 [Exact block scores, training metrics and process receipts](results/bit-recurrent-screen.json).
+
+
+### Frozen LSTM32 mature replay: size gate failed
+
+The original **44,036-byte cold weights** were replayed once through the full
+8 MiB prefix, preserving feature history and aligned seq64 resets. Before
+scoring, the new decision holdout was fixed to **[7,8) MiB**. The first 7 MiB
+and the full-prefix score are diagnostic: they include the original training
+interval and its previously observed cold tail.
+
+The new mature holdout saves **154 B**. Combined with the previously observed
+q2 cold-tail result of **65 B**, this gives **219 B over 1.25 MiB**, below
+the frozen **492 B / 0.003 bits-per-input-byte** floor. Both tails are positive;
+the size gate fails. **Stop this frozen cold-weight mature extension.** The
+original cold-screen failure stays recorded; further fitting or integration
+requires a separate decision.
+
+The diagnostic full-prefix range count is **1,068,581 → 1,067,352 B**
+(1,229 B saved). Changes in cumulative savings over successive MiB are
+**408, 213, 204, −75, 242, 12, 71, 154 B**; [3,4) MiB regresses. The
+observer stream exactly matches the original verified v26 golden stream,
+and the replay base count is exact. Candidate figures here are frozen
+integer range-replay counts. Production integration is a separate decision.
+
+This one-pass diagnosis used **353.03 CPU seconds / 353.45 wall seconds**
+on one CPU, reusing the original strict-double ELF. New training, compilation
+and feature expansion were all zero. [Frozen protocol, input identity, exact
+scores, MiB trends and process receipts](results/bit-recurrent-mature.json).
+
+```sh
+"$SCRATCH/bit-recurrent" --score PREFIX8_BASE.bin PREFIX8_MIXER.bin \
+  research/results/bit-recurrent-cold.f32 7340032
+```
 
 
 ## Same-weight positive activation quantization
