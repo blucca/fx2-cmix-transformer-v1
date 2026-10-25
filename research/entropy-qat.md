@@ -99,3 +99,27 @@ Hard weight entropy rose by **27,411.67 nats**
 rate signal; new compressed weight sizes and held-out native NLL arrive at
 the epoch boundary. The original production weights remain retained.
 [First-16 measurements](results/entropy-qat-first16.json).
+
+## First epoch: rate and quality gates fail
+
+After 30 updates / 1,044,469 targets, the real static15 file grows from
+**2,904,325 to 2,911,289 B**: the two packaged copies cost 13,928 B more.
+
+| Fixed native scoring sample | Original raw NLL | Epoch 1 | Change |
+|---|---:|---:|---:|
+| Prefix, 523,194 targets | 0.4859066183 | 0.5446639363 | +0.0587573180 |
+| Independent q2, 516,391 targets | 0.9394297830 | 1.0201699989 | +0.0807402159 |
+
+Both increases exceed the +0.004 gate. Hard symbol entropy also rises;
+1,449,283 of 5,868,864 integer weights change. Original production weights
+remain retained. The existing bounded trajectory continues to measure its
+recovery curve, with the same optimizer, temperature schedule and budget.
+
+A complete 1,346-target training piece deteriorates in both backends:
+CPU QAT NLL rises by 0.04398 and native NLL by 0.03775. Their absolute
+NLL differs by about 0.003 on this piece; native scores remain authoritative.
+Eight original weight scales below 1e-10 become 4.51e-5–2.33e-4 after epoch 1.
+Cold Adam's first update is `-lr*g/(abs(g)+eps)`: LSQ gradient scaling does
+little to reduce that absolute step when `abs(g) >> eps`. This is a concrete
+perturbation mechanism; its share of the aggregate loss is unmeasured.
+[Measured package, scores and scale diagnostics](results/entropy-qat-epoch1.json).

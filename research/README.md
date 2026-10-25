@@ -1,8 +1,8 @@
 # Hutter compression research
 
-**New:** [Full-article CPU backpropagation](cpu-backward.md): 1,346 targets in 1.83 CPU seconds; 35,162 targets in 61.87 seconds under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
+**New:** [Fixed entropy-constrained QAT](entropy-qat.md) has completed its first epoch. The real weight package grows by 6,964 B and both native held-out NLL scores regress; the original model stays. One bounded trajectory continues to measure recovery.
 
-[Full-model CPU backward](cpu-backward.md) now passes on one complete real article: all 429 parameter gradients are finite and nonzero, at 50.8 targets per CPU second. This provides a reference for a faster, bounded-memory learning path; optimizer updates remain at zero.
+[Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
 
 ## Fixed sources
 

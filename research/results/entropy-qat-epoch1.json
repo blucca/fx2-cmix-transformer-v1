@@ -1,0 +1,103 @@
+{
+  "source_commit": "67b1b03",
+  "measured_at_utc": "2026-10-25T10:01:17.761400+00:00",
+  "training_targets": 1044469,
+  "training_pieces": 807,
+  "baseline": {
+    "static15_bytes": 2904325,
+    "hard_entropy_nats": 15381050.4383798,
+    "scores": {
+      "prefix-1m": 0.4859066182970042,
+      "article-q2-1m": 0.9394297830071054
+    }
+  },
+  "epoch_1": {
+    "epoch": 1,
+    "step": 30,
+    "tensor_count": 429,
+    "quantized_weights": 111,
+    "activation_scales": 119,
+    "raw_fp32": 88,
+    "output_bytes": 6060757,
+    "weight_bytes": 2911289,
+    "double_weight_saved_bytes": -13928,
+    "scores": {
+      "prefix-1m": {
+        "targets": 523194,
+        "raw_nll": 0.544663936337915,
+        "delta_raw_nll": 0.05875731804091078
+      },
+      "article-q2-1m": {
+        "targets": 516391,
+        "raw_nll": 1.0201699989302875,
+        "delta_raw_nll": 0.08074021592318203
+      }
+    },
+    "changed_weight_symbols": 1449283,
+    "hard_entropy_nats": 15418441.606700964,
+    "soft_entropy_nats": 15418002.638671875,
+    "parameter_delta_l2": 0.6650166907437693,
+    "max_scale_delta": 0.001133013516664505,
+    "min_abs_bf16_scale": 4.506111145019531e-05,
+    "proxy_gate_passed": false
+  },
+  "epoch_1_total_cpu_seconds_including_preparation": 1687.2020714190003,
+  "hard_entropy_delta_nats": 37391.168321164325,
+  "forward_scale_diagnostic": {
+    "article": {
+      "start": 11700,
+      "end": 13047,
+      "targets": 1346,
+      "rope_offset": 0
+    },
+    "results": {
+      "original": {
+        "targets": 1346,
+        "torch_cpu_nll": 0.9928354883973347,
+        "torch_cpu_seconds": 0.4878838120000002,
+        "native_nll": 0.9958335168223234,
+        "native_cpu_seconds": 0.108163,
+        "torch_minus_native_nll": -0.0029980284249886413
+      },
+      "epoch-01": {
+        "targets": 1346,
+        "torch_cpu_nll": 1.0368109103652023,
+        "torch_cpu_seconds": 0.3039204930000001,
+        "native_nll": 1.033580359123446,
+        "native_cpu_seconds": 0.103072,
+        "torch_minus_native_nll": 0.0032305512417563076
+      }
+    },
+    "scale_groups": {
+      "weight": {
+        "count": 25946,
+        "original_min_abs": 6.024367253833337e-15,
+        "epoch1_min_abs": 4.50959887530189e-05,
+        "max_abs_delta": 0.001133013516664505,
+        "original_tiny_count": 8,
+        "sign_flips": 11,
+        "original_tiny_epoch1_min_abs": 4.50959887530189e-05,
+        "original_tiny_epoch1_max_abs": 0.00023345138470176607
+      },
+      "activation": {
+        "count": 137,
+        "original_min_abs": 0.0007126269629225135,
+        "epoch1_min_abs": 0.0008222739561460912,
+        "max_abs_delta": 0.001108705997467041,
+        "original_tiny_count": 0,
+        "sign_flips": 0
+      }
+    },
+    "elapsed_cpu_seconds_including_children": 3.128555165,
+    "peak_rss_kib": 617020,
+    "optimizer_updates": 0,
+    "cpu_forward_mode": "train, grad enabled; no backward or update",
+    "earlier_no_grad_probe_cpu_seconds": 2.9426574949999997,
+    "total_diagnostic_cpu_seconds": 6.07121266,
+    "train_and_eval_no_grad_nll_identical": true,
+    "torch_nll_delta": 0.043975421967867634,
+    "native_nll_delta": 0.037746842301122685
+  },
+  "decision": "First-epoch rate and quality gates fail. Retain original weights. Continue only the existing fixed eight-epoch, twelve-CPU-hour trajectory; no mixed coding or parameter variants.",
+  "scope": "Native NLL uses the two held-out complete-piece samples. The separate 1,346-target piece checks CPU/native degradation direction, not full-corpus equivalence."
+}
