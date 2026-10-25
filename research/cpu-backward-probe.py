@@ -30,9 +30,13 @@ def main():
     parser.add_argument("--min-tokens", type=int, default=1025)
     parser.add_argument("--max-tokens", type=int, default=2048)
     parser.add_argument("--cpu-seconds", type=int, default=300)
+    parser.add_argument("--kernel", type=Path, help="compact CPU shared library; omit for reference")
+    parser.add_argument("--article-index", type=int)
+    parser.add_argument("--save-gradients", type=Path)
+    parser.add_argument("--compare-gradients", type=Path)
     args = parser.parse_args()
-    assert 1 <= args.min_tokens <= args.max_tokens <= 4096
-    assert 10 <= args.cpu_seconds <= 300
+    assert 1 <= args.min_tokens <= args.max_tokens <= 131072
+    assert 10 <= args.cpu_seconds <= 900
     args.output.parent.mkdir(parents=True, exist_ok=True)
     for key in ("TMPDIR", "TORCHINDUCTOR_CACHE_DIR", "TORCH_EXTENSIONS_DIR"):
         os.environ.setdefault(key, str(args.output.parent / key.lower()))
@@ -72,16 +76,24 @@ def main():
         repo = Path(__file__).resolve().parents[1]
         sys.path.insert(0, str(repo))
         from pysrc import kda_reference as ref
+        if args.kernel:
+            import cpu_ops
+            cpu_ops.load_kernel(args.kernel)
+            cpu_ops.install_quantizer()
+            import pysrc.attention_function as attention_module
+            attention_module.sdpa_attention_function = cpu_ops.window_attention
 
         counts = {"kda": 0, "convolution": 0, "gated_norm": 0}
 
         def chunk_kda(**kw):
             assert kw["use_qk_l2norm_in_kernel"] and kw["use_gate_in_kernel"]
             counts["kda"] += 1
-            return ref.kda_recurrent_reference(
+            fn = cpu_ops.kda if args.kernel else ref.kda_recurrent_reference
+            extra = {} if args.kernel else {"dtype": torch.float32}
+            return fn(
                 kw["q"], kw["k"], kw["v"], kw["g"], kw["beta"],
                 kw["A_log"], kw["dt_bias"], kw["cu_seqlens"],
-                dtype=torch.float32), None
+                **extra), None
 
         def causal_conv1d(*, x, weight, activation, cu_seqlens):
             assert activation == "silu"
@@ -144,14 +156,17 @@ def main():
              parameters=sum(p.numel() for p in model.parameters()),
              config_source="training_recipes/cooldown.py", query_key_norm_gain=cfg.query_key_norm_gain,
              window=cfg.window_size, activation_dtype=str(cfg.activation_dtype),
-             gradient_checkpointing=cfg.gradient_checkpointing, attention="sdpa")
+             gradient_checkpointing=cfg.gradient_checkpointing,
+             attention="window_sdpa" if args.kernel else "sdpa",
+             kda="compact_native" if args.kernel else "torch_reference")
 
         tokens = np.fromfile(args.tokens, dtype=np.uint8)
         bounds = np.fromfile(args.boundaries, dtype="<i4")
         assert bounds[0] == 0 and (np.diff(bounds) > 0).all()
         assert args.priors.stat().st_size == tokens.size * 205 * 2
         candidates = [(i, int(s), int(e)) for i, (s, e) in enumerate(zip(bounds, bounds[1:]))
-                      if e <= len(tokens) and args.min_tokens <= e - s - 1 <= args.max_tokens]
+                      if e <= len(tokens) and args.min_tokens <= e - s - 1 <= args.max_tokens
+                      and (args.article_index is None or i == args.article_index)]
         assert candidates, "no complete article in the requested token range"
         article, start, end = candidates[0]
         n = end - start - 1
@@ -194,6 +209,24 @@ def main():
              nonzero_gradient_tensors=len(nonzero), missing_gradient_names=missing,
              nonfinite_gradient_names=nonfinite, operator_calls=counts)
         assert used and not missing and not nonfinite
+        if args.save_gradients:
+            torch.save({name: p.grad for name, p in model.named_parameters()}, args.save_gradients)
+        if args.compare_gradients:
+            expected = torch.load(args.compare_gradients, weights_only=True)
+            diffs, norms, dots = 0.0, 0.0, 0.0
+            per_tensor = {}
+            for name, p in model.named_parameters():
+                g, r = p.grad.double(), expected[name].double()
+                err, norm = (g - r).square().sum().item(), r.square().sum().item()
+                diffs += err
+                norms += norm
+                dots += (g * r).sum().item()
+                per_tensor[name] = (err / max(norm, 1e-30)) ** 0.5
+            relative_l2 = (diffs / norms) ** 0.5
+            save("reference_compared", gradient_relative_l2=relative_l2,
+                 gradient_max_tensor_relative_l2=max(per_tensor.values()),
+                 gradient_worst_tensors=sorted(per_tensor.items(), key=lambda p: -p[1])[:8])
+            assert relative_l2 < 0.01, "full QAT gradient relative L2 exceeds 1%"
         save("complete", status="passed")
     except Exception as exc:
         save("failed", status="failed", error=f"{type(exc).__name__}: {exc}")
