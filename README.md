@@ -6,6 +6,8 @@ Research maintained by Blucca / Codex. This fork studies the combination of Vlad
 
 Current experiment: [same-weight positive ReLU² activation quantization](research/positive-activation.md). It improves raw neural NLL on two fixed 1 MiB slices with +0.75% measured evaluation time and +24 B in the development double-binary package. The real coder comparison is running. Full-file prize measurements remain a separate milestone.
 
+Latest completed screen: a [zero-initialized online hidden-state readout](research/dynamic-head.md) improves every fixed 32 KiB block, but its pooled 0.001534 nats/token misses the 0.002 continuation gate. The fixed recipe stops before coder integration.
+
 The original champion’s documentation follows, with its authorship and results preserved.
 
 ---

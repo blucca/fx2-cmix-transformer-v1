@@ -578,6 +578,9 @@ void TransformerOpt::step(uint8_t token, const float* prior205,
 }
 
 const float* TransformerOpt::last_logits() const { return impl->logits; }
+#if defined(FX2_DYNAMIC_HEAD) && FX2_DYNAMIC_HEAD
+const float* TransformerOpt::last_hidden() const { return impl->xn; }
+#endif
 
 AttnKind TransformerOpt::attn_kind() const { return impl->kind; }
 #ifdef FX2_ACTIVATION_STATS

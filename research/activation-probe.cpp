@@ -23,6 +23,12 @@
 #ifndef FX2_POSITIVE_U8
 #define FX2_POSITIVE_U8 0
 #endif
+#ifndef FX2_DYNAMIC_HEAD
+#define FX2_DYNAMIC_HEAD 0
+#endif
+#if FX2_DYNAMIC_HEAD
+#include "dynamic-head.h"
+#endif
 
 namespace {
 using U64 = unsigned long long;
@@ -232,6 +238,13 @@ int Eval(char** argv) {
   std::array<uint16_t, V> row;
   std::array<float, V> probs;
   Loss total, halves[2];
+#if FX2_DYNAMIC_HEAD
+  DynamicHead head;  // Zero once per independent slice; retained across pieces.
+  Loss shadow, shadow_halves[2];
+  struct Block { Loss base, shadow; };
+  constexpr U64 BLOCK = 32768;
+  std::vector<Block> blocks((length + BLOCK - 1) / BLOCK);
+#endif
   U64 probability_hash = 14695981039346656037ULL;
   struct Sample { U64 target_offset; unsigned target; float prob, logit; };
   std::vector<Sample> samples;
@@ -260,6 +273,18 @@ int Eval(char** argv) {
       if (!std::isfinite(ln) || !std::isfinite(pn)) Fail("nonfinite NLL at %llu", i + 1);
       total.Add(ln, pn);
       halves[(i + 1) >= length / 2].Add(ln, pn);
+#if FX2_DYNAMIC_HEAD
+      head.Predict(model.last_hidden(), logits);
+      const double sn = head.Nll(target), sp = -std::log(double(head.probs[target]));
+      if (!std::isfinite(sn) || !std::isfinite(sp)) Fail("nonfinite shadow NLL at %llu", i + 1);
+      shadow.Add(sn, sp);
+      shadow_halves[(i + 1) >= length / 2].Add(sn, sp);
+      blocks[(i + 1) / BLOCK].base.Add(ln, pn);
+      blocks[(i + 1) / BLOCK].shadow.Add(sn, sp);
+      // The piece's last token is a target here. The next piece's first
+      // token has no preceding neural prediction and is never observed.
+      head.Observe(target);
+#endif
       if (samples.size() < 4) samples.push_back({i + 1, target, probs[target], logits[target]});
     }
   }
@@ -280,6 +305,25 @@ int Eval(char** argv) {
   std::printf(","); PrintLoss("total", total);
   std::printf(","); PrintLoss("first_half", halves[0]);
   std::printf(","); PrintLoss("second_half", halves[1]);
+#if FX2_DYNAMIC_HEAD
+  if (head.pending || head.updates != total.count || shadow.count != total.count)
+    Fail("dynamic head prediction/update count mismatch");
+  std::printf(",\"dynamic_head\":true,\"updates\":%llu,\"initial_weight_bytes\":0,"
+              "\"weight_ram_bytes\":%zu,\"rate\":%.17g,\"keep\":%.17g,",
+              head.updates, sizeof(head.weights), double(head.RATE), double(head.KEEP));
+  PrintLoss("shadow_total", shadow);
+  std::printf(","); PrintLoss("shadow_first_half", shadow_halves[0]);
+  std::printf(","); PrintLoss("shadow_second_half", shadow_halves[1]);
+  std::printf(",\"blocks\":[");
+  for (size_t b = 0; b < blocks.size(); ++b) {
+    std::printf("%s{\"begin\":%llu,\"end\":%llu,", b ? "," : "", U64(b) * BLOCK,
+                std::min(length, U64(b + 1) * BLOCK));
+    PrintLoss("base", blocks[b].base);
+    std::printf(","); PrintLoss("shadow", blocks[b].shadow);
+    std::printf("}");
+  }
+  std::printf("]");
+#endif
 #ifdef FX2_ACTIVATION_STATS
   const auto& stats = model.activation_stats();
   std::printf(",\"mlp_steps\":%llu,\"down_nnz_sum\":[", static_cast<U64>(stats.steps));
@@ -331,6 +375,29 @@ int SelfTest() {
   Loss loss;
   loss.Add(LogitNll(logits.data(), 0), -std::log(double(prob)));
   check(loss.count == 1 && std::abs(loss.probs - expected) < 1e-7);
+#if FX2_DYNAMIC_HEAD
+  DynamicHead head;
+  std::array<float, DynamicHead::D> hidden;
+  hidden.fill(1.0f);
+  logits.fill(0);
+  head.Predict(hidden.data(), logits.data());
+  check(head.updates == 0 && head.logits == logits);
+  check(std::abs(head.Nll(7) - LogitNll(logits.data(), 7)) < 1e-12);
+  const float alpha = head.RATE / (1e-6f + 192.0f);
+  const float target_weight = alpha * (1.0f - head.probs[7]);
+  const float other_weight = -alpha * head.probs[7];
+  head.Observe(7);
+  check(!head.pending && head.updates == 1);
+  check(head.weights[7][0] == target_weight && head.weights[0][191] == other_weight);
+  head.Predict(hidden.data(), logits.data());
+  check(head.Nll(7) < std::log(205.0));
+  head.Observe(8);
+  const auto weight_before_zero_hidden = head.weights[7][0];
+  hidden.fill(0);
+  head.Predict(hidden.data(), logits.data());
+  head.Observe(7);
+  check(head.weights[7][0] == head.KEEP * weight_before_zero_hidden && head.updates == 3);
+#endif
   std::puts("ACTIVATION_SELF_TEST passed: boundaries, cross-cut separator, counts, double NLL, FNV-1a");
   return 0;
 }

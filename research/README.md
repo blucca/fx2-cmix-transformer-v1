@@ -800,3 +800,13 @@ The original v26 middle 8 MiB comparison is now [fully verified](results/middle8
 [PGO family](results/release-family-verified.json) also completes both paired
 1 MiB round trips: total coding time improves 4.50%, with 0 / -1 B size deltas.
 It retains its separate stream family and awaits any justified long confirmation.
+
+
+## Causal online hidden-state readout
+
+The [fixed dynamic readout screen](dynamic-head.md) learns a zero-initialized
+205×192 residual from final normalized Transformer states. Both 1 MiB slices,
+their four halves and all 64 blocks improve; pooled gain is 0.0015339819
+nats/token against the predeclared 0.002 gate. Stop this recipe before paired
+timing/coder integration. Original base probability fingerprints and NLL sums
+are preserved. [Frozen protocol and measurements](results/dynamic-head-A.json).

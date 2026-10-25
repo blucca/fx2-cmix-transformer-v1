@@ -1,0 +1,1688 @@
+{
+  "schema": "hutter.dynamic-head-A.v1",
+  "baseline_model_source": "83f2603f3f7751da5f429fd32669807eb8510494",
+  "weights_sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860",
+  "weights_bytes": 2930652,
+  "candidate": {
+    "hidden": "final RMS xn[192]",
+    "logits": "post-softcap",
+    "shape": [
+      205,
+      192
+    ],
+    "dtype": "f32",
+    "initialization": 0,
+    "bias": false,
+    "learning_rate": 0.03125,
+    "norm_epsilon": 1e-06,
+    "forget": 3.0517578125e-05,
+    "learning_order": "predict then score observed next token then update",
+    "softmax": "strict double exp normalized to f32 q",
+    "positive_u8": false,
+    "resets": "independent slice only; retain across all pieces"
+  },
+  "samples": [
+    {
+      "name": "prefix-1m",
+      "offset": 0,
+      "length": 1048576
+    },
+    {
+      "name": "article-q2-1m",
+      "offset": 293232482,
+      "length": 1048576
+    }
+  ],
+  "gates": {
+    "each_sample_and_second_half_delta": ">0",
+    "weighted_delta_nats_per_token": ">=0.002",
+    "following_timing_limit": "<=1.08; only after quality pass"
+  },
+  "summary": {
+    "decision": "stop-fixed-recipe",
+    "weighted_delta_nats_per_token": 0.0015339819284929273,
+    "saved_nats": 3214.6186652774923,
+    "predicted_tokens": 2095604,
+    "samples": [
+      {
+        "sample": "prefix-1m",
+        "delta_nats_per_token": 0.0016181094026386344,
+        "half_deltas": [
+          0.0013723865592885247,
+          0.0018637998679430974
+        ],
+        "positive_blocks": 32,
+        "blocks": 32
+      },
+      {
+        "sample": "article-q2-1m",
+        "delta_nats_per_token": 0.0014499451325598923,
+        "half_deltas": [
+          0.0017984728614658997,
+          0.0011014180688161703
+        ],
+        "positive_blocks": 32,
+        "blocks": 32
+      }
+    ],
+    "status": "complete",
+    "elapsed_seconds": 315.7684555053711,
+    "base_goldens": {
+      "smoke-64k": {
+        "status": "passed",
+        "probability_hash": "49a3cefb8447dac8",
+        "count": 65439
+      },
+      "prefix-1m": {
+        "status": "passed",
+        "probability_hash": "60d7b09837e874ff",
+        "count": 1047237
+      },
+      "article-q2-1m": {
+        "status": "passed",
+        "probability_hash": "1f71c5696e152c73",
+        "count": 1048367
+      }
+    },
+    "quality_only": true,
+    "timing_started": false,
+    "coder_started": false,
+    "weights_added_bytes": 0
+  },
+  "completed_capture_and_eval_cpu_seconds": 190.580392,
+  "timing_note": "Shadow evaluation includes both base and candidate diagnostics. A matched timing pair was not run because quality missed its predeclared gate.",
+  "measurements": {
+    "smoke-64k-capture": {
+      "mode": "capture",
+      "offset": 0,
+      "input_bytes": 65536,
+      "vocab": 205,
+      "prior_bytes": 26869760,
+      "capture_seconds": 0.165852,
+      "capture_cpu_seconds": 0.165317,
+      "pieces": 97,
+      "separator_ends": 96,
+      "length_cuts": 0,
+      "seconds": 0.472894,
+      "cpu_seconds": 0.471936,
+      "max_rss_kib": 1131772
+    },
+    "smoke-64k-baseline": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 65536,
+      "prior_bytes": 26869760,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 32768,
+      "eval_seconds": 4.579679,
+      "eval_cpu_seconds": 4.575239,
+      "pieces": 97,
+      "separator_ends": 96,
+      "length_cuts": 0,
+      "probability_hash": "49a3cefb8447dac8",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 53659980,
+      "total": {
+        "count": 65439,
+        "logits_sum": 32174.425661140824,
+        "probs_sum": 32174.423386518785,
+        "logits_mean": 0.49167049712160676,
+        "probs_mean": 0.49167046236218137
+      },
+      "first_half": {
+        "count": 32720,
+        "logits_sum": 17085.160160352472,
+        "probs_sum": 17085.159031002335,
+        "logits_mean": 0.5221625965877895,
+        "probs_mean": 0.5221625620721985
+      },
+      "second_half": {
+        "count": 32719,
+        "logits_sum": 15089.265500788255,
+        "probs_sum": 15089.26435551607,
+        "logits_mean": 0.46117746571680845,
+        "probs_mean": 0.4611774307135325
+      },
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.96224719e-05,
+          "logit": 0.469729513
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.00187715935,
+          "logit": 6.81341028
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0698251873,
+          "logit": 9.97822666
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0692297891,
+          "logit": 9.1072979
+        }
+      ],
+      "seconds": 4.799223,
+      "cpu_seconds": 4.782709,
+      "max_rss_kib": 93156
+    },
+    "smoke-64k-shadow": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 65536,
+      "prior_bytes": 26869760,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 32768,
+      "eval_seconds": 4.870642,
+      "eval_cpu_seconds": 4.865259,
+      "pieces": 97,
+      "separator_ends": 96,
+      "length_cuts": 0,
+      "probability_hash": "49a3cefb8447dac8",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 53659980,
+      "total": {
+        "count": 65439,
+        "logits_sum": 32174.425661140824,
+        "probs_sum": 32174.423386518785,
+        "logits_mean": 0.49167049712160676,
+        "probs_mean": 0.49167046236218137
+      },
+      "first_half": {
+        "count": 32720,
+        "logits_sum": 17085.160160352472,
+        "probs_sum": 17085.159031002335,
+        "logits_mean": 0.5221625965877895,
+        "probs_mean": 0.5221625620721985
+      },
+      "second_half": {
+        "count": 32719,
+        "logits_sum": 15089.265500788255,
+        "probs_sum": 15089.26435551607,
+        "logits_mean": 0.46117746571680845,
+        "probs_mean": 0.4611774307135325
+      },
+      "dynamic_head": true,
+      "updates": 65439,
+      "initial_weight_bytes": 0,
+      "weight_ram_bytes": 157440,
+      "rate": 0.03125,
+      "keep": 0.999969482421875,
+      "shadow_total": {
+        "count": 65439,
+        "logits_sum": 32154.866861756636,
+        "probs_sum": 32154.86685206001,
+        "logits_mean": 0.4913716111455957,
+        "probs_mean": 0.4913716109974176
+      },
+      "shadow_first_half": {
+        "count": 32720,
+        "logits_sum": 17078.090612256074,
+        "probs_sum": 17078.090602220134,
+        "logits_mean": 0.5219465346044032,
+        "probs_mean": 0.5219465342976813
+      },
+      "shadow_second_half": {
+        "count": 32719,
+        "logits_sum": 15076.776249500494,
+        "probs_sum": 15076.7762498397,
+        "logits_mean": 0.46079575321680044,
+        "probs_mean": 0.4607957532271677
+      },
+      "blocks": [
+        {
+          "begin": 0,
+          "end": 32768,
+          "base": {
+            "count": 32720,
+            "logits_sum": 17085.160160352472,
+            "probs_sum": 17085.159031002335,
+            "logits_mean": 0.5221625965877895,
+            "probs_mean": 0.5221625620721985
+          },
+          "shadow": {
+            "count": 32720,
+            "logits_sum": 17078.090612256074,
+            "probs_sum": 17078.090602220134,
+            "logits_mean": 0.5219465346044032,
+            "probs_mean": 0.5219465342976813
+          }
+        },
+        {
+          "begin": 32768,
+          "end": 65536,
+          "base": {
+            "count": 32719,
+            "logits_sum": 15089.265500788255,
+            "probs_sum": 15089.26435551607,
+            "logits_mean": 0.46117746571680845,
+            "probs_mean": 0.4611774307135325
+          },
+          "shadow": {
+            "count": 32719,
+            "logits_sum": 15076.776249500494,
+            "probs_sum": 15076.7762498397,
+            "logits_mean": 0.46079575321680044,
+            "probs_mean": 0.4607957532271677
+          }
+        }
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.96224719e-05,
+          "logit": 0.469729513
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.00187715935,
+          "logit": 6.81341028
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0698251873,
+          "logit": 9.97822666
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0692297891,
+          "logit": 9.1072979
+        }
+      ],
+      "seconds": 5.071244,
+      "cpu_seconds": 5.065503,
+      "max_rss_kib": 93292
+    },
+    "prefix-1m-capture": {
+      "mode": "capture",
+      "offset": 0,
+      "input_bytes": 1048576,
+      "vocab": 205,
+      "prior_bytes": 429916160,
+      "capture_seconds": 3.079809,
+      "capture_cpu_seconds": 3.073402,
+      "pieces": 1339,
+      "separator_ends": 1338,
+      "length_cuts": 0,
+      "seconds": 3.393015,
+      "cpu_seconds": 3.386147,
+      "max_rss_kib": 1152540
+    },
+    "prefix-1m-shadow": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 1048576,
+      "prior_bytes": 429916160,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 524288,
+      "eval_seconds": 79.384688,
+      "eval_cpu_seconds": 79.315364,
+      "pieces": 1339,
+      "separator_ends": 1338,
+      "length_cuts": 0,
+      "probability_hash": "60d7b09837e874ff",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 858734340,
+      "total": {
+        "count": 1047237,
+        "logits_sum": 485701.75128205464,
+        "probs_sum": 485701.7148811954,
+        "logits_mean": 0.4637935360210293,
+        "probs_mean": 0.4637935012620786
+      },
+      "first_half": {
+        "count": 523584,
+        "logits_sum": 231397.09512524755,
+        "probs_sum": 231397.076951279,
+        "logits_mean": 0.44194836955531025,
+        "probs_mean": 0.4419483348446076
+      },
+      "second_half": {
+        "count": 523653,
+        "logits_sum": 254304.6561568069,
+        "probs_sum": 254304.6379299882,
+        "logits_mean": 0.4856358240224097,
+        "probs_mean": 0.48563578921535483
+      },
+      "dynamic_head": true,
+      "updates": 1047237,
+      "initial_weight_bytes": 0,
+      "weight_ram_bytes": 157440,
+      "rate": 0.03125,
+      "keep": 0.999969482421875,
+      "shadow_total": {
+        "count": 1047237,
+        "logits_sum": 484007.20724556356,
+        "probs_sum": 484007.20722884935,
+        "logits_mean": 0.4621754266183907,
+        "probs_mean": 0.46217542660243033
+      },
+      "shadow_first_half": {
+        "count": 523584,
+        "logits_sum": 230678.53548098903,
+        "probs_sum": 230678.53545588368,
+        "logits_mean": 0.4405759829960217,
+        "probs_mean": 0.44057598294807265
+      },
+      "shadow_second_half": {
+        "count": 523653,
+        "logits_sum": 253328.67176455888,
+        "probs_sum": 253328.67177308616,
+        "logits_mean": 0.4837720241544666,
+        "probs_mean": 0.48377202417075077
+      },
+      "blocks": [
+        {
+          "begin": 0,
+          "end": 32768,
+          "base": {
+            "count": 32720,
+            "logits_sum": 17085.160160352472,
+            "probs_sum": 17085.159031002335,
+            "logits_mean": 0.5221625965877895,
+            "probs_mean": 0.5221625620721985
+          },
+          "shadow": {
+            "count": 32720,
+            "logits_sum": 17078.090612256074,
+            "probs_sum": 17078.090602220134,
+            "logits_mean": 0.5219465346044032,
+            "probs_mean": 0.5219465342976813
+          }
+        },
+        {
+          "begin": 32768,
+          "end": 65536,
+          "base": {
+            "count": 32719,
+            "logits_sum": 15089.265500788255,
+            "probs_sum": 15089.26435551607,
+            "logits_mean": 0.46117746571680845,
+            "probs_mean": 0.4611774307135325
+          },
+          "shadow": {
+            "count": 32719,
+            "logits_sum": 15076.776249500494,
+            "probs_sum": 15076.7762498397,
+            "logits_mean": 0.46079575321680044,
+            "probs_mean": 0.4607957532271677
+          }
+        },
+        {
+          "begin": 65536,
+          "end": 98304,
+          "base": {
+            "count": 32726,
+            "logits_sum": 15199.418868320827,
+            "probs_sum": 15199.417723646247,
+            "logits_mean": 0.4644447493833902,
+            "probs_mean": 0.4644447144058622
+          },
+          "shadow": {
+            "count": 32726,
+            "logits_sum": 15147.641840971968,
+            "probs_sum": 15147.641841267146,
+            "logits_mean": 0.4628626120201665,
+            "probs_mean": 0.46286261202918616
+          }
+        },
+        {
+          "begin": 98304,
+          "end": 131072,
+          "base": {
+            "count": 32724,
+            "logits_sum": 14518.39353774371,
+            "probs_sum": 14518.392374548212,
+            "logits_mean": 0.44366194651459817,
+            "probs_mean": 0.4436619109689589
+          },
+          "shadow": {
+            "count": 32724,
+            "logits_sum": 14467.690145567907,
+            "probs_sum": 14467.690151196768,
+            "logits_mean": 0.44211252125558936,
+            "probs_mean": 0.44211252142759955
+          }
+        },
+        {
+          "begin": 131072,
+          "end": 163840,
+          "base": {
+            "count": 32719,
+            "logits_sum": 12514.22642633661,
+            "probs_sum": 12514.22525973349,
+            "logits_mean": 0.3824758221931175,
+            "probs_mean": 0.38247578653789815
+          },
+          "shadow": {
+            "count": 32719,
+            "logits_sum": 12474.31715068484,
+            "probs_sum": 12474.317151627523,
+            "logits_mean": 0.3812560637759357,
+            "probs_mean": 0.3812560638047472
+          }
+        },
+        {
+          "begin": 163840,
+          "end": 196608,
+          "base": {
+            "count": 32723,
+            "logits_sum": 13982.471324897571,
+            "probs_sum": 13982.470192526354,
+            "logits_mean": 0.4272979654951432,
+            "probs_mean": 0.42729793089039375
+          },
+          "shadow": {
+            "count": 32723,
+            "logits_sum": 13953.008748978093,
+            "probs_sum": 13953.008745102301,
+            "logits_mean": 0.42639760257244425,
+            "probs_mean": 0.4263976024540018
+          }
+        },
+        {
+          "begin": 196608,
+          "end": 229376,
+          "base": {
+            "count": 32726,
+            "logits_sum": 15977.503068997128,
+            "probs_sum": 15977.501939496691,
+            "logits_mean": 0.48822046901537397,
+            "probs_mean": 0.4882204345015184
+          },
+          "shadow": {
+            "count": 32726,
+            "logits_sum": 15938.28872971524,
+            "probs_sum": 15938.288730364155,
+            "logits_mean": 0.48702220649377376,
+            "probs_mean": 0.48702220651360245
+          }
+        },
+        {
+          "begin": 229376,
+          "end": 262144,
+          "base": {
+            "count": 32722,
+            "logits_sum": 13363.20277269364,
+            "probs_sum": 13363.201636392658,
+            "logits_mean": 0.40838588022411954,
+            "probs_mean": 0.40838584549821705
+          },
+          "shadow": {
+            "count": 32722,
+            "logits_sum": 13323.494121718266,
+            "probs_sum": 13323.494118362534,
+            "logits_mean": 0.4071723648223906,
+            "probs_mean": 0.40717236471983786
+          }
+        },
+        {
+          "begin": 262144,
+          "end": 294912,
+          "base": {
+            "count": 32725,
+            "logits_sum": 14711.711462302332,
+            "probs_sum": 14711.71035052949,
+            "logits_mean": 0.4495557360520193,
+            "probs_mean": 0.4495557020788232
+          },
+          "shadow": {
+            "count": 32725,
+            "logits_sum": 14660.067885430952,
+            "probs_sum": 14660.067883785588,
+            "logits_mean": 0.44797762827902066,
+            "probs_mean": 0.4479776282287422
+          }
+        },
+        {
+          "begin": 294912,
+          "end": 327680,
+          "base": {
+            "count": 32723,
+            "logits_sum": 13281.061609662207,
+            "probs_sum": 13281.060479043743,
+            "logits_mean": 0.40586320354680827,
+            "probs_mean": 0.40586316899562214
+          },
+          "shadow": {
+            "count": 32723,
+            "logits_sum": 13235.85650696067,
+            "probs_sum": 13235.856508911796,
+            "logits_mean": 0.40448175616418636,
+            "probs_mean": 0.4044817562238119
+          }
+        },
+        {
+          "begin": 327680,
+          "end": 360448,
+          "base": {
+            "count": 32726,
+            "logits_sum": 13499.929473088609,
+            "probs_sum": 13499.928343776466,
+            "logits_mean": 0.41251388721776594,
+            "probs_mean": 0.41251385270966406
+          },
+          "shadow": {
+            "count": 32726,
+            "logits_sum": 13451.106528288827,
+            "probs_sum": 13451.106518626275,
+            "logits_mean": 0.4110220169983752,
+            "probs_mean": 0.41102201670311905
+          }
+        },
+        {
+          "begin": 360448,
+          "end": 393216,
+          "base": {
+            "count": 32729,
+            "logits_sum": 17005.879133976414,
+            "probs_sum": 17005.878085975382,
+            "logits_mean": 0.519596661492145,
+            "probs_mean": 0.5195966294715813
+          },
+          "shadow": {
+            "count": 32729,
+            "logits_sum": 16943.99117606248,
+            "probs_sum": 16943.991178650358,
+            "logits_mean": 0.5177057403545015,
+            "probs_mean": 0.5177057404335714
+          }
+        },
+        {
+          "begin": 393216,
+          "end": 425984,
+          "base": {
+            "count": 32724,
+            "logits_sum": 13439.481277051,
+            "probs_sum": 13439.480120027987,
+            "logits_mean": 0.41069188598737927,
+            "probs_mean": 0.4106918506303626
+          },
+          "shadow": {
+            "count": 32724,
+            "logits_sum": 13378.66973389811,
+            "probs_sum": 13378.669732160452,
+            "logits_mean": 0.4088335696705204,
+            "probs_mean": 0.40883356961741996
+          }
+        },
+        {
+          "begin": 425984,
+          "end": 458752,
+          "base": {
+            "count": 32726,
+            "logits_sum": 13077.580161892869,
+            "probs_sum": 13077.579004100762,
+            "logits_mean": 0.3996082674904623,
+            "probs_mean": 0.39960823211210544
+          },
+          "shadow": {
+            "count": 32726,
+            "logits_sum": 13034.423957153665,
+            "probs_sum": 13034.423956759758,
+            "logits_mean": 0.39828955439569963,
+            "probs_mean": 0.3982895543836631
+          }
+        },
+        {
+          "begin": 458752,
+          "end": 491520,
+          "base": {
+            "count": 32728,
+            "logits_sum": 15984.665454622938,
+            "probs_sum": 15984.664343765882,
+            "logits_mean": 0.4884094797917055,
+            "probs_mean": 0.4884094458496053
+          },
+          "shadow": {
+            "count": 32728,
+            "logits_sum": 15907.431275733376,
+            "probs_sum": 15907.431273898488,
+            "logits_mean": 0.4860495989896534,
+            "probs_mean": 0.4860495989335886
+          }
+        },
+        {
+          "begin": 491520,
+          "end": 524288,
+          "base": {
+            "count": 32724,
+            "logits_sum": 12667.144892525033,
+            "probs_sum": 12667.14371122715,
+            "logits_mean": 0.38709035852967344,
+            "probs_mean": 0.38709032243085045
+          },
+          "shadow": {
+            "count": 32724,
+            "logits_sum": 12607.680818066878,
+            "probs_sum": 12607.680813144561,
+            "logits_mean": 0.3852732189850531,
+            "probs_mean": 0.38527321883463395
+          }
+        },
+        {
+          "begin": 524288,
+          "end": 557056,
+          "base": {
+            "count": 32727,
+            "logits_sum": 14594.25982089578,
+            "probs_sum": 14594.258698566997,
+            "logits_mean": 0.4459394329115342,
+            "probs_mean": 0.44593939861786897
+          },
+          "shadow": {
+            "count": 32727,
+            "logits_sum": 14537.830820466588,
+            "probs_sum": 14537.830822495398,
+            "logits_mean": 0.44421519908536033,
+            "probs_mean": 0.4442151991473523
+          }
+        },
+        {
+          "begin": 557056,
+          "end": 589824,
+          "base": {
+            "count": 32727,
+            "logits_sum": 14192.662424354117,
+            "probs_sum": 14192.66130004205,
+            "logits_mean": 0.43366829909109045,
+            "probs_mean": 0.4336682647368243
+          },
+          "shadow": {
+            "count": 32727,
+            "logits_sum": 14148.201713350225,
+            "probs_sum": 14148.201707797612,
+            "logits_mean": 0.4323097660448628,
+            "probs_mean": 0.4323097658751982
+          }
+        },
+        {
+          "begin": 589824,
+          "end": 622592,
+          "base": {
+            "count": 32721,
+            "logits_sum": 11233.424909945725,
+            "probs_sum": 11233.423695564898,
+            "logits_mean": 0.343309339871817,
+            "probs_mean": 0.3433093027586228
+          },
+          "shadow": {
+            "count": 32721,
+            "logits_sum": 11183.894067069354,
+            "probs_sum": 11183.894070943992,
+            "logits_mean": 0.3417956073185219,
+            "probs_mean": 0.34179560743693627
+          }
+        },
+        {
+          "begin": 622592,
+          "end": 655360,
+          "base": {
+            "count": 32709,
+            "logits_sum": 10263.824089507787,
+            "probs_sum": 10263.82284966505,
+            "logits_mean": 0.31379204773939245,
+            "probs_mean": 0.313792009834145
+          },
+          "shadow": {
+            "count": 32709,
+            "logits_sum": 10182.216894219377,
+            "probs_sum": 10182.216892715971,
+            "logits_mean": 0.31129710153839546,
+            "probs_mean": 0.3112971014924324
+          }
+        },
+        {
+          "begin": 655360,
+          "end": 688128,
+          "base": {
+            "count": 32726,
+            "logits_sum": 17364.481298925843,
+            "probs_sum": 17364.48019880602,
+            "logits_mean": 0.5306020075452498,
+            "probs_mean": 0.5306019739291701
+          },
+          "shadow": {
+            "count": 32726,
+            "logits_sum": 17260.83509387314,
+            "probs_sum": 17260.835098332464,
+            "logits_mean": 0.5274349170040071,
+            "probs_mean": 0.5274349171402696
+          }
+        },
+        {
+          "begin": 688128,
+          "end": 720896,
+          "base": {
+            "count": 32727,
+            "logits_sum": 16965.244357955446,
+            "probs_sum": 16965.243248587438,
+            "logits_mean": 0.5183867863829695,
+            "probs_mean": 0.5183867524853313
+          },
+          "shadow": {
+            "count": 32727,
+            "logits_sum": 16888.422044622737,
+            "probs_sum": 16888.422045292584,
+            "logits_mean": 0.5160394183586255,
+            "probs_mean": 0.5160394183790932
+          }
+        },
+        {
+          "begin": 720896,
+          "end": 753664,
+          "base": {
+            "count": 32719,
+            "logits_sum": 14353.937251321995,
+            "probs_sum": 14353.936081535045,
+            "logits_mean": 0.4387034215997431,
+            "probs_mean": 0.4387033858472155
+          },
+          "shadow": {
+            "count": 32719,
+            "logits_sum": 14244.81336459386,
+            "probs_sum": 14244.813365676819,
+            "logits_mean": 0.43536823755597237,
+            "probs_mean": 0.4353682375890711
+          }
+        },
+        {
+          "begin": 753664,
+          "end": 786432,
+          "base": {
+            "count": 32723,
+            "logits_sum": 12985.360983587156,
+            "probs_sum": 12985.35981671935,
+            "logits_mean": 0.39682672687672754,
+            "probs_mean": 0.396826691217778
+          },
+          "shadow": {
+            "count": 32723,
+            "logits_sum": 12908.197206277076,
+            "probs_sum": 12908.197211663986,
+            "logits_mean": 0.39446863693050993,
+            "probs_mean": 0.39446863709513147
+          }
+        },
+        {
+          "begin": 786432,
+          "end": 819200,
+          "base": {
+            "count": 32724,
+            "logits_sum": 14526.66088939603,
+            "probs_sum": 14526.659673934855,
+            "logits_mean": 0.44391458530118655,
+            "probs_mean": 0.4439145481583809
+          },
+          "shadow": {
+            "count": 32724,
+            "logits_sum": 14483.284956624377,
+            "probs_sum": 14483.284954052564,
+            "logits_mean": 0.44258907702678085,
+            "probs_mean": 0.44258907694818983
+          }
+        },
+        {
+          "begin": 819200,
+          "end": 851968,
+          "base": {
+            "count": 32730,
+            "logits_sum": 16414.292641888453,
+            "probs_sum": 16414.291508599115,
+            "logits_mean": 0.5015060385544898,
+            "probs_mean": 0.50150600392909
+          },
+          "shadow": {
+            "count": 32730,
+            "logits_sum": 16378.877115461579,
+            "probs_sum": 16378.877114830493,
+            "logits_mean": 0.5004239876401337,
+            "probs_mean": 0.5004239876208523
+          }
+        },
+        {
+          "begin": 851968,
+          "end": 884736,
+          "base": {
+            "count": 32734,
+            "logits_sum": 18296.591097400906,
+            "probs_sum": 18296.589973254268,
+            "logits_mean": 0.5589476109672178,
+            "probs_mean": 0.5589475766253519
+          },
+          "shadow": {
+            "count": 32734,
+            "logits_sum": 18260.44264531811,
+            "probs_sum": 18260.44264059284,
+            "logits_mean": 0.5578433019282126,
+            "probs_mean": 0.557843301783859
+          }
+        },
+        {
+          "begin": 884736,
+          "end": 917504,
+          "base": {
+            "count": 32738,
+            "logits_sum": 19039.10776895021,
+            "probs_sum": 19039.106682737915,
+            "logits_mean": 0.5815598927530762,
+            "probs_mean": 0.5815598595741315
+          },
+          "shadow": {
+            "count": 32738,
+            "logits_sum": 18974.044183565267,
+            "probs_sum": 18974.044188828393,
+            "logits_mean": 0.5795724901816014,
+            "probs_mean": 0.5795724903423665
+          }
+        },
+        {
+          "begin": 917504,
+          "end": 950272,
+          "base": {
+            "count": 32742,
+            "logits_sum": 22172.347227556056,
+            "probs_sum": 22172.3461679851,
+            "logits_mean": 0.6771836548639685,
+            "probs_mean": 0.6771836225027518
+          },
+          "shadow": {
+            "count": 32742,
+            "logits_sum": 22104.80829036361,
+            "probs_sum": 22104.808289642227,
+            "logits_mean": 0.6751208933590988,
+            "probs_mean": 0.6751208933370664
+          }
+        },
+        {
+          "begin": 950272,
+          "end": 983040,
+          "base": {
+            "count": 32740,
+            "logits_sum": 18653.059851440445,
+            "probs_sum": 18653.05877125762,
+            "logits_mean": 0.5697330437214553,
+            "probs_mean": 0.5697330107286994
+          },
+          "shadow": {
+            "count": 32740,
+            "logits_sum": 18607.127956188964,
+            "probs_sum": 18607.12795929679,
+            "logits_mean": 0.5683301147278242,
+            "probs_mean": 0.5683301148227486
+          }
+        },
+        {
+          "begin": 983040,
+          "end": 1015808,
+          "base": {
+            "count": 32733,
+            "logits_sum": 16832.63754995715,
+            "probs_sum": 16832.636433723463,
+            "logits_mean": 0.5142405996992989,
+            "probs_mean": 0.5142405655981261
+          },
+          "shadow": {
+            "count": 32733,
+            "logits_sum": 16785.329209700583,
+            "probs_sum": 16785.32921016494,
+            "logits_mean": 0.5127953200042948,
+            "probs_mean": 0.512795320018481
+          }
+        },
+        {
+          "begin": 1015808,
+          "end": 1048576,
+          "base": {
+            "count": 32733,
+            "logits_sum": 16416.763993726046,
+            "probs_sum": 16416.762829039035,
+            "logits_mean": 0.5015355755270231,
+            "probs_mean": 0.5015355399455912
+          },
+          "shadow": {
+            "count": 32733,
+            "logits_sum": 16380.346202870995,
+            "probs_sum": 16380.34620079689,
+            "logits_mean": 0.500423004395289,
+            "probs_mean": 0.5004230043319247
+          }
+        }
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 31,
+          "prob": 1.96224719e-05,
+          "logit": 0.469729513
+        },
+        {
+          "target_offset": 2,
+          "target": 124,
+          "prob": 0.00187715935,
+          "logit": 6.81341028
+        },
+        {
+          "target_offset": 3,
+          "target": 7,
+          "prob": 0.0698251873,
+          "logit": 9.97822666
+        },
+        {
+          "target_offset": 4,
+          "target": 66,
+          "prob": 0.0692297891,
+          "logit": 9.1072979
+        }
+      ],
+      "seconds": 79.602172,
+      "cpu_seconds": 79.532643,
+      "max_rss_kib": 94256
+    },
+    "article-q2-1m-capture": {
+      "mode": "capture",
+      "offset": 293232482,
+      "input_bytes": 1048576,
+      "vocab": 205,
+      "prior_bytes": 429916160,
+      "capture_seconds": 3.624437,
+      "capture_cpu_seconds": 3.61639,
+      "pieces": 209,
+      "separator_ends": 208,
+      "length_cuts": 0,
+      "seconds": 3.937404,
+      "cpu_seconds": 3.928859,
+      "max_rss_kib": 1155724
+    },
+    "article-q2-1m-shadow": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 1048576,
+      "prior_bytes": 429916160,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 524288,
+      "eval_seconds": 93.284687,
+      "eval_cpu_seconds": 93.195227,
+      "pieces": 209,
+      "separator_ends": 208,
+      "length_cuts": 0,
+      "probability_hash": "1f71c5696e152c73",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 859660940,
+      "total": {
+        "count": 1048367,
+        "logits_sum": 1163964.5218370666,
+        "probs_sum": 1163964.4948392136,
+        "logits_mean": 1.1102643652814965,
+        "probs_mean": 1.1102643395292044
+      },
+      "first_half": {
+        "count": 524183,
+        "logits_sum": 672134.9122207774,
+        "probs_sum": 672134.9006872748,
+        "logits_mean": 1.2822524046387949,
+        "probs_mean": 1.2822523826359777
+      },
+      "second_half": {
+        "count": 524184,
+        "logits_sum": 491829.6096163636,
+        "probs_sum": 491829.5941520206,
+        "logits_mean": 0.9382766540305763,
+        "probs_mean": 0.9382766245288306
+      },
+      "dynamic_head": true,
+      "updates": 1048367,
+      "initial_weight_bytes": 0,
+      "weight_ram_bytes": 157440,
+      "rate": 0.03125,
+      "keep": 0.999969482421875,
+      "shadow_total": {
+        "count": 1048367,
+        "logits_sum": 1162444.4472082802,
+        "probs_sum": 1162444.447198552,
+        "logits_mean": 1.1088144201489365,
+        "probs_mean": 1.1088144201396573
+      },
+      "shadow_first_half": {
+        "count": 524183,
+        "logits_sum": 671192.1833208356,
+        "probs_sum": 671192.1833034197,
+        "logits_mean": 1.280453931777329,
+        "probs_mean": 1.2804539317441042
+      },
+      "shadow_second_half": {
+        "count": 524184,
+        "logits_sum": 491252.26388737926,
+        "probs_sum": 491252.2638952491,
+        "logits_mean": 0.9371752359617601,
+        "probs_mean": 0.9371752359767737
+      },
+      "blocks": [
+        {
+          "begin": 0,
+          "end": 32768,
+          "base": {
+            "count": 32765,
+            "logits_sum": 35502.97386065936,
+            "probs_sum": 35502.972944550595,
+            "logits_mean": 1.0835639817079006,
+            "probs_mean": 1.0835639537479198
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 35489.845390087154,
+            "probs_sum": 35489.84538158961,
+            "logits_mean": 1.0831632958976698,
+            "probs_mean": 1.0831632956383215
+          }
+        },
+        {
+          "begin": 32768,
+          "end": 65536,
+          "base": {
+            "count": 32765,
+            "logits_sum": 38529.95544792122,
+            "probs_sum": 38529.9546405603,
+            "logits_mean": 1.175948586843315,
+            "probs_mean": 1.1759485622023593
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 38480.625263647074,
+            "probs_sum": 38480.625260520195,
+            "logits_mean": 1.174443011251246,
+            "probs_mean": 1.1744430111558124
+          }
+        },
+        {
+          "begin": 65536,
+          "end": 98304,
+          "base": {
+            "count": 32765,
+            "logits_sum": 48190.82436041217,
+            "probs_sum": 48190.82377273998,
+            "logits_mean": 1.470801903262999,
+            "probs_mean": 1.4708018853270253
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 48127.89279081191,
+            "probs_sum": 48127.89278842765,
+            "logits_mean": 1.468881208326321,
+            "probs_mean": 1.4688812082535525
+          }
+        },
+        {
+          "begin": 98304,
+          "end": 131072,
+          "base": {
+            "count": 32767,
+            "logits_sum": 49062.418956752146,
+            "probs_sum": 49062.418371683605,
+            "logits_mean": 1.4973118978469846,
+            "probs_mean": 1.4973118799915648
+          },
+          "shadow": {
+            "count": 32767,
+            "logits_sum": 48986.46451312572,
+            "probs_sum": 48986.46451124408,
+            "logits_mean": 1.4949938814394275,
+            "probs_mean": 1.4949938813820025
+          }
+        },
+        {
+          "begin": 131072,
+          "end": 163840,
+          "base": {
+            "count": 32765,
+            "logits_sum": 47969.70387298601,
+            "probs_sum": 47969.70328938977,
+            "logits_mean": 1.4640532236528614,
+            "probs_mean": 1.464053205841287
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 47915.80463405771,
+            "probs_sum": 47915.804632273015,
+            "logits_mean": 1.462408198811467,
+            "probs_mean": 1.4624081987569972
+          }
+        },
+        {
+          "begin": 163840,
+          "end": 196608,
+          "base": {
+            "count": 32760,
+            "logits_sum": 48107.85965161417,
+            "probs_sum": 48107.859028591156,
+            "logits_mean": 1.4684938843594069,
+            "probs_mean": 1.4684938653416104
+          },
+          "shadow": {
+            "count": 32760,
+            "logits_sum": 48033.30774727013,
+            "probs_sum": 48033.30774796133,
+            "logits_mean": 1.466218185203606,
+            "probs_mean": 1.4662181852247047
+          }
+        },
+        {
+          "begin": 196608,
+          "end": 229376,
+          "base": {
+            "count": 32765,
+            "logits_sum": 46679.181861857134,
+            "probs_sum": 46679.1812273588,
+            "logits_mean": 1.4246660113492182,
+            "probs_mean": 1.4246659919840927
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 46599.57353786744,
+            "probs_sum": 46599.57353659126,
+            "logits_mean": 1.4222363356590093,
+            "probs_mean": 1.4222363356200598
+          }
+        },
+        {
+          "begin": 229376,
+          "end": 262144,
+          "base": {
+            "count": 32754,
+            "logits_sum": 42226.34413067615,
+            "probs_sum": 42226.343447811145,
+            "logits_mean": 1.2891965601354385,
+            "probs_mean": 1.289196539287145
+          },
+          "shadow": {
+            "count": 32754,
+            "logits_sum": 42166.26811367214,
+            "probs_sum": 42166.26811776181,
+            "logits_mean": 1.2873624019561623,
+            "probs_mean": 1.2873624020810224
+          }
+        },
+        {
+          "begin": 262144,
+          "end": 294912,
+          "base": {
+            "count": 32749,
+            "logits_sum": 42416.211819799915,
+            "probs_sum": 42416.21115394618,
+            "logits_mean": 1.2951910537665245,
+            "probs_mean": 1.295191033434492
+          },
+          "shadow": {
+            "count": 32749,
+            "logits_sum": 42309.05788867669,
+            "probs_sum": 42309.057884517235,
+            "logits_mean": 1.2919190780993828,
+            "probs_mean": 1.2919190779723728
+          }
+        },
+        {
+          "begin": 294912,
+          "end": 327680,
+          "base": {
+            "count": 32759,
+            "logits_sum": 43567.360447674546,
+            "probs_sum": 43567.35979391104,
+            "logits_mean": 1.329935603885178,
+            "probs_mean": 1.329935583928418
+          },
+          "shadow": {
+            "count": 32759,
+            "logits_sum": 43515.35799629337,
+            "probs_sum": 43515.35799947742,
+            "logits_mean": 1.3283481790131986,
+            "probs_mean": 1.3283481791103946
+          }
+        },
+        {
+          "begin": 327680,
+          "end": 360448,
+          "base": {
+            "count": 32761,
+            "logits_sum": 42884.207267309146,
+            "probs_sum": 42884.206630705354,
+            "logits_mean": 1.3090017785570998,
+            "probs_mean": 1.3090017591253427
+          },
+          "shadow": {
+            "count": 32761,
+            "logits_sum": 42820.972098926744,
+            "probs_sum": 42820.97210569819,
+            "logits_mean": 1.3070715820312795,
+            "probs_mean": 1.3070715822379715
+          }
+        },
+        {
+          "begin": 360448,
+          "end": 393216,
+          "base": {
+            "count": 32757,
+            "logits_sum": 43593.24870810036,
+            "probs_sum": 43593.24808197929,
+            "logits_mean": 1.3308071162835533,
+            "probs_mean": 1.3308070971694383
+          },
+          "shadow": {
+            "count": 32757,
+            "logits_sum": 43554.15650826496,
+            "probs_sum": 43554.15651002521,
+            "logits_mean": 1.329613716404584,
+            "probs_mean": 1.3296137164583208
+          }
+        },
+        {
+          "begin": 393216,
+          "end": 425984,
+          "base": {
+            "count": 32760,
+            "logits_sum": 45484.50152149354,
+            "probs_sum": 45484.50086602613,
+            "logits_mean": 1.3884157973593878,
+            "probs_mean": 1.388415777351225
+          },
+          "shadow": {
+            "count": 32760,
+            "logits_sum": 45413.65927966864,
+            "probs_sum": 45413.65927850742,
+            "logits_mean": 1.386253335765221,
+            "probs_mean": 1.3862533357297746
+          }
+        },
+        {
+          "begin": 425984,
+          "end": 458752,
+          "base": {
+            "count": 32762,
+            "logits_sum": 36799.92526068207,
+            "probs_sum": 36799.92441078714,
+            "logits_mean": 1.1232502674037625,
+            "probs_mean": 1.1232502414622776
+          },
+          "shadow": {
+            "count": 32762,
+            "logits_sum": 36767.50922954056,
+            "probs_sum": 36767.509229764124,
+            "logits_mean": 1.1222608274690362,
+            "probs_mean": 1.1222608274758599
+          }
+        },
+        {
+          "begin": 458752,
+          "end": 491520,
+          "base": {
+            "count": 32765,
+            "logits_sum": 30657.871472144267,
+            "probs_sum": 30657.870470459267,
+            "logits_mean": 0.9356896527436065,
+            "probs_mean": 0.9356896221718073
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 30610.084677645984,
+            "probs_sum": 30610.08467697834,
+            "logits_mean": 0.9342311819821756,
+            "probs_mean": 0.9342311819617988
+          }
+        },
+        {
+          "begin": 491520,
+          "end": 524288,
+          "base": {
+            "count": 32764,
+            "logits_sum": 30462.323580676646,
+            "probs_sum": 30462.322556765954,
+            "logits_mean": 0.9297498345951851,
+            "probs_mean": 0.9297498033440957
+          },
+          "shadow": {
+            "count": 32764,
+            "logits_sum": 30401.603651283083,
+            "probs_sum": 30401.60364208879,
+            "logits_mean": 0.9278965831791931,
+            "probs_mean": 0.9278965828985714
+          }
+        },
+        {
+          "begin": 524288,
+          "end": 557056,
+          "base": {
+            "count": 32764,
+            "logits_sum": 32525.381684411335,
+            "probs_sum": 32525.380748885775,
+            "logits_mean": 0.9927170578809467,
+            "probs_mean": 0.9927170293274867
+          },
+          "shadow": {
+            "count": 32764,
+            "logits_sum": 32495.146863549897,
+            "probs_sum": 32495.14686441566,
+            "logits_mean": 0.9917942517259766,
+            "probs_mean": 0.9917942517524008
+          }
+        },
+        {
+          "begin": 557056,
+          "end": 589824,
+          "base": {
+            "count": 32765,
+            "logits_sum": 30388.748182944742,
+            "probs_sum": 30388.747169732516,
+            "logits_mean": 0.9274759097495725,
+            "probs_mean": 0.9274758788259581
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 30345.6875678522,
+            "probs_sum": 30345.687573935495,
+            "logits_mean": 0.9261616837433908,
+            "probs_mean": 0.9261616839290552
+          }
+        },
+        {
+          "begin": 589824,
+          "end": 622592,
+          "base": {
+            "count": 32765,
+            "logits_sum": 38846.49570533724,
+            "probs_sum": 38846.49487239884,
+            "logits_mean": 1.1856095133629556,
+            "probs_mean": 1.1856094879413654
+          },
+          "shadow": {
+            "count": 32765,
+            "logits_sum": 38795.43685562174,
+            "probs_sum": 38795.436847822195,
+            "logits_mean": 1.1840511782579501,
+            "probs_mean": 1.1840511780199052
+          }
+        },
+        {
+          "begin": 622592,
+          "end": 655360,
+          "base": {
+            "count": 32763,
+            "logits_sum": 43708.32639090569,
+            "probs_sum": 43708.325712472375,
+            "logits_mean": 1.3340758291641697,
+            "probs_mean": 1.3340758084568682
+          },
+          "shadow": {
+            "count": 32763,
+            "logits_sum": 43673.56662939638,
+            "probs_sum": 43673.56663125847,
+            "logits_mean": 1.333014883539248,
+            "probs_mean": 1.3330148835960831
+          }
+        },
+        {
+          "begin": 655360,
+          "end": 688128,
+          "base": {
+            "count": 32758,
+            "logits_sum": 36497.485810018494,
+            "probs_sum": 36497.48502035102,
+            "logits_mean": 1.1141548876615939,
+            "probs_mean": 1.1141548635554985
+          },
+          "shadow": {
+            "count": 32758,
+            "logits_sum": 36450.47074737769,
+            "probs_sum": 36450.4707504945,
+            "logits_mean": 1.112719663818844,
+            "probs_mean": 1.1127196639139907
+          }
+        },
+        {
+          "begin": 688128,
+          "end": 720896,
+          "base": {
+            "count": 32758,
+            "logits_sum": 28720.566896148164,
+            "probs_sum": 28720.565855949844,
+            "logits_mean": 0.8767497068242311,
+            "probs_mean": 0.8767496750702071
+          },
+          "shadow": {
+            "count": 32758,
+            "logits_sum": 28703.969456948063,
+            "probs_sum": 28703.969455044276,
+            "logits_mean": 0.8762430385538819,
+            "probs_mean": 0.8762430384957652
+          }
+        },
+        {
+          "begin": 720896,
+          "end": 753664,
+          "base": {
+            "count": 32760,
+            "logits_sum": 28497.856329229227,
+            "probs_sum": 28497.855326780445,
+            "logits_mean": 0.8698979343476565,
+            "probs_mean": 0.8698979037478769
+          },
+          "shadow": {
+            "count": 32760,
+            "logits_sum": 28467.01264780704,
+            "probs_sum": 28467.012642099446,
+            "logits_mean": 0.86895643003074,
+            "probs_mean": 0.8689564298565154
+          }
+        },
+        {
+          "begin": 753664,
+          "end": 786432,
+          "base": {
+            "count": 32758,
+            "logits_sum": 27603.583814993748,
+            "probs_sum": 27603.582812738263,
+            "logits_mean": 0.8426516824895827,
+            "probs_mean": 0.8426516518938355
+          },
+          "shadow": {
+            "count": 32758,
+            "logits_sum": 27559.67396205819,
+            "probs_sum": 27559.67396859058,
+            "logits_mean": 0.8413112510549542,
+            "probs_mean": 0.8413112512543678
+          }
+        },
+        {
+          "begin": 786432,
+          "end": 819200,
+          "base": {
+            "count": 32763,
+            "logits_sum": 28966.290728815122,
+            "probs_sum": 28966.289669345628,
+            "logits_mean": 0.8841159456953003,
+            "probs_mean": 0.884115913357923
+          },
+          "shadow": {
+            "count": 32763,
+            "logits_sum": 28899.880145321782,
+            "probs_sum": 28899.880143570685,
+            "logits_mean": 0.8820889462296426,
+            "probs_mean": 0.8820889461761953
+          }
+        },
+        {
+          "begin": 819200,
+          "end": 851968,
+          "base": {
+            "count": 32762,
+            "logits_sum": 27633.26707526208,
+            "probs_sum": 27633.266048883303,
+            "logits_mean": 0.843454828009953,
+            "probs_mean": 0.843454796681622
+          },
+          "shadow": {
+            "count": 32762,
+            "logits_sum": 27588.025548004534,
+            "probs_sum": 27588.02555291838,
+            "logits_mean": 0.8420739133143439,
+            "probs_mean": 0.84207391346433
+          }
+        },
+        {
+          "begin": 851968,
+          "end": 884736,
+          "base": {
+            "count": 32760,
+            "logits_sum": 28231.811482218116,
+            "probs_sum": 28231.810467426894,
+            "logits_mean": 0.8617769072716153,
+            "probs_mean": 0.8617768762950823
+          },
+          "shadow": {
+            "count": 32760,
+            "logits_sum": 28199.67477646869,
+            "probs_sum": 28199.674772773637,
+            "logits_mean": 0.8607959333476402,
+            "probs_mean": 0.8607959332348485
+          }
+        },
+        {
+          "begin": 884736,
+          "end": 917504,
+          "base": {
+            "count": 32760,
+            "logits_sum": 28429.149664833018,
+            "probs_sum": 28429.14864357163,
+            "logits_mean": 0.8678006613196891,
+            "probs_mean": 0.8678006301456541
+          },
+          "shadow": {
+            "count": 32760,
+            "logits_sum": 28422.79828959575,
+            "probs_sum": 28422.79829482519,
+            "logits_mean": 0.8676067853966957,
+            "probs_mean": 0.8676067855563244
+          }
+        },
+        {
+          "begin": 917504,
+          "end": 950272,
+          "base": {
+            "count": 32760,
+            "logits_sum": 26793.36888564791,
+            "probs_sum": 26793.36782244976,
+            "logits_mean": 0.8178684031028055,
+            "probs_mean": 0.8178683706486496
+          },
+          "shadow": {
+            "count": 32760,
+            "logits_sum": 26760.08714159099,
+            "probs_sum": 26760.087147125007,
+            "logits_mean": 0.8168524768495418,
+            "probs_mean": 0.8168524770184679
+          }
+        },
+        {
+          "begin": 950272,
+          "end": 983040,
+          "base": {
+            "count": 32763,
+            "logits_sum": 29283.401541762694,
+            "probs_sum": 29283.400556700635,
+            "logits_mean": 0.893794876591359,
+            "probs_mean": 0.8937948465250629
+          },
+          "shadow": {
+            "count": 32763,
+            "logits_sum": 29263.718139865417,
+            "probs_sum": 29263.718134874656,
+            "logits_mean": 0.8931940951642223,
+            "probs_mean": 0.8931940950118932
+          }
+        },
+        {
+          "begin": 983040,
+          "end": 1015808,
+          "base": {
+            "count": 32764,
+            "logits_sum": 28471.24408810628,
+            "probs_sum": 28471.24310704929,
+            "logits_mean": 0.8689794923729178,
+            "probs_mean": 0.8689794624297793
+          },
+          "shadow": {
+            "count": 32764,
+            "logits_sum": 28436.090264264003,
+            "probs_sum": 28436.09026741303,
+            "logits_mean": 0.8679065518332317,
+            "probs_mean": 0.8679065519293441
+          }
+        },
+        {
+          "begin": 1015808,
+          "end": 1048576,
+          "base": {
+            "count": 32761,
+            "logits_sum": 27232.631335708174,
+            "probs_sum": 27232.63031728741,
+            "logits_mean": 0.8312515288211035,
+            "probs_mean": 0.8312514977347276
+          },
+          "shadow": {
+            "count": 32761,
+            "logits_sum": 27191.02485164718,
+            "probs_sum": 27191.024848098492,
+            "logits_mean": 0.8299815283919044,
+            "probs_mean": 0.8299815282835838
+          }
+        }
+      ],
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 33,
+          "prob": 0.0218345691,
+          "logit": 4.60456514
+        },
+        {
+          "target_offset": 2,
+          "target": 27,
+          "prob": 0.0149528738,
+          "logit": 8.53730106
+        },
+        {
+          "target_offset": 3,
+          "target": 25,
+          "prob": 0.0912576988,
+          "logit": 10.4178925
+        },
+        {
+          "target_offset": 4,
+          "target": 37,
+          "prob": 0.0241002068,
+          "logit": 9.35726738
+        }
+      ],
+      "seconds": 93.502262,
+      "cpu_seconds": 93.412595,
+      "max_rss_kib": 94260
+    }
+  }
+}
