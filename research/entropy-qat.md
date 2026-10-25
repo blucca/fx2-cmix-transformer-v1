@@ -2,7 +2,8 @@
 
 This continuation trains the original 5,923,228 FP32 parameters, retaining
 15 weight values, BF16 scales, 256 activation levels, 12 layers and the
-1024-token attention window. Production inference is unchanged.
+1024-token attention window. Production inference is unchanged. **The eight-epoch run is complete; every
+epoch failed the rate and quality gates. Original weights are retained.**
 
 ## Frozen objective and data
 
@@ -95,9 +96,8 @@ the model, AdamW moments, RNG and next piece were saved at updates 8 and 16.
 
 **1,372,455 / 5,868,864 integer weight symbols changed.**
 Hard weight entropy rose by **27,411.67 nats**
-(0.178%). This is the current adverse
-rate signal; new compressed weight sizes and held-out native NLL arrive at
-the epoch boundary. The original production weights remain retained.
+(0.178%). This was the initial adverse
+rate signal; measured epoch results are below. The original production weights remain retained.
 [First-16 measurements](results/entropy-qat-first16.json).
 
 ## First epoch: rate and quality gates fail
@@ -112,8 +112,8 @@ After 30 updates / 1,044,469 targets, the real static15 file grows from
 
 Both increases exceed the +0.004 gate. Hard symbol entropy also rises;
 1,449,283 of 5,868,864 integer weights change. Original production weights
-remain retained. The existing bounded trajectory continues to measure its
-recovery curve, with the same optimizer, temperature schedule and budget.
+remain retained. The bounded trajectory then measured its complete recovery curve,
+with the same optimizer, temperature schedule and budget.
 
 A complete 1,346-target training piece deteriorates in both backends:
 CPU QAT NLL rises by 0.04398 and native NLL by 0.03775. Their absolute
@@ -123,3 +123,38 @@ Cold Adam's first update is `-lr*g/(abs(g)+eps)`: LSQ gradient scaling does
 little to reduce that absolute step when `abs(g) >> eps`. This is a concrete
 perturbation mechanism; its share of the aggregate loss is unmeasured.
 [Measured package, scores and scale diagnostics](results/entropy-qat-epoch1.json).
+
+## Complete eight-epoch trajectory: stop this recipe
+
+The run finished all **238 updates / 8,355,752 target presentations** in
+**3.304 CPU hours**, including preparation, native scoring and the small
+external forward-parity diagnostics. Peak RSS was **5.218 GiB**.
+
+Positive byte savings below favor the new weights. Positive NLL changes
+favor the original weights.
+
+| Epoch | Single static15 W, bytes | Two-copy savings, bytes | Prefix Δ raw NLL | q2 Δ raw NLL |
+|---:|---:|---:|---:|---:|
+| 1 | 2,911,289 | -13,928 | +0.058757 | +0.080740 |
+| 2 | 2,911,157 | -13,664 | +0.047197 | +0.056195 |
+| 3 | 2,909,238 | -9,826 | +0.047932 | +0.061462 |
+| 4 | 2,907,162 | -5,674 | +0.050212 | +0.060676 |
+| 5 | 2,905,662 | -2,674 | +0.046038 | +0.059981 |
+| 6 | 2,904,187 | +276 | +0.056099 | +0.075028 |
+| 7 | 2,902,811 | +3,028 | +0.051465 | +0.065976 |
+| 8 | 2,901,753 | +5,144 | +0.059591 | +0.082425 |
+
+**All eight epochs fail both gates.** Epoch 8 saves only **5,144 B** across
+the two copies, versus the required 1,500,000 B. Its native loss increases
+are **0.059591 / 0.082425 nats/target**, versus the +0.004 limits. The best
+quality epochs still lose 0.046038 on prefix and 0.056195 on q2; no recovery
+reaches the original model's quality.
+
+Hard symbol entropy eventually falls slightly below baseline, while quality
+remains degraded. The observed scale perturbation and tiny net rate gain
+make further execution of this fixed recipe a poor next investment.
+The recipe stops here. Original weights, the 1024-token window and the
+existing verified compression results remain in place. No mixed-coder run
+or automatic hyperparameter sweep follows this failure.
+
+[Complete measured curve and resource receipt](results/entropy-qat-complete.json).

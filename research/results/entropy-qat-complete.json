@@ -1,0 +1,266 @@
+{
+  "experiment": "fixed entropy-constrained CPU QAT, complete bounded trajectory",
+  "status": "stopped_after_gate_failure",
+  "training_source_commit": "67b1b03",
+  "epochs": 8,
+  "optimizer_steps": 238,
+  "seen_training_targets": 8355752,
+  "original_static15_bytes": 2904325,
+  "gate": {
+    "double_weight_saved_bytes_at_least": 1500000,
+    "each_native_raw_nll_delta_at_most": 0.004
+  },
+  "original_native_raw_nll": {
+    "prefix-1m": 0.4859066182970042,
+    "article-q2-1m": 0.9394297830071054
+  },
+  "total_cpu_seconds": 11892.878569935,
+  "cpu_accounting": {
+    "trajectory_including_baseline_and_preparation": 11886.807357275,
+    "external_forward_parity_diagnostics": 6.07121266
+  },
+  "peak_rss_kib": 5471928,
+  "evaluations": [
+    {
+      "epoch": 1,
+      "step": 30,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2911289,
+      "double_weight_saved_bytes": -13928,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.544663936337915,
+          "delta_raw_nll": 0.05875731804091078
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0201699989302875,
+          "delta_raw_nll": 0.08074021592318203
+        }
+      },
+      "changed_weight_symbols": 1449283,
+      "hard_entropy_nats": 15418441.606700964,
+      "soft_entropy_nats": 15418002.638671875,
+      "parameter_delta_l2": 0.6650166907437693,
+      "max_scale_delta": 0.001133013516664505,
+      "min_abs_bf16_scale": 4.506111145019531e-05,
+      "proxy_gate_passed": false
+    },
+    {
+      "epoch": 2,
+      "step": 59,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2911157,
+      "double_weight_saved_bytes": -13664,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.533103984811831,
+          "delta_raw_nll": 0.047197366514826755
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9956247586153595,
+          "delta_raw_nll": 0.05619497560825404
+        }
+      },
+      "changed_weight_symbols": 1537895,
+      "hard_entropy_nats": 15417306.261716096,
+      "soft_entropy_nats": 15413519.1171875,
+      "parameter_delta_l2": 0.9271729628147725,
+      "max_scale_delta": 0.0015881550498306751,
+      "min_abs_bf16_scale": 3.218650817871094e-05,
+      "proxy_gate_passed": false
+    },
+    {
+      "epoch": 3,
+      "step": 89,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2909238,
+      "double_weight_saved_bytes": -9826,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5338390542753009,
+          "delta_raw_nll": 0.04793243597829666
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0008917673857545,
+          "delta_raw_nll": 0.061461984378649026
+        }
+      },
+      "changed_weight_symbols": 1583991,
+      "hard_entropy_nats": 15406398.512594525,
+      "soft_entropy_nats": 15406207.015625,
+      "parameter_delta_l2": 1.1456768177276861,
+      "max_scale_delta": 0.0019750241190195084,
+      "min_abs_bf16_scale": 1.704692840576172e-05,
+      "proxy_gate_passed": false
+    },
+    {
+      "epoch": 4,
+      "step": 119,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2907162,
+      "double_weight_saved_bytes": -5674,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5361181577576069,
+          "delta_raw_nll": 0.05021153946060264
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.000106020245573,
+          "delta_raw_nll": 0.06067623723846749
+        }
+      },
+      "changed_weight_symbols": 1634495,
+      "hard_entropy_nats": 15394640.61099063,
+      "soft_entropy_nats": 15398329.32421875,
+      "parameter_delta_l2": 1.3702094744155382,
+      "max_scale_delta": 0.0024502594023942947,
+      "min_abs_bf16_scale": 9.72747802734375e-05,
+      "proxy_gate_passed": false
+    },
+    {
+      "epoch": 5,
+      "step": 147,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2905662,
+      "double_weight_saved_bytes": -2674,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5319443222103462,
+          "delta_raw_nll": 0.04603770391334194
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9994106748527641,
+          "delta_raw_nll": 0.05998089184565869
+        }
+      },
+      "changed_weight_symbols": 1680448,
+      "hard_entropy_nats": 15386172.401662434,
+      "soft_entropy_nats": 15391398.400390625,
+      "parameter_delta_l2": 1.588720065645428,
+      "max_scale_delta": 0.0024480149149894714,
+      "min_abs_bf16_scale": 6.580352783203125e-05,
+      "proxy_gate_passed": false
+    },
+    {
+      "epoch": 6,
+      "step": 177,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2904187,
+      "double_weight_saved_bytes": 276,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5420055474061427,
+          "delta_raw_nll": 0.056098929109138496
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0144581725670239,
+          "delta_raw_nll": 0.07502838955991842
+        }
+      },
+      "changed_weight_symbols": 1713204,
+      "hard_entropy_nats": 15377657.059127407,
+      "soft_entropy_nats": 15383889.224609375,
+      "parameter_delta_l2": 1.7739741185760731,
+      "max_scale_delta": 0.0025998116470873356,
+      "min_abs_bf16_scale": 4.506111145019531e-05,
+      "proxy_gate_passed": false
+    },
+    {
+      "epoch": 7,
+      "step": 207,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2902811,
+      "double_weight_saved_bytes": 3028,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.537371932009124,
+          "delta_raw_nll": 0.05146531371211982
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0054054775299557,
+          "delta_raw_nll": 0.06597569452285024
+        }
+      },
+      "changed_weight_symbols": 1749592,
+      "hard_entropy_nats": 15369707.132850867,
+      "soft_entropy_nats": 15375964.0625,
+      "parameter_delta_l2": 1.9818449942544216,
+      "max_scale_delta": 0.002835005521774292,
+      "min_abs_bf16_scale": 3.9577484130859375e-05,
+      "proxy_gate_passed": false
+    },
+    {
+      "epoch": 8,
+      "step": 238,
+      "tensor_count": 429,
+      "quantized_weights": 111,
+      "activation_scales": 119,
+      "raw_fp32": 88,
+      "output_bytes": 6060757,
+      "weight_bytes": 2901753,
+      "double_weight_saved_bytes": 5144,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5454975748017771,
+          "delta_raw_nll": 0.05959095650477286
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0218545267219752,
+          "delta_raw_nll": 0.08242474371486974
+        }
+      },
+      "changed_weight_symbols": 1783990,
+      "hard_entropy_nats": 15363651.15631334,
+      "soft_entropy_nats": 15369237.322265625,
+      "parameter_delta_l2": 2.1790368506518747,
+      "max_scale_delta": 0.003306247293949127,
+      "min_abs_bf16_scale": 0.00014019012451171875,
+      "proxy_gate_passed": false
+    }
+  ],
+  "decision": "Retain original weights and inference. Stop this fixed recipe; no automatic continuation, parameter sweep or mixed-coder run."
+}
