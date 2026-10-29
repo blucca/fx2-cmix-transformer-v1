@@ -1,0 +1,353 @@
+{
+  "experiment": "causal exact prepared-byte entity trie; frozen 1/16 mixture",
+  "date": "2026-10-30",
+  "status": "stop-fixed-mixture",
+  "samples": [
+    {
+      "input_bytes": 8388608,
+      "tail_start": 7340032,
+      "tail_bytes": 1048576,
+      "trace_bits": 67108864,
+      "bit_input_alignment": true,
+      "base_coded_bytes": 1068581,
+      "base_tail_range_bytes": 178714,
+      "whole": {
+        "input_bytes": 8388608,
+        "active_bits": 11284254,
+        "supported_bits": 11183869,
+        "override_bits": 2446731,
+        "base_probability_bits": 8548639.95316524,
+        "active_base_bits": 1512973.00321207,
+        "capacity_bits": 1371182.0041928,
+        "capacity_bytes": 171397.7505241
+      },
+      "tail": {
+        "input_bytes": 1048576,
+        "active_bits": 886144,
+        "supported_bits": 877457,
+        "override_bits": 343659,
+        "base_probability_bits": 1429712.90046543,
+        "active_base_bits": 137730.170424228,
+        "capacity_bits": 125123.590476435,
+        "capacity_bytes": 15640.4488095544
+      },
+      "fields": [
+        {
+          "name": "outside",
+          "cost": {
+            "input_bytes": 5907685,
+            "active_bits": 64027,
+            "supported_bits": 32704,
+            "override_bits": 1319310,
+            "base_probability_bits": 5836980.44194503,
+            "active_base_bits": 13351.8960197985,
+            "capacity_bits": 651.772896873242,
+            "capacity_bytes": 81.4716121091552
+          }
+        },
+        {
+          "name": "title",
+          "cost": {
+            "input_bytes": 33525,
+            "active_bits": 219238,
+            "supported_bits": 218385,
+            "override_bits": 13467,
+            "base_probability_bits": 49962.4130752595,
+            "active_base_bits": 40256.8274165113,
+            "capacity_bits": 38490.6546043531,
+            "capacity_bytes": 4811.33182554413
+          }
+        },
+        {
+          "name": "internal_target",
+          "cost": {
+            "input_bytes": 2108659,
+            "active_bits": 11000813,
+            "supported_bits": 10932604,
+            "override_bits": 975057,
+            "base_probability_bits": 2331108.61156837,
+            "active_base_bits": 1459347.19428761,
+            "capacity_bits": 1332022.49120561,
+            "capacity_bytes": 166502.811400702
+          }
+        },
+        {
+          "name": "internal_caption",
+          "cost": {
+            "input_bytes": 186543,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 100239,
+            "base_probability_bits": 110995.092884659,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "external_double_bracket",
+          "cost": {
+            "input_bytes": 152039,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 38588,
+            "base_probability_bits": 219314.774523917,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "unused5",
+          "cost": {
+            "input_bytes": 0,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 0,
+            "base_probability_bits": 0,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "unused6",
+          "cost": {
+            "input_bytes": 0,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 0,
+            "base_probability_bits": 0,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "partial_or_aborted",
+          "cost": {
+            "input_bytes": 157,
+            "active_bits": 176,
+            "supported_bits": 176,
+            "override_bits": 70,
+            "base_probability_bits": 278.619127751105,
+            "active_base_bits": 17.085488688162,
+            "capacity_bits": 17.085488688162,
+            "capacity_bytes": 2.13568608602024
+          }
+        }
+      ],
+      "parser": {
+        "complete_titles": 4534,
+        "complete_targets": 241101,
+        "external_links": 3026,
+        "captions": 26944,
+        "aborts": 9,
+        "overlength": 0,
+        "partial_fields": 1
+      },
+      "trie": {
+        "inserts": 245635,
+        "unique_spellings": 75266,
+        "title_inserts": 4534,
+        "target_inserts": 241101,
+        "nodes": 494824,
+        "edges": 494823,
+        "reserved_heap_bytes": 218236940,
+        "queries": 1506778,
+        "no_continuation": 145142
+      },
+      "lambda": 0.0625,
+      "candidate_coded_bytes": 1072031,
+      "whole_saved_bytes": -3450,
+      "candidate_tail_range_bytes": 178926,
+      "tail_saved_bytes": -212,
+      "name": "prefix-8m-v26",
+      "family": "v26"
+    },
+    {
+      "input_bytes": 1048576,
+      "tail_start": 524288,
+      "tail_bytes": 524288,
+      "trace_bits": 8388608,
+      "bit_input_alignment": true,
+      "base_coded_bytes": 208769,
+      "base_tail_range_bytes": 87937,
+      "whole": {
+        "input_bytes": 1048576,
+        "active_bits": 1285925,
+        "supported_bits": 1269117,
+        "override_bits": 357585,
+        "base_probability_bits": 1670148.84643107,
+        "active_base_bits": 276911.122547721,
+        "capacity_bits": 249219.221044535,
+        "capacity_bytes": 31152.4026305669
+      },
+      "tail": {
+        "input_bytes": 524288,
+        "active_bits": 890889,
+        "supported_bits": 880879,
+        "override_bits": 202925,
+        "base_probability_bits": 703495.950260227,
+        "active_base_bits": 189510.372846607,
+        "capacity_bits": 172262.169558921,
+        "capacity_bytes": 21532.7711948652
+      },
+      "fields": [
+        {
+          "name": "outside",
+          "cost": {
+            "input_bytes": 704872,
+            "active_bits": 6925,
+            "supported_bits": 3267,
+            "override_bits": 158415,
+            "base_probability_bits": 1072383.1548135,
+            "active_base_bits": 2614.83735853568,
+            "capacity_bits": 16.9967457279189,
+            "capacity_bytes": 2.12459321598986
+          }
+        },
+        {
+          "name": "title",
+          "cost": {
+            "input_bytes": 1597,
+            "active_bits": 8176,
+            "supported_bits": 8107,
+            "override_bits": 991,
+            "base_probability_bits": 3959.36084647157,
+            "active_base_bits": 2286.19106968873,
+            "capacity_bits": 2158.41035055345,
+            "capacity_bytes": 269.801293819181
+          }
+        },
+        {
+          "name": "internal_target",
+          "cost": {
+            "input_bytes": 282450,
+            "active_bits": 1270824,
+            "supported_bits": 1257743,
+            "override_bits": 172937,
+            "base_probability_bits": 511670.925154747,
+            "active_base_bits": 272010.094119547,
+            "capacity_bits": 247043.813948239,
+            "capacity_bytes": 30880.4767435299
+          }
+        },
+        {
+          "name": "internal_caption",
+          "cost": {
+            "input_bytes": 31564,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 18147,
+            "base_probability_bits": 26970.6921671793,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "external_double_bracket",
+          "cost": {
+            "input_bytes": 28085,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 7093,
+            "base_probability_bits": 55137.9419899065,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "unused5",
+          "cost": {
+            "input_bytes": 0,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 0,
+            "base_probability_bits": 0,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "unused6",
+          "cost": {
+            "input_bytes": 0,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 0,
+            "base_probability_bits": 0,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        },
+        {
+          "name": "partial_or_aborted",
+          "cost": {
+            "input_bytes": 8,
+            "active_bits": 0,
+            "supported_bits": 0,
+            "override_bits": 2,
+            "base_probability_bits": 26.7714646774057,
+            "active_base_bits": 0,
+            "capacity_bits": 0,
+            "capacity_bytes": 0
+          }
+        }
+      ],
+      "parser": {
+        "complete_titles": 208,
+        "complete_targets": 34843,
+        "external_links": 497,
+        "captions": 3464,
+        "aborts": 1,
+        "overlength": 0,
+        "partial_fields": 0
+      },
+      "trie": {
+        "inserts": 35051,
+        "unique_spellings": 13860,
+        "title_inserts": 208,
+        "target_inserts": 34843,
+        "nodes": 89924,
+        "edges": 89923,
+        "reserved_heap_bytes": 27396108,
+        "queries": 176182,
+        "no_continuation": 18150
+      },
+      "lambda": 0.0625,
+      "candidate_coded_bytes": 209019,
+      "whole_saved_bytes": -250,
+      "candidate_tail_range_bytes": 88113,
+      "tail_saved_bytes": -176,
+      "name": "q2-1m-v22",
+      "family": "v22"
+    }
+  ],
+  "self_test": {
+    "status": "passed",
+    "checks": [
+      "insert after complete close",
+      "single/double PHDA bracket",
+      "caption/external exclusion",
+      "same exact title/link trie",
+      "future title excluded"
+    ]
+  },
+  "cpu_seconds": 8.523401000000002,
+  "maximum_worker_rss_kib": 137428,
+  "combined_independent_family_tail_saved_bytes": -388,
+  "same_family_v26_pass": false,
+  "execution": "one offline observation-trace replay; model and native coder unchanged",
+  "namespace": {
+    "title_open_hex": "20204cdf984e0a202020204cdf9b4e",
+    "title_close_hex": "4c2fdf9b4e",
+    "phda_internal": "[targetQcaption]",
+    "phda_external": "[[url caption]]",
+    "first_partial_title": "ignored; initial entity table empty"
+  }
+}

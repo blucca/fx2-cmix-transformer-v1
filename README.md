@@ -10,6 +10,11 @@ The [two-regime metadata rewrite](research/metadata-residual.md) has completed i
 
 Another completed screen: [same-weight positive ReLU² activation quantization](research/positive-activation.md) saves **227 B** across two real 1 MiB round trips at **+2.99% coding time** and **+24 B** in the development double-binary package. It falls below the fixed 263 B continuation gate, so longer runs stop. The [online hidden-state readout](research/dynamic-head.md) also stops at its measured magnitude gate.
 
+The [causal entity-spelling screen](research/entity-prefix.md) found substantial
+supported-bit capacity, while its frozen 1/16 mixture increased both held-out
+tails by a combined 388 B. The two baselines and exact range counts are recorded;
+this recipe and full-file research remain stopped.
+
 The original champion’s documentation follows, with its authorship and results preserved.
 
 ---
