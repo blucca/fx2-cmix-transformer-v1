@@ -41,6 +41,8 @@ def main():
     parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--variants", nargs="+", default=["baseline", "v26"])
+    parser.add_argument("--weights", action="append", default=[], metavar="VARIANT=PATH",
+                        help="Weight file for one variant; repeat for A/B weights with a common binary")
     parser.add_argument("--phase", choices=("both", "encode", "decode"), default="both",
                         help="Persist encoded output for a later-window decode; default runs both")
     parser.add_argument("--trace", action="store_true",
@@ -53,6 +55,12 @@ def main():
             for name in args.variants):
         raise ValueError("variants must be unique plain directory names")
     root, out = args.root.resolve(), args.out.resolve()
+    weights_by_variant = {}
+    for item in args.weights:
+        name, separator, path = item.partition("=")
+        if not separator or not path or name not in args.variants or name in weights_by_variant:
+            parser.error("--weights requires a unique selected VARIANT=PATH")
+        weights_by_variant[name] = Path(path).expanduser().resolve()
     out.mkdir(parents=True, exist_ok=True)
     lock = (out / "batch.lock").open("a")
     fcntl.flock(lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
@@ -60,9 +68,9 @@ def main():
     stream = root / "prepared/stream.bin"
     vocab = root / "prepared/vocab.bin"
     dictionary = root / "upstream/dictionary/english.dic"
-    weights = root / "upstream/models/6m-q4-fp32.tfwc2"
+    default_weights = root / "upstream/models/6m-q4-fp32.tfwc2"
     shared = {"stream_sha256": digest(stream), "vocab_sha256": digest(vocab),
-              "dictionary_sha256": digest(dictionary), "weights_sha256": digest(weights)}
+              "dictionary_sha256": digest(dictionary)}
 
     def event(stage, **values):
         row = {"at": datetime.now(timezone.utc).isoformat(), "stage": stage, **values}
@@ -80,7 +88,9 @@ def main():
         reference = digest(stream, offset, length)
         for variant in args.variants:
             binary = root / "build" / variant / "probe"
-            identity = {**shared, "binary_sha256": digest(binary), "sample": sample, "variant": variant}
+            weights = weights_by_variant.get(variant, default_weights)
+            identity = {**shared, "weights_sha256": digest(weights),
+                        "binary_sha256": digest(binary), "sample": sample, "variant": variant}
             if args.trace:
                 identity["trace_record_bytes"] = 16
             trial = out / name / variant

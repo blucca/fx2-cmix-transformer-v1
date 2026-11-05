@@ -51,6 +51,16 @@ Use a Linux CPU environment with Clang 17, make, Python 3 and sufficient memory/
 5. A probe uses `probe encode|decode INPUT OUTPUT VOCAB DICTIONARY WEIGHTS OFFSET LENGTH`. Both sides use the same exact full-stream vocabulary and dictionary pretraining. Output paths must be fresh.
 6. `python3 research/batch.py --root /YOUR/temp/hutter --plan PLAN.json --out /YOUR/temp/hutter/runs/first-ab` processes baseline/candidate serially, verifies every round trip, and checkpoints results. Root contains `upstream`, `prepared`, and `build/{baseline,v26}`. Each plan entry has `name`, `offset`, and `length`. Completed identical trials are reused; interrupted trials are preserved and restarted. A recorded real failure stops the batch for inspection.
 
+For a weight-only A/B, point `build/{reference,candidate}/probe` to the same
+untraced codec and pass `--variants reference candidate --weights reference=/ABS/W0
+--weights candidate=/ABS/W1`. Every encode/decode and saved trial identity uses
+that variant's actual weight file. The default remains the original upstream
+weights. `--phase encode` persists the completed payload for a later
+`--phase decode` window; `--timeout` sets the command's wall-clock ceiling.
+Full-stream runs omit `--trace`: a 586,459,020-byte trace would occupy about
+69.9 GiB. Formal archive accounting includes the complete two-copy weight and
+binary cost, compressed dictionary/order assets and fixed headers.
+
 For long runs, `--phase encode` checkpoints completed compressed files with
 status `encoded` (decode pending). A later identical invocation with
 `--phase decode` reuses those files and validates exact restoration; the

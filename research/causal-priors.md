@@ -125,7 +125,26 @@ The runner reports guarded-neural → mixer → u16 → code-length credit and
 
 The existing same-codec mixed round-trip protocol measures encoded bytes,
 lossless restoration and complete package cost before a full-stream record
-attempt. Formal archive savings and award receipts are **0 at this stage**.
+attempt. The full-stream stage reuses [batch.py](batch.py)'s per-variant
+`--weights VARIANT=PATH` and `--phase encode`, with a common untraced codec.
+[archive-package.py](archive-package.py) appends the original compressed
+dictionary/order, actual weights, 37-byte stream header and two 16-byte
+self-extraction headers to create `cmix` and `archive9`. It measures
+`S = P + 2B + 2D + O + 2W + 69` from the two resulting files.
+
+Run each actual `./archive9` once for its full 1,000,000,000-byte restoration;
+the original enwik9 MD5 is `e206c3450ac99950df65bf70ef61a12d`. This is the
+full-stream candidate's decode stage, avoiding an additional prepared-stream
+probe decode. Record prepared encoding and 1GB archive decoding CPU/RSS by
+their actual ranges. Final compressor preprocessing and qualification use
+that release's complete-program measurements. The package fixture checks
+the native section layout and complete two-copy charge:
+
+```sh
+python3 research/archive-package-check.py --work /YOUR/temp/archive-check
+```
+
+Formal archive savings and award receipts are **0 at this stage**.
 
 ## Measured implementation checks
 
