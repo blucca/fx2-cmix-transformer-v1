@@ -1,6 +1,6 @@
 # Hutter compression research
 
-**Active:** [Fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) runs one complete bounded trajectory. [Mature PPMd validation](mature-ppmd.md) and exact mixed-interval accounting are available. The earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe; original production weights stay fixed.
+**Active:** [Fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) runs one complete bounded trajectory. [New measured rate/distortion attribution](integer-coordinate-attribution.md) identifies cold-prior fitting and data/H gradient scales using immutable coordinates and same-text prior controls. [Mature PPMd validation](mature-ppmd.md) and exact mixed-interval accounting are available. The earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe; original production weights stay fixed.
 
 [Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
 
@@ -943,4 +943,6 @@ cap, with resumable optimizer checkpoints and the original inference retained.
 weights while retaining every original signed BF16 scale. The
 [full-model preflight](results/integer-coordinate-preflight.json) reproduces the
 original static15 bytes and exact teacher logits before the single trajectory.
-Mature-data and end-to-end coding measurements are the remaining method stages.
+[Immutable-coordinate attribution](integer-coordinate-attribution.md) now covers
+CE/KL/H gradients, all-symbol entropy accounting and an epoch-4 mature/fresh
+prior-state control. Terminal native and end-to-end coding measurements remain.

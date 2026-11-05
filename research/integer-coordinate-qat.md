@@ -89,3 +89,13 @@ cold held-out NLLs by +.00412299 / −.00169225. Its independent mature NLL
 increases by .00590677. All original scales remain fixed. The single 64-epoch /
 48-CPU-hour trajectory continues; the online mixed pair follows its exit.
 [Full machine-readable receipts](results/integer-coordinate-mature-ppmd.json).
+
+## Measured rate/distortion attribution
+
+[The new attribution study](integer-coordinate-attribution.md) separates
+CE/KL/H gradients at original and immutable epoch-2 coordinates, accounts for
+all 3575 changed symbols, and compares the cold-best epoch-4 W on identical
+text with mature/fresh PPMd priors. The controlled changes are
+**+.00399618 / −.00301386 nats/target**. Data gradients dominate the current
+soft-H gradients; all eight tiny rows retain every coordinate. The complete
+single trajectory and its terminal real mixed-coder stages remain intact.

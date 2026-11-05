@@ -2,7 +2,7 @@
 
 Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
 
-**Active research branch:** [fixed-scale integer-coordinate distillation](research/integer-coordinate-qat.md), with [causal mature PPMd validation](research/mature-ppmd.md) and real online mixed accounting. The first hard-change checkpoint grows W by 12 B and regresses mature NLL by .00590677; the complete bounded trajectory remains in progress. Original production weights stay fixed.
+**Active research branch:** [fixed-scale integer-coordinate distillation](research/integer-coordinate-qat.md). [New rate/distortion attribution](research/integer-coordinate-attribution.md) measures CE/KL/H separately and a controlled prior-state interaction: the same epoch-4 weights help fresh-prior NLL by .003014 and regress mature NLL by .003996. The complete bounded trajectory and real online mixed accounting remain in progress. Original production weights stay fixed.
 
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
 
