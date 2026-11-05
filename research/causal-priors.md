@@ -103,14 +103,25 @@ randomized held mean, its three longer-piece mean, the independent `2^17`
 audit, and actual double-weight bytes. The reserved audit stays outside the
 randomized population estimate.
 
-After the trajectory exits, select one completed zero/epoch export by the
-frozen proxy `(baseline held NLL - candidate held NLL) * 586215331 / (8 ln 2)`
-plus the actual double-weight byte saving, with earliest epoch winning ties.
-This assumes mixed transfer κ=1 for selection. The independent max-length
-audit and three longer held pieces remain report-only. Actual mixed pairing
-uses the original 8 MiB continuous prefix and independent 1 MiB middle sample,
-matched neural/fallback masks, real encode/decode and one shared double-weight
-delta. Byte-identical selected weights reuse the original passed round trips.
+After the trajectory exits, rank completed **byte-different trained exports**
+by `(baseline held NLL - candidate held NLL) * 586215331 / (8 ln 2)` plus the
+actual double-weight byte saving, with earliest epoch winning ties. Measure
+one such export even when this proxy is negative. The original zero export
+remains the keep/delivery baseline; reuse its passed round trips when every
+trained export is byte-identical. The independent max-length audit and three
+longer held pieces remain report-only.
+
+The original v22 codec routes NN bit probabilities into both outer mixing and
+FXCM's internal inputs and argmax context. Weight changes therefore alter a
+coupled online trajectory. This is why the single trained candidate gets a
+real coded measurement. [Measurement runner](causal-mixed-audit.py) and
+[original-object builder](causal-mixed-build.py) implement the bounded stage.
+Copy them to WORK as `mixed-audit.py` and `build-mixed.py`, with the original
+static15 loader object and unchanged `mixed-interval.cpp` under WORK/assets.
+Use the original 8 MiB continuous prefix and 1 MiB cold middle sample, matched
+neural/fallback masks, actual encode/decode and one shared double-weight delta.
+The runner reports guarded-neural → mixer → u16 → code-length credit and
+κ_G for the same score interval; raw NLL stays paired with its own native inputs.
 
 The existing same-codec mixed round-trip protocol measures encoded bytes,
 lossless restoration and complete package cost before a full-stream record
