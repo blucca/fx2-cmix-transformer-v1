@@ -12,6 +12,9 @@
 // It may also link the normal objects except runner.o, with section GC.
 //
 // Usage: prepare ENWIK9 DICTIONARY ARTICLE_ORDER EMPTY_OUTPUT_DIRECTORY
+//        prepare --restore STREAM DICTIONARY EMPTY_OUTPUT_DIRECTORY
+// The restore path applies only the original inverse transforms, with no
+// range decoder or neural/statistical model. Check the final enwik9 MD5.
 // stream.bin: exact pre-arithmetic-coding bytes, including WRT/block headers.
 // vocab.bin: 32 bytes; bit (b % 8) of byte (b / 8) marks source byte b.
 // article_boundaries.i32: upstream little-endian int32 separator-END offsets.
@@ -80,7 +83,46 @@ void PrepareStage(const char* name) {
 
 int main(int argc, char** argv) {
   if (argc != 5) {
-    PrepareFail("usage: %s ENWIK9 DICTIONARY ARTICLE_ORDER EMPTY_OUTDIR", argv[0]);
+    PrepareFail("usage: %s ENWIK9 DICTIONARY ARTICLE_ORDER EMPTY_OUTDIR | "
+        "--restore STREAM DICTIONARY EMPTY_OUTDIR", argv[0]);
+  }
+  if (std::strcmp(argv[1], "--restore") == 0) {
+    const auto stream = PrepareAbsolute(argv[2]);
+    const auto dictionary_path = PrepareAbsolute(argv[3]);
+    const auto output = PrepareAbsolute(argv[4]);
+    RequireReadableFile("prepared stream", stream.string());
+    RequireReadableFile("dictionary", dictionary_path.string());
+    if (getFileSize(stream.string()) != 586459020ULL) {
+      PrepareFail("restore expects the complete 586459020-byte enwik9 prepared stream");
+    }
+    VerifyDictionary(dictionary_path.c_str());
+    std::error_code ec;
+    fs::create_directories(output, ec);
+    if (ec || !fs::is_empty(output, ec)) PrepareFail("restore OUTDIR must be new or empty");
+    if (chdir(output.c_str())) PrepareFail("entering restore OUTDIR: %s", std::strerror(errno));
+    srand(SEED);
+    PrepareStage("restore original WRT/block stream");
+    FILE* in = fopen(stream.c_str(), "rb");
+    FILE* dictionary = fopen(dictionary_path.c_str(), "rb");
+    FILE* out = fopen(".input_decomp", "wb");
+    if (!in || !dictionary || !out) PrepareFail("opening inverse WRT files failed");
+    preprocessor::Decode(in, out, dictionary);
+    const bool io_error = ferror(in) || ferror(out);
+    const int input_close = fclose(in), dictionary_close = fclose(dictionary), output_close = fclose(out);
+    if (io_error || input_close || dictionary_close || output_close) PrepareFail("inverse WRT I/O failed");
+    PrepareStage("restore original PHDA9 regions");
+    split4Decomp();
+    phda9_resto();
+    PrepareStage("restore original article order");
+    sort();
+    PrepareStage("restore complete enwik9");
+    cat(".intro_decomp", ".main_decomp_restored_sorted", "un1_d");
+    cat("un1_d", ".coda_decomp", "enwik9_uncompressed");
+    if (getFileSize("enwik9_uncompressed") != 1000000000ULL) {
+      PrepareFail("restored enwik9 byte count differs from 1000000000");
+    }
+    PrepareStage("complete: enwik9_uncompressed; verify the official MD5");
+    return 0;
   }
   const fs::path input = PrepareAbsolute(argv[1]);
   const fs::path dictionary_path = PrepareAbsolute(argv[2]);

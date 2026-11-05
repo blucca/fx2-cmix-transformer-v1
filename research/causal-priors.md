@@ -146,6 +146,32 @@ python3 research/archive-package-check.py --work /YOUR/temp/archive-check
 
 Formal archive savings and award receipts are **0 at this stage**.
 
+## Prepared-to-original provenance
+
+The shared `prepare.cpp` adapter also accepts the complete inverse:
+
+```sh
+WORK/bin/prepare --restore PREPARED/stream.bin DICTIONARY/english.dic FRESH_OUT
+# Verify FRESH_OUT/enwik9_uncompressed: 1,000,000,000 bytes,
+# MD5 e206c3450ac99950df65bf70ef61a12d.
+```
+
+It starts directly at the original WRT/block decoder, then restores PHDA9,
+article order and intro/main/coda. Neural, PPMd and range calls are zero.
+The original forward adapter and transform helpers stay intact.
+[Compiled-input checks](results/prepared-inverse-build.json) cover the shared
+adapter and both complete-input guards. The full original restoration is
+queued after the causal pipeline and its single mixed measurement finish.
+
+[The serial inverse job](causal-prepared-inverse.py), copied to
+`ROOT/round415/prepared-inverse-job.py` beside the deployed experiment, shares
+0.5 CPU hours between a source build and the complete inverse. It uses one
+CPU, a 4 GiB inverse address-space ceiling and an 8 GiB scratch reservation.
+It records the actual original MD5, CPU/RSS and generated-file disk peak,
+then retains the original for final compressor timing and removes duplicate
+intermediates. This is the complete prepared input's provenance check; the
+formal archive stage measures the actual coded W0/W1 restoration.
+
 ## Measured implementation checks
 
 [Preparation receipt](results/causal-prior-prepare.json):
