@@ -32,6 +32,26 @@ _spec.loader.exec_module(_original)
 batches = _original.batches
 
 
+def causal_batches(order):
+    """Merge the short final batch; each piece still frees its own backward graph.
+
+    Ordinary batches hold >=32768 targets. A tiny tail would otherwise receive
+    one full Adam step after its own target mean, overweighting its few targets.
+    Keep the original fixed-scale recipe's batching unchanged.
+    """
+    pending = None
+    for batch, targets in _original.batches(order):
+        if pending is not None:
+            if targets < _original.BATCH_TARGETS:
+                batch = pending[0] + batch
+                targets += pending[1]
+            else:
+                yield pending
+        pending = batch, targets
+    if pending is not None:
+        yield pending
+
+
 def entropy(z, tau=.5):
     """Per-tensor soft code length in nats, directly in bounded integer units."""
     import torch
@@ -96,6 +116,11 @@ def long_piece_score(result, indices):
 
 def self_check():
     """Signed/tiny-scale STE and finite direct-entropy gradient in integer units."""
+    order = [(0, 0, 37001), (0, 37001, 37106), (0, 37106, 37245)]
+    merged = list(causal_batches(order))
+    assert [n for _, n in _original.batches(order)] == [37000, 242]
+    assert [n for _, n in merged] == [37242]
+    assert [piece for batch, _ in merged for piece in batch] == order
     import torch
     z = torch.tensor([[-7., -2., 1.], [0., 3., 7.]], requires_grad=True)
     s = torch.tensor([6e-15, -8e-15]).to(torch.bfloat16).float()
@@ -115,7 +140,7 @@ def self_check():
 
 
 def main():
-    global RECIPE
+    global RECIPE, batches
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("checkpoint", "kernel", "data", "baseline", "weights", "recode", "evaluator", "output"):
         parser.add_argument("--" + name, type=Path, required=True)
@@ -132,7 +157,9 @@ def main():
                        help="full zero-step signature and one complete 1025-2048-target piece update; restore zero")
     args = parser.parse_args()
     if args.recipe == "causal-v1":
-        RECIPE = dict(RECIPE, method="causal-fixed-scale-integer-coordinate-v1", epochs=16, seed=414)
+        RECIPE = dict(RECIPE, method="causal-fixed-scale-integer-coordinate-v1", epochs=16, seed=414,
+                      final_batch="merge-short-tail")
+        batches = causal_batches
     assert 600 <= args.cpu_seconds <= 172800 and args.prior_cpu_seconds >= 0
     assert not (args.resume and (args.zero_only or args.check_only))
     job = args.output.resolve()

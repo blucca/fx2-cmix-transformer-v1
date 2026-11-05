@@ -39,6 +39,13 @@ at `[570601307, 570732379)`, with 131,071 targets. PPMd learns from stream zero;
 its entire natural article has zero sampled training pieces. This fixed audit
 and the randomized held estimator are reported separately each epoch.
 
+The realized held sample has a different length composition from the full stream:
+16,384–32,768-byte pieces contribute 7.795% of held targets versus 13.279% of
+full targets; 32,769–65,536-byte pieces contribute 9.944% versus 3.134%; pieces
+above 65,536 bytes contribute 0% versus 6.621%. The randomized mean reports
+this realized sample. Selection uses that mean; full-stream code length comes
+from actual paired encoding. The separate maximum-length audit stays distinct.
+
 ## Sparse causal capture
 
 `causal-sample-plan.py` writes the original source intervals and local reset
@@ -81,12 +88,29 @@ checkpoint, exporter and recoder. In `integer-coordinate-qat.py`, select
 score inputs point to the independent held file and `boundaries`. A second
 sample has empty `train_pieces` and scores only the max-length audit.
 
+For `causal-v1`, the short final optimizer batch merges into its predecessor.
+Each complete piece still performs and frees its own backward graph. In the
+fixed 16-epoch ordering this changes 1,283 updates to 1,267, while preserving
+2,941,307 targets per epoch. The epoch-11 tail had 242 targets; its merged
+batch has 37,015. Maximum merged batch size is 87,824 targets and maximum
+individual backward piece remains 29,586 targets. The original fixed-scale
+trajectory keeps its original batching. [Replay receipt](results/causal-prior-batches.json).
+
 The first small complete-piece update checks original teacher/student logits,
 frozen scales, integer bounds and zero-step static15 bytes. The same saved
 trajectory then runs to its epoch/CPU boundary. Every epoch stores the
 randomized held mean, its three longer-piece mean, the independent `2^17`
 audit, and actual double-weight bytes. The reserved audit stays outside the
 randomized population estimate.
+
+After the trajectory exits, select one completed zero/epoch export by the
+frozen proxy `(baseline held NLL - candidate held NLL) * 586215331 / (8 ln 2)`
+plus the actual double-weight byte saving, with earliest epoch winning ties.
+This assumes mixed transfer κ=1 for selection. The independent max-length
+audit and three longer held pieces remain report-only. Actual mixed pairing
+uses the original 8 MiB continuous prefix and independent 1 MiB middle sample,
+matched neural/fallback masks, real encode/decode and one shared double-weight
+delta. Byte-identical selected weights reuse the original passed round trips.
 
 The existing same-codec mixed round-trip protocol measures encoded bytes,
 lossless restoration and complete package cost before a full-stream record
