@@ -1,0 +1,35 @@
+{
+  "status": "passed",
+  "stage": "ready_for_full_causal_capture",
+  "sparse_row_check": {
+    "status": "passed",
+    "source_bytes": 65536,
+    "retained_bytes": 36608,
+    "all_205_columns_exact": true,
+    "original_full_capture_reused": true
+  },
+  "native_bounds_check": {
+    "status": "passed",
+    "probabilities_exact": true,
+    "targets": 65439,
+    "pieces": 97
+  },
+  "cpu_seconds": 14.349395,
+  "roles": {
+    "train": {
+      "pieces": 1313,
+      "bytes": 2942620,
+      "targets": 2941307,
+      "max_piece_bytes": 29587
+    },
+    "validation": {
+      "pieces": 473,
+      "bytes": 1082978,
+      "targets": 1082505,
+      "max_piece_bytes": 38537
+    }
+  },
+  "random_held_long_pieces": 3,
+  "largest_article_random_selected": 0,
+  "formal_archive_savings_bytes": 0
+}

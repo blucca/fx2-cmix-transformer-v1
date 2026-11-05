@@ -4,6 +4,7 @@
 Only 111 bounded FP32 integer coordinates learn. Whole-piece target means:
 CE + KL(original W || student) + 2 H(z)/586459020. Projected AdamW(.01),
 tau=.5, <=64 epochs / 48 CPUh, including export and native evaluation.
+causal-v1 keeps every optimizer constant and uses 16 complete representative epochs.
 """
 import argparse
 import importlib.util
@@ -84,6 +85,15 @@ def export_state(model, coordinates, scales):
     return state
 
 
+def long_piece_score(result, indices):
+    """Target-weighted native loss of the held pieces outside the train-length domain."""
+    losses = [result["piece_losses"][i]["loss"] for i in indices]
+    targets = sum(row["count"] for row in losses)
+    assert targets > 0
+    return dict(targets=targets,
+                raw_nll=sum(row["logits_mean"] * row["count"] for row in losses) / targets)
+
+
 def self_check():
     """Signed/tiny-scale STE and finite direct-entropy gradient in integer units."""
     import torch
@@ -99,13 +109,19 @@ def self_check():
     assert bool(torch.isfinite(h) & torch.isfinite(g).all()) and bool((g != 0).any())
     projected = torch.tensor([-7.1, 7.1]).clamp_(-7, 7)
     assert projected.tolist() == [-7., 7.]
+    assert long_piece_score({"piece_losses": [{"loss": {"count": 2, "logits_mean": 1.}},
+                                              {"loss": {"count": 6, "logits_mean": 3.}}]},
+                            [0, 1]) == {"targets": 8, "raw_nll": 2.5}
 
 
 def main():
+    global RECIPE
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("checkpoint", "kernel", "data", "baseline", "weights", "recode", "evaluator", "output"):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--cpu-seconds", type=int, default=172800)
+    parser.add_argument("--recipe", choices=("fixed-scale-v1", "causal-v1"), default="fixed-scale-v1",
+                        help="causal-v1: independent whole-stream priors, 16 complete epochs; all optimizer constants fixed")
     parser.add_argument("--prior-cpu-seconds", type=float, default=0)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--recovery-cpu-seconds", type=float,
@@ -115,6 +131,8 @@ def main():
     modes.add_argument("--check-only", action="store_true",
                        help="full zero-step signature and one complete 1025-2048-target piece update; restore zero")
     args = parser.parse_args()
+    if args.recipe == "causal-v1":
+        RECIPE = dict(RECIPE, method="causal-fixed-scale-integer-coordinate-v1", epochs=16, seed=414)
     assert 600 <= args.cpu_seconds <= 172800 and args.prior_cpu_seconds >= 0
     assert not (args.resume and (args.zero_only or args.check_only))
     job = args.output.resolve()
@@ -384,7 +402,11 @@ def main():
                 name, score = sample["name"], sample["score"]
                 log = job / f"epoch-{epoch:02d}-{name}.log"
                 save("evaluating", evaluating_sample=name)
-                run([args.evaluator, "eval", score["tokens"], score["priors"], weight], log)
+                command = [args.evaluator, "eval-pieces" if "boundaries" in score else "eval",
+                           score["tokens"], score["priors"], weight]
+                if "boundaries" in score:
+                    command.append(score["boundaries"])
+                run(command, log)
                 rows = [json.loads(line.split(" ", 1)[1]) for line in log.read_text().splitlines()
                         if line.startswith("ACTIVATION_RESULT ")]
                 assert len(rows) == 1 and rows[0]["total"]["count"] == score["targets"]
@@ -392,6 +414,12 @@ def main():
                 assert math.isfinite(raw)
                 scores[name] = dict(targets=score["targets"], raw_nll=raw,
                                     delta_raw_nll=raw - baseline["steps"][name]["result"]["total"]["logits_mean"])
+                if score.get("long_piece_indices"):
+                    long = long_piece_score(rows[0], score["long_piece_indices"])
+                    original_long = long_piece_score(baseline["steps"][name]["result"], score["long_piece_indices"])
+                    assert long["targets"] == original_long["targets"]
+                    long["delta_raw_nll"] = long["raw_nll"] - original_long["raw_nll"]
+                    scores[name]["long_native"] = long
             row = dict(epoch=epoch, step=state["step"], **info, scores=scores,
                        double_weight_saved_bytes=2 * (state["original_static15_bytes"] - info["weight_bytes"]),
                        **geometry())

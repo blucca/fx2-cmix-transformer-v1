@@ -126,6 +126,9 @@ class Predictor {
   float Predict();
   void Perceive(int bit);
   void Pretrain(int bit);
+  // Research sampling: call after a completed byte. Uses the same vocabulary
+  // ordering and half conversion as --save-ppmd-probs, without saving skipped rows.
+  void WritePpmdRow(HalfFileWriter& writer);
 #ifdef HUTTER_TRACE
   float TraceNeural() const { return trace_neural_; }
   float TraceFxcm() const { return trace_fxcm_; }

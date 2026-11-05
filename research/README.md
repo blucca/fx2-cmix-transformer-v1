@@ -1,6 +1,6 @@
 # Hutter compression research
 
-**Active:** [Fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) runs one complete bounded trajectory. [New measured rate/distortion attribution](integer-coordinate-attribution.md) identifies cold-prior fitting and data/H gradient scales using immutable coordinates and same-text prior controls. [Mature PPMd validation](mature-ppmd.md) and exact mixed-interval accounting are available. The earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe; original production weights stay fixed.
+**Active:** [Whole-stream causal priors and complete-piece learning](causal-priors.md) addresses the measured cold-prior fit with an independent 16-epoch trajectory and a reserved `2^17` native audit. The original [fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) trajectory continues to its existing terminal native/mixed measurements. [Rate/distortion attribution](integer-coordinate-attribution.md) and [mature PPMd validation](mature-ppmd.md) provide the measured mechanism; the earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe. Original production weights stay fixed.
 
 [Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
 

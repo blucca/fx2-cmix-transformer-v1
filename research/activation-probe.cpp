@@ -245,7 +245,7 @@ int Capture(char** argv, bool warm) {
   return 0;
 }
 
-int Eval(char** argv) {
+int Eval(char** argv, const char* explicit_bounds = nullptr) {
   // eval TOKENS PRIORS WEIGHTS
   const char *token_path = argv[2], *prior_path = argv[3], *weights_path = argv[4];
   const U64 length = Size(token_path);
@@ -254,11 +254,27 @@ int Eval(char** argv) {
     Fail("expected one token and exactly 205 f16 priors per input byte");
   auto tokens = ReadSlice(token_path, 0, length);
   Pieces pieces = Split(tokens);
+  if (explicit_bounds) {
+    const auto bytes = ReadSlice(explicit_bounds, 0, Size(explicit_bounds));
+    if (bytes.size() < 8 || bytes.size() % 4) Fail("expected little-endian int32 piece bounds");
+    pieces = Pieces{};
+    pieces.bounds.clear();
+    for (size_t i = 0; i < bytes.size(); i += 4) {
+      U64 value = 0;
+      for (unsigned j = 0; j < 4; ++j) value |= U64(bytes[i+j]) << (8*j);
+      if (value > length || (!pieces.bounds.empty() &&
+          (value <= pieces.bounds.back() || value - pieces.bounds.back() > MAX_PIECE)))
+        Fail("invalid explicit native piece boundary");
+      pieces.bounds.push_back(value);
+    }
+    if (pieces.bounds.front() != 0 || pieces.bounds.back() != length) Fail("explicit bounds need 0 and EOF");
+  }
   std::ifstream prior(prior_path, std::ios::binary);
   if (!prior) Fail("cannot open priors");
   std::array<uint16_t, V> row;
   std::array<float, V> probs;
   Loss total, halves[2];
+  std::vector<Loss> per_piece(explicit_bounds ? pieces.bounds.size()-1 : 0);
 #if FX2_NEURAL_CACHE
   NeuralCache cache;
   Fresh(argv[5]);
@@ -312,6 +328,7 @@ int Eval(char** argv) {
       double pn = -std::log(double(probs[target]));
       if (!std::isfinite(ln) || !std::isfinite(pn)) Fail("nonfinite NLL at %llu", i + 1);
       total.Add(ln, pn);
+      if (explicit_bounds) per_piece[piece].Add(ln, pn);
       halves[(i + 1) >= length / 2].Add(ln, pn);
 #if FX2_NEURAL_CACHE
       cache.Predict(tokens[i], model.last_hidden(), probs.data());
@@ -441,6 +458,13 @@ int Eval(char** argv) {
                 i ? "," : "", s.target_offset, s.target, double(s.prob), double(s.logit));
   }
   std::printf("]");
+  if (explicit_bounds) {
+    std::printf(",\"explicit_piece_bounds\":true,\"piece_losses\":[");
+    for (size_t piece = 0; piece < per_piece.size(); ++piece) {
+      std::printf("%s{",piece ? "," : ""); PrintLoss("loss",per_piece[piece]); std::printf("}");
+    }
+    std::printf("]");
+  }
   PrintResources(started, cpu_start);
   std::printf("}\n");
   return 0;
@@ -536,6 +560,9 @@ int main(int argc, char** argv) {
   if (argc == 2 && std::string(argv[1]) == "--self-test") return SelfTest();
   if ((argc == 8 || argc == 9) && std::string(argv[1]) == "capture")
     return Capture(argv, argc == 9);
+#if !FX2_NEURAL_CACHE && !defined(FX2_MLP_UNIT_STATS)
+  if (argc == 6 && std::string(argv[1]) == "eval-pieces") return Eval(argv, argv[5]);
+#endif
 #ifdef FX2_MLP_UNIT_STATS
   if (argc == 6 && std::string(argv[1]) == "eval") return Eval(argv);
 #else
@@ -543,6 +570,7 @@ int main(int argc, char** argv) {
 #endif
   std::fprintf(stderr, "usage:\n  %s --self-test\n"
       "  %s capture INPUT TOKENS PRIORS VOCAB OFFSET LENGTH [WARM_START]\n"
-      "  %s eval TOKENS PRIORS WEIGHTS [CACHE_PAIRS or UNIT_CSV, when enabled]\n", argv[0], argv[0], argv[0]);
+      "  %s eval TOKENS PRIORS WEIGHTS [CACHE_PAIRS or UNIT_CSV, when enabled]\n"
+      "  %s eval-pieces TOKENS PRIORS WEIGHTS BOUNDS_I32\n", argv[0], argv[0], argv[0], argv[0]);
   return 2;
 }

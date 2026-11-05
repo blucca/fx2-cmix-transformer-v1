@@ -572,11 +572,16 @@ void Predictor::WritePpmdProbs() {
     --ppmd_save_skip_remaining_;
     return;
   }
+  WritePpmdRow(*ppmd_probs_writer_);
+}
+
+void Predictor::WritePpmdRow(HalfFileWriter& writer) {
+  if (!byte_model_) Fail("PPMd row capture requires the PPMd model");
   const std::valarray<float>& p = byte_model_->BytePredict();
   for (unsigned int i = 0; i < vocab_size_; ++i) {
     probs_scratch_[i] = p[vocab_bytes_[i]];
   }
-  ppmd_probs_writer_->Write(probs_scratch_.data(), vocab_size_);
+  writer.Write(probs_scratch_.data(), vocab_size_);
 }
 
 void Predictor::LoadTransformerProbs() {
