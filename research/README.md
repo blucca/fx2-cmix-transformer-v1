@@ -935,3 +935,12 @@ bounded CPU backend; every epoch exports the real static15 package and runs
 two held-out native scores. The CPU zero-step export reproduces the original
 2,904,325 B weight file byte for byte. Training has a 12 CPU-hour / eight-epoch
 cap, with resumable optimizer checkpoints and the original inference retained.
+
+
+## Fixed-scale integer-coordinate QAT
+
+[Method and resume entry](integer-coordinate-qat.md): learn only bounded integer
+weights while retaining every original signed BF16 scale. The
+[full-model preflight](results/integer-coordinate-preflight.json) reproduces the
+original static15 bytes and exact teacher logits before the single trajectory.
+Mature-data and end-to-end coding measurements are the remaining method stages.
