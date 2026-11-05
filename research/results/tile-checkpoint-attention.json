@@ -1,0 +1,132 @@
+{
+  "status": "passed",
+  "targets": 2049,
+  "heads": 3,
+  "head_channels": 64,
+  "window": 1024,
+  "threads": 1,
+  "optimizer_updates": 0,
+  "cpu_limit_seconds": 20,
+  "address_space_limit_gib": 3,
+  "target_peak_rss_mib": 600,
+  "cases": [
+    {
+      "mode": "original_tiles",
+      "forward_backward_cpu_seconds": 0.18879968000000003,
+      "forward_backward_wall_seconds": 0.4061397960031172,
+      "saved_unique_storage_bytes": 64326924,
+      "saved_logical_tensor_bytes": 123343128,
+      "saved_storage_count": 10,
+      "saved_pack_calls": 15,
+      "output_exact": true,
+      "gradient_exact": [
+        true,
+        true,
+        true
+      ],
+      "output_max_abs": 0.0,
+      "gradient_max_abs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_relative_l2": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "mode": "checkpoint_tiles",
+      "forward_backward_cpu_seconds": 0.5658626710000001,
+      "forward_backward_wall_seconds": 1.4627217929955805,
+      "saved_unique_storage_bytes": 4720896,
+      "saved_logical_tensor_bytes": 10029312,
+      "saved_storage_count": 4,
+      "saved_pack_calls": 12,
+      "output_exact": true,
+      "output_max_abs": 0.0,
+      "gradient_exact": [
+        true,
+        true,
+        true
+      ],
+      "gradient_max_abs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_relative_l2": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    },
+    {
+      "mode": "outer_block_plus_checkpoint_tiles",
+      "forward_backward_cpu_seconds": 0.29935326799999995,
+      "forward_backward_wall_seconds": 0.6318431719992077,
+      "saved_unique_storage_bytes": 4720896,
+      "saved_logical_tensor_bytes": 4720896,
+      "saved_storage_count": 4,
+      "saved_pack_calls": 4,
+      "output_exact": true,
+      "output_max_abs": 0.0,
+      "gradient_exact": [
+        true,
+        true,
+        true
+      ],
+      "gradient_max_abs": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "gradient_relative_l2": [
+        0.0,
+        0.0,
+        0.0
+      ]
+    }
+  ],
+  "torch_version": "2.6.0+debian",
+  "schedule": [
+    {
+      "lo": 0,
+      "hi": 1024,
+      "qlo": 0,
+      "left": 0,
+      "right": 1024
+    },
+    {
+      "lo": 1024,
+      "hi": 2048,
+      "qlo": 1024,
+      "left": 0,
+      "right": 2048
+    },
+    {
+      "lo": 2048,
+      "hi": 2049,
+      "qlo": 1280,
+      "left": 0,
+      "right": 2049
+    }
+  ],
+  "bounds": [
+    0,
+    37,
+    2049
+  ],
+  "tensor_dtype": "float32",
+  "device": "cpu",
+  "checkpoint_api": "use_reentrant=False",
+  "attention_api": "scaled_dot_product_attention, 3-D bool mask, scale=None, dropout=0",
+  "stage": "complete",
+  "cpu_seconds": 2.642018304,
+  "wall_seconds": 7.528258161008125,
+  "peak_rss_kib": 490360,
+  "saved_storage_ratio": 0.07338911464194993,
+  "all_output_and_gradients_bit_exact": true,
+  "peak_rss_within_target": true
+}
