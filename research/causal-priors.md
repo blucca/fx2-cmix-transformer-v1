@@ -32,10 +32,11 @@ fixed. The new trajectory has **16 complete epochs / 48 CPU hours**.
   as it does while encoding. New neural gradients use the sampled training
   targets; the original network supplies teacher logits on these new inputs.
 
-The largest natural article occupies the final 31,586,353 bytes. The realized
+The largest article spans `[554867326, 586453679)`, with 31,586,353 bytes.
+A separate 5,341-byte final span follows it. The realized
 random sample selected zero training or held pieces from that article. A
 **separate max-native-length audit** reserves its middle complete `2^17` piece
-at `[570601307, 570732379)`, with 131,071 targets. PPMd learns from stream zero;
+at `[570595966, 570727038)`, with 131,071 targets. PPMd learns from stream zero;
 its entire natural article has zero sampled training pieces. This fixed audit
 and the randomized held estimator are reported separately each epoch.
 
@@ -67,7 +68,7 @@ pass so only one PPMd disk map is live:
 
 ```sh
 WORK/bin/activation-probe capture PREPARED/stream.bin AUDIT/tokens.u8 \
-  AUDIT/priors.f16 PREPARED/vocab.bin 570601307 131072 0
+  AUDIT/priors.f16 PREPARED/vocab.bin 570595966 131072 0
 # AUDIT/bounds.i32 contains [0, 131072].
 WORK/bin/activation-probe eval-pieces AUDIT/tokens.u8 AUDIT/priors.f16 \
   ORIGINAL_STATIC15 AUDIT/bounds.i32
