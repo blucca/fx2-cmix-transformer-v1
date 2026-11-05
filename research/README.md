@@ -1,6 +1,6 @@
 # Hutter compression research
 
-**New:** [Fixed entropy-constrained QAT](entropy-qat.md) has completed its first epoch. The real weight package grows by 6,964 B and both native held-out NLL scores regress; the original model stays. One bounded trajectory continues to measure recovery.
+**Active:** [Fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) runs one complete bounded trajectory. [Mature PPMd validation](mature-ppmd.md) and exact mixed-interval accounting are available. The earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe; original production weights stay fixed.
 
 [Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
 

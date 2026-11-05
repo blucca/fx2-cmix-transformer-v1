@@ -56,6 +56,9 @@ struct PredictorOptions {
   // to this file: for each processed byte, the probabilities of the bytes in
   // the lstm's vocabulary (in vocabulary order), rounded to float16.
   std::string save_ppmd_probs;
+  // Research capture: learn all bytes, but omit the first N saved rows.
+  // This keeps mature-prefix capture at the retained slice's disk cost.
+  unsigned long long save_ppmd_skip_bytes = 0;
   // If nonempty, the ppmd and the transformer are not run. The byte-level
   // probability distributions the transformer would have produced are read
   // from this file instead (same format as save_ppmd_probs). Requires
@@ -212,6 +215,7 @@ class Predictor {
   // training data loader's split_article_lengths; each piece is a fresh
   // transformer context.
   unsigned long long article_tokens_ = 0;
+  unsigned long long ppmd_save_skip_remaining_ = 0;
 };
 
 #endif

@@ -78,3 +78,14 @@ then restores zero. `--zero-only` exports and saves zero. The CLI accepts the
 existing checkpoint/kernel/manifest/native baseline/v2 template/recoder/evaluator
 paths and an output directory; `python3 -B research/integer-coordinate-qat.py --help`
 lists the interface.
+
+## Mature validation and first committed hard change
+
+[The mature-prior measurement](mature-ppmd.md) is complete. The same text
+with causal PPMd history improves the original NN by .0400393 nats/target
+versus fresh priors. The first epoch retains every hard symbol and all native
+scores; epoch 2 changes 3,575 symbols, grows W by 12 B, and changes the two
+cold held-out NLLs by +.00412299 / −.00169225. Its independent mature NLL
+increases by .00590677. All original scales remain fixed. The single 64-epoch /
+48-CPU-hour trajectory continues; the online mixed pair follows its exit.
+[Full machine-readable receipts](results/integer-coordinate-mature-ppmd.json).

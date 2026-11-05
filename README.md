@@ -2,6 +2,8 @@
 
 Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
 
+**Active research branch:** [fixed-scale integer-coordinate distillation](research/integer-coordinate-qat.md), with [causal mature PPMd validation](research/mature-ppmd.md) and real online mixed accounting. The first hard-change checkpoint grows W by 12 B and regresses mature NLL by .00590677; the complete bounded trajectory remains in progress. Original production weights stay fixed.
+
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
 
 **New independent component:** [lossless per-tensor weight coding](research/weights-static15.md) reduces the weight file by **26,327 B**, with all **434 tensor payloads identical**. After charging the new decoder twice, the measured development-package saving is **52,022 B**. The default model stays unchanged; the optional recoder and loader are ready to reproduce.
