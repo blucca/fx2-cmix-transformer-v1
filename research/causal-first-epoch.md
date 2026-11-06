@@ -1,4 +1,4 @@
-# First complete causal epoch: native loss and article breadth
+# First three causal epochs: native loss and article breadth
 
 The frozen twelve-layer, fixed-scale coordinate method now has a complete
 first-epoch native held result. It uses the original single-pass causal PPMd
@@ -74,3 +74,47 @@ kappa≈7.01995 in that scenario. Actual coded gain is still at zero completed
 mixed measurements; the fixed trajectory and its sole mixed export continue.
 
 [Native epoch-2 receipt and labeled scenario](results/causal-second-native-epoch.json).
+
+## Third epoch: training fit and native held diverge
+
+Epoch 3 has native held NLL **0.968583391324**, delta
+**+0.002335052530 nats/target** against W0 and **+0.003618286727**
+against epoch 2. Its independent audit delta is +0.000572950068.
+The exported W is 2,904,582 bytes, adding 514 bytes across both W copies.
+
+This is a broad held regression: **355 of 473 paired pieces** worsen from
+epoch 2, covering **92.4180% of held targets**. All six observed length
+bins worsen. Removing the ten largest worsening pieces leaves
+**+0.003208381202 nats/target**. The 64–128 KiB held bin still has zero
+observed pieces; the separate maximum-length audit stays report-only.
+
+| Complete epoch | Moving-W training CE | Teacher KL | Hard symbols changed vs W0 | Native held delta vs W0 |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 0.973906122 | 0.001217227 | 351 | −0.001188048 |
+| 2 | 0.970876098 | 0.004958416 | 12,928 | −0.001283234 |
+| 3 | 0.960844842 | 0.009701867 | 60,182 | +0.002335053 |
+
+Training means cover pre-update batches across one complete epoch; native
+held uses each frozen export. The fixed AdamW schedule, original teacher
+cache, signed BF16 scales and 111 finite/nonzero coordinate gradients remain
+in force. Growing hard-coordinate threshold crossings accompany the held
+regression while the moving-W training objective improves.
+
+**Epoch 2 remains the best completed candidate under the frozen selector.**
+The existing sixteen-epoch trajectory preserves every saved export for its
+one terminal mixed evaluation. The latest epoch and the selected candidate
+have separate roles. Completed mixed-coded measurements remain **0**.
+
+The raw-rate projection uses 586,215,331 NN targets. The frozen training and
+selector use 586,459,020 prepared bytes, including 243,689 first-token
+fallback positions. Both labeled projections rank epoch 2 first here; its
+NN-target kappa=1 net proxy is +135,566.699 bytes and epoch 3 is
+−247,366.983 bytes. Actual coded bytes supply the deployment decision.
+
+[Third native epoch and fixed-trajectory receipt](results/causal-third-native-epoch.json)
+and [all 473 epoch-0–3 paired pieces](results/causal-epochs01-03-paired-pieces.json)
+are replayed with the standard library:
+
+```sh
+python3 -B research/causal-epochs01-03-check.py
+```
