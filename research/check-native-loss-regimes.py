@@ -54,6 +54,26 @@ threshold = (low + mid + fee / factor) / -high
 advantage = -factor * (low + mid + high) - fee
 assert math.isclose(threshold, 0.37763684275259957, abs_tol=1e-12)
 assert math.isclose(advantage, 9978.763038972884, abs_tol=1e-6)
+# Precision is conditional on these observed distinct articles. Preserve the
+# sampling support and selected-checkpoint scope stated in the compact result.
+precision = json.loads((results / 'native-sampling-precision.json').read_text())
+assert (precision['piece_article_count'], precision['targets']) == (len(rows), N)
+paired_columns = [(4, 2), (4, 3), (5, 4), (7, 6), (7, 2)]
+assert len(precision['comparisons']) == len(paired_columns)
+for item, (a, b) in zip(precision['comparisons'], paired_columns):
+    ds = [r[a] - r[b] for r in rows]
+    total = math.fsum(ds)
+    theta = total / N
+    se = math.sqrt(len(rows) / (len(rows) - 1) *
+        math.fsum((d - theta*r[0])**2 for r, d in zip(rows, ds))) / N
+    deleted = [(total-d)/(N-r[0]) for r, d in zip(rows, ds)]
+    assert math.isclose(theta, item['delta_nats_per_target'], abs_tol=1e-12)
+    assert math.isclose(se, item['observed_article_ratio_standard_error'], abs_tol=1e-12)
+    for actual, saved in zip([theta-1.96*se, theta+1.96*se], item['observed_support_normal_interval']):
+        assert math.isclose(actual, saved, abs_tol=1e-12)
+    for actual, saved in zip([min(deleted), max(deleted)], item['delete_one_article_delta_range']):
+        assert math.isclose(actual, saved, abs_tol=1e-12)
+    assert math.isclose(abs(theta)/se, item['absolute_studentized_ratio'], abs_tol=1e-10)
 print(json.dumps({'status': 'passed', 'pieces': len(rows), 'targets': N,
     'shared_late_loss_and_depth_recovery_targets': sum(r[0] for r in overlap),
     'named_e2_over_e1_all_kappa1_net_bytes': advantage,

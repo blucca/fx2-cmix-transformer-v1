@@ -1,8 +1,12 @@
 # Hutter compression research
 
+**First hard-QAT transition:** [native e12](results/depth-first-hard-e12.json) recovers 11.68% of the e8 deployment gap across 97.106% of sampled held targets; the maximum-article audit and actual 1,895,710 B package space remain separate. [Stdlib replay](check-depth-first-hard-e12.py).
+
+**Causal e9:** [nine original native epochs](results/causal-first-nine-epochs.json) preserve e2; the same four held/audit scopes regress through e3–e9. [Replay](causal-first-nine-epochs-check.py).
+
 **New paired analysis:** [native-loss domains](native-loss-regimes.md) reuse the
 same 473 held articles to locate causal e2's gain and late regression alongside
-eight-block compensation. The high domain carries most absolute residual;
+eight-block compensation and observed-article precision. The small e2-over-e1 margin is 0.740 standard errors on this support. The high domain carries most absolute residual;
 the low domain has the largest relative distortion. Supplied per-piece loss
 accumulators and a standard-library replay reproduce the result.
 

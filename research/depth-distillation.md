@@ -332,3 +332,41 @@ Each complete submitted program retains its own actual time/memory receipt and
 execution-machine T. The original 32-epoch/48-CPU-hour trajectory, selected
 checkpoint and one mixed run continue; added recipes, probes and early full-S
 calls are zero. [Stdlib replay](check-depth-continuous-terminal-e8.py).
+
+## First four hard-QAT epochs: native epoch twelve
+
+[The original e12 measurement](results/depth-first-hard-e12.json) completes the
+8 continuous + 4 hard epochs, with the remaining 20 hard epochs continuing in
+the same frozen trajectory. Its fixed hard-native held NLL is **1.1451413926**:
+**−0.0236624908** from e8, retaining a **+0.1788930538** gap against W0. This
+first hard stage removes **11.68%** of e8's deployment gap. Improvement spans
+**395/473 pieces and 97.106% of held targets**; W0 remains stronger on 457
+pieces covering 99.828% of targets.
+
+The predeclared W0 surprisal domains all improve. The high-surprisal domain
+provides 75.16% of the hard-stage recovery; the original long held pieces
+improve by **−0.0312183153 nats/target**. The separate 131,071-target maximum-
+article audit increases by **+0.0440019801** from e8. This keeps the observed
+held recovery and the distinct long-history sensitivity visible together.
+
+Hard-stage online CE falls from **1.0272493503** at e9 to **1.0070205502** at
+e12. Teacher KL reaches **0.1411976987** at e10 and rises to **0.1430427550**
+at e12; final hidden MSE follows the same e10-to-e12 direction. Those values
+are target-weighted online pre-update training losses. The held result comes
+from the fixed, rounded, native export after the whole epoch.
+
+The e12 export changes **38.122%** of the INT4 symbols versus 33.411% at e8,
+with all scales frozen and all 294 recoded tensors byte-identical to the raw
+export. W is **1,960,982 B**. Across the two copies, W and B save **1,895,710 B**.
+Under the named same-composition/uniform-transmission scenario, the historical
+952,225 B record gap requires **κ ≤ 0.04988843**. The actual same-W mixed-codec
+payload and full archive supply the deployment decision.
+
+The authentic e12 held/audit probes use **88.969106/11.723212 CPU seconds**.
+The e8-to-e12 training/evaluation rate is **2,827.615 CPU seconds per epoch**;
+the original 48-CPU-hour budget has ample room for this observed remaining
+trajectory. Formal compressor/archive timing retains its own whole-program
+scope and machine T. [One standard-library replay](check-depth-first-hard-e12.py)
+reconstructs all 473 paired losses, phase coverage and the measured package
+space. The next scheduled native checkpoint is e16; the one terminal-selected
+checkpoint proceeds to the original sole mixed measurement.

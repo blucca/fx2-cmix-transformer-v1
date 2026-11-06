@@ -1,0 +1,83 @@
+{
+  "schema": "hutter.native-observed-sampling-precision.v1",
+  "piece_article_count": 473,
+  "targets": 1082505,
+  "scope": "Influence-function standard errors for target-weighted paired native-loss ratios across the 473 observed distinct held articles. Repeated sampling on this observed article support; the full population and post-selection confirmation have their own measurement scope.",
+  "original_sampling_design": "25% article-held role, then independent piece sampling p=.0075. Observed piece/article multiplicity is one. The real sampling process shares roles within unobserved pieces of the same article.",
+  "population_long_piece_support": "Targets in native pieces >64KiB: 6.621% in the complete stream, zero in the observed held sample. The separate maximum-article audit remains report-only.",
+  "formula": "theta=sum(delta_logits_sum)/sum(targets); se=sqrt(n/(n-1)*sum((delta_logits_sum-theta*targets)^2))/sum(targets)",
+  "comparisons": [
+    {
+      "comparison": "causal_e2_w0",
+      "delta_nats_per_target": -0.0012832341977461544,
+      "observed_article_ratio_standard_error": 0.00012608010388008873,
+      "observed_support_normal_interval": [
+        -0.0015303512013511282,
+        -0.0010361171941411806
+      ],
+      "delete_one_article_delta_range": [
+        -0.001304978155740683,
+        -0.0012244019496719387
+      ],
+      "absolute_studentized_ratio": 10.177927827269261
+    },
+    {
+      "comparison": "causal_e2_e1",
+      "delta_nats_per_target": -9.51865358718417e-05,
+      "observed_article_ratio_standard_error": 0.00012865612080226996,
+      "observed_support_normal_interval": [
+        -0.00034735253264429086,
+        0.00015697946090060744
+      ],
+      "delete_one_article_delta_range": [
+        -0.00012369573820231682,
+        -1.867094659123593e-05
+      ],
+      "absolute_studentized_ratio": 0.7398523698544646
+    },
+    {
+      "comparison": "causal_e6_e2",
+      "delta_nats_per_target": 0.020678944480844036,
+      "observed_article_ratio_standard_error": 0.0005504188504815165,
+      "observed_support_normal_interval": [
+        0.019600123533900265,
+        0.021757765427787807
+      ],
+      "delete_one_article_delta_range": [
+        0.020415288980708067,
+        0.0208725608567625
+      ],
+      "absolute_studentized_ratio": 37.56946998227571
+    },
+    {
+      "comparison": "depth_e8_e4",
+      "delta_nats_per_target": -0.018354635709883476,
+      "observed_article_ratio_standard_error": 0.00086963041278631,
+      "observed_support_normal_interval": [
+        -0.020059111318944643,
+        -0.01665016010082231
+      ],
+      "delete_one_article_delta_range": [
+        -0.018770319219006196,
+        -0.01816999033129503
+      ],
+      "absolute_studentized_ratio": 21.106248631616875
+    },
+    {
+      "comparison": "depth_e8_w0",
+      "delta_nats_per_target": 0.20255554458403952,
+      "observed_article_ratio_standard_error": 0.004559357816260597,
+      "observed_support_normal_interval": [
+        0.19361920326416873,
+        0.2114918859039103
+      ],
+      "delete_one_article_delta_range": [
+        0.20099358352630875,
+        0.20409684458334731
+      ],
+      "absolute_studentized_ratio": 44.42633211669433
+    }
+  ],
+  "selection_scope": "e2 is selected from the original completed-checkpoint curve. Intervals describe these observed contrasts; a fresh held validation or the original same-W coded measurement supplies deployment confirmation.",
+  "decision": "Preserve original selector, fixed trajectories and sole mixed measurement; direct the remaining uncertainty budget to native-to-mixer/u16/coded transmission."
+}

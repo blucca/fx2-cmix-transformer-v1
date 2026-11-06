@@ -358,3 +358,25 @@ The real W8 is **2,906,660 B**, growing the two weight copies by **4,670 B**.
 the original seven-epoch evidence and preserves e2 as the leading completed
 candidate. The fixed sixteen-epoch method and its one same-weight terminal
 mixed-codec measurement continue; original production weights stay fixed.
+
+## Original native curve through epoch nine
+
+[Nine completed native events](results/causal-first-nine-epochs.json) retain
+e2 as the leading trained candidate. At e9, full held loss is
+**1.001442286842**, **+0.035193948048 nats/target** against W0. Its short, long
+and independent maximum-article audit deltas are **+.034569039 / +.040853165 /
++.010397788**. All four scopes rise monotonically at the seven checkpoints
+e3–e9. The e9 baseline pairing regresses on **436/473 pieces**, covering
+**99.556% of held targets**.
+
+Online training CE continues downward to **.897661621**, while teacher KL
+rises to **.046204012**. Hard-symbol changes reach **9.610%** at e9; scales
+remain frozen. The real e9 W is **2,907,045 B**, adding **5,440 B across two
+copies**. The original selector retains e2 and reserves one terminal-selected
+same-W mixed measurement. Native ranking and [observed-article precision](native-loss-regimes.md#observed-article-precision-of-the-paired-native-ratios)
+keep their measured scopes; actual paired code and the complete archive
+supply deployment evidence.
+
+The fixed sixteen-epoch/48-CPU-hour method continues unchanged.
+[One standard-library replay](causal-first-nine-epochs-check.py) reconstructs
+all nine scopes, the original selector, piece coverage and resource accounting.

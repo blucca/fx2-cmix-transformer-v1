@@ -91,3 +91,41 @@ depth checkpoints and terminal causal curve complete the learning evidence;
 same-weight coded results and the full-S/resource gate decide deployment.
 Current coded gain and prize results remain recorded in their original
 measurement receipts.
+
+## Observed-article precision of the paired native ratios
+
+The same 473 observed articles support an influence-function standard error
+for each target-weighted paired ratio. With article target count `n_i`,
+summed loss difference `d_i`, `N=sum(n_i)` and `m=473`:
+
+    theta = sum(d_i) / N
+    se = sqrt(m/(m-1) * sum((d_i - theta*n_i)^2)) / N
+
+| Paired contrast | Native delta, nats/target | Observed-article standard error | Normal interval, theta ± 1.96 se |
+|---|---:|---:|---:|
+| Causal e2−W0 | −.001283234 | .000126080 | [−.001530351, −.001036117] |
+| Causal e2−e1 | −.000095187 | .000128656 | [−.000347353, +.000156979] |
+| Causal e6−e2 | +.020678944 | .000550419 | [+.019600124, +.021757765] |
+| Depth e8−e4 | −.018354636 | .000869630 | [−.020059111, −.016650160] |
+| Depth e8−W0 | +.202555545 | .004559358 | [+.193619203, +.211491886] |
+
+The e2-over-e1 margin is **0.740 standard errors**, alongside **10.178**
+for e2-over-W0 and **37.569** for e6's late regression. Removing one observed
+article at a time keeps the e2-over-e1 delta between **−.000123696 and
+−.000018671 nats/target**. Sampling precision and the leverage of one article
+answer distinct questions.
+
+These intervals describe resampling of the **observed article support**.
+The original design assigns an article-held role with probability .25, then
+independently samples native pieces with probability .0075. All 473 observed
+articles contribute one piece. Native pieces above 64 KiB carry **6.621%**
+of full-stream targets and **zero** observed held targets; the separate
+maximum-article audit retains its report-only scope. e2 is selected from the
+completed trajectory, so independent deployment confirmation comes from the
+original same-W coded/full-archive measurement.
+
+[The compact precision result](results/native-sampling-precision.json) and
+the existing [stdlib replay](check-native-loss-regimes.py) retain all five
+contrasts, intervals and leave-one-article ranges. The original fixed
+selector, trajectories and sole mixed runs continue unchanged; remaining
+uncertainty is concentrated on real native-to-codec transmission.
