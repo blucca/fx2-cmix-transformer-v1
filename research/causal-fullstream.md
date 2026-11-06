@@ -139,8 +139,14 @@ can be renewed when the measured remaining work crosses its expiry.
 
 The recorded [worker3 single-core score](results/formal-time-score.json) is
 **T=1709**, giving a strict complete-program limit of **40.959625512 hours**
-for each compressor and archive. Score and complete active program time
-follow the actual execution machine; other workers carry their own scores.
+for the submitted W1 compressor and archive. Score and complete active
+program time follow the actual execution machine. The
+[official rules](https://www.hutter1.net/prize/hrules.htm) bind prize
+eligibility to the submitted version and options. W0 is this experiment's
+measured reference: its complete time, package, restoration and owner budget
+are recorded as the paired research contract. The reference's comparison
+against H(T) is a research statistic; W1's prize-time decision uses C1/D1.
+Each owner still stays within the shared CPU, disk and token budget.
 Prepared/mixed CPU rates and the complete `cmix -e` preprocessing scope enter
 the admission forecast separately from each owner's 150-CPU-hour budget.
 The `formal_encode` receipt covers the whole command and records user/system
