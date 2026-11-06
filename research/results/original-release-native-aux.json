@@ -1,0 +1,178 @@
+{
+  "schema": "hutter.original-release-native-aux.v1",
+  "status": "passed",
+  "cpu_limit_seconds": 1800,
+  "address_space_limit_gib": 24,
+  "threads": 1,
+  "prepared_transformer_calls": 0,
+  "prepared_payload_coding_calls": 0,
+  "full_original_restoration_calls": 0,
+  "fixture_payload": "section-extraction marker",
+  "commands": [
+    {
+      "stage": "encode_dictionary",
+      "command": [
+        "$JOB/assets/cmix.upx",
+        "-c",
+        "$ROOT/upstream/dictionary/english.dic",
+        "$JOB/aux/comp_dict"
+      ],
+      "exit_code": 0,
+      "cpu_seconds": 69.242828,
+      "peak_rss_kib": 4948884
+    },
+    {
+      "stage": "encode_order",
+      "command": [
+        "$JOB/assets/cmix.upx",
+        "-c",
+        "$ROOT/upstream/src/readalike_prepr/data/new_article_order",
+        "$JOB/aux/comp_order"
+      ],
+      "exit_code": 0,
+      "cpu_seconds": 152.159351,
+      "peak_rss_kib": 4948884
+    },
+    {
+      "stage": "compile_native_extract",
+      "command": [
+        "c++",
+        "-O0",
+        "-std=c++17",
+        "$JOB/native-selfextract-check.cpp",
+        "-o",
+        "$JOB/native-selfextract-check"
+      ],
+      "exit_code": 0,
+      "cpu_seconds": 0.15592400000002726,
+      "peak_rss_kib": 4948884
+    },
+    {
+      "stage": "assemble_section_fixture",
+      "command": [
+        "python3",
+        "-B",
+        "$JOB/archive-package.py",
+        "--binary",
+        "$JOB/assets/cmix.upx",
+        "--compressed-dictionary",
+        "$JOB/aux/comp_dict",
+        "--compressed-order",
+        "$JOB/aux/comp_order",
+        "--weights",
+        "$JOB/assets/original-static15.tfwc3",
+        "--raw-payload",
+        "$JOB/section-marker.bin",
+        "--vocab",
+        "$ROOT/prepared/vocab.bin",
+        "--prepared-bytes",
+        "10000",
+        "--out",
+        "$JOB/package"
+      ],
+      "exit_code": 0,
+      "cpu_seconds": 0.023770999999982223,
+      "peak_rss_kib": 4948884
+    },
+    {
+      "stage": "native_compressor_extract",
+      "command": [
+        "$JOB/native-selfextract-check",
+        "compressor"
+      ],
+      "exit_code": 0,
+      "cpu_seconds": 213.64526399999997,
+      "peak_rss_kib": 4948884
+    },
+    {
+      "stage": "native_archive_extract",
+      "command": [
+        "$JOB/native-selfextract-check",
+        "archive"
+      ],
+      "exit_code": 0,
+      "cpu_seconds": 66.75122800000003,
+      "peak_rss_kib": 4948884
+    }
+  ],
+  "stage": "complete",
+  "updated_at_unix": 1793925976.4689398,
+  "cpu_seconds": 502.463058164,
+  "wall_seconds": 503.44403936199524,
+  "asset_provenance": {
+    "schema": "hutter.original-release-aux-assets.v1",
+    "release_build_receipt": "memory/ops/hutter/round412/v22-size.json",
+    "profile": "old-v22 Clang17 non-PGO static15 untraced, UPX5.2.1 -9",
+    "files": {
+      "cmix.upx": {
+        "bytes": 181956,
+        "sha256": "686cb39ca80e6aeb24b558aefd1f59e56f01c6e4352cdc3304bb61256d8953ee",
+        "original_path": "round412/v22-size/static15/cmix.upx"
+      },
+      "original-static15.tfwc3": {
+        "bytes": 2904325,
+        "sha256": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18",
+        "original_path": "round411/integer-coordinate/original-static15.tfwc3"
+      }
+    },
+    "original_input_identities": {
+      "dictionary": {
+        "bytes": 411996,
+        "sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a"
+      },
+      "order": {
+        "bytes": 1094862,
+        "sha256": "4d0fa5313c753c1ecf71e91a83e285894cdde20049711456e6514c07eb85c581"
+      }
+    }
+  },
+  "child_cpu_limit_seconds": 677,
+  "last_exit_code": 0,
+  "components": {
+    "binary": {
+      "path": "$JOB/assets/cmix.upx",
+      "bytes": 181956,
+      "sha256": "686cb39ca80e6aeb24b558aefd1f59e56f01c6e4352cdc3304bb61256d8953ee"
+    },
+    "compressed_dictionary": {
+      "path": "$JOB/aux/comp_dict",
+      "bytes": 100098,
+      "sha256": "0bf16f1b29d854758c4fb3a16336a4b8fc112194b3cbfa8994c21c35a934b21a"
+    },
+    "compressed_order": {
+      "path": "$JOB/aux/comp_order",
+      "bytes": 201111,
+      "sha256": "05ea75cb2cc644e004f880c8e68cac2fbd43186b4d42d77877d2d5634ce61b49"
+    },
+    "weights": {
+      "path": "$JOB/assets/original-static15.tfwc3",
+      "bytes": 2904325,
+      "sha256": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18"
+    }
+  },
+  "common_two_copy_charge_bytes": 6573938,
+  "actual_dictionary_roundtrip": true,
+  "actual_order_roundtrip": true,
+  "actual_packed_native_compressor_sections": true,
+  "actual_packed_native_archive_sections": true,
+  "fixture_package": {
+    "status": "assembled",
+    "prepared_bytes": 10000,
+    "components": {
+      "binary": 181956,
+      "compressed_dictionary": 100098,
+      "compressed_order": 201111,
+      "weights": 2904325,
+      "raw_payload": 24
+    },
+    "stream_header_bytes": 37,
+    "selfextract_header_bytes": 32,
+    "compressor_bytes": 3387506,
+    "archive_bytes": 3186456,
+    "full_s": 6573962,
+    "verification": "actual archive9 decode is the next stage"
+  },
+  "formal_fullstream_s": null,
+  "child_peak_rss_scope": "Cumulative maximum from RUSAGE_CHILDREN; per-command CPU is a before/after difference.",
+  "fullstream_scope": "The prepared transformer, neural/range payload and complete enwik9 restoration belong to separate stages."
+}
