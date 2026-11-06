@@ -1,0 +1,45 @@
+{
+  "schema": "hutter.causal-native-midpoint-e8.v1",
+  "source": "scheduled hutter_compute latest_evaluation, 2026-11-07 02:25 Asia/Shanghai",
+  "previous_curve": "causal-first-seven-epochs.json",
+  "measurement_scope": "full sampled native held; separate reserved maximum-article audit",
+  "epoch8": {
+    "epoch": 8,
+    "all_targets": 1082505,
+    "all_nll": 0.9952845673578133,
+    "delta_w0": 0.029036228563386945,
+    "long_targets": 107647,
+    "long_nll": 1.2936732413519119,
+    "long_delta_w0": 0.0350589400419925,
+    "audit_targets": 131071,
+    "audit_nll": 0.04706914897620114,
+    "audit_delta_w0": 0.008082722844695682,
+    "weight_bytes": 2906660,
+    "double_weight_saved_bytes": -4670,
+    "short_targets": 974858,
+    "short_nll": 0.9623355167376791,
+    "short_delta_w0": 0.028371181117976874,
+    "change_from_e7": {
+      "all_nll": 0.0040949830195688985,
+      "short_nll": 0.003997289128947923,
+      "long_nll": 0.004979705035258908,
+      "audit_nll": 0.0010515228522326656
+    },
+    "nn_scope_net_proxy_bytes": -3074271.0197515097,
+    "selector_net_proxy_bytes": -3075547.0491614295
+  },
+  "full_native_targets": 586215331,
+  "original_selector_target_denominator": 586459020,
+  "selection": {
+    "epoch": 2,
+    "through_complete_native_epoch": 8,
+    "nn_scope_net_proxy_bytes": 135566.69938588905
+  },
+  "plan": {
+    "epochs": 16,
+    "complete_native_checkpoints": 8,
+    "cpu_cap_seconds": 172800,
+    "sole_mixed_cpu_cap_seconds": 28800
+  },
+  "action": "Continue the original sixteen-epoch method and same-weight terminal mixed coding; retain e2 as the leading completed candidate."
+}

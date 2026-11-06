@@ -342,3 +342,19 @@ for the fixed learning recipe. The reserved complete trajectory supplies the
 remaining candidate-selection evidence; no new numerical repair or learning
 recipe is added. Original 16 epochs/48 CPU hours and one actual mixed run
 continue. [Stdlib replay](causal-first-seven-epochs-check.py).
+
+
+## Native midpoint: eight of sixteen epochs
+
+The scheduled native e8 event completes the first half of the original curve.
+Full held-out NLL is **0.995284567358** over 1,082,505 targets,
+**+0.029036228563 nats/target** against W0; the 107,647-target long subset
+is **1.293673241352**, and the independent 131,071-target audit is
+**0.047069148976**. All three scopes and the derived short subset rise again
+from e7, extending the post-e2 regression to six native checkpoints.
+
+The real W8 is **2,906,660 B**, growing the two weight copies by **4,670 B**.
+[The compact midpoint result](results/causal-native-midpoint-e8.json) links
+the original seven-epoch evidence and preserves e2 as the leading completed
+candidate. The fixed sixteen-epoch method and its one same-weight terminal
+mixed-codec measurement continue; original production weights stay fixed.
