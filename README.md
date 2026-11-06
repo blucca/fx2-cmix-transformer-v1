@@ -10,6 +10,8 @@ The independent sixteen-epoch causal-prior trajectory addresses the measured pri
 
 [A conditional codec-aware objective](research/codec-aware-byte-surrogate.md) turns signed mixer slopes into a stable byte-logit learning loss, with the guarded-probability and SSE boundaries explicit. The original actual mixed measurements remain its admission gate.
 
+[Native length support](research/native-length-support.md) reweights the observed cells against the full-stream census and gives the missing >64 KiB cell an explicit payload budget. One article contains 81.38% of those unobserved targets; same-weight coded/full-archive results decide the remaining deployment question.
+
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
 
 **Original native package verified:** [real dictionary/order and both packed-section entry points](research/original-release-native-aux.md) restore every component byte-for-byte. B/D/O/W fix the original two-file envelope at **6,573,938 B before range payload**; full-stream restoration supplies the final score. The [frozen full-stream phase runner](research/causal-fullstream.md) exposes both actual package sizes before the two official-original decodes. The eight-block method uses each side's actual W/B sizes and the same complete archive score.

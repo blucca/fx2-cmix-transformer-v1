@@ -1,0 +1,284 @@
+{
+  "schema": "hutter.native-length-support.v1",
+  "scope": "Census-calibrated native sensitivity, frozen seven length cells; original selectors and mixed runs unchanged.",
+  "sources": [
+    "causal-epochs01-03-paired-pieces.json",
+    "depth-first-hard-e12.json",
+    "causal-second-native-epoch.json"
+  ],
+  "census_source": "Original prepared-stream census and seed414 causal plan (2026-11-06). cap_coverage is complete-piece length, targets=bytes-1 per piece.",
+  "census": [
+    {
+      "piece_bytes": [
+        1,
+        2048
+      ],
+      "population_pieces": 173004,
+      "population_targets": 120236973,
+      "observed_pieces": 340,
+      "observed_targets": 245354
+    },
+    {
+      "piece_bytes": [
+        2049,
+        4096
+      ],
+      "population_pieces": 36215,
+      "population_targets": 102834463,
+      "observed_pieces": 65,
+      "observed_targets": 178382
+    },
+    {
+      "piece_bytes": [
+        4097,
+        8192
+      ],
+      "population_pieces": 20047,
+      "population_targets": 114572295,
+      "observed_pieces": 40,
+      "observed_targets": 226176
+    },
+    {
+      "piece_bytes": [
+        8193,
+        16384
+      ],
+      "population_pieces": 10069,
+      "population_targets": 113544035,
+      "observed_pieces": 21,
+      "observed_targets": 240561
+    },
+    {
+      "piece_bytes": [
+        16385,
+        32768
+      ],
+      "population_pieces": 3589,
+      "population_targets": 77843076,
+      "observed_pieces": 4,
+      "observed_targets": 84385
+    },
+    {
+      "piece_bytes": [
+        32769,
+        65536
+      ],
+      "population_pieces": 456,
+      "population_targets": 18372088,
+      "observed_pieces": 3,
+      "observed_targets": 107647
+    },
+    {
+      "piece_bytes": [
+        65537,
+        131072
+      ],
+      "population_pieces": 309,
+      "population_targets": 38812401,
+      "observed_pieces": 0,
+      "observed_targets": 0
+    }
+  ],
+  "largest_article": {
+    "begin": 554867326,
+    "end": 586453679,
+    "bytes": 31586353,
+    "native_piece_limit": 131072,
+    "role": "held",
+    "realized_sampled_pieces": 0,
+    "article_holdout_probability": 0.25,
+    "piece_sampling_probability": 0.0075
+  },
+  "scenario_inputs": {
+    "historical_record_gap_bytes": 952225,
+    "kappa_supported": 0.05
+  },
+  "computed": {
+    "cells": [
+      {
+        "piece_bytes": [
+          1,
+          2048
+        ],
+        "population_pieces": 173004,
+        "population_targets": 120236973,
+        "observed_pieces": 340,
+        "observed_targets": 245354,
+        "native_delta_nats_per_target": {
+          "causal_e1": -0.0007610548883765945,
+          "causal_e2": -0.0006651832835465189,
+          "depth_e8": 0.1454455255346921,
+          "depth_e12": 0.12878358130663986,
+          "depth_e12_minus_e8": -0.016661944228052228
+        }
+      },
+      {
+        "piece_bytes": [
+          2049,
+          4096
+        ],
+        "population_pieces": 36215,
+        "population_targets": 102834463,
+        "observed_pieces": 65,
+        "observed_targets": 178382,
+        "native_delta_nats_per_target": {
+          "causal_e1": -0.0008849123755523447,
+          "causal_e2": -0.0008945437606098154,
+          "depth_e8": 0.19053707909754417,
+          "depth_e12": 0.16962979056557367,
+          "depth_e12_minus_e8": -0.02090728853197049
+        }
+      },
+      {
+        "piece_bytes": [
+          4097,
+          8192
+        ],
+        "population_pieces": 20047,
+        "population_targets": 114572295,
+        "observed_pieces": 40,
+        "observed_targets": 226176,
+        "native_delta_nats_per_target": {
+          "causal_e1": -0.0015218708961784455,
+          "causal_e2": -0.0012326232942452074,
+          "depth_e8": 0.2265230415964141,
+          "depth_e12": 0.2002282582718352,
+          "depth_e12_minus_e8": -0.02629478332457888
+        }
+      },
+      {
+        "piece_bytes": [
+          8193,
+          16384
+        ],
+        "population_pieces": 10069,
+        "population_targets": 113544035,
+        "observed_pieces": 21,
+        "observed_targets": 240561,
+        "native_delta_nats_per_target": {
+          "causal_e1": -0.001620892641095835,
+          "causal_e2": -0.0017575629406792923,
+          "depth_e8": 0.2290825814580689,
+          "depth_e12": 0.20196583248538236,
+          "depth_e12_minus_e8": -0.02711674897268654
+        }
+      },
+      {
+        "piece_bytes": [
+          16385,
+          32768
+        ],
+        "population_pieces": 3589,
+        "population_targets": 77843076,
+        "observed_pieces": 4,
+        "observed_targets": 84385,
+        "native_delta_nats_per_target": {
+          "causal_e1": -0.0012418671952906697,
+          "causal_e2": -0.001448845085514502,
+          "depth_e8": 0.20700673014607932,
+          "depth_e12": 0.18370677377417985,
+          "depth_e12_minus_e8": -0.023299956371899466
+        }
+      },
+      {
+        "piece_bytes": [
+          32769,
+          65536
+        ],
+        "population_pieces": 456,
+        "population_targets": 18372088,
+        "observed_pieces": 3,
+        "observed_targets": 107647,
+        "native_delta_nats_per_target": {
+          "causal_e1": -0.0009527255198509679,
+          "causal_e2": -0.002252546317702618,
+          "depth_e8": 0.2395114570467063,
+          "depth_e12": 0.2082931417933979,
+          "depth_e12_minus_e8": -0.0312183152533084
+        }
+      },
+      {
+        "piece_bytes": [
+          65537,
+          131072
+        ],
+        "population_pieces": 309,
+        "population_targets": 38812401,
+        "observed_pieces": 0,
+        "observed_targets": 0,
+        "native_delta_nats_per_target": null
+      }
+    ],
+    "population_targets": 586215331,
+    "supported_targets": 547402930,
+    "missing_targets": 38812401,
+    "supported_target_share": 0.9337915626775035,
+    "models": {
+      "causal_e1": {
+        "supported_conditional_delta_nats": -0.0011967193463933406,
+        "full_native_support_contribution_nats": -0.0011174864285550382,
+        "supported_native_byte_coefficient": -118136.4677978997
+      },
+      "causal_e2": {
+        "supported_conditional_delta_nats": -0.0012183372068839888,
+        "full_native_support_contribution_nats": -0.0011376730042843449,
+        "supported_native_byte_coefficient": -120270.51676051549
+      },
+      "depth_e8": {
+        "supported_conditional_delta_nats": 0.20014562129482952,
+        "full_native_support_contribution_nats": 0.18689429247195868,
+        "supported_native_byte_coefficient": 19757762.600100666
+      },
+      "depth_e12": {
+        "supported_conditional_delta_nats": 0.17706891579854597,
+        "full_native_support_contribution_nats": 0.16534545958513552,
+        "supported_native_byte_coefficient": 17479700.927612867
+      }
+    },
+    "largest_article": {
+      "pieces": 241,
+      "last_piece_bytes": 129073,
+      "targets": 31586112,
+      "missing_target_share": 0.8138149453830491,
+      "other_missing_pieces": 68,
+      "other_missing_targets": 7226289,
+      "design_zero_observations_given_held": 0.16294994562160756,
+      "design_zero_held_observations": 0.7907374864054019
+    },
+    "causal_e2_over_e1_sensitivity": {
+      "supported_native_gain_bytes": 2134.0489626157796,
+      "extra_double_weight_bytes": 84,
+      "net_gain_at_kappa1_equal_missing_payload_bytes": 2050.0489626157796
+    },
+    "payload_sensitivity": {
+      "double_W_B_saved_bytes": 1895710,
+      "historical_record_gap_bytes": 952225,
+      "payload_allowance_bytes": 943485,
+      "missing_payload_coefficient_bytes_per_bit_per_target": 4851550.125,
+      "giant_payload_coefficient": 3948264.0,
+      "other_missing_payload_coefficient": 903286.125,
+      "kappa_supported": 0.05,
+      "missing_payload_excess_budget_bits_per_target": 0.014325308783521352
+    },
+    "uniform_kappa_scenarios": [
+      {
+        "assumption": "zero_missing_native_delta",
+        "missing_native_delta_nats": 0,
+        "full_native_byte_coefficient": 17479700.927612867,
+        "uniform_kappa_at_historical_record": 0.05397603791433107
+      },
+      {
+        "assumption": "missing_equals_supported_mean",
+        "missing_native_delta_nats": 0.17706891579854597,
+        "full_native_byte_coefficient": 18719060.683620352,
+        "uniform_kappa_at_historical_record": 0.05040236879116339
+      },
+      {
+        "assumption": "missing_equals_local_audit_delta",
+        "missing_native_delta_nats": 0.22999218013596104,
+        "full_native_byte_coefficient": 19089486.874352567,
+        "uniform_kappa_at_historical_record": 0.04942432482392217
+      }
+    ]
+  }
+}

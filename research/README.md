@@ -2,6 +2,8 @@
 
 **Conditional mechanism:** [signed local byte-to-bit coding objective](codec-aware-byte-surrogate.md) defines the complete gradient and the pre-SSE/final-u16 boundary. A [stdlib mathematical check](check-codec-aware-byte-surrogate.py) covers signed slopes and guarded probabilities; new capture/training allocation remains zero until the current actual mixed measurement locates the bottleneck.
 
+**Length support:** [census-calibrated native sensitivity](native-length-support.md) separates six observed length cells from the missing >64 KiB cell. At κA=.05, e12's historical record scenario leaves 69,500 B for that cell's payload growth. One natural article contains 81.38% of its targets. [Stdlib replay](check-native-length-support.py).
+
 
 **First hard-QAT transition:** [native e12](results/depth-first-hard-e12.json) recovers 11.68% of the e8 deployment gap across 97.106% of sampled held targets; the maximum-article audit and actual 1,895,710 B package space remain separate. [Stdlib replay](check-depth-first-hard-e12.py).
 
