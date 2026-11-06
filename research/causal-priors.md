@@ -380,3 +380,10 @@ supply deployment evidence.
 The fixed sixteen-epoch/48-CPU-hour method continues unchanged.
 [One standard-library replay](causal-first-nine-epochs-check.py) reconstructs
 all nine scopes, the original selector, piece coverage and resource accounting.
+
+
+## Original ten-epoch native curve
+
+The [completed e10 watch event and full original curve](results/causal-first-ten-epochs.json) preserve e2 as the leading trained export. All held, short, long and independent maximum-article scopes regress monotonically through e3–e10. Native e10 changes 644557 of 5868864 hard symbols (10.9827%); its full-held delta is +0.039673084438 nats/target, short +0.038772368899, long +0.047830020984 and independent audit +0.012173058547. Its 438 regressing pieces cover 1077457 of 1082505 held targets (99.5337%).
+
+The same complete epoch's online CE reaches 0.890642504573 while teacher KL rises to 0.049936596730; all fixed scales and 111 finite/nonzero gradient contracts hold. The original 16-epoch/48-CPU-hour trajectory and the e2-leading terminal selector remain fixed. One same-weight actual mixed run supplies G/M/u16/real-byte transmission. Extra recipes, model probes and early full-stream admissions have zero allocation. The original 473-piece pairing and [stdlib replay](causal-first-ten-epochs-check.py) reconstruct the published means and regression counts.
