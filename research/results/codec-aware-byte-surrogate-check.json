@@ -1,15 +1,23 @@
 {
   "status": "passed",
-  "scope": "synthetic frozen-bit surrogate; no NN/codec calls",
+  "scope": "synthetic frozen-bit surrogate and smooth SSE; no NN/codec calls",
   "cases": 6,
   "finite_difference_max_error": 2.2714649605681814e-11,
   "partial_bit_logit_curvature": -0.33333336091345694,
+  "smooth_sse": {
+    "input_probability": 0.61,
+    "output_probability": 0.5959094854139744,
+    "probability_jacobian": 1.0057046883067542,
+    "finite_difference_error": 4.372968653854059e-11,
+    "logit_jacobian": 0.9935871409055804
+  },
   "checks": [
     "signed/zero affine slope",
     "guarded softmax gradient",
     "eight-bit telescoping",
     "common-logit-shift",
-    "convex x and indefinite byte-logit composition"
+    "convex x and indefinite byte-logit composition",
+    "two-interpolator SSE chain"
   ],
   "implementation_allocation": "zero; frozen current trajectories and mixed measurements",
   "selected_statistics_bytes": 257523968,

@@ -121,6 +121,26 @@ smooth branch E, define q=E(p). Its logit Jacobian is
 
     tau = E'(p) * p*(1-p) / (q*(1-q)).
 
+For an explicit smooth count-domain chain, set S=32768, H=S/2 and
+c=(H-1)/ln(S-1). Replace the frozen lookup cells by their smooth counterparts:
+
+    T(r)=H+c*ln((S-r)/r);  Q(t)=S*sigmoid(-(t-H)/c)
+    X_C(t)=H+(C/8192)*(t-H)
+    I(r)=C_j+(6*r/S-j)*(C_{j+1}-C_j)-8192
+    m_alpha(a,b)=b+alpha*(a-b), alpha=(mixer_weight-H)/S.
+
+Here j and adjacent SSE nodes are held at the reference branch; active clamps
+use their native branch. With p0=1+(1-p)*32766, the original chain is
+
+    p1=I6(Q(X_f0(T(p0)))); s0=X_f1(T(p0)); s1=X_f2(T(p1))
+    s2=X_sm6(m_alpha1(s0,s1))
+    p2=I7(Q(X_f3(T(p0)))); s4=X_f4(T(p2))
+    s5=X_sm7(m_alpha2(s2,s4)); E(p)=1-(Q(s5)-1)/32766.
+
+Ordinary scalar chain rule yields E'. The minimal check uses the original
+extrapolation coefficients and mixer initialization, with synthetic adjacent
+SSE nodes, to verify this entire branch by finite difference.
+
 A final-probability local objective uses effective slope **tau*s**, anchored to
 logit(u16/65536). Multiplying a final-u16 residual by the pre-SSE slope uses a
 unit-SSE-Jacobian assumption. Read the existing M→u16 loss difference first:
@@ -172,5 +192,8 @@ counted once; publication of this design carries measured coding gain zero.
 The seven-byte synthetic fixture preserves the native ascending-byte/MSB
 partition. Six cases check signed/zero slopes, floored-softmax gradients,
 common-logit-shift invariance and eight-bit telescoping; one scalar direction
-exhibits negative byte-logit curvature. Central finite-difference maximum error
-is 2.28e-11. This is a mathematical contract check; NN/codec calls are zero.
+exhibits negative byte-logit curvature. A second scalar fixture checks the
+complete two-interpolator smooth SSE chain. Byte-gradient finite-difference
+maximum error is 2.28e-11; all results are in
+[the mathematical receipt](results/codec-aware-byte-surrogate-check.json).
+NN/codec calls are zero.
