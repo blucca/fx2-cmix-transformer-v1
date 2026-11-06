@@ -6,6 +6,8 @@
 
 [Exact attention tile checkpoints](tile-checkpoint.md) reduce the measured attention graph storage by 92.66%. The 1,346-target whole-model adjoints are bit-exact; the 131,071-target OpenBLAS forward is bit-exact and its full backward hits the 7 GiB memory gate. [Terminal receipt](results/tile-checkpoint-full-model.json). The running causal trajectory stays fixed.
 
+[Real original native auxiliary delivery](original-release-native-aux.md) passes the dictionary/order roundtrips and both packed section entry points. B/D/O/W establish **6,573,938 B before range payload**, with reusable D/O and exact full-S charging. [One eight-block structural candidate](depth-distillation-contract.md) preserves the outer skip pairing; its byte budget uses the existing tensor census and creates zero new models.
+
 ## Fixed sources
 
 **Latest independent component:** [lossless per-tensor weight coding](weights-static15.md)

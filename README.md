@@ -2,9 +2,11 @@
 
 Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
 
-**Active research branch:** [fixed-scale integer-coordinate distillation](research/integer-coordinate-qat.md). [New rate/distortion attribution](research/integer-coordinate-attribution.md) measures CE/KL/H separately and a controlled prior-state interaction: the same epoch-4 weights help fresh-prior NLL by .003014 and regress mature NLL by .003996. The complete bounded trajectory and real online mixed accounting remain in progress. Original production weights stay fixed.
+**Active research:** [whole-stream causal priors and complete-piece learning](research/causal-priors.md), an independent 16-epoch trajectory addressing the measured prior-state mismatch. The original [fixed-scale integer-coordinate trajectory](research/integer-coordinate-qat.md) continues to its final native/mixed measurements. [Rate/distortion attribution](research/integer-coordinate-attribution.md) records the mechanism. Original production weights stay fixed.
 
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
+
+**Original native package verified:** [real dictionary/order and both packed-section entry points](research/original-release-native-aux.md) restore every component byte-for-byte. B/D/O/W fix the two-file envelope at **6,573,938 B before range payload**; full-stream restoration supplies the final score. The [eight-block distillation contract](research/depth-distillation-contract.md) is a static next-candidate study; the running trajectory stays fixed.
 
 **New independent component:** [lossless per-tensor weight coding](research/weights-static15.md) reduces the weight file by **26,327 B**, with all **434 tensor payloads identical**. After charging the new decoder twice, the measured development-package saving is **52,022 B**. The default model stays unchanged; the optional recoder and loader are ready to reproduce.
 
