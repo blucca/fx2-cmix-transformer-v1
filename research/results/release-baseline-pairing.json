@@ -1,0 +1,54 @@
+{
+  "schema": "hutter.release-baseline-pairing.v1",
+  "release_source": "https://github.com/astOwOlfo/fx2-cmix-transformer-v1/releases/tag/binaries",
+  "partial_archive_bytes": 17537171,
+  "complete_compressor_bytes": 3426642,
+  "release_sections": {
+    "B": 194836,
+    "D": 100096,
+    "O": 201042,
+    "W": 2930652
+  },
+  "current_sections": {
+    "B": 181956,
+    "D": 100098,
+    "O": 201111,
+    "W_static15": 2904325
+  },
+  "header": {
+    "hex": "8022f4a78ce8160400ffffff0301fc0ff9feffff07ffffffffffffffffffffffffffffffff",
+    "dictionary": true,
+    "prepared_bytes": 586459020,
+    "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+    "same_golden_vocab": true
+  },
+  "golden_scope": {
+    "prepared_offset": 0,
+    "prepared_bytes": 262144,
+    "original_cold_start": true,
+    "seed": 923,
+    "bit_order": "7-to-0",
+    "dictionary_pretrain": true
+  },
+  "comparison": {
+    "golden_prefix_encoded_bytes": 20972,
+    "range_final_flush_bytes": 1,
+    "stable_prefix_bytes": 20971,
+    "first_mismatch_offset": 6,
+    "common_prefix_bytes": 6,
+    "stable_prefix_passed": false,
+    "golden_first32_hex": "f18fd03d381b317ff943fef5925990c2ebc0615042d19d14b477cb817cabd26f",
+    "release_P_first32_hex": "f18fd03d381b06130cf444bb653986897dc9fe7de066bf7a4948668c13e74ace"
+  },
+  "observations": {
+    "same_original_W": true,
+    "same_205_symbol_mask": true,
+    "release_D_O_roundtrip_this_observation": 0,
+    "payload_into_current_codec": "stopped after the stable prefix mismatch",
+    "exact_arithmetic_source_of_mismatch": "binary/source/recipe attribution remains a separate task"
+  },
+  "next_condition": "A future full-stream candidate can compare the cost of the complete original release pair with the current four-phase baseline. Whole-file MD5 verification belongs to the chosen complete path.",
+  "new_downloads": 0,
+  "new_model_calls": 0,
+  "saved_fullstream_cpu_seconds": 0
+}

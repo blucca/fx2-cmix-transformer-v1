@@ -75,8 +75,16 @@ The existing single 30-minute watcher reads source-worker baseline readiness.
 The destination's input-wait phase performs local file checks and can
 idle-suspend. It resumes for actual ready inputs or an already active job.
 The destination's single pipeline is admitted and the existing watcher follows
-the readiness transition. Full-data transfer waits for the original baseline
-receipt; the source-worker capture is still running.
+the readiness transition. The original full causal capture and native baseline
+have passed. Its first transfer completed 1,210,499,798 bytes of inputs, then
+received 377,389,056 of 444,020,980 bytes for the validation prior before the
+response ended. The inspected `--resume-failed` path keeps the completed inputs
+and partial prefix, reuses the same waiting pipeline, and charges the failed
+9.406861163 CPU seconds once in the original preparation allowance. The file
+API returned HTTP 200 for a one-byte Range request, so recovery advances through
+the saved prefix in the whole response. New capture and resampling remain zero.
+The original error log is preserved. Run the model-free regression from the
+workspace root with `python3 research/check-depth-input-transfer.py`.
 
 ## Native identity and actual measurement
 

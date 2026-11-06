@@ -1,0 +1,37 @@
+{
+  "status": "original_transfer_recovery_started",
+  "original_pipeline_pid": 16774,
+  "original_mixed_pid": 17049,
+  "watch3_rearmed": true,
+  "transfer_attempts": 2,
+  "new_capture": 0,
+  "new_pipeline": 0,
+  "new_trainer": 0,
+  "range_api_supported": false,
+  "reused_completed_bytes": 1210499798,
+  "retained_partial_prefix_bytes": 377389056,
+  "remaining_partial_file_bytes": 66631924,
+  "source_capture_cpu_recharged": 0,
+  "schema": "hutter.depth-input-recovery.v1",
+  "checks": {
+    "status": "passed",
+    "checks": [
+      "normal copy",
+      "preserved partial prefix",
+      "truncated body rejected with sizes",
+      "truncated skip preserves original",
+      "rendered original/recovery bootstrap AST and flags",
+      "failed CPU charged once"
+    ],
+    "network_requests": 0,
+    "model_calls": 0
+  },
+  "original_failure": {
+    "file": "capture/validation.f16",
+    "expected_bytes": 444020980,
+    "received_bytes": 377389056,
+    "prior_failed_cpu_seconds": 9.406861163,
+    "terminal_exit_code": 1
+  },
+  "recovery_status": "started; terminal follows the original watcher"
+}

@@ -33,29 +33,63 @@ def map_files(manifest, source, incoming):
     return mapped, files
 
 
+def copy_stream(response, destination, expected, prefix=0):
+    """Keep an inspected partial file; this API serves whole files, not Range.
+
+    The original validation stream ended early. Advancing past its saved prefix
+    costs network bytes only; completed inputs are reused without another GET.
+    """
+    assert 0 <= prefix <= expected, (str(destination), prefix, expected)
+    remaining = prefix
+    while remaining:
+        block = response.read(min(1 << 20, remaining))
+        assert block, f"source ended before saved prefix: {destination}"
+        remaining -= len(block)
+    with destination.open("ab" if prefix else "wb") as output:
+        shutil.copyfileobj(response, output, length=1 << 20)
+    actual = destination.stat().st_size
+    assert actual == expected, f"{destination}: expected {expected} bytes, received {actual}"
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--job", type=Path, required=True)
     parser.add_argument("--source-json", type=Path, required=True)
+    parser.add_argument("--resume-failed", action="store_true",
+                        help="reuse the inspected original failed transfer and its files")
     args = parser.parse_args()
     job, config = args.job.resolve(), args.source_json.resolve()
     incoming = job / "incoming"
     incoming.mkdir(exist_ok=True)
     state_path = incoming / "transfer-state.json"
-    assert not state_path.exists(), "inspect this original transfer before restarting"
+    previous = {}
+    if args.resume_failed:
+        previous = json.loads(state_path.read_text())
+        assert previous["status"] == "failed", previous["status"]
+        assert not Path(f"/proc/{previous['pid']}").exists(), "original transfer is still live"
+    else:
+        assert not state_path.exists(), "inspect this original transfer before restarting"
     assert json.loads((job / "check/preflight.json").read_text())["status"] == "passed"
     source = json.loads(config.read_text())
     source_job = Path(source["job"])
+    assert not previous or previous["source_job"] == str(source_job)
+    prior_cpu = float(previous.get("total_cpu_seconds", previous.get("cpu_seconds", 0.)))
     started = time.time()
     os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
     resource.setrlimit(resource.RLIMIT_AS, (256 << 20, 256 << 20))
-    resource.setrlimit(resource.RLIMIT_CPU, (178, 180))
+    remaining_cpu = int(180-prior_cpu)
+    assert remaining_cpu > 2, "original transfer CPU allowance exhausted"
+    resource.setrlimit(resource.RLIMIT_CPU, (remaining_cpu-2, remaining_cpu))
     state = dict(schema="hutter.depth-input-transfer.v1", status="running",
                  stage="source_baseline", pid=os.getpid(), started_at=started,
-                 source_job=str(source_job), files=[])
+                 source_job=str(source_job), files=copy.deepcopy(previous.get("files", [])),
+                 prior_cpu_seconds=prior_cpu,
+                 reused_completed_bytes=sum(row["bytes"] for row in previous.get("files", [])))
 
     def save(stage, **values):
-        state.update(stage=stage, updated_at=time.time(), cpu_seconds=time.process_time(), **values)
+        cpu = time.process_time()
+        state.update(stage=stage, updated_at=time.time(), cpu_seconds=cpu,
+                     total_cpu_seconds=prior_cpu+cpu, **values)
         tmp = state_path.with_suffix(".tmp")
         tmp.write_text(json.dumps(state, indent=2) + "\n")
         tmp.replace(state_path)
@@ -79,17 +113,27 @@ def main():
         assert plan["seed"] == 414 and plan["method"] == original["method"]
         mapped, files = map_files(original, source_job, incoming)
         (incoming / "source-plan.json").write_text(json.dumps(plan, indent=2) + "\n")
+        completed = {row["source"]: row for row in state["files"]}
         for original_path, destination in files.items():
             destination.parent.mkdir(parents=True, exist_ok=True)
-            assert not destination.exists(), "inspect existing download " + str(destination)
+            if original_path in completed:
+                row = completed[original_path]
+                assert str(destination) == row["destination"]
+                assert destination.stat().st_size == row["bytes"], str(destination)
+                save("file_reused", current_file=original_path)
+                continue
+            prefix = 0
+            if destination.exists():
+                assert args.resume_failed and previous.get("current_file") == original_path, str(destination)
+                prefix = destination.stat().st_size
             save("copying", current_file=original_path)
             with request(original_path) as response:
                 assert response.status == 200
                 expected = int(response.headers["Content-Length"])
-                with destination.open("wb") as output:
-                    shutil.copyfileobj(response, output, length=1 << 20)
-            assert destination.stat().st_size == expected
-            state["files"].append(dict(source=original_path, destination=str(destination), bytes=expected))
+                save("copying", expected_bytes=expected, reused_prefix_bytes=prefix)
+                copy_stream(response, destination, expected, prefix)
+            state["files"].append(dict(source=original_path, destination=str(destination),
+                                      bytes=expected, reused_prefix_bytes=prefix))
             save("file_complete")
         manifest_path, baseline_path = incoming / "data-manifest.json", incoming / "baseline.json"
         manifest_path.write_text(json.dumps(mapped, indent=2) + "\n")
@@ -105,8 +149,9 @@ def main():
         pipeline.mapped_inputs(incoming, ready)
         ledger_path = job / "prep-ledger.json"
         ledger = json.loads(ledger_path.read_text())
-        item = dict(id="causal-input-transfer", cpu_seconds=time.process_time(),
-                    scope="destination transfer process; source capture and baseline reused")
+        item = dict(id="causal-input-transfer", cpu_seconds=prior_cpu+time.process_time(),
+                    prior_failed_cpu_seconds=prior_cpu,
+                    scope="destination transfer attempts; source capture and baseline reused")
         assert not any(row["id"] == item["id"] for row in ledger["items"])
         ledger["items"].append(item)
         ledger["cpu_seconds"] = sum(row["cpu_seconds"] for row in ledger["items"])
