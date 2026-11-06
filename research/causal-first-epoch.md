@@ -20,9 +20,9 @@ Epoch 1 changes 351 hard weight symbols; signed BF16 scales stay fixed. Its
 static15 W is 2,904,329 bytes against W0's 2,904,325, adding **8 bytes** to the
 double-W fee. The held mean raw-NLL delta is **-0.001188047662 nats/target**.
 A full 586,215,331-target, kappa=1 raw-rate propagation scenario gives
-125,595.936 gross bytes, or **125,587.936 net bytes** after double-W. Actual
-mixed-coded gain for this candidate is **0 measured bytes** at this stage;
-the sole mixed run follows the admitted training terminal.
+125,595.936 gross bytes, or **125,587.936 net bytes** after double-W. Completed
+mixed-coded evaluations for this candidate: **0**. The sole mixed run follows
+the admitted training terminal and supplies the actual coded gain.
 
 ## Breadth of the fixed pair
 
