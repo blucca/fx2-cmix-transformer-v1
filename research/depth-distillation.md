@@ -264,3 +264,19 @@ shows a held delta of -0.001188047662 nats/target across 473 source articles.
 Distillation's own complete held curve follows its every-four-epoch export;
 its actual first-causal training snapshot and preserved-input terminal are in
 [the input recovery result](results/depth-input-recovery.json).
+
+
+## First native hard export: continuous epoch four
+
+The [observed e4 result](results/depth-first-native-e4.json) covers 1,082,505
+held targets: native NLL 1.1871585191, +0.2209101803 against the original
+twelve-block model. Both short and long held scopes have higher loss. The
+eight-block export saves 1,901,728 bytes across the two weights and two binaries.
+
+This is continuous epoch 4/8; hard-QAT coverage is 0/24. The admitted 32-epoch
+trajectory and its single mixed-code measurement continue. The next existing
+stages measure how much fractional-coordinate fitting survives hard rounding.
+The [stdlib replay](check-depth-first-native-e4.py) reconstructs the target
+weighting, actual package space and explicitly named linear size scenarios.
+Full-stream admission follows real mixed bytes, the final package and latest
+record margin.

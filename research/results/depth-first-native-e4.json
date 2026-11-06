@@ -1,0 +1,84 @@
+{
+  "schema": "hutter.depth8.first-native-e4.v1",
+  "status": "observed_native_e4_original_optimizer_metrics_pending",
+  "reviewed_research_revision": "4c40fafe01a998b1a7a6849cf7201c369e584538",
+  "evidence": "The existing sole 30-minute watch delivered the original worker-3 epoch-four evaluation during maintenance round 429.",
+  "phase": {
+    "continuous_epochs_completed": 4,
+    "continuous_goal": 8,
+    "hard_qat_epochs_completed": 0,
+    "hard_qat_goal": 24,
+    "goal_epochs": 32,
+    "completed_full_epoch_targets": 11765228,
+    "evaluation": "Native hard export after continuous epoch four; round-to-nearest-even and clamp [-7,7]."
+  },
+  "native": {
+    "held": {
+      "targets": 1082505,
+      "original_nll": 0.9662483387944264,
+      "student_nll": 1.1871585190883955,
+      "delta_nll": 0.22091018029396914
+    },
+    "held_long": {
+      "targets": 107647,
+      "original_nll": 1.2586143013099194,
+      "student_nll": 1.518069217218576,
+      "delta_nll": 0.25945491590865655
+    },
+    "held_short": {
+      "targets": 974858,
+      "original_nll": 0.9339643356197023,
+      "student_nll": 1.150618280487882,
+      "delta_nll": 0.21665394486817968
+    },
+    "maximum_length_audit": {
+      "targets": 131071,
+      "original_nll": 0.038986426131505464,
+      "student_nll": 0.18630547531648686,
+      "delta_nll": 0.1473190491849814
+    },
+    "held_piece_count": 473,
+    "held_long_piece_indices": [
+      127,
+      157,
+      181
+    ],
+    "maximum_length_audit_role": "Independent report-only audit, excluded from the sampled held total.",
+    "long_target_fraction": 0.09944249680140045,
+    "long_incremental_loss_fraction": 0.11679337100273311
+  },
+  "actual_package": {
+    "original_weight_bytes": 2904325,
+    "initialized_weight_bytes": 1955187,
+    "e4_weight_bytes": 1957973,
+    "original_binary_bytes": 181956,
+    "student_binary_bytes": 177444,
+    "double_weight_saved_bytes": 1892704,
+    "double_binary_saved_bytes": 9024,
+    "double_weight_plus_binary_saved_bytes": 1901728
+  },
+  "named_size_sensitivity": {
+    "scope": "Linear full-stream projection of the sampled held raw-NLL delta. kappa denotes mixed coded-payload attenuation; its actual value awaits the admitted sole mixed evaluation.",
+    "full_native_targets": 586215331,
+    "historical_record_gap_bytes": 952225,
+    "kappa1_payload_increase_bytes": 23353794.49240564,
+    "kappa1_net_size_increase_bytes": 21452066.49240564,
+    "historical_payload_allowance_bytes": 949503,
+    "break_even_kappa": 0.08143122097860447,
+    "historical_record_kappa": 0.04065733302178223
+  },
+  "source_contract": {
+    "coordinate_tensors": 75,
+    "raw_fp32_tensors": 59,
+    "frozen_tensors": 230,
+    "frozen": "All signed BF16 row and activation scales.",
+    "teacher": "Original twelve-block CPU teacher, all 205 logits and final RMS-normalized 192-dimensional hidden, same causal pieces and priors.",
+    "kl": "KL(teacher || student), summed over all vocabulary columns and normalized by batch target count.",
+    "hidden": "Mean squared final-hidden error per coordinate, averaged by target count, coefficient 0.1.",
+    "stage_boundary": "Fractional z, retained raw F32 values and Adam moments continue into hard QAT; the original two learning rates change at epoch nine."
+  },
+  "original_metrics_status": "Full e1-e4 CE, teacher-KL, hidden-MSE, gradient and geometry originals await a single bounded read-only collection after the original watch resumes worker 3.",
+  "e0_same_causal_native_status": "The frozen trainer exports e0 and evaluates every fourth epoch; an e0 causal native score is absent from that schedule.",
+  "mechanism_for_existing_stage": "Retention of continuous fractional-coordinate fit after hard rounding, observed through the existing e8/e12 hard-native evaluations and sole mixed evaluation.",
+  "decision": "Continue the admitted 8 continuous + 24 hard epochs within the original 48 CPU-hour cap and sole mixed evaluation. Additional recipe, probe and numerical-engineering work is stopped."
+}
