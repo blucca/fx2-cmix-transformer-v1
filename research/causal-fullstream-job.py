@@ -131,7 +131,7 @@ def measurements_from_mixed(s):
             'scopes': scopes, 'rates': rates, 'native_reports': selected['report_only']}
     if depth:
         result.update(binaries={'W0': s['B0'], 'W1': s['B1']},
-                      probes={'W0': s['baseline_probe'], 'W1': s['candidate_probe']},
+                      mixed_probes={'W0': s['baseline_probe'], 'W1': s['candidate_probe']},
                       fixed_aux=s['full_s']['fixed_aux'], training_coverage=terminal)
     return result
 

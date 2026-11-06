@@ -45,9 +45,16 @@ fresh-q2 role and uses restored prepared bytes for decode rate.
 For depth, original W0 comes from `baseline_weight`; the epoch-zero
 `initial_student` is a separate eight-block model outside selection. W1's
 path, bytes and SHA256 agree with the selected positive-epoch native export.
-The reader also returns the two `binaries`, two `probes`, common `fixed_aux`
+The reader also returns the two `binaries`, diagnostic `mixed_probes`, common `fixed_aux`
 and actual `training_coverage`. A CPU-budget terminal can have fewer than
 32 epochs; completed continuous/hard epochs remain explicit.
+
+`mixed_probes` records the trace-enabled sample build. The actual full-stream
+entry supplies **untraced probes linked from production objects**, retaining
+its accepted static15 loader and native TF objects. For depth W1, use the
+original production non-TF objects and `probe_research.o` with the accepted
+eight-block TF set, including its canonical-attention reference kernel.
+Clearing trace paths disables output; the build identities keep their roles.
 
 Create `fullstream-entry.json` from that output, the completed inverse, native
 build and deployment receipts. It freezes the chosen W, the measured scope, a named
@@ -111,6 +118,13 @@ entry. Token expiry, native pause/cooldown and the existing resume watch are
 the caller's calendar inputs. A seven-day command wall limit and CPU work
 budget keep their separate clocks; the existing machine's authorized token
 can be renewed when the measured remaining work crosses its expiry.
+
+The recorded [worker3 single-core score](results/formal-time-score.json) is
+**T=1709**, giving a strict complete-program limit of **40.959625512 hours**
+for each compressor and archive. Score and complete active program time
+follow the actual execution machine; other workers carry their own scores.
+Prepared/mixed CPU rates and the complete `cmix -e` preprocessing scope enter
+the admission forecast separately from each owner's 150-CPU-hour budget.
 
 ## Execute two sides, then use their actual sizes
 

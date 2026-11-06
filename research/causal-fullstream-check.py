@@ -117,7 +117,7 @@ assert depth_measured['scopes']['prefix8']['candidate_decode']['cpu_seconds_per_
 depth_gate = {'status':'admitted', 'family':m.DEPTH_FAMILY,
     'common':{name:{} for name in ['stream','vocab','dictionary','compressed_dictionary','compressed_order']},
     'sides':{side:{'weights':depth_measured['baseline'] if side=='W0' else depth_measured['selected'],
-                   'binary':depth_measured['binaries'][side], 'probe':depth_measured['probes'][side],
+                   'binary':depth_measured['binaries'][side], 'probe':depth_measured['mixed_probes'][side],
                    'cpu_limit_seconds':540000, 'prep_cpu_seconds':0,
                    'forecast_remaining_cpu_seconds':1000} for side in ['W0','W1']},
     'admission':dict(depth_measured['admission'], decision='continue', mixed_complete=True,
