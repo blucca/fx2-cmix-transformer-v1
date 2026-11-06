@@ -8,6 +8,8 @@
 // vector-math ulp divergences (attention softmax/PV reassociation ~1e-7 rel,
 // KDA exp-family <= ~2 ulp/elem, head tanh/exp <= ~2 ulp) — expected
 // whole-model probability drift <= ~1e-5 absolute.
+// The fixed eight-block family uses the existing reference-order vanilla
+// attention path to preserve output-projection INT8 rounding boundaries.
 // The vanilla-attention low-prob skip is hardwired OFF (exact softmax; at the
 // SPEC-safe threshold 21 it never fires anyway).
 #pragma once

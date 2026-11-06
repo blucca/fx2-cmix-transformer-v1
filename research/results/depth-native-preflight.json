@@ -1,0 +1,2064 @@
+{
+  "schema": "hutter.depth8.native-preflight.actual.v1",
+  "round": 420,
+  "status": "passed",
+  "completed_utc": "2026-11-06T04:17:56.049096+00:00",
+  "method": "fixed-eight-block-outer-pairs-v1",
+  "scope": "One existing complete 1346-target prepared piece with the original uniform-f16 priors. Shape, export, gradient, reference/optimized and compressed-weight contracts. Full causal quality belongs to the admitted complete trajectory.",
+  "existing_worker": {
+    "ordinal": 3,
+    "free": true,
+    "entry_state": "running",
+    "native_processes_preserved": true,
+    "actual_max_run_minutes": 120,
+    "auto_suspend_after_seconds": 1800
+  },
+  "input": {
+    "tokens": "$R/round416/inputs/short.u8",
+    "priors": "$R/round416/inputs/short-uniform.f16",
+    "targets": 1346,
+    "source_begin": 11700,
+    "source_end": 13047,
+    "source_article_index": 19,
+    "source_article_begin": 11700,
+    "source_article_end": 13047,
+    "native_piece_limit": 131072,
+    "prior_kind": "synthetic_uniform_f16_resource_only",
+    "uniform_f16_value": 0.004878997802734375,
+    "tokens_sha256": "00a4cb9c0ba83ec85ebdec13691268b54f23f838cf015008d0bd89a18af01ab4",
+    "priors_sha256": "dea3516fc522b398dd79fc245e2542237943fd755ca4e39bc0d06d674b6e0293"
+  },
+  "initialization": {
+    "method": "fixed-eight-block-outer-pairs-v1",
+    "retained_original_layers": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "dropped_original_layers": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "skip_source_indices": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "skip_teacher_pairs": [
+      [
+        3,
+        8
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        0,
+        11
+      ]
+    ],
+    "skip_student_pairs": [
+      [
+        3,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        0,
+        7
+      ]
+    ],
+    "teacher_state_tensors": 429,
+    "teacher_state_elements": 5923228,
+    "mapped_tensors": 289,
+    "all_checkpoint_keys_shapes_checked": true,
+    "all_mapped_values_bit_exact": true,
+    "gradient_checkpointing": true,
+    "operator_counts_scope": "existing cpu_model shared import-adapter diagnostics",
+    "state_counts": {
+      "blocks": 8,
+      "kda_blocks": 6,
+      "attention_blocks": 2,
+      "block_types": [
+        "KDA",
+        "KDA",
+        "KDA",
+        "attention",
+        "KDA",
+        "KDA",
+        "KDA",
+        "attention"
+      ],
+      "state_tensors": 289,
+      "state_elements": 3988380,
+      "quantized_weights": 75,
+      "int4_values": 3951936,
+      "weight_scale_elements": 17498,
+      "activation_scales": 80,
+      "activation_scale_elements": 92,
+      "raw_fp32": 59,
+      "raw_fp32_elements": 18854
+    }
+  },
+  "gradient_check": {
+    "ce_mean": 3.0409561315936107,
+    "teacher_kl_mean": 1.4199175218239228,
+    "final_hidden_mse_mean": 0.45956887957954123,
+    "soft_entropy_nats": 10374822.580078125,
+    "objective": 4.542211777664011,
+    "gradient_norm": 229.18669124328545,
+    "finite_gradient_tensors": 134,
+    "nonzero_gradient_tensors": 134,
+    "status": "passed",
+    "piece": [
+      0,
+      0,
+      1347
+    ],
+    "targets": 1346,
+    "changed_weight_symbols": 0,
+    "changed_z_coordinates": 3779675,
+    "changed_raw_values": 18853,
+    "hard_entropy_nats": 10352460.780664233,
+    "max_scale_delta": 0.0,
+    "stage_kind": "continuous",
+    "check_cpu_seconds": 3.005516739000001,
+    "frozen_tensors": 230,
+    "coordinate_tensors": 75,
+    "raw_trainable_tensors": 59
+  },
+  "trainer_terminal": {
+    "status": "ready",
+    "stage": "check_complete",
+    "epoch": 0,
+    "step": 0,
+    "total_cpu_seconds": 77.73473518200001,
+    "peak_rss_kib": 1127276,
+    "coordinate_tensors": 75,
+    "raw_trainable_tensors": 59,
+    "frozen_tensors": 230
+  },
+  "optimizer_updates_in_check": 1,
+  "initialization_restored": true,
+  "trainer_metrics": [
+    {
+      "kind": "zero_step_export",
+      "at": 1793937746.6155655,
+      "step": 0,
+      "epoch": 0,
+      "total_cpu_seconds": 74.652655112,
+      "zero": {
+        "blocks": 8,
+        "kda_blocks": 6,
+        "attention_blocks": 2,
+        "block_types": [
+          "KDA",
+          "KDA",
+          "KDA",
+          "attention",
+          "KDA",
+          "KDA",
+          "KDA",
+          "attention"
+        ],
+        "state_tensors": 289,
+        "state_elements": 3988380,
+        "quantized_weights": 75,
+        "int4_values": 3951936,
+        "weight_scale_elements": 17498,
+        "activation_scales": 80,
+        "activation_scale_elements": 92,
+        "raw_fp32": 59,
+        "raw_fp32_elements": 18854,
+        "tensor_count": 294,
+        "derived_tensors": 5,
+        "negative_scale_matrices": 2,
+        "negative_scale_rows": 15,
+        "original_template_tensors": 434,
+        "original_template_shapes_checked": true,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true,
+        "v2_bytes": 1972277,
+        "raw_bytes": 37635114,
+        "weight_file": "$R/round419/check/trainer/step-0000.tfwc3",
+        "weight_bytes": 1955187,
+        "static15_recode": {
+          "status": "passed",
+          "tensor_count": 294,
+          "mode": "lossless",
+          "replacement_tensors": 0,
+          "int4_tensors": 75,
+          "int4_values": 3951936,
+          "quantized_tensors": 0,
+          "rescaled_tensors": 0,
+          "rescaled_values": 0,
+          "input_bytes": 1972277,
+          "output_bytes": 1955187,
+          "saved_bytes": 17090,
+          "all_tensor_bytes_equal": true,
+          "expected_tensor_bytes_equal": true,
+          "other_tensor_bytes_equal": true
+        },
+        "changed_weight_symbols": 0,
+        "changed_z_coordinates": 0,
+        "changed_raw_values": 0,
+        "hard_entropy_nats": 10352460.780664233,
+        "max_scale_delta": 0.0,
+        "stage_kind": "continuous"
+      }
+    },
+    {
+      "kind": "one_step_check",
+      "at": 1793937749.747322,
+      "step": 0,
+      "epoch": 0,
+      "total_cpu_seconds": 77.68482726100001,
+      "result": {
+        "ce_mean": 3.0409561315936107,
+        "teacher_kl_mean": 1.4199175218239228,
+        "final_hidden_mse_mean": 0.45956887957954123,
+        "soft_entropy_nats": 10374822.580078125,
+        "objective": 4.542211777664011,
+        "gradient_norm": 229.18669124328545,
+        "finite_gradient_tensors": 134,
+        "nonzero_gradient_tensors": 134,
+        "status": "passed",
+        "piece": [
+          0,
+          0,
+          1347
+        ],
+        "targets": 1346,
+        "changed_weight_symbols": 0,
+        "changed_z_coordinates": 3779675,
+        "changed_raw_values": 18853,
+        "hard_entropy_nats": 10352460.780664233,
+        "max_scale_delta": 0.0,
+        "stage_kind": "continuous",
+        "check_cpu_seconds": 3.005516739000001,
+        "frozen_tensors": 230,
+        "coordinate_tensors": 75,
+        "raw_trainable_tensors": 59
+      }
+    }
+  ],
+  "export": {
+    "blocks": 8,
+    "kda_blocks": 6,
+    "attention_blocks": 2,
+    "block_types": [
+      "KDA",
+      "KDA",
+      "KDA",
+      "attention",
+      "KDA",
+      "KDA",
+      "KDA",
+      "attention"
+    ],
+    "state_tensors": 289,
+    "state_elements": 3988380,
+    "quantized_weights": 75,
+    "int4_values": 3951936,
+    "weight_scale_elements": 17498,
+    "activation_scales": 80,
+    "activation_scale_elements": 92,
+    "raw_fp32": 59,
+    "raw_fp32_elements": 18854,
+    "tensor_count": 294,
+    "derived_tensors": 5,
+    "negative_scale_matrices": 2,
+    "negative_scale_rows": 15,
+    "original_template_tensors": 434,
+    "original_template_shapes_checked": true,
+    "original_rope_bytes_equal": true,
+    "decoded_tensor_bytes_equal": true,
+    "v2_bytes": 1972277,
+    "raw_bytes": 37635114,
+    "weight_file": "$R/round419/check/trainer/step-0000.tfwc3",
+    "weight_bytes": 1955187,
+    "static15_recode": {
+      "status": "passed",
+      "tensor_count": 294,
+      "mode": "lossless",
+      "replacement_tensors": 0,
+      "int4_tensors": 75,
+      "int4_values": 3951936,
+      "quantized_tensors": 0,
+      "rescaled_tensors": 0,
+      "rescaled_values": 0,
+      "input_bytes": 1972277,
+      "output_bytes": 1955187,
+      "saved_bytes": 17090,
+      "all_tensor_bytes_equal": true,
+      "expected_tensor_bytes_equal": true,
+      "other_tensor_bytes_equal": true
+    },
+    "changed_weight_symbols": 0,
+    "changed_z_coordinates": 0,
+    "changed_raw_values": 0,
+    "hard_entropy_nats": 10352460.780664233,
+    "max_scale_delta": 0.0,
+    "stage_kind": "continuous"
+  },
+  "zero_step_static15_saved_bytes": 949138,
+  "zero_step_double_weight_saved_bytes": 1898276,
+  "actual_artifacts": {
+    "raw": {
+      "path": "$R/round419/check/trainer/step-0000.raw",
+      "bytes": 37635114,
+      "sha256": "8f59ee885fd786e64c844d720f0a525feafce24f618393b7aa7b30173418bb25",
+      "magic": "FX2TFW01",
+      "tensor_count": 294
+    },
+    "static15": {
+      "path": "$R/round419/check/trainer/step-0000.tfwc3",
+      "bytes": 1955187,
+      "sha256": "9d424adc45f85c58fd40c2bf40982049be1f0fe950c34159ff1737142ff7d715",
+      "magic": "FX2TFWC3",
+      "tensor_count": 294
+    },
+    "checkpoint_restored": {
+      "path": "$R/round419/check/trainer/latest.pt",
+      "bytes": 15926809,
+      "sha256": "1532bec3c24aea06109e22d90af51536dd1c1866627a405cd9a1bd6c750183bc"
+    },
+    "original_static15": {
+      "path": "$R/round419/assets/original-static15.tfwc3",
+      "bytes": 2904325,
+      "sha256": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18"
+    },
+    "original_checkpoint": {
+      "path": "$R/round416/source/models/6m-q4-fp32.tch",
+      "bytes": 23868862,
+      "sha256": "2ca3428f729799a93927822c14c67ef99493ceeabf6e82895b7f07646b4024fd"
+    },
+    "original_v2": {
+      "path": "$R/candidate/models/6m-q4-fp32.tfwc2",
+      "bytes": 2930652,
+      "sha256": "7f4db6c8c843a7e6264b6a48ed4805e9e431f543df7a9a0ecb37a35a5e4b8860"
+    },
+    "original_kernel": {
+      "path": "$R/round416/cpu-kda.so",
+      "bytes": 28448,
+      "sha256": "ab8666a54cebe40b177eb41bd1ddcad3136477a491590cbf92784771d380a895"
+    },
+    "tokens": {
+      "path": "$R/round416/inputs/short.u8",
+      "bytes": 1347,
+      "sha256": "00a4cb9c0ba83ec85ebdec13691268b54f23f838cf015008d0bd89a18af01ab4"
+    },
+    "uniform_priors": {
+      "path": "$R/round416/inputs/short-uniform.f16",
+      "bytes": 552270,
+      "sha256": "dea3516fc522b398dd79fc245e2542237943fd755ca4e39bc0d06d674b6e0293"
+    },
+    "cmix": {
+      "path": "$R/round419/native/depth8/cmix",
+      "bytes": 497680,
+      "sha256": "be6c226e66c402acb750fb2b8530c28f0c5d055c7c1aa812d332365df6e705e8"
+    },
+    "probe": {
+      "path": "$R/round419/native/depth8/probe",
+      "bytes": 479184,
+      "sha256": "fb6e078effa536b5a9df12a10948797c7082629d11806d1cd793d1b1e91aa758"
+    },
+    "activation-probe": {
+      "path": "$R/round419/native/depth8/activation-probe",
+      "bytes": 481976,
+      "sha256": "1f4c8c98f8413084a03050d1ea55affce1d3b48320b0e0d0fa8547dac0ca8f60"
+    },
+    "test_xcheck": {
+      "path": "$R/round419/native/depth8/test_xcheck",
+      "bytes": 220712,
+      "sha256": "f5663324bd923f2840852748d1d8c557d4d786f61743be6251696821fadeddbf"
+    },
+    "teacher_cache": {
+      "path": "$R/round419/check/trainer/teacher-cache/sample-0000-0-1347.npz",
+      "bytes": 2137958,
+      "sha256": "624cfb3da01f1e82d3335685a44369e23f837c711650150b3533701350f093eb",
+      "arrays": {
+        "logits.npy": {
+          "shape": [
+            1,
+            1346,
+            205
+          ],
+          "dtype": "float32",
+          "elements": 275930,
+          "array_bytes": 1103720
+        },
+        "hidden.npy": {
+          "shape": [
+            1,
+            1346,
+            192
+          ],
+          "dtype": "float32",
+          "elements": 258432,
+          "array_bytes": 1033728
+        }
+      }
+    }
+  },
+  "native": {
+    "status": "passed",
+    "articles": 1,
+    "rows": 1346,
+    "attn": "int8",
+    "default_probability_gate": 5e-05,
+    "max_abs_probability_diff": 1.907349e-06,
+    "mean_row_max_diff": 2.180939e-07,
+    "max_capped_logit_diff": 9.536743e-07,
+    "reference_probs_nll": 3.0455120618,
+    "raw_opt_probs_nll": 3.0455121939,
+    "static15_opt": {
+      "mode": "eval",
+      "positive_u8": 0,
+      "input_bytes": 1347,
+      "prior_bytes": 552270,
+      "vocab": 205,
+      "attention": "KVI8",
+      "rope_offset": 0,
+      "half_split": 673,
+      "eval_seconds": 0.093124,
+      "eval_cpu_seconds": 0.09311,
+      "pieces": 1,
+      "separator_ends": 0,
+      "length_cuts": 0,
+      "piece_bounds": [
+        0,
+        1347
+      ],
+      "probability_hash": "7ead75711029e92c",
+      "probability_hash_format": "fnv1a64-f32le",
+      "probability_bytes": 1103720,
+      "total": {
+        "count": 1346,
+        "logits_sum": 4099.259427738797,
+        "probs_sum": 4099.259413019482,
+        "logits_mean": 3.0455122048579475,
+        "probs_mean": 3.0455121939223493
+      },
+      "first_half": {
+        "count": 672,
+        "logits_sum": 2065.1020788577584,
+        "probs_sum": 2065.1020700177482,
+        "logits_mean": 3.0730685697288074,
+        "probs_mean": 3.07306855657403
+      },
+      "second_half": {
+        "count": 674,
+        "logits_sum": 2034.1573488810427,
+        "probs_sum": 2034.157343001738,
+        "logits_mean": 3.0180376096157904,
+        "probs_mean": 3.0180376008927863
+      },
+      "samples": [
+        {
+          "target_offset": 1,
+          "target": 30,
+          "prob": 0.00756007712,
+          "logit": 5.32915592
+        },
+        {
+          "target_offset": 2,
+          "target": 24,
+          "prob": 0.0647870898,
+          "logit": 7.83831072
+        },
+        {
+          "target_offset": 3,
+          "target": 37,
+          "prob": 0.0183322579,
+          "logit": 8.1274004
+        },
+        {
+          "target_offset": 4,
+          "target": 23,
+          "prob": 0.055167269,
+          "logit": 3.16605186
+        }
+      ],
+      "explicit_piece_bounds": true,
+      "piece_losses": [
+        {
+          "loss": {
+            "count": 1346,
+            "logits_sum": 4099.259427738797,
+            "probs_sum": 4099.259413019482,
+            "logits_mean": 3.0455122048579475,
+            "probs_mean": 3.0455121939223493
+          }
+        }
+      ],
+      "seconds": 0.22344,
+      "cpu_seconds": 0.223424,
+      "max_rss_kib": 91708
+    },
+    "raw_static15_opt_nll_abs_error": 2.234923357491425e-11,
+    "raw_weights": "$R/round419/check/trainer/step-0000.raw",
+    "xcheck_log": "$R/round420/native-check/native-repaired-reference-opt-xcheck.log",
+    "static15_log": "$R/round420/native-check/native-repaired-static15-opt-read.log"
+  },
+  "first_native_failure": {
+    "status": "failed",
+    "exit_code": 1,
+    "rows": 1346,
+    "articles": 1,
+    "attn": "int8",
+    "default_probability_gate": 5e-05,
+    "max_abs_probability_diff": 0.1012641,
+    "mean_row_max_diff": 0.007149913,
+    "max_capped_logit_diff": 0.7961483,
+    "max_probability_article": 0,
+    "max_probability_position": 750,
+    "rows_above_thresholds": {
+      "1e-5": 944,
+      "1e-4": 930,
+      "1e-3": 854,
+      "1e-2": 346
+    },
+    "reference_probs_nll": 3.0455120618,
+    "opt_probs_nll": 3.044533974,
+    "first_divergent_position": 401,
+    "cpu_seconds": 0.360312,
+    "receipt": "$R/round419/check/preflight-failed-before-repair.json"
+  },
+  "concrete_cause": {
+    "component": "vanilla attention softmax/PV arithmetic order followed by INT8 output-projection quantization",
+    "quantization_boundary_capture": {
+      "t": 401,
+      "vanilla_index": 0,
+      "block": 3,
+      "channel": 34,
+      "head": 0,
+      "canonical_pre": -0.1735689044,
+      "optimized_pre": -0.1735687107,
+      "scale": 0.005340576172,
+      "canonical_quotient": -32.50003433,
+      "optimized_quotient": -32.49999619,
+      "canonical_quotient_hex": "-0x1.040012p+5",
+      "optimized_quotient_hex": "-0x1.03fffep+5",
+      "canonical_q": -33,
+      "optimized_q": -32,
+      "max_pre_abs_error": 3.87430191e-07,
+      "quantizer_mismatches": 0,
+      "key_cache_mismatches": 0,
+      "value_cache_mismatches": 0
+    },
+    "trace_line": "ATTN_QUANT_BOUNDARY t=401 vanilla_index=0 block=3 channel=34 head=0 canonical_pre=-0.1735689044 optimized_pre=-0.1735687107 scale=0.005340576172 canonical_quotient=-32.50003433 optimized_quotient=-32.49999619 canonical_quotient_hex=-0x1.040012p+5 optimized_quotient_hex=-0x1.03fffep+5 canonical_q=-33 optimized_q=-32 max_pre_abs_error=3.87430191e-07 quantizer_mismatches=0 key_cache_mismatches=0 value_cache_mismatches=0",
+    "kda_isolation": {
+      "runs": [
+        {
+          "id": "kda-component-isolation-build",
+          "stage": "concrete_failure_kda_component_isolation",
+          "status": "passed",
+          "exit_code": 0,
+          "cpu_seconds": 0.44962299999999994,
+          "wall_seconds": 0.4608583450317383,
+          "max_process_rss_kib": 134728,
+          "command": [
+            "clang++-17",
+            "-DFX2_XCHECK_NAIVE_KDA",
+            "-DFX2_MODEL_LAYERS=8",
+            "-m64",
+            "-O3",
+            "-std=c++17",
+            "-Wall",
+            "-Wextra",
+            "-fno-math-errno",
+            "-fdata-sections",
+            "-ffunction-sections",
+            "-march=x86-64-v3",
+            "-mtune=generic",
+            "-mrecip=none",
+            "-c",
+            "$R/round419/source/cpp_infer/src/opt/model_opt.cpp",
+            "-o",
+            "$R/round420/native-check/diagnostic-model-opt-naive-kda.o"
+          ],
+          "log": "$R/round420/native-check/kda-component-isolation-build.log",
+          "resource_scope": "isolated wait4 child and reaped descendants"
+        },
+        {
+          "id": "kda-component-isolation-link",
+          "stage": "concrete_failure_kda_component_isolation",
+          "status": "passed",
+          "exit_code": 0,
+          "cpu_seconds": 0.0584,
+          "wall_seconds": 0.0621190071105957,
+          "max_process_rss_kib": 63912,
+          "command": [
+            "clang++-17",
+            "-m64",
+            "-Wl,--gc-sections",
+            "-std=c++17",
+            "tf_weights_io.o",
+            "tf_weights_io_compressed.o",
+            "tf_qmat_dense.o",
+            "tf_qmat_sparse.o",
+            "tf_attn.o",
+            "tf_kda.o",
+            "tf_glue.o",
+            "tf_arena_build.o",
+            "$R/round420/native-check/diagnostic-model-opt-naive-kda.o",
+            "tf_kernels_reference.o",
+            "tf_model_reference.o",
+            "test_xcheck.o",
+            "-o",
+            "$R/round420/native-check/diagnostic-xcheck-naive-kda"
+          ],
+          "log": "$R/round420/native-check/kda-component-isolation-link.log",
+          "resource_scope": "isolated wait4 child and reaped descendants"
+        },
+        {
+          "id": "kda-component-isolation-xcheck",
+          "stage": "concrete_failure_kda_component_isolation",
+          "status": "failed",
+          "exit_code": 1,
+          "cpu_seconds": 0.39797499999999997,
+          "wall_seconds": 0.39957642555236816,
+          "max_process_rss_kib": 130456,
+          "command": [
+            "$R/round420/native-check/diagnostic-xcheck-naive-kda",
+            "--data",
+            "$R/round419/check/native",
+            "--articles",
+            "-1",
+            "--attn",
+            "int8"
+          ],
+          "log": "$R/round420/native-check/kda-component-isolation-xcheck.log",
+          "resource_scope": "isolated wait4 child and reaped descendants"
+        }
+      ],
+      "cpu_seconds": 80.411049836,
+      "logs": {
+        "kda-component-isolation-build": "",
+        "kda-component-isolation-link": "",
+        "kda-component-isolation-xcheck": "attention KV variant: int8-V\n\nnaive vs opt over 1 articles (1346 rows):\n  max  abs prob diff:  1.012641e-01  (article 0, position 750)\n  mean row-max diff:   7.149913e-03\n  max capped-logit diff: 7.961483e-01\n  rows with maxdiff > 1e-5/1e-4/1e-3/1e-2: 944 / 930 / 854 / 346  (of 1346)\n  subset mean -log p[target]: naive 3.0455120618  opt 3.0445339740  delta -9.781e-04 (-0.03212%)\nVERDICT: FAIL (gate 5.0e-05; expected <= ~1e-5)\n"
+      }
+    },
+    "attention_isolation": {
+      "runs": [
+        {
+          "id": "attn-component-isolation-build",
+          "stage": "concrete_failure_attn_component_isolation",
+          "status": "passed",
+          "exit_code": 0,
+          "cpu_seconds": 0.39513499999999996,
+          "wall_seconds": 0.39574265480041504,
+          "max_process_rss_kib": 134624,
+          "command": [
+            "clang++-17",
+            "-DFX2_XCHECK_NAIVE_ATTN",
+            "-DFX2_MODEL_LAYERS=8",
+            "-m64",
+            "-O3",
+            "-std=c++17",
+            "-Wall",
+            "-Wextra",
+            "-fno-math-errno",
+            "-fdata-sections",
+            "-ffunction-sections",
+            "-march=x86-64-v3",
+            "-mtune=generic",
+            "-mrecip=none",
+            "-c",
+            "$R/round419/source/cpp_infer/src/opt/model_opt.cpp",
+            "-o",
+            "$R/round420/native-check/diagnostic-model-opt-naive-attn.o"
+          ],
+          "log": "$R/round420/native-check/attn-component-isolation-build.log",
+          "resource_scope": "isolated wait4 child and reaped descendants"
+        },
+        {
+          "id": "attn-component-isolation-link",
+          "stage": "concrete_failure_attn_component_isolation",
+          "status": "passed",
+          "exit_code": 0,
+          "cpu_seconds": 0.047497,
+          "wall_seconds": 0.047972679138183594,
+          "max_process_rss_kib": 63960,
+          "command": [
+            "clang++-17",
+            "-m64",
+            "-Wl,--gc-sections",
+            "-std=c++17",
+            "tf_weights_io.o",
+            "tf_weights_io_compressed.o",
+            "tf_qmat_dense.o",
+            "tf_qmat_sparse.o",
+            "tf_attn.o",
+            "tf_kda.o",
+            "tf_glue.o",
+            "tf_arena_build.o",
+            "$R/round420/native-check/diagnostic-model-opt-naive-attn.o",
+            "tf_kernels_reference.o",
+            "tf_model_reference.o",
+            "test_xcheck.o",
+            "-o",
+            "$R/round420/native-check/diagnostic-xcheck-naive-attn"
+          ],
+          "log": "$R/round420/native-check/attn-component-isolation-link.log",
+          "resource_scope": "isolated wait4 child and reaped descendants"
+        },
+        {
+          "id": "attn-component-isolation-xcheck",
+          "stage": "concrete_failure_attn_component_isolation",
+          "status": "passed",
+          "exit_code": 0,
+          "cpu_seconds": 0.379105,
+          "wall_seconds": 0.37961506843566895,
+          "max_process_rss_kib": 131080,
+          "command": [
+            "$R/round420/native-check/diagnostic-xcheck-naive-attn",
+            "--data",
+            "$R/round419/check/native",
+            "--articles",
+            "-1",
+            "--attn",
+            "int8"
+          ],
+          "log": "$R/round420/native-check/attn-component-isolation-xcheck.log",
+          "resource_scope": "isolated wait4 child and reaped descendants"
+        }
+      ],
+      "cpu_seconds": 81.251356939,
+      "logs": {
+        "attn-component-isolation-build": "",
+        "attn-component-isolation-link": "",
+        "attn-component-isolation-xcheck": "attention KV variant: int8-V\n\nnaive vs opt over 1 articles (1346 rows):\n  max  abs prob diff:  1.907349e-06  (article 0, position 308)\n  mean row-max diff:   2.180939e-07\n  max capped-logit diff: 9.536743e-07\n  rows with maxdiff > 1e-5/1e-4/1e-3/1e-2: 0 / 0 / 0 / 0  (of 1346)\n  subset mean -log p[target]: naive 3.0455120618  opt 3.0455121939  delta +1.321e-07 (+0.00000%)\nVERDICT: PASS (gate 5.0e-05; expected <= ~1e-5)\n"
+      }
+    },
+    "same_raw_trace": [
+      "attention KV variant: int8-V",
+      "  a0 t401: probdiff 2.032e-02  logitdiff 4.057e-01 @i=67 (ln=3.629705 lo=3.224048)"
+    ]
+  },
+  "repair": {
+    "schema": "hutter.depth8.reference-attention-repair.v1",
+    "status": "passed",
+    "started_at": 1793938485.2211108,
+    "existing_paid_cpu_seconds": 82.266075682,
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_limit_gib": 7,
+    "threads_per_library": 1,
+    "source_repair": "fixed depth8 uses existing reference-order vanilla attention; original depth12 vector path retained",
+    "raw_file": "$R/round419/check/trainer/step-0000.raw",
+    "static15_file": "$R/round419/check/trainer/step-0000.tfwc3",
+    "original_failed_receipt": "$R/round419/check/preflight-failed-before-repair.json",
+    "runs": [
+      {
+        "id": "depth8-reference-attn-model-recompile",
+        "stage": "depth8-reference-attn-model-recompile",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.6094569999999999,
+        "wall_seconds": 1.5252208709716797,
+        "max_process_rss_kib": 131944,
+        "command": [
+          "clang++-17",
+          "-DFX2_MODEL_LAYERS=8",
+          "-m64",
+          "-O3",
+          "-std=c++17",
+          "-Wall",
+          "-Wextra",
+          "-fno-math-errno",
+          "-fdata-sections",
+          "-ffunction-sections",
+          "-march=x86-64-v3",
+          "-mtune=generic",
+          "-mrecip=none",
+          "-c",
+          "$R/round419/source/cpp_infer/src/opt/model_opt.cpp",
+          "-o",
+          "tf_model_opt.o"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-model-recompile.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-cmix",
+        "stage": "depth8-reference-attn-relink-cmix",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.06392300000000001,
+        "wall_seconds": 0.09564590454101562,
+        "max_process_rss_kib": 63108,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "bit-context.o",
+          "bracket-context.o",
+          "bracket.o",
+          "byte-mixer.o",
+          "byte-model.o",
+          "combined-context.o",
+          "context-hash.o",
+          "context-manager.o",
+          "decoder.o",
+          "dictionary.o",
+          "direct-hash.o",
+          "direct.o",
+          "encoder.o",
+          "indirect-hash.o",
+          "indirect.o",
+          "interval-hash.o",
+          "interval.o",
+          "match.o",
+          "mixer-input.o",
+          "mixer.o",
+          "nonstationary.o",
+          "fxcmv1.o",
+          "ppmd.o",
+          "predictor.o",
+          "preprocessor.o",
+          "run-map.o",
+          "runner.o",
+          "sigmoid.o",
+          "sparse.o",
+          "sse.o",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "-s",
+          "tf_kernels_reference.o",
+          "-o",
+          "cmix"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-cmix.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-test_xcheck",
+        "stage": "depth8-reference-attn-relink-test_xcheck",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.052024999999999995,
+        "wall_seconds": 0.0524899959564209,
+        "max_process_rss_kib": 63064,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "tf_kernels_reference.o",
+          "tf_model_reference.o",
+          "test_xcheck.o",
+          "-o",
+          "test_xcheck"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-test_xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-probe",
+        "stage": "depth8-reference-attn-relink-probe",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.057548,
+        "wall_seconds": 0.058562517166137695,
+        "max_process_rss_kib": 63132,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "bit-context.o",
+          "bracket-context.o",
+          "bracket.o",
+          "byte-mixer.o",
+          "byte-model.o",
+          "combined-context.o",
+          "context-hash.o",
+          "context-manager.o",
+          "decoder.o",
+          "dictionary.o",
+          "direct-hash.o",
+          "direct.o",
+          "encoder.o",
+          "indirect-hash.o",
+          "indirect.o",
+          "interval-hash.o",
+          "interval.o",
+          "match.o",
+          "mixer-input.o",
+          "mixer.o",
+          "nonstationary.o",
+          "fxcmv1.o",
+          "ppmd.o",
+          "predictor.o",
+          "preprocessor.o",
+          "run-map.o",
+          "sigmoid.o",
+          "sparse.o",
+          "sse.o",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "tf_kernels_reference.o",
+          "probe_research.o",
+          "-o",
+          "probe"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-probe.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-activation-probe",
+        "stage": "depth8-reference-attn-relink-activation-probe",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.059532999999999996,
+        "wall_seconds": 0.061325788497924805,
+        "max_process_rss_kib": 63096,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "bit-context.o",
+          "bracket-context.o",
+          "bracket.o",
+          "byte-mixer.o",
+          "byte-model.o",
+          "combined-context.o",
+          "context-hash.o",
+          "context-manager.o",
+          "decoder.o",
+          "dictionary.o",
+          "direct-hash.o",
+          "direct.o",
+          "encoder.o",
+          "indirect-hash.o",
+          "indirect.o",
+          "interval-hash.o",
+          "interval.o",
+          "match.o",
+          "mixer-input.o",
+          "mixer.o",
+          "nonstationary.o",
+          "fxcmv1.o",
+          "ppmd.o",
+          "predictor.o",
+          "preprocessor.o",
+          "run-map.o",
+          "sigmoid.o",
+          "sparse.o",
+          "sse.o",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "tf_kernels_reference.o",
+          "activation-probe_research.o",
+          "-o",
+          "activation-probe"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-activation-probe.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-repaired-reference-opt-xcheck",
+        "stage": "native-repaired-reference-opt-xcheck",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.428599,
+        "wall_seconds": 0.4293508529663086,
+        "max_process_rss_kib": 131044,
+        "command": [
+          "$R/round419/native/depth8/test_xcheck",
+          "--data",
+          "$R/round419/check/native",
+          "--articles",
+          "-1",
+          "--attn",
+          "int8"
+        ],
+        "log": "$R/round420/native-check/native-repaired-reference-opt-xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-repaired-static15-opt-read",
+        "stage": "native-repaired-static15-opt-read",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.226852,
+        "wall_seconds": 0.22722196578979492,
+        "max_process_rss_kib": 91708,
+        "command": [
+          "$R/round419/native/depth8/activation-probe",
+          "eval-pieces",
+          "$R/round416/inputs/short.u8",
+          "$R/round416/inputs/short-uniform.f16",
+          "$R/round419/check/trainer/step-0000.tfwc3",
+          "$R/round419/check/native/test_bounds.i32"
+        ],
+        "log": "$R/round420/native-check/native-repaired-static15-opt-read.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      }
+    ],
+    "cpu_seconds": 83.830089557,
+    "updated_at": 1793938487.7072513,
+    "controller_cpu_seconds": 0.066076875,
+    "before_binaries": {
+      "cmix": {
+        "bytes": 509968,
+        "sha256": "1d870b377e1061c84d6766dddfb3e9383c68ddfb7e92530da1bce08617f1c714"
+      },
+      "probe": {
+        "bytes": 492320,
+        "sha256": "fa44939c9b52cbed254d74b3fa49aefd030803ee378ba2270a56348081480ebd"
+      },
+      "activation-probe": {
+        "bytes": 495104,
+        "sha256": "de72993c74fe07204e4a9ef170c6338fc7d135243843e2f6efb31274ba4d9ffa"
+      },
+      "test_xcheck": {
+        "bytes": 234024,
+        "sha256": "965f400accd8516d7d417b44e9de819c832f104a818d4473db0118a1e5e1a184"
+      }
+    },
+    "source_files": {
+      "cpp_infer/src/opt/model_opt.cpp": {
+        "sha256": "bc3daed5309a48f7ab16a467fdbee0e1081e5a04827929231eeaffab04c3eb3d",
+        "bytes": 19465
+      },
+      "cpp_infer/src/opt/model_opt.h": {
+        "sha256": "10c57642892c61fcdbdb4dc3c241ef646f4f28ffc1cf69bfd170eb11d802616a",
+        "bytes": 3575
+      },
+      "research/depth-native-build.py": {
+        "sha256": "75926c553a23746ad66b9f436ab58135933a5134201babae66e06f1a920f4d7f",
+        "bytes": 8146
+      }
+    },
+    "partial_build_commands": 5,
+    "existing_reference_kernel_reused": true,
+    "full_family_rebuilds": 0,
+    "after_binaries": {
+      "cmix": {
+        "bytes": 497680,
+        "sha256": "be6c226e66c402acb750fb2b8530c28f0c5d055c7c1aa812d332365df6e705e8"
+      },
+      "probe": {
+        "bytes": 479184,
+        "sha256": "fb6e078effa536b5a9df12a10948797c7082629d11806d1cd793d1b1e91aa758"
+      },
+      "activation-probe": {
+        "bytes": 481976,
+        "sha256": "1f4c8c98f8413084a03050d1ea55affce1d3b48320b0e0d0fa8547dac0ca8f60"
+      },
+      "test_xcheck": {
+        "bytes": 220712,
+        "sha256": "f5663324bd923f2840852748d1d8c557d4d786f61743be6251696821fadeddbf"
+      }
+    },
+    "native": {
+      "status": "passed",
+      "articles": 1,
+      "rows": 1346,
+      "attn": "int8",
+      "default_probability_gate": 5e-05,
+      "max_abs_probability_diff": 1.907349e-06,
+      "mean_row_max_diff": 2.180939e-07,
+      "max_capped_logit_diff": 9.536743e-07,
+      "reference_probs_nll": 3.0455120618,
+      "raw_opt_probs_nll": 3.0455121939,
+      "static15_opt": {
+        "mode": "eval",
+        "positive_u8": 0,
+        "input_bytes": 1347,
+        "prior_bytes": 552270,
+        "vocab": 205,
+        "attention": "KVI8",
+        "rope_offset": 0,
+        "half_split": 673,
+        "eval_seconds": 0.093124,
+        "eval_cpu_seconds": 0.09311,
+        "pieces": 1,
+        "separator_ends": 0,
+        "length_cuts": 0,
+        "piece_bounds": [
+          0,
+          1347
+        ],
+        "probability_hash": "7ead75711029e92c",
+        "probability_hash_format": "fnv1a64-f32le",
+        "probability_bytes": 1103720,
+        "total": {
+          "count": 1346,
+          "logits_sum": 4099.259427738797,
+          "probs_sum": 4099.259413019482,
+          "logits_mean": 3.0455122048579475,
+          "probs_mean": 3.0455121939223493
+        },
+        "first_half": {
+          "count": 672,
+          "logits_sum": 2065.1020788577584,
+          "probs_sum": 2065.1020700177482,
+          "logits_mean": 3.0730685697288074,
+          "probs_mean": 3.07306855657403
+        },
+        "second_half": {
+          "count": 674,
+          "logits_sum": 2034.1573488810427,
+          "probs_sum": 2034.157343001738,
+          "logits_mean": 3.0180376096157904,
+          "probs_mean": 3.0180376008927863
+        },
+        "samples": [
+          {
+            "target_offset": 1,
+            "target": 30,
+            "prob": 0.00756007712,
+            "logit": 5.32915592
+          },
+          {
+            "target_offset": 2,
+            "target": 24,
+            "prob": 0.0647870898,
+            "logit": 7.83831072
+          },
+          {
+            "target_offset": 3,
+            "target": 37,
+            "prob": 0.0183322579,
+            "logit": 8.1274004
+          },
+          {
+            "target_offset": 4,
+            "target": 23,
+            "prob": 0.055167269,
+            "logit": 3.16605186
+          }
+        ],
+        "explicit_piece_bounds": true,
+        "piece_losses": [
+          {
+            "loss": {
+              "count": 1346,
+              "logits_sum": 4099.259427738797,
+              "probs_sum": 4099.259413019482,
+              "logits_mean": 3.0455122048579475,
+              "probs_mean": 3.0455121939223493
+            }
+          }
+        ],
+        "seconds": 0.22344,
+        "cpu_seconds": 0.223424,
+        "max_rss_kib": 91708
+      },
+      "raw_static15_opt_nll_abs_error": 2.234923357491425e-11,
+      "raw_weights": "$R/round419/check/trainer/step-0000.raw",
+      "xcheck_log": "$R/round420/native-check/native-repaired-reference-opt-xcheck.log",
+      "static15_log": "$R/round420/native-check/native-repaired-static15-opt-read.log"
+    },
+    "completed_at": 1793938487.7070258
+  },
+  "builder_plan": {
+    "status": "passed",
+    "families": {
+      "8": {
+        "commands": 20,
+        "reference_kernel_compile_index": 11,
+        "links": {
+          "cmix": 12,
+          "test_xcheck": 15,
+          "probe": 17,
+          "activation-probe": 19
+        },
+        "unique_objects": true,
+        "all_depth8_production_links_use_reference_kernel": true,
+        "heavy_calls": 0
+      },
+      "12": {
+        "commands": 20,
+        "reference_kernel_compile_index": 12,
+        "links": {
+          "cmix": 11,
+          "test_xcheck": 15,
+          "probe": 17,
+          "activation-probe": 19
+        },
+        "unique_objects": true,
+        "all_depth8_production_links_use_reference_kernel": false,
+        "heavy_calls": 0
+      }
+    },
+    "local_heavy_calls": 0,
+    "twelve_layer_native_calls": 0
+  },
+  "existing_call_timing_comparison": {
+    "scope": "wait4 CPU for the same complete 1346-target reference-vs-opt xcheck, including RAW loading, both models and output; one existing call per implementation.",
+    "original_vector_attention_cpu_seconds": 0.360312,
+    "existing_reference_attention_isolation_cpu_seconds": 0.379105,
+    "delta_cpu_seconds": 0.018793000000000004,
+    "ratio": 1.0521575745465042,
+    "increase_percent": 5.215757454650416,
+    "additional_performance_tests": 0
+  },
+  "compressed_opt_existing_read_timing": {
+    "scope": "Inner eval_cpu_seconds of the two existing same-1346-target compressed-opt contract reads.",
+    "before_eval_cpu_seconds": 0.074856,
+    "repaired_eval_cpu_seconds": 0.09311,
+    "increase_percent": 24.385486801325197
+  },
+  "prep_ledger": {
+    "schema": "hutter.depth-prep-ledger.v1",
+    "method": "eight-block-causal-distillation-v1",
+    "status": "passed",
+    "updated_at": 1793938676.048214,
+    "cpu_seconds": 83.912147995,
+    "items": [
+      {
+        "id": "native8-build-round419",
+        "stage": "native_build",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 19.289341,
+        "receipt": "$R/round419/native/depth8/build.json",
+        "reuse": true,
+        "counted_once": true
+      },
+      {
+        "id": "trainer-cli-help",
+        "stage": "trainer-cli-help",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.27440499999999995,
+        "wall_seconds": 0.30526161193847656,
+        "max_process_rss_kib": 17460,
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "$R/round419/source/research/depth-distillation.py",
+          "--help"
+        ],
+        "log": "$R/round419/check/trainer-help.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "recode-build",
+        "stage": "recode-build",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 3.9266050000000003,
+        "wall_seconds": 4.725675106048584,
+        "max_process_rss_kib": 138612,
+        "command": [
+          "clang++-17",
+          "-O2",
+          "-std=c++17",
+          "$R/round419/source/research/weights-recode.cpp",
+          "$R/round419/source/cpp_infer/src/weights_io.cpp",
+          "-o",
+          "$R/round419/bin/recode"
+        ],
+        "log": "$R/round419/check/recode-build.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "trainer-check-only",
+        "stage": "trainer-check-only",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 54.370101,
+        "wall_seconds": 59.53732657432556,
+        "max_process_rss_kib": 1127276,
+        "command": [
+          "/usr/bin/python3",
+          "-B",
+          "-u",
+          "$R/round419/source/research/depth-distillation.py",
+          "--checkpoint",
+          "$R/round416/source/models/6m-q4-fp32.tch",
+          "--kernel",
+          "$R/round416/cpu-kda.so",
+          "--data",
+          "$R/round419/check/data-manifest.json",
+          "--baseline",
+          "$R/round419/check/baseline-resource-only.json",
+          "--weights",
+          "$R/candidate/models/6m-q4-fp32.tfwc2",
+          "--original-static15",
+          "$R/round419/assets/original-static15.tfwc3",
+          "--recode",
+          "$R/round419/bin/recode",
+          "--evaluator",
+          "$R/round419/native/depth8/activation-probe",
+          "--output",
+          "$R/round419/check/trainer",
+          "--cpu-seconds",
+          "1800",
+          "--prior-cpu-seconds",
+          "24.153215282",
+          "--check-only"
+        ],
+        "log": "$R/round419/check/trainer.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-reference-opt-xcheck",
+        "stage": "native-reference-opt-xcheck",
+        "status": "failed",
+        "exit_code": 1,
+        "cpu_seconds": 0.360312,
+        "wall_seconds": 0.3618602752685547,
+        "max_process_rss_kib": 130356,
+        "command": [
+          "$R/round419/native/depth8/test_xcheck",
+          "--data",
+          "$R/round419/check/native",
+          "--articles",
+          "-1",
+          "--attn",
+          "int8"
+        ],
+        "log": "$R/round419/check/native-xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-preflight-controller-round420",
+        "stage": "deployment_and_metadata",
+        "status": "failed",
+        "cpu_seconds": 0.672835678,
+        "resource_scope": "controller process CPU; excludes its waited children"
+      },
+      {
+        "id": "native-failure-trace-same-raw",
+        "stage": "native-failure-trace-same-raw",
+        "status": "failed",
+        "exit_code": 1,
+        "cpu_seconds": 0.368849,
+        "wall_seconds": 0.3692948818206787,
+        "max_process_rss_kib": 130188,
+        "command": [
+          "$R/round419/native/depth8/test_xcheck",
+          "--data",
+          "$R/round419/check/native",
+          "--articles",
+          "-1",
+          "--attn",
+          "int8",
+          "--trace",
+          "5e-5"
+        ],
+        "log": "$R/round419/check/native-failure-trace.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-static15-opt-read",
+        "stage": "native-static15-opt-read",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.20585599999999998,
+        "wall_seconds": 0.20779681205749512,
+        "max_process_rss_kib": 91016,
+        "command": [
+          "$R/round419/native/depth8/activation-probe",
+          "eval-pieces",
+          "$R/round416/inputs/short.u8",
+          "$R/round416/inputs/short-uniform.f16",
+          "$R/round419/check/trainer/step-0000.tfwc3",
+          "$R/round419/check/native/test_bounds.i32"
+        ],
+        "log": "$R/round419/check/native-static15.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-failure-diagnostic-controller",
+        "stage": "diagnostic_metadata",
+        "status": "complete",
+        "cpu_seconds": 0.016954064,
+        "resource_scope": "diagnostic controller process CPU"
+      },
+      {
+        "id": "kda-component-isolation-build",
+        "stage": "concrete_failure_kda_component_isolation",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.44962299999999994,
+        "wall_seconds": 0.4608583450317383,
+        "max_process_rss_kib": 134728,
+        "command": [
+          "clang++-17",
+          "-DFX2_XCHECK_NAIVE_KDA",
+          "-DFX2_MODEL_LAYERS=8",
+          "-m64",
+          "-O3",
+          "-std=c++17",
+          "-Wall",
+          "-Wextra",
+          "-fno-math-errno",
+          "-fdata-sections",
+          "-ffunction-sections",
+          "-march=x86-64-v3",
+          "-mtune=generic",
+          "-mrecip=none",
+          "-c",
+          "$R/round419/source/cpp_infer/src/opt/model_opt.cpp",
+          "-o",
+          "$R/round420/native-check/diagnostic-model-opt-naive-kda.o"
+        ],
+        "log": "$R/round420/native-check/kda-component-isolation-build.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "kda-component-isolation-link",
+        "stage": "concrete_failure_kda_component_isolation",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.0584,
+        "wall_seconds": 0.0621190071105957,
+        "max_process_rss_kib": 63912,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "$R/round420/native-check/diagnostic-model-opt-naive-kda.o",
+          "tf_kernels_reference.o",
+          "tf_model_reference.o",
+          "test_xcheck.o",
+          "-o",
+          "$R/round420/native-check/diagnostic-xcheck-naive-kda"
+        ],
+        "log": "$R/round420/native-check/kda-component-isolation-link.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "kda-component-isolation-xcheck",
+        "stage": "concrete_failure_kda_component_isolation",
+        "status": "failed",
+        "exit_code": 1,
+        "cpu_seconds": 0.39797499999999997,
+        "wall_seconds": 0.39957642555236816,
+        "max_process_rss_kib": 130456,
+        "command": [
+          "$R/round420/native-check/diagnostic-xcheck-naive-kda",
+          "--data",
+          "$R/round419/check/native",
+          "--articles",
+          "-1",
+          "--attn",
+          "int8"
+        ],
+        "log": "$R/round420/native-check/kda-component-isolation-xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "kda-component-isolation-controller",
+        "stage": "diagnostic_metadata",
+        "status": "complete",
+        "cpu_seconds": 0.019793094,
+        "resource_scope": "diagnostic controller process CPU"
+      },
+      {
+        "id": "attn-component-isolation-build",
+        "stage": "concrete_failure_attn_component_isolation",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.39513499999999996,
+        "wall_seconds": 0.39574265480041504,
+        "max_process_rss_kib": 134624,
+        "command": [
+          "clang++-17",
+          "-DFX2_XCHECK_NAIVE_ATTN",
+          "-DFX2_MODEL_LAYERS=8",
+          "-m64",
+          "-O3",
+          "-std=c++17",
+          "-Wall",
+          "-Wextra",
+          "-fno-math-errno",
+          "-fdata-sections",
+          "-ffunction-sections",
+          "-march=x86-64-v3",
+          "-mtune=generic",
+          "-mrecip=none",
+          "-c",
+          "$R/round419/source/cpp_infer/src/opt/model_opt.cpp",
+          "-o",
+          "$R/round420/native-check/diagnostic-model-opt-naive-attn.o"
+        ],
+        "log": "$R/round420/native-check/attn-component-isolation-build.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "attn-component-isolation-link",
+        "stage": "concrete_failure_attn_component_isolation",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.047497,
+        "wall_seconds": 0.047972679138183594,
+        "max_process_rss_kib": 63960,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "$R/round420/native-check/diagnostic-model-opt-naive-attn.o",
+          "tf_kernels_reference.o",
+          "tf_model_reference.o",
+          "test_xcheck.o",
+          "-o",
+          "$R/round420/native-check/diagnostic-xcheck-naive-attn"
+        ],
+        "log": "$R/round420/native-check/attn-component-isolation-link.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "attn-component-isolation-xcheck",
+        "stage": "concrete_failure_attn_component_isolation",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.379105,
+        "wall_seconds": 0.37961506843566895,
+        "max_process_rss_kib": 131080,
+        "command": [
+          "$R/round420/native-check/diagnostic-xcheck-naive-attn",
+          "--data",
+          "$R/round419/check/native",
+          "--articles",
+          "-1",
+          "--attn",
+          "int8"
+        ],
+        "log": "$R/round420/native-check/attn-component-isolation-xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "attn-component-isolation-controller",
+        "stage": "diagnostic_metadata",
+        "status": "complete",
+        "cpu_seconds": 0.018570103,
+        "resource_scope": "diagnostic controller process CPU"
+      },
+      {
+        "id": "attn-quant-boundary-build",
+        "stage": "concrete_failure_attention_quant_boundary",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.492854,
+        "wall_seconds": 0.49423837661743164,
+        "max_process_rss_kib": 135132,
+        "command": [
+          "clang++-17",
+          "-I",
+          "$R/round419/source/cpp_infer/src/opt",
+          "-DFX2_XCHECK_DIAG_ATTN",
+          "-DFX2_MODEL_LAYERS=8",
+          "-m64",
+          "-O3",
+          "-std=c++17",
+          "-Wall",
+          "-Wextra",
+          "-fno-math-errno",
+          "-fdata-sections",
+          "-ffunction-sections",
+          "-march=x86-64-v3",
+          "-mtune=generic",
+          "-mrecip=none",
+          "-c",
+          "$R/round420/native-check/diagnostic-model-opt-quant-boundary.cpp",
+          "-o",
+          "$R/round420/native-check/diagnostic-model-opt-quant-boundary.o"
+        ],
+        "log": "$R/round420/native-check/attn-quant-boundary-build.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "attn-quant-boundary-link",
+        "stage": "concrete_failure_attention_quant_boundary",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.055569999999999994,
+        "wall_seconds": 0.05610179901123047,
+        "max_process_rss_kib": 63836,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "$R/round420/native-check/diagnostic-model-opt-quant-boundary.o",
+          "tf_kernels_reference.o",
+          "tf_model_reference.o",
+          "test_xcheck.o",
+          "-o",
+          "$R/round420/native-check/diagnostic-xcheck-quant-boundary"
+        ],
+        "log": "$R/round420/native-check/attn-quant-boundary-link.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "attn-quant-boundary-xcheck",
+        "stage": "concrete_failure_attention_quant_boundary",
+        "status": "failed",
+        "exit_code": 1,
+        "cpu_seconds": 0.44664,
+        "wall_seconds": 0.44740915298461914,
+        "max_process_rss_kib": 131080,
+        "command": [
+          "$R/round420/native-check/diagnostic-xcheck-quant-boundary",
+          "--data",
+          "$R/round419/check/native",
+          "--articles",
+          "-1",
+          "--attn",
+          "int8"
+        ],
+        "log": "$R/round420/native-check/attn-quant-boundary-xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "attn-quant-boundary-controller",
+        "stage": "diagnostic_metadata",
+        "status": "complete",
+        "cpu_seconds": 0.019654743,
+        "resource_scope": "diagnostic controller process CPU"
+      },
+      {
+        "id": "depth8-reference-attn-model-recompile",
+        "stage": "depth8-reference-attn-model-recompile",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.6094569999999999,
+        "wall_seconds": 1.5252208709716797,
+        "max_process_rss_kib": 131944,
+        "command": [
+          "clang++-17",
+          "-DFX2_MODEL_LAYERS=8",
+          "-m64",
+          "-O3",
+          "-std=c++17",
+          "-Wall",
+          "-Wextra",
+          "-fno-math-errno",
+          "-fdata-sections",
+          "-ffunction-sections",
+          "-march=x86-64-v3",
+          "-mtune=generic",
+          "-mrecip=none",
+          "-c",
+          "$R/round419/source/cpp_infer/src/opt/model_opt.cpp",
+          "-o",
+          "tf_model_opt.o"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-model-recompile.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-cmix",
+        "stage": "depth8-reference-attn-relink-cmix",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.06392300000000001,
+        "wall_seconds": 0.09564590454101562,
+        "max_process_rss_kib": 63108,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "bit-context.o",
+          "bracket-context.o",
+          "bracket.o",
+          "byte-mixer.o",
+          "byte-model.o",
+          "combined-context.o",
+          "context-hash.o",
+          "context-manager.o",
+          "decoder.o",
+          "dictionary.o",
+          "direct-hash.o",
+          "direct.o",
+          "encoder.o",
+          "indirect-hash.o",
+          "indirect.o",
+          "interval-hash.o",
+          "interval.o",
+          "match.o",
+          "mixer-input.o",
+          "mixer.o",
+          "nonstationary.o",
+          "fxcmv1.o",
+          "ppmd.o",
+          "predictor.o",
+          "preprocessor.o",
+          "run-map.o",
+          "runner.o",
+          "sigmoid.o",
+          "sparse.o",
+          "sse.o",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "-s",
+          "tf_kernels_reference.o",
+          "-o",
+          "cmix"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-cmix.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-test_xcheck",
+        "stage": "depth8-reference-attn-relink-test_xcheck",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.052024999999999995,
+        "wall_seconds": 0.0524899959564209,
+        "max_process_rss_kib": 63064,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "tf_kernels_reference.o",
+          "tf_model_reference.o",
+          "test_xcheck.o",
+          "-o",
+          "test_xcheck"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-test_xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-probe",
+        "stage": "depth8-reference-attn-relink-probe",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.057548,
+        "wall_seconds": 0.058562517166137695,
+        "max_process_rss_kib": 63132,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "bit-context.o",
+          "bracket-context.o",
+          "bracket.o",
+          "byte-mixer.o",
+          "byte-model.o",
+          "combined-context.o",
+          "context-hash.o",
+          "context-manager.o",
+          "decoder.o",
+          "dictionary.o",
+          "direct-hash.o",
+          "direct.o",
+          "encoder.o",
+          "indirect-hash.o",
+          "indirect.o",
+          "interval-hash.o",
+          "interval.o",
+          "match.o",
+          "mixer-input.o",
+          "mixer.o",
+          "nonstationary.o",
+          "fxcmv1.o",
+          "ppmd.o",
+          "predictor.o",
+          "preprocessor.o",
+          "run-map.o",
+          "sigmoid.o",
+          "sparse.o",
+          "sse.o",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "tf_kernels_reference.o",
+          "probe_research.o",
+          "-o",
+          "probe"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-probe.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-relink-activation-probe",
+        "stage": "depth8-reference-attn-relink-activation-probe",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.059532999999999996,
+        "wall_seconds": 0.061325788497924805,
+        "max_process_rss_kib": 63096,
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "bit-context.o",
+          "bracket-context.o",
+          "bracket.o",
+          "byte-mixer.o",
+          "byte-model.o",
+          "combined-context.o",
+          "context-hash.o",
+          "context-manager.o",
+          "decoder.o",
+          "dictionary.o",
+          "direct-hash.o",
+          "direct.o",
+          "encoder.o",
+          "indirect-hash.o",
+          "indirect.o",
+          "interval-hash.o",
+          "interval.o",
+          "match.o",
+          "mixer-input.o",
+          "mixer.o",
+          "nonstationary.o",
+          "fxcmv1.o",
+          "ppmd.o",
+          "predictor.o",
+          "preprocessor.o",
+          "run-map.o",
+          "sigmoid.o",
+          "sparse.o",
+          "sse.o",
+          "tf_weights_io.o",
+          "tf_weights_io_compressed.o",
+          "tf_qmat_dense.o",
+          "tf_qmat_sparse.o",
+          "tf_attn.o",
+          "tf_kda.o",
+          "tf_glue.o",
+          "tf_arena_build.o",
+          "tf_model_opt.o",
+          "tf_kernels_reference.o",
+          "activation-probe_research.o",
+          "-o",
+          "activation-probe"
+        ],
+        "log": "$R/round420/native-check/depth8-reference-attn-relink-activation-probe.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-repaired-reference-opt-xcheck",
+        "stage": "native-repaired-reference-opt-xcheck",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.428599,
+        "wall_seconds": 0.4293508529663086,
+        "max_process_rss_kib": 131044,
+        "command": [
+          "$R/round419/native/depth8/test_xcheck",
+          "--data",
+          "$R/round419/check/native",
+          "--articles",
+          "-1",
+          "--attn",
+          "int8"
+        ],
+        "log": "$R/round420/native-check/native-repaired-reference-opt-xcheck.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "native-repaired-static15-opt-read",
+        "stage": "native-repaired-static15-opt-read",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.226852,
+        "wall_seconds": 0.22722196578979492,
+        "max_process_rss_kib": 91708,
+        "command": [
+          "$R/round419/native/depth8/activation-probe",
+          "eval-pieces",
+          "$R/round416/inputs/short.u8",
+          "$R/round416/inputs/short-uniform.f16",
+          "$R/round419/check/trainer/step-0000.tfwc3",
+          "$R/round419/check/native/test_bounds.i32"
+        ],
+        "log": "$R/round420/native-check/native-repaired-static15-opt-read.log",
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "id": "depth8-reference-attn-repair-controller",
+        "stage": "source_repair_and_metadata",
+        "status": "passed",
+        "cpu_seconds": 0.066076875,
+        "resource_scope": "repair controller process CPU; excludes waited children"
+      },
+      {
+        "id": "native-preflight-final-stdlib-validation",
+        "stage": "actual_receipt_and_artifact_validation",
+        "status": "passed",
+        "exit_code": 0,
+        "cpu_seconds": 0.082058438,
+        "resource_scope": "final metadata/hash/NPY-header validator process CPU; no Torch or NumPy import"
+      }
+    ],
+    "resource_scope": "real paid native build plus controller process CPU plus isolated wait4 children and their reaped descendants"
+  },
+  "resources": {
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_limit_gib": 7,
+    "threads_per_library": 1,
+    "trainer_peak_rss_kib": 1127276,
+    "final_disks": {
+      "/data": {
+        "total": 20957446144,
+        "used": 9715294208,
+        "free": 11225374720
+      },
+      "/": {
+        "total": 16729894912,
+        "used": 5756198912,
+        "free": 10097926144
+      }
+    }
+  },
+  "source_files": {
+    "initial_python_and_original_static15": {
+      "source/research/depth-training-job.py": {
+        "bytes": 11081,
+        "sha256": "d65051d7e0eaec5515786d1b0dac919867215363c15ae7cf6f3703efc5b8742d"
+      },
+      "source/research/depth-distillation.py": {
+        "bytes": 24314,
+        "sha256": "3849df38980ebd2ea7b6d4ccf563337f56178309000f6ffc242abd40c8986624"
+      },
+      "source/research/depth_student.py": {
+        "bytes": 15253,
+        "sha256": "d933e5c62565573a9ca6d00ce1cecb9fe923f2e4ade750b724c97ffb24f37413"
+      },
+      "source/research/cpu_model.py": {
+        "bytes": 4461,
+        "sha256": "75c4109977ee3e0b8a4f3bc78b6ad0661e51b724bea9a2e71ea86ef19cdaab4a"
+      },
+      "assets/original-static15.tfwc3": {
+        "bytes": 2904325,
+        "sha256": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18"
+      }
+    },
+    "repair": {
+      "source/cpp_infer/src/opt/model_opt.cpp": {
+        "bytes": 19465,
+        "sha256": "bc3daed5309a48f7ab16a467fdbee0e1081e5a04827929231eeaffab04c3eb3d"
+      },
+      "source/cpp_infer/src/opt/model_opt.h": {
+        "bytes": 3575,
+        "sha256": "10c57642892c61fcdbdb4dc3c241ef646f4f28ffc1cf69bfd170eb11d802616a"
+      },
+      "source/research/depth-native-build.py": {
+        "bytes": 8146,
+        "sha256": "75926c553a23746ad66b9f436ab58135933a5134201babae66e06f1a920f4d7f"
+      }
+    }
+  },
+  "contract_exit_code": 0,
+  "new_full_family_builds": 0,
+  "partial_repair_build_commands": 5,
+  "new_native_build_cpu_counted_once": 19.289341,
+  "new_ppmd_capture_calls": 0,
+  "twelve_layer_golden_calls": 0,
+  "new_fixture_grids": 0,
+  "local_heavy_calls": 0,
+  "new_complete_training_runs_in_preflight": 0,
+  "new_complete_training_epochs_in_preflight": 0,
+  "new_transfer_runs_in_preflight": 0,
+  "gate_receipt": "$R/round419/check/preflight.json"
+}

@@ -1,0 +1,1139 @@
+{
+  "schema": "hutter.depth-v22-mixed-build.actual.v1",
+  "round": 420,
+  "status": "built",
+  "build_contract_status": "passed",
+  "build_exit_code": 0,
+  "B0": {
+    "path": "$R/round417/formal-aux/assets/cmix.upx",
+    "bytes": 181956,
+    "sha256": "686cb39ca80e6aeb24b558aefd1f59e56f01c6e4352cdc3304bb61256d8953ee"
+  },
+  "B1": {
+    "path": "$R/round419/native/v22-depth8-mixed/cmix.upx",
+    "bytes": 177444,
+    "sha256": "597a88c22d28352ff7c44d74610e670021392a5c033e0edd95141907aa06193b"
+  },
+  "D": {
+    "path": "$R/round417/formal-aux/aux/comp_dict",
+    "bytes": 100098,
+    "sha256": "0bf16f1b29d854758c4fb3a16336a4b8fc112194b3cbfa8994c21c35a934b21a"
+  },
+  "O": {
+    "path": "$R/round417/formal-aux/aux/comp_order",
+    "bytes": 201111,
+    "sha256": "05ea75cb2cc644e004f880c8e68cac2fbd43186b4d42d77877d2d5634ce61b49"
+  },
+  "dual_code_saved_bytes": 9024,
+  "initial_student_double_weight_saved_bytes": 1898276,
+  "initial_student_double_weight_plus_code_saved_bytes": 1907300,
+  "cpu_seconds": 0.596619416,
+  "cpu_scope": "actual entry metadata, two links, UPX/version and controller/receipt metadata; prior native8 build and gradient are already charged to the separate 48 h prep ledger",
+  "mixed_build_ledger": {
+    "schema": "hutter.depth8.mixed-build-ledger.v1",
+    "status": "passed",
+    "cpu_seconds": 0.596619416,
+    "mixed_cpu_limit_seconds": 28800,
+    "items": [
+      {
+        "id": "depth-v22-mixed-build-round420",
+        "cpu_seconds": 0.596619416,
+        "receipt": "$R/round419/native/v22-depth8-mixed/build.json",
+        "counted_once": true
+      }
+    ],
+    "prep_48h_cpu_seconds_unchanged": 83.912147995,
+    "resource_scope": "actual entry metadata, two links, UPX/version and controller/receipt metadata; prior native8 build and gradient are already charged to the separate 48 h prep ledger"
+  },
+  "prep_48h_cpu_seconds_unchanged": 83.912147995,
+  "build": {
+    "status": "built",
+    "layers": 8,
+    "trace_base": "$R/build/baseline-trace",
+    "production_base": "$R/build/baseline",
+    "native8": "$R/round419/native/depth8",
+    "links": {
+      "probe": [
+        "clang++-17",
+        "-m64",
+        "-Wl,--gc-sections",
+        "-std=c++17",
+        "$R/build/baseline-trace/bit-context.o",
+        "$R/build/baseline-trace/bracket-context.o",
+        "$R/build/baseline-trace/bracket.o",
+        "$R/build/baseline-trace/byte-mixer.o",
+        "$R/build/baseline-trace/byte-model.o",
+        "$R/build/baseline-trace/combined-context.o",
+        "$R/build/baseline-trace/context-hash.o",
+        "$R/build/baseline-trace/context-manager.o",
+        "$R/build/baseline-trace/decoder.o",
+        "$R/build/baseline-trace/dictionary.o",
+        "$R/build/baseline-trace/direct-hash.o",
+        "$R/build/baseline-trace/direct.o",
+        "$R/build/baseline-trace/encoder.o",
+        "$R/build/baseline-trace/indirect-hash.o",
+        "$R/build/baseline-trace/indirect.o",
+        "$R/build/baseline-trace/interval-hash.o",
+        "$R/build/baseline-trace/interval.o",
+        "$R/build/baseline-trace/match.o",
+        "$R/build/baseline-trace/mixer-input.o",
+        "$R/build/baseline-trace/mixer.o",
+        "$R/build/baseline-trace/nonstationary.o",
+        "$R/build/baseline-trace/fxcmv1.o",
+        "$R/build/baseline-trace/ppmd.o",
+        "$R/build/baseline-trace/predictor.o",
+        "$R/build/baseline-trace/preprocessor.o",
+        "$R/build/baseline-trace/run-map.o",
+        "$R/build/baseline-trace/sigmoid.o",
+        "$R/build/baseline-trace/sparse.o",
+        "$R/build/baseline-trace/sse.o",
+        "$R/round419/native/depth8/tf_weights_io.o",
+        "$R/round419/native/depth8/tf_weights_io_compressed.o",
+        "$R/round419/native/depth8/tf_qmat_dense.o",
+        "$R/round419/native/depth8/tf_qmat_sparse.o",
+        "$R/round419/native/depth8/tf_attn.o",
+        "$R/round419/native/depth8/tf_kda.o",
+        "$R/round419/native/depth8/tf_glue.o",
+        "$R/round419/native/depth8/tf_arena_build.o",
+        "$R/round419/native/depth8/tf_model_opt.o",
+        "$R/build/baseline-trace/probe_research.o",
+        "$R/round419/native/depth8/tf_kernels_reference.o",
+        "-o",
+        "$R/round419/native/v22-depth8-mixed/probe"
+      ],
+      "binary": [
+        "clang++-17",
+        "-m64",
+        "-Wl,--gc-sections",
+        "-std=c++17",
+        "$R/build/baseline/bit-context.o",
+        "$R/build/baseline/bracket-context.o",
+        "$R/build/baseline/bracket.o",
+        "$R/build/baseline/byte-mixer.o",
+        "$R/build/baseline/byte-model.o",
+        "$R/build/baseline/combined-context.o",
+        "$R/build/baseline/context-hash.o",
+        "$R/build/baseline/context-manager.o",
+        "$R/build/baseline/decoder.o",
+        "$R/build/baseline/dictionary.o",
+        "$R/build/baseline/direct-hash.o",
+        "$R/build/baseline/direct.o",
+        "$R/build/baseline/encoder.o",
+        "$R/build/baseline/indirect-hash.o",
+        "$R/build/baseline/indirect.o",
+        "$R/build/baseline/interval-hash.o",
+        "$R/build/baseline/interval.o",
+        "$R/build/baseline/match.o",
+        "$R/build/baseline/mixer-input.o",
+        "$R/build/baseline/mixer.o",
+        "$R/build/baseline/nonstationary.o",
+        "$R/build/baseline/fxcmv1.o",
+        "$R/build/baseline/ppmd.o",
+        "$R/build/baseline/predictor.o",
+        "$R/build/baseline/preprocessor.o",
+        "$R/build/baseline/run-map.o",
+        "$R/build/baseline/runner.o",
+        "$R/build/baseline/sigmoid.o",
+        "$R/build/baseline/sparse.o",
+        "$R/build/baseline/sse.o",
+        "$R/round419/native/depth8/tf_weights_io.o",
+        "$R/round419/native/depth8/tf_weights_io_compressed.o",
+        "$R/round419/native/depth8/tf_qmat_dense.o",
+        "$R/round419/native/depth8/tf_qmat_sparse.o",
+        "$R/round419/native/depth8/tf_attn.o",
+        "$R/round419/native/depth8/tf_kda.o",
+        "$R/round419/native/depth8/tf_glue.o",
+        "$R/round419/native/depth8/tf_arena_build.o",
+        "$R/round419/native/depth8/tf_model_opt.o",
+        "-s",
+        "$R/round419/native/depth8/tf_kernels_reference.o",
+        "-o",
+        "$R/round419/native/v22-depth8-mixed/cmix"
+      ]
+    },
+    "runner_elf": "$R/round419/native/v22-depth8-mixed/cmix",
+    "upx": "$R/round420/depth-native-v22/upx",
+    "native_receipt": {
+      "path": "$R/round419/native/depth8/repair-round420.json",
+      "bytes": 13678,
+      "sha256": "292d7dafd91d080d9f40462e0e3b36e41f923f9a51003657bcf6325bef1b7276"
+    },
+    "upx_command": [
+      "$R/round420/depth-native-v22/upx",
+      "-9",
+      "$R/round419/native/v22-depth8-mixed/cmix",
+      "-o",
+      "$R/round419/native/v22-depth8-mixed/cmix.upx"
+    ],
+    "input_objects": {
+      "/data/workspace/temp/hutter/build/baseline-trace/bit-context.o": {
+        "path": "$R/build/baseline-trace/bit-context.o",
+        "bytes": 3912,
+        "sha256": "986eefb13c6f33f3495d35e64f243b6d86bc5b2aefa4b9815edab4e92317b0c7"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/bracket-context.o": {
+        "path": "$R/build/baseline-trace/bracket-context.o",
+        "bytes": 11976,
+        "sha256": "3a8081b6df00dba411ccab0f7503323b7edccff594573ace3dfa910caf2dbcf9"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/bracket.o": {
+        "path": "$R/build/baseline-trace/bracket.o",
+        "bytes": 17056,
+        "sha256": "b4e440911b59bdbc73c7c2d37ca2cac794c8690381d438da01bed84c55cf2fa2"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/byte-mixer.o": {
+        "path": "$R/build/baseline-trace/byte-mixer.o",
+        "bytes": 50176,
+        "sha256": "42528040ca27d204ac5db28b5ed4a3a08cd4d54472227dddb7d82e8b921044cd"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/byte-model.o": {
+        "path": "$R/build/baseline-trace/byte-model.o",
+        "bytes": 6360,
+        "sha256": "879d4259bbf2d665a068c668f59e1c825ca63c562dbb5b1e8ea342e5cc6d5cd5"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/combined-context.o": {
+        "path": "$R/build/baseline-trace/combined-context.o",
+        "bytes": 4272,
+        "sha256": "843d079d2180e345fa1c744b97c642f2ab28513f331c7ebee418fe34b10dc24a"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/context-hash.o": {
+        "path": "$R/build/baseline-trace/context-hash.o",
+        "bytes": 4216,
+        "sha256": "ddd3b2e46045b51afe7fa21055048cadc6cf209ce40b321612959de2e4d797d0"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/context-manager.o": {
+        "path": "$R/build/baseline-trace/context-manager.o",
+        "bytes": 21168,
+        "sha256": "115e3fd75ef2cdd1a2ddf192a2de4f42a94b141c7f87683277504fec2baa1a22"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/decoder.o": {
+        "path": "$R/build/baseline-trace/decoder.o",
+        "bytes": 15856,
+        "sha256": "439537b4b46b0f8d6bbf0ecf91400f1b148c765cdd10098a3b448aafca7f5fda"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/dictionary.o": {
+        "path": "$R/build/baseline-trace/dictionary.o",
+        "bytes": 24544,
+        "sha256": "bb381e2dbeecda7a59ccc102ae4e8856ea1f332545217ac4a8973625dabbec94"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/direct-hash.o": {
+        "path": "$R/build/baseline-trace/direct-hash.o",
+        "bytes": 5008,
+        "sha256": "bcb0e9295c050fc8b986c0526e823e627bb7b150f6460ebc40088e65ca50ccdf"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/direct.o": {
+        "path": "$R/build/baseline-trace/direct.o",
+        "bytes": 3280,
+        "sha256": "14b687ef3534fcb2c62dc2a2fe155f9aa244e22968a84b113ef9dbd3daec8b04"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/encoder.o": {
+        "path": "$R/build/baseline-trace/encoder.o",
+        "bytes": 20304,
+        "sha256": "b03d1d88de9b2192425e19865c0b5a16a1ea00c1a95658f4d244e2b92d25a213"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/fxcmv1.o": {
+        "path": "$R/build/baseline-trace/fxcmv1.o",
+        "bytes": 230672,
+        "sha256": "af3f92f1e2de34527687d1a22084ba0285d99698022a23a8c49b337ed72c4511"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/indirect-hash.o": {
+        "path": "$R/build/baseline-trace/indirect-hash.o",
+        "bytes": 6688,
+        "sha256": "ecc2f5873a09d794ebdd58d762b697da4258b6d14fc5011a227086011de79ddc"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/indirect.o": {
+        "path": "$R/build/baseline-trace/indirect.o",
+        "bytes": 680,
+        "sha256": "c2b072241e4f54053d0eae29430d99a226f1a9602e52171ad5ae6617678ba78b"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/interval-hash.o": {
+        "path": "$R/build/baseline-trace/interval-hash.o",
+        "bytes": 5376,
+        "sha256": "44333f971d7e7b1c8ee4c593d77efd8b0c8e6279061036dc54a1ebfa83a4864e"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/interval.o": {
+        "path": "$R/build/baseline-trace/interval.o",
+        "bytes": 4984,
+        "sha256": "0df330ab4326a090d133ff2160e47a46adfc71060d172c55270f132d168e6db9"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/match.o": {
+        "path": "$R/build/baseline-trace/match.o",
+        "bytes": 4136,
+        "sha256": "66a073847c89d49c3cdc34ba8b6940def560a0f6b55942fe16b73a4f5ca12475"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/mixer-input.o": {
+        "path": "$R/build/baseline-trace/mixer-input.o",
+        "bytes": 3336,
+        "sha256": "29b058a4cebaf0039acd99d66cfd988000307e4811762439289e8e323a81ba3b"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/mixer.o": {
+        "path": "$R/build/baseline-trace/mixer.o",
+        "bytes": 11792,
+        "sha256": "b720f47fb77238a8dd0bf6e0a4642ac25de5fa6d911040531c2e946e0c52e129"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/nonstationary.o": {
+        "path": "$R/build/baseline-trace/nonstationary.o",
+        "bytes": 4792,
+        "sha256": "a9f3784b673a5adf7f81befc5ef688d15d220fe815aa46cf1875b1668f7740b2"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/ppmd.o": {
+        "path": "$R/build/baseline-trace/ppmd.o",
+        "bytes": 43640,
+        "sha256": "fe251ca7ce7eb58e95aa4364abbc6938a19f052a95d927bbe953deecb9ecf5ee"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/predictor.o": {
+        "path": "$R/build/baseline-trace/predictor.o",
+        "bytes": 146136,
+        "sha256": "e30b0daeda49d3321e79b9bc58a916ef5e0be04b8646bfc0ea5858da08ec3bf6"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/preprocessor.o": {
+        "path": "$R/build/baseline-trace/preprocessor.o",
+        "bytes": 29896,
+        "sha256": "cf3e154c2b574512d99b66b8691ea4eb02632b6b06a48e54b6bfe8cf2cb9bf8c"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/probe_research.o": {
+        "path": "$R/build/baseline-trace/probe_research.o",
+        "bytes": 40456,
+        "sha256": "a38f0f72843ef7a49f787fcac31382b49639544fe96d7cfbed6931ef8bcf9e0e"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/run-map.o": {
+        "path": "$R/build/baseline-trace/run-map.o",
+        "bytes": 7552,
+        "sha256": "0e15c875b544d6555c0bf4f96a5decccd2c9c5f3ba86ad9a21f054e216be4a68"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/sigmoid.o": {
+        "path": "$R/build/baseline-trace/sigmoid.o",
+        "bytes": 4616,
+        "sha256": "2fbf56ca7c2fd8f4f82858507e7ea16ec6e1649b58ff72ad9c7081d7ec3abacd"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/sparse.o": {
+        "path": "$R/build/baseline-trace/sparse.o",
+        "bytes": 5248,
+        "sha256": "331f95128c8126b9a3ee259f69a642b4cb885212ad88c0c17ffef178226901e3"
+      },
+      "/data/workspace/temp/hutter/build/baseline-trace/sse.o": {
+        "path": "$R/build/baseline-trace/sse.o",
+        "bytes": 20800,
+        "sha256": "2ab067a4ecaad16084e600c178c92426ec900433dc57ed298f8b80e2f2095938"
+      },
+      "/data/workspace/temp/hutter/build/baseline/bit-context.o": {
+        "path": "$R/build/baseline/bit-context.o",
+        "bytes": 3912,
+        "sha256": "986eefb13c6f33f3495d35e64f243b6d86bc5b2aefa4b9815edab4e92317b0c7"
+      },
+      "/data/workspace/temp/hutter/build/baseline/bracket-context.o": {
+        "path": "$R/build/baseline/bracket-context.o",
+        "bytes": 11968,
+        "sha256": "7f9cca794361d56226394345926064533bc6daa18fdb2f3003d53c1ab451364b"
+      },
+      "/data/workspace/temp/hutter/build/baseline/bracket.o": {
+        "path": "$R/build/baseline/bracket.o",
+        "bytes": 17048,
+        "sha256": "2a3a4d81643a7c333bdddddf71bd69f6c96ed9a092278bc930b67a7f5c6904e2"
+      },
+      "/data/workspace/temp/hutter/build/baseline/byte-mixer.o": {
+        "path": "$R/build/baseline/byte-mixer.o",
+        "bytes": 50176,
+        "sha256": "6c7a3f834700448a480b3072380139f1e6b64a9f309d7acfcee892c1c54f03e2"
+      },
+      "/data/workspace/temp/hutter/build/baseline/byte-model.o": {
+        "path": "$R/build/baseline/byte-model.o",
+        "bytes": 6360,
+        "sha256": "879d4259bbf2d665a068c668f59e1c825ca63c562dbb5b1e8ea342e5cc6d5cd5"
+      },
+      "/data/workspace/temp/hutter/build/baseline/combined-context.o": {
+        "path": "$R/build/baseline/combined-context.o",
+        "bytes": 4272,
+        "sha256": "843d079d2180e345fa1c744b97c642f2ab28513f331c7ebee418fe34b10dc24a"
+      },
+      "/data/workspace/temp/hutter/build/baseline/context-hash.o": {
+        "path": "$R/build/baseline/context-hash.o",
+        "bytes": 4216,
+        "sha256": "ddd3b2e46045b51afe7fa21055048cadc6cf209ce40b321612959de2e4d797d0"
+      },
+      "/data/workspace/temp/hutter/build/baseline/context-manager.o": {
+        "path": "$R/build/baseline/context-manager.o",
+        "bytes": 21152,
+        "sha256": "674378da97c027a576d3ffbb3ee257b13b4ca8121b3f0663b9dd68b0b08783c4"
+      },
+      "/data/workspace/temp/hutter/build/baseline/decoder.o": {
+        "path": "$R/build/baseline/decoder.o",
+        "bytes": 15840,
+        "sha256": "6303a781a17c66b1c5850e979ca5edbaa7c93e015611fe9872a6107549e43f78"
+      },
+      "/data/workspace/temp/hutter/build/baseline/dictionary.o": {
+        "path": "$R/build/baseline/dictionary.o",
+        "bytes": 24528,
+        "sha256": "3533f7e0c088a685202e8697fdcaedab33e2444b8d8838fd7f124dbc70ca719b"
+      },
+      "/data/workspace/temp/hutter/build/baseline/direct-hash.o": {
+        "path": "$R/build/baseline/direct-hash.o",
+        "bytes": 5008,
+        "sha256": "bcb0e9295c050fc8b986c0526e823e627bb7b150f6460ebc40088e65ca50ccdf"
+      },
+      "/data/workspace/temp/hutter/build/baseline/direct.o": {
+        "path": "$R/build/baseline/direct.o",
+        "bytes": 3280,
+        "sha256": "14b687ef3534fcb2c62dc2a2fe155f9aa244e22968a84b113ef9dbd3daec8b04"
+      },
+      "/data/workspace/temp/hutter/build/baseline/encoder.o": {
+        "path": "$R/build/baseline/encoder.o",
+        "bytes": 17160,
+        "sha256": "f33bdbf481cc3a1bdcaad669a7ebe38317b6889c49c47abb996f4f5357f87e02"
+      },
+      "/data/workspace/temp/hutter/build/baseline/fxcmv1.o": {
+        "path": "$R/build/baseline/fxcmv1.o",
+        "bytes": 230672,
+        "sha256": "af3f92f1e2de34527687d1a22084ba0285d99698022a23a8c49b337ed72c4511"
+      },
+      "/data/workspace/temp/hutter/build/baseline/indirect-hash.o": {
+        "path": "$R/build/baseline/indirect-hash.o",
+        "bytes": 6688,
+        "sha256": "ecc2f5873a09d794ebdd58d762b697da4258b6d14fc5011a227086011de79ddc"
+      },
+      "/data/workspace/temp/hutter/build/baseline/indirect.o": {
+        "path": "$R/build/baseline/indirect.o",
+        "bytes": 680,
+        "sha256": "c2b072241e4f54053d0eae29430d99a226f1a9602e52171ad5ae6617678ba78b"
+      },
+      "/data/workspace/temp/hutter/build/baseline/interval-hash.o": {
+        "path": "$R/build/baseline/interval-hash.o",
+        "bytes": 5376,
+        "sha256": "44333f971d7e7b1c8ee4c593d77efd8b0c8e6279061036dc54a1ebfa83a4864e"
+      },
+      "/data/workspace/temp/hutter/build/baseline/interval.o": {
+        "path": "$R/build/baseline/interval.o",
+        "bytes": 4984,
+        "sha256": "0df330ab4326a090d133ff2160e47a46adfc71060d172c55270f132d168e6db9"
+      },
+      "/data/workspace/temp/hutter/build/baseline/match.o": {
+        "path": "$R/build/baseline/match.o",
+        "bytes": 4136,
+        "sha256": "66a073847c89d49c3cdc34ba8b6940def560a0f6b55942fe16b73a4f5ca12475"
+      },
+      "/data/workspace/temp/hutter/build/baseline/mixer-input.o": {
+        "path": "$R/build/baseline/mixer-input.o",
+        "bytes": 3336,
+        "sha256": "29b058a4cebaf0039acd99d66cfd988000307e4811762439289e8e323a81ba3b"
+      },
+      "/data/workspace/temp/hutter/build/baseline/mixer.o": {
+        "path": "$R/build/baseline/mixer.o",
+        "bytes": 11776,
+        "sha256": "82e7ff87f2250ef54870536bf657a598a47861d999d0fb50729247522c08696c"
+      },
+      "/data/workspace/temp/hutter/build/baseline/nonstationary.o": {
+        "path": "$R/build/baseline/nonstationary.o",
+        "bytes": 4792,
+        "sha256": "a9f3784b673a5adf7f81befc5ef688d15d220fe815aa46cf1875b1668f7740b2"
+      },
+      "/data/workspace/temp/hutter/build/baseline/ppmd.o": {
+        "path": "$R/build/baseline/ppmd.o",
+        "bytes": 43640,
+        "sha256": "fe251ca7ce7eb58e95aa4364abbc6938a19f052a95d927bbe953deecb9ecf5ee"
+      },
+      "/data/workspace/temp/hutter/build/baseline/predictor.o": {
+        "path": "$R/build/baseline/predictor.o",
+        "bytes": 145896,
+        "sha256": "3549123e0ddcf1a2e6ec8c1bf2ff19a61b882a6a4451fa1cd7074d1a8d1f077c"
+      },
+      "/data/workspace/temp/hutter/build/baseline/preprocessor.o": {
+        "path": "$R/build/baseline/preprocessor.o",
+        "bytes": 29880,
+        "sha256": "cbf86ef58961f07288f2d9283c662f9800622b777f0eac9741da63939a87670f"
+      },
+      "/data/workspace/temp/hutter/build/baseline/run-map.o": {
+        "path": "$R/build/baseline/run-map.o",
+        "bytes": 7552,
+        "sha256": "0e15c875b544d6555c0bf4f96a5decccd2c9c5f3ba86ad9a21f054e216be4a68"
+      },
+      "/data/workspace/temp/hutter/build/baseline/runner.o": {
+        "path": "$R/build/baseline/runner.o",
+        "bytes": 174144,
+        "sha256": "7087e54927634f96c988a0a68926a8bc17f5c0930dbf4e1ec0e088682a139abb"
+      },
+      "/data/workspace/temp/hutter/build/baseline/sigmoid.o": {
+        "path": "$R/build/baseline/sigmoid.o",
+        "bytes": 4616,
+        "sha256": "2fbf56ca7c2fd8f4f82858507e7ea16ec6e1649b58ff72ad9c7081d7ec3abacd"
+      },
+      "/data/workspace/temp/hutter/build/baseline/sparse.o": {
+        "path": "$R/build/baseline/sparse.o",
+        "bytes": 5248,
+        "sha256": "331f95128c8126b9a3ee259f69a642b4cb885212ad88c0c17ffef178226901e3"
+      },
+      "/data/workspace/temp/hutter/build/baseline/sse.o": {
+        "path": "$R/build/baseline/sse.o",
+        "bytes": 20800,
+        "sha256": "2ab067a4ecaad16084e600c178c92426ec900433dc57ed298f8b80e2f2095938"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_arena_build.o": {
+        "path": "$R/round419/native/depth8/tf_arena_build.o",
+        "bytes": 53160,
+        "sha256": "c3ba962bc8f96f32bdd23a6a958857c40f12aa25706c2063e0371d12b58fabc3"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_attn.o": {
+        "path": "$R/round419/native/depth8/tf_attn.o",
+        "bytes": 26904,
+        "sha256": "6e7c8666559aefbb3485e7f6e7195edde8b052f4759142cde3616bafcda49b2c"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_glue.o": {
+        "path": "$R/round419/native/depth8/tf_glue.o",
+        "bytes": 34080,
+        "sha256": "e0ea9758b37ae0bb4ab615571b231cba8b570e3040a01e40bb5f8fe72885d8de"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_kda.o": {
+        "path": "$R/round419/native/depth8/tf_kda.o",
+        "bytes": 21632,
+        "sha256": "cdf03b7a1546113834e925b421c6396e669806948dad244c640bcabe4b845b23"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_kernels_reference.o": {
+        "path": "$R/round419/native/depth8/tf_kernels_reference.o",
+        "bytes": 20136,
+        "sha256": "6ea95477907c7b619a0f93c35c224360d4504cfdb6bd6d14487390be4de911fa"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_model_opt.o": {
+        "path": "$R/round419/native/depth8/tf_model_opt.o",
+        "bytes": 22688,
+        "sha256": "fbaba8271463e605f7d7c7259ccb63e6663abe4da8f6068abaae88d7eedb9965"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_qmat_dense.o": {
+        "path": "$R/round419/native/depth8/tf_qmat_dense.o",
+        "bytes": 31032,
+        "sha256": "55cfec847a7042195538e44537741ba4bcc50cc20f151c8cdbf12c02b3dd5996"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_qmat_sparse.o": {
+        "path": "$R/round419/native/depth8/tf_qmat_sparse.o",
+        "bytes": 32448,
+        "sha256": "f2c379c0247072373e7fb80da0e8a75be339ab54d15f22adad439066cc3461b9"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_weights_io.o": {
+        "path": "$R/round419/native/depth8/tf_weights_io.o",
+        "bytes": 19712,
+        "sha256": "4f2a794bb414d95cc4e880bfc799d985213e392a19177e69f77eaee9b76fa557"
+      },
+      "/data/workspace/temp/hutter/round419/native/depth8/tf_weights_io_compressed.o": {
+        "path": "$R/round419/native/depth8/tf_weights_io_compressed.o",
+        "bytes": 37816,
+        "sha256": "172c2b70d6220f888ea10d0d8d95c33798b240de8d1f717b20c60a1a89107c9a"
+      }
+    },
+    "codec_sources": {
+      "src/predictor.cpp": {
+        "path": "$R/baseline-trace-source/src/predictor.cpp",
+        "bytes": 27633,
+        "sha256": "36610335d3b9c09de47dde06baf39269d058a9d696794829b9762bd510ff6837"
+      },
+      "src/predictor.h": {
+        "path": "$R/baseline-trace-source/src/predictor.h",
+        "bytes": 7417,
+        "sha256": "c074b4621085b70f70365e526182615cc3a69a5c54d7720d449bde82df303723"
+      },
+      "src/mixer/mixer.cpp": {
+        "path": "$R/baseline-trace-source/src/mixer/mixer.cpp",
+        "bytes": 2696,
+        "sha256": "6fb3e2df88429382452b4df6095b0604a7fe84953678b839e2ec0b01b8193a76"
+      },
+      "src/mixer/mixer.h": {
+        "path": "$R/baseline-trace-source/src/mixer/mixer.h",
+        "bytes": 1161,
+        "sha256": "6a32194ad23ace57d66d0cb64b028698d405f0a3b56c53e20cd43f1fb284914e"
+      },
+      "src/models/ppmd.cpp": {
+        "path": "$R/baseline-trace-source/src/models/ppmd.cpp",
+        "bytes": 31575,
+        "sha256": "fe371c9f43a3d4f9cce2f24f87df0ce888858466a7aa5530523e047ea008dac1"
+      },
+      "src/coder/encoder.cpp": {
+        "path": "$R/baseline-trace-source/src/coder/encoder.cpp",
+        "bytes": 1926,
+        "sha256": "d91631eed50e5d520fe3e7c9b518fbebd62ffc62e5ed95209335e6b093fc1b45"
+      },
+      "research/trace.h": {
+        "path": "$R/baseline-trace-source/research/trace.h",
+        "bytes": 693,
+        "sha256": "13c37af0dc657506b0b51636951d3526d47561e9c77047cb584d44a48eb93dc3"
+      }
+    },
+    "commands": [
+      [
+        "clang++-17",
+        "-m64",
+        "-Wl,--gc-sections",
+        "-std=c++17",
+        "$R/build/baseline-trace/bit-context.o",
+        "$R/build/baseline-trace/bracket-context.o",
+        "$R/build/baseline-trace/bracket.o",
+        "$R/build/baseline-trace/byte-mixer.o",
+        "$R/build/baseline-trace/byte-model.o",
+        "$R/build/baseline-trace/combined-context.o",
+        "$R/build/baseline-trace/context-hash.o",
+        "$R/build/baseline-trace/context-manager.o",
+        "$R/build/baseline-trace/decoder.o",
+        "$R/build/baseline-trace/dictionary.o",
+        "$R/build/baseline-trace/direct-hash.o",
+        "$R/build/baseline-trace/direct.o",
+        "$R/build/baseline-trace/encoder.o",
+        "$R/build/baseline-trace/indirect-hash.o",
+        "$R/build/baseline-trace/indirect.o",
+        "$R/build/baseline-trace/interval-hash.o",
+        "$R/build/baseline-trace/interval.o",
+        "$R/build/baseline-trace/match.o",
+        "$R/build/baseline-trace/mixer-input.o",
+        "$R/build/baseline-trace/mixer.o",
+        "$R/build/baseline-trace/nonstationary.o",
+        "$R/build/baseline-trace/fxcmv1.o",
+        "$R/build/baseline-trace/ppmd.o",
+        "$R/build/baseline-trace/predictor.o",
+        "$R/build/baseline-trace/preprocessor.o",
+        "$R/build/baseline-trace/run-map.o",
+        "$R/build/baseline-trace/sigmoid.o",
+        "$R/build/baseline-trace/sparse.o",
+        "$R/build/baseline-trace/sse.o",
+        "$R/round419/native/depth8/tf_weights_io.o",
+        "$R/round419/native/depth8/tf_weights_io_compressed.o",
+        "$R/round419/native/depth8/tf_qmat_dense.o",
+        "$R/round419/native/depth8/tf_qmat_sparse.o",
+        "$R/round419/native/depth8/tf_attn.o",
+        "$R/round419/native/depth8/tf_kda.o",
+        "$R/round419/native/depth8/tf_glue.o",
+        "$R/round419/native/depth8/tf_arena_build.o",
+        "$R/round419/native/depth8/tf_model_opt.o",
+        "$R/build/baseline-trace/probe_research.o",
+        "$R/round419/native/depth8/tf_kernels_reference.o",
+        "-o",
+        "$R/round419/native/v22-depth8-mixed/probe"
+      ],
+      [
+        "clang++-17",
+        "-m64",
+        "-Wl,--gc-sections",
+        "-std=c++17",
+        "$R/build/baseline/bit-context.o",
+        "$R/build/baseline/bracket-context.o",
+        "$R/build/baseline/bracket.o",
+        "$R/build/baseline/byte-mixer.o",
+        "$R/build/baseline/byte-model.o",
+        "$R/build/baseline/combined-context.o",
+        "$R/build/baseline/context-hash.o",
+        "$R/build/baseline/context-manager.o",
+        "$R/build/baseline/decoder.o",
+        "$R/build/baseline/dictionary.o",
+        "$R/build/baseline/direct-hash.o",
+        "$R/build/baseline/direct.o",
+        "$R/build/baseline/encoder.o",
+        "$R/build/baseline/indirect-hash.o",
+        "$R/build/baseline/indirect.o",
+        "$R/build/baseline/interval-hash.o",
+        "$R/build/baseline/interval.o",
+        "$R/build/baseline/match.o",
+        "$R/build/baseline/mixer-input.o",
+        "$R/build/baseline/mixer.o",
+        "$R/build/baseline/nonstationary.o",
+        "$R/build/baseline/fxcmv1.o",
+        "$R/build/baseline/ppmd.o",
+        "$R/build/baseline/predictor.o",
+        "$R/build/baseline/preprocessor.o",
+        "$R/build/baseline/run-map.o",
+        "$R/build/baseline/runner.o",
+        "$R/build/baseline/sigmoid.o",
+        "$R/build/baseline/sparse.o",
+        "$R/build/baseline/sse.o",
+        "$R/round419/native/depth8/tf_weights_io.o",
+        "$R/round419/native/depth8/tf_weights_io_compressed.o",
+        "$R/round419/native/depth8/tf_qmat_dense.o",
+        "$R/round419/native/depth8/tf_qmat_sparse.o",
+        "$R/round419/native/depth8/tf_attn.o",
+        "$R/round419/native/depth8/tf_kda.o",
+        "$R/round419/native/depth8/tf_glue.o",
+        "$R/round419/native/depth8/tf_arena_build.o",
+        "$R/round419/native/depth8/tf_model_opt.o",
+        "-s",
+        "$R/round419/native/depth8/tf_kernels_reference.o",
+        "-o",
+        "$R/round419/native/v22-depth8-mixed/cmix"
+      ],
+      [
+        "$R/round420/depth-native-v22/upx",
+        "-9",
+        "$R/round419/native/v22-depth8-mixed/cmix",
+        "-o",
+        "$R/round419/native/v22-depth8-mixed/cmix.upx"
+      ]
+    ],
+    "command_usage": [
+      {
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "$R/build/baseline-trace/bit-context.o",
+          "$R/build/baseline-trace/bracket-context.o",
+          "$R/build/baseline-trace/bracket.o",
+          "$R/build/baseline-trace/byte-mixer.o",
+          "$R/build/baseline-trace/byte-model.o",
+          "$R/build/baseline-trace/combined-context.o",
+          "$R/build/baseline-trace/context-hash.o",
+          "$R/build/baseline-trace/context-manager.o",
+          "$R/build/baseline-trace/decoder.o",
+          "$R/build/baseline-trace/dictionary.o",
+          "$R/build/baseline-trace/direct-hash.o",
+          "$R/build/baseline-trace/direct.o",
+          "$R/build/baseline-trace/encoder.o",
+          "$R/build/baseline-trace/indirect-hash.o",
+          "$R/build/baseline-trace/indirect.o",
+          "$R/build/baseline-trace/interval-hash.o",
+          "$R/build/baseline-trace/interval.o",
+          "$R/build/baseline-trace/match.o",
+          "$R/build/baseline-trace/mixer-input.o",
+          "$R/build/baseline-trace/mixer.o",
+          "$R/build/baseline-trace/nonstationary.o",
+          "$R/build/baseline-trace/fxcmv1.o",
+          "$R/build/baseline-trace/ppmd.o",
+          "$R/build/baseline-trace/predictor.o",
+          "$R/build/baseline-trace/preprocessor.o",
+          "$R/build/baseline-trace/run-map.o",
+          "$R/build/baseline-trace/sigmoid.o",
+          "$R/build/baseline-trace/sparse.o",
+          "$R/build/baseline-trace/sse.o",
+          "$R/round419/native/depth8/tf_weights_io.o",
+          "$R/round419/native/depth8/tf_weights_io_compressed.o",
+          "$R/round419/native/depth8/tf_qmat_dense.o",
+          "$R/round419/native/depth8/tf_qmat_sparse.o",
+          "$R/round419/native/depth8/tf_attn.o",
+          "$R/round419/native/depth8/tf_kda.o",
+          "$R/round419/native/depth8/tf_glue.o",
+          "$R/round419/native/depth8/tf_arena_build.o",
+          "$R/round419/native/depth8/tf_model_opt.o",
+          "$R/build/baseline-trace/probe_research.o",
+          "$R/round419/native/depth8/tf_kernels_reference.o",
+          "-o",
+          "$R/round419/native/v22-depth8-mixed/probe"
+        ],
+        "exit_code": 0,
+        "cpu_seconds": 0.091644,
+        "wall_seconds": 0.25152134895324707,
+        "max_process_rss_kib": 63388,
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "command": [
+          "clang++-17",
+          "-m64",
+          "-Wl,--gc-sections",
+          "-std=c++17",
+          "$R/build/baseline/bit-context.o",
+          "$R/build/baseline/bracket-context.o",
+          "$R/build/baseline/bracket.o",
+          "$R/build/baseline/byte-mixer.o",
+          "$R/build/baseline/byte-model.o",
+          "$R/build/baseline/combined-context.o",
+          "$R/build/baseline/context-hash.o",
+          "$R/build/baseline/context-manager.o",
+          "$R/build/baseline/decoder.o",
+          "$R/build/baseline/dictionary.o",
+          "$R/build/baseline/direct-hash.o",
+          "$R/build/baseline/direct.o",
+          "$R/build/baseline/encoder.o",
+          "$R/build/baseline/indirect-hash.o",
+          "$R/build/baseline/indirect.o",
+          "$R/build/baseline/interval-hash.o",
+          "$R/build/baseline/interval.o",
+          "$R/build/baseline/match.o",
+          "$R/build/baseline/mixer-input.o",
+          "$R/build/baseline/mixer.o",
+          "$R/build/baseline/nonstationary.o",
+          "$R/build/baseline/fxcmv1.o",
+          "$R/build/baseline/ppmd.o",
+          "$R/build/baseline/predictor.o",
+          "$R/build/baseline/preprocessor.o",
+          "$R/build/baseline/run-map.o",
+          "$R/build/baseline/runner.o",
+          "$R/build/baseline/sigmoid.o",
+          "$R/build/baseline/sparse.o",
+          "$R/build/baseline/sse.o",
+          "$R/round419/native/depth8/tf_weights_io.o",
+          "$R/round419/native/depth8/tf_weights_io_compressed.o",
+          "$R/round419/native/depth8/tf_qmat_dense.o",
+          "$R/round419/native/depth8/tf_qmat_sparse.o",
+          "$R/round419/native/depth8/tf_attn.o",
+          "$R/round419/native/depth8/tf_kda.o",
+          "$R/round419/native/depth8/tf_glue.o",
+          "$R/round419/native/depth8/tf_arena_build.o",
+          "$R/round419/native/depth8/tf_model_opt.o",
+          "-s",
+          "$R/round419/native/depth8/tf_kernels_reference.o",
+          "-o",
+          "$R/round419/native/v22-depth8-mixed/cmix"
+        ],
+        "exit_code": 0,
+        "cpu_seconds": 0.06856899999999999,
+        "wall_seconds": 0.06898760795593262,
+        "max_process_rss_kib": 63376,
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      },
+      {
+        "command": [
+          "$R/round420/depth-native-v22/upx",
+          "-9",
+          "$R/round419/native/v22-depth8-mixed/cmix",
+          "-o",
+          "$R/round419/native/v22-depth8-mixed/cmix.upx"
+        ],
+        "exit_code": 0,
+        "cpu_seconds": 0.25163,
+        "wall_seconds": 0.25197601318359375,
+        "max_process_rss_kib": 22520,
+        "resource_scope": "isolated wait4 child and reaped descendants"
+      }
+    ],
+    "started_at": 1793939445.2840834,
+    "initial_metadata_cpu_seconds": 0.083021793,
+    "cpu_limit_seconds": 180,
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_limit_gib": 1,
+    "threads_per_library": 1,
+    "upx_file": {
+      "path": "$R/round420/depth-native-v22/upx",
+      "bytes": 639228,
+      "sha256": "287b3dffe9dcafd8e366e162ac4ab41e5cf45a3c6768970256af0869288d84a1"
+    },
+    "new_nn_calls": 0,
+    "new_ppmd_calls": 0,
+    "new_fixture_runs": 0,
+    "cpu_seconds": 0.596619416,
+    "upx_version": "upx 5.2.1",
+    "outputs": {
+      "probe": {
+        "path": "$R/round419/native/v22-depth8-mixed/probe",
+        "bytes": 421408,
+        "sha256": "107670d8ca28acde591228dca35ee89559faf9a638ae1b01049342ff1f8d9ef4"
+      },
+      "binary": {
+        "path": "$R/round419/native/v22-depth8-mixed/cmix.upx",
+        "bytes": 177444,
+        "sha256": "597a88c22d28352ff7c44d74610e670021392a5c033e0edd95141907aa06193b"
+      }
+    },
+    "build_contract_status": "passed",
+    "source_small": {
+      "depth-mixed-audit.py": {
+        "path": "$R/round419/source/research/depth-mixed-audit.py",
+        "bytes": 27401,
+        "sha256": "f269c314897e093f2c67559539385800d399ed1facc75d87ef9525f13789835a"
+      },
+      "causal-mixed-audit.py": {
+        "path": "$R/round419/source/research/causal-mixed-audit.py",
+        "bytes": 29237,
+        "sha256": "9041acdae7c2610b58751e2ec3e62e4ddd1e8eda8eade5c529b5e854466bb67f"
+      }
+    },
+    "pipeline_after": {
+      "status": "running",
+      "stage": "waiting_for_inputs",
+      "pipeline_pid": 16774,
+      "child_pid": null
+    },
+    "prep_ledger_unchanged": true,
+    "prep_cpu_seconds": 83.912147995,
+    "fixed_components": {
+      "B0": {
+        "path": "$R/round417/formal-aux/assets/cmix.upx",
+        "bytes": 181956,
+        "sha256": "686cb39ca80e6aeb24b558aefd1f59e56f01c6e4352cdc3304bb61256d8953ee"
+      },
+      "W0": {
+        "path": "$R/round417/formal-aux/assets/original-static15.tfwc3",
+        "bytes": 2904325,
+        "sha256": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18"
+      },
+      "D": {
+        "path": "$R/round417/formal-aux/aux/comp_dict",
+        "bytes": 100098,
+        "sha256": "0bf16f1b29d854758c4fb3a16336a4b8fc112194b3cbfa8994c21c35a934b21a"
+      },
+      "O": {
+        "path": "$R/round417/formal-aux/aux/comp_order",
+        "bytes": 201111,
+        "sha256": "05ea75cb2cc644e004f880c8e68cac2fbd43186b4d42d77877d2d5634ce61b49"
+      }
+    },
+    "B1_bytes": 177444,
+    "dual_code_saved_bytes": 9024,
+    "completed_at": 1793939445.8862276,
+    "deployment_status": "waiting_existing_reference_assets",
+    "missing_reference_assets": [
+      "$R/round414/mixed-build/build.json",
+      "$R/round414/mixed-build/probe",
+      "$R/round414/mixed-build/mixed-interval",
+      "$R/round414/mixed-audit/prefix8/baseline/result.json",
+      "$R/round414/mixed-audit/prefix8/baseline/encoded.bin",
+      "$R/round414/mixed-audit/q2/baseline/result.json",
+      "$R/round414/mixed-audit/q2/baseline/encoded.bin"
+    ],
+    "base_manifests": {
+      "baseline-trace": {
+        "path": "$R/build/baseline-trace/build.json",
+        "bytes": 8794,
+        "sha256": "0c638a8bc2691b8c1b32a07da852350ada03858c96ef3f78ed733ee177cd9a45"
+      },
+      "baseline": {
+        "path": "$R/build/baseline/build.json",
+        "bytes": 8228,
+        "sha256": "991af3086cc48876068af0d3c9d0afb17ffcb709fbfccf3ecb85ae7c9850f01b"
+      }
+    },
+    "base_defines": {
+      "baseline-trace": [
+        "-DHUTTER_TRACE",
+        "-DSEED=923",
+        "-DUPDATE_LIMIT=3000"
+      ],
+      "baseline": [
+        "-DSEED=923",
+        "-DUPDATE_LIMIT=3000"
+      ]
+    },
+    "source_snapshots": {
+      "baseline-trace": {
+        "src/predictor.cpp": {
+          "path": "$R/baseline-trace-source/src/predictor.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 27633,
+          "sha256": "36610335d3b9c09de47dde06baf39269d058a9d696794829b9762bd510ff6837"
+        },
+        "src/predictor.h": {
+          "path": "$R/baseline-trace-source/src/predictor.h",
+          "exists": true,
+          "is_file": true,
+          "bytes": 7417,
+          "sha256": "c074b4621085b70f70365e526182615cc3a69a5c54d7720d449bde82df303723"
+        },
+        "src/mixer/mixer.cpp": {
+          "path": "$R/baseline-trace-source/src/mixer/mixer.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 2696,
+          "sha256": "6fb3e2df88429382452b4df6095b0604a7fe84953678b839e2ec0b01b8193a76"
+        },
+        "src/mixer/mixer.h": {
+          "path": "$R/baseline-trace-source/src/mixer/mixer.h",
+          "exists": true,
+          "is_file": true,
+          "bytes": 1161,
+          "sha256": "6a32194ad23ace57d66d0cb64b028698d405f0a3b56c53e20cd43f1fb284914e"
+        },
+        "src/models/ppmd.cpp": {
+          "path": "$R/baseline-trace-source/src/models/ppmd.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 31575,
+          "sha256": "fe371c9f43a3d4f9cce2f24f87df0ce888858466a7aa5530523e047ea008dac1"
+        },
+        "src/coder/encoder.cpp": {
+          "path": "$R/baseline-trace-source/src/coder/encoder.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 1926,
+          "sha256": "d91631eed50e5d520fe3e7c9b518fbebd62ffc62e5ed95209335e6b093fc1b45"
+        },
+        "src/coder/decoder.cpp": {
+          "path": "$R/baseline-trace-source/src/coder/decoder.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 832,
+          "sha256": "1bae2c108906625fb124f3fc602d1d59d814e5a415d963ab74246bf474e8bae9"
+        },
+        "src/models/fxcmv1.cpp": {
+          "path": "$R/baseline-trace-source/src/models/fxcmv1.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 166241,
+          "sha256": "b3de8853b1577ed9b6276abdb61e9b446fdf0b4bf42a3106c4aa98d3fea70b6c"
+        },
+        "research/trace.h": {
+          "path": "$R/baseline-trace-source/research/trace.h",
+          "exists": true,
+          "is_file": true,
+          "bytes": 693,
+          "sha256": "13c37af0dc657506b0b51636951d3526d47561e9c77047cb584d44a48eb93dc3"
+        },
+        "research/probe.cpp": {
+          "path": "$R/baseline-trace-source/research/probe.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 3846,
+          "sha256": "252991fbce43688b9abca1a205f3ffa631b9ae07deee8eda4ac29ae37cadcf12"
+        }
+      },
+      "baseline": {
+        "src/predictor.cpp": {
+          "path": "$R/upstream/src/predictor.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 27424,
+          "sha256": "0b79f43644daee942c9cb6da18fa464f0eb0185b6fc7ffc43cde703808fe537e"
+        },
+        "src/predictor.h": {
+          "path": "$R/upstream/src/predictor.h",
+          "exists": true,
+          "is_file": true,
+          "bytes": 7136,
+          "sha256": "348d3924fc4e1f4890d0332b0f33ba9591afa6ee06971b9a9bdeaa376b41f458"
+        },
+        "src/mixer/mixer.cpp": {
+          "path": "$R/upstream/src/mixer/mixer.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 2696,
+          "sha256": "6fb3e2df88429382452b4df6095b0604a7fe84953678b839e2ec0b01b8193a76"
+        },
+        "src/mixer/mixer.h": {
+          "path": "$R/upstream/src/mixer/mixer.h",
+          "exists": true,
+          "is_file": true,
+          "bytes": 1161,
+          "sha256": "6a32194ad23ace57d66d0cb64b028698d405f0a3b56c53e20cd43f1fb284914e"
+        },
+        "src/models/ppmd.cpp": {
+          "path": "$R/upstream/src/models/ppmd.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 31575,
+          "sha256": "fe371c9f43a3d4f9cce2f24f87df0ce888858466a7aa5530523e047ea008dac1"
+        },
+        "src/coder/encoder.cpp": {
+          "path": "$R/upstream/src/coder/encoder.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 914,
+          "sha256": "ecd9a2f4f39553e3864c8e9c96c7b512edca46a6fbb3197beaccaf47b0a8fdce"
+        },
+        "src/coder/decoder.cpp": {
+          "path": "$R/upstream/src/coder/decoder.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 832,
+          "sha256": "1bae2c108906625fb124f3fc602d1d59d814e5a415d963ab74246bf474e8bae9"
+        },
+        "src/models/fxcmv1.cpp": {
+          "path": "$R/upstream/src/models/fxcmv1.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 166241,
+          "sha256": "b3de8853b1577ed9b6276abdb61e9b446fdf0b4bf42a3106c4aa98d3fea70b6c"
+        },
+        "research/trace.h": {
+          "path": "$R/upstream/research/trace.h",
+          "exists": false,
+          "is_file": false
+        },
+        "research/probe.cpp": {
+          "path": "$R/upstream/research/probe.cpp",
+          "exists": true,
+          "is_file": true,
+          "bytes": 3669,
+          "sha256": "5cbe86b02833cfd3406a2288d21cdc6d6b9e01c75ffe139b88d3f9c2407d4d5b"
+        }
+      }
+    },
+    "original_probe_main": {
+      "path": "$R/build/baseline-trace/probe_research.o",
+      "exists": true,
+      "is_file": true,
+      "bytes": 40456,
+      "sha256": "a38f0f72843ef7a49f787fcac31382b49639544fe96d7cfbed6931ef8bcf9e0e"
+    },
+    "original_runner_main": {
+      "path": "$R/build/baseline/runner.o",
+      "exists": true,
+      "is_file": true,
+      "bytes": 174144,
+      "sha256": "7087e54927634f96c988a0a68926a8bc17f5c0930dbf4e1ec0e088682a139abb"
+    },
+    "runner_elf_record": {
+      "path": "$R/round419/native/v22-depth8-mixed/cmix",
+      "bytes": 443808,
+      "sha256": "0753700f438f939d2a36f9f6c21696cf4910b4752b2f38a71b9383edeebf1208"
+    },
+    "build_log_record": {
+      "path": "$R/round419/native/v22-depth8-mixed/build.log",
+      "bytes": 375,
+      "sha256": "9e54862acb777af1610fc57c370696da729c95bafed5ee582cdbb45e671f3e56"
+    },
+    "receipt_collection_initial_error": {
+      "status": "failed",
+      "exit_code": 1,
+      "cause": "Entry metadata record included exists/is_file; final hash comparison now projects path/bytes/sha256. No additional link or UPX calls.",
+      "cpu_seconds": null,
+      "scope": "receipt metadata outside the completed link/UPX build"
+    },
+    "pipeline_final": {
+      "status": "running",
+      "stage": "waiting_for_inputs",
+      "pipeline_pid": 16774,
+      "child_pid": null
+    },
+    "native_four_binaries_unchanged": true,
+    "build_cpu_seconds_before_final_receipt": 0.579319793,
+    "final_receipt_cpu_seconds": 0.017299623,
+    "completed_utc": "2026-11-06T04:35:37.646115+00:00"
+  },
+  "descriptor": {
+    "status": "waiting_existing_reference_assets",
+    "required_paths": [
+      "$R/round414/mixed-build/build.json",
+      "$R/round414/mixed-build/probe",
+      "$R/round414/mixed-build/mixed-interval",
+      "$R/round414/mixed-audit/prefix8/baseline/result.json",
+      "$R/round414/mixed-audit/prefix8/baseline/encoded.bin",
+      "$R/round414/mixed-audit/q2/baseline/result.json",
+      "$R/round414/mixed-audit/q2/baseline/encoded.bin"
+    ],
+    "build_receipt": "$R/round419/native/v22-depth8-mixed/build.json"
+  },
+  "deployment_status": "waiting_existing_reference_assets",
+  "missing_reference_assets": [
+    "$R/round414/mixed-build/build.json",
+    "$R/round414/mixed-build/probe",
+    "$R/round414/mixed-build/mixed-interval",
+    "$R/round414/mixed-audit/prefix8/baseline/result.json",
+    "$R/round414/mixed-audit/prefix8/baseline/encoded.bin",
+    "$R/round414/mixed-audit/q2/baseline/result.json",
+    "$R/round414/mixed-audit/q2/baseline/encoded.bin"
+  ],
+  "build_log": "                       Ultimate Packer for eXecutables\n                          Copyright (C) 1996 - 2026\nUPX 5.2.1       Markus Oberhumer, Laszlo Molnar & John Reiser   Aug 27th 2026\n\n        File size         Ratio      Format      Name\n   --------------------   ------   -----------   -----------\n    443808 ->    177444   39.98%   linux/amd64   cmix.upx\n\nPacked 1 file.\n",
+  "UPX_provenance": {
+    "status": "uploaded",
+    "http_status": 201,
+    "bundle_bytes": 648032,
+    "files": {
+      "round419/source/research/depth-mixed-audit.py": {
+        "bytes": 27401,
+        "sha256": "f269c314897e093f2c67559539385800d399ed1facc75d87ef9525f13789835a"
+      },
+      "round419/source/research/causal-mixed-audit.py": {
+        "bytes": 29237,
+        "sha256": "9041acdae7c2610b58751e2ec3e62e4ddd1e8eda8eade5c529b5e854466bb67f"
+      },
+      "round420/depth-native-v22/upx": {
+        "bytes": 639228,
+        "sha256": "287b3dffe9dcafd8e366e162ac4ab41e5cf45a3c6768970256af0869288d84a1"
+      }
+    },
+    "upx_origin": "retained temp/round230/packaging/upx; existing official v5.2.1 amd64 release receipt"
+  },
+  "new_nn_calls": 0,
+  "new_ppmd_calls": 0,
+  "new_fixture_runs": 0,
+  "new_compilations": 0,
+  "new_links": 2,
+  "UPX_calls": 1,
+  "old_native_four_binaries_unchanged": true,
+  "pipeline_pid_preserved": 16774,
+  "pipeline_stage": "waiting_for_inputs",
+  "formal_B_definition": "Untraced retained-v22 runner with admitted depth8 tf objects, including canonical reference-attention kernel, packed by UPX5.2.1 -9."
+}

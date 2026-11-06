@@ -59,6 +59,13 @@ def family_plan(source, depth, compiler=None, flags_from=None):
                    if arg != "-flto" and not arg.startswith(
                        ("-ffp-model=", "-fprofile-generate=", "-fprofile-use="))]
     extra_flags += ["-fno-fast-math", "-ffp-contract=off", "-I", str(source / "src")]
+    if depth == 8:
+        # Eight-block production uses reference-order attention. Build its
+        # existing kernel object before cmix and share it with all binaries.
+        plan.insert(len(plan) - 1, [compiler, *tf_flags, "-c",
+                                   str(source / "cpp_infer/src/kernels.cpp"),
+                                   "-o", "tf_kernels_reference.o"])
+        plan[-1].insert(-2, "tf_kernels_reference.o")
     link = plan[-1]
     shared = [arg for arg in link[:-2] if arg not in ("runner.o", "-s")]
     tf_objects = [arg for arg in link if arg.startswith("tf_") and arg.endswith(".o")]
@@ -69,9 +76,12 @@ def family_plan(source, depth, compiler=None, flags_from=None):
     for rel, obj in [("cpp_infer/src/kernels.cpp", "tf_kernels_reference.o"),
                      ("cpp_infer/src/model.cpp", "tf_model_reference.o"),
                      ("cpp_infer/src/opt/test_xcheck.cpp", "test_xcheck.o")]:
+        if depth == 8 and obj == "tf_kernels_reference.o":
+            continue
         plan.append([compiler, *tf_flags, "-c", str(source / rel), "-o", obj])
-    plan.append([compiler, *link_flags, *tf_objects, "tf_kernels_reference.o",
-                 "tf_model_reference.o", "test_xcheck.o", "-o", "test_xcheck"])
+    xcheck_objects = list(dict.fromkeys([*tf_objects, "tf_kernels_reference.o",
+                                        "tf_model_reference.o", "test_xcheck.o"]))
+    plan.append([compiler, *link_flags, *xcheck_objects, "-o", "test_xcheck"])
     for name in ("probe", "activation-probe"):
         obj = name + "_research.o"
         plan.append([compiler, *extra_flags, "-c", str(source / "research" / (name + ".cpp")),

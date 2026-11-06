@@ -25,11 +25,16 @@
 #include "qmat_dense.h"
 #include "qmat_sparse.h"
 
-// Debug-only component isolation for the naive-vs-opt cross-check (never
-// defined in the production build targets): swap the fused KDA step and/or
-// the attention kernel for the naive path (bit-exact vs src/model.cpp) to
-// attribute divergence per component.
-#if defined(FX2_XCHECK_NAIVE_KDA) || defined(FX2_XCHECK_NAIVE_ATTN)
+// The fixed eight-block family uses reference-order vanilla attention.
+// On its real 1346-target piece, vector softmax/PV reassociation crossed
+// an output-projection INT8 half-integer at block 3, token 401. Keep the
+// existing reference attention path and all quantized matmul/KDA kernels.
+// The original twelve-block production family retains its vector path;
+// its explicit cross-check isolation flag still selects reference attention.
+#if FX2_MODEL_LAYERS == 8 || defined(FX2_XCHECK_NAIVE_ATTN)
+#define FX2_REFERENCE_ATTN
+#endif
+#if defined(FX2_XCHECK_NAIVE_KDA) || defined(FX2_REFERENCE_ATTN)
 #include "../kernels.h"
 #endif
 
@@ -242,7 +247,7 @@ struct TransformerOptImpl {
   };
   std::vector<NaiveKst> nkst = std::vector<NaiveKst>(NK);
 #endif
-#ifdef FX2_XCHECK_NAIVE_ATTN
+#ifdef FX2_REFERENCE_ATTN
   struct NaiveVst {
     alignas(64) int8_t kring[WIN][D];
     alignas(64) int8_t vring[WIN][D];
@@ -422,7 +427,7 @@ struct TransformerOptImpl {
           _mm_prefetch(kb + h * (ATTN_NBLK * 32 * ATTN_DH) + off, _MM_HINT_T0);
     }
 #endif
-#ifdef FX2_XCHECK_NAIVE_ATTN
+#ifdef FX2_REFERENCE_ATTN
     {
       NaiveVst& st = nvst[vi];
       std::memcpy(st.kring[slot], kk, D);
