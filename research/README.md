@@ -6,7 +6,7 @@
 
 [Exact attention tile checkpoints](tile-checkpoint.md) reduce the measured attention graph storage by 92.66%. The 1,346-target whole-model adjoints are bit-exact; the 131,071-target OpenBLAS forward is bit-exact and its full backward hits the 7 GiB memory gate. [Terminal receipt](results/tile-checkpoint-full-model.json). The running causal trajectory stays fixed.
 
-[Real original native auxiliary delivery](original-release-native-aux.md) passes the dictionary/order roundtrips and both packed section entry points. B/D/O/W establish **6,573,938 B before range payload**, with reusable D/O and exact full-S charging. The [full-stream phase runner](causal-fullstream.md) reuses one frozen W pair and records actual package S before both native original decodes. [One eight-block structural candidate](depth-distillation-contract.md) preserves the outer skip pairing; its byte budget uses the existing tensor census and creates zero new models.
+[Real original native auxiliary delivery](original-release-native-aux.md) passes the dictionary/order roundtrips and both packed section entry points. B/D/O/W establish **6,573,938 B before range payload**, with reusable D/O and exact full-S charging. The [full-stream phase runner](causal-fullstream.md) uses one frozen model pair and records actual package S before both native original decodes. Its [depth extension](results/depth-fullstream-orchestration.json) accepts the actual two-probe/two-B family and charges double-W and dual-B once. [Eight-block complete distillation](depth-distillation.md) preserves the outer skip pairing and uses the same causal inputs; [the original structural budget](depth-distillation-contract.md) retains its static census scope.
 
 ## Fixed sources
 

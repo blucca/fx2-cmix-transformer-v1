@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""One admitted original-family fullstream side, in two explicit phases.
+"""One admitted v22/static15 fullstream side, in two explicit phases.
 
 encode runs the retained batch encoder and assembles the real native package.
 decode consumes that package once and verifies the official 1GB restoration.
@@ -29,6 +29,8 @@ PPMD_MAP_BYTES = 14000 << 20
 DISK_HEADROOM_BYTES = 256 << 20
 CPU_RESERVE_SECONDS = 900
 SIDE_CPU_MAX = 150 * 3600
+CAUSAL_FAMILY = 'old-v22-untraced-static15'
+DEPTH_FAMILY = 'old-v22-depth8-static15'
 
 
 def cpu():
@@ -37,18 +39,39 @@ def cpu():
 
 
 def measurements_from_mixed(s):
-    """Read one completed causal W: actual sample fee and separate rate scenarios."""
+    """Read the sole completed causal/depth W and its actual two-side fees."""
     assert s['status'] == 'complete' and s['original_weight_bytes_equal'] is False
+    depth = s.get('family') == DEPTH_FAMILY
     selection, mixed = s['selection'], s['actual_mixed']
     selected = selection['selected']
     assert selection['status'] == 'frozen' and selected['epoch'] > 0 and selected['original_byte_equal'] is False
-    zero, = [row for row in selection['completed_exports'] if row['epoch'] == 0]
-    assert zero['step'] == 0 and zero['original_byte_equal'] is True and zero['weight_bytes'] == 2904325
+    if depth:
+        assert s['schema'] == 'hutter.depth-mixed.v1'
+        baseline = s['baseline_weight']
+        assert baseline['bytes'] == 2904325 and baseline['sha256'] == W0_SHA256
+        assert s['candidate_weight'] == {'path': selected['weight_file'], 'bytes': selected['weight_bytes'],
+                                         'sha256': selection['selected_weight_sha256']}
+        initial = selection['initial_student']
+        assert initial['epoch'] == 0 and initial['selected'] is False and initial['original_byte_equal'] is False
+        assert all(row['epoch'] > 0 for row in selection['completed_exports'])
+        terminal = s['pipeline_terminal']
+        assert terminal['status'] in {'complete', 'cpu_budget'} and terminal['large_python_child_reaped'] is True
+        assert terminal['target_epochs'] == 32 and 0 < selected['epoch'] <= terminal['completed_epochs'] <= 32
+        assert selected['epoch'] % 4 == 0
+        dual_b = 2*(s['B0']['bytes']-s['B1']['bytes'])
+        assert s['dual_code_saved_bytes'] == selected['dual_code_saved_bytes'] == mixed['dual_code_saved_bytes'] == dual_b
+        assert s['full_s']['known_dual_code_saved_bytes'] == dual_b
+    else:
+        zero, = [row for row in selection['completed_exports'] if row['epoch'] == 0]
+        assert zero['step'] == 0 and zero['original_byte_equal'] is True and zero['weight_bytes'] == 2904325
+        baseline = {'path': zero['weight_file'], 'sha256': W0_SHA256, 'bytes': zero['weight_bytes']}
+        dual_b = 0
     assert selected in selection['completed_exports'] and selected['weight_bytes'] > 0
     assert selection['original_weight_sha256'] == W0_SHA256
     assert len(selection['selected_weight_sha256']) == 64 and selection['selected_weight_sha256'] != W0_SHA256
     assert selected['held_total']['count'] == selection['baseline_held_total']['count'] == selection['held_targets'] == 1082505
-    double_w = 2*(zero['weight_bytes'] - selected['weight_bytes'])
+    double_w = 2*(baseline['bytes'] - selected['weight_bytes'])
+    fixed_saved = double_w + dual_b
     assert s['double_weight_saved_bytes'] == selected['double_weight_saved_bytes'] == mixed['double_weight_saved_bytes'] == double_w
     assert s['full_s']['known_double_weight_saved_bytes'] == double_w
     assert s['full_s']['source_bytes'] == PREPARED_BYTES and s['full_s']['native_targets'] == 586215331
@@ -87,26 +110,42 @@ def measurements_from_mixed(s):
             'candidate_decode': {'cpu_seconds': decode['cpu_seconds'], 'output_bytes': length,
                 'cpu_seconds_per_prepared_byte': decode['cpu_seconds']/decode['output_bytes']}}
     payload = sum(s['paired'][name]['payload_saved_bytes'] for name in specs)
-    assert mixed['sample_count'] == 2 and mixed['dual_common_code_delta_bytes'] == 0
-    assert mixed['sample_payload_saved_bytes'] == payload and mixed['paired_sample_component_saved_bytes'] == payload+double_w
+    assert mixed['sample_count'] == 2
+    if not depth:
+        assert mixed['dual_common_code_delta_bytes'] == 0
+    assert mixed['sample_payload_saved_bytes'] == payload and mixed['paired_sample_component_saved_bytes'] == payload+fixed_saved
     mature, prefix, q2 = s['paired']['prefix8'], s['paired']['prefix8']['payload_saved_bytes'], s['paired']['q2']['payload_saved_bytes']
     admission = {'mature_target_gain_bits': mature['masks']['neural_targets']['final_u16_bits_saved'],
         'mature_actual_saved_bytes': mature['interval_coded_saved_bytes'], 'mature_score_bytes': specs['prefix8'][3],
-        'prefix_payload_saved_bytes': prefix, 'q2_payload_saved_bytes': q2, 'actual_pair_net_saved_bytes': payload+double_w}
+        'prefix_payload_saved_bytes': prefix, 'q2_payload_saved_bytes': q2,
+        'dual_code_saved_bytes': dual_b, 'actual_pair_net_saved_bytes': payload+fixed_saved}
     rates = {name: {'score_bytes': count, 'actual_saved_bytes': saved, 'saved_bytes_per_prepared_byte': saved/count,
         'projected_full_payload_saved_bytes': PREPARED_BYTES*saved/count, 'double_weight_saved_bytes': double_w,
-        'projected_full_net_saved_bytes': PREPARED_BYTES*saved/count+double_w}
+        'dual_code_saved_bytes': dual_b, 'projected_full_net_saved_bytes': PREPARED_BYTES*saved/count+fixed_saved}
         for name, saved, count in [('mature', mature['interval_coded_saved_bytes'], specs['prefix8'][3]), ('prefix8', prefix, 8 << 20)]}
-    return {'selected': {'epoch': selected['epoch'], 'step': selected['step'], 'path': selected['weight_file'],
+    result = {'family': DEPTH_FAMILY if depth else CAUSAL_FAMILY,
+            'selected': {'epoch': selected['epoch'], 'step': selected['step'], 'path': selected['weight_file'],
                 'sha256': selection['selected_weight_sha256'], 'bytes': selected['weight_bytes']},
-            'baseline': {'path': zero['weight_file'], 'sha256': W0_SHA256, 'bytes': zero['weight_bytes']},
-            'admission': admission, 'G_samples': payload+double_w, 'double_weight_saved_bytes': double_w,
+            'baseline': baseline, 'admission': admission, 'G_samples': payload+fixed_saved,
+            'double_weight_saved_bytes': double_w, 'dual_code_saved_bytes': dual_b,
             'scopes': scopes, 'rates': rates, 'native_reports': selected['report_only']}
+    if depth:
+        result.update(binaries={'W0': s['B0'], 'W1': s['B1']},
+                      probes={'W0': s['baseline_probe'], 'W1': s['candidate_probe']},
+                      fixed_aux=s['full_s']['fixed_aux'], training_coverage=terminal)
+    return result
+
+
+def side_records(entry, side):
+    """Depth uses its actual per-side probe/B; causal retains the common family."""
+    names = ['weights', 'probe', 'binary'] if entry['family'] == DEPTH_FAMILY else ['weights']
+    return {**entry['common'], **{name: entry['sides'][side][name] for name in names}}
 
 
 def admitted(entry):
     """Freeze the caller's measured direction, named record scenario and budget."""
-    assert entry['status'] == 'admitted' and entry['family'] == 'old-v22-untraced-static15'
+    assert entry['status'] == 'admitted' and entry['family'] in {CAUSAL_FAMILY, DEPTH_FAMILY}
+    depth = entry['family'] == DEPTH_FAMILY
     d, sides = entry['admission'], entry['sides']
     assert d['decision'] == 'continue'
     assert all(d[k] is True for k in ['mixed_complete', 'prepared_inverse_passed',
@@ -115,18 +154,29 @@ def admitted(entry):
     assert set(sides) == {'W0', 'W1'}
     assert sides['W0']['weights']['sha256'] == W0_SHA256
     assert sides['W0']['weights']['sha256'] != sides['W1']['weights']['sha256']
+    common_names = {'stream', 'vocab', 'dictionary', 'compressed_dictionary', 'compressed_order'}
+    assert set(entry['common']) == (common_names if depth else common_names | {'probe', 'binary'})
     double_w = 2*(sides['W0']['weights']['bytes'] - sides['W1']['weights']['bytes'])
-    assert d['mature_target_gain_bits'] > 0 and d['mature_actual_saved_bytes'] > 0
-    assert d['prefix_payload_saved_bytes'] > 0
-    assert d['actual_pair_net_saved_bytes'] == d['prefix_payload_saved_bytes'] + d['q2_payload_saved_bytes'] + double_w
+    dual_b = 2*(side_records(entry, 'W0')['binary']['bytes']-side_records(entry, 'W1')['binary']['bytes'])
+    assert d.get('dual_code_saved_bytes', 0) == dual_b
+    if not depth:
+        assert dual_b == 0
+        assert d['mature_target_gain_bits'] > 0 and d['mature_actual_saved_bytes'] > 0
+        assert d['prefix_payload_saved_bytes'] > 0
+    assert d['actual_pair_net_saved_bytes'] == d['prefix_payload_saved_bytes'] + d['q2_payload_saved_bytes'] + double_w + dual_b
     assert d['actual_pair_net_saved_bytes'] > 0
     assert d['s0_reference_kind'] in {'actual', 'scenario'} and d['latest_record_bytes'] > 0
-    score_bytes = d['mature_score_bytes']
+    # The fixed-size depth saving may pay for a measured payload increase.
+    # Freeze one named scenario; mature is contained in prefix, not added to it.
+    scenario = d['record_scenario'] if depth else 'mature'
+    assert scenario in {'mature', 'prefix8'}
+    score_bytes, payload_saved = ((d['mature_score_bytes'], d['mature_actual_saved_bytes'])
+        if scenario == 'mature' else (8 << 20, d['prefix_payload_saved_bytes']))
     assert 0 < score_bytes <= PREPARED_BYTES
     required_saved = d['s0_reference_bytes'] - 99*d['latest_record_bytes']//100
     # Integer cross multiplication retains the exact floor(.99*L) boundary.
-    assert (PREPARED_BYTES*d['mature_actual_saved_bytes'] + double_w*score_bytes
-            >= required_saved*score_bytes), 'named mature scenario misses the record margin'
+    assert (PREPARED_BYTES*payload_saved + (double_w+dual_b)*score_bytes
+            >= required_saved*score_bytes), 'named net-S scenario misses the record margin'
     for s in sides.values():
         assert 0 < s['cpu_limit_seconds'] <= SIDE_CPU_MAX and s['prep_cpu_seconds'] >= 0
         estimate = s['forecast_remaining_cpu_seconds']
@@ -136,20 +186,28 @@ def admitted(entry):
 
 
 def paired_size(w0, w1):
-    """Actual two-package S; the double-W fee occurs once in this comparison."""
+    """Actual two-package S; double-W and dual-B each occur once."""
     assert w0['identity']['side'] == 'W0' and w1['identity']['side'] == 'W1'
     assert w0['identity']['entry_sha256'] == w1['identity']['entry_sha256'], 'use one frozen admission'
+    family = w0['identity']['family']
+    assert family == w1['identity']['family'] and family in {CAUSAL_FAMILY, DEPTH_FAMILY}
     p0, p1 = w0['package'], w1['package']
     assert p0['prepared_bytes'] == p1['prepared_bytes'] == PREPARED_BYTES
     c0, c1 = p0['components'], p1['components']
-    for name in ['binary', 'compressed_dictionary', 'compressed_order']:
-        assert c0[name] == c1[name], 'use the same frozen B/D/O'
+    for name in ['compressed_dictionary', 'compressed_order']:
+        assert c0[name] == c1[name], 'use the same frozen D/O'
+    if family == CAUSAL_FAMILY:
+        assert c0['binary'] == c1['binary'], 'causal uses the same frozen B'
     for package, c in [(p0, c0), (p1, c1)]:
         assert package['full_s'] == (c['raw_payload'] + 2*c['binary']
                 + 2*c['compressed_dictionary'] + c['compressed_order'] + 2*c['weights'] + 69)
     saved = p0['full_s'] - p1['full_s']
-    assert saved == c0['raw_payload'] - c1['raw_payload'] + 2*(c0['weights'] - c1['weights'])
+    payload_saved = c0['raw_payload']-c1['raw_payload']
+    double_w, dual_b = 2*(c0['weights']-c1['weights']), 2*(c0['binary']-c1['binary'])
+    assert saved == payload_saved + double_w + dual_b
     return {'s0': p0['full_s'], 's1': p1['full_s'], 'net_saved_bytes': saved,
+            'payload_saved_bytes': payload_saved, 'double_weight_saved_bytes': double_w,
+            'dual_code_saved_bytes': dual_b,
             'formal_decode_status': {s: x['status'] for s, x in [('W0',w0),('W1',w1)]},
             'verification': 'package sizes; each official archive decode is recorded separately'}
 
@@ -161,7 +219,7 @@ def run(a):
     sides = entry['sides']
     side = sides[a.side]
     root, job = Path(entry['root']).resolve(), a.out.resolve()
-    records = {**entry['common'], 'weights': side['weights']}
+    records = side_records(entry, a.side)
     required = {'stream', 'vocab', 'dictionary', 'probe', 'binary',
                 'compressed_dictionary', 'compressed_order', 'weights'}
     assert set(records) == required

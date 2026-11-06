@@ -227,8 +227,12 @@ The complete archive path preserves the existing two prepared encodes and two
 formal archive decodes, reusing passed identical W0 phases in the same event
 ledger. Its final result uses actual `S=P+2B+2D+O+2W+69`, both deployed code
 families, restored official 1 GB and the latest record. The depth-specific
-fullstream entry is formed from the actual mixed receipt; the existing
-original-family runner keeps its original contract until that receipt arrives.
+fullstream entry is formed from the actual mixed receipt. The
+[shared full-stream runner](causal-fullstream.md) now reads that receipt,
+uses each side's frozen probe/B and charges its actual package components.
+Its [model-free acceptance](results/depth-fullstream-orchestration.json)
+covers the depth schema, signed payload changes, double-W/dual-B fees and
+the named integer record margin; the original causal contract stays fixed.
 
 Depth admission uses the named **net-S** scenario and latest record margin.
 Actual double-weight and double-code savings can pay a measured payload

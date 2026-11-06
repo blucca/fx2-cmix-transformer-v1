@@ -73,6 +73,62 @@ assert decode_rate == 8/(8 << 20) and decode_rate != 8/(1072279-30)
 assert measured['scopes']['q2']['statistical_start'] == 'fresh_cold'
 assert measured['native_reports'] == selected['report_only']
 
+# Depth has a genuine smaller student at epoch0, separate from original W0.
+# Its fixed W/B saving can pay for negative measured payload deltas.
+depth_source = deepcopy(source_state)
+depth_selected = deepcopy(selected)
+depth_selected.update(epoch=4, weight_bytes=1955187,
+                      double_weight_saved_bytes=1898276, dual_code_saved_bytes=9024)
+depth_source.update(schema='hutter.depth-mixed.v1', family=m.DEPTH_FAMILY,
+    baseline_weight={'path':zero['weight_file'], 'bytes':2904325, 'sha256':m.W0_SHA256},
+    candidate_weight={'path':depth_selected['weight_file'], 'bytes':1955187, 'sha256':'1'*64},
+    baseline_probe={'path':'/synthetic/probe12', 'bytes':10, 'sha256':'2'*64},
+    candidate_probe={'path':'/synthetic/probe8', 'bytes':9, 'sha256':'3'*64},
+    B0={'path':'/synthetic/B0', 'bytes':181956, 'sha256':'4'*64},
+    B1={'path':'/synthetic/B1', 'bytes':177444, 'sha256':'5'*64},
+    dual_code_saved_bytes=9024, double_weight_saved_bytes=1898276,
+    pipeline_terminal={'status':'cpu_budget', 'large_python_child_reaped':True,
+                       'target_epochs':32, 'completed_epochs':4,
+                       'completed_continuous_epochs':4, 'completed_hard_epochs':0})
+depth_source['selection'].update(selected=depth_selected, completed_exports=[depth_selected],
+    initial_student={'epoch':0, 'selected':False, 'original_byte_equal':False,
+                     'weight_file':'/synthetic/initial8', 'weight_bytes':1955187, 'sha256':'6'*64})
+depth_source['full_s'].update(known_double_weight_saved_bytes=1898276,
+                            known_dual_code_saved_bytes=9024, fixed_aux={})
+for name, saved, interval_saved, gain in [('prefix8',-10000,-1000,-32), ('q2',-4,-4,-8)]:
+    base, candidate = depth_source['steps'][name+'-baseline'], depth_source['steps'][name+'-candidate']
+    candidate['encode']['output_bytes'] = base['encode']['output_bytes']-saved
+    candidate['interval']['full_coded_bytes'] = candidate['encode']['output_bytes']
+    candidate['interval']['interval_coded_bytes'] = base['interval']['interval_coded_bytes']-interval_saved
+    candidate['interval']['neural_targets']['final_u16_bits'] = base['interval']['neural_targets']['final_u16_bits']-gain
+    depth_source['paired'][name].update(payload_saved_bytes=saved, interval_coded_saved_bytes=interval_saved)
+    depth_source['paired'][name]['masks']['neural_targets']['final_u16_bits_saved'] = gain
+depth_source['actual_mixed'] = {'sample_count':2, 'sample_payload_saved_bytes':-10004,
+    'double_weight_saved_bytes':1898276, 'dual_code_saved_bytes':9024,
+    'paired_sample_component_saved_bytes':1897296}
+depth_before = deepcopy(depth_source)
+depth_measured = m.measurements_from_mixed(depth_source)
+assert depth_source == depth_before
+assert depth_measured['G_samples'] == -10000-4+1898276+9024
+assert depth_measured['binaries']['W1']['bytes'] == 177444
+assert depth_measured['training_coverage']['completed_hard_epochs'] == 0
+assert depth_measured['rates']['mature']['projected_full_net_saved_bytes'] == m.PREPARED_BYTES*(-1000)/1041690+1907300
+assert depth_measured['scopes']['prefix8']['candidate_decode']['cpu_seconds_per_prepared_byte'] == 8/(8 << 20)
+depth_gate = {'status':'admitted', 'family':m.DEPTH_FAMILY,
+    'common':{name:{} for name in ['stream','vocab','dictionary','compressed_dictionary','compressed_order']},
+    'sides':{side:{'weights':depth_measured['baseline'] if side=='W0' else depth_measured['selected'],
+                   'binary':depth_measured['binaries'][side], 'probe':depth_measured['probes'][side],
+                   'cpu_limit_seconds':540000, 'prep_cpu_seconds':0,
+                   'forecast_remaining_cpu_seconds':1000} for side in ['W0','W1']},
+    'admission':dict(depth_measured['admission'], decision='continue', mixed_complete=True,
+                    prepared_inverse_passed=True, original_queues_terminal=True,
+                    scope_extension_recorded=True, cpu_calendar_passed=True,
+                    s0_reference_kind='scenario', s0_reference_bytes=990000+952225,
+                    latest_record_bytes=1000000)}
+for scenario in ['mature','prefix8']:
+    depth_gate['admission']['record_scenario'] = scenario
+    m.admitted(depth_gate)
+
 for d in ['prepared', 'upstream/dictionary', 'assets']:
     (root/d).mkdir(parents=True)
 stream = root/'prepared/stream.bin'
@@ -93,7 +149,7 @@ assert mode=='encode'
 data=Path(source).read_bytes()[int(offset):int(offset)+int(length)]
 Path(target).write_bytes(bytes(b^Path(weights).read_bytes()[0] for b in data))
 with Path(target).with_name('fixture-calls').open('a') as f:f.write('encode\\n')
-print('PROBE_RESULT '+json.dumps({'input_bytes':len(data),'output_bytes':len(data),'seconds':.01,'cpu_seconds':.01}))
+print('PROBE_RESULT '+json.dumps({'input_bytes':len(data),'output_bytes':Path(target).stat().st_size,'seconds':.01,'cpu_seconds':.01}))
 ''')
 probe.chmod(0o755)
 binary = root/'assets/B'
@@ -172,6 +228,54 @@ for side in ['W0','W1']:
     assert states[side]['cpu_used_seconds'] < states[side]['cpu_limit_seconds']
 assert (root/'fixture-decodes').read_text() == 'decode\ndecode\n'
 assert m.paired_size(states['W0'],states['W1'])['formal_decode_status'] == {'W0':'passed','W1':'passed'}
+
+# Exercise the same real assembler/phase runner with two actual B/probe files.
+depth_b0, depth_probe = root/'assets/depth-B0', root/'assets/probe8'
+depth_b0.write_text(binary.read_text()+'# retained twelve-layer fixture padding\n')
+depth_b0.chmod(0o755)
+depth_probe.write_text(probe.read_text().replace(
+    'for b in data))', "for b in data)+b'extra')"))
+depth_probe.chmod(0o755)
+depth_entry = deepcopy(entry)
+depth_entry['family'] = m.DEPTH_FAMILY
+depth_entry['common'].pop('probe')
+depth_entry['common'].pop('binary')
+for side, b, q in [('W0',depth_b0,probe), ('W1',binary,depth_probe)]:
+    depth_entry['sides'][side].update(binary=record(b), probe=record(q))
+dual_b = 2*(depth_b0.stat().st_size-binary.stat().st_size)
+depth_entry['admission'].update(record_scenario='mature', dual_code_saved_bytes=dual_b,
+    mature_target_gain_bits=-1, mature_actual_saved_bytes=-1,
+    prefix_payload_saved_bytes=-2, q2_payload_saved_bytes=-3,
+    actual_pair_net_saved_bytes=-5+36+dual_b)
+m.admitted(depth_entry)
+bad_margin = deepcopy(depth_entry)
+# One integer byte above this scenario's exact floor must stop admission.
+projected_floor = (m.PREPARED_BYTES*(-1)+(36+dual_b)*1000)//1000
+bad_margin['admission']['s0_reference_bytes'] = 99000+projected_floor+1
+try:
+    m.admitted(bad_margin)
+except AssertionError:
+    pass
+else:
+    raise AssertionError('depth net-S record boundary accepted an extra byte')
+depth_path = root/'depth-entry.json'
+depth_path.write_text(json.dumps(depth_entry,indent=2)+'\n')
+depth_states = {}
+for side in ['W0','W1']:
+    args = SimpleNamespace(entry=depth_path, side=side, phase='encode', out=root/'depth'/side)
+    depth_states[side] = run_fixture(args)
+    assert run_fixture(args)['status'] == 'encoded'
+    assert (root/'depth'/side/'runs/fullstream'/side/'fixture-calls').read_text() == 'encode\n'
+depth_pair = m.paired_size(depth_states['W0'],depth_states['W1'])
+assert depth_pair['payload_saved_bytes'] == -5
+assert depth_pair['double_weight_saved_bytes'] == 36 and depth_pair['dual_code_saved_bytes'] == dual_b
+assert depth_pair['net_saved_bytes'] == -5+36+dual_b
+for side in ['W0','W1']:
+    args = SimpleNamespace(entry=depth_path, side=side, phase='decode', out=root/'depth'/side)
+    depth_states[side] = run_fixture(args)
+    assert run_fixture(args)['status'] == 'passed'
+assert (root/'fixture-decodes').read_text() == 'decode\ndecode\ndecode\ndecode\n'
+assert m.paired_size(depth_states['W0'],depth_states['W1'])['formal_decode_status'] == {'W0':'passed','W1':'passed'}
 receipt = {'status':'passed', 'scope':'model-free orchestration fixture',
            'mixed_reader': {'status':'passed', 'actual_pair_net_saved_bytes':measured['G_samples'],
                             'checks':['one shared double-W fee', 'mature separate from complete prefix',
@@ -181,6 +285,15 @@ receipt = {'status':'passed', 'scope':'model-free orchestration fixture',
            'actual_two_copy_weight_saved_bytes':36,
            'carried_prep_cpu_seconds':{s:x['prior_prep_cpu_seconds'] for s,x in states.items()},
            'measured_fixture_cpu_seconds':{s:x['cpu_used_seconds']-x['prior_prep_cpu_seconds']
-                                           for s,x in states.items()}}
+                                           for s,x in states.items()},
+           'depth': {'status':'passed', 'mixed_G_samples':depth_measured['G_samples'],
+                     'reported_completed_epochs':4, 'reported_completed_hard_epochs':0,
+                     'actual_payload_saved_bytes':-5, 'actual_double_weight_saved_bytes':36,
+                     'actual_dual_code_saved_bytes':dual_b,
+                     'actual_pair_net_saved_bytes':depth_pair['net_saved_bytes'],
+                     'unique_encode_calls':2, 'unique_decode_calls':2,
+                     'checks':['original W0 distinct from epoch0 student', 'two per-side probes and binaries',
+                               'signed payload delta plus one double-W and one dual-B',
+                               'named net-S scenario exact integer record boundary', 'phase replay reuse']}}
 (root/'check.json').write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps(receipt))

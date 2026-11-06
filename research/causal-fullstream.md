@@ -1,12 +1,20 @@
-# A frozen weight, two full streams, two original archives
+# A frozen model pair, two full streams, two original archives
 
-The whole-stream causal trajectory has one mixed-codec candidate. Its final
-delivery uses the original **old-v22, untraced, static15** family on both sides:
+Each whole-stream causal or fixed-depth trajectory has one mixed-codec
+candidate. The shared runner keeps the original **old-v22, untraced, static15**
+codec and uses each side's actual native model:
 
 1. W0 encodes the complete 586,459,020-byte prepared stream.
 2. The single selected W1 encodes that same stream.
 3. Each real `archive9` restores the original 1,000,000,000 bytes, with MD5
    `e206c3450ac99950df65bf70ef61a12d`.
+
+The causal method shares its twelve-block probe and deployed B. The depth
+method uses the original twelve-block W0 and the selected eight-block W1,
+with **two probes and two deployed binaries**. Its already measured B0/B1
+sizes are 181,956 / 177,444 bytes, saving **9,024 bytes across both B copies**.
+Selected trained W1 bytes and actual full-stream payloads come from their
+completed measurements.
 
 [`causal-fullstream-job.py`](causal-fullstream-job.py) reuses
 [`batch.py`](batch.py) for the prepared encoder and
@@ -22,26 +30,40 @@ Current implementation evidence is the
 [model-free orchestration check](results/causal-fullstream-orchestration.json).
 The check covers phase reuse, real package sizes and CPU accounting; its
 prepared fixture has 10,000 bytes and restored fixture has 17,000 bytes.
+The [depth extension receipt](results/depth-fullstream-orchestration.json)
+also exercises two actual fixture probes/Bs, a five-byte payload increase
+paid by the fixed W/B saving, and the exact integer record boundary. The
+real model/full-1GB call count in these orchestration checks is **0**.
 
 ## One factual entry, shared by both machines
 
-Use `measurements_from_mixed(state)` for the completed causal mixed receipt: it
+Use `measurements_from_mixed(state)` for the completed causal or depth receipt: it
 extracts the selected W, actual sample fee, separate mature/prefix scenarios,
 per-scope encode/decode rates and the existing native reports. It preserves the
 fresh-q2 role and uses restored prepared bytes for decode rate.
+
+For depth, original W0 comes from `baseline_weight`; the epoch-zero
+`initial_student` is a separate eight-block model outside selection. W1's
+path, bytes and SHA256 agree with the selected positive-epoch native export.
+The reader also returns the two `binaries`, two `probes`, common `fixed_aux`
+and actual `training_coverage`. A CPU-budget terminal can have fewer than
+32 epochs; completed continuous/hard epochs remain explicit.
 
 Create `fullstream-entry.json` from that output, the completed inverse, native
 build and deployment receipts. It freezes the chosen W, the measured scope, a named
 record scenario and resource decision. Keep this entry unchanged across the
 two sides and both phases.
 
-- `status`: `admitted`; `family`: `old-v22-untraced-static15`; `root`: the
+- `status`: `admitted`; `family`: `old-v22-untraced-static15` for causal or
+  `old-v22-depth8-static15` for depth; `root`: the
   scratch root containing `prepared` and the pristine `upstream`.
 - `common`: records for `stream`, `vocab`, `dictionary`, `probe`, `binary`,
   `compressed_dictionary`, `compressed_order`. Each has an absolute `path`,
   actual `bytes` and `sha256`. The probe and packed B share the original
   object family with the static15 loader. The reference relink and original
-  golden provenance accompany the entry.
+  golden provenance accompany the entry. For depth, `common` contains only
+  stream/vocab/dictionary/compressed_dictionary/compressed_order; each side
+  supplies its own `probe` and `binary` records.
 - `sides.W0` / `sides.W1`: a `weights` record, `cpu_limit_seconds`,
   `prep_cpu_seconds` and `forecast_remaining_cpu_seconds`. Allocate at most
   540,000 CPU seconds per side and 1,080,000 in total. Original auxiliary
@@ -54,13 +76,30 @@ two sides and both phases.
   `prefix_payload_saved_bytes`, `q2_payload_saved_bytes`,
   `actual_pair_net_saved_bytes`, `s0_reference_bytes`, `s0_reference_kind`
   (`actual` or `scenario`) and `latest_record_bytes`.
+  Depth also freezes `dual_code_saved_bytes` and `record_scenario`
+  (`mature` or `prefix8`).
 
-Admission uses positive mature final-u16 target gain, mature actual coded
+**Causal admission** uses positive mature final-u16 target gain, mature actual coded
 gain and whole-prefix gain. The two measured payloads add one double-W fee.
 The named mature-rate scenario must cover
 `S0_reference - floor(99 * latest_record / 100)`; the comparison uses integer
 cross multiplication. Random-held and both long native audits retain their
 reported target counts and selection roles.
+
+**Depth admission** uses the named net-S scenario. Mature or prefix payload
+savings keep their signed values: the measured double-W and dual-B savings
+can pay for a payload increase. With `F=586459020`, scenario byte count `n`
+and measured payload saving `p`, the exact record-margin comparison is
+
+```text
+F*p + [2*(W0-W1) + 2*(B0-B1)]*n
+  >= [S0_reference - floor(99*latest_record/100)]*n
+```
+
+The actual sample net remains positive and charges prefix8 once, fresh q2
+once, double-W once and dual-B once. The named scenario is frozen before
+either full-stream encode; it is a forecast until the actual package sizes
+arrive. Causal admission retains its original positive-payload rules.
 
 The mature interval is contained in the complete prefix payload. The sample
 sum uses that complete prefix once, plus the separate cold q2 scope. Mature
@@ -92,8 +131,8 @@ and its per-phase CPU receipt. Collect those two small state files. The
 both actual S values, net bytes and each side's native-decode status:
 
 ```text
-S_i = P_i + 2*B + 2*D + O + 2*W_i + 69
-S0 - S1 = (P0 - P1) + 2*(W0 - W1)
+S_i = P_i + 2*B_i + 2*D + O + 2*W_i + 69
+S0 - S1 = (P0 - P1) + 2*(W0 - W1) + 2*(B0 - B1)
 ```
 
 Commit the native decode budget when the actual paired gain and record margin
@@ -130,7 +169,7 @@ directory after its exact restoration passes.
 - Both actual `cmix` / `archive9`, package manifests and file identities.
 - Two official-original byte counts, MD5 values and native exit codes.
 - Per-phase command, CPU, wait4 peak-process RSS and cumulative side ledger.
-- Two actual S values and one net double-W comparison.
+- Two actual S values, one double-W delta and one dual-B delta.
 
 The prepared encode measures the range/NN path. Full compressor `cmix -e`
 preprocessing and final formal hardware/time qualification have their own

@@ -1,0 +1,48 @@
+{
+  "status": "passed",
+  "scope": "model-free orchestration fixture",
+  "mixed_reader": {
+    "status": "passed",
+    "actual_pair_net_saved_bytes": 24,
+    "checks": [
+      "one shared double-W fee",
+      "mature separate from complete prefix",
+      "decode output-byte denominator",
+      "fresh q2 and native report roles"
+    ]
+  },
+  "prepared_bytes_per_side": 10000,
+  "restored_bytes_per_side": 17000,
+  "unique_encode_calls": 2,
+  "unique_decode_calls": 2,
+  "native_model_full_1gb_calls": 0,
+  "actual_two_copy_weight_saved_bytes": 36,
+  "carried_prep_cpu_seconds": {
+    "W0": 502.463058,
+    "W1": 0
+  },
+  "measured_fixture_cpu_seconds": {
+    "W0": 0.2368740000000571,
+    "W1": 0.23289199999999988
+  },
+  "depth": {
+    "status": "passed",
+    "mixed_G_samples": 1897296,
+    "reported_completed_epochs": 4,
+    "reported_completed_hard_epochs": 0,
+    "actual_payload_saved_bytes": -5,
+    "actual_double_weight_saved_bytes": 36,
+    "actual_dual_code_saved_bytes": 80,
+    "actual_pair_net_saved_bytes": 111,
+    "unique_encode_calls": 2,
+    "unique_decode_calls": 2,
+    "checks": [
+      "original W0 distinct from epoch0 student",
+      "two per-side probes and binaries",
+      "signed payload delta plus one double-W and one dual-B",
+      "named net-S scenario exact integer record boundary",
+      "phase replay reuse"
+    ],
+    "mixed_receipt_scope": "synthetic metadata; training coverage below is a reader fixture"
+  }
+}
