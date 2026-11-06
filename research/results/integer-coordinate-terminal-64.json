@@ -1,0 +1,2434 @@
+{
+  "schema": "hutter.integer-coordinate-terminal-64.v1",
+  "date": "2026-11-07",
+  "method": {
+    "method": "fixed-scale-integer-coordinate-v1",
+    "epochs": 64,
+    "lr": 0.01,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "tau": 0.5,
+    "teacher_kl_coefficient": 1,
+    "full_targets": 586459020,
+    "seed": 245
+  },
+  "input_manifest_summary": {
+    "training_targets": 1044469,
+    "training_pieces": 807,
+    "evaluation_targets": 1039585
+  },
+  "metrics": {
+    "rows": 1971,
+    "kinds": {
+      "zero_step_export_passed": 1,
+      "one_step_check_passed": 1,
+      "optimizer_step": 1904,
+      "epoch_evaluated": 64,
+      "trajectory_complete": 1
+    },
+    "optimizer_steps_unique_and_complete": true,
+    "complete_epochs": 64,
+    "finite_nonzero_gradient_tensors": 111,
+    "seen_targets": 66846016
+  },
+  "weight": {
+    "baseline_bytes": 2904325,
+    "final_bytes": 2914354,
+    "single_growth_bytes": 10029,
+    "double_growth_bytes": 20058,
+    "train_native_mixed_same_final_export_metadata": true,
+    "changed_symbols": 2036366,
+    "changed_coordinates": 5834340,
+    "hard_entropy_delta_nats": 55789.6564178057,
+    "soft_entropy_delta_nats": 39535.783203125,
+    "ideal_double_entropy_growth_bytes": 20121.865161716854,
+    "all_64_fixed_scale_and_tiny_bits_preserved": true,
+    "export_contract": {
+      "tensor_count": 434,
+      "replacement_tensors": 429,
+      "int4_tensors": 111,
+      "int4_values": 5868864,
+      "expected_tensor_bytes_equal": true,
+      "other_tensor_bytes_equal": true,
+      "rescaled_values": 0
+    }
+  },
+  "native_scopes": {
+    "prefix-1m-held": {
+      "targets": 523194,
+      "baseline_raw_nll": 0.4859066182970042,
+      "candidate_raw_nll": 0.5507937873997836,
+      "delta_raw_nll": 0.06488716910277936,
+      "ideal_raw_nn_saved_bytes_same_scope": -6122.180559858668,
+      "input_bytes": 523828,
+      "prior_bytes": 214769480,
+      "pieces": 634,
+      "baseline_targets_and_all_bounds_equal": true,
+      "cpu_seconds": 40.927172,
+      "max_rss_kib": 2087520
+    },
+    "article-q2-1m-held": {
+      "targets": 516391,
+      "baseline_raw_nll": 0.9394297830071054,
+      "candidate_raw_nll": 1.0576000266473606,
+      "delta_raw_nll": 0.11817024364025519,
+      "ideal_raw_nn_saved_bytes_same_scope": -11004.526166134652,
+      "input_bytes": 516494,
+      "prior_bytes": 211762540,
+      "pieces": 103,
+      "baseline_targets_and_all_bounds_equal": true,
+      "cpu_seconds": 46.395453,
+      "max_rss_kib": 2087520
+    },
+    "mature": {
+      "targets": 1041397,
+      "baseline_raw_nll": 0.9632509280782524,
+      "candidate_raw_nll": 1.1871684597458092,
+      "delta_raw_nll": 0.2239175316675568,
+      "ideal_raw_nn_saved_bytes_same_scope": -42052.22430855578,
+      "input_bytes": 1041690,
+      "prior_bytes": 427092900,
+      "pieces": 293,
+      "baseline_targets_and_all_bounds_equal": true,
+      "cpu_seconds": 95.68046,
+      "max_rss_kib": 94080
+    },
+    "same-text-cold": {
+      "targets": 1041397,
+      "baseline_raw_nll": 1.0032902249810889,
+      "candidate_raw_nll": 1.2171125577120905,
+      "delta_raw_nll": 0.2138223327310016,
+      "ideal_raw_nn_saved_bytes_same_scope": -40156.322871281125,
+      "input_bytes": 1041690,
+      "prior_bytes": 427092900,
+      "pieces": 293,
+      "baseline_targets_and_all_bounds_equal": true,
+      "cpu_seconds": 109.37646,
+      "max_rss_kib": 93960
+    },
+    "article-q2-1m-full": {
+      "targets": 1048367,
+      "baseline_raw_nll": 1.1102643652814965,
+      "candidate_raw_nll": 0.8856565292182068,
+      "delta_raw_nll": -0.2246078360632897,
+      "ideal_raw_nn_saved_bytes_same_scope": 42464.18543460385,
+      "input_bytes": 1048576,
+      "prior_bytes": 429916160,
+      "pieces": 209,
+      "baseline_targets_and_all_bounds_equal": true,
+      "cpu_seconds": 96.794063,
+      "max_rss_kib": 93944
+    }
+  },
+  "curve": [
+    {
+      "epoch": 1,
+      "step": 30,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.8621579447783275,
+      "online_teacher_kl": 0.0,
+      "online_objective": 0.9147310035192712,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4859066182970042,
+          "delta_raw_nll": 0.0
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9394297830071054,
+          "delta_raw_nll": 0.0
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.0,
+      "weight_bytes": 2904325,
+      "single_weight_growth_bytes": 0,
+      "double_weight_growth_bytes": 0,
+      "changed_weight_symbols": 0,
+      "hard_entropy_delta_nats": 0.0,
+      "soft_entropy_delta_nats": 4643.1171875,
+      "ideal_double_weight_entropy_growth_bytes": 0.0
+    },
+    {
+      "epoch": 2,
+      "step": 59,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.8625124181429353,
+      "online_teacher_kl": 0.004804749207856946,
+      "online_objective": 0.9199087034440367,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4900296092301999,
+          "delta_raw_nll": 0.0041229909331956804
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.937737537965911,
+          "delta_raw_nll": -0.0016922450411944734
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.0012344002743738373,
+      "weight_bytes": 2904337,
+      "single_weight_growth_bytes": 12,
+      "double_weight_growth_bytes": 24,
+      "changed_weight_symbols": 3575,
+      "hard_entropy_delta_nats": 77.83567098900676,
+      "soft_entropy_delta_nats": 10224.91015625,
+      "ideal_double_weight_entropy_growth_bytes": 28.073284135026253
+    },
+    {
+      "epoch": 3,
+      "step": 89,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.8491272161172534,
+      "online_teacher_kl": 0.011902383661755759,
+      "online_objective": 0.9136309292407438,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4843710629622805,
+          "delta_raw_nll": -0.001535555334723715
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9323655316038498,
+          "delta_raw_nll": -0.007064251403255617
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": -0.0042818135930914845,
+      "weight_bytes": 2904380,
+      "single_weight_growth_bytes": 55,
+      "double_weight_growth_bytes": 110,
+      "changed_weight_symbols": 15631,
+      "hard_entropy_delta_nats": 383.9639730695635,
+      "soft_entropy_delta_nats": 10410.20703125,
+      "ideal_double_weight_entropy_growth_bytes": 138.4857299568707
+    },
+    {
+      "epoch": 4,
+      "step": 119,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.8325768664518731,
+      "online_teacher_kl": 0.014751874824247061,
+      "online_objective": 0.8999304364036949,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.48429623608947375,
+          "delta_raw_nll": -0.0016103822075304586
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9321851444886834,
+          "delta_raw_nll": -0.007244638518422053
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": -0.004409075196211154,
+      "weight_bytes": 2904485,
+      "single_weight_growth_bytes": 160,
+      "double_weight_growth_bytes": 320,
+      "changed_weight_symbols": 37702,
+      "hard_entropy_delta_nats": 929.1581718735397,
+      "soft_entropy_delta_nats": 10527.380859375,
+      "ideal_double_weight_entropy_growth_bytes": 335.1229716908527
+    },
+    {
+      "epoch": 5,
+      "step": 147,
+      "training_steps": 28,
+      "training_targets": 1044469,
+      "online_training_ce": 0.8155783918669832,
+      "online_teacher_kl": 0.020181225308626708,
+      "online_objective": 0.8883620713427973,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4851356155672561,
+          "delta_raw_nll": -0.0007710027297481159
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9326611632454977,
+          "delta_raw_nll": -0.006768619761607697
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": -0.003750187170365286,
+      "weight_bytes": 2904624,
+      "single_weight_growth_bytes": 299,
+      "double_weight_growth_bytes": 598,
+      "changed_weight_symbols": 65990,
+      "hard_entropy_delta_nats": 1696.8391085546464,
+      "soft_entropy_delta_nats": 10829.26953125,
+      "ideal_double_weight_entropy_growth_bytes": 612.0053417745595
+    },
+    {
+      "epoch": 6,
+      "step": 177,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.8000384317401328,
+      "online_teacher_kl": 0.024554509031730145,
+      "online_objective": 0.8771967308186077,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4859997038769666,
+          "delta_raw_nll": 9.308557996240419e-05
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9352633956220793,
+          "delta_raw_nll": -0.004166387385026171
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": -0.00202271399762232,
+      "weight_bytes": 2904833,
+      "single_weight_growth_bytes": 508,
+      "double_weight_growth_bytes": 1016,
+      "changed_weight_symbols": 104621,
+      "hard_entropy_delta_nats": 2864.392964085564,
+      "soft_entropy_delta_nats": 11340.1875,
+      "ideal_double_weight_entropy_growth_bytes": 1033.1113811108705
+    },
+    {
+      "epoch": 7,
+      "step": 207,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.7830044372082745,
+      "online_teacher_kl": 0.03036549824497431,
+      "online_objective": 0.8659756326352235,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.48721549137901743,
+          "delta_raw_nll": 0.0013088730820132177
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9379267626930479,
+          "delta_raw_nll": -0.0015030203140575793
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": -8.787316066092146e-05,
+      "weight_bytes": 2905110,
+      "single_weight_growth_bytes": 785,
+      "double_weight_growth_bytes": 1570,
+      "changed_weight_symbols": 148934,
+      "hard_entropy_delta_nats": 4355.692834069952,
+      "soft_entropy_delta_nats": 11927.98046875,
+      "ideal_double_weight_entropy_growth_bytes": 1570.9841128370788
+    },
+    {
+      "epoch": 8,
+      "step": 238,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.7664465930609895,
+      "online_teacher_kl": 0.035299987749890065,
+      "online_objective": 0.8543543229017732,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4898192125763744,
+          "delta_raw_nll": 0.003912594279370185
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9404330455390557,
+          "delta_raw_nll": 0.0010032625319502664
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.0024674476772338335,
+      "weight_bytes": 2905433,
+      "single_weight_growth_bytes": 1108,
+      "double_weight_growth_bytes": 2216,
+      "changed_weight_symbols": 199573,
+      "hard_entropy_delta_nats": 6152.383615277708,
+      "soft_entropy_delta_nats": 12577.33203125,
+      "ideal_double_weight_entropy_growth_bytes": 2219.0033328519153
+    },
+    {
+      "epoch": 9,
+      "step": 269,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.7520785519878043,
+      "online_teacher_kl": 0.04205500691675367,
+      "online_objective": 0.8467435949155415,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4924166368858636,
+          "delta_raw_nll": 0.006510018588859412
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9439615793560567,
+          "delta_raw_nll": 0.004531796348951289
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.005527380169982268,
+      "weight_bytes": 2905744,
+      "single_weight_growth_bytes": 1419,
+      "double_weight_growth_bytes": 2838,
+      "changed_weight_symbols": 251982,
+      "hard_entropy_delta_nats": 7902.647690180689,
+      "soft_entropy_delta_nats": 13229.966796875,
+      "ideal_double_weight_entropy_growth_bytes": 2850.2776581290755
+    },
+    {
+      "epoch": 10,
+      "step": 299,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.7373755523856249,
+      "online_teacher_kl": 0.045936541319096365,
+      "online_objective": 0.8359241536396973,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.49344363490662735,
+          "delta_raw_nll": 0.007537016609623137
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9487055643487916,
+          "delta_raw_nll": 0.009275781341686162
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.008400709774448291,
+      "weight_bytes": 2906022,
+      "single_weight_growth_bytes": 1697,
+      "double_weight_growth_bytes": 3394,
+      "changed_weight_symbols": 301205,
+      "hard_entropy_delta_nats": 9473.817146750167,
+      "soft_entropy_delta_nats": 13806.69140625,
+      "ideal_double_weight_entropy_growth_bytes": 3416.957253976324
+    },
+    {
+      "epoch": 11,
+      "step": 330,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.7253481375748692,
+      "online_teacher_kl": 0.05071673674187751,
+      "online_objective": 0.8286789670667308,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4956319119721891,
+          "delta_raw_nll": 0.009725293675184876
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9525420108145176,
+          "delta_raw_nll": 0.013112227807412169
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.011407678764884115,
+      "weight_bytes": 2906351,
+      "single_weight_growth_bytes": 2026,
+      "double_weight_growth_bytes": 4052,
+      "changed_weight_symbols": 352579,
+      "hard_entropy_delta_nats": 11292.269873777404,
+      "soft_entropy_delta_nats": 14393.3203125,
+      "ideal_double_weight_entropy_growth_bytes": 4072.825436819626
+    },
+    {
+      "epoch": 12,
+      "step": 360,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.7132346241587023,
+      "online_teacher_kl": 0.05529421051809215,
+      "online_objective": 0.8211448738244425,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4967657926769073,
+          "delta_raw_nll": 0.01085917437990308
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9547642400613138,
+          "delta_raw_nll": 0.015334457054208328
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.013082172687369196,
+      "weight_bytes": 2906620,
+      "single_weight_growth_bytes": 2295,
+      "double_weight_growth_bytes": 4590,
+      "changed_weight_symbols": 402177,
+      "hard_entropy_delta_nats": 12832.284477004781,
+      "soft_entropy_delta_nats": 14943.826171875,
+      "ideal_double_weight_entropy_growth_bytes": 4628.268294562806
+    },
+    {
+      "epoch": 13,
+      "step": 390,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.7018342793849706,
+      "online_teacher_kl": 0.059193276104243846,
+      "online_objective": 0.8136454417188407,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4972825677584878,
+          "delta_raw_nll": 0.01137594946148357
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9559029609481061,
+          "delta_raw_nll": 0.016473177941000672
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.013907885678114549,
+      "weight_bytes": 2906906,
+      "single_weight_growth_bytes": 2581,
+      "double_weight_growth_bytes": 5162,
+      "changed_weight_symbols": 452613,
+      "hard_entropy_delta_nats": 14396.485594302416,
+      "soft_entropy_delta_nats": 15472.36328125,
+      "ideal_double_weight_entropy_growth_bytes": 5192.434593282374
+    },
+    {
+      "epoch": 14,
+      "step": 420,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6915771249425405,
+      "online_teacher_kl": 0.06294836916873181,
+      "online_objective": 0.8071452042682941,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.49990633356399417,
+          "delta_raw_nll": 0.013999715266989954
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9606405312230748,
+          "delta_raw_nll": 0.021210748215969355
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.017581637395104942,
+      "weight_bytes": 2907171,
+      "single_weight_growth_bytes": 2846,
+      "double_weight_growth_bytes": 5692,
+      "changed_weight_symbols": 501347,
+      "hard_entropy_delta_nats": 15877.212633792311,
+      "soft_entropy_delta_nats": 16028.865234375,
+      "ideal_double_weight_entropy_growth_bytes": 5726.493982477941
+    },
+    {
+      "epoch": 15,
+      "step": 450,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6808408753082835,
+      "online_teacher_kl": 0.06604476900030008,
+      "online_objective": 0.7995071953792998,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.504837786687886,
+          "delta_raw_nll": 0.018931168390881825
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9654355266658496,
+          "delta_raw_nll": 0.026005743658744196
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.022445308165067405,
+      "weight_bytes": 2907402,
+      "single_weight_growth_bytes": 3077,
+      "double_weight_growth_bytes": 6154,
+      "changed_weight_symbols": 550122,
+      "hard_entropy_delta_nats": 17149.283466216177,
+      "soft_entropy_delta_nats": 16543.765625,
+      "ideal_double_weight_entropy_growth_bytes": 6185.296552877293
+    },
+    {
+      "epoch": 16,
+      "step": 479,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6725354067244887,
+      "online_teacher_kl": 0.06983900494095038,
+      "online_objective": 0.7949976885239796,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5040983881064258,
+          "delta_raw_nll": 0.01819176980942161
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9670137426879288,
+          "delta_raw_nll": 0.02758395968082339
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.022857133699707672,
+      "weight_bytes": 2907647,
+      "single_weight_growth_bytes": 3322,
+      "double_weight_growth_bytes": 6644,
+      "changed_weight_symbols": 595820,
+      "hard_entropy_delta_nats": 18487.29076698795,
+      "soft_entropy_delta_nats": 17037.30078125,
+      "ideal_double_weight_entropy_growth_bytes": 6667.880677251459
+    },
+    {
+      "epoch": 17,
+      "step": 509,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6646114506418919,
+      "online_teacher_kl": 0.07319874676183206,
+      "online_objective": 0.7904351544401792,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5052422377767033,
+          "delta_raw_nll": 0.019335619479699084
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9698469938374793,
+          "delta_raw_nll": 0.030417210830373853
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.024840156423928075,
+      "weight_bytes": 2907874,
+      "single_weight_growth_bytes": 3549,
+      "double_weight_growth_bytes": 7098,
+      "changed_weight_symbols": 642983,
+      "hard_entropy_delta_nats": 19741.400943076238,
+      "soft_entropy_delta_nats": 17547.232421875,
+      "ideal_double_weight_entropy_growth_bytes": 7120.205310194198
+    },
+    {
+      "epoch": 18,
+      "step": 538,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6586847677292093,
+      "online_teacher_kl": 0.07655296215873114,
+      "online_objective": 0.7878644433864301,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5077525529045935,
+          "delta_raw_nll": 0.021845934607589323
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9780921031609893,
+          "delta_raw_nll": 0.03866232015388382
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.030199104525043464,
+      "weight_bytes": 2908100,
+      "single_weight_growth_bytes": 3775,
+      "double_weight_growth_bytes": 7550,
+      "changed_weight_symbols": 689360,
+      "hard_entropy_delta_nats": 21031.45919127576,
+      "soft_entropy_delta_nats": 18062.22265625,
+      "ideal_double_weight_entropy_growth_bytes": 7585.495469478037
+    },
+    {
+      "epoch": 19,
+      "step": 568,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6498183947072086,
+      "online_teacher_kl": 0.07841129470533885,
+      "online_objective": 0.7808581325937407,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5107710848060424,
+          "delta_raw_nll": 0.024864466509038174
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9782968578360592,
+          "delta_raw_nll": 0.038867074828953796
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.03181995443251682,
+      "weight_bytes": 2908293,
+      "single_weight_growth_bytes": 3968,
+      "double_weight_growth_bytes": 7936,
+      "changed_weight_symbols": 732854,
+      "hard_entropy_delta_nats": 22146.252268338576,
+      "soft_entropy_delta_nats": 18548.478515625,
+      "ideal_double_weight_entropy_growth_bytes": 7987.572080452005
+    },
+    {
+      "epoch": 20,
+      "step": 597,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6434556833569298,
+      "online_teacher_kl": 0.08254774928686567,
+      "online_objective": 0.7786335601311651,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5083303035070328,
+          "delta_raw_nll": 0.022423685210028577
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.977415631325382,
+          "delta_raw_nll": 0.03798584831827656
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.030153847697589754,
+      "weight_bytes": 2908510,
+      "single_weight_growth_bytes": 4185,
+      "double_weight_growth_bytes": 8370,
+      "changed_weight_symbols": 776737,
+      "hard_entropy_delta_nats": 23320.35406649299,
+      "soft_entropy_delta_nats": 19047.025390625,
+      "ideal_double_weight_entropy_growth_bytes": 8411.039790876051
+    },
+    {
+      "epoch": 21,
+      "step": 626,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6332667899454386,
+      "online_teacher_kl": 0.08380517713257311,
+      "online_objective": 0.769703692108279,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.512544133217706,
+          "delta_raw_nll": 0.026637514920701766
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9782474705380224,
+          "delta_raw_nll": 0.03881768753091697
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.03268774796019506,
+      "weight_bytes": 2908685,
+      "single_weight_growth_bytes": 4360,
+      "double_weight_growth_bytes": 8720,
+      "changed_weight_symbols": 818698,
+      "hard_entropy_delta_nats": 24264.84693012014,
+      "soft_entropy_delta_nats": 19498.865234375,
+      "ideal_double_weight_entropy_growth_bytes": 8751.69358350353
+    },
+    {
+      "epoch": 22,
+      "step": 656,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6292019584780458,
+      "online_teacher_kl": 0.08655484473762963,
+      "online_objective": 0.7683900817257595,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5123369544446165,
+          "delta_raw_nll": 0.026430336147612254
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9817997819153116,
+          "delta_raw_nll": 0.04236999890820614
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.03434801329051624,
+      "weight_bytes": 2908864,
+      "single_weight_growth_bytes": 4539,
+      "double_weight_growth_bytes": 9078,
+      "changed_weight_symbols": 860871,
+      "hard_entropy_delta_nats": 25340.296156132594,
+      "soft_entropy_delta_nats": 19986.916015625,
+      "ideal_double_weight_entropy_growth_bytes": 9139.579899777538
+    },
+    {
+      "epoch": 23,
+      "step": 686,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6226369836442313,
+      "online_teacher_kl": 0.08926201322538484,
+      "online_objective": 0.7645339306434815,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5126915340647464,
+          "delta_raw_nll": 0.026784915767742223
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9838189282547899,
+          "delta_raw_nll": 0.04438914524768445
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.03552942984343285,
+      "weight_bytes": 2909042,
+      "single_weight_growth_bytes": 4717,
+      "double_weight_growth_bytes": 9434,
+      "changed_weight_symbols": 902037,
+      "hard_entropy_delta_nats": 26296.30940345861,
+      "soft_entropy_delta_nats": 20462.96484375,
+      "ideal_double_weight_entropy_growth_bytes": 9484.38879251289
+    },
+    {
+      "epoch": 24,
+      "step": 716,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6228032503212703,
+      "online_teacher_kl": 0.0933931843386719,
+      "online_objective": 0.7688331532549468,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5209713292051587,
+          "delta_raw_nll": 0.03506471090815444
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.988440292616335,
+          "delta_raw_nll": 0.04901050960922959
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.04199197990207692,
+      "weight_bytes": 2909235,
+      "single_weight_growth_bytes": 4910,
+      "double_weight_growth_bytes": 9820,
+      "changed_weight_symbols": 942204,
+      "hard_entropy_delta_nats": 27358.963656749576,
+      "soft_entropy_delta_nats": 21018.154296875,
+      "ideal_double_weight_entropy_growth_bytes": 9867.660297863498
+    },
+    {
+      "epoch": 25,
+      "step": 746,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6096332382398042,
+      "online_teacher_kl": 0.09310538663326876,
+      "online_objective": 0.7553771400876771,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5162122159744884,
+          "delta_raw_nll": 0.030305597677484197
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9866466177685751,
+          "delta_raw_nll": 0.04721683476146965
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.03870588301157072,
+      "weight_bytes": 2909426,
+      "single_weight_growth_bytes": 5101,
+      "double_weight_growth_bytes": 10202,
+      "changed_weight_symbols": 979903,
+      "hard_entropy_delta_nats": 28419.281011374667,
+      "soft_entropy_delta_nats": 21465.626953125,
+      "ideal_double_weight_entropy_growth_bytes": 10250.088945185029
+    },
+    {
+      "epoch": 26,
+      "step": 775,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.6064052958730195,
+      "online_teacher_kl": 0.09557744012991119,
+      "online_objective": 0.7546226609268764,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5177457495200377,
+          "delta_raw_nll": 0.0318391312230335
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9918732223596382,
+          "delta_raw_nll": 0.052443439352532706
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.04207386842999611,
+      "weight_bytes": 2909547,
+      "single_weight_growth_bytes": 5222,
+      "double_weight_growth_bytes": 10444,
+      "changed_weight_symbols": 1016208,
+      "hard_entropy_delta_nats": 29120.800142023712,
+      "soft_entropy_delta_nats": 21883.27734375,
+      "ideal_double_weight_entropy_growth_bytes": 10503.108487904057
+    },
+    {
+      "epoch": 27,
+      "step": 805,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5999982252106445,
+      "online_teacher_kl": 0.09713100936754393,
+      "online_objective": 0.7497705838201497,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5184633199250378,
+          "delta_raw_nll": 0.03255670162803359
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9955520588391985,
+          "delta_raw_nll": 0.05612227583209306
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.044262382672689365,
+      "weight_bytes": 2909721,
+      "single_weight_growth_bytes": 5396,
+      "double_weight_growth_bytes": 10792,
+      "changed_weight_symbols": 1051669,
+      "hard_entropy_delta_nats": 30109.832448882982,
+      "soft_entropy_delta_nats": 22304.537109375,
+      "ideal_double_weight_entropy_growth_bytes": 10859.826489000268
+    },
+    {
+      "epoch": 28,
+      "step": 836,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5966316896192878,
+      "online_teacher_kl": 0.09961747846588337,
+      "online_objective": 0.7488920367462584,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5255911461396864,
+          "delta_raw_nll": 0.03968452784268217
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0003321609565934,
+          "delta_raw_nll": 0.06090237794948794
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.05022402854200309,
+      "weight_bytes": 2909903,
+      "single_weight_growth_bytes": 5578,
+      "double_weight_growth_bytes": 11156,
+      "changed_weight_symbols": 1088264,
+      "hard_entropy_delta_nats": 31051.080543240532,
+      "soft_entropy_delta_nats": 22779.521484375,
+      "ideal_double_weight_entropy_growth_bytes": 11199.309978494224
+    },
+    {
+      "epoch": 29,
+      "step": 865,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5942634256931209,
+      "online_teacher_kl": 0.10175029225070753,
+      "online_objective": 0.7486582062388177,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5216178800533973,
+          "delta_raw_nll": 0.03571126175639305
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0004812270467889,
+          "delta_raw_nll": 0.061051444039683433
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.04829844036078866,
+      "weight_bytes": 2910041,
+      "single_weight_growth_bytes": 5716,
+      "double_weight_growth_bytes": 11432,
+      "changed_weight_symbols": 1121990,
+      "hard_entropy_delta_nats": 31843.756264926866,
+      "soft_entropy_delta_nats": 23231.984375,
+      "ideal_double_weight_entropy_growth_bytes": 11485.207311671713
+    },
+    {
+      "epoch": 30,
+      "step": 894,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5841497361252146,
+      "online_teacher_kl": 0.10264293382068632,
+      "online_objective": 0.7394385832193495,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5207187960811676,
+          "delta_raw_nll": 0.034812177784163345
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0003078912397692,
+          "delta_raw_nll": 0.06087810823266371
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.04775985583860964,
+      "weight_bytes": 2910170,
+      "single_weight_growth_bytes": 5845,
+      "double_weight_growth_bytes": 11690,
+      "changed_weight_symbols": 1156463,
+      "hard_entropy_delta_nats": 32579.75397332199,
+      "soft_entropy_delta_nats": 23633.6484375,
+      "ideal_double_weight_entropy_growth_bytes": 11750.662372673534
+    },
+    {
+      "epoch": 31,
+      "step": 924,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5818609898847497,
+      "online_teacher_kl": 0.10485744195058262,
+      "online_objective": 0.7393658000801421,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5222959703477197,
+          "delta_raw_nll": 0.03638935205071547
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0069864361503165,
+          "delta_raw_nll": 0.06755665314321102
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.05187102385095776,
+      "weight_bytes": 2910331,
+      "single_weight_growth_bytes": 6006,
+      "double_weight_growth_bytes": 12012,
+      "changed_weight_symbols": 1190500,
+      "hard_entropy_delta_nats": 33454.05472988635,
+      "soft_entropy_delta_nats": 24096.556640625,
+      "ideal_double_weight_entropy_growth_bytes": 12065.999714108753
+    },
+    {
+      "epoch": 32,
+      "step": 953,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5825569790559141,
+      "online_teacher_kl": 0.10716387264580188,
+      "online_objective": 0.7423697921676223,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5241569458219003,
+          "delta_raw_nll": 0.0382503275248961
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0034119693316528,
+          "delta_raw_nll": 0.06398218632454733
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.05103206283024458,
+      "weight_bytes": 2910473,
+      "single_weight_growth_bytes": 6148,
+      "double_weight_growth_bytes": 12296,
+      "changed_weight_symbols": 1223497,
+      "hard_entropy_delta_nats": 34257.4292872455,
+      "soft_entropy_delta_nats": 24557.328125,
+      "ideal_double_weight_entropy_growth_bytes": 12355.755836578353
+    },
+    {
+      "epoch": 33,
+      "step": 982,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5740075670193155,
+      "online_teacher_kl": 0.10768913750819384,
+      "online_objective": 0.7343472342363838,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5250051270613395,
+          "delta_raw_nll": 0.039098508764335294
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0056971386438056,
+          "delta_raw_nll": 0.06626735563670016
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.05259403631164251,
+      "weight_bytes": 2910629,
+      "single_weight_growth_bytes": 6304,
+      "double_weight_growth_bytes": 12608,
+      "changed_weight_symbols": 1256456,
+      "hard_entropy_delta_nats": 35090.498930851,
+      "soft_entropy_delta_nats": 25007.4921875,
+      "ideal_double_weight_entropy_growth_bytes": 12656.222197464553
+    },
+    {
+      "epoch": 34,
+      "step": 1011,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5649352361154392,
+      "online_teacher_kl": 0.10975393980642803,
+      "online_objective": 0.7273411372692997,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5272933824876507,
+          "delta_raw_nll": 0.04138676419064646
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0124473951320887,
+          "delta_raw_nll": 0.07301761212498326
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.057098692696406085,
+      "weight_bytes": 2910746,
+      "single_weight_growth_bytes": 6421,
+      "double_weight_growth_bytes": 12842,
+      "changed_weight_symbols": 1287871,
+      "hard_entropy_delta_nats": 35754.299225986004,
+      "soft_entropy_delta_nats": 25413.1796875,
+      "ideal_double_weight_entropy_growth_bytes": 12895.637545947528
+    },
+    {
+      "epoch": 35,
+      "step": 1041,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5645981721625889,
+      "online_teacher_kl": 0.11147735403981505,
+      "online_objective": 0.7287288949530737,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5306561988626042,
+          "delta_raw_nll": 0.04474958056559997
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0134155344767124,
+          "delta_raw_nll": 0.07398575146960695
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.05927200588848465,
+      "weight_bytes": 2910886,
+      "single_weight_growth_bytes": 6561,
+      "double_weight_growth_bytes": 13122,
+      "changed_weight_symbols": 1318753,
+      "hard_entropy_delta_nats": 36528.764875812456,
+      "soft_entropy_delta_nats": 25847.06640625,
+      "ideal_double_weight_entropy_growth_bytes": 13174.966984033395
+    },
+    {
+      "epoch": 36,
+      "step": 1071,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5699631187399367,
+      "online_teacher_kl": 0.1136501921605637,
+      "online_objective": 0.7362682652694751,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5310745670601578,
+          "delta_raw_nll": 0.045167948763153554
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0175315002886873,
+          "delta_raw_nll": 0.07810171728158188
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06152707443253097,
+      "weight_bytes": 2911025,
+      "single_weight_growth_bytes": 6700,
+      "double_weight_growth_bytes": 13400,
+      "changed_weight_symbols": 1349583,
+      "hard_entropy_delta_nats": 37330.47719845362,
+      "soft_entropy_delta_nats": 26343.369140625,
+      "ideal_double_weight_entropy_growth_bytes": 13464.12358205689
+    },
+    {
+      "epoch": 37,
+      "step": 1101,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5607239205327238,
+      "online_teacher_kl": 0.11392531456371649,
+      "online_objective": 0.7273058634026088,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5291550059900374,
+          "delta_raw_nll": 0.043248387693033186
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.011884766146271,
+          "delta_raw_nll": 0.07245498313916565
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.057756122057249476,
+      "weight_bytes": 2911166,
+      "single_weight_growth_bytes": 6841,
+      "double_weight_growth_bytes": 13682,
+      "changed_weight_symbols": 1381243,
+      "hard_entropy_delta_nats": 38083.45989355631,
+      "soft_entropy_delta_nats": 26794.0390625,
+      "ideal_double_weight_entropy_growth_bytes": 13735.704682081856
+    },
+    {
+      "epoch": 38,
+      "step": 1131,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5559964328289096,
+      "online_teacher_kl": 0.11601216946497313,
+      "online_objective": 0.7246667896976838,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5316573459748845,
+          "delta_raw_nll": 0.04575072767788024
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.015803097918303,
+          "delta_raw_nll": 0.07637331491119759
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.060961824840690376,
+      "weight_bytes": 2911298,
+      "single_weight_growth_bytes": 6973,
+      "double_weight_growth_bytes": 13946,
+      "changed_weight_symbols": 1412180,
+      "hard_entropy_delta_nats": 38834.938645124435,
+      "soft_entropy_delta_nats": 27279.810546875,
+      "ideal_double_weight_entropy_growth_bytes": 14006.743349137047
+    },
+    {
+      "epoch": 39,
+      "step": 1160,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5515396763990112,
+      "online_teacher_kl": 0.11745472808815773,
+      "online_objective": 0.7216541758177881,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5303425365799096,
+          "delta_raw_nll": 0.044435918282905384
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0136981837315457,
+          "delta_raw_nll": 0.0742684007244403
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.059254548255891396,
+      "weight_bytes": 2911430,
+      "single_weight_growth_bytes": 7105,
+      "double_weight_growth_bytes": 14210,
+      "changed_weight_symbols": 1440214,
+      "hard_entropy_delta_nats": 39594.95652378909,
+      "soft_entropy_delta_nats": 27717.984375,
+      "ideal_double_weight_entropy_growth_bytes": 14280.86185527116
+    },
+    {
+      "epoch": 40,
+      "step": 1190,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.54388255353699,
+      "online_teacher_kl": 0.1182812139565511,
+      "online_objective": 0.7148250240099134,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5311778970665084,
+          "delta_raw_nll": 0.04527127876950421
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0203022698230035,
+          "delta_raw_nll": 0.08087248681589809
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06295539639748593,
+      "weight_bytes": 2911564,
+      "single_weight_growth_bytes": 7239,
+      "double_weight_growth_bytes": 14478,
+      "changed_weight_symbols": 1469821,
+      "hard_entropy_delta_nats": 40266.1175297685,
+      "soft_entropy_delta_nats": 28147.66796875,
+      "ideal_double_weight_entropy_growth_bytes": 14522.932019012293
+    },
+    {
+      "epoch": 41,
+      "step": 1219,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5446373758969899,
+      "online_teacher_kl": 0.12076910477303524,
+      "online_objective": 0.718069269415936,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5321227480249414,
+          "delta_raw_nll": 0.046216129727937205
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.034330062149643,
+          "delta_raw_nll": 0.09490027914253751
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.07039891093424056,
+      "weight_bytes": 2911656,
+      "single_weight_growth_bytes": 7331,
+      "double_weight_growth_bytes": 14662,
+      "changed_weight_symbols": 1499266,
+      "hard_entropy_delta_nats": 40828.57515030913,
+      "soft_entropy_delta_nats": 28624.681640625,
+      "ideal_double_weight_entropy_growth_bytes": 14725.795723978337
+    },
+    {
+      "epoch": 42,
+      "step": 1248,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5426408321584679,
+      "online_teacher_kl": 0.12127843906010982,
+      "online_objective": 0.7165836452896536,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5362229962018995,
+          "delta_raw_nll": 0.05031637790489529
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0267898821597523,
+          "delta_raw_nll": 0.08736009915264686
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06871703226105441,
+      "weight_bytes": 2911789,
+      "single_weight_growth_bytes": 7464,
+      "double_weight_growth_bytes": 14928,
+      "changed_weight_symbols": 1525644,
+      "hard_entropy_delta_nats": 41550.73796649277,
+      "soft_entropy_delta_nats": 29071.294921875,
+      "ideal_double_weight_entropy_growth_bytes": 14986.260902383974
+    },
+    {
+      "epoch": 43,
+      "step": 1277,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5404040516526781,
+      "online_teacher_kl": 0.12268571840790787,
+      "online_objective": 0.7157556744057478,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.536641741094009,
+          "delta_raw_nll": 0.05073512279700476
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0261800670717338,
+          "delta_raw_nll": 0.08675028406462837
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06862486258946947,
+      "weight_bytes": 2911918,
+      "single_weight_growth_bytes": 7593,
+      "double_weight_growth_bytes": 15186,
+      "changed_weight_symbols": 1552419,
+      "hard_entropy_delta_nats": 42247.03035055101,
+      "soft_entropy_delta_nats": 29505.109375,
+      "ideal_double_weight_entropy_growth_bytes": 15237.395294756367
+    },
+    {
+      "epoch": 44,
+      "step": 1307,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5422359846039636,
+      "online_teacher_kl": 0.12427964522988247,
+      "online_objective": 0.7191831550225645,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5317065537149892,
+          "delta_raw_nll": 0.045799935417984994
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0181456869124448,
+          "delta_raw_nll": 0.07871590390533934
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06215021931314834,
+      "weight_bytes": 2912014,
+      "single_weight_growth_bytes": 7689,
+      "double_weight_growth_bytes": 15378,
+      "changed_weight_symbols": 1579541,
+      "hard_entropy_delta_nats": 42863.247877953574,
+      "soft_entropy_delta_nats": 30026.107421875,
+      "ideal_double_weight_entropy_growth_bytes": 15459.648787479502
+    },
+    {
+      "epoch": 45,
+      "step": 1336,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5269101710250076,
+      "online_teacher_kl": 0.12440949904936807,
+      "online_objective": 0.7039887654816469,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5356899250776572,
+          "delta_raw_nll": 0.049783306780653014
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.022115514840947,
+          "delta_raw_nll": 0.08268573183384165
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06612686327256194,
+      "weight_bytes": 2912161,
+      "single_weight_growth_bytes": 7836,
+      "double_weight_growth_bytes": 15672,
+      "changed_weight_symbols": 1605814,
+      "hard_entropy_delta_nats": 43602.08429951407,
+      "soft_entropy_delta_nats": 30445.271484375,
+      "ideal_double_weight_entropy_growth_bytes": 15726.127697832871
+    },
+    {
+      "epoch": 46,
+      "step": 1365,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5264036935206947,
+      "online_teacher_kl": 0.12541688485309826,
+      "online_objective": 0.7044911809762464,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5385333194542108,
+          "delta_raw_nll": 0.05262670115720658
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0381138534472143,
+          "delta_raw_nll": 0.09868407044010885
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.07550468706635993,
+      "weight_bytes": 2912257,
+      "single_weight_growth_bytes": 7932,
+      "double_weight_growth_bytes": 15864,
+      "changed_weight_symbols": 1630491,
+      "hard_entropy_delta_nats": 44175.87984997593,
+      "soft_entropy_delta_nats": 30873.990234375,
+      "ideal_double_weight_entropy_growth_bytes": 15933.08069661674
+    },
+    {
+      "epoch": 47,
+      "step": 1395,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5355961224188739,
+      "online_teacher_kl": 0.12898964408647726,
+      "online_objective": 0.7172579454965385,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5377576954043215,
+          "delta_raw_nll": 0.05185107710731729
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0250542980608257,
+          "delta_raw_nll": 0.08562451505372026
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06862729011017994,
+      "weight_bytes": 2912394,
+      "single_weight_growth_bytes": 8069,
+      "double_weight_growth_bytes": 16138,
+      "changed_weight_symbols": 1657785,
+      "hard_entropy_delta_nats": 44944.914723843336,
+      "soft_entropy_delta_nats": 31412.505859375,
+      "ideal_double_weight_entropy_growth_bytes": 16210.451396316534
+    },
+    {
+      "epoch": 48,
+      "step": 1425,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5240996864440622,
+      "online_teacher_kl": 0.12777163069859104,
+      "online_objective": 0.7045453054285081,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5383482916164394,
+          "delta_raw_nll": 0.05244167331943517
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0337948554830527,
+          "delta_raw_nll": 0.09436507247594728
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.07326620042768553,
+      "weight_bytes": 2912544,
+      "single_weight_growth_bytes": 8219,
+      "double_weight_growth_bytes": 16438,
+      "changed_weight_symbols": 1682984,
+      "hard_entropy_delta_nats": 45734.64754979871,
+      "soft_entropy_delta_nats": 31903.208984375,
+      "ideal_double_weight_entropy_growth_bytes": 16495.287304224796
+    },
+    {
+      "epoch": 49,
+      "step": 1454,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5152814916927255,
+      "online_teacher_kl": 0.12934434912537965,
+      "online_objective": 0.6973013595104943,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5384916463336873,
+          "delta_raw_nll": 0.05258502803668308
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0289061254319039,
+          "delta_raw_nll": 0.0894763424247984
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.07090997763502593,
+      "weight_bytes": 2912622,
+      "single_weight_growth_bytes": 8297,
+      "double_weight_growth_bytes": 16594,
+      "changed_weight_symbols": 1706336,
+      "hard_entropy_delta_nats": 46194.80143368617,
+      "soft_entropy_delta_nats": 32333.794921875,
+      "ideal_double_weight_entropy_growth_bytes": 16661.252735807353
+    },
+    {
+      "epoch": 50,
+      "step": 1483,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5141704001967569,
+      "online_teacher_kl": 0.13099423577651045,
+      "online_objective": 0.6978416914774289,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5343152697579558,
+          "delta_raw_nll": 0.048408651460951635
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0253162390202513,
+          "delta_raw_nll": 0.08588645601314582
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.06702492715799623,
+      "weight_bytes": 2912743,
+      "single_weight_growth_bytes": 8418,
+      "double_weight_growth_bytes": 16836,
+      "changed_weight_symbols": 1732262,
+      "hard_entropy_delta_nats": 46879.23329955898,
+      "soft_entropy_delta_nats": 32798.09765625,
+      "ideal_double_weight_entropy_growth_bytes": 16908.109350487626
+    },
+    {
+      "epoch": 51,
+      "step": 1513,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5064458279462726,
+      "online_teacher_kl": 0.13171947201791348,
+      "online_objective": 0.6908438939904525,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.549907025489238,
+          "delta_raw_nll": 0.06400040719223377
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0426322692241154,
+          "delta_raw_nll": 0.10320248621701
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.08347317833618373,
+      "weight_bytes": 2912891,
+      "single_weight_growth_bytes": 8566,
+      "double_weight_growth_bytes": 17132,
+      "changed_weight_symbols": 1755110,
+      "hard_entropy_delta_nats": 47680.89767688885,
+      "soft_entropy_delta_nats": 33234.68359375,
+      "ideal_double_weight_entropy_growth_bytes": 17197.24865589541
+    },
+    {
+      "epoch": 52,
+      "step": 1544,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5278326810214291,
+      "online_teacher_kl": 0.13383922314063124,
+      "online_objective": 0.7143521342850633,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5429280030454287,
+          "delta_raw_nll": 0.05702138474842444
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0403809565194786,
+          "delta_raw_nll": 0.10095117351237315
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.07884254179628897,
+      "weight_bytes": 2912994,
+      "single_weight_growth_bytes": 8669,
+      "double_weight_growth_bytes": 17338,
+      "changed_weight_symbols": 1778590,
+      "hard_entropy_delta_nats": 48231.40094171837,
+      "soft_entropy_delta_nats": 33787.197265625,
+      "ideal_double_weight_entropy_growth_bytes": 17395.800738436094
+    },
+    {
+      "epoch": 53,
+      "step": 1573,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5092849471530532,
+      "online_teacher_kl": 0.13260486153135015,
+      "online_objective": 0.6945717827652119,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.538853362465275,
+          "delta_raw_nll": 0.05294674416827083
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.030563987379736,
+          "delta_raw_nll": 0.09113420437263064
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.07191552571320421,
+      "weight_bytes": 2913098,
+      "single_weight_growth_bytes": 8773,
+      "double_weight_growth_bytes": 17546,
+      "changed_weight_symbols": 1801509,
+      "hard_entropy_delta_nats": 48859.021819494665,
+      "soft_entropy_delta_nats": 34227.119140625,
+      "ideal_double_weight_entropy_growth_bytes": 17622.167120417653
+    },
+    {
+      "epoch": 54,
+      "step": 1604,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5009841236707819,
+      "online_teacher_kl": 0.13441632610144855,
+      "online_objective": 0.6880839362634426,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5434599144924215,
+          "delta_raw_nll": 0.05755329619541727
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0408400186846685,
+          "delta_raw_nll": 0.10141023567756302
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.0793382669636803,
+      "weight_bytes": 2913210,
+      "single_weight_growth_bytes": 8885,
+      "double_weight_growth_bytes": 17770,
+      "changed_weight_symbols": 1825900,
+      "hard_entropy_delta_nats": 49433.64883774705,
+      "soft_entropy_delta_nats": 34686.8125,
+      "ideal_double_weight_entropy_growth_bytes": 17829.420007816036
+    },
+    {
+      "epoch": 55,
+      "step": 1634,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5056355863369,
+      "online_teacher_kl": 0.13618308915688881,
+      "online_objective": 0.6945037762927491,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5419364291362633,
+          "delta_raw_nll": 0.056029810839259064
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0341910609648373,
+          "delta_raw_nll": 0.09476127795773182
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.07526881586220116,
+      "weight_bytes": 2913330,
+      "single_weight_growth_bytes": 9005,
+      "double_weight_growth_bytes": 18010,
+      "changed_weight_symbols": 1847742,
+      "hard_entropy_delta_nats": 50162.40581631288,
+      "soft_entropy_delta_nats": 35165.037109375,
+      "ideal_double_weight_entropy_growth_bytes": 18092.263527563573
+    },
+    {
+      "epoch": 56,
+      "step": 1664,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5001002093236967,
+      "online_teacher_kl": 0.1376973530120435,
+      "online_objective": 0.6904842989184781,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5459906950712782,
+          "delta_raw_nll": 0.060084076774273965
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0417778665693047,
+          "delta_raw_nll": 0.10234808356219927
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.08107779323730828,
+      "weight_bytes": 2913438,
+      "single_weight_growth_bytes": 9113,
+      "double_weight_growth_bytes": 18226,
+      "changed_weight_symbols": 1871182,
+      "hard_entropy_delta_nats": 50711.65069775842,
+      "soft_entropy_delta_nats": 35651.015625,
+      "ideal_double_weight_entropy_growth_bytes": 18290.361744237354
+    },
+    {
+      "epoch": 57,
+      "step": 1695,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.5093865910682821,
+      "online_teacher_kl": 0.13865024783885496,
+      "online_objective": 0.70072538393507,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5422544208669342,
+          "delta_raw_nll": 0.056347802569929994
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0386905435992495,
+          "delta_raw_nll": 0.09926076059214406
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.0776638712954783,
+      "weight_bytes": 2913576,
+      "single_weight_growth_bytes": 9251,
+      "double_weight_growth_bytes": 18502,
+      "changed_weight_symbols": 1894315,
+      "hard_entropy_delta_nats": 51489.75481399521,
+      "soft_entropy_delta_nats": 36221.91015625,
+      "ideal_double_weight_entropy_growth_bytes": 18571.003481684882
+    },
+    {
+      "epoch": 58,
+      "step": 1724,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.49422844981354763,
+      "online_teacher_kl": 0.13805577051724827,
+      "online_objective": 0.6849744468392948,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5428886383972578,
+          "delta_raw_nll": 0.05698202010025355
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0452322635256996,
+          "delta_raw_nll": 0.1058024805185942
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.08123251080172322,
+      "weight_bytes": 2913696,
+      "single_weight_growth_bytes": 9371,
+      "double_weight_growth_bytes": 18742,
+      "changed_weight_symbols": 1916109,
+      "hard_entropy_delta_nats": 52150.37164163776,
+      "soft_entropy_delta_nats": 36653.0859375,
+      "ideal_double_weight_entropy_growth_bytes": 18809.270636976806
+    },
+    {
+      "epoch": 59,
+      "step": 1753,
+      "training_steps": 29,
+      "training_targets": 1044469,
+      "online_training_ce": 0.4878064953274843,
+      "online_teacher_kl": 0.1399962703296967,
+      "online_objective": 0.68049450302645,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5459152907421675,
+          "delta_raw_nll": 0.06000867244516328
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0405769300854877,
+          "delta_raw_nll": 0.10114714707838224
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.08044330554810586,
+      "weight_bytes": 2913771,
+      "single_weight_growth_bytes": 9446,
+      "double_weight_growth_bytes": 18892,
+      "changed_weight_symbols": 1935675,
+      "hard_entropy_delta_nats": 52555.22329896502,
+      "soft_entropy_delta_nats": 37077.798828125,
+      "ideal_double_weight_entropy_growth_bytes": 18955.290006557236
+    },
+    {
+      "epoch": 60,
+      "step": 1783,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.492663256325972,
+      "online_teacher_kl": 0.14169300467997098,
+      "online_objective": 0.6870495232394798,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5446717996275161,
+          "delta_raw_nll": 0.058765181330511895
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.041902940105811,
+          "delta_raw_nll": 0.10247315709870564
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.08047615764790136,
+      "weight_bytes": 2913859,
+      "single_weight_growth_bytes": 9534,
+      "double_weight_growth_bytes": 19068,
+      "changed_weight_symbols": 1956400,
+      "hard_entropy_delta_nats": 53123.63684982434,
+      "soft_entropy_delta_nats": 37565.396484375,
+      "ideal_double_weight_entropy_growth_bytes": 19160.301859306943
+    },
+    {
+      "epoch": 61,
+      "step": 1813,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.486738575882003,
+      "online_teacher_kl": 0.14120657511003673,
+      "online_objective": 0.6806400769690127,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5619921978052181,
+          "delta_raw_nll": 0.07608557950821393
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0560427367248901,
+          "delta_raw_nll": 0.11661295371778468
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.09621666190691576,
+      "weight_bytes": 2913991,
+      "single_weight_growth_bytes": 9666,
+      "double_weight_growth_bytes": 19332,
+      "changed_weight_symbols": 1976354,
+      "hard_entropy_delta_nats": 53768.90210368484,
+      "soft_entropy_delta_nats": 38045.859375,
+      "ideal_double_weight_entropy_growth_bytes": 19393.03210475757
+    },
+    {
+      "epoch": 62,
+      "step": 1843,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.4997630863417216,
+      "online_teacher_kl": 0.14309994655936592,
+      "online_objective": 0.6955597262469558,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5473482717196694,
+          "delta_raw_nll": 0.061441653422665166
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.04515319445266,
+          "delta_raw_nll": 0.10572341144555453
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.08343764346407385,
+      "weight_bytes": 2914136,
+      "single_weight_growth_bytes": 9811,
+      "double_weight_growth_bytes": 19622,
+      "changed_weight_symbols": 1995133,
+      "hard_entropy_delta_nats": 54602.85688189976,
+      "soft_entropy_delta_nats": 38581.755859375,
+      "ideal_double_weight_entropy_growth_bytes": 19693.81771047165
+    },
+    {
+      "epoch": 63,
+      "step": 1873,
+      "training_steps": 30,
+      "training_targets": 1044469,
+      "online_training_ce": 0.4810487887259295,
+      "online_teacher_kl": 0.14265992957602078,
+      "online_objective": 0.6764070048138903,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5477066675226475,
+          "delta_raw_nll": 0.061800049225643305
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0572750225448024,
+          "delta_raw_nll": 0.11784523953769699
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.08963926571148305,
+      "weight_bytes": 2914223,
+      "single_weight_growth_bytes": 9898,
+      "double_weight_growth_bytes": 19796,
+      "changed_weight_symbols": 2015262,
+      "hard_entropy_delta_nats": 55085.41354150139,
+      "soft_entropy_delta_nats": 39017.05078125,
+      "ideal_double_weight_entropy_growth_bytes": 19867.863235410452
+    },
+    {
+      "epoch": 64,
+      "step": 1904,
+      "training_steps": 31,
+      "training_targets": 1044469,
+      "online_training_ce": 0.493300545903366,
+      "online_teacher_kl": 0.14464525597889785,
+      "online_objective": 0.6906457279015247,
+      "cold_scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.5507937873997836,
+          "delta_raw_nll": 0.06488716910277936
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 1.0576000266473606,
+          "delta_raw_nll": 0.11817024364025519
+        }
+      },
+      "cold_target_weighted_delta_raw_nll": 0.09135436528537308,
+      "weight_bytes": 2914354,
+      "single_weight_growth_bytes": 10029,
+      "double_weight_growth_bytes": 20058,
+      "changed_weight_symbols": 2036366,
+      "hard_entropy_delta_nats": 55789.6564178057,
+      "soft_entropy_delta_nats": 39535.783203125,
+      "ideal_double_weight_entropy_growth_bytes": 20121.865161716854
+    }
+  ],
+  "best_cold_epoch": 4,
+  "mature_prior": {
+    "baseline_benefit_nats": 0.040039296902836474,
+    "final_benefit_nats": 0.02994409796628128,
+    "delta_interaction_nats": 0.010095198936555194
+  },
+  "q2_manifest_roles": {
+    "train": {
+      "begin": 0,
+      "end": 521436,
+      "pieces": 104,
+      "targets": 521332
+    },
+    "held": {
+      "begin": 531039,
+      "end": 1047533,
+      "pieces": 103,
+      "targets": 516391
+    },
+    "full": {
+      "begin": 0,
+      "end": 1048576,
+      "pieces": 209,
+      "targets": 1048367
+    },
+    "remaining_full_targets": 10644
+  },
+  "q2_byte_half_scores": {
+    "first_half": {
+      "targets": 524183,
+      "baseline_raw_nll": 1.2822524046387949,
+      "candidate_raw_nll": 0.7155898574876267,
+      "delta_raw_nll": -0.5666625471511681
+    },
+    "second_half": {
+      "targets": 524184,
+      "baseline_raw_nll": 0.9382766540305763,
+      "candidate_raw_nll": 1.055722876508009,
+      "delta_raw_nll": 0.11744622247743264
+    }
+  },
+  "q2_native_total_accumulators": {
+    "baseline": {
+      "count": 1048367,
+      "logits_sum": 1163964.5218370666,
+      "probs_sum": 1163964.4948392136,
+      "logits_mean": 1.1102643652814965,
+      "probs_mean": 1.1102643395292044
+    },
+    "candidate": {
+      "count": 1048367,
+      "logits_sum": 928493.0785669038,
+      "probs_sum": 928493.0503430922,
+      "logits_mean": 0.8856565292182068,
+      "probs_mean": 0.8856565022965166
+    }
+  },
+  "q2_held_accumulators": {
+    "baseline": {
+      "count": 516391,
+      "logits_sum": 485113.0850768222,
+      "probs_sum": 485113.0698627945,
+      "logits_mean": 0.9394297830071054,
+      "probs_mean": 0.9394297535448807
+    },
+    "candidate": {
+      "count": 516391,
+      "logits_sum": 546135.1353604572,
+      "probs_sum": 546135.1201359356,
+      "logits_mean": 1.0576000266473606,
+      "probs_mean": 1.0575999971648142
+    }
+  },
+  "q2_training_containing_complement": {
+    "baseline": {
+      "targets": 531976,
+      "logits_sum": 678851.4367602444,
+      "raw_nll": 1.2760941034186588
+    },
+    "candidate": {
+      "targets": 531976,
+      "logits_sum": 382357.9432064466,
+      "raw_nll": 0.7187503631863967
+    },
+    "delta_raw_nll": -0.5573437402322621,
+    "scope": "Training-containing complement of the complete held pieces, including 10644 crossing/EOF targets."
+  },
+  "q2_piece_geometry": {
+    "full_bounds": [
+      0,
+      9289,
+      21605,
+      34788,
+      50402,
+      53900,
+      66112,
+      81391,
+      89032,
+      124195,
+      132168,
+      144034,
+      146813,
+      171618,
+      172667,
+      174912,
+      185158,
+      186753,
+      188377,
+      190250,
+      193190,
+      202947,
+      205178,
+      206766,
+      237282,
+      240672,
+      241704,
+      243799,
+      244761,
+      246381,
+      247068,
+      247372,
+      248181,
+      251072,
+      252077,
+      259271,
+      260318,
+      260898,
+      262785,
+      268608,
+      269706,
+      270321,
+      273805,
+      275745,
+      276675,
+      277663,
+      278322,
+      280635,
+      285187,
+      286637,
+      287107,
+      287681,
+      288484,
+      289862,
+      291090,
+      292693,
+      293520,
+      297171,
+      302513,
+      303673,
+      306381,
+      307840,
+      313071,
+      316032,
+      320518,
+      323917,
+      328358,
+      335509,
+      342788,
+      345600,
+      349244,
+      353324,
+      355791,
+      360879,
+      362537,
+      363605,
+      366058,
+      370352,
+      374665,
+      378383,
+      381386,
+      387137,
+      388955,
+      391900,
+      396337,
+      402936,
+      405285,
+      405580,
+      406969,
+      408800,
+      411706,
+      413730,
+      426960,
+      427705,
+      435204,
+      437746,
+      445913,
+      454906,
+      465025,
+      476073,
+      484877,
+      494681,
+      502310,
+      510233,
+      521436,
+      531039,
+      535804,
+      540573,
+      551456,
+      561406,
+      573635,
+      585545,
+      596730,
+      605315,
+      617637,
+      625054,
+      630746,
+      634598,
+      651070,
+      651895,
+      659635,
+      662174,
+      667377,
+      668104,
+      670481,
+      672764,
+      676091,
+      678845,
+      682302,
+      686261,
+      689894,
+      692804,
+      695452,
+      698744,
+      702065,
+      705519,
+      708355,
+      711079,
+      714880,
+      718698,
+      722171,
+      725115,
+      728385,
+      733560,
+      739317,
+      744169,
+      748218,
+      751270,
+      754394,
+      758640,
+      762392,
+      765593,
+      769322,
+      772149,
+      775418,
+      778124,
+      781142,
+      785532,
+      801384,
+      804376,
+      810244,
+      813329,
+      816851,
+      821834,
+      824806,
+      836278,
+      840962,
+      844780,
+      849151,
+      852374,
+      855022,
+      859828,
+      864768,
+      868112,
+      873379,
+      879704,
+      883321,
+      887278,
+      890646,
+      894213,
+      897572,
+      904363,
+      906264,
+      909405,
+      913262,
+      918807,
+      924303,
+      927361,
+      928811,
+      930195,
+      931740,
+      937481,
+      945475,
+      951553,
+      959757,
+      964949,
+      971293,
+      977450,
+      986101,
+      995748,
+      1002701,
+      1008899,
+      1017225,
+      1019111,
+      1023933,
+      1029827,
+      1035422,
+      1041316,
+      1047533,
+      1048576
+    ],
+    "held_bounds": [
+      0,
+      4765,
+      9534,
+      20417,
+      30367,
+      42596,
+      54506,
+      65691,
+      74276,
+      86598,
+      94015,
+      99707,
+      103559,
+      120031,
+      120856,
+      128596,
+      131135,
+      136338,
+      137065,
+      139442,
+      141725,
+      145052,
+      147806,
+      151263,
+      155222,
+      158855,
+      161765,
+      164413,
+      167705,
+      171026,
+      174480,
+      177316,
+      180040,
+      183841,
+      187659,
+      191132,
+      194076,
+      197346,
+      202521,
+      208278,
+      213130,
+      217179,
+      220231,
+      223355,
+      227601,
+      231353,
+      234554,
+      238283,
+      241110,
+      244379,
+      247085,
+      250103,
+      254493,
+      270345,
+      273337,
+      279205,
+      282290,
+      285812,
+      290795,
+      293767,
+      305239,
+      309923,
+      313741,
+      318112,
+      321335,
+      323983,
+      328789,
+      333729,
+      337073,
+      342340,
+      348665,
+      352282,
+      356239,
+      359607,
+      363174,
+      366533,
+      373324,
+      375225,
+      378366,
+      382223,
+      387768,
+      393264,
+      396322,
+      397772,
+      399156,
+      400701,
+      406442,
+      414436,
+      420514,
+      428718,
+      433910,
+      440254,
+      446411,
+      455062,
+      464709,
+      471662,
+      477860,
+      486186,
+      488072,
+      492894,
+      498788,
+      504383,
+      510277,
+      516494
+    ],
+    "unmatched_pieces": [
+      [
+        521436,
+        531039
+      ],
+      [
+        1047533,
+        1048576
+      ]
+    ]
+  },
+  "actual_cpu": {
+    "training_terminal_state_seconds": 89684.526272298,
+    "training_cpu_hours": 24.912368408971666,
+    "optimizer_steps_seconds_included": 83578.6990611667,
+    "mature_queue_total_seconds": 298.649476,
+    "final_mature_and_cold_native_seconds": 205.05692,
+    "mixed_completed_cpu_as_of_phase_seconds": 98.75892499999999,
+    "mixed_full_q2_raw_seconds_included": 96.794063,
+    "running_encode_cpu_recording": "current child CPU enters original queue receipt after return",
+    "training_peak_rss_kib": 6283588
+  },
+  "original_mixed_snapshot": {
+    "status": "running",
+    "phase": "prefix8-baseline-encode",
+    "same_export_epoch": 64,
+    "completed_pairs": 0,
+    "cpu_limit_seconds": 28800,
+    "next_trigger": "original hutter_compute watch actual mixed stage/terminal notification"
+  },
+  "interpretation": [
+    "The fixed-scale method completes all 64 epochs. Every recorded step has 111 finite nonzero gradient tensors; all 64 scale and tiny-row bit audits pass.",
+    "The cold held curve peaks at epoch 4. Terminal held, mature and same-text fresh-prior scopes regress while target-weighted online training CE falls.",
+    "Full-q2 native improvement includes 521332 training targets. The independently held 516391 targets regress. Byte halves, actual manifest roles and the crossing/EOF pieces are reported separately.",
+    "The original sole mixed audit measures the preselected final epoch-64 export. The continuous causal and eight-block methods retain their separate frozen selections and queues."
+  ],
+  "decision": {
+    "fixed_recipe_new_engineering": "STOP",
+    "measured_export_epoch": 64,
+    "next_measurement": "Original same-W sole mixed audit; mature and full-q2 scopes remain separate.",
+    "full_archive_started": false,
+    "actual_coded_result": null
+  }
+}
