@@ -1,0 +1,179 @@
+{
+  "status": "passed",
+  "source_read_at_beijing": "2026-11-06T17:35:46.555393+08:00",
+  "mapping": {
+    "source": "original validation intervals aligned to native piece index; roles/coordinates/targets checked",
+    "pieces": 473,
+    "different_article_ids": 473,
+    "pieces_per_observed_article": 1
+  },
+  "paired_total": {
+    "targets": 1082505,
+    "weighted_delta_raw_nll": -0.0011880476618743015,
+    "delta_sum_nats": -1286.0675342172408
+  },
+  "piece_direction_groups": {
+    "improving": {
+      "pieces": 311,
+      "piece_fraction": 0.6575052854122622,
+      "targets": 912522,
+      "target_fraction": 0.8429725497803705,
+      "delta_sum_nats": -1517.762717654501
+    },
+    "degrading": {
+      "pieces": 162,
+      "piece_fraction": 0.34249471458773784,
+      "targets": 169983,
+      "target_fraction": 0.15702745021962947,
+      "delta_sum_nats": 231.69518343726014
+    },
+    "equal": {
+      "pieces": 0,
+      "piece_fraction": 0.0,
+      "targets": 0,
+      "target_fraction": 0.0,
+      "delta_sum_nats": 0
+    }
+  },
+  "target_fraction_definition": "fraction of held targets inside pieces grouped by that piece's mean raw-NLL direction",
+  "maximum_absolute_influence_piece": {
+    "piece": 127,
+    "targets": 36253,
+    "baseline_raw_nll": 1.3064910236608738,
+    "e1_raw_nll": 1.30479194137663,
+    "delta": -0.001699082284243758,
+    "article": 63747,
+    "source_begin": 238552068,
+    "source_end": 238588322,
+    "delta_sum_nats": -61.596830050688965
+  },
+  "remove_maximum_absolute_influence_piece": {
+    "removed_pieces": [
+      127
+    ],
+    "removed_targets": 36253,
+    "removed_net_raw_gain_fraction": 0.047895486365869266,
+    "remaining_targets": 1046252,
+    "remaining_weighted_delta_raw_nll": -0.001170340132364432
+  },
+  "remove_top5_gaining_pieces": {
+    "removed_pieces": [
+      127,
+      33,
+      103,
+      170,
+      130
+    ],
+    "removed_targets": 97946,
+    "removed_net_raw_gain_fraction": 0.1681333227483367,
+    "remaining_targets": 984559,
+    "remaining_weighted_delta_raw_nll": -0.0010866151509564546
+  },
+  "remove_top10_gaining_pieces": {
+    "removed_pieces": [
+      127,
+      33,
+      103,
+      170,
+      130,
+      90,
+      104,
+      29,
+      194,
+      164
+    ],
+    "removed_targets": 156673,
+    "removed_net_raw_gain_fraction": 0.2830228500763368,
+    "remaining_targets": 925832,
+    "remaining_weighted_delta_raw_nll": -0.0009959485471364464
+  },
+  "length_strata": [
+    {
+      "piece_bytes": [
+        1,
+        2048
+      ],
+      "pieces": 340,
+      "targets": 245354,
+      "improving_pieces": 202,
+      "weighted_delta_raw_nll": -0.0007610548883765945
+    },
+    {
+      "piece_bytes": [
+        2049,
+        4096
+      ],
+      "pieces": 65,
+      "targets": 178382,
+      "improving_pieces": 48,
+      "weighted_delta_raw_nll": -0.0008849123755523447
+    },
+    {
+      "piece_bytes": [
+        4097,
+        8192
+      ],
+      "pieces": 40,
+      "targets": 226176,
+      "improving_pieces": 33,
+      "weighted_delta_raw_nll": -0.0015218708961784455
+    },
+    {
+      "piece_bytes": [
+        8193,
+        16384
+      ],
+      "pieces": 21,
+      "targets": 240561,
+      "improving_pieces": 21,
+      "weighted_delta_raw_nll": -0.001620892641095835
+    },
+    {
+      "piece_bytes": [
+        16385,
+        32768
+      ],
+      "pieces": 4,
+      "targets": 84385,
+      "improving_pieces": 4,
+      "weighted_delta_raw_nll": -0.0012418671952906697
+    },
+    {
+      "piece_bytes": [
+        32769,
+        65536
+      ],
+      "pieces": 3,
+      "targets": 107647,
+      "improving_pieces": 3,
+      "weighted_delta_raw_nll": -0.0009527255198509679
+    },
+    {
+      "piece_bytes": [
+        65537,
+        131072
+      ],
+      "pieces": 0,
+      "targets": 0,
+      "improving_pieces": 0,
+      "weighted_delta_raw_nll": null
+    }
+  ],
+  "article_cluster_composition_bootstrap": {
+    "seed": 425,
+    "replicates": 1000,
+    "unit": "observed article ID; one piece per article in this sample",
+    "statistic": "resampled sum(targets*paired_delta)/resampled sum(targets)",
+    "percentile_rule": "nearest-rank: 25th and 975th ordered draws",
+    "percentile_95_band_delta_raw_nll": [
+      -0.001356484781781106,
+      -0.0010064064858530735
+    ],
+    "negative_delta_draws": 1000,
+    "scope": "fixed W0/e1 pair, composition sensitivity among observed articles and sampled length range; 64-128KiB has zero observed held pieces"
+  },
+  "decision_readout": "observed article breadth and leave-largest-piece stability support completing the original bounded methods; fullstream spending follows the original actual mixed/record gate",
+  "analysis_new_network_calls": 0,
+  "analysis_new_model_calls": 0,
+  "source_file": "causal-epoch01-paired-pieces.json"
+}

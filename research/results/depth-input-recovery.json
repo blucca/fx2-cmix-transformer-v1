@@ -1,12 +1,11 @@
 {
-  "status": "original_transfer_recovery_started",
+  "status": "passed",
   "original_pipeline_pid": 16774,
   "original_mixed_pid": 17049,
   "watch3_rearmed": true,
   "transfer_attempts": 2,
   "new_capture": 0,
   "new_pipeline": 0,
-  "new_trainer": 0,
   "range_api_supported": false,
   "reused_completed_bytes": 1210499798,
   "retained_partial_prefix_bytes": 377389056,
@@ -33,5 +32,107 @@
     "prior_failed_cpu_seconds": 9.406861163,
     "terminal_exit_code": 1
   },
-  "recovery_status": "started; terminal follows the original watcher"
+  "recovery_status": "original input transfer passed; admitted training started in the original pipeline",
+  "terminal": {
+    "schema": "hutter.depth-input-terminal.v1",
+    "status": "passed",
+    "terminal_epoch_seconds": 1793956669.5122066,
+    "actual_exit_code": 0,
+    "files": [
+      {
+        "path": "capture/train.u8",
+        "bytes": 2942620,
+        "reused_prefix_bytes": 0
+      },
+      {
+        "path": "capture/train.f16",
+        "bytes": 1206474200,
+        "reused_prefix_bytes": 0
+      },
+      {
+        "path": "capture/validation.u8",
+        "bytes": 1082978,
+        "reused_prefix_bytes": 0
+      },
+      {
+        "path": "capture/validation.f16",
+        "bytes": 444020980,
+        "reused_prefix_bytes": 377389056
+      },
+      {
+        "path": "data/validation.i32",
+        "bytes": 1896,
+        "reused_prefix_bytes": 0
+      },
+      {
+        "path": "long-audit/tokens.u8",
+        "bytes": 131072,
+        "reused_prefix_bytes": 0
+      },
+      {
+        "path": "long-audit/priors.f16",
+        "bytes": 53739520,
+        "reused_prefix_bytes": 0
+      },
+      {
+        "path": "long-audit/bounds.i32",
+        "bytes": 8,
+        "reused_prefix_bytes": 0
+      }
+    ],
+    "total_bytes": 1708393274,
+    "prior_failed_cpu_seconds": 9.406861163,
+    "recovery_cpu_seconds": 15.978583618,
+    "transfer_total_cpu_seconds": 25.385444781,
+    "charged_transfer_item": {
+      "id": "causal-input-transfer",
+      "cpu_seconds": 25.381097033,
+      "prior_failed_cpu_seconds": 9.406861163,
+      "scope": "destination transfer attempts; source capture and baseline reused"
+    },
+    "prep_cpu_seconds": 121.190978347,
+    "pipeline_preserved": true,
+    "pipeline_pid": 16774,
+    "trainer_pid": 20322,
+    "mixed_pid": 17049,
+    "source2": {
+      "job": "/data/workspace/temp/hutter/round414",
+      "method": "causal-whole-piece-v1",
+      "sampling_seed": 414,
+      "source_bytes": 586459020,
+      "training_pieces": 1313,
+      "training_targets": 2941307,
+      "held_targets": 1082505,
+      "independent_audit_targets": 131071
+    },
+    "private_descriptor_removed": true,
+    "new_capture": 0,
+    "extra_pipeline": 0,
+    "extra_trainer": 0,
+    "training_snapshot": {
+      "epoch": 0,
+      "step": 10,
+      "seen_targets": 390559,
+      "total_cpu_seconds": 708.112386248,
+      "peak_rss_kib": 4355452,
+      "last_step": {
+        "ce_mean": 1.5435690272502398,
+        "teacher_kl_mean": 0.40333287821816616,
+        "final_hidden_mse_mean": 0.3419124407876992,
+        "soft_entropy_nats": 10377187.611328125,
+        "objective": 2.016482451296949,
+        "gradient_norm": 12.54209120182355,
+        "finite_gradient_tensors": 134,
+        "nonzero_gradient_tensors": 134,
+        "targets": 52927,
+        "pieces": 16,
+        "step_cpu_seconds": 77.82309531200008,
+        "teacher_cache_misses_this_run": 159
+      }
+    },
+    "training_prior_cpu_seconds": 121.71669664299999,
+    "training_unique_cpu_seconds": 586.395689605,
+    "evaluation_count": 0,
+    "coded_gain": 0
+  }
 }

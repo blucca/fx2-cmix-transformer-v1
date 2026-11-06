@@ -83,8 +83,14 @@ and partial prefix, reuses the same waiting pipeline, and charges the failed
 9.406861163 CPU seconds once in the original preparation allowance. The file
 API returned HTTP 200 for a one-byte Range request, so recovery advances through
 the saved prefix in the whole response. New capture and resampling remain zero.
-The original error log is preserved. Run the model-free regression from the
-workspace root with `python3 research/check-depth-input-transfer.py`.
+The original error log is preserved. The recovery has now passed: all eight
+inputs total 1,708,393,274 bytes. The same pipeline started its sole admitted
+trainer; its first full-causal snapshot has 390,559 targets and all 134 gradient
+tensors finite and nonzero. Original preparation plus the single transfer item
+is 121.190978347 CPU seconds; transfer terminal CPU includes the old failure.
+Full native evaluation and mixed coding follow the original trajectory. Run the
+model-free regression from the workspace root with
+`python3 -B research/check-depth-input-transfer.py`.
 
 ## Native identity and actual measurement
 
@@ -248,3 +254,10 @@ increase. P, mature G/M/u16 and their changes retain separate reports; the
 near-equal-capacity causal method's positive-payload gate stays in its original
 family. The single Hutter-event ledger, actual archive sizes and complete
 qualification determine the depth method's next two encodes and two archives.
+
+
+The original causal method's [first complete native epoch](causal-first-epoch.md)
+shows a held delta of -0.001188047662 nats/target across 473 source articles.
+Distillation's own complete held curve follows its every-four-epoch export;
+its actual first-causal training snapshot and preserved-input terminal are in
+[the input recovery result](results/depth-input-recovery.json).

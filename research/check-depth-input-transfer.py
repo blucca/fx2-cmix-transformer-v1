@@ -4,6 +4,9 @@ import importlib.util
 import io
 from pathlib import Path
 import tempfile
+import sys
+
+sys.dont_write_bytecode = True
 
 spec = importlib.util.spec_from_file_location("transfer", Path(__file__).with_name("depth-input-transfer.py"))
 transfer = importlib.util.module_from_spec(spec)
