@@ -2,7 +2,7 @@
 
 Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
 
-**Active research:** [whole-stream causal priors and complete-piece learning](research/causal-priors.md), an independent 16-epoch trajectory addressing the measured prior-state mismatch. The original [fixed-scale integer-coordinate trajectory](research/integer-coordinate-qat.md) continues to its final native/mixed measurements. [Rate/distortion attribution](research/integer-coordinate-attribution.md) records the mechanism. Original production weights stay fixed.
+**Active research:** [whole-stream causal priors and complete-piece learning](research/causal-priors.md), an independent 16-epoch trajectory addressing the measured prior-state mismatch. The original [fixed-scale integer-coordinate trajectory](research/integer-coordinate-qat.md) continues to its final native/mixed measurements. [Rate/distortion attribution](research/integer-coordinate-attribution.md) records the mechanism. Original production weights stay fixed. The [single-pass capture recovery](research/results/causal-capture-recovery.json) preserves all 205 prior columns and the seeded sample while sharing its independent long audit.
 
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
 

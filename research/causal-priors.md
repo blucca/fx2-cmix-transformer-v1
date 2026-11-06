@@ -63,23 +63,80 @@ WORK/bin/activation-probe eval-pieces WORK/capture/validation.u8 \
   WORK/capture/validation.f16 ORIGINAL_STATIC15 WORK/data/validation.i32
 ```
 
-The max-length audit reuses the existing warm capture, serially after the sparse
-pass so only one PPMd disk map is live:
+The optional `audit` role writes the independent max-length piece during that
+same pass. It uses the same post-byte `WritePpmdRow` as the existing warm-start-0
+capture, with its own token/prior files. The randomized plan and boundaries
+stay fixed; only a sorted, disjoint audit interval is added to the capture plan:
 
 ```sh
-WORK/bin/activation-probe capture PREPARED/stream.bin AUDIT/tokens.u8 \
-  AUDIT/priors.f16 PREPARED/vocab.bin 570595966 131072 0
-# AUDIT/bounds.i32 contains [0, 131072].
-WORK/bin/activation-probe eval-pieces AUDIT/tokens.u8 AUDIT/priors.f16 \
-  ORIGINAL_STATIC15 AUDIT/bounds.i32
+python3 - WORK/data/plan.tsv WORK/data/joint-plan.tsv <<'PYTHON'
+from pathlib import Path
+import sys
+rows = [(int(a), int(b), role) for a, b, role in
+        (line.split() for line in Path(sys.argv[1]).read_text().splitlines())]
+rows = sorted([*rows, (570595966, 570727038, 'audit')])
+assert all(a[1] <= b[0] for a, b in zip(rows, rows[1:]))
+Path(sys.argv[2]).write_text(''.join(f'{a} {b} {r}\n' for a, b, r in rows))
+PYTHON
+WORK/bin/causal-ppmd PREPARED/stream.bin PREPARED/vocab.bin \
+  WORK/data/joint-plan.tsv WORK/capture
+# AUDIT/bounds.i32 contains [0, 131072]. Keep these rows out of training.
+WORK/bin/activation-probe eval-pieces WORK/capture/audit.u8 \
+  WORK/capture/audit.f16 ORIGINAL_STATIC15 AUDIT/bounds.i32
 ```
 
-Use dedicated scratch storage with room for the 14,000 MiB disk map and the
-1,654,520,778-byte randomized token/prior files. Capture uses one CPU and an
-18 GiB virtual address-space cap; full capture, the reserved audit and original
-native baselines share an 8 CPU-hour preparation ceiling. Neural training uses
-one CPU and a 7 GiB virtual address-space cap. CPU memory and virtual mapping
-are tracked separately.
+The fixed maximum article has zero selected randomized rows, so the added
+interval is disjoint from all 1,786 original intervals. The new plan has 1,787
+intervals. Audit row `k` comes after source byte `570595966+k` is completed;
+its 205 f16 values predict the next byte. All 131,072 rows are saved and native
+scoring uses 131,071 next-token targets.
+
+Use dedicated scratch storage with room for the 14,000 MiB disk map, the
+1,654,520,778-byte randomized token/prior files and 53,870,592 additional audit
+bytes. Capture uses one CPU and an 18 GiB virtual address-space cap. The
+recovery's cumulative preparation ceiling is **9 CPU hours**: the initial
+4-hour failed pass, one replacement scan capped at 4.5 hours, and 0.5 hours
+for source preparation and both native baselines. Shared audit rows are charged
+once with the full scan. Neural training retains one CPU, its 7 GiB virtual
+address-space cap and the original 48 CPU-hour allowance. CPU/RSS and virtual
+mapping are tracked separately.
+
+### Actual capture recovery
+
+The initial pass ended with SIGKILL (`-9`) at its configured 14,400-second
+hard CPU ceiling. The last progress row records **577,765,376 source bytes /
+14,374.780 CPU seconds**, with peak RSS **4,670,472 KiB**. Kernel OOM matches
+were zero. All randomized intervals ended by source byte 554,866,347;
+logical sample counters were complete, while the half writer and stdio buffers
+left the physical output prefixes short. The replacement reconstructs the
+original state from byte zero and writes fresh train/held/audit outputs.
+
+The original mean throughput projects a complete replacement at about
+**14,591 CPU seconds**. Joining the independent audit avoids the former second
+warm-start-0 traversal to byte 570,727,038. Same seed, PPMd update order,
+vocabulary and original half conversion preserve the exact row contract.
+[Recovery receipt](results/causal-capture-recovery.json) reports the added-role
+check, complete input counts, prior failure charge and actual current stage.
+The teacher, 16 epochs, independent native scores and sole mixed candidate
+retain their original recipe.
+
+The added role check passes across train **3,840**, held **32,768** and audit
+**8,192** bytes, including all 205 f16 columns and token bytes. The two ready
+original binaries were the transferred experiment assets. Recovery rebuilt the
+original adapted predictor/mixer objects and added caller; its missing short
+reference was generated once with the unchanged original capture binary. The
+completed three-role fixture was reused. All preparation attempts cost
+**4.114 CPU seconds**, including their dependency failures. The recovered full
+scan is running; new teacher/optimizer and real-payload saving are still zero.
+
+The actual [capture job](causal-capture-job.py),
+[training job](causal-training-job.py) and
+[recovery builder](causal-capture-recovery-build.py) preserve this measured
+original experiment layout. Copy them to WORK as `capture.py`,
+`training-job.py` and `recovery-build.py`, respectively. They use the original
+build manifest, adapted source headers, ready original evaluator, loader object,
+full prepared input and fixed teacher/export assets. Their explicit limits and
+prior-failure charge describe this recovery batch.
 
 ## Training and measurements
 
