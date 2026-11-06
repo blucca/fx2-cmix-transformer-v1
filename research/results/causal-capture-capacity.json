@@ -1,0 +1,302 @@
+{
+  "schema": "hutter.causal-capture.live-capacity-adjustment.v1",
+  "status": "limit_applied_terminal_handoff_waiting",
+  "observation": {
+    "schema": "hutter.capture.capacity.single-observation.v1",
+    "observed_at": 1793948498.6646962,
+    "observed_utc": "2026-11-06T07:01:38.664819+00:00",
+    "scope": "existing recovered capture process only; read-only",
+    "states": {
+      "capture-state.json": {
+        "status": "running",
+        "started_at": 1793931978.0014045,
+        "cpu_limit_seconds": 16200,
+        "prep_cpu_limit_seconds": 32400,
+        "prior_failed_capture_cpu_seconds": 14400,
+        "recovery_prepare_cpu_seconds": 4.113754061,
+        "address_space_limit_gib": 18,
+        "source_bytes": 586459020,
+        "roles": {
+          "train": {
+            "pieces": 1313,
+            "bytes": 2942620,
+            "targets": 2941307,
+            "max_piece_bytes": 29587
+          },
+          "validation": {
+            "pieces": 473,
+            "bytes": 1082978,
+            "targets": 1082505,
+            "max_piece_bytes": 38537
+          }
+        },
+        "stage": "full_causal_capture",
+        "capture_pid": 30420,
+        "command": [
+          "$REMOTE_ROOT/round414/bin/causal-ppmd",
+          "$REMOTE_ROOT/prepared/stream.bin",
+          "$REMOTE_ROOT/prepared/vocab.bin",
+          "$REMOTE_ROOT/round414/data/joint-plan.tsv",
+          "$REMOTE_ROOT/round414/capture"
+        ]
+      },
+      "capture.exit": null
+    },
+    "logs": {
+      "capture.log": {
+        "bytes": 85512,
+        "tail": [
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":499122176,\"train_bytes\":2680234,\"validation_bytes\":971773,\"audit_bytes\":0,\"cpu_seconds\":12431.374659,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":500170752,\"train_bytes\":2680234,\"validation_bytes\":974434,\"audit_bytes\":0,\"cpu_seconds\":12461.019935,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":501219328,\"train_bytes\":2682189,\"validation_bytes\":976223,\"audit_bytes\":0,\"cpu_seconds\":12486.769160,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":502267904,\"train_bytes\":2688413,\"validation_bytes\":978467,\"audit_bytes\":0,\"cpu_seconds\":12529.401192,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":503316480,\"train_bytes\":2692046,\"validation_bytes\":978467,\"audit_bytes\":0,\"cpu_seconds\":12556.457492,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":504365056,\"train_bytes\":2695810,\"validation_bytes\":980276,\"audit_bytes\":0,\"cpu_seconds\":12581.848515,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":505413632,\"train_bytes\":2705543,\"validation_bytes\":983899,\"audit_bytes\":0,\"cpu_seconds\":12608.468833,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":506462208,\"train_bytes\":2711146,\"validation_bytes\":989814,\"audit_bytes\":0,\"cpu_seconds\":12642.515003,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":507510784,\"train_bytes\":2721089,\"validation_bytes\":992477,\"audit_bytes\":0,\"cpu_seconds\":12668.197282,\"max_rss_kib\":4624784}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":508559360,\"train_bytes\":2721089,\"validation_bytes\":994651,\"audit_bytes\":0,\"cpu_seconds\":12704.314763,\"max_rss_kib\":4671704}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":509607936,\"train_bytes\":2728724,\"validation_bytes\":998387,\"audit_bytes\":0,\"cpu_seconds\":12726.253217,\"max_rss_kib\":4671704}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":510656512,\"train_bytes\":2732140,\"validation_bytes\":1001889,\"audit_bytes\":0,\"cpu_seconds\":12745.283908,\"max_rss_kib\":4671704}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":511705088,\"train_bytes\":2732140,\"validation_bytes\":1003708,\"audit_bytes\":0,\"cpu_seconds\":12769.396293,\"max_rss_kib\":4671704}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":512753664,\"train_bytes\":2732140,\"validation_bytes\":1007852,\"audit_bytes\":0,\"cpu_seconds\":12799.921884,\"max_rss_kib\":4671704}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":513802240,\"train_bytes\":2732140,\"validation_bytes\":1007852,\"audit_bytes\":0,\"cpu_seconds\":12838.797003,\"max_rss_kib\":4671704}",
+          "CAUSAL_RESULT {\"status\":\"running\",\"processed_bytes\":514850816,\"train_bytes\":2743317,\"validation_bytes\":1007852,\"audit_bytes\":0,\"cpu_seconds\":12895.053968,\"max_rss_kib\":4687380}"
+        ],
+        "bounded_read_bytes": 85512
+      },
+      "capture-controller-recovered.log": {
+        "bytes": 0,
+        "tail": [],
+        "bounded_read_bytes": 0
+      },
+      "capture-wrapper.log": {
+        "exists": false
+      }
+    },
+    "capture_files": {
+      "audit.f16": {
+        "bytes": 0,
+        "blocks_bytes": 0,
+        "mtime_unix": 1793931978.006469
+      },
+      "audit.u8": {
+        "bytes": 0,
+        "blocks_bytes": 0,
+        "mtime_unix": 1793931978.0015416
+      },
+      "ppm.temp": {
+        "bytes": 14680064001,
+        "blocks_bytes": 11197276160,
+        "mtime_unix": 1793948498.672418
+      },
+      "train.f16": {
+        "bytes": 1124069376,
+        "blocks_bytes": 1124073472,
+        "mtime_unix": 1793948466.056417
+      },
+      "train.u8": {
+        "bytes": 2736128,
+        "blocks_bytes": 2736128,
+        "mtime_unix": 1793948404.5404148
+      },
+      "validation.f16": {
+        "bytes": 411037696,
+        "blocks_bytes": 411037696,
+        "mtime_unix": 1793948291.2524107
+      },
+      "validation.u8": {
+        "bytes": 1007616,
+        "blocks_bytes": 1011712,
+        "mtime_unix": 1793948321.6564116
+      }
+    },
+    "capture_process": {
+      "exists": true,
+      "state": "D",
+      "pid": 30420,
+      "ppid": 30418,
+      "clock_ticks_per_second": 100,
+      "user_cpu_seconds": 3369.97,
+      "system_cpu_seconds": 9550.61,
+      "cumulative_cpu_seconds": 12920.58,
+      "process_elapsed_wall_seconds": 15709.68,
+      "stat_raw": "30420 (causal-ppmd) D 30418 30416 30416 0 -1 4194304 1810359548 0 29630734 0 336997 955061 0 0 20 0 1 0 4678336 15987113984 509405 18446744073709551615 94732288090112 94732288459253 140730155479424 0 0 0 0 0 0 1 0 0 17 0 0 0 0 0 0 94732288506640 94732288511348 94732476358656 140730155486116 140730155486366 140730155486366 140730155487171 0\n",
+      "limits_raw": "Limit                     Soft Limit           Hard Limit           Units     \nMax cpu time              16200                16200                seconds   \nMax file size             unlimited            unlimited            bytes     \nMax data size             unlimited            unlimited            bytes     \nMax stack size            8388608              unlimited            bytes     \nMax core file size        0                    unlimited            bytes     \nMax resident set          unlimited            unlimited            bytes     \nMax processes             31839                31839                processes \nMax open files            1024                 524288               files     \nMax locked memory         8388608              8388608              bytes     \nMax address space         19327352832          19327352832          bytes     \nMax file locks            unlimited            unlimited            locks     \nMax pending signals       31839                31839                signals   \nMax msgqueue size         819200               819200               bytes     \nMax nice priority         0                    0                    \nMax realtime priority     0                    0                    \nMax realtime timeout      unlimited            unlimited            us        \n",
+      "cpu_limit": {
+        "soft": "16200",
+        "hard": "16200",
+        "units": "seconds"
+      },
+      "address_space_limit": {
+        "soft": "19327352832",
+        "hard": "19327352832",
+        "units": "bytes"
+      },
+      "status_fields": {
+        "Name": "causal-ppmd",
+        "State": "R (running)",
+        "VmPeak": "15612416 kB",
+        "VmSize": "15612416 kB",
+        "VmHWM": "4687380 kB",
+        "VmRSS": "2039264 kB",
+        "Threads": "1"
+      },
+      "io_raw": "rchar: 515954389\nwchar: 1538936329\nsyscr: 511\nsyscw: 1313\nread_bytes: 2290160377856\nwrite_bytes: 5714483712000\ncancelled_write_bytes: 0\n",
+      "source_fds": [
+        {
+          "fd": 5,
+          "target": "$REMOTE_ROOT/prepared/stream.bin",
+          "fdinfo_raw": "pos:\t515899392\nflags:\t0100000\nmnt_id:\t44\nino:\t1048600\n"
+        }
+      ]
+    },
+    "capture_progress": {
+      "parsed_rows_in_bounded_tail": 491,
+      "first_in_tail": {
+        "status": "running",
+        "processed_bytes": 1048576,
+        "train_bytes": 5321,
+        "validation_bytes": 577,
+        "audit_bytes": 0,
+        "cpu_seconds": 3.169079,
+        "max_rss_kib": 1169132
+      },
+      "last": {
+        "status": "running",
+        "processed_bytes": 514850816,
+        "train_bytes": 2743317,
+        "validation_bytes": 1007852,
+        "audit_bytes": 0,
+        "cpu_seconds": 12895.053968,
+        "max_rss_kib": 4687380
+      },
+      "previous": {
+        "status": "running",
+        "processed_bytes": 513802240,
+        "train_bytes": 2732140,
+        "validation_bytes": 1007852,
+        "audit_bytes": 0,
+        "cpu_seconds": 12838.797003,
+        "max_rss_kib": 4671704
+      }
+    },
+    "capture_pid": 30420,
+    "source_file_bytes": 586459020,
+    "metadata_process_cpu_seconds": 0.005143194,
+    "api_exec_calls": 1,
+    "local_controller_cpu_seconds": 0.011690284999999995,
+    "new_model_calls": 0,
+    "new_teacher_calls": 0,
+    "new_native_calls": 0,
+    "source_changes": 0,
+    "limit_changes": 0,
+    "restarts": 0,
+    "capacity_assessment": {
+      "confirmed_scanned_fraction": 0.8778973439610495,
+      "confirmed_remaining_source_bytes": 71608204,
+      "source_fd_position_bytes": 515899392,
+      "remaining_original_cpu_seconds": 3279.42,
+      "required_tail_bytes_per_cpu_second_to_fit_original_cap": 21835.630690792885,
+      "forecast_scope": "Same recovered stream / PID, using actual last 15 / 8 / 4 / 1 MiB CPU progress. Remaining calculation conservatively includes the currently executing MiB again. Final writer flush cost lies outside observed progress windows.",
+      "forecasts": [
+        {
+          "window_mib": 15,
+          "bytes_per_cpu_second": 33921.375603154134,
+          "remaining_cpu_seconds_conservative": 2111.0053093879133,
+          "forecast_scan_total_cpu_seconds": 15031.585309387912,
+          "original_cap_margin_cpu_seconds": 1168.4146906120868,
+          "proposed_18000_cap_margin_cpu_seconds": 2968.414690612087
+        },
+        {
+          "window_mib": 8,
+          "bytes_per_cpu_second": 33217.08394583786,
+          "remaining_cpu_seconds_conservative": 2155.7643084131287,
+          "forecast_scan_total_cpu_seconds": 15076.344308413129,
+          "original_cap_margin_cpu_seconds": 1123.6556915868714,
+          "proposed_18000_cap_margin_cpu_seconds": 2923.6556915868714
+        },
+        {
+          "window_mib": 4,
+          "bytes_per_cpu_second": 28004.956397827304,
+          "remaining_cpu_seconds_conservative": 2556.9832347803817,
+          "forecast_scan_total_cpu_seconds": 15477.563234780382,
+          "original_cap_margin_cpu_seconds": 722.4367652196183,
+          "proposed_18000_cap_margin_cpu_seconds": 2522.4367652196183
+        },
+        {
+          "window_mib": 1,
+          "bytes_per_cpu_second": 18639.043183363887,
+          "remaining_cpu_seconds_conservative": 3841.8390523346857,
+          "forecast_scan_total_cpu_seconds": 16762.419052334684,
+          "original_cap_margin_cpu_seconds": -562.4190523346856,
+          "proposed_18000_cap_margin_cpu_seconds": 1237.5809476653144
+        }
+      ],
+      "recommendation": "Extend only existing PID 30420 soft/hard CPU cap to 18000 seconds; preserve existing data, source, process and queued dependencies. Root decides execution. No extension performed in this observation.",
+      "proposed_cap_cpu_seconds": 18000,
+      "proposed_additional_scan_ceiling_cpu_seconds": 1800,
+      "prior_prepare_ceiling_cpu_seconds": 32400,
+      "proposed_prepare_ceiling_cpu_seconds": 34200,
+      "prepare_fee_accounting": "One original shared preparation ledger: prior failed capture 14400 + recovered capture ceiling 18000 + retained prepare reserve 1800 = 34200 seconds / 9.5 CPU hours. Count this observation metadata CPU once in preparation reserve.",
+      "expected_scan_actual_additional_cpu_vs_original_cap_seconds": 0,
+      "observed_one_mib_slow_tail_scenario_additional_cpu_vs_original_cap_seconds": 562.4190523346842,
+      "active_work_for_proposed_same_process_extension_hours_estimate": [
+        0.1,
+        0.25
+      ],
+      "incremental_cash_eur": 0,
+      "single_observation_complete": true,
+      "followup_polling": "Stopped; original single watcher follows original terminal dependencies."
+    },
+    "static_delivery_review": {
+      "capture_wrapper": "memory/ops/hutter/round417/capture.py:9,11-12,30-33,44-48",
+      "wrapper_cpu_control": "16200 is inherited RLIMIT_CPU only. Parent waits with 43200-second wall timeout; its explicit kill branch is subprocess.TimeoutExpired at that wall deadline.",
+      "launcher": "memory/ops/hutter/round417/recovery-launch.py:54-62 uses plain shell python3 capture.py then writes capture.exit; no additional 16200 CPU timer.",
+      "recommended_existing_privileged_mechanism": "sudo -n python3 -B with Linux standard-library resource.prlimit(pid, resource.RLIMIT_CPU, (18000,18000)); first verify PID 30420 comm causal-ppmd and starttime tick 4678336, current limits 16200/16200, then update once and record returned before/after. No utility installation needed.",
+      "existing_sudo_receipt": "temp/round417/capture-failure/diagnostic.json records both sudo dmesg and sudo journalctl exit 0 / empty stderr on worker 2.",
+      "current_new_privilege_tests": 0,
+      "terminal_accounting_constraint": "capture wrapper holds startup state 16200 / 32400 in memory and saves it again at terminal. A live JSON-only edit is overwritten then. training-job.py:44,113-115 reads terminal prep_cpu_limit_seconds and checks actual summed preparation against it. Independent actual limit-change receipt must retain 18000 / 34200 decision; downstream preparation gate needs that same authorized budget before teacher input acceptance.",
+      "source_or_recipe_changes_performed": 0
+    }
+  },
+  "deployment": {
+    "schema": "hutter.capture.live-cap-handoff.v1",
+    "status": "waiting",
+    "capture_pid": 30420,
+    "pipeline_group": 30417,
+    "new_cpu_limit_seconds": 18000,
+    "authorized_prep_cpu_limit_seconds": 34200,
+    "new_scans": 0,
+    "source_changes": 0,
+    "teacher_calls": 0,
+    "paused_pipeline": true,
+    "stage": "waiting_capture_terminal",
+    "updated_at": 1793949718.4640193,
+    "before_cpu_limit": [
+      16200,
+      16200
+    ],
+    "after_cpu_limit": [
+      18000,
+      18000
+    ],
+    "original_capture_start": 1793931978.0014045,
+    "deadline": 1793975178.0014045,
+    "original_pipeline_stage": "waiting_for_inputs",
+    "unit_status": {
+      "MainPID": "31792",
+      "ActiveState": "active",
+      "SubState": "running"
+    },
+    "api_exit_code": 0
+  },
+  "local_check": {
+    "syntax": "passed",
+    "single_cost_item": "passed",
+    "budget_equation": "passed",
+    "model_calls": 0
+  },
+  "complete_causal_training_targets": 0,
+  "new_fullstream_codec_measurements": 0
+}

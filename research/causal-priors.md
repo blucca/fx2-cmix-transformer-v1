@@ -94,8 +94,8 @@ scoring uses 131,071 next-token targets.
 Use dedicated scratch storage with room for the 14,000 MiB disk map, the
 1,654,520,778-byte randomized token/prior files and 53,870,592 additional audit
 bytes. Capture uses one CPU and an 18 GiB virtual address-space cap. The
-recovery's cumulative preparation ceiling is **9 CPU hours**: the initial
-4-hour failed pass, one replacement scan capped at 4.5 hours, and 0.5 hours
+recovery's cumulative preparation ceiling is **9.5 CPU hours**: the initial
+4-hour failed pass, one replacement scan capped at 5 hours, and 0.5 hours
 for source preparation and both native baselines. Shared audit rows are charged
 once with the full scan. Neural training retains one CPU, its 7 GiB virtual
 address-space cap and the original 48 CPU-hour allowance. CPU/RSS and virtual
@@ -244,3 +244,24 @@ formal archive stage measures the actual coded W0/W1 restoration.
 Original fixed-input coordinates and its terminal native/mixed queue remain
 separate. This method changes the causal training distribution and keeps its
 own weights, teacher cache, held measurements and trajectory.
+
+
+### Live capacity adjustment, same causal pass
+
+A single near-cap observation found 514850816 / 586459020 bytes processed
+(87.7897%) and 12920.58 CPU seconds used. Recent 15–4 MiB rates projected
+15031.59–15477.56 total CPU seconds; the observed final 1 MiB slow-tail
+condition projected 16762.42, crossing the original 16200-second cap.
+The same capture process now has an applied 18000-second limit, adding
+1800 seconds to the ceiling. The complete preparation ceiling is 34200
+seconds, including the preserved original 14400-second failed pass.
+
+A [single finite handoff](results/capture-cap-handoff-round423.py) pauses the
+original waiting pipeline group while capture continues. The original capture
+wrapper holds its launch budget in memory; at its existing terminal, the
+handoff preserves that snapshot, records the applied limit and one overhead
+cost item, then continues the same pipeline group. The original data, sampling,
+18-GiB capture AS, teacher/16-epoch recipe, 48-CPU-hour training and one mixed
+measurement stay fixed. [Observation and applied-limit receipt](results/causal-capture-capacity.json)
+records the still-waiting terminal handoff. These rates cover the causal capture
+program; final compressor and archive time are measured on their own programs.
