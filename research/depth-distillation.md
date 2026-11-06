@@ -370,3 +370,37 @@ scope and machine T. [One standard-library replay](check-depth-first-hard-e12.py
 reconstructs all 473 paired losses, phase coverage and the measured package
 space. The next scheduled native checkpoint is e16; the one terminal-selected
 checkpoint proceeds to the original sole mixed measurement.
+
+
+## Eight hard-QAT epochs: native epoch sixteen
+
+[The scheduled e16 measurement](results/depth-hard-e16.json) completes eight
+continuous and eight hard epochs. Held native NLL is **1.1492552659**,
+**+0.0041138733 nats/target** from e12 and **+0.1830069271** against W0.
+The same-piece comparison has **267 worsening pieces / 800,662 targets** and
+**206 improving pieces / 281,843 targets**. Low-W0-surprisal targets continue
+to improve; the middle and high domains add 931.820 and 3,627.175 nats of
+loss, while the low domain removes 105.707 nats.
+
+The three long held pieces add **+0.0058792870** from e12. The separate
+131,071-target maximum-article audit adds **+0.0068299187**. Eight completed
+hard epochs therefore retain less of the first four hard epochs' held recovery.
+The e13-to-e16 training CE falls from **1.001655 to 0.991812**, while
+teacher KL rises from **0.143051 to 0.144365** over those four epochs.
+The original kappa=1 selector keeps **e12** as the current best native export;
+the unchanged 32-epoch trajectory supplies the remaining sixteen hard epochs.
+
+W16 is **1,961,715 B**. Its two weight/binary copies save **1,894,244 B**,
+1,466 B less than e12. Under the named uniform-transmission/observed-held
+composition sensitivity, paying the historical 952,225 B record gap requires
+**kappa <= 0.0486911923**. Actual G, M, u16 and encoded bytes remain assigned
+to the same selected-weight sole mixed measurement.
+
+The e16 held/audit programs use **82.250913 / 11.905871 CPU seconds**.
+The collected original trainer reports **48,673.906142 CPU seconds** including
+the same 121.716697-second preparation credit, with **124,126.093858 seconds**
+remaining in its 48-hour cap. The measured e12-to-e16 rate is 2,738.817 CPU
+seconds per completed epoch. Source, scales, recipe and sampling remain fixed.
+[Stdlib replay](check-depth-hard-e16.py) reconstructs the 473 pairings,
+phase coverage, measured package space and the named sensitivity. The next
+scheduled native checkpoint is e20.

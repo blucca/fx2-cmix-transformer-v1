@@ -7,7 +7,7 @@
 **Length support:** [census-calibrated native sensitivity](native-length-support.md) separates six observed length cells from the missing >64 KiB cell. At κA=.05, e12's historical record scenario leaves 69,500 B for that cell's payload growth. One natural article contains 81.38% of its targets. [Stdlib replay](check-native-length-support.py).
 
 
-**First hard-QAT transition:** [native e12](results/depth-first-hard-e12.json) recovers 11.68% of the e8 deployment gap across 97.106% of sampled held targets; the maximum-article audit and actual 1,895,710 B package space remain separate. [Stdlib replay](check-depth-first-hard-e12.py).
+**Eight hard-QAT epochs:** [native e16](results/depth-hard-e16.json) adds 0.004113873 nats/target from e12 across 800,662 worsening held targets; e12 remains the current native minimum. W16/B save 1,894,244 B across both copies. The original 32-epoch method and sole mixed run continue. [Stdlib replay](check-depth-hard-e16.py).
 
 **Causal e10:** [ten original native epochs](results/causal-first-ten-epochs.json) preserve e2; the same four held/audit scopes regress through e3–e10. [Replay](causal-first-ten-epochs-check.py).
 
