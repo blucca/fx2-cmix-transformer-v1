@@ -28,7 +28,8 @@ RECIPE = dict(method="eight-block-causal-distillation-v1", seed=419,
               teacher_kl=1., final_hidden_mse=.1, entropy_tau=.5,
               full_prepared_bytes=586459020, final_batch="merge-short-tail",
               kept_layers=[0, 1, 2, 3, 8, 9, 10, 11],
-              frozen="all signed BF16 weight and activation scales")
+              frozen="all signed BF16 weight and activation scales",
+              cpu_gemm="integer-units-before-native-BF16-fold")
 _spec = importlib.util.spec_from_file_location(
     "original_coordinate", Path(__file__).with_name("integer-coordinate-qat.py"))
 _old = importlib.util.module_from_spec(_spec)
@@ -158,7 +159,7 @@ def main():
         torch.set_num_threads(1)
         torch.set_num_interop_threads(1)
         torch.manual_seed(RECIPE["seed"])
-        model, _, initialization = load_student(a.checkpoint, a.kernel)
+        model, _, initialization = load_student(a.checkpoint, a.kernel, native_scaled_gemm=True)
         assert model.cfg.n_layers == 8 and sum(model.cfg.kimi_linear) == 6
         z, scales, initial_q, raw, frozen, mode = install_student_coordinates(model)
         initial_raw = {k: v.detach().clone() for k, v in raw.items()}
@@ -231,7 +232,7 @@ def main():
                     logits, hidden = torch.from_numpy(data["logits"]), torch.from_numpy(data["hidden"])
             else:
                 if teacher is None:
-                    teacher, _ = load_model(a.checkpoint, a.kernel)
+                    teacher, _ = load_model(a.checkpoint, a.kernel, native_scaled_gemm=True)
                     teacher.requires_grad_(False).eval()
                 with torch.no_grad():
                     logits, hidden = forward(teacher, x, pp, bounds)

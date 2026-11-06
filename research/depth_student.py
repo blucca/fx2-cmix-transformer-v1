@@ -132,7 +132,7 @@ def state_counts(model, state_dict=None):
     return result
 
 
-def load_student(checkpoint, kernel=None):
+def load_student(checkpoint, kernel=None, native_scaled_gemm=False):
     """Construct the fixed student; strictly map all original checkpoint keys.
 
     Returns (model, cpu_import_adapter_counts, initialization_info). Structural
@@ -142,7 +142,8 @@ def load_student(checkpoint, kernel=None):
     import torch
     from cpu_model import build_model
 
-    model, counts = build_model(kernel, config_transform=_student_config)
+    model, counts = build_model(kernel, config_transform=_student_config,
+                                native_scaled_gemm=native_scaled_gemm)
     target = model.state_dict()
     original = torch.load(checkpoint, map_location="cpu", weights_only=True)
     _assert_shapes(original, teacher_shapes({key: value.shape for key, value in target.items()}))
@@ -175,6 +176,7 @@ def load_student(checkpoint, kernel=None):
         "all_checkpoint_keys_shapes_checked": True,
         "all_mapped_values_bit_exact": True,
         "gradient_checkpointing": model.cfg.gradient_checkpointing,
+        "native_scaled_gemm": native_scaled_gemm,
         "operator_counts_scope": "existing cpu_model shared import-adapter diagnostics",
         "state_counts": state_counts(model),
     }

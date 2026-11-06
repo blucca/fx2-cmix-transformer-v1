@@ -100,8 +100,15 @@ causal held and maximum-length inputs supply quality evidence.
 The eight-block production path retains canonical reference-attention
 arithmetic, preserving INT4 rounding at half-integer boundaries. Its actual
 native link includes `tf_kernels_reference.o`; the twelve-block family retains
-its original default. The teacher and CPU-training backend keep their existing
-forward paths.
+its original default. The fixed-scale CPU teacher and student opt into integer-unit FP32 GEMM followed
+by one BF16 scale fold, matching native matrix arithmetic. Quantized activation
+and weight divisions recover the INT8/INT4 values; the maximum dot bound is
+`768*128*7 < 2**24`. Continuous coordinates retain the same real-valued
+function and straight-through gradients. The default twelve-block CPU route
+keeps its original arithmetic. A same-piece resource comparison reduced the
+CPU/native NLL distance from 0.00455607 to 0.00226304 nats/target; all 74 integer
+linear recoveries and 134 parameter gradients passed. Complete causal native
+scores and real codec bytes retain their selection role.
 
 ## One actual mixed deployment
 
