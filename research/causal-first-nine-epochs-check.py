@@ -33,6 +33,14 @@ def main():
     assert pair['worse_pieces'] + pair['better_pieces'] == pair['pieces'] == 473
     assert pair['worse_targets'] + pair['better_targets'] == pair['targets'] == 1082505
     assert math.isclose(pair['weighted_delta_nats'], epochs[8]['delta_w0'], abs_tol=1e-12)
+    ps = r['paired_pieces']
+    assert r['paired_piece_columns'] == ['targets', 'w0_native_nll', 'e9_native_nll']
+    assert len(ps) == pair['pieces'] and sum(p[0] for p in ps) == pair['targets']
+    assert all(p[0] > 0 and all(math.isfinite(x) for x in p) for p in ps)
+    for column, reference in [(1, b['all_nll']), (2, epochs[8]['all_nll'])]:
+        assert math.isclose(math.fsum(p[0]*p[column] for p in ps)/pair['targets'], reference, abs_tol=1e-12)
+    assert sum(p[2] > p[1] for p in ps) == pair['worse_pieces']
+    assert sum(p[0] for p in ps if p[2] > p[1]) == pair['worse_targets']
     cpu = r['actual_cpu']
     assert math.isclose(cpu['unique_trainer_cpu_seconds'] + cpu['baseline_credit_seconds'], cpu['latest_reported_total_cpu_seconds'], abs_tol=1e-9)
     assert math.isclose(cpu['method_cap_remaining_seconds'] + cpu['latest_reported_total_cpu_seconds'], cpu['method_cpu_cap_seconds'], abs_tol=1e-9)
