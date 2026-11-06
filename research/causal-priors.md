@@ -252,7 +252,7 @@ A single near-cap observation found 514850816 / 586459020 bytes processed
 (87.7897%) and 12920.58 CPU seconds used. Recent 15–4 MiB rates projected
 15031.59–15477.56 total CPU seconds; the observed final 1 MiB slow-tail
 condition projected 16762.42, crossing the original 16200-second cap.
-The same capture process now has an applied 18000-second limit, adding
+The same capture process received an applied 18000-second limit, adding
 1800 seconds to the ceiling. The complete preparation ceiling is 34200
 seconds, including the preserved original 14400-second failed pass.
 
@@ -263,5 +263,58 @@ handoff preserves that snapshot, records the applied limit and one overhead
 cost item, then continues the same pipeline group. The original data, sampling,
 18-GiB capture AS, teacher/16-epoch recipe, 48-CPU-hour training and one mixed
 measurement stay fixed. [Observation and applied-limit receipt](results/causal-capture-capacity.json)
-records the still-waiting terminal handoff. These rates cover the causal capture
+records the launch-era waiting terminal handoff. These rates cover the causal capture
 program; final compressor and archive time are measured on their own programs.
+
+### Complete causal pass and first real native baseline
+
+[The terminal receipt](results/causal-capture-terminal.json), observed on
+2026-11-06 at 08:00:58 UTC, records the completed **586,459,020-byte** pass.
+Train/held/audit have 2,942,620 / 1,082,978 / 131,072 rows, all **205 f16
+columns**, and 2,941,307 / 1,082,505 / 131,071 NN targets. The fixed article
+clusters, complete-piece boundaries and independent audit coordinates stay
+unchanged. Capture reports **14,713.965606 CPU seconds** and 4,687,380 KiB
+peak RSS. Its full child rusage is 14,715.443169 seconds and wrapper CPU
+27.890923642 seconds; these are distinct resource scopes.
+
+The finite handoff completed, preserved the launch 16200/32400 budget
+snapshot and resumed the original pipeline group. Preparation used
+**29,267.181989056004 / 34,200 CPU seconds**, including the conservative
+14,400-second previous failed pass and one 0.038544376-second capacity
+handoff cost. The original 16-epoch/48-CPU-hour trajectory is running.
+
+Original W0 is evaluated on the true causal rows with native piece resets:
+
+| Scope | Targets | Model logit NLL | Model probability NLL |
+|---|---:|---:|---:|
+| Randomized complete-piece held | 1,082,505 | 0.966248338794 | 0.966248314271 |
+| Three >32-KiB held pieces, within that total | 107,647 | 1.258614301310 | 1.258614281198 |
+| Independent max-article middle audit | 131,071 | 0.038986426132 | 0.038986374735 |
+
+`logits_mean` uses double logsumexp of the model's logits; `probs_mean`
+uses its fp32 output probability. Both columns score the NN model. The
+three long held pieces are included once in the full held mean; their
+standalone view and the independent audit retain their report roles.
+
+[Baseline analysis](results/causal-baseline-analysis.json) derives the
+remaining 974,858-target short mean, **0.933964335620**, and the long
+target share, **9.94425%**. Using the historical 952,225-byte record gap
+as a scenario and the actual initialized depth W/B saving of 1,907,300
+bytes, the smaller model can pay a 955,075-byte payload increase. At the
+selection proxy's kappa=1, that is about +0.009034 nats/native-target.
+For example, a +0.1 long-piece delta then requires about -0.001010 in
+the short portion. Actual mixed code, trained W1 bytes and the record at
+full-stream admission supply the final comparison.
+
+The observed training snapshot is epoch0/step19, with 692,078 targets seen
+and zero completed native evaluations. Its reported 1,294.790013969 CPU
+seconds includes the 104.944287-second baseline carry already paid in
+preparation. The unique event training cost is 1,189.845726969 seconds;
+event accounting deducts that carry once while retaining the original
+48-hour runtime cap. This early scope includes startup, preflight and
+lazy teacher-cache work. The same early average projects 22.47 hours
+for 16 epochs, with remaining native/export costs reported separately.
+
+The completed source inputs are ready for the existing student transfer.
+Student input copying, its 32-epoch trajectory, the sole mixed measurements
+and both actual full-stream package sizes follow their existing queues.

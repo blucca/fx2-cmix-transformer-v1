@@ -1,0 +1,402 @@
+{
+  "schema": "hutter.capture.terminal.anonymous.v1",
+  "status": "passed",
+  "observed_utc": "2026-11-06T08:00:58.339279+00:00",
+  "api_exec_calls": 1,
+  "capture": {
+    "status": "passed",
+    "result": {
+      "status": "passed",
+      "processed_bytes": 586459020,
+      "train_bytes": 2942620,
+      "validation_bytes": 1082978,
+      "audit_bytes": 131072,
+      "cpu_seconds": 14713.965606,
+      "max_rss_kib": 4687380
+    },
+    "full_capture_cpu_seconds": 14715.443169,
+    "capture_wrapper_cpu_seconds": 27.890923642,
+    "cpu_limit_seconds": 18000,
+    "prep_cpu_limit_seconds": 34200,
+    "launch_budget_snapshot": {
+      "cpu_limit_seconds": 16200,
+      "prep_cpu_limit_seconds": 32400
+    },
+    "prior_failed_capture_cpu_seconds": 14400,
+    "recovery_prepare_cpu_seconds": 4.152298437,
+    "capacity_overhead_items": [
+      {
+        "id": "capture-cap-capacity-overhead-round423",
+        "cpu_seconds": 0.038544376000000005,
+        "scope": "one capacity metadata worker plus terminal handoff self and waited child CPU"
+      }
+    ]
+  },
+  "handoff": {
+    "status": "complete",
+    "stage": "terminal_accounted",
+    "before_cpu_limit": [
+      16200,
+      16200
+    ],
+    "after_cpu_limit": [
+      18000,
+      18000
+    ],
+    "new_cpu_limit_seconds": 18000,
+    "authorized_prep_cpu_limit_seconds": 34200,
+    "capture_exit": 0,
+    "accounted_overhead_cpu_seconds": 0.038544376000000005,
+    "recovery_prepare_cpu_seconds": 4.152298437,
+    "paused_pipeline": false,
+    "pipeline_continued": true
+  },
+  "pipeline": {
+    "status": "running",
+    "stage": "training",
+    "prep_cpu_limit_seconds": 34200,
+    "prep_cpu_seconds": 29267.181989056004,
+    "prior_failed_capture_cpu_seconds": 14400,
+    "recovery_prepare_cpu_seconds": 4.152298437,
+    "training_cpu_limit_seconds": 172800,
+    "training_epochs": 16,
+    "preflight": "passed"
+  },
+  "training": {
+    "status": "running",
+    "stage": "training",
+    "epoch": 0,
+    "step": 19,
+    "next_piece": 279,
+    "epoch_targets": 692078,
+    "seen_targets": 692078,
+    "total_cpu_seconds": 1294.790013969,
+    "cpu_limit_seconds": 172800,
+    "original_static15_bytes": 2904325,
+    "evaluation_count": 0
+  },
+  "data": {
+    "method": "causal-whole-piece-v1",
+    "source_bytes": 586459020,
+    "training_targets": 2941307,
+    "training_pieces": 1313,
+    "independent_long_audit": {
+      "article": 243425,
+      "article_begin": 554867326,
+      "article_end": 586453679,
+      "source_begin": 570595966,
+      "source_end": 570727038,
+      "bytes": 131072,
+      "targets": 131071,
+      "training_article_overlap": 0,
+      "sampling": "separate-fixed-max-native-length-audit",
+      "capture": {
+        "mode": "shared_full_causal_capture",
+        "warm_start": 0,
+        "source_begin": 570595966,
+        "source_end": 570727038,
+        "bytes": 131072,
+        "full_pass_processed_bytes": 586459020,
+        "cpu_accounting": "charged_once_in_full_capture"
+      }
+    },
+    "samples": [
+      {
+        "name": "causal",
+        "score": {
+          "targets": 1082505,
+          "long_piece_indices": [
+            127,
+            157,
+            181
+          ]
+        }
+      },
+      {
+        "name": "long-audit",
+        "score": {
+          "targets": 131071
+        }
+      }
+    ]
+  },
+  "files": {
+    "capture/train.u8": {
+      "status": "present",
+      "bytes": 2942620
+    },
+    "capture/train.f16": {
+      "status": "present",
+      "bytes": 1206474200
+    },
+    "capture/validation.u8": {
+      "status": "present",
+      "bytes": 1082978
+    },
+    "capture/validation.f16": {
+      "status": "present",
+      "bytes": 444020980
+    },
+    "capture/audit.u8": {
+      "status": "absent"
+    },
+    "capture/audit.f16": {
+      "status": "absent"
+    },
+    "long-audit/tokens.u8": {
+      "status": "present",
+      "bytes": 131072
+    },
+    "long-audit/priors.f16": {
+      "status": "present",
+      "bytes": 53739520
+    },
+    "long-audit/bounds.i32": {
+      "status": "present",
+      "bytes": 8
+    },
+    "data/validation.i32": {
+      "status": "present",
+      "bytes": 1896
+    }
+  },
+  "native_baselines": {
+    "status": "passed",
+    "child_cpu_seconds": 104.944287,
+    "native_child_cpu_seconds": 104.982714,
+    "steps": {
+      "causal": {
+        "status": "passed",
+        "total": {
+          "count": 1082505,
+          "logits_sum": 1045968.6579866606,
+          "probs_sum": 1045968.6314397457,
+          "logits_mean": 0.9662483387944264,
+          "probs_mean": 0.9662483142708308
+        },
+        "cpu_seconds": 92.77464,
+        "model_nll_fields": [
+          "logits_mean",
+          "probs_mean"
+        ],
+        "prior_only_nll_status": "absent_in_source_receipt",
+        "prior_only_nll": null,
+        "pieces": 473,
+        "input_bytes": 1082978,
+        "eval_cpu_seconds": 92.021883,
+        "max_rss_kib": 94212,
+        "first_half": {
+          "count": 541336,
+          "logits_sum": 628623.929583296,
+          "probs_sum": 628623.9177190167,
+          "logits_mean": 1.161245381026379,
+          "probs_mean": 1.161245359109715
+        },
+        "second_half": {
+          "count": 541169,
+          "logits_sum": 417344.728403361,
+          "probs_sum": 417344.7137211196,
+          "logits_mean": 0.7711911221880059,
+          "probs_mean": 0.7711910950574028
+        }
+      },
+      "long-audit": {
+        "status": "passed",
+        "total": {
+          "count": 131071,
+          "logits_sum": 5109.989859482552,
+          "probs_sum": 5109.983122830221,
+          "logits_mean": 0.03898642613150546,
+          "probs_mean": 0.038986374734534875
+        },
+        "cpu_seconds": 12.169647,
+        "model_nll_fields": [
+          "logits_mean",
+          "probs_mean"
+        ],
+        "prior_only_nll_status": "absent_in_source_receipt",
+        "prior_only_nll": null,
+        "pieces": 1,
+        "input_bytes": 131072,
+        "eval_cpu_seconds": 12.000783,
+        "max_rss_kib": 93116,
+        "first_half": {
+          "count": 65535,
+          "logits_sum": 2059.773754774714,
+          "probs_sum": 2059.7703724958005,
+          "logits_mean": 0.03143013282634796,
+          "probs_mean": 0.031430081216079965
+        },
+        "second_half": {
+          "count": 65536,
+          "logits_sum": 3050.216104707863,
+          "probs_sum": 3050.212750333939,
+          "logits_mean": 0.046542604136777695,
+          "probs_mean": 0.04654255295309355
+        }
+      }
+    },
+    "held_long": {
+      "source": "baseline causal piece_losses indexed by data-manifest causal score.long_piece_indices",
+      "piece_indices": [
+        127,
+        157,
+        181
+      ],
+      "piece_count": 3,
+      "count": 107647,
+      "total": {
+        "count": 107647,
+        "logits_mean": 1.2586143013099194,
+        "probs_mean": 1.258614281197843
+      },
+      "source_causal_cpu_seconds": 92.77464,
+      "additional_native_child_cpu_seconds": 0,
+      "model_nll_fields": [
+        "logits_mean",
+        "probs_mean"
+      ],
+      "prior_only_nll_status": "absent_in_source_receipt",
+      "prior_only_nll": null
+    }
+  },
+  "input_transfer": {
+    "source2_inputs_status": "ready",
+    "destination3_watch_status": "resume_requested",
+    "arm_status": "armed",
+    "transfer_launches": 0,
+    "transfer_launch": null,
+    "local_destination_ready_receipt": "absent",
+    "local_destination_transfer_receipt": "absent",
+    "destination_ready_evidence_status": "awaiting_original_transfer_receipt",
+    "marker_writes": 0,
+    "destination3_api_calls": 0
+  },
+  "checks": {
+    "handoff_complete_continued": true,
+    "handoff_actual_cap_18000": true,
+    "capture_passed_full_source": true,
+    "terminal_budget_18000_34200": true,
+    "launch_snapshot_16200_32400": true,
+    "capacity_cost_id_once": true,
+    "capacity_overhead_matches_handoff": true,
+    "recovery_prepare_added_once": true,
+    "pipeline_preparation_actual_account": true,
+    "pipeline_group_live_continued": true,
+    "baseline_ready": true,
+    "source2_final_files_complete": true,
+    "source2_target_masks_exact": true
+  },
+  "collector_cpu_seconds": {
+    "source2_metadata": 0.0040950130000000015,
+    "local_metadata": 0.033802185
+  },
+  "source_receipts": {
+    "round423/capture-cap-handoff-state.json": {
+      "status": "read",
+      "bytes": 785,
+      "sha256": "9736e2d3c751284a2069aaccf922bbe4ebe43ca3c520f65d5e30666ea0883b96"
+    },
+    "round414/capture-state.json": {
+      "status": "read",
+      "bytes": 2115,
+      "sha256": "0104304d5d876e5f652d948f694946c19837c637b879c5d38c93453b8c13d0a3"
+    },
+    "round414/capture.exit": {
+      "status": "read",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "round414/pipeline-state.json": {
+      "status": "read",
+      "bytes": 2519,
+      "sha256": "bb1077ccd11411aa513bdf5dedc5788047beae65f56404634afccc526e707c79"
+    },
+    "round414/recovery-ready.json": {
+      "status": "read",
+      "bytes": 1053,
+      "sha256": "406a47292c12bbac69d24399af7bea8f390d65ba58f3996fad7a6d779ce04cf0"
+    },
+    "round414/failed-capture-14400s/capture-state.json": {
+      "status": "absent"
+    },
+    "round414/prep-ledger.json": {
+      "status": "absent"
+    },
+    "round414/preflight.exit": {
+      "status": "read",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    "round414/training.exit": {
+      "status": "absent"
+    },
+    "round414/pipeline.exit": {
+      "status": "absent"
+    },
+    "round415/prepared-inverse-state.json": {
+      "status": "read",
+      "bytes": 265,
+      "sha256": "1138b76a235fda40f5080442ec2151e1c9d99e177cd05e3dd1ff3cce2926abd9"
+    },
+    "round414/data-manifest.json": {
+      "status": "read",
+      "bytes": 77303,
+      "sha256": "72c859b86b8c9d0e4cd13c1498d63b702977371dac820bb9ef86251597c714e1"
+    },
+    "round414/baseline.json": {
+      "status": "read",
+      "bytes": 145676,
+      "sha256": "a3fbcf55bc34bd2510e41d0bf4f020692d6c7bd0a1728d54e7f9bb485cecb6f9"
+    },
+    "round414/training/state.json": {
+      "status": "read",
+      "bytes": 3798,
+      "sha256": "c3eb60581aceb703ed46629d06f1936440dbe95939ecf3f909576f4e34ce0d68"
+    }
+  },
+  "prep_accounting": {
+    "schema": "hutter.capture.prep-accounting.terminal.v1",
+    "status": "passed",
+    "prep_cpu_limit_seconds": 34200,
+    "prep_cpu_seconds": 29267.181989056004,
+    "prep_remaining_cpu_seconds": 4932.818010943996,
+    "components_cpu_seconds": {
+      "prior_failed_capture": 14400,
+      "recovery_prepare": 4.152298437,
+      "full_capture_children_rusage": 14715.443169,
+      "capture_wrapper": 27.890923642,
+      "native_children_rusage": 104.982714,
+      "original_prepare": 14.349395,
+      "pipeline_control_at_prep_close": 0.3634889770037262
+    },
+    "recovery_prepare_before_capacity_overhead": 4.113754061,
+    "capacity_overhead_items": [
+      {
+        "id": "capture-cap-capacity-overhead-round423",
+        "cpu_seconds": 0.038544376000000005,
+        "scope": "one capacity metadata worker plus terminal handoff self and waited child CPU"
+      }
+    ],
+    "capacity_overhead_item_count": 1,
+    "launch_budget_snapshot": {
+      "cpu_limit_seconds": 16200,
+      "prep_cpu_limit_seconds": 32400
+    },
+    "separate_round424_collection_control_cpu_seconds": {
+      "source2_metadata": 0.0040950130000000015,
+      "local_metadata": 0.033802185
+    }
+  },
+  "pipeline_group_observation": {
+    "group": 30417,
+    "member_count": 3,
+    "states": [
+      "S",
+      "S",
+      "R"
+    ],
+    "continued": true
+  },
+  "original_capture_process_exists": false
+}
