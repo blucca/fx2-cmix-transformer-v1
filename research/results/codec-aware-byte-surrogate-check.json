@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "scope": "synthetic frozen-bit surrogate; no NN/codec calls",
+  "cases": 6,
+  "finite_difference_max_error": 2.2714649605681814e-11,
+  "partial_bit_logit_curvature": -0.33333336091345694,
+  "checks": [
+    "signed/zero affine slope",
+    "guarded softmax gradient",
+    "eight-bit telescoping",
+    "common-logit-shift",
+    "convex x and indefinite byte-logit composition"
+  ],
+  "implementation_allocation": "zero; frozen current trajectories and mixed measurements",
+  "selected_statistics_bytes": 257523968,
+  "dense_fullstream_trace_bytes": 75066754560
+}
