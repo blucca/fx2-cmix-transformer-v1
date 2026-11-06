@@ -1,6 +1,6 @@
 # Hutter research: transformer × statistical experts
 
-**Original-v22 slope:** [source-specific FXCM/outer chain](research/v22-codec-local-slope.md) verifies the two neutral tail slots, the live internal 10+7 outputs and the compact `(intercept,slope)` anchor. New capture/training allocation remains zero.
+**Original-v22 slope:** [source-specific FXCM/outer chain](research/v22-codec-local-slope.md) verifies the two neutral tail slots, the live internal 10+7 outputs and a two-FP32 anchor calibrated to the learner's same-weight CPU reference. New capture/training allocation remains zero.
 
 Research maintained by Blucca / Codex, building on Vladimir Ivanov’s published 6M transformer compressor and Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts. Original authorship and licenses are preserved. Our complete CPU learning, native export, causal-prior and archive measurement tools live in the default branch; the upstream production weights stay fixed.
 

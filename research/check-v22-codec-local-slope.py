@@ -60,35 +60,62 @@ def check(source):
     assert "prediction_index = 0;" in source
     assert "return fxcmv1::model_predictions;" in source
 
-    # Two stored floats suffice when they are (intercept, slope). x0 is read
-    # while the collector has the actual native bit probability, then folded.
+    # Fold against the coordinate used by the learner at theta_ref. Native
+    # probabilities alone supply this coordinate when both forwards agree.
     logit = lambda p: math.log(p / (1 - p))
-    def anchor(p0, z0, slope, override=False):
+    def anchor(xref, z0, slope, override=False):
         if override:
             return z0, 0.0
-        assert 0 < p0 < 1
-        return z0 - slope * logit(p0), slope
-    for probability in (0.0, 1.0):
-        assert anchor(probability, 1.1, -.8, override=True) == (1.1, 0.0)
+        assert math.isfinite(xref)
+        return z0 - slope * xref, slope
+    for endpoint in (-math.inf, math.inf):
+        assert anchor(endpoint, 1.1, -.8, override=True) == (1.1, 0.0)
     x0, z0, slope = logit(.25), 1.1, -.8
-    intercept, slope = anchor(.25, z0, slope)
+    intercept, slope = anchor(x0, z0, slope)
     assert abs((intercept + slope * x0) - z0) < 1e-15
     packed_b, packed_s = struct.unpack("<ff", struct.pack("<ff", intercept, slope))
     residual = abs((packed_b + packed_s * x0) - z0)
     assert residual < 1e-7
+    # Synthetic execution-coordinate shift, separate from aggregate NN NLL.
+    shift = .03125
+    x_train_ref = x0 + shift
+    naive_drift = intercept + slope*x_train_ref - z0
+    assert abs(naive_drift - slope*shift) < 1e-15
+    assert abs(naive_drift) > .02
+    cpu_b, cpu_s = anchor(x_train_ref, z0, slope)
+    cpu_b, cpu_s = struct.unpack("<ff", struct.pack("<ff", cpu_b, cpu_s))
+    cpu_residual = abs(cpu_b + cpu_s*x_train_ref - z0)
+    assert cpu_residual < 1e-7
+    def loss(x):
+        eta = cpu_b + cpu_s*x
+        return max(eta, 0) + math.log1p(math.exp(-abs(eta))) - eta
+    h = 1e-5
+    fd = (loss(x_train_ref+h)-loss(x_train_ref-h))/(2*h)
+    eta_ref = cpu_b + cpu_s*x_train_ref
+    gradient = cpu_s*(1/(1+math.exp(-eta_ref))-1)
+    gradient_error = abs(fd-gradient)
+    assert gradient_error < 1e-9
+    assert anchor(x_train_ref, z0, 0) == (z0, 0)
     # (Z0, slope) requires its x0 or a same-W surrogate reference recomputation.
     ambiguous = abs(slope * (logit(.2) - logit(.7)))
     assert ambiguous > 1
     count = 4_023_812
     stats_bytes = count * 8 * struct.calcsize("<ff")
     assert stats_bytes == 257_523_968
-    return dict(schema="hutter.v22-local-slope-source.v1", source_revision=REV,
+    return dict(schema="hutter.v22-local-slope-source.v2", source_revision=REV,
                 output_array_size=size, maximum_written=maximum,
                 constant_padding_indices=list(range(maximum, size)),
                 prediction_components=components, context_arrays=contexts,
                 smooth_affine_anchor=dict(fields=["intercept", "slope"],
-                  formula="eta=intercept+slope*x", intercept="Z0-slope*x0",
+                  formula="eta=intercept+slope*x_training(theta)",
+                  intercept="Z0-slope*x_training(theta_ref)",
+                  reference_law="eta=Z0+slope*(x_training(theta)-x_training(theta_ref))",
+                  native_only_condition="x_training(theta_ref)=logit(p_native_ref)",
                   fixture_fp32_anchor_error=residual,
+                  fixture_cpu_native_logit_shift=shift,
+                  fixture_native_only_logit_drift=naive_drift,
+                  fixture_cpu_reference_fp32_anchor_error=cpu_residual,
+                  fixture_cpu_reference_gradient_error=gradient_error,
                   fixture_z0_slope_only_intercept_spread=ambiguous,
                   selected_targets=count, eight_bit_stats_bytes=stats_bytes),
                 model_calls=0, codec_calls=0, passed=True)

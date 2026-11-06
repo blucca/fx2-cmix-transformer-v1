@@ -141,30 +141,65 @@ these seventeen paths gives the complete **same-bit, frozen-history smooth
 slope**. Argmax/context switches, integer staircases and future weight updates
 retain their native behavior in real mixed evaluation.
 
-## 5. Two stored FP32 fields can carry the full affine anchor
+## 5. Two FP32 fields, calibrated in the training reference coordinate
 
-On an ordinary prefix at capture time, the existing predictor supplies the actual guarded NN bit
-probability `p0`, its `x0=logit(p0)`, and actual pre-SSE `Z0`. After deriving s,
-fold the native anchor immediately:
+At capture time, the predictor supplies the actual guarded bit probability
+`p_native0`, its `x_native0=logit(p_native0)`, and pre-SSE `Z0`. Evaluate the
+slope in sections 2–4 at these native values. A native-coordinate intercept
+`Z0-s*x_native0` anchors a learner whose reference coordinate equals
+`x_native0`. The current CPU/native execution difference makes that identity
+an explicit preparation requirement.
+
+On the existing 1346-target uniform-prior piece, the eight-block production
+CPU route has CE **3.043249167092** and the same hard export has native logit
+NLL **3.045512204858**: a **0.002263037766 nats/target** difference
+([completed folded-GEMM receipt](results/depth-native-scaled-gemm.json)).
+The earlier CPU route scored 3.040956131594 on this input
+([native preflight](results/depth-native-preflight.json)). These are measured
+aggregate losses; the reference correction uses each bit's actual coordinate.
+
+Define `theta_ref` as the frozen hard-export initialization used by the captured
+codec. Let `x_train(theta)` be the chosen CPU/guard/STE bit coordinate, and
+compute `x_train_ref=x_train(theta_ref)` with the same model family, kernel,
+priors, byte map and piece resets as the learner. The reference-centered law is
 
 ```
-intercept = Z0 - s*x0
-store (intercept, s)
-eta(x) = intercept + s*x
+eta(theta) = Z0 + s * (x_train(theta) - x_train_ref)
+b_train   = Z0 - s*x_train_ref
+store (b_train, s)
+eta(theta) = b_train + s*x_train(theta)
 ```
 
-Two fields named `(Z0,s)` additionally need x0, or a same-weight surrogate
-reference recomputation. `(intercept,s)` directly carries that native anchor.
-For a deterministic vocabulary branch, store `(Z0,0)` for the constant anchored
-loss and apply its existing zero task mask; its endpoint probability needs no
-logit evaluation. The original NN-target map, byte labels and stream identity
-supply alignment; complete coupled history still advances outside those rows.
+**Recommendation:** collect `(Z0,s)`, then fold the first field in one frozen
+CPU reference pass, complete piece by complete piece. At `theta_ref`, the
+recomposed prediction recovers `Z0` within the stored FP32 precision. The
+chosen CPU/STE map supplies the parameter tangent; native hard-export and
+same-weight mixed measurements evaluate its transferred changes. With a
+native-only intercept, the reference drift is exactly
+`s*(x_train_ref-x_native0)` before field rounding.
 
-At 4,023,812 selected targets and eight bits, the two FP32 fields use
-**257,523,968 B**, retaining the previous sparse-storage budget. Coordinates,
-headers and masks remain separate. A focused FP32 folding fixture has
-9.15e-9 logit anchor error; its synthetic reference probability is .25.
-This is a representation check, with neural model, coder and remote calls zero.
+The twelve-block causal learner already caches **FP32 logits**, and its
+zero-step check asserts elementwise equality with the training initialization
+(`integer-coordinate-qat.py`, `teacher_logits` and `exact_teacher`). Reuse those
+rows when their initialization and execution identities match `theta_ref`.
+The eight-block distillation cache contains the **original twelve-block**
+teacher's FP32 logits and features; it serves KL/MSE. Its affine anchor uses a
+separate frozen **eight-block** reference with `native_scaled_gemm=True`.
+The 205-column `.f16` inputs are causal PPMd priors. Cache dtype and prior dtype
+have separate roles.
+
+For a deterministic vocabulary branch, store `(Z0,0)` and use its existing
+zero task mask; skip endpoint-logit evaluation. Target offsets, byte labels
+and stream identity supply alignment. The coupled baseline still advances
+through the intervening bytes.
+
+At 4,023,812 selected targets and eight bits, the final two-field array remains
+**257,523,968 B**; coordinates, headers and masks are separate. Fold and release
+each reference piece's logits, keeping additional persistent reference-logit
+storage at zero. An eight-block reference forward pass belongs in the complete
+method's preparation budget. The focused check retains the native folding
+case and adds a synthetic CPU-coordinate shift, its corrected FP32 anchor and
+the reference BCE gradient. Its shift is a mathematical fixture.
 
 Run `python3 -B research/check-v22-codec-local-slope.py` in this checkout.
 It reads the frozen git object, replays the producer bound and affine-field

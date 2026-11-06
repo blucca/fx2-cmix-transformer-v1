@@ -1,5 +1,5 @@
 {
-  "schema": "hutter.v22-local-slope-source.v1",
+  "schema": "hutter.v22-local-slope-source.v2",
   "source_revision": "83f2603f3f7751da5f429fd32669807eb8510494",
   "output_array_size": 431,
   "maximum_written": 429,
@@ -179,9 +179,15 @@
       "intercept",
       "slope"
     ],
-    "formula": "eta=intercept+slope*x",
-    "intercept": "Z0-slope*x0",
+    "formula": "eta=intercept+slope*x_training(theta)",
+    "intercept": "Z0-slope*x_training(theta_ref)",
+    "reference_law": "eta=Z0+slope*(x_training(theta)-x_training(theta_ref))",
+    "native_only_condition": "x_training(theta_ref)=logit(p_native_ref)",
     "fixture_fp32_anchor_error": 9.150137980640238e-09,
+    "fixture_cpu_native_logit_shift": 0.03125,
+    "fixture_native_only_logit_drift": -0.02499999999999991,
+    "fixture_cpu_reference_fp32_anchor_error": 1.473807342833311e-08,
+    "fixture_cpu_reference_gradient_error": 8.068906653946328e-12,
     "fixture_z0_slope_only_intercept_spread": 1.7868737772056755,
     "selected_targets": 4023812,
     "eight_bit_stats_bytes": 257523968

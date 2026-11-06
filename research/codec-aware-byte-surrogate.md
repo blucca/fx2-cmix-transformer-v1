@@ -101,8 +101,11 @@ native 1e-6 deployment constant.
 Actual half conversion and logit lookup are staircase functions. A future QAT
 implementation specifies their straight-through derivative explicitly and uses
 the native rounded/guarded forward values. Reference x0 is obtained in that same
-surrogate coordinate. Anchoring eta at the stored actual Z0 preserves the
-reference probability despite the forward rounding offset. The current native
+surrogate coordinate **at the frozen training initialization**. The
+[source-specific reference calibration](v22-codec-local-slope.md#5-two-fp32-fields-calibrated-in-the-training-reference-coordinate)
+folds `Z0-s*x_train_ref` in one piecewise CPU pass; this preserves the actual
+reference probability across the measured CPU/native execution difference.
+The current native
 scalar half decoder also has the documented subnormal-tail behavior; reuse the
 existing conversion contract when implementing that forward boundary.
 
