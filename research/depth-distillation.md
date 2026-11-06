@@ -161,6 +161,30 @@ the admitted training pipeline remain intact. Its deployment descriptor waits
 for the existing reference sample receipts; the one trained mixed run follows
 their readiness and the actual training terminal.
 
+The [actual single mixed process](results/depth-mixed-queue.json) is now queued
+with `--wait-for-ready`. It checks local `pipeline.exit` and the deployment
+descriptor every 30 seconds, shares the original seven-day mixed wall bound,
+and performs **0 network calls** while waiting. The trainer's `wait4` finishes
+before its exit marker; failed/stopped training ends the queued measurement.
+The existing watcher follows the student through the mixed terminal, keeping
+the original single trajectory and its native pause/resume behavior. The
+original immediate command remains available.
+
+The alternate original reference worker has its v22 build, probe and strict
+reducer. Its four production W0 sample results/encodes wait for their already
+admitted mixed phase. Old golden encodes remain present; their original traces
+have been released. No new W0 encodes, goldens or trace capture are added to
+this method. Existing reference results are copied once after their actual
+production readiness and checked by the same deployment contract. Causal
+training targets and selected-candidate codec measurements are **0** at queue
+publication.
+
+```sh
+python3 -B -u "$J/source/research/depth-mixed-audit.py" --job "$J" \
+  --deployment "$J/native/v22-depth8-mixed/deployment.json" \
+  --range-plan "$J/incoming/source-plan.json" --wait-for-ready
+```
+
 ### Same scopes, one shared component fee
 
 Reuse existing passed W0 encodes, strict interval reductions and golden

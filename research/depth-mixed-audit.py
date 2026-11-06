@@ -176,6 +176,8 @@ def main():
     p.add_argument("--job", type=Path, default=Path("/data/workspace/temp/hutter/round419"))
     p.add_argument("--deployment", type=Path, help="Actual v22-object links, two probes/UPX runners and passed reference paths")
     p.add_argument("--range-plan", type=Path, help="Transferred original data/plan.json; defaults to incoming/source-plan.json")
+    p.add_argument("--wait-for-ready", action="store_true",
+                   help="Wait locally for the reaped training pipeline and existing reference deployment, then measure once")
     p.add_argument("--self-check", action="store_true")
     a = p.parse_args()
     if a.self_check:
@@ -229,6 +231,30 @@ def main():
 
     save()
     try:
+        if a.wait_for_ready:
+            # The admitted trainer already writes pipeline.exit after wait4.
+            # Existing W0 receipts can arrive separately; neither wait reads
+            # the network or launches another model. The seven-day bound is
+            # shared with this mixed command group's original wall allowance.
+            while True:
+                terminal = (job / "pipeline.exit").is_file()
+                if terminal:
+                    pipeline = read(job / "pipeline-state.json")
+                    if pipeline["status"] not in ("complete", "cpu_budget"):
+                        save(status="stopped", phase="training_terminal",
+                             stop_reason="training_pipeline_" + pipeline["status"], finished_at=time.time())
+                        raise SystemExit(124)
+                    if a.deployment.is_file():
+                        break
+                remaining = deadline-time.time()
+                if remaining <= 0:
+                    save(status="stopped", phase="waiting_for_ready",
+                         stop_reason="seven_day_ready_wait", finished_at=time.time())
+                    raise SystemExit(124)
+                save(status="waiting", phase="reference_deployment" if terminal else "training_terminal",
+                     waiting_for=[str(p) for p in (job / "pipeline.exit", a.deployment) if not p.is_file()],
+                     deadline_at=deadline)
+                time.sleep(min(30., remaining))
         pipeline, trajectory = read(job / "pipeline-state.json"), read(job / "training/state.json")
         code = int((job / "training.exit").read_text())
         terminal_contract(pipeline, trajectory, code)
