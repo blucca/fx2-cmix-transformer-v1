@@ -1,0 +1,90 @@
+{
+  "ce_mean": 0.9928354883973347,
+  "teacher_kl_mean": 0.0,
+  "objective": 1.0454015218249026,
+  "gradient_norm": 0.041474457252814595,
+  "finite_gradient_tensors": 111,
+  "nonzero_gradient_tensors": 111,
+  "status": "passed",
+  "piece": [
+    0,
+    11700,
+    13047
+  ],
+  "targets": 1346,
+  "zero_step_logits_exact": true,
+  "frozen_original_tensors": 429,
+  "optimizer_tensors": 111,
+  "changed_weight_symbols": 0,
+  "changed_z_coordinates": 5610626,
+  "hard_entropy_nats": 15381050.4383798,
+  "z_delta_l2": 23.52901985949245,
+  "z_max_delta": 0.009999990463256836,
+  "max_scale_delta": 0.0,
+  "min_abs_bf16_weight_scale": 6.022959908591474e-15,
+  "tiny_weight_scale_count": 8,
+  "tiny_weight_scales": [
+    {
+      "weight": "blocks.3.attention.query_projection.weight",
+      "row": 130,
+      "signed_bf16_scale": 6.411537967210279e-15,
+      "bf16_bits": 10215
+    },
+    {
+      "weight": "blocks.3.attention.query_projection.weight",
+      "row": 131,
+      "signed_bf16_scale": -7.72715225139109e-14,
+      "bf16_bits": 43438
+    },
+    {
+      "weight": "blocks.3.attention.query_projection.weight",
+      "row": 136,
+      "signed_bf16_scale": -6.022959908591474e-15,
+      "bf16_bits": 42969
+    },
+    {
+      "weight": "blocks.3.attention.query_projection.weight",
+      "row": 137,
+      "signed_bf16_scale": 6.679101716144942e-13,
+      "bf16_bits": 11068
+    },
+    {
+      "weight": "blocks.3.attention.key_projection.weight",
+      "row": 130,
+      "signed_bf16_scale": 7.993605777301127e-15,
+      "bf16_bits": 10256
+    },
+    {
+      "weight": "blocks.3.attention.key_projection.weight",
+      "row": 131,
+      "signed_bf16_scale": 1.7985612998927536e-14,
+      "bf16_bits": 10402
+    },
+    {
+      "weight": "blocks.3.attention.key_projection.weight",
+      "row": 136,
+      "signed_bf16_scale": 2.0650148258027912e-14,
+      "bf16_bits": 10426
+    },
+    {
+      "weight": "blocks.3.attention.key_projection.weight",
+      "row": 137,
+      "signed_bf16_scale": 2.708944180085382e-14,
+      "bf16_bits": 10484
+    }
+  ],
+  "hard_integer_range": [
+    -7,
+    7
+  ],
+  "tensor_count": 429,
+  "quantized_weights": 111,
+  "activation_scales": 119,
+  "raw_fp32": 88,
+  "output_bytes": 6060757,
+  "weight_bytes": 2904325,
+  "check_cpu_seconds": 8.56393669900001,
+  "current_soft_entropy_nats": 15414186.32421875,
+  "soft_entropy_nats": 15413912.224609368,
+  "record_note": "Original preflight geometry reused the soft-entropy field after update. This record separates the pre-update objective entropy and post-update geometry; raw receipt is retained privately. Training formula and checks are unchanged."
+}

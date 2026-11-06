@@ -1,0 +1,14 @@
+{
+  "status": "passed",
+  "scope": "two actual weight files plus two deployed UPX runners; common D/O unchanged; P and full S pending",
+  "W0_bytes": 2904325,
+  "initial_depth8_W1_bytes": 1955187,
+  "B0_bytes": 181956,
+  "depth8_B1_bytes": 177444,
+  "double_weight_saved_bytes": 1898276,
+  "dual_code_saved_bytes": 9024,
+  "fixed_W_B_saved_bytes": 1907300,
+  "trained_depth8_exports": 0,
+  "new_actual_payload_streams": 0,
+  "new_revenue": 0
+}

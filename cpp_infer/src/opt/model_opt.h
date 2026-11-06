@@ -8,12 +8,16 @@
 // vector-math ulp divergences (attention softmax/PV reassociation ~1e-7 rel,
 // KDA exp-family <= ~2 ulp/elem, head tanh/exp <= ~2 ulp) — expected
 // whole-model probability drift <= ~1e-5 absolute.
+// The fixed eight-block family uses the existing reference-order vanilla
+// attention path to preserve output-projection INT8 rounding boundaries.
 // The vanilla-attention low-prob skip is hardwired OFF (exact softmax; at the
 // SPEC-safe threshold 21 it never fires anyway).
 #pragma once
 
 #include <cstdint>
 #include <memory>
+
+#include "../model_shape.h"
 
 namespace fx2 {
 namespace opt {
@@ -28,11 +32,11 @@ struct TransformerOptImpl;
 // Research-only totals; retained across article resets, absent from production.
 struct ActivationStats {
   uint64_t steps = 0;
-  uint64_t down_nnz[12] = {};
+  uint64_t down_nnz[shape::NL] = {};
 #ifdef FX2_MLP_UNIT_STATS
   bool second_half = false;
-  uint64_t hit[2][12][768] = {};
-  uint64_t q2[2][12][768] = {};
+  uint64_t hit[2][shape::NL][768] = {};
+  uint64_t q2[2][shape::NL][768] = {};
 #endif
 };
 #endif

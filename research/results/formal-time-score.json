@@ -1,0 +1,19 @@
+{
+  "status": "recorded",
+  "source": "Official Geekbench5 single-core result, reported by project owner",
+  "execution_machine": "student worker3",
+  "T": 1709,
+  "per_program_limit_hours": 40.95962551199532,
+  "per_program_limit_seconds": 147454.65184318315,
+  "comparison": "strictly less than the per-program limit",
+  "old_32MiB_elapsed_linear_scenario": {
+    "encoder_projected_hours": 43.66011681861111,
+    "decoder_projected_hours": 44.14334149027778,
+    "encoder_scenario_reduction_to_limit_fraction": 0.06185259003852783,
+    "decoder_scenario_reduction_to_limit_fraction": 0.07212222434460802,
+    "scenario_scope": "historical elapsed projection; actual mixed CPU and final complete program on actual worker determine qualification"
+  },
+  "benchmark_reruns": 0,
+  "other_workers_official_T": "separate from T3",
+  "source_url": "https://browser.geekbench.com/v5/cpu/24788757"
+}

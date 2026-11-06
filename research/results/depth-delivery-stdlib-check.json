@@ -1,0 +1,60 @@
+{
+  "schema": "hutter.depth8.delivery-stdlib-check.v1",
+  "status": "passed",
+  "checks": {
+    "source_mapping": {
+      "status": "passed",
+      "check": "one source mapping preserves piece/reset metadata, deduplicates audit inputs, and leaves original unchanged",
+      "files": 8,
+      "torch_runs": 0,
+      "ppmd_runs": 0,
+      "source_ready_or_transfer_started": false
+    },
+    "watch_terminal_idle": {
+      "status": "passed",
+      "watchers": 1,
+      "input_ready_observer": "original source2 30min baseline.json tick",
+      "idle_student_network_requests": 0,
+      "active_stage_resume": "existing native lifecycle",
+      "actual_arm": false
+    },
+    "mixed_terminal_build_fee": {
+      "status": "passed",
+      "checks": [
+        "current complete/cpu_budget terminal",
+        "positive trained epoch with earliest tie and negative proxy",
+        "same held target mask",
+        "double-W and real dual-B once",
+        "depth epoch0 outside W0 selection",
+        "v22 non-NN retained plus canonical-attention object"
+      ],
+      "heavy_calls": 0,
+      "source_sha256": "f269c314897e093f2c67559539385800d399ed1facc75d87ef9525f13789835a",
+      "runner_sha256": "d65051d7e0eaec5515786d1b0dac919867215363c15ae7cf6f3703efc5b8742d",
+      "route_sha256": "5f70659951734ba2a4353a1ae68aff46b0fd45414c6f453db5c26b762169bb36",
+      "source_lines": 418,
+      "current_runner_finish_and_two_terminals": "passed",
+      "build_heredoc_ast": "passed",
+      "new_golden": 0,
+      "new_ppmd": 0,
+      "new_remote_build": 0,
+      "network_queries": 0
+    }
+  },
+  "watch_nullable_error_examples": [
+    "null",
+    "machine_cooldown"
+  ],
+  "watch_fault_recovery_exit": 0,
+  "actual_pipeline": {
+    "status": "running",
+    "stage": "waiting_for_inputs",
+    "native_preflight": "passed",
+    "pipeline_pid": 16774,
+    "input_ready_observer": "existing source2 baseline tick",
+    "watch3": "armed",
+    "waiting_worker_network_requests": 0
+  },
+  "scope": "stdlib parsing, financial component sums and exact existing runner/build contracts; numerical model evidence in depth-native-preflight.json",
+  "extra_ppmd_or_neural_fixtures": 0
+}

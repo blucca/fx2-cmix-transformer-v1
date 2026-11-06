@@ -1,0 +1,153 @@
+{
+  "schema": "hutter.depth-static-census-budget.v1",
+  "scope": "Existing static4096 INT4 census estimate. Adaptive names/scale/F32 metadata, final range rounding, retrained symbol distribution and new binary size enter actual W/B.",
+  "prepared_bytes": 586459020,
+  "historical_record_gap_bytes": 952225,
+  "actual_original_weight_bytes": 2904325,
+  "actual_common_two_copy_charge_bytes": 6573938,
+  "actual_new_weight_bytes": null,
+  "new_nn_calls": 0,
+  "layers": {
+    "0": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 232185.65077477501,
+      "matrices": 10
+    },
+    "1": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 232475.1258584375,
+      "matrices": 10
+    },
+    "2": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 232681.9021672875,
+      "matrices": 10
+    },
+    "3": {
+      "int4_elements": 442368,
+      "static4096_estimate_bytes": 210343.92686200002,
+      "matrices": 6
+    },
+    "4": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 232648.42996599997,
+      "matrices": 10
+    },
+    "5": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 232693.98557482503,
+      "matrices": 10
+    },
+    "6": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 232459.9913483375,
+      "matrices": 10
+    },
+    "7": {
+      "int4_elements": 442368,
+      "static4096_estimate_bytes": 210046.5488995,
+      "matrices": 6
+    },
+    "8": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 232219.5226651,
+      "matrices": 10
+    },
+    "9": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 231903.2427916375,
+      "matrices": 10
+    },
+    "10": {
+      "int4_elements": 491520,
+      "static4096_estimate_bytes": 231896.9071058,
+      "matrices": 10
+    },
+    "11": {
+      "int4_elements": 442368,
+      "static4096_estimate_bytes": 209855.88439775,
+      "matrices": 6
+    }
+  },
+  "shared_int4_estimate_bytes": 55469.933952625,
+  "cases": [
+    {
+      "removed_original_layers": [
+        4,
+        5
+      ],
+      "student_depth": 10,
+      "single_weight_int4_estimate_saved_bytes": 465342.415540825,
+      "two_copy_int4_estimate_saved_bytes": 930684.83108165,
+      "historical_payload_regression_allowance_bytes": -21540.168918350013,
+      "historical_payload_allowance_bits_per_prepared_byte": -0.00029383357655032757,
+      "historical_payload_allowance_nats_per_prepared_byte": -0.00020366991513970443
+    },
+    {
+      "removed_original_layers": [
+        4,
+        5,
+        6
+      ],
+      "student_depth": 9,
+      "single_weight_int4_estimate_saved_bytes": 697802.4068891625,
+      "two_copy_int4_estimate_saved_bytes": 1395604.813778325,
+      "historical_payload_regression_allowance_bytes": 443379.813778325,
+      "historical_payload_allowance_bits_per_prepared_byte": 0.0060482290991561525,
+      "historical_payload_allowance_nats_per_prepared_byte": 0.004192312947460705
+    },
+    {
+      "removed_original_layers": [
+        4,
+        5,
+        6,
+        7
+      ],
+      "student_depth": 8,
+      "single_weight_int4_estimate_saved_bytes": 907848.9557886624,
+      "two_copy_int4_estimate_saved_bytes": 1815697.9115773248,
+      "historical_payload_regression_allowance_bytes": 863472.9115773248,
+      "historical_payload_allowance_bits_per_prepared_byte": 0.011778799638240023,
+      "historical_payload_allowance_nats_per_prepared_byte": 0.008164441759626577
+    }
+  ],
+  "recommended_student": {
+    "retained_original_layers": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "removed_original_layers": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "d_model": 192,
+    "d_mlp": 768,
+    "layer_types": [
+      "KDA",
+      "KDA",
+      "KDA",
+      "attention",
+      "KDA",
+      "KDA",
+      "KDA",
+      "attention"
+    ],
+    "skip_weight_source_indices": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "int4_matrices": 75
+  },
+  "actual_net_saved_formula": "(P0-P1)+2*(B0-B1)+2*(D0-D1)+(O0-O1)+2*(W0-W1)",
+  "decision": "Defer new complete distillation until the current causal whole-stream measurements; retain one coherent eight-block candidate."
+}

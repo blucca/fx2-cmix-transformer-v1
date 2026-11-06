@@ -209,6 +209,7 @@ class CastedLinear(Module):
         super().__init__()
 
         self.cfg = cfg
+        self.native_scaled_gemm = False  # CPU fixed-scale research opt-in.
 
         self.weight = Parameter(
             initialize_weight(shape=(d_out, d_in), init=init, dtype=cfg.weight_dtype)
@@ -270,7 +271,25 @@ class CastedLinear(Module):
             )
             assert weight.dtype == self.cfg.weight_dtype
 
-        output = linear(x, weight.type_as(x))
+        if self.native_scaled_gemm:
+            assert x.device.type == "cpu" and x.dtype == torch.float32
+            assert self.quantize_activation is not None and self.quantize_weight is not None
+            assert not self.quantize_activation.scale.requires_grad
+            assert not self.quantize_weight.scale.requires_grad
+            sa = self.quantize_activation.scale.to(
+                self.quantize_activation.quant.scale_dtype
+            ).type_as(x)
+            sw = self.quantize_weight.scale.to(
+                self.quantize_weight.quant.scale_dtype
+            ).type_as(x).reshape(-1, 1)
+            assert sa.shape == (1,) and sw.shape == (weight.shape[0], 1)
+            # Current INT8/INT4 dot bound: 768*128*7 < 2**24. FP32 GEMM
+            # therefore sums hard integers exactly; fold both BF16 scales once,
+            # as native qmatvec does. Continuous coordinates keep their STE.
+            assert weight.shape[1] <= 768
+            output = linear(x / sa, weight.type_as(x) / sw) * (sa * sw.flatten())
+        else:
+            output = linear(x, weight.type_as(x))
 
         if self.bias is not None:
             output = output + self.bias.type_as(output)

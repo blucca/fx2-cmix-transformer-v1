@@ -208,6 +208,7 @@ Predictor::Predictor(const std::vector<bool>& vocab,
   }
   if (!options.save_ppmd_probs.empty()) {
     ppmd_probs_writer_.reset(new HalfFileWriter(options.save_ppmd_probs));
+    ppmd_save_skip_remaining_ = options.save_ppmd_skip_bytes;
   }
   if (!options.load_transformer_probs.empty()) {
     // The loaded distributions stand in for the transformer's output, so the
@@ -567,11 +568,20 @@ float Predictor::Predict() {
 }
 
 void Predictor::WritePpmdProbs() {
+  if (ppmd_save_skip_remaining_) {
+    --ppmd_save_skip_remaining_;
+    return;
+  }
+  WritePpmdRow(*ppmd_probs_writer_);
+}
+
+void Predictor::WritePpmdRow(HalfFileWriter& writer) {
+  if (!byte_model_) Fail("PPMd row capture requires the PPMd model");
   const std::valarray<float>& p = byte_model_->BytePredict();
   for (unsigned int i = 0; i < vocab_size_; ++i) {
     probs_scratch_[i] = p[vocab_bytes_[i]];
   }
-  ppmd_probs_writer_->Write(probs_scratch_.data(), vocab_size_);
+  writer.Write(probs_scratch_.data(), vocab_size_);
 }
 
 void Predictor::LoadTransformerProbs() {

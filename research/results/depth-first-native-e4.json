@@ -1,0 +1,320 @@
+{
+  "schema": "hutter.depth8.first-native-e4.v1",
+  "status": "observed_native_e4_and_original_training_metrics_collected",
+  "reviewed_research_revision": "4c40fafe01a998b1a7a6849cf7201c369e584538",
+  "evidence": "The existing sole 30-minute watch delivered the original worker-3 epoch-four evaluation during maintenance round 429.",
+  "phase": {
+    "continuous_epochs_completed": 4,
+    "continuous_goal": 8,
+    "hard_qat_epochs_completed": 0,
+    "hard_qat_goal": 24,
+    "goal_epochs": 32,
+    "completed_full_epoch_targets": 11765228,
+    "evaluation": "Native hard export after continuous epoch four; round-to-nearest-even and clamp [-7,7]."
+  },
+  "native": {
+    "held": {
+      "targets": 1082505,
+      "original_nll": 0.9662483387944264,
+      "student_nll": 1.1871585190883955,
+      "delta_nll": 0.22091018029396914
+    },
+    "held_long": {
+      "targets": 107647,
+      "original_nll": 1.2586143013099194,
+      "student_nll": 1.518069217218576,
+      "delta_nll": 0.25945491590865655
+    },
+    "held_short": {
+      "targets": 974858,
+      "original_nll": 0.9339643356197023,
+      "student_nll": 1.150618280487882,
+      "delta_nll": 0.21665394486817968
+    },
+    "maximum_length_audit": {
+      "targets": 131071,
+      "original_nll": 0.038986426131505464,
+      "student_nll": 0.18630547531648686,
+      "delta_nll": 0.1473190491849814
+    },
+    "held_piece_count": 473,
+    "held_long_piece_indices": [
+      127,
+      157,
+      181
+    ],
+    "maximum_length_audit_role": "Independent report-only audit, excluded from the sampled held total.",
+    "long_target_fraction": 0.09944249680140045,
+    "long_incremental_loss_fraction": 0.11679337100273311
+  },
+  "actual_package": {
+    "original_weight_bytes": 2904325,
+    "initialized_weight_bytes": 1955187,
+    "e4_weight_bytes": 1957973,
+    "original_binary_bytes": 181956,
+    "student_binary_bytes": 177444,
+    "double_weight_saved_bytes": 1892704,
+    "double_binary_saved_bytes": 9024,
+    "double_weight_plus_binary_saved_bytes": 1901728
+  },
+  "named_size_sensitivity": {
+    "scope": "Linear full-stream projection of the sampled held raw-NLL delta. kappa denotes mixed coded-payload attenuation; its actual value awaits the admitted sole mixed evaluation.",
+    "full_native_targets": 586215331,
+    "historical_record_gap_bytes": 952225,
+    "kappa1_payload_increase_bytes": 23353794.49240564,
+    "kappa1_net_size_increase_bytes": 21452066.49240564,
+    "historical_payload_allowance_bytes": 949503,
+    "break_even_kappa": 0.08143122097860447,
+    "historical_record_kappa": 0.04065733302178223
+  },
+  "source_contract": {
+    "coordinate_tensors": 75,
+    "raw_fp32_tensors": 59,
+    "frozen_tensors": 230,
+    "frozen": "All signed BF16 row and activation scales.",
+    "teacher": "Original twelve-block CPU teacher, all 205 logits and final RMS-normalized 192-dimensional hidden, same causal pieces and priors.",
+    "kl": "KL(teacher || student), summed over all vocabulary columns and normalized by batch target count.",
+    "hidden": "Mean squared final-hidden error per coordinate, averaged by target count, coefficient 0.1.",
+    "stage_boundary": "Fractional z, retained raw F32 values and Adam moments continue into hard QAT; the original two learning rates change at epoch nine."
+  },
+  "original_metrics_status": "The original metrics and causal native log were collected once after the sole watch resumed worker 3. One explicitly admitted supplementary GET obtained the existing audit footer; original files were reused.",
+  "e0_same_causal_native_status": "The frozen trainer exports e0 and evaluates every fourth epoch; an e0 causal native score is absent from that schedule.",
+  "mechanism_for_existing_stage": "Retention of continuous fractional-coordinate fit after hard rounding, observed through the existing e8/e12 hard-native evaluations and sole mixed evaluation.",
+  "decision": "Continue the admitted 8 continuous + 24 hard epochs within the original 48 CPU-hour cap and sole mixed evaluation. Additional recipe, probe and numerical-engineering work is stopped.",
+  "original_collection": {
+    "after_watch_notice": "2026-11-07 00:25 CST",
+    "completed_utc": "2026-11-06T16:27:12.241744+00:00",
+    "original_metrics_bytes": 320273,
+    "original_e4_causal_log_bytes": 76807,
+    "supplementary_audit_footer_completed_utc": "2026-11-06T16:35:21.351061+00:00",
+    "original_e4_audit_log_bytes": 1428
+  },
+  "training_metrics_scope": "Continuous CPU student; full-epoch target-weighted online loss before each batch update. Native held loss uses the fixed rounded export after epoch four.",
+  "continuous_epoch_training": [
+    {
+      "epoch": 1,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.2635416268519422,
+      "teacher_kl_mean": 0.28819836092281653,
+      "final_hidden_mse_mean": 0.27887038886773546,
+      "step_cpu_seconds": 3675.237928856,
+      "reported_total_cpu_seconds": 3848.9824112889996
+    },
+    {
+      "epoch": 2,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.1696923831475903,
+      "teacher_kl_mean": 0.2054537648950001,
+      "final_hidden_mse_mean": 0.19310860950032602,
+      "step_cpu_seconds": 2899.377259819003,
+      "reported_total_cpu_seconds": 6748.941452334
+    },
+    {
+      "epoch": 3,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.1376189555153213,
+      "teacher_kl_mean": 0.18572650567789048,
+      "final_hidden_mse_mean": 0.17745109320320687,
+      "step_cpu_seconds": 2804.154595754997,
+      "reported_total_cpu_seconds": 9553.652534027
+    },
+    {
+      "epoch": 4,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.1211579193161196,
+      "teacher_kl_mean": 0.1800423021254165,
+      "final_hidden_mse_mean": 0.17937605348994579,
+      "step_cpu_seconds": 2865.674770804,
+      "reported_total_cpu_seconds": 12419.921659943
+    },
+    {
+      "epoch": 5,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.0938829835487973,
+      "teacher_kl_mean": 0.16491400495689457,
+      "final_hidden_mse_mean": 0.16686105706960666,
+      "step_cpu_seconds": 2878.7603784729945,
+      "reported_total_cpu_seconds": 15416.484788856998
+    },
+    {
+      "epoch": 6,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.0743045769686919,
+      "teacher_kl_mean": 0.15780234182833355,
+      "final_hidden_mse_mean": 0.1635552363140134,
+      "step_cpu_seconds": 2995.314519162999,
+      "reported_total_cpu_seconds": 18412.439379129002
+    },
+    {
+      "epoch": 7,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.062199677804932,
+      "teacher_kl_mean": 0.15640727125130754,
+      "final_hidden_mse_mean": 0.16505032799771405,
+      "step_cpu_seconds": 3143.2411452039923,
+      "reported_total_cpu_seconds": 21556.328577688
+    }
+  ],
+  "observed_fit_change": {
+    "epoch_one_to_four_ce_reduction_fraction": 0.11268620242497684,
+    "epoch_one_to_four_kl_reduction_fraction": 0.37528339318475756,
+    "epoch_one_to_four_hidden_mse_reduction_fraction": 0.35677626363184267
+  },
+  "recorded_training_snapshot": {
+    "updated_utc": "2026-11-06T16:26:51.410488+00:00",
+    "step": 610,
+    "completed_continuous_epochs": 7,
+    "hard_qat_epochs_completed": 0,
+    "partial_continuous_epoch": 8,
+    "partial_epoch_optimizer_steps": 58,
+    "partial_epoch_targets": 2102014,
+    "partial_epoch_pieces": 945,
+    "recorded_seen_targets": 22691163,
+    "latest_native_evaluation_epoch": 4,
+    "reported_total_cpu_seconds": 23698.881169115
+  },
+  "recorded_gradients": {
+    "first_four_epoch_optimizer_steps": 315,
+    "snapshot_optimizer_steps": 610,
+    "finite_tensors_per_step": 134,
+    "nonzero_tensors_per_step": 134,
+    "coordinate_tensors": 75,
+    "raw_fp32_tensors": 59,
+    "scope": "All 134 trainable tensors have finite gradients and at least one nonzero gradient element in every recorded step; combined norm includes both parameter groups.",
+    "first_four_epoch_combined_norm_range": [
+      0.44914947498086133,
+      176.14454279172077
+    ],
+    "epoch_four_combined_norm_range": [
+      0.7453046546475564,
+      21.955831038515385
+    ],
+    "first_four_epoch_batch_teacher_kl_range": [
+      0.11622717038189607,
+      0.6539143310565741
+    ],
+    "first_four_epoch_batch_hidden_mse_range": [
+      0.145485386899915,
+      0.49658795914718207
+    ],
+    "exact_z_and_raw_value_extrema": "Absent from the existing metrics; the trainer checks finite raw values and z in [-7,7] after every update."
+  },
+  "e4_coordinate_geometry": {
+    "int4_values": 3951936,
+    "changed_z_coordinates": 3921246,
+    "changed_weight_symbols": 716512,
+    "displaced_z_still_rounding_to_initial_symbol": 3204734,
+    "changed_z_fraction": 0.9922341859787203,
+    "changed_hard_symbol_fraction": 0.18130657986364151,
+    "displaced_z_same_initial_round_fraction": 0.8109276061150787,
+    "changed_raw_values": 18853,
+    "raw_fp32_elements": 18854,
+    "max_scale_delta": 0.0,
+    "initialized_hard_entropy_nats": 10352460.780664233,
+    "e4_hard_entropy_nats": 10368520.76716129,
+    "stage_kind": "continuous"
+  },
+  "teacher_cache_coverage": {
+    "training_pieces": 1313,
+    "training_targets": 2941307,
+    "misses_at_epoch_one_end": 1313,
+    "misses_at_snapshot": 1313,
+    "scope": "All original training pieces cached once by the first full epoch; later rows reuse the same 205-logit and 192-hidden targets."
+  },
+  "e4_piece_pairing": {
+    "scope": "Exact 473-piece comparison against the existing original W0 receipt, same counts and piece order; no resampling.",
+    "pieces": 473,
+    "targets": 1082505,
+    "worse_pieces": 470,
+    "better_pieces": 3,
+    "worse_targets": 1082156,
+    "better_targets": 349,
+    "median_piece_delta_nats": 0.15970527858160066,
+    "weighted_delta_nats": 0.220910180293923,
+    "long_piece_deltas": [
+      {
+        "piece": 127,
+        "targets": 36253,
+        "baseline_raw_nll": 1.3064910236608738,
+        "e4_raw_nll": 1.5773251977872846,
+        "delta": 0.27083417412641086
+      },
+      {
+        "piece": 157,
+        "targets": 32858,
+        "baseline_raw_nll": 1.1708266584904665,
+        "e4_raw_nll": 1.4206612819160809,
+        "delta": 0.24983462342561435
+      },
+      {
+        "piece": 181,
+        "targets": 38536,
+        "baseline_raw_nll": 1.2884267248196881,
+        "e4_raw_nll": 1.5453793395616309,
+        "delta": 0.25695261474194275
+      }
+    ]
+  },
+  "actual_experiment_cpu": {
+    "scope": "Actual trainer metrics cpu() totals, including the existing frozen preparation credit and recode/evaluator descendants; the original method cap is 172800 CPU seconds.",
+    "frozen_preparation_credit_seconds": 121.71669664299999,
+    "e4_trained_reported_total_seconds": 12419.921659943,
+    "e4_evaluated_reported_total_seconds": 12537.058899148999,
+    "e4_export_and_both_native_evaluations_seconds": 117.13723920599841,
+    "causal_native_reported_cpu_seconds": 86.674688,
+    "causal_native_eval_cpu_seconds": 86.533833,
+    "causal_native_max_rss_kib": 1057956,
+    "maximum_length_audit_reported_cpu_seconds": 11.567634,
+    "maximum_length_audit_eval_cpu_seconds": 11.43696,
+    "maximum_length_audit_max_rss_kib": 1057968,
+    "both_native_reported_cpu_seconds": 98.242322
+  },
+  "conclusion": "Continuous fitting improved through epoch seven. At e4, 81.09% of all quantized coordinates moved while still rounding to their initial symbols, and the hard export regressed on 470 of 473 held pieces. This geometry identifies fractional-fit retention as the next frozen hard-QAT mechanism; its same-piece loss decomposition retains the unmeasured status. The existing e8/e12 native evaluations and sole mixed evaluation determine deployment quality.",
+  "native_cpu_comparison": {
+    "scope": "Activation-probe model scoring on the same causal target sets, W0 on original worker 2 and W1 on worker 3. Raw cross-worker CPU observations; full mixed-code and submitted compressor/archive activity retain their own scopes.",
+    "original_worker": 2,
+    "student_worker": 3,
+    "original_worker_geekbench5_single_core": "absent_in_current_receipts",
+    "student_worker_geekbench5_single_core": 1709,
+    "causal_held": {
+      "targets": 1082505,
+      "pieces": 473,
+      "original_program_cpu_seconds": 92.77464,
+      "original_eval_cpu_seconds": 92.021883,
+      "original_max_rss_kib": 94212,
+      "student_program_cpu_seconds": 86.674688,
+      "student_eval_cpu_seconds": 86.533833,
+      "student_max_rss_kib": 1057956,
+      "raw_program_cpu_ratio": 0.9342497906755552,
+      "raw_eval_cpu_ratio": 0.9403614681520915
+    },
+    "maximum_length_audit": {
+      "targets": 131071,
+      "pieces": 1,
+      "original_program_cpu_seconds": 12.169647,
+      "original_eval_cpu_seconds": 12.000783,
+      "original_max_rss_kib": 93116,
+      "student_program_cpu_seconds": 11.567634,
+      "student_eval_cpu_seconds": 11.43696,
+      "student_max_rss_kib": 1057968,
+      "raw_program_cpu_ratio": 0.9505315971777982,
+      "raw_eval_cpu_ratio": 0.9530178155875328
+    },
+    "official_runtime_scope": "The submitted W1 complete compressor and archive each use the actual execution-machine T and full-program activity. Worker-3 T=1709 gives a strict limit of 70000/1709 hours per submitted program.",
+    "rss_scope": "Whole activation-probe process, including input handling and buffers. Complete compressor/archive memory has its own measurement."
+  }
+}

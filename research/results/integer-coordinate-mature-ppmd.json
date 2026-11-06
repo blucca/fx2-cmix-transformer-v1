@@ -1,0 +1,111 @@
+{
+  "status": "baseline_and_first_hard_change_measured",
+  "date": "2026-11-06",
+  "method": "fixed-scale-integer-coordinate-v1",
+  "trajectory_budget": {
+    "max_epochs": 64,
+    "max_cpu_seconds": 172800
+  },
+  "mature_sample": {
+    "name": "prefix-8m-mature-tail",
+    "warm_start": 0,
+    "warmup_bytes": 7344758,
+    "offset": 7344758,
+    "end": 8386448,
+    "input_bytes": 1041690,
+    "source_prefix_bytes": 8388608,
+    "ppmd_state": "causal stream[0, offset), no reset at article boundaries",
+    "neural_state": "fresh after an exact original article separator; original 2^17 cuts",
+    "training_overlap_targets": 0
+  },
+  "mature_baseline": {
+    "count": 1041397,
+    "logits_sum": 1003126.6267479078,
+    "probs_sum": 1003126.6009958041,
+    "logits_mean": 0.9632509280782524,
+    "probs_mean": 0.9632509033498311
+  },
+  "mature_pieces": 293,
+  "same_text_cold_baseline": {
+    "count": 1041397,
+    "logits_sum": 1044823.430424631,
+    "probs_sum": 1044823.4052868546,
+    "logits_mean": 1.0032902249810889,
+    "probs_mean": 1.0032902008425746
+  },
+  "delta_warm_minus_cold_raw_nll": -0.040039296902836474,
+  "retained_rows_byte_equal": true,
+  "original_cold_prefix_rows_byte_equal": true,
+  "resources": {
+    "prepare_cpu_seconds": 128.609377,
+    "control_cpu_seconds": 100.221161,
+    "capture_rss_kib": 1330248,
+    "native_rss_kib": 94196
+  },
+  "v22_development_packaging": {
+    "profile": "Clang17 non-PGO development, same v22 family",
+    "original_upx_bytes": 181644,
+    "static15_upx_bytes": 181956,
+    "dual_binary_added_bytes": 624,
+    "net_static15_development_component_bytes": 52030,
+    "upx_version": "upx 5.2.1"
+  },
+  "first_two_epochs": [
+    {
+      "epoch": 1,
+      "step": 30,
+      "weight_bytes": 2904325,
+      "double_weight_saved_bytes": 0,
+      "changed_weight_symbols": 0,
+      "max_scale_delta": 0.0,
+      "hard_entropy_nats": 15381050.4383798,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4859066182970042,
+          "delta_raw_nll": 0.0
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.9394297830071054,
+          "delta_raw_nll": 0.0
+        }
+      }
+    },
+    {
+      "epoch": 2,
+      "step": 59,
+      "weight_bytes": 2904337,
+      "double_weight_saved_bytes": -24,
+      "changed_weight_symbols": 3575,
+      "max_scale_delta": 0.0,
+      "hard_entropy_nats": 15381128.274050789,
+      "scores": {
+        "prefix-1m": {
+          "targets": 523194,
+          "raw_nll": 0.4900296092301999,
+          "delta_raw_nll": 0.0041229909331956804
+        },
+        "article-q2-1m": {
+          "targets": 516391,
+          "raw_nll": 0.937737537965911,
+          "delta_raw_nll": -0.0016922450411944734
+        }
+      }
+    }
+  ],
+  "first_hard_change_mature": {
+    "epoch": 2,
+    "step": 59,
+    "weight_bytes": 2904337,
+    "double_weight_saved_bytes": -24,
+    "scores": {
+      "mature": {
+        "targets": 1041397,
+        "raw_nll": 0.9691576941957234,
+        "delta_raw_nll": 0.005906766117470985
+      }
+    }
+  },
+  "new_mixed_payload_result": "queued after trajectory exit"
+}

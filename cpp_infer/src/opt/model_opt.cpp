@@ -25,11 +25,16 @@
 #include "qmat_dense.h"
 #include "qmat_sparse.h"
 
-// Debug-only component isolation for the naive-vs-opt cross-check (never
-// defined in the production build targets): swap the fused KDA step and/or
-// the attention kernel for the naive path (bit-exact vs src/model.cpp) to
-// attribute divergence per component.
-#if defined(FX2_XCHECK_NAIVE_KDA) || defined(FX2_XCHECK_NAIVE_ATTN)
+// The fixed eight-block family uses reference-order vanilla attention.
+// On its real 1346-target piece, vector softmax/PV reassociation crossed
+// an output-projection INT8 half-integer at block 3, token 401. Keep the
+// existing reference attention path and all quantized matmul/KDA kernels.
+// The original twelve-block production family retains its vector path;
+// its explicit cross-check isolation flag still selects reference attention.
+#if FX2_MODEL_LAYERS == 8 || defined(FX2_XCHECK_NAIVE_ATTN)
+#define FX2_REFERENCE_ATTN
+#endif
+#if defined(FX2_XCHECK_NAIVE_KDA) || defined(FX2_REFERENCE_ATTN)
 #include "../kernels.h"
 #endif
 
@@ -37,8 +42,10 @@ namespace fx2 {
 namespace opt {
 
 namespace {
-constexpr int V = 205, D = 192, NL = 12, DH = 64, NH = 3, DMLP = 768;
-constexpr int WIN = ATTN_WIN, ROPE_LEN = 131072;
+constexpr int V = shape::V, D = shape::D, NL = shape::NL, DH = shape::DH,
+              NH = shape::NH, DMLP = shape::DMLP;
+constexpr int NK = shape::NK, NV = shape::NV, NSKIP = shape::NSKIP;
+constexpr int WIN = ATTN_WIN, ROPE_LEN = shape::ROPE_LEN;
 // density thresholds for the sparse column kernels (qmat.h)
 constexpr int DOWN_DENSE_NNZ =
     static_cast<int>(QMAT_SPARSE_DENSITY_THRESHOLD * DMLP);  // 729
@@ -227,9 +234,9 @@ struct TransformerOptImpl {
 
   // streaming state (hugepage pool: KDA states, then KV caches)
   HugeBuf spool;
-  KdaState* kst = nullptr;   // [9]
-  AttnKVF32* kvf = nullptr;  // [3] iff kind == KVF32
-  AttnKV* kvi = nullptr;     // [3] iff kind == KVI8
+  KdaState* kst = nullptr;   // [NK]
+  AttnKVF32* kvf = nullptr;  // [NV] iff kind == KVF32
+  AttnKV* kvi = nullptr;     // [NV] iff kind == KVI8
   int64_t t = 0;
   int64_t rope_off = 0;
 
@@ -238,19 +245,19 @@ struct TransformerOptImpl {
     alignas(64) float S[NH][DH * DH];
     alignas(64) float hist[3][3][D];
   };
-  std::vector<NaiveKst> nkst = std::vector<NaiveKst>(9);
+  std::vector<NaiveKst> nkst = std::vector<NaiveKst>(NK);
 #endif
-#ifdef FX2_XCHECK_NAIVE_ATTN
+#ifdef FX2_REFERENCE_ATTN
   struct NaiveVst {
     alignas(64) int8_t kring[WIN][D];
     alignas(64) int8_t vring[WIN][D];
   };
-  std::vector<NaiveVst> nvst = std::vector<NaiveVst>(3);
+  std::vector<NaiveVst> nvst = std::vector<NaiveVst>(NV);
 #endif
 
-  // per-token skip stack (written by layers 0..5, read by 6..11 of the SAME
-  // token) — transient within step
-  alignas(64) float skip_store[6][D] = {};
+  // per-token skip stack: first fixed half writes, second half reads in
+  // reverse order within the SAME token — transient within step
+  alignas(64) float skip_store[NSKIP][D] = {};
 
   // scratch
   alignas(64) float x[D] = {}, xn[D] = {}, yb[D] = {};
@@ -272,22 +279,22 @@ struct TransformerOptImpl {
 
   explicit TransformerOptImpl(const char* path, AttnKind k) : kind(k) {
     M.load(path);
-    const size_t kda_sz = sizeof(KdaState) * 9;
+    const size_t kda_sz = sizeof(KdaState) * NK;
     const size_t kv_sz =
-        (kind == AttnKind::KVF32 ? sizeof(AttnKVF32) : sizeof(AttnKV)) * 3;
+        (kind == AttnKind::KVF32 ? sizeof(AttnKVF32) : sizeof(AttnKV)) * NV;
     spool.alloc(kda_sz + kv_sz);
     kst = reinterpret_cast<KdaState*>(spool.p);
     if (kind == AttnKind::KVF32)
       kvf = reinterpret_cast<AttnKVF32*>(spool.p + kda_sz);
     else
       kvi = reinterpret_cast<AttnKV*>(spool.p + kda_sz);
-    for (int i = 0; i < 9; i++) kda_layer_reset(kst[i]);
+    for (int i = 0; i < NK; i++) kda_layer_reset(kst[i]);
   }
 
   void begin(int64_t rope_position_offset) {
-    for (int i = 0; i < 9; i++) kda_layer_reset(kst[i]);
+    for (int i = 0; i < NK; i++) kda_layer_reset(kst[i]);
 #ifdef FX2_XCHECK_NAIVE_KDA
-    std::memset(nkst.data(), 0, sizeof(NaiveKst) * 9);
+    std::memset(nkst.data(), 0, sizeof(NaiveKst) * NK);
 #endif
     t = 0;  // invalidates the KV rings (validity is [0, t] within an article)
     rope_off = rope_position_offset;
@@ -420,7 +427,7 @@ struct TransformerOptImpl {
           _mm_prefetch(kb + h * (ATTN_NBLK * 32 * ATTN_DH) + off, _MM_HINT_T0);
     }
 #endif
-#ifdef FX2_XCHECK_NAIVE_ATTN
+#ifdef FX2_REFERENCE_ATTN
     {
       NaiveVst& st = nvst[vi];
       std::memcpy(st.kring[slot], kk, D);
@@ -528,8 +535,9 @@ struct TransformerOptImpl {
     for (int l = 0; l < NL; l++) {
       {
         PSCOPE(PS_EL_RESID);
-        // skip-add BEFORE the token connection (SPEC 3.3); pairing 11-l
-        if (l >= 6) add_scaled192(x, M.skip_w[l - 6], skip_store[11 - l]);
+        // skip-add BEFORE the token connection (SPEC 3.3), reverse half pairing
+        if (l >= NSKIP)
+          add_scaled192(x, M.skip_w[l - NSKIP], skip_store[NL - 1 - l]);
         axpby_tok192(M.rsc[l], x, M.tec[l], tok);
       }
       if (OptModel::KIMI_L[l])
@@ -537,7 +545,7 @@ struct TransformerOptImpl {
       else
         van_layer(M.layer2van[l]);
       mlp_block(l);
-      if (l < 6) {
+      if (l < NSKIP) {
         PSCOPE(PS_EL_RESID);
         std::memcpy(skip_store[l], x, sizeof(float) * D);  // push AFTER block
       }

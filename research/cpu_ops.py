@@ -92,8 +92,12 @@ def kda(q, k, v, g_raw, beta, A_log, dt_bias, cu_seqlens):
     return _KDA.apply(qn, kn, v[0], decay, beta[0], bounds).unsqueeze(0)
 
 
-def window_attention(args):
-    """Exact causal/window/document mask, bounded query tiles and full gradients."""
+def window_attention(args, checkpoint_tiles=False):
+    """Exact window tiles; opt-in checkpointing keeps complete-piece gradients.
+
+    The original CPU math-SDPA layout stays fixed. Checkpoint each tile only
+    during differentiation; the teacher/no-grad path keeps its original cost.
+    """
     assert args.queries.shape[0] == 1 and args.dropout == 0.0
     T = args.queries.shape[1]
     bounds = (args.cumulative_sequence_lengths[0].tolist()
@@ -113,16 +117,24 @@ def window_attention(args):
         qlo = lo if hi - lo >= 768 or T < 768 else max(0, (hi - 768) // 256 * 256)
         left = max(0, (qlo - window + 1) // 512 * 512)
         right = min(T, (hi + 511) // 512 * 512)
-        qi = torch.arange(qlo, hi)[:, None]
-        ki = torch.arange(left, right)[None, :]
-        mask = ((ki <= qi) & (qi - ki < window)
-                & (documents[qlo:hi, None] == documents[None, left:right]))
-        out = torch.nn.functional.scaled_dot_product_attention(
-            q[:, :, qlo:hi], k[:, :, left:right], v[:, :, left:right],
-            # The original document mask is 3-D and selects CPU math SDPA.
-            # Retain its pre-GEMM scaling, instead of CPU flash's post-GEMM scale.
-            attn_mask=mask.unsqueeze(0), scale=args.scale,
-            enable_gqa=q.shape[1] != k.shape[1])
+        # Bind tile coordinates for backward recomputation after this loop ends.
+        def tile(qi, ki, vi, qlo=qlo, hi=hi, left=left, right=right):
+            qp = torch.arange(qlo, hi)[:, None]
+            kp = torch.arange(left, right)[None, :]
+            mask = ((kp <= qp) & (qp - kp < window)
+                    & (documents[qlo:hi, None] == documents[None, left:right]))
+            return torch.nn.functional.scaled_dot_product_attention(
+                qi, ki, vi,
+                # The 3-D document mask retains CPU math-SDPA's pre-GEMM scale.
+                attn_mask=mask.unsqueeze(0), scale=args.scale,
+                enable_gqa=qi.shape[1] != ki.shape[1])
+
+        inputs = q[:, :, qlo:hi], k[:, :, left:right], v[:, :, left:right]
+        if checkpoint_tiles and torch.is_grad_enabled():
+            from torch.utils.checkpoint import checkpoint
+            out = checkpoint(tile, *inputs, use_reentrant=False)
+        else:
+            out = tile(*inputs)
         pieces.append(out[:, :, lo - qlo:])
     return torch.cat(pieces, dim=2).transpose(1, 2)
 

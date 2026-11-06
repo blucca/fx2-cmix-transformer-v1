@@ -8,7 +8,13 @@ import types
 import torch
 
 
-def load_model(checkpoint, kernel=None):
+def build_model(kernel=None, config_transform=None, native_scaled_gemm=False):
+    """Construct the cooldown CPU model, optionally transforming its config.
+
+    The default remains the original twelve-block model. Import adapters and
+    their diagnostic counters retain the existing process-wide import route.
+    Co-loaded teacher/student models use the same CPU kernel.
+    """
     repo = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(repo))
     from pysrc import kda_reference as ref
@@ -56,7 +62,7 @@ def load_model(checkpoint, kernel=None):
     sys.modules["fla.modules"].FusedRMSNormGated = FusedRMSNormGated
     sys.modules["fla.modules.conv.causal_conv1d"].causal_conv1d = causal_conv1d
 
-    from pysrc.model import Transformer, TransformerConfig, MatmulQuantization
+    from pysrc.model import Transformer, TransformerConfig, MatmulQuantization, CastedLinear
     from pysrc.quantization import Quantization
 
     # Reuse cooldown's exact config without its CUDA/DDP/logger imports.
@@ -81,7 +87,20 @@ def load_model(checkpoint, kernel=None):
     cfg = replace(original_cfg, attention_implementation="sdpa")
     assert cfg.window_size == 1024 and cfg.n_layers == 12
     assert sum(cfg.kimi_linear) == 9 and cfg.gradient_checkpointing
+    if config_transform is not None:
+        cfg = config_transform(cfg)
     model = Transformer(cfg)
+    if native_scaled_gemm:
+        for module in model.modules():
+            if (isinstance(module, CastedLinear) and module.quantize_activation is not None
+                    and module.quantize_weight is not None):
+                module.native_scaled_gemm = True
+    model.train()
+    return model, counts
+
+
+def load_model(checkpoint, kernel=None, native_scaled_gemm=False):
+    model, counts = build_model(kernel, native_scaled_gemm=native_scaled_gemm)
     state = torch.load(checkpoint, map_location="cpu", weights_only=True)
     model.load_state_dict(state, strict=True)
     del state

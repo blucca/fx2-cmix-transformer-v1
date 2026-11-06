@@ -1,0 +1,3127 @@
+{
+  "schema": "hutter.depth8.native-scaled-gemm-delivery.v1",
+  "status": "passed",
+  "source_revision": "a3f16e2fc374418da19827e9ceacdefcb2886877",
+  "scope": "one existing 1346-target complete synthetic-uniform-f16 resource piece; complete causal quality and real codec byte changes await the admitted trajectory",
+  "experiment_summary": {
+    "schema": "hutter.depth8.folded-fp32-gemm.single-piece.summary.v1",
+    "status": "passed",
+    "original_ce": 3.0409561315936107,
+    "folded_ce": 3.0432491670923105,
+    "native_existing_nll": 3.0455122048579475,
+    "original_native_distance": 0.004556073264336824,
+    "folded_native_distance": 0.002263037765636966,
+    "native_distance_reduction_fraction": 0.5032920599957975,
+    "original_forward_ce_cpu_seconds": 0.24539044399999987,
+    "folded_forward_ce_cpu_seconds": 0.38142058300000015,
+    "folded_integer_contract_cpu_seconds": 0.16555802399999964,
+    "folded_forward_ce_less_contract_cpu_seconds": 0.2158625590000005,
+    "first_check_code_failure": "AssertionError: ('adjoint_forward_ce_mismatch', 3.0432491302490234, 3.0432491670923105)",
+    "first_outer_model_forwards": 3,
+    "first_completed_backwards": 0,
+    "adjoint_only_outer_model_forwards": 1,
+    "adjoint_only_completed_backwards": 1,
+    "repeated_original_folded_pairs": 0,
+    "completed_original_folded_pairs": 1,
+    "adjoint": {
+      "ce_mean": 3.0432491670923105,
+      "forward_backward_cpu_seconds": 1.1776790889999997,
+      "finite_gradient_tensors": 134,
+      "finite_coordinate_tensors": 75,
+      "finite_raw_tensors": 59,
+      "gradient_norm": 123.9691072123083,
+      "optimizer_updates": 0,
+      "cpu_seconds": 2.891604638,
+      "wall_seconds": 3.2008792089982308,
+      "peak_rss_kib": 623316,
+      "VmPeak_kib": 1379028,
+      "VmHWM_kib": 623316,
+      "VmRSS_kib": 611596
+    },
+    "max_integer_recovery_errors": {
+      "max_activation_integer_recovery_error": 0.0,
+      "max_weight_integer_recovery_error": 0.0,
+      "max_dot_integer_error": 0.0
+    },
+    "signed_negative_scale_rows": 15,
+    "patched_modules": 74,
+    "activation_div_elements": 23276378,
+    "weight_div_elements": 3912576,
+    "output_fold_elements": 23276378,
+    "extra_elementwise_minimum_read_write_bytes": 403722656,
+    "first_worker_cpu_seconds": 3.791481852,
+    "adjoint_only_worker_cpu_seconds": 2.8947003270000002,
+    "total_worker_cpu_seconds": 6.686182179,
+    "api_controller_cpu_seconds": 0.023963622000000004,
+    "peak_worker_rss_kib": 623316,
+    "optimizer_updates": 0,
+    "source_edits": 0,
+    "native_runs": 0,
+    "new_teacher_runs": 0,
+    "teacher_cache_changes": 0,
+    "source_reading_metadata_cpu_budget_group": "method-48h-prep-once",
+    "formal_T_fullS_additions": 0,
+    "completed_utc": "2026-11-06T06:18:07.441590+00:00"
+  },
+  "initial_experiment": {
+    "schema": "hutter.depth8.folded-fp32-gemm.single-piece.v1",
+    "status": "failed",
+    "model_forward_calls": 3,
+    "optimizer_updates": 0,
+    "native_runs": 0,
+    "teacher_runs": 0,
+    "teacher_cache_changes": 0,
+    "source_edits": 0,
+    "cpu_limit_seconds": 300,
+    "wall_limit_seconds": 600,
+    "address_space_limit_gib": 7,
+    "threads_per_library": 1,
+    "cpu_affinity": [
+      0
+    ],
+    "entry_gate": {
+      "status": "running",
+      "stage": "waiting_for_inputs",
+      "incoming_ready_exists": false,
+      "training_state_exists": false
+    },
+    "stage": "failed",
+    "cpu_seconds": 3.791481852,
+    "wall_seconds": 18.75042934299563,
+    "peak_rss_kib": 564424,
+    "VmPeak_kib": 1251940,
+    "VmHWM_kib": 564424,
+    "VmRSS_kib": 538468,
+    "input": {
+      "input_bytes": 1347,
+      "prior_bytes": 552270,
+      "tokens_sha256": "00a4cb9c0ba83ec85ebdec13691268b54f23f838cf015008d0bd89a18af01ab4",
+      "priors_sha256": "dea3516fc522b398dd79fc245e2542237943fd755ca4e39bc0d06d674b6e0293",
+      "targets": 1346,
+      "source_article_index": 19,
+      "source_begin": 11700,
+      "source_end": 13047,
+      "prior_kind": "synthetic_uniform_f16_resource_only",
+      "rope_offset": 0,
+      "piece_bounds": [
+        0,
+        1347
+      ]
+    },
+    "initialization": {
+      "blocks": 8,
+      "coordinate_tensors": 75,
+      "raw_tensors": 59,
+      "frozen_tensors": 230,
+      "stage_kind": "hard_integer_initialization"
+    },
+    "original": {
+      "ce_mean": 3.0409561315936107,
+      "forward_ce_cpu_seconds": 0.24539044399999987,
+      "cpu_seconds": 3.136402305,
+      "wall_seconds": 18.076975862997642,
+      "peak_rss_kib": 459684,
+      "VmPeak_kib": 1148072,
+      "VmHWM_kib": 459684,
+      "VmRSS_kib": 431200
+    },
+    "native_existing_nll": 3.0455122048579475,
+    "patched_quantized_linear_modules": 74,
+    "folded": {
+      "ce_mean": 3.0432491670923105,
+      "forward_ce_cpu_seconds": 0.38142058300000015,
+      "cpu_seconds": 3.519024138,
+      "wall_seconds": 18.461508009997488,
+      "peak_rss_kib": 461000,
+      "VmPeak_kib": 1148996,
+      "VmHWM_kib": 461000,
+      "VmRSS_kib": 417196
+    },
+    "comparison": {
+      "delta_ce": 0.002293035498699858,
+      "original_distance_to_native": 0.004556073264336824,
+      "folded_distance_to_native": 0.002263037765636966,
+      "logits_max_abs_delta": 1.9651613235473633,
+      "logits_mean_abs_delta": 0.14150036871433258
+    },
+    "folded_forward_operator_stats": {
+      "calls": 74,
+      "activation_div_elements": 23276378,
+      "weight_div_elements": 3912576,
+      "output_fold_elements": 23276378,
+      "scale_div_cpu_seconds": 0.0,
+      "fold_cpu_seconds": 0.00799763699999989,
+      "gemm_cpu_seconds": 0.027974030000000205,
+      "contract_cpu_seconds": 0.16555802399999964,
+      "max_activation_integer_recovery_error": 0.0,
+      "max_weight_integer_recovery_error": 0.0,
+      "max_dot_integer_error": 0.0,
+      "negative_scale_rows": 15,
+      "shapes": {
+        "prior_embedding": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            205
+          ],
+          "weight_shape": [
+            192,
+            205
+          ]
+        },
+        "blocks.0.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.0.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.0.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.0.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.0.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.0.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.1.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.1.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.1.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.1.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.1.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.1.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.2.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.2.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.2.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.2.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.2.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.2.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.3.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.3.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.4.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.4.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.4.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.4.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.4.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.4.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.5.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.5.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.5.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.5.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.5.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.5.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.6.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.6.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.6.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.6.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.6.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.6.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.7.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.7.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "unembedding": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            205,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            205,
+            192
+          ]
+        }
+      }
+    },
+    "error": "AssertionError: ('adjoint_forward_ce_mismatch', 3.0432491302490234, 3.0432491670923105)",
+    "api_execution": {
+      "http_status": 200,
+      "controller_cpu_seconds": 0.012115030999999998,
+      "controller_wall_seconds": 20.732761532068253,
+      "exit_code": 1,
+      "timed_out": false,
+      "oom_killed": false
+    }
+  },
+  "completed_experiment_adjoint": {
+    "schema": "hutter.depth8.folded-fp32-gemm.single-piece.v1",
+    "status": "passed",
+    "model_forward_calls": 1,
+    "optimizer_updates": 0,
+    "native_runs": 0,
+    "teacher_runs": 0,
+    "teacher_cache_changes": 0,
+    "source_edits": 0,
+    "cpu_limit_seconds": 300,
+    "wall_limit_seconds": 600,
+    "address_space_limit_gib": 7,
+    "threads_per_library": 1,
+    "cpu_affinity": [
+      0
+    ],
+    "entry_gate": {
+      "status": "running",
+      "stage": "waiting_for_inputs",
+      "incoming_ready_exists": false,
+      "training_state_exists": false
+    },
+    "stage": "complete",
+    "cpu_seconds": 2.8947003270000002,
+    "wall_seconds": 3.200933159001579,
+    "peak_rss_kib": 623316,
+    "VmPeak_kib": 1379028,
+    "VmHWM_kib": 623316,
+    "VmRSS_kib": 611596,
+    "input": {
+      "input_bytes": 1347,
+      "prior_bytes": 552270,
+      "tokens_sha256": "00a4cb9c0ba83ec85ebdec13691268b54f23f838cf015008d0bd89a18af01ab4",
+      "priors_sha256": "dea3516fc522b398dd79fc245e2542237943fd755ca4e39bc0d06d674b6e0293",
+      "targets": 1346,
+      "source_article_index": 19,
+      "source_begin": 11700,
+      "source_end": 13047,
+      "prior_kind": "synthetic_uniform_f16_resource_only",
+      "rope_offset": 0,
+      "piece_bounds": [
+        0,
+        1347
+      ]
+    },
+    "initialization": {
+      "blocks": 8,
+      "coordinate_tensors": 75,
+      "raw_tensors": 59,
+      "frozen_tensors": 230,
+      "stage_kind": "hard_integer_initialization"
+    },
+    "prior_pair_existing": {
+      "original_ce": 3.0409561315936107,
+      "folded_ce": 3.0432491670923105
+    },
+    "adjoint_only": true,
+    "patched_quantized_linear_modules": 74,
+    "adjoint": {
+      "ce_mean": 3.0432491670923105,
+      "forward_backward_cpu_seconds": 1.1776790889999997,
+      "finite_gradient_tensors": 134,
+      "finite_coordinate_tensors": 75,
+      "finite_raw_tensors": 59,
+      "gradient_norm": 123.9691072123083,
+      "optimizer_updates": 0,
+      "cpu_seconds": 2.891604638,
+      "wall_seconds": 3.2008792089982308,
+      "peak_rss_kib": 623316,
+      "VmPeak_kib": 1379028,
+      "VmHWM_kib": 623316,
+      "VmRSS_kib": 611596
+    },
+    "adjoint_operator_stats": {
+      "calls": 146,
+      "activation_div_elements": 46018394,
+      "weight_div_elements": 7746432,
+      "output_fold_elements": 43950938,
+      "scale_div_cpu_seconds": 0.01600473499999988,
+      "fold_cpu_seconds": 0.00400225799999987,
+      "gemm_cpu_seconds": 0.1018482069999993,
+      "contract_cpu_seconds": 0.0,
+      "max_activation_integer_recovery_error": 0.0,
+      "max_weight_integer_recovery_error": 0.0,
+      "max_dot_integer_error": 0.0,
+      "negative_scale_rows": 30,
+      "shapes": {
+        "prior_embedding": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            205
+          ],
+          "weight_shape": [
+            192,
+            205
+          ]
+        },
+        "blocks.0.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.0.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.0.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.0.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.0.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.0.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.0.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.1.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.1.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.1.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.1.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.1.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.1.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.1.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.2.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.2.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.2.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.2.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.2.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.2.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.2.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.3.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.3.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.3.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.4.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.4.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.4.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.4.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.4.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.4.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.4.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.5.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.5.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.5.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.5.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.5.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.5.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.5.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.6.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.attention.forget_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.6.attention.forget_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.6.attention.output_gate_projection.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            64,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            64,
+            192
+          ]
+        },
+        "blocks.6.attention.output_gate_projection.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            64
+          ],
+          "weight_shape": [
+            192,
+            64
+          ]
+        },
+        "blocks.6.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.6.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.6.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "blocks.7.attention.query_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.attention.key_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.attention.value_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.attention.output_projection": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            192,
+            192
+          ]
+        },
+        "blocks.7.mlp.up": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            768,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            768,
+            192
+          ]
+        },
+        "blocks.7.mlp.down": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            192,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            768
+          ],
+          "weight_shape": [
+            192,
+            768
+          ]
+        },
+        "unembedding": {
+          "sa_shape": [
+            1
+          ],
+          "sw_shape": [
+            205,
+            1
+          ],
+          "activation_shape": [
+            1,
+            1346,
+            192
+          ],
+          "weight_shape": [
+            205,
+            192
+          ]
+        }
+      }
+    },
+    "api_execution": {
+      "http_status": 200,
+      "controller_cpu_seconds": 0.011848591000000006,
+      "controller_wall_seconds": 5.040701699908823,
+      "exit_code": 0,
+      "timed_out": false,
+      "oom_killed": false
+    }
+  },
+  "production_source": {
+    "schema": "hutter.depth8.folded-gemm-source-delivery.v1",
+    "entry_gate": {
+      "status": "running",
+      "stage": "waiting_for_inputs",
+      "pipeline_pid": 16774,
+      "pipeline_proc_exists": true,
+      "incoming_ready_exists": false,
+      "training_state_exists": false
+    },
+    "native_runs": 0,
+    "teacher_runs": 0,
+    "optimizer_updates": 0,
+    "files": [
+      {
+        "path": "pysrc/model.py",
+        "bytes": 53605,
+        "ast": "passed",
+        "bytes_equal": true
+      },
+      {
+        "path": "research/cpu_model.py",
+        "bytes": 4834,
+        "ast": "passed",
+        "bytes_equal": true
+      },
+      {
+        "path": "research/depth_student.py",
+        "bytes": 15400,
+        "ast": "passed",
+        "bytes_equal": true
+      },
+      {
+        "path": "research/depth-distillation.py",
+        "bytes": 24428,
+        "ast": "passed",
+        "bytes_equal": true
+      }
+    ],
+    "status": "passed",
+    "source_edits": 4,
+    "deployment_cpu_seconds": 0.064386366,
+    "updated_at": 1793946559.5986998,
+    "local_api_execution": {
+      "http_status": 200,
+      "exit_code": 0,
+      "controller_cpu_seconds": 0.01164443300000001,
+      "controller_wall_seconds": 1.2098488248884678
+    }
+  },
+  "production_branch": {
+    "schema": "hutter.depth8.folded-fp32-gemm.production-branch-adjoint.v1",
+    "status": "passed",
+    "model_forward_calls": 1,
+    "optimizer_updates": 0,
+    "native_runs": 0,
+    "teacher_runs": 0,
+    "teacher_cache_changes": 0,
+    "source_edits": 0,
+    "cpu_limit_seconds": 300,
+    "wall_limit_seconds": 600,
+    "address_space_limit_gib": 7,
+    "threads_per_library": 1,
+    "cpu_affinity": [
+      0
+    ],
+    "entry_gate": {
+      "status": "running",
+      "stage": "waiting_for_inputs",
+      "incoming_ready_exists": false,
+      "training_state_exists": false
+    },
+    "stage": "complete",
+    "cpu_seconds": 5.147164773999999,
+    "wall_seconds": 14.501076986001863,
+    "peak_rss_kib": 607232,
+    "VmPeak_kib": 1363308,
+    "VmHWM_kib": 607232,
+    "VmRSS_kib": 555016,
+    "input": {
+      "input_bytes": 1347,
+      "prior_bytes": 552270,
+      "tokens_sha256": "00a4cb9c0ba83ec85ebdec13691268b54f23f838cf015008d0bd89a18af01ab4",
+      "priors_sha256": "dea3516fc522b398dd79fc245e2542237943fd755ca4e39bc0d06d674b6e0293",
+      "targets": 1346,
+      "source_article_index": 19,
+      "source_begin": 11700,
+      "source_end": 13047,
+      "prior_kind": "synthetic_uniform_f16_resource_only",
+      "rope_offset": 0,
+      "piece_bounds": [
+        0,
+        1347
+      ]
+    },
+    "initialization": {
+      "blocks": 8,
+      "coordinate_tensors": 75,
+      "raw_tensors": 59,
+      "frozen_tensors": 230,
+      "stage_kind": "hard_integer_initialization"
+    },
+    "prior_pair_existing": {
+      "original_ce": 3.0409561315936107,
+      "folded_ce": 3.0432491670923105
+    },
+    "adjoint_only": true,
+    "production_native_scaled_gemm_modules": 74,
+    "recipe_cpu_gemm_identity": "integer-units-before-native-BF16-fold",
+    "source_artifact_sha256": {
+      "pysrc/model.py": "2049f948b964d79e3e57c19cf41b47a52a141b6cbe812f7255f716e0a9b2645f",
+      "research/cpu_model.py": "3ce4a45ab9532dce62b2794b234886d44de6b9836b12381b2c06f1a94f894463",
+      "research/depth_student.py": "a07c59b6c9083bc020f26fb970e961d83a4743cb0f6c29da4fdf75d91a3f00c0",
+      "research/depth-distillation.py": "3b8bc63ecc8d75d1b920eea5695a8988882929fbd1b5c7b9edcabda61d86502c"
+    },
+    "adjoint": {
+      "ce_mean": 3.0432491670923105,
+      "forward_backward_cpu_seconds": 1.221897684,
+      "finite_gradient_tensors": 134,
+      "finite_coordinate_tensors": 75,
+      "finite_raw_tensors": 59,
+      "gradient_norm": 123.9691072123083,
+      "optimizer_updates": 0,
+      "cpu_seconds": 5.145019065,
+      "wall_seconds": 14.501023666001856,
+      "peak_rss_kib": 607232,
+      "VmPeak_kib": 1363308,
+      "VmHWM_kib": 607232,
+      "VmRSS_kib": 555016
+    },
+    "api_execution": {
+      "http_status": 200,
+      "controller_cpu_seconds": 0.011303235999999994,
+      "controller_wall_seconds": 16.345737778116018,
+      "exit_code": 0,
+      "timed_out": false,
+      "oom_killed": false
+    }
+  },
+  "preparation_accounting": {
+    "schema": "hutter.depth8.folded-gemm-prep-accounting.v1",
+    "status": "passed",
+    "before_cpu_seconds": 83.912147995,
+    "added_measured_cpu_seconds": 11.897733319,
+    "after_cpu_seconds": 95.809881314,
+    "prep_budget_seconds": 172800,
+    "remaining_measured_budget_seconds": 172704.190118686,
+    "items": [
+      {
+        "id": "native-folded-gemm-experiment-round422",
+        "status": "passed_with_preserved_first_adjoint_failure",
+        "cpu_seconds": 6.686182179,
+        "scope": "existing original/folded resource pair plus failed first and completed adjoint; no native, teacher, optimizer or export"
+      },
+      {
+        "id": "native-folded-gemm-source-round423",
+        "status": "passed",
+        "cpu_seconds": 0.064386366,
+        "receipt": "/data/workspace/temp/hutter/round423/folded-gemm-source-delivery.json",
+        "scope": "destination source deployment process CPU"
+      },
+      {
+        "id": "native-folded-gemm-production-branch-round423",
+        "status": "passed",
+        "cpu_seconds": 5.147164773999999,
+        "receipt": "/data/workspace/temp/hutter/round422/train-native-arithmetic/branch-result.json",
+        "scope": "one production flag adjoint-only process CPU"
+      }
+    ],
+    "unmeasured_infrastructure_failures": [
+      {
+        "id": "source-exec-request65536-round423",
+        "http_status": 400,
+        "remote_executions": 0
+      },
+      {
+        "id": "source-heredoc-parser-round423",
+        "http_status": 200,
+        "exit_code": 1,
+        "source_edits": 0,
+        "model_calls": 0,
+        "cpu_seconds": null,
+        "measurement": "API exposes exit status only; Python syntax parse failed before executing source"
+      }
+    ],
+    "new_fullS_prep_seconds": 0,
+    "new_mixed_cpu_seconds": 0,
+    "accounting_process_cpu_seconds": 0.014136455
+  },
+  "complete_causal_teacher_targets": 0,
+  "complete_causal_training_targets": 0,
+  "new_complete_codec_measurements": 0
+}

@@ -1,0 +1,114 @@
+{
+  "observed_at": "2026-11-06T10:28:33",
+  "method": "original whole-stream causal priors; one shared independent max-length audit",
+  "scope": {
+    "source_bytes": 586459020,
+    "seed": 414,
+    "vocabulary_columns": 205,
+    "ppmd_order": 25,
+    "ppmd_map_mib": 14000,
+    "train_targets": 2941307,
+    "random_held_targets": 1082505,
+    "train_pieces": 1313,
+    "random_held_pieces": 473,
+    "independent_long_targets": 131071
+  },
+  "initial_terminal": {
+    "status": "failed",
+    "child_exit_code": -9,
+    "hard_cpu_limit_seconds": 14400,
+    "failure_interpretation": "configured hard CPU limit; last progress matches its boundary",
+    "last_progress": {
+      "status": "running",
+      "processed_bytes": 577765376,
+      "train_bytes": 2942620,
+      "validation_bytes": 1082978,
+      "cpu_seconds": 14374.780233,
+      "max_rss_kib": 4670472
+    },
+    "kernel_oom_matching_lines": 0,
+    "physical_output_prefixes": {
+      "train": {
+        "u8_bytes": 2940928,
+        "f16_bytes": 1199566848,
+        "expected_u8_bytes": 2942620,
+        "expected_f16_bytes": 1206474200
+      },
+      "validation": {
+        "u8_bytes": 1081344,
+        "f16_bytes": 436203520,
+        "expected_u8_bytes": 1082978,
+        "expected_f16_bytes": 444020980
+      }
+    },
+    "sample_last_source_end": 554866347
+  },
+  "recovery_validation": {
+    "status": "passed",
+    "stage": "ready_to_replace_failed_queue",
+    "cpu_seconds": 4.113754061,
+    "original_prepare_cpu_seconds": 14.349395,
+    "failed_capture_cpu_seconds": 14400,
+    "new_capture_limit_seconds": 16200,
+    "cumulative_prep_limit_seconds": 32400,
+    "child_peak_rss_kib": 1131632,
+    "all_205_columns_exact": true,
+    "original_full_short_capture_reused": false,
+    "original_capture_binary_reused": true,
+    "completed_new_role_fixture_reused": true,
+    "fixture_source_bytes": 65536,
+    "fixture_roles": {
+      "train": 3840,
+      "audit": 8192,
+      "validation": 32768
+    },
+    "source_bytes": 586459020,
+    "original_intervals": 1786,
+    "joint_intervals": 1787,
+    "original_seeded_plan_unchanged": true,
+    "independent_long_audit": {
+      "article": 243425,
+      "article_begin": 554867326,
+      "article_end": 586453679,
+      "source_begin": 570595966,
+      "source_end": 570727038,
+      "bytes": 131072,
+      "targets": 131071,
+      "training_article_overlap": 0,
+      "sampling": "separate-fixed-max-native-length-audit"
+    },
+    "training_updates": 0
+  },
+  "recovered_queue": {
+    "status": "running",
+    "pipeline_stage": "waiting_for_inputs",
+    "mixed_status": "waiting_pipeline_terminal",
+    "inverse_stage": "waiting_original_queues",
+    "single_new_full_scan": true,
+    "latest_progress": {
+      "status": "running",
+      "processed_bytes": 23068672,
+      "train_bytes": 76330,
+      "validation_bytes": 26238,
+      "audit_bytes": 0,
+      "cpu_seconds": 130.54756,
+      "max_rss_kib": 1620844
+    },
+    "training_epochs": 16,
+    "training_cpu_limit_seconds": 172800,
+    "mixed_candidates": 1,
+    "training_updates": 0,
+    "actual_payload_saving_bytes": 0,
+    "full_original_restoration_complete": false
+  },
+  "cpu_accounting": "All recovery compilation/reference attempts total 4.113754061 CPU seconds. The failed original scan is charged conservatively at 14400 seconds. Shared audit rows are charged once with the replacement scan. Native command teardown and wrapper CPU are included.",
+  "recipe_unchanged": [
+    "sampled estimator",
+    "original signed BF16 scales",
+    "integer STE",
+    "original teacher",
+    "16 complete epochs",
+    "long audit report-only",
+    "sole mixed candidate"
+  ]
+}

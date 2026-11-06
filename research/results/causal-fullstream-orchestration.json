@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "scope": "model-free orchestration fixture",
+  "mixed_reader": {
+    "status": "passed",
+    "actual_pair_net_saved_bytes": 24,
+    "checks": [
+      "one shared double-W fee",
+      "mature separate from complete prefix",
+      "decode output-byte denominator",
+      "fresh q2 and native report roles"
+    ]
+  },
+  "prepared_bytes_per_side": 10000,
+  "restored_bytes_per_side": 17000,
+  "unique_encode_calls": 2,
+  "unique_decode_calls": 2,
+  "native_model_full_1gb_calls": 0,
+  "actual_two_copy_weight_saved_bytes": 36,
+  "carried_prep_cpu_seconds": {
+    "W0": 502.463058,
+    "W1": 0
+  },
+  "measured_fixture_cpu_seconds": {
+    "W0": 0.23888900000002877,
+    "W1": 0.23901099999999997
+  },
+  "delivery": {
+    "original_method_recipe": "unchanged",
+    "full_stream_encodes_started": 0,
+    "official_original_archive_decodes_started": 0,
+    "scope": "pure mixed reader and model-free phase orchestration"
+  }
+}

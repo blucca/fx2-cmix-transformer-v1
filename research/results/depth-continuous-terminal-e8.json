@@ -1,0 +1,251 @@
+{
+  "schema": "hutter.depth8.continuous-terminal-e8.v1",
+  "observed_at_utc": "2026-11-06T16:58:23.828010+00:00",
+  "source_revision": "0fc8a127b8fc14fdaf22bc75a661ae2479503aaa",
+  "native": {
+    "held": {
+      "targets": 1082505,
+      "original_nll": 0.9662483387944264,
+      "e4_nll": 1.1871585190883955,
+      "student_nll": 1.1688038833784649,
+      "delta_nll": 0.20255554458403846,
+      "delta_from_e4": -0.018354635709930678
+    },
+    "held_long": {
+      "targets": 107647,
+      "original_nll": 1.2586143013099194,
+      "e4_nll": 1.518069217218576,
+      "student_nll": 1.4981257583566259,
+      "delta_nll": 0.2395114570467065,
+      "delta_from_e4": -0.019943458861950036
+    },
+    "held_short": {
+      "targets": 974858,
+      "original_nll": 0.9339643356197023,
+      "e4_nll": 1.150618280487882,
+      "student_nll": 1.132439087812573,
+      "delta_nll": 0.1984747521928707,
+      "delta_from_e4": -0.018179192675308986
+    },
+    "maximum_length_audit": {
+      "targets": 131071,
+      "original_nll": 0.038986426131505464,
+      "e4_nll": 0.18630547531648686,
+      "student_nll": 0.2249766262079934,
+      "delta_nll": 0.18599020007648795,
+      "delta_from_e4": 0.03867115089150655
+    }
+  },
+  "phase": {
+    "continuous_epochs_completed": 8,
+    "hard_qat_epochs_completed": 0,
+    "hard_qat_epochs_goal": 24,
+    "goal_epochs": 32,
+    "completed_full_epoch_targets": 23530456,
+    "e8_native_stage": "Hard export after all eight continuous epochs",
+    "first_hard_optimizer_step": 633,
+    "partial_hard_epoch": 9,
+    "partial_hard_optimizer_steps": 24,
+    "partial_hard_targets": 906563,
+    "partial_hard_pieces": 386,
+    "recorded_step": 656,
+    "recorded_seen_targets": 24437019,
+    "snapshot_utc": "2026-11-06T16:58:04.741606+00:00",
+    "partial_hard_online_ce_mean": 1.0251673086099524,
+    "partial_hard_online_teacher_kl_mean": 0.1487624671869615,
+    "partial_hard_loss_scope": "24 online pre-update batches from a newly shuffled epoch; the next fixed-checkpoint full held hard-native score is e12."
+  },
+  "continuous_epoch_training": [
+    {
+      "epoch": 1,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "reported_total_cpu_seconds": 3848.9824112889996,
+      "ce_mean": 1.2635416268519422,
+      "teacher_kl_mean": 0.28819836092281653,
+      "final_hidden_mse_mean": 0.27887038886773546
+    },
+    {
+      "epoch": 2,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "reported_total_cpu_seconds": 6748.941452334,
+      "ce_mean": 1.1696923831475903,
+      "teacher_kl_mean": 0.2054537648950001,
+      "final_hidden_mse_mean": 0.19310860950032602
+    },
+    {
+      "epoch": 3,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "reported_total_cpu_seconds": 9553.652534027,
+      "ce_mean": 1.1376189555153213,
+      "teacher_kl_mean": 0.18572650567789048,
+      "final_hidden_mse_mean": 0.17745109320320687
+    },
+    {
+      "epoch": 4,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "reported_total_cpu_seconds": 12419.921659943,
+      "ce_mean": 1.1211579193161196,
+      "teacher_kl_mean": 0.1800423021254165,
+      "final_hidden_mse_mean": 0.17937605348994579
+    },
+    {
+      "epoch": 5,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "reported_total_cpu_seconds": 15416.484788856998,
+      "ce_mean": 1.0938829835487973,
+      "teacher_kl_mean": 0.16491400495689457,
+      "final_hidden_mse_mean": 0.16686105706960666
+    },
+    {
+      "epoch": 6,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "reported_total_cpu_seconds": 18412.439379129002,
+      "ce_mean": 1.0743045769686919,
+      "teacher_kl_mean": 0.15780234182833355,
+      "final_hidden_mse_mean": 0.1635552363140134
+    },
+    {
+      "epoch": 7,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "reported_total_cpu_seconds": 21556.328577688,
+      "ce_mean": 1.062199677804932,
+      "teacher_kl_mean": 0.15640727125130754,
+      "final_hidden_mse_mean": 0.16505032799771405
+    },
+    {
+      "epoch": 8,
+      "stage": "continuous",
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "reported_total_cpu_seconds": 24512.720708952,
+      "ce_mean": 1.0464341694879835,
+      "teacher_kl_mean": 0.15205679185672052,
+      "final_hidden_mse_mean": 0.16506986949860725
+    }
+  ],
+  "actual_package": {
+    "original_weight_bytes": 2904325,
+    "e4_weight_bytes": 1957973,
+    "e8_weight_bytes": 1960160,
+    "original_binary_bytes": 181956,
+    "student_binary_bytes": 177444,
+    "double_weight_saved_bytes": 1888330,
+    "double_binary_saved_bytes": 9024,
+    "double_weight_plus_binary_saved_bytes": 1897354
+  },
+  "named_size_sensitivity": {
+    "scope": "Linear full-stream projection of sampled held raw-NLL delta; kappa is the eventual measured mixed coded-payload attenuation. Historical gap retains its original comparison scope.",
+    "full_native_targets": 586215331,
+    "historical_record_gap_bytes": 952225,
+    "kappa1_payload_increase_bytes": 21413411.347625814,
+    "kappa1_net_size_increase_bytes": 19516057.347625814,
+    "historical_payload_allowance_bytes": 945129,
+    "break_even_kappa": 0.08860587270278011,
+    "historical_record_kappa": 0.04413724579688654,
+    "raw_nll_break_even_at_kappa1": 0.017947610798655613,
+    "raw_nll_historical_record_at_kappa1": 0.008940243858827916
+  },
+  "e8_coordinate_geometry": {
+    "int4_values": 3951936,
+    "changed_z_coordinates": 3925201,
+    "changed_weight_symbols": 1320385,
+    "changed_raw_values": 18853,
+    "hard_entropy_nats": 10381013.193358053,
+    "max_scale_delta": 0.0,
+    "displaced_z_still_rounding_to_initial_symbol": 2604816,
+    "changed_symbol_fraction": 0.3341109268976016,
+    "displaced_same_initial_symbol_fraction": 0.6591240343973181,
+    "e4_changed_symbols": 716512,
+    "e4_changed_symbol_fraction": 0.18130657986364151
+  },
+  "held_piece_pairing": {
+    "pieces": 473,
+    "targets": 1082505,
+    "original": {
+      "worse_pieces": 466,
+      "better_pieces": 7,
+      "equal_pieces": 0,
+      "worse_targets": 1081555,
+      "better_targets": 950,
+      "median_piece_delta_nats": 0.1515282598736849,
+      "weighted_delta_nats": 0.20255554458403954
+    },
+    "e4": {
+      "worse_pieces": 83,
+      "better_pieces": 390,
+      "equal_pieces": 0,
+      "worse_targets": 63258,
+      "better_targets": 1019247,
+      "median_piece_delta_nats": -0.014764454099582297,
+      "weighted_delta_nats": -0.018354635709883476
+    }
+  },
+  "actual_experiment_cpu": {
+    "scope": "Original trainer cpu() including the same frozen preparation credit and recode/native descendants. Raw probe timings retain their own process scope.",
+    "frozen_preparation_credit_seconds": 121.71669664299999,
+    "method_cpu_cap_seconds": 172800,
+    "e8_trained_reported_total_seconds": 24512.720708952,
+    "e8_evaluated_reported_total_seconds": 24640.531429548002,
+    "e8_export_and_both_native_seconds": 127.81072059600046,
+    "latest_reported_total_cpu_seconds": 25547.115407193,
+    "latest_unique_training_and_evaluation_cpu_seconds": 25425.39871055,
+    "method_cap_remaining_seconds": 147252.884592807,
+    "causal_program_cpu_seconds": 97.669719,
+    "causal_eval_cpu_seconds": 97.526193,
+    "causal_max_rss_kib": 1359124,
+    "audit_program_cpu_seconds": 12.438901,
+    "audit_eval_cpu_seconds": 12.30236,
+    "audit_max_rss_kib": 1359136,
+    "both_native_program_cpu_seconds": 110.10862,
+    "original_causal_program_cpu_seconds": 92.77464,
+    "raw_e8_original_causal_program_cpu_ratio": 1.0527631150064285,
+    "same_worker_e8_e4_causal_program_cpu_ratio": 1.126854001481955
+  },
+  "gradient_and_cache_observation": {
+    "recorded_optimizer_steps": 656,
+    "finite_tensors_per_step": 134,
+    "nonzero_tensors_per_step": 134,
+    "partial_hard_gradient_norm_range": [
+      0.8327508710074242,
+      6.97423835034641
+    ],
+    "teacher_cache_misses_at_snapshot": 1313,
+    "teacher_cache_training_pieces": 1313
+  },
+  "interpretation": [
+    "All eight continuous epochs are complete; the unchanged hard-QAT stage has started and its first 24 optimizer steps are finite and nonzero across all trainable tensors.",
+    "Continuous online CE and teacher KL descend through e8. Hard-export held NLL improves from e4 by 0.018354636 nats/target while the independent long audit deteriorates by 0.038671151 nats/target.",
+    "Hard symbols changed in 33.41% of coordinates versus 18.13% at e4; large fractional movements still return to the initial hard bucket.",
+    "The sampled held hard-export deployment gap remains broad. Original e12/e16 native scores and the one terminal selected-checkpoint mixed run measure hard-stage compensation and actual size transmission.",
+    "The measured package savings are 1897354 bytes. The named historical-record projection requires kappa <= the explicit historical_record_kappa; eventual actual coded payload, latest L and full S provide the official size gate.",
+    "Raw e8 probe timing is 97.669719 CPU seconds against original 92.774640 on worker 2; official compressor/archive activity uses the actual program scope and machine T."
+  ],
+  "decision": {
+    "action": "Continue the original eight-continuous plus twenty-four-hard trajectory and sole mixed evaluation",
+    "new_recipe_probes_fullS_calls": 0,
+    "actual_coded_gain": "pending_original_sole_mixed",
+    "next_native_epoch": 12
+  }
+}

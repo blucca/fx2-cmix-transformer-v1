@@ -1,0 +1,36 @@
+{
+  "status": "passed",
+  "method": "causal-formal-components-v1",
+  "scope": "tiny codec/section fixtures; full-stream encode and archive9 restoration are the next measured stages",
+  "per_variant_weights": {
+    "common_binary": true,
+    "different_weights": true,
+    "different_payloads": true,
+    "encode_checkpoint_reused": true,
+    "later_phase_decode": true,
+    "restored_bytes_per_variant": 384
+  },
+  "native_package": {
+    "status": "assembled",
+    "prepared_bytes": 10000,
+    "components": {
+      "binary": 11,
+      "compressed_dictionary": 13,
+      "compressed_order": 17,
+      "weights": 19,
+      "raw_payload": 23
+    },
+    "stream_header_bytes": 37,
+    "selfextract_header_bytes": 32,
+    "compressor_bytes": 76,
+    "archive_bytes": 119,
+    "full_s": 195,
+    "verification": "actual archive9 decode is the next stage",
+    "section_layout_exact": true,
+    "two_actual_file_sizes_exact": true
+  },
+  "commands": [
+    "python3 -B research/batch-phase-check.py --work FRESH/temp/batch-check",
+    "python3 -B research/archive-package-check.py --work FRESH/temp/package-check"
+  ]
+}

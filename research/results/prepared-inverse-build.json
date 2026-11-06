@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "scope": "compiled shared forward/inverse adapter and complete-input guards; actual 1GB inverse queues separately",
+  "compiler": "c++ (GCC) 16.2.1 20260810",
+  "restore_input_guard": {
+    "exit": 1,
+    "stderr": "prepare: restore expects the complete 586459020-byte enwik9 prepared stream"
+  },
+  "forward_input_guard": {
+    "exit": 1,
+    "stderr": "prepare: enwik9 has 1 bytes; expected 1000000000"
+  },
+  "output_created_on_bad_input": false,
+  "native_model_range_calls": 0,
+  "original_transform_helpers_reused": true,
+  "complete_original_bytes": 1000000000,
+  "complete_original_md5": "e206c3450ac99950df65bf70ef61a12d",
+  "actual_original_inverse": "queued after the existing causal pipeline and mixed measurement",
+  "inverse_cpu_limit_seconds": 1800
+}

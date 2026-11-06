@@ -1,8 +1,19 @@
 # Hutter compression research
 
-**New:** [Fixed entropy-constrained QAT](entropy-qat.md) has completed its first epoch. The real weight package grows by 6,964 B and both native held-out NLL scores regress; the original model stays. One bounded trajectory continues to measure recovery.
+**Active:** [Whole-stream causal priors and complete-piece learning](causal-priors.md) addresses the measured cold-prior fit with an independent 16-epoch trajectory and a reserved `2^17` native audit. The original [fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) trajectory continues to its existing terminal native/mixed measurements. [Rate/distortion attribution](integer-coordinate-attribution.md) and [mature PPMd validation](mature-ppmd.md) provide the measured mechanism; the earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe. Original production weights stay fixed. The [single-pass capture recovery](results/causal-capture-recovery.json) preserves all 205 prior columns and the seeded sample while sharing its independent long audit.
+
+The [formal full-stream path](causal-fullstream.md) now runs a whole native
+`cmix -e` from the canonical 1 GB original, measuring its authentic archive
+before the explicit official decode. This includes every preprocessing and
+D/O subprocess in one main NN/range pass. The model-free route check covers
+both twelve/eight-layer families; actual full-stream execution follows the
+sole mixed-codec candidate's net-S and resource admission.
 
 [Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
+
+[Exact attention tile checkpoints](tile-checkpoint.md) reduce the measured attention graph storage by 92.66%. The 1,346-target whole-model adjoints are bit-exact; the 131,071-target OpenBLAS forward is bit-exact and its full backward hits the 7 GiB memory gate. [Terminal receipt](results/tile-checkpoint-full-model.json). The running causal trajectory stays fixed.
+
+[Real original native auxiliary delivery](original-release-native-aux.md) passes the dictionary/order roundtrips and both packed section entry points. B/D/O/W establish **6,573,938 B before range payload**, with reusable D/O and exact full-S charging. The [full-stream phase runner](causal-fullstream.md) uses one frozen model pair and records actual package S before both native original decodes. Its [depth extension](results/depth-fullstream-orchestration.json) accepts the actual two-probe/two-B family and charges double-W and dual-B once. [Eight-block complete distillation](depth-distillation.md) preserves the outer skip pairing and uses the same causal inputs; [the original structural budget](depth-distillation-contract.md) retains its static census scope.
 
 ## Fixed sources
 
@@ -50,6 +61,16 @@ Use a Linux CPU environment with Clang 17, make, Python 3 and sufficient memory/
 4. Build `prepare.cpp` using the command in its header. Run `prepare ENWIK9 DICTIONARY ARTICLE_ORDER EMPTY_OUTDIR`; the output is the exact full pre-arithmetic-coding `stream.bin`, its 32-byte vocabulary mask, article boundaries, and metadata. After completion, the other generated intermediates can be removed with Python.
 5. A probe uses `probe encode|decode INPUT OUTPUT VOCAB DICTIONARY WEIGHTS OFFSET LENGTH`. Both sides use the same exact full-stream vocabulary and dictionary pretraining. Output paths must be fresh.
 6. `python3 research/batch.py --root /YOUR/temp/hutter --plan PLAN.json --out /YOUR/temp/hutter/runs/first-ab` processes baseline/candidate serially, verifies every round trip, and checkpoints results. Root contains `upstream`, `prepared`, and `build/{baseline,v26}`. Each plan entry has `name`, `offset`, and `length`. Completed identical trials are reused; interrupted trials are preserved and restarted. A recorded real failure stops the batch for inspection.
+
+For a weight-only A/B, point `build/{reference,candidate}/probe` to the same
+untraced codec and pass `--variants reference candidate --weights reference=/ABS/W0
+--weights candidate=/ABS/W1`. Every encode/decode and saved trial identity uses
+that variant's actual weight file. The default remains the original upstream
+weights. `--phase encode` persists the completed payload for a later
+`--phase decode` window; `--timeout` sets the command's wall-clock ceiling.
+Full-stream runs omit `--trace`: a 586,459,020-byte trace would occupy about
+69.9 GiB. Formal archive accounting includes the complete two-copy weight and
+binary cost, compressed dictionary/order assets and fixed headers.
 
 For long runs, `--phase encode` checkpoints completed compressed files with
 status `encoded` (decode pending). A later identical invocation with
@@ -935,3 +956,19 @@ bounded CPU backend; every epoch exports the real static15 package and runs
 two held-out native scores. The CPU zero-step export reproduces the original
 2,904,325 B weight file byte for byte. Training has a 12 CPU-hour / eight-epoch
 cap, with resumable optimizer checkpoints and the original inference retained.
+
+
+## Fixed-scale integer-coordinate QAT
+
+[Method and resume entry](integer-coordinate-qat.md): learn only bounded integer
+weights while retaining every original signed BF16 scale. The
+[full-model preflight](results/integer-coordinate-preflight.json) reproduces the
+original static15 bytes and exact teacher logits before the single trajectory.
+[Immutable-coordinate attribution](integer-coordinate-attribution.md) now covers
+CE/KL/H gradients, all-symbol entropy accounting and an epoch-4 mature/fresh
+prior-state control. Terminal native and end-to-end coding measurements remain.
+
+
+### Fixed eight-block complete-piece distillation
+
+[Method](depth-distillation.md) · [CPU student/export](depth_student.py) · [32-epoch trainer](depth-distillation.py) · [Native family build](depth-native-build.py) · [Actual compile receipt](results/depth-native-build.json).

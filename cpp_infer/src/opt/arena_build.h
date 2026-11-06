@@ -7,7 +7,7 @@
 //
 // Stream order (must equal the call order in model_opt.cpp):
 //   [prior fold|cols int4]                                  (sparse, raw u8)
-//   per layer l = 0..11:
+//   per layer l = 0..NL-1 in the selected fixed family:
 //     kimi:  [qp][kp][vp][fg_up][fg_down][og_up][og_down]
 //            [beta_w f32][conv_q f32][conv_k f32][conv_v f32][dt_bias][gn_w]
 //            [out_proj]
@@ -24,6 +24,7 @@
 #include <cstdint>
 #include <vector>
 
+#include "../model_shape.h"
 #include "kda.h"
 #include "qmat.h"
 
@@ -69,24 +70,25 @@ struct MlpArenas {
 };
 
 struct OptModel {
-  static constexpr int V = 205, D = 192, NL = 12, DH = 64, NH = 3,
-                       DMLP = 768, ROPE_LEN = 131072;
-  static constexpr bool KIMI_L[NL] = {true, true, true,  false, true, true,
-                                      true, false, true, true,  true, false};
+  static constexpr int V = shape::V, D = shape::D, NL = shape::NL,
+                       DH = shape::DH, NH = shape::NH, DMLP = shape::DMLP,
+                       WIN = shape::WIN, ROPE_LEN = shape::ROPE_LEN;
+  static constexpr int NK = shape::NK, NV = shape::NV, NSKIP = shape::NSKIP;
+  static constexpr const auto& KIMI_L = shape::KIMI;
 
   HugeBuf pool;          // weight stream + tok table
   size_t stream_bytes = 0;  // bytes of the per-token weight stream
 
   QSparse4 prior;        // 192x205, raw-u8 quantized prior
   float prior_s_act = 0.0f;
-  KimiArenas kimi[9];
-  VanArenas van[3];
+  KimiArenas kimi[NK];
+  VanArenas van[NV];
   MlpArenas mlp[NL];
   QSite unembed;         // 205x192 (rows_padded 208), biased
 
   int layer2kimi[NL] = {};
   int layer2van[NL] = {};
-  float rsc[NL] = {}, tec[NL] = {}, skip_w[6] = {};
+  float rsc[NL] = {}, tec[NL] = {}, skip_w[NSKIP] = {};
   const float* tok_table = nullptr;  // 205x192 normed embedding rows
   std::vector<float> rope_sin, rope_cos;  // 131072 x 32 each
   float inv_freq[32] = {};

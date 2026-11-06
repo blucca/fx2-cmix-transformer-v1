@@ -1,0 +1,39 @@
+{
+  "status": "passed",
+  "scope": "model-free orchestration fixture",
+  "fixture": {
+    "prepared_bytes": 10000,
+    "original_bytes": 17000
+  },
+  "native_full_program_route": {
+    "status": "passed",
+    "families": {
+      "causal": {
+        "status": "passed",
+        "payload_saved_bytes": 0,
+        "dual_code_saved_bytes": 0,
+        "net_saved_bytes": 36
+      },
+      "depth": {
+        "status": "passed",
+        "payload_saved_bytes": -5,
+        "dual_code_saved_bytes": 132,
+        "net_saved_bytes": 163
+      }
+    },
+    "unique_encode_calls": 4,
+    "unique_decode_calls": 4,
+    "native_model_full_1gb_calls": 0,
+    "checks": [
+      "original input identity",
+      "compressor-only bootstrap",
+      "authentic native archive sections",
+      "one full-program encode per side",
+      "whole-command descendant CPU",
+      "native temporary cleanup",
+      "actual paired S and phase replay"
+    ]
+  },
+  "source": "research/causal-fullstream-check.py",
+  "real_full_stream_execution": "awaiting admitted sole mixed result"
+}

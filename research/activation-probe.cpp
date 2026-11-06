@@ -170,13 +170,18 @@ void PrintResources(Clock::time_point started, double cpu_start) {
               Seconds(started), CpuSeconds() - cpu_start, u.ru_maxrss);
 }
 
-int Capture(char** argv) {
-  // capture INPUT TOKENS PRIORS VOCAB OFFSET LENGTH
+int Capture(char** argv, bool warm) {
+  // capture INPUT TOKENS PRIORS VOCAB OFFSET LENGTH [WARM_START]
   const char *input_path = argv[2], *token_path = argv[3],
              *prior_path = argv[4], *vocab_path = argv[5];
   const U64 offset = Number(argv[6]), length = Number(argv[7]);
+  const U64 warm_start = warm ? Number(argv[8]) : offset;
+  if (warm_start > offset) Fail("warm start must be at or before capture offset");
+  const U64 warm_bytes = offset - warm_start;
   if (length < 2 || length > std::numeric_limits<U64>::max() / (V * 2))
     Fail("capture length must be at least two and fit the prior file size");
+  if (warm_bytes > std::numeric_limits<U64>::max() - length)
+    Fail("warm prefix plus capture length overflows");
   Fresh(token_path);
   Fresh(prior_path);
   if (std::string(token_path) == prior_path) Fail("token/prior outputs must differ");
@@ -190,10 +195,10 @@ int Capture(char** argv) {
     byte_to_index[i] = vocab[i] ? count++ : -1;
   }
   if (count != V) Fail("expected fixed full-stream 205-byte vocabulary");
-  auto tokens = ReadSlice(input_path, offset, length);
+  auto tokens = ReadSlice(input_path, warm_start, warm_bytes + length);
   // Validate the entire input before constructing PPMd or creating outputs.
-  for (U64 i = 0; i < length; ++i)
-    if (byte_to_index[tokens[i]] < 0) Fail("input byte at %llu is outside vocab", offset + i);
+  for (U64 i = 0; i < tokens.size(); ++i)
+    if (byte_to_index[tokens[i]] < 0) Fail("input byte at %llu is outside vocab", warm_start + i);
   std::ofstream out(token_path, std::ios::binary);
   if (!out) Fail("cannot create token output");
   const auto started = Clock::now();
@@ -203,14 +208,15 @@ int Capture(char** argv) {
     PredictorOptions options;
     options.ppmd_only = true;
     options.save_ppmd_probs = prior_path;
-    options.num_input_bytes = length;
+    options.save_ppmd_skip_bytes = warm_bytes;
+    options.num_input_bytes = tokens.size();
     std::srand(923);
     Predictor p(vocab, options);
     // Pretrain does not touch PPMd. No dictionary warmup, as in runner's
     // --ppmd-only path. Prediction/perception order matches Encoder::Encode.
     const auto loop_start = Clock::now();
     const double loop_cpu = CpuSeconds();
-    for (U64 i = 0; i < length; ++i) {
+    for (U64 i = 0; i < tokens.size(); ++i) {
       const uint8_t byte = tokens[i];
       for (int j = 7; j >= 0; --j) {
         p.Predict();
@@ -221,6 +227,7 @@ int Capture(char** argv) {
     capture_seconds = Seconds(loop_start);
     capture_cpu_seconds = CpuSeconds() - loop_cpu;
   }  // Flush the original HalfFileWriter before checking its exact size.
+  tokens.erase(tokens.begin(), tokens.begin() + warm_bytes);
   out.write(reinterpret_cast<const char*>(tokens.data()), length);
   out.close();
   if (!out || Size(token_path) != length || Size(prior_path) != length * V * 2)
@@ -228,15 +235,17 @@ int Capture(char** argv) {
   Pieces pieces = Split(tokens);
   std::printf("ACTIVATION_RESULT {\"mode\":\"capture\",\"offset\":%llu,"
               "\"input_bytes\":%llu,\"vocab\":205,\"prior_bytes\":%llu,"
+              "\"warm_start\":%llu,\"warmup_bytes\":%llu,\"processed_bytes\":%llu,"
               "\"capture_seconds\":%.6f,\"capture_cpu_seconds\":%.6f,",
-              offset, length, length * V * 2, capture_seconds, capture_cpu_seconds);
+              offset, length, length * V * 2, warm_start, warm_bytes,
+              warm_bytes + length, capture_seconds, capture_cpu_seconds);
   PrintPieces(pieces);
   PrintResources(started, cpu_start);
   std::printf("}\n");
   return 0;
 }
 
-int Eval(char** argv) {
+int Eval(char** argv, const char* explicit_bounds = nullptr) {
   // eval TOKENS PRIORS WEIGHTS
   const char *token_path = argv[2], *prior_path = argv[3], *weights_path = argv[4];
   const U64 length = Size(token_path);
@@ -245,11 +254,27 @@ int Eval(char** argv) {
     Fail("expected one token and exactly 205 f16 priors per input byte");
   auto tokens = ReadSlice(token_path, 0, length);
   Pieces pieces = Split(tokens);
+  if (explicit_bounds) {
+    const auto bytes = ReadSlice(explicit_bounds, 0, Size(explicit_bounds));
+    if (bytes.size() < 8 || bytes.size() % 4) Fail("expected little-endian int32 piece bounds");
+    pieces = Pieces{};
+    pieces.bounds.clear();
+    for (size_t i = 0; i < bytes.size(); i += 4) {
+      U64 value = 0;
+      for (unsigned j = 0; j < 4; ++j) value |= U64(bytes[i+j]) << (8*j);
+      if (value > length || (!pieces.bounds.empty() &&
+          (value <= pieces.bounds.back() || value - pieces.bounds.back() > MAX_PIECE)))
+        Fail("invalid explicit native piece boundary");
+      pieces.bounds.push_back(value);
+    }
+    if (pieces.bounds.front() != 0 || pieces.bounds.back() != length) Fail("explicit bounds need 0 and EOF");
+  }
   std::ifstream prior(prior_path, std::ios::binary);
   if (!prior) Fail("cannot open priors");
   std::array<uint16_t, V> row;
   std::array<float, V> probs;
   Loss total, halves[2];
+  std::vector<Loss> per_piece(explicit_bounds ? pieces.bounds.size()-1 : 0);
 #if FX2_NEURAL_CACHE
   NeuralCache cache;
   Fresh(argv[5]);
@@ -303,6 +328,7 @@ int Eval(char** argv) {
       double pn = -std::log(double(probs[target]));
       if (!std::isfinite(ln) || !std::isfinite(pn)) Fail("nonfinite NLL at %llu", i + 1);
       total.Add(ln, pn);
+      if (explicit_bounds) per_piece[piece].Add(ln, pn);
       halves[(i + 1) >= length / 2].Add(ln, pn);
 #if FX2_NEURAL_CACHE
       cache.Predict(tokens[i], model.last_hidden(), probs.data());
@@ -339,7 +365,7 @@ int Eval(char** argv) {
   std::fprintf(units, "layer,unit,first_hits,first_q2,second_hits,second_q2,norm2\n");
   const auto wf = fx2::WeightsFile::load_compressed(weights_path);
   const auto& us = model.activation_stats();
-  for (unsigned l = 0; l < 12; ++l) {
+  for (unsigned l = 0; l < fx2::shape::NL; ++l) {
     const std::string prefix = "blocks." + std::to_string(l) + ".mlp.down";
     const auto& w = wf.get(prefix + ".weight.q", fx2::DT_I8, {192, 768});
     const auto& s = wf.get(prefix + ".weight.scale", fx2::DT_BF16, {192});
@@ -421,7 +447,7 @@ int Eval(char** argv) {
 #ifdef FX2_ACTIVATION_STATS
   const auto& stats = model.activation_stats();
   std::printf(",\"mlp_steps\":%llu,\"down_nnz_sum\":[", static_cast<U64>(stats.steps));
-  for (unsigned l = 0; l < 12; ++l)
+  for (unsigned l = 0; l < fx2::shape::NL; ++l)
     std::printf("%s%llu", l ? "," : "", static_cast<U64>(stats.down_nnz[l]));
   std::printf("]");
 #endif
@@ -432,6 +458,13 @@ int Eval(char** argv) {
                 i ? "," : "", s.target_offset, s.target, double(s.prob), double(s.logit));
   }
   std::printf("]");
+  if (explicit_bounds) {
+    std::printf(",\"explicit_piece_bounds\":true,\"piece_losses\":[");
+    for (size_t piece = 0; piece < per_piece.size(); ++piece) {
+      std::printf("%s{",piece ? "," : ""); PrintLoss("loss",per_piece[piece]); std::printf("}");
+    }
+    std::printf("]");
+  }
   PrintResources(started, cpu_start);
   std::printf("}\n");
   return 0;
@@ -525,14 +558,19 @@ int SelfTest() {
 
 int main(int argc, char** argv) {
   if (argc == 2 && std::string(argv[1]) == "--self-test") return SelfTest();
-  if (argc == 8 && std::string(argv[1]) == "capture") return Capture(argv);
+  if ((argc == 8 || argc == 9) && std::string(argv[1]) == "capture")
+    return Capture(argv, argc == 9);
+#if !FX2_NEURAL_CACHE && !defined(FX2_MLP_UNIT_STATS)
+  if (argc == 6 && std::string(argv[1]) == "eval-pieces") return Eval(argv, argv[5]);
+#endif
 #ifdef FX2_MLP_UNIT_STATS
   if (argc == 6 && std::string(argv[1]) == "eval") return Eval(argv);
 #else
   if (argc == 5+FX2_NEURAL_CACHE && std::string(argv[1]) == "eval") return Eval(argv);
 #endif
   std::fprintf(stderr, "usage:\n  %s --self-test\n"
-      "  %s capture INPUT TOKENS PRIORS VOCAB OFFSET LENGTH\n"
-      "  %s eval TOKENS PRIORS WEIGHTS [CACHE_PAIRS or UNIT_CSV, when enabled]\n", argv[0], argv[0], argv[0]);
+      "  %s capture INPUT TOKENS PRIORS VOCAB OFFSET LENGTH [WARM_START]\n"
+      "  %s eval TOKENS PRIORS WEIGHTS [CACHE_PAIRS or UNIT_CSV, when enabled]\n"
+      "  %s eval-pieces TOKENS PRIORS WEIGHTS BOUNDS_I32\n", argv[0], argv[0], argv[0], argv[0]);
   return 2;
 }

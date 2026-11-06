@@ -1,4 +1,5 @@
 #include "model.h"
+#include "model_shape.h"
 
 #include <cmath>
 #include <cstdio>
@@ -13,12 +14,12 @@ namespace fx2 {
 
 namespace {
 
-constexpr int V = 205, D = 192, NL = 12, DH = 64, NH = 3, DMLP = 768;
-constexpr int WIN = 1024;
-constexpr int ROPE_LEN = 131072;
+constexpr int V = shape::V, D = shape::D, NL = shape::NL, DH = shape::DH,
+              NH = shape::NH, DMLP = shape::DMLP;
+constexpr int NK = shape::NK, NV = shape::NV, NSKIP = shape::NSKIP;
+constexpr int WIN = shape::WIN, ROPE_LEN = shape::ROPE_LEN;
 constexpr int PRIOR_STRIDE = 208;  // 205 padded to a multiple of 16
-constexpr bool KIMI[NL] = {true, true, true,  false, true, true,
-                           true, false, true, true,  true, false};
+constexpr const auto& KIMI = shape::KIMI;
 
 [[noreturn]] void die(const char* msg) {
   std::fprintf(stderr, "model: %s\n", msg);
@@ -92,22 +93,22 @@ struct TransformerImpl {
   Arena wa, fa;
 
   QLinear prior_lin, unembed;
-  KimiLayer kimi[9];
-  VanLayer van[3];
+  KimiLayer kimi[NK];
+  VanLayer van[NV];
   MlpW mlp[NL];
   int layer2kimi[NL] = {};
   int layer2van[NL] = {};
   float rsc[NL] = {}, tec[NL] = {};
-  float skip_w[6] = {};
+  float skip_w[NSKIP] = {};
   const float* tok_table = nullptr;  // 205 x 192 normed embedding rows
   const float* rope_sin = nullptr;   // 131072 x 32
   const float* rope_cos = nullptr;
   float inv_freq[32] = {};
 
   // streaming state
-  KimiState kst[9];
-  VanState vst[3];
-  float skip_store[6][D] = {};
+  KimiState kst[NK];
+  VanState vst[NV];
+  float skip_store[NSKIP][D] = {};
   int64_t t = 0;
   int64_t rope_off = 0;
   bool lowprob_skip = false;
@@ -182,9 +183,8 @@ void TransformerImpl::load(const char* path) {
   // config sanity
   {
     const WTensor& ci = wf.get("config.ints", DT_I32, {11});
-    const int32_t want[11] = {V, D, NL, DH, NH, DMLP, WIN, DH, NH, 4, 10000};
     for (int i = 0; i < 11; i++)
-      if (ci.i32()[i] != want[i]) die("config.ints mismatch");
+      if (ci.i32()[i] != shape::CONFIG_INTS[i]) die("config.ints mismatch");
     const WTensor& ck = wf.get("config.kimi", DT_I32, {NL});
     for (int i = 0; i < NL; i++)
       if ((ck.i32()[i] != 0) != KIMI[i]) die("config.kimi mismatch");
@@ -212,8 +212,8 @@ void TransformerImpl::load(const char* path) {
   unembed = load_qlinear(wf, "unembedding", V, D);
 
   {
-    const WTensor& sw = wf.get("skip_connection_weights.value", DT_F32, {6});
-    for (int i = 0; i < 6; i++) skip_w[i] = sw.f32()[i];
+    const WTensor& sw = wf.get("skip_connection_weights.value", DT_F32, {NSKIP});
+    for (int i = 0; i < NSKIP; i++) skip_w[i] = sw.f32()[i];
   }
 
   int ki = 0, vi = 0;
@@ -296,7 +296,7 @@ void TransformerImpl::load(const char* path) {
     mlp[l].up = load_qlinear(wf, b + "mlp.up", DMLP, D);
     mlp[l].down = load_qlinear(wf, b + "mlp.down", D, DMLP);
   }
-  if (ki != 9 || vi != 3) die("layer pattern mismatch");
+  if (ki != NK || vi != NV) die("layer pattern mismatch");
 
   {
     const WTensor& fi = wf.get("rope.inv_freq", DT_F32, {32});
@@ -472,9 +472,9 @@ void TransformerImpl::step(uint8_t token, const float* prior,
   cap("00_x0", x, D);
 
   for (int l = 0; l < NL; l++) {
-    if (l >= 6) {  // skip connections: 6<-5, 7<-4, ..., 11<-0
-      const float* s = skip_store[11 - l];
-      float w = skip_w[l - 6];
+    if (l >= NSKIP) {  // reverse pairing of the two equal fixed block halves
+      const float* s = skip_store[NL - 1 - l];
+      float w = skip_w[l - NSKIP];
       for (int i = 0; i < D; i++) x[i] += w * s[i];
     }
     if (override_fn) {  // debug teacher-forcing
@@ -510,16 +510,16 @@ void TransformerImpl::step(uint8_t token, const float* prior,
     for (int i = 0; i < D; i++) x[i] += yb[i];
     capL(l, "block_output", x, D);
 
-    if (l < 6) std::memcpy(skip_store[l], x, sizeof(float) * D);
+    if (l < NSKIP) std::memcpy(skip_store[l], x, sizeof(float) * D);
   }
 
   rms_norm_vec(x, xn, D);
-  cap("12_final_norm", xn, D);
+  capL(NL, "final_norm", xn, D);
   quantize_i8(xn, D, D, unembed.s_act, q8);
   qmatvec(unembed.w, unembed.stride, unembed.fold, V, q8, logits);
   for (int i = 0; i < V; i++)
     logits[i] = 15.0f * std::tanh(logits[i] / 15.0f);  // logit softcap
-  cap("12_logits", logits, V);
+  capL(NL, "logits", logits, V);
 
   float m = logits[0];
   for (int i = 1; i < V; i++)
@@ -531,7 +531,7 @@ void TransformerImpl::step(uint8_t token, const float* prior,
     den += e;
   }
   for (int i = 0; i < V; i++) probs_out[i] /= den;
-  cap("12_probabilities", probs_out, V);
+  capL(NL, "probabilities", probs_out, V);
 
   t++;
 }

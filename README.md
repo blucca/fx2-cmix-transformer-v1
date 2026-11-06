@@ -1,10 +1,14 @@
 # Hutter research: transformer × statistical experts
 
-Research maintained by Blucca / Codex. This fork studies the combination of Vladimir Ivanov’s published 6M transformer compressor with Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts.
+Research maintained by Blucca / Codex, building on Vladimir Ivanov’s published 6M transformer compressor and Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts. Original authorship and licenses are preserved. Our complete CPU learning, native export, causal-prior and archive measurement tools live in the default branch; the upstream production weights stay fixed.
 
-**Active work:** [eight-block causal distillation and whole-stream priors](https://github.com/blucca/fx2-cmix-transformer-v1/blob/2c9844e83b2b71342a9aa56be5aaab3553173f02/research/depth-distillation.md). The accepted native8 family has an initialized **1,955,187 B weight file** and **177,444 B deployed runner**, saving **1,907,300 B in the two-file W/B components** before payload changes. [Actual native acceptance](https://github.com/blucca/fx2-cmix-transformer-v1/blob/2c9844e83b2b71342a9aa56be5aaab3553173f02/research/results/depth-native-preflight.json) and [complete research branch](https://github.com/blucca/fx2-cmix-transformer-v1/tree/research/depth-distillation-20261106). The stable default codec and weights below stay fixed; trained native scores, real mixed coding and complete archives determine the research result.
+**Active research:** [eight-block causal distillation](research/depth-distillation.md) learns a fixed smaller native model from the original twelve-block teacher, sharing the [whole-stream causal priors and complete-piece inputs](research/causal-priors.md). The eight-epoch continuous stage is complete and its original hard-QAT stage is running. The real e8 model is **1,960,160 B** and its deployed runner **177,444 B**, saving **1,897,354 B across the two W/B copies**. Its native held-out loss is **+0.202555545 nats/target** against the original model; the [complete continuous-stage result](research/results/depth-continuous-terminal-e8.json) separates the package space, deployment loss and independent long audit. The fixed 32-epoch method and one same-weight mixed-codec measurement select the trained candidate.
+
+The independent sixteen-epoch causal-prior trajectory addresses the measured prior-state mismatch. Its [complete single-pass input and native baseline](research/results/causal-capture-terminal.json) have passed: 586,459,020 bytes, all 205 causal prior columns, 1,082,505 held targets and the independent long audit. [The first seven native epochs](research/results/causal-first-seven-epochs.json) preserve e2 as the leading completed candidate (**−0.001283234 nats/target**); subsequent held-out regressions remain in the full curve. The original [fixed-scale integer-coordinate trajectory](research/integer-coordinate-qat.md) continues to its final native/mixed measurements. [Rate/distortion attribution](research/integer-coordinate-attribution.md) records the mechanism. Complete archive size and original-file restoration supply the Hutter score.
 
 [Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
+
+**Original native package verified:** [real dictionary/order and both packed-section entry points](research/original-release-native-aux.md) restore every component byte-for-byte. B/D/O/W fix the original two-file envelope at **6,573,938 B before range payload**; full-stream restoration supplies the final score. The [frozen full-stream phase runner](research/causal-fullstream.md) exposes both actual package sizes before the two official-original decodes. The eight-block method uses each side's actual W/B sizes and the same complete archive score.
 
 **New independent component:** [lossless per-tensor weight coding](research/weights-static15.md) reduces the weight file by **26,327 B**, with all **434 tensor payloads identical**. After charging the new decoder twice, the measured development-package saving is **52,022 B**. The default model stays unchanged; the optional recoder and loader are ready to reproduce.
 
@@ -15,7 +19,7 @@ Another completed screen: [same-weight positive ReLU² activation quantization](
 The [causal entity-spelling screen](research/entity-prefix.md) found substantial
 supported-bit capacity, while its frozen 1/16 mixture increased both held-out
 tails by a combined 388 B. The two baselines and exact range counts are recorded;
-this recipe and full-file research remain stopped.
+this recipe and its full-file extension remain stopped.
 
 The original champion’s documentation follows, with its authorship and results preserved.
 
@@ -86,3 +90,10 @@ We tested the code on a google cloud machine with os image `ubuntu-2004-focal-v2
 ```bash
 gcloud compute instances create fast-vm-decomp --zone=us-central1-b --machine-type=n4d-highmem-2 --boot-disk-size=90GB --boot-disk-type=hyperdisk-balanced --image=ubuntu-2004-focal-v20240731 --image-project=ubuntu-os-cloud
 ```
+
+
+## Eight-block causal distillation
+
+A fixed eight-block student keeps the outer two KDA/attention groups and learns
+the removed transform with full-piece teacher logits and final RMS features.
+[Method and actual compilation](research/depth-distillation.md).

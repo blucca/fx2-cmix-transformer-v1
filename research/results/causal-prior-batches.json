@@ -1,0 +1,181 @@
+{
+  "status": "passed",
+  "sampling_boundaries": "exact",
+  "training_article_overlap": 0,
+  "complete_epoch_targets": 2941307,
+  "epochs": [
+    {
+      "epoch": 1,
+      "original_steps": 79,
+      "merged_steps": 78,
+      "tail_targets": 12252,
+      "tail_pieces": 11,
+      "merged_last_targets": 47054,
+      "max_batch_targets": 54773
+    },
+    {
+      "epoch": 2,
+      "original_steps": 82,
+      "merged_steps": 81,
+      "tail_targets": 17902,
+      "tail_pieces": 6,
+      "merged_last_targets": 53516,
+      "max_batch_targets": 53516
+    },
+    {
+      "epoch": 3,
+      "original_steps": 81,
+      "merged_steps": 80,
+      "tail_targets": 12791,
+      "tail_pieces": 16,
+      "merged_last_targets": 47283,
+      "max_batch_targets": 54982
+    },
+    {
+      "epoch": 4,
+      "original_steps": 80,
+      "merged_steps": 79,
+      "tail_targets": 1089,
+      "tail_pieces": 2,
+      "merged_last_targets": 34819,
+      "max_batch_targets": 62282
+    },
+    {
+      "epoch": 5,
+      "original_steps": 81,
+      "merged_steps": 80,
+      "tail_targets": 20055,
+      "tail_pieces": 5,
+      "merged_last_targets": 55464,
+      "max_batch_targets": 55464
+    },
+    {
+      "epoch": 6,
+      "original_steps": 79,
+      "merged_steps": 78,
+      "tail_targets": 20138,
+      "tail_pieces": 13,
+      "merged_last_targets": 53443,
+      "max_batch_targets": 58186
+    },
+    {
+      "epoch": 7,
+      "original_steps": 81,
+      "merged_steps": 80,
+      "tail_targets": 31662,
+      "tail_pieces": 21,
+      "merged_last_targets": 67749,
+      "max_batch_targets": 67749
+    },
+    {
+      "epoch": 8,
+      "original_steps": 79,
+      "merged_steps": 78,
+      "tail_targets": 18925,
+      "tail_pieces": 25,
+      "merged_last_targets": 52506,
+      "max_batch_targets": 59860
+    },
+    {
+      "epoch": 9,
+      "original_steps": 80,
+      "merged_steps": 79,
+      "tail_targets": 27644,
+      "tail_pieces": 14,
+      "merged_last_targets": 87824,
+      "max_batch_targets": 87824
+    },
+    {
+      "epoch": 10,
+      "original_steps": 80,
+      "merged_steps": 79,
+      "tail_targets": 6191,
+      "tail_pieces": 7,
+      "merged_last_targets": 62263,
+      "max_batch_targets": 62263
+    },
+    {
+      "epoch": 11,
+      "original_steps": 79,
+      "merged_steps": 78,
+      "tail_targets": 242,
+      "tail_pieces": 2,
+      "merged_last_targets": 37015,
+      "max_batch_targets": 58369
+    },
+    {
+      "epoch": 12,
+      "original_steps": 81,
+      "merged_steps": 80,
+      "tail_targets": 3800,
+      "tail_pieces": 7,
+      "merged_last_targets": 36618,
+      "max_batch_targets": 56050
+    },
+    {
+      "epoch": 13,
+      "original_steps": 81,
+      "merged_steps": 80,
+      "tail_targets": 7320,
+      "tail_pieces": 3,
+      "merged_last_targets": 43825,
+      "max_batch_targets": 58102
+    },
+    {
+      "epoch": 14,
+      "original_steps": 79,
+      "merged_steps": 78,
+      "tail_targets": 21241,
+      "tail_pieces": 19,
+      "merged_last_targets": 55302,
+      "max_batch_targets": 61002
+    },
+    {
+      "epoch": 15,
+      "original_steps": 80,
+      "merged_steps": 79,
+      "tail_targets": 20632,
+      "tail_pieces": 9,
+      "merged_last_targets": 55757,
+      "max_batch_targets": 55757
+    },
+    {
+      "epoch": 16,
+      "original_steps": 81,
+      "merged_steps": 80,
+      "tail_targets": 3899,
+      "tail_pieces": 4,
+      "merged_last_targets": 38024,
+      "max_batch_targets": 52982
+    }
+  ],
+  "original_steps": 1283,
+  "merged_steps": 1267,
+  "max_merged_batch_targets": 87824,
+  "max_single_piece_targets": 29586,
+  "tail242": {
+    "epoch": 11,
+    "original_steps": 79,
+    "merged_steps": 78,
+    "tail_targets": 242,
+    "tail_pieces": 2,
+    "merged_last_targets": 37015,
+    "max_batch_targets": 58369,
+    "pieces": [
+      [
+        0,
+        2896678,
+        2896783
+      ],
+      [
+        0,
+        2921809,
+        2921948
+      ]
+    ],
+    "piece_targets": [
+      104,
+      138
+    ]
+  }
+}

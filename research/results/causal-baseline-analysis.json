@@ -1,0 +1,66 @@
+{
+  "status": "passed",
+  "scope": "one real causal W0 baseline; record gap, initialized depth W/B and rate projections are named scenarios",
+  "native_model_nll_definition": {
+    "logits_mean": "double logsumexp of model logits",
+    "probs_mean": "negative log of fp32 model output probability"
+  },
+  "held": {
+    "targets": 1082505,
+    "raw_nll": 0.9662483387944264,
+    "short_targets": 974858,
+    "short_raw_nll": 0.9339643356197023,
+    "long_targets": 107647,
+    "long_raw_nll": 1.2586143013099194,
+    "long_target_fraction": 0.09944249680140045,
+    "first_half_nll": 1.161245381026379,
+    "second_half_nll": 0.7711911221880059
+  },
+  "max_audit": {
+    "targets": 131071,
+    "raw_nll": 0.03898642613150546,
+    "selection_role": "independent report-only; outside sampled held total"
+  },
+  "scenario": {
+    "historical_record_gap_bytes": 952225,
+    "initialized_depth_double_W_plus_B_saved_bytes": 1907300,
+    "causal_payload_required_saving_before_new_weight_delta_bytes": 952225,
+    "depth_payload_increase_allowance_before_trained_weight_change_bytes": 955075,
+    "raw_proxy_kappa": 1,
+    "full_native_targets": 586215331,
+    "full_prepared_bytes": 586459020,
+    "causal_required_raw_gain_nats": 0.0090073669398277,
+    "depth_allowed_raw_delta_nats": 0.009034325899924847,
+    "held_long_sensitivity": [
+      {
+        "held_long_delta_nats": 0.01,
+        "causal_short_delta_at_record_proxy": -0.01110622239259275,
+        "depth_short_delta_at_record_proxy": 0.008927693016109163
+      },
+      {
+        "held_long_delta_nats": 0.05,
+        "causal_short_delta_at_record_proxy": -0.015523152858363152,
+        "depth_short_delta_at_record_proxy": 0.004510762550338765
+      },
+      {
+        "held_long_delta_nats": 0.1,
+        "causal_short_delta_at_record_proxy": -0.02104431594057615,
+        "depth_short_delta_at_record_proxy": -0.001010400531874235
+      }
+    ]
+  },
+  "early_training_accounting": {
+    "observed_targets": 692078,
+    "reported_total_cpu_seconds": 1294.790013969,
+    "baseline_carry_already_in_preparation_cpu_seconds": 104.944287,
+    "event_unique_training_cpu_seconds": 1189.845726969,
+    "unique_event_cpu_with_conservative_prior_failure_seconds": 30457.027716025004,
+    "early_cpu_seconds_per_target": 0.0017192364545166874,
+    "same_early_average_16epoch_training_hours": 22.474676525889397,
+    "projection_scope": "first 692078 targets includes startup, lazy teacher cache and preflight; native/export remaining separate",
+    "runtime_cpu_cap_unchanged_seconds": 172800
+  },
+  "real_coded_saved_bytes": null,
+  "new_award_cash": 0,
+  "heavy_calls": 0
+}

@@ -1,0 +1,51 @@
+{
+  "schema": "hutter.depth-mixed-queue.v1",
+  "status": "waiting",
+  "scope": "single admitted mixed process, before causal training or codec measurement",
+  "source": "research/depth-mixed-audit.py",
+  "queue_started_utc": "2026-11-06T04:49:25.085808+00:00",
+  "deadline_utc": "2026-11-13T04:49:25.085810+00:00",
+  "mixed_unit": "hutter-depth8-mixed.service",
+  "mixed_pid": 17049,
+  "active_state": "active",
+  "sub_state": "running",
+  "training_pipeline": {
+    "pid": 16774,
+    "status": "running",
+    "stage": "waiting_for_inputs",
+    "restarted": false
+  },
+  "waiting_for": [
+    "/data/workspace/temp/hutter/round419/pipeline.exit",
+    "/data/workspace/temp/hutter/round419/native/v22-depth8-mixed/deployment.json"
+  ],
+  "wait_poll_seconds": 30,
+  "network_wait_calls": 0,
+  "limits": {
+    "cpu_seconds": 28800,
+    "address_space_gib": 24,
+    "trace_bytes": 3221225472
+  },
+  "actual": {
+    "B1_bytes": 177444,
+    "initial_wait_process_cpu_seconds": 0.041019,
+    "control_cpu_seconds": 0.032723,
+    "candidate_codec_runs": 0,
+    "training_targets": 0
+  },
+  "original_reference": {
+    "primary": "round414",
+    "alternate": "round412",
+    "alternate_build_probe_reducer": "present",
+    "alternate_strict_baseline_results_and_encodes": "waiting_existing_phase",
+    "golden_encodes": "present",
+    "old_golden_traces": "absent"
+  },
+  "selection": "one completed positive-epoch every-fourth hard export, at complete or cpu_budget training terminal",
+  "checks": {
+    "actual_waiting_receipt": true,
+    "original_pipeline_pid_retained": true,
+    "new_model_calls": 0,
+    "existing_watch_terminal_assertions": "passed"
+  }
+}
