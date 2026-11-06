@@ -183,19 +183,19 @@ The runner reports guarded-neural → mixer → u16 → code-length credit and
 
 The existing same-codec mixed round-trip protocol measures encoded bytes,
 lossless restoration and complete package cost before a full-stream record
-attempt. The full-stream stage reuses [batch.py](batch.py)'s per-variant
-`--weights VARIANT=PATH` and `--phase encode`, with a common untraced codec.
-[archive-package.py](archive-package.py) appends the original compressed
-dictionary/order, actual weights, 37-byte stream header and two 16-byte
-self-extraction headers to create `cmix` and `archive9`. It measures
+attempt. The [full-stream stage](causal-fullstream.md) runs the actual
+`cmix -e` on the canonical 1 GB original with the frozen untraced codec.
+[archive-package.py](archive-package.py) first builds its compressor from
+the original B/D/O/W and then checks the native program's authentic archive,
+37-byte stream header and two 16-byte self-extraction headers. It measures
 `S = P + 2B + 2D + O + 2W + 69` from the two resulting files.
 
 Run each actual `./archive9` once for its full 1,000,000,000-byte restoration;
 the original enwik9 MD5 is `e206c3450ac99950df65bf70ef61a12d`. This is the
 full-stream candidate's decode stage, avoiding an additional prepared-stream
-probe decode. Record prepared encoding and 1GB archive decoding CPU/RSS by
-their actual ranges. Final compressor preprocessing and qualification use
-that release's complete-program measurements. The package fixture checks
+probe decode. Record whole compressor and 1GB archive CPU/RSS/wall by
+their actual ranges, including D/O subprocess CPU. Formal active time and
+the machine's score determine qualification. The package fixture checks
 the native section layout and complete two-copy charge:
 
 ```sh

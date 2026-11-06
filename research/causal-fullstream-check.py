@@ -276,6 +276,83 @@ for side in ['W0','W1']:
     assert run_fixture(args)['status'] == 'passed'
 assert (root/'fixture-decodes').read_text() == 'decode\ndecode\ndecode\ndecode\n'
 assert m.paired_size(depth_states['W0'],depth_states['W1'])['formal_decode_status'] == {'W0':'passed','W1':'passed'}
+
+# The whole-program branch uses the actual compressor/bootstrap/measurement
+# path with a tiny executable stand-in. The stand-in emits the original
+# section layout; every native model and full-1GB call remains outside this fixture.
+native_helper = root/'native-encode.py'
+native_helper.write_text(f'''import struct,sys
+from pathlib import Path
+original,target=map(Path,sys.argv[1:])
+assert original.read_bytes()==Path({str(original)!r}).read_bytes()
+c=Path('cmix').read_bytes()
+d,o,zero,w=struct.unpack('<4i',c[-16:]);assert zero==0
+b=len(c)-d-o-w-16
+B,D,W=c[:b],c[b:b+d],c[b+d+o:-16]
+data=Path({str(stream)!r}).read_bytes()
+raw=bytes(v^W[0] for v in data)+(b'extra' if b'# depth candidate' in B else b'')
+header=(len(data)|(1<<39)).to_bytes(5,'big')+Path({str(root/'prepared/vocab.bin')!r}).read_bytes()
+target.write_bytes(header+raw)
+Path('archive9').write_bytes(B+D+W+target.read_bytes()+struct.pack('<4i',d,o,target.stat().st_size,w))
+Path('archive9').chmod(0o755)
+Path('.native-preprocessing-copy').write_bytes(b'consumed')
+with Path({str(root/'native-fixture-encodes')!r}).open('a') as f:f.write('encode\\n')
+''')
+native_binary = root/'assets/native-B'
+native_binary.write_text(f'''#!/bin/sh
+if [ "$1" = '-e' ]; then
+  exec python3 '{native_helper}' "$2" "$3"
+fi
+printf 'decode\\n' >> '{root/'fixture-decodes'}'
+cp '{original}' enwik9_uncompressed
+printf 'generated' > .native-intermediate
+exit 0
+''')
+native_binary.chmod(0o755)
+native_depth_b0, native_depth_b1 = root/'assets/native-B0', root/'assets/native-B1'
+native_depth_b0.write_text(native_binary.read_text()+'# baseline retained padding\n'*3)
+native_depth_b1.write_text(native_binary.read_text()+'# depth candidate\n')
+for path in [native_depth_b0,native_depth_b1]:path.chmod(0o755)
+native_results = {}
+for name, base_entry in [('causal',entry),('depth',depth_entry)]:
+    native_entry = deepcopy(base_entry)
+    native_entry['original_input'] = {'path':str(original), 'bytes':m.ORIGINAL_BYTES, 'md5':m.ORIGINAL_MD5}
+    for side in native_entry['sides'].values():
+        side['native_peak_scratch_bytes']={'encode':64000,'decode':64000}
+    if name == 'causal':
+        native_entry['common']['binary'] = record(native_binary)
+        expected_payload_saved = 0
+        native_dual_b = 0
+    else:
+        for side,b in [('W0',native_depth_b0),('W1',native_depth_b1)]:
+            native_entry['sides'][side]['binary'] = record(b)
+        native_dual_b = 2*(native_depth_b0.stat().st_size-native_depth_b1.stat().st_size)
+        native_entry['admission'].update(dual_code_saved_bytes=native_dual_b,
+                                        actual_pair_net_saved_bytes=-5+36+native_dual_b)
+        expected_payload_saved = -5
+    path = root/(name+'-native-entry.json')
+    path.write_text(json.dumps(native_entry)+'\n')
+    native_states = {}
+    for side in ['W0','W1']:
+        args=SimpleNamespace(entry=path,side=side,phase='encode',out=root/('native-'+name)/side)
+        s=run_fixture(args)
+        assert run_fixture(args)['cpu_used_seconds']==s['cpu_used_seconds']
+        assert s['package']['status']=='native_measured' and 'prepared_encode' not in s['phases']
+        assert s['encode_scope']['original_input_bytes']==m.ORIGINAL_BYTES
+        assert s['phases']['formal_encode']['cpu_seconds']==(s['phases']['formal_encode']['user_cpu_seconds']+
+                                                           s['phases']['formal_encode']['system_cpu_seconds'])
+        assert not (args.out/'package/.native-preprocessing-copy').exists()
+        args.phase='decode'
+        native_states[side]=run_fixture(args)
+        assert run_fixture(args)['status']=='passed'
+        assert native_states[side]['result']['actual_compressor_e_preprocessing']=='included in formal_encode'
+    pair=m.paired_size(native_states['W0'],native_states['W1'])
+    assert pair['payload_saved_bytes']==expected_payload_saved
+    assert pair['net_saved_bytes']==expected_payload_saved+36+native_dual_b
+    native_results[name]={'status':'passed', 'payload_saved_bytes':expected_payload_saved,
+                         'dual_code_saved_bytes':native_dual_b, 'net_saved_bytes':pair['net_saved_bytes']}
+assert (root/'native-fixture-encodes').read_text()=='encode\n'*4
+assert (root/'fixture-decodes').read_text()=='decode\n'*8
 receipt = {'status':'passed', 'scope':'model-free orchestration fixture',
            'mixed_reader': {'status':'passed', 'actual_pair_net_saved_bytes':measured['G_samples'],
                             'checks':['one shared double-W fee', 'mature separate from complete prefix',
@@ -294,6 +371,12 @@ receipt = {'status':'passed', 'scope':'model-free orchestration fixture',
                      'unique_encode_calls':2, 'unique_decode_calls':2,
                      'checks':['original W0 distinct from epoch0 student', 'two per-side probes and binaries',
                                'signed payload delta plus one double-W and one dual-B',
-                               'named net-S scenario exact integer record boundary', 'phase replay reuse']}}
+                               'named net-S scenario exact integer record boundary', 'phase replay reuse']},
+           'native_full_program_route':{'status':'passed', 'families':native_results,
+                'unique_encode_calls':4, 'unique_decode_calls':4,
+                'native_model_full_1gb_calls':0,
+                'checks':['original input identity', 'compressor-only bootstrap', 'authentic native archive sections',
+                          'one full-program encode per side', 'whole-command descendant CPU',
+                          'native temporary cleanup', 'actual paired S and phase replay']}}
 (root/'check.json').write_text(json.dumps(receipt,indent=2)+'\n')
 print(json.dumps(receipt))

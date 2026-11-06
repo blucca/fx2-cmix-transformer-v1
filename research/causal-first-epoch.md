@@ -56,3 +56,21 @@ Inputs: [paired native pieces](results/causal-epoch01-paired-pieces.json).
 Results: [article breadth](results/causal-epoch01-breadth.json),
 [input recovery terminal](results/depth-input-recovery.json), and
 [release/current codec pairing](results/release-baseline-pairing.json).
+
+## Second complete native epoch
+
+The original watch reported epoch 2 on November 6 at 18:24 Beijing. The
+same 1,082,505 held targets improve by **0.001283234198 nats** versus W0;
+the 107,647 long-held targets improve by **0.002252546318 nats**. The
+independent 131,071-target audit improves by **0.000101486434 nats**.
+The export is 2,904,371 bytes, charging 92 extra bytes across two W copies.
+
+Compared with epoch 1, the held mean falls another 0.000095186536 nats.
+The long-held contribution is −0.000129257426 nats while the reconstructed
+short-held contribution is +0.000034070890 nats; short remains below W0.
+The kappa=1 full-target scenario nets about **135,567 bytes**, or 14.24%
+of the labeled historical 952,225-byte margin. The same raw delta requires
+kappa≈7.01995 in that scenario. Actual coded gain is still at zero completed
+mixed measurements; the fixed trajectory and its sole mixed export continue.
+
+[Native epoch-2 receipt and labeled scenario](results/causal-second-native-epoch.json).

@@ -1,0 +1,72 @@
+{
+  "status": "observed_native_export",
+  "source": {
+    "round": 426,
+    "kind": "original_watch_result",
+    "received_at_beijing": "2026-11-06 18:24",
+    "additional_statistics_or_pairing": 0
+  },
+  "epoch": 2,
+  "held": {
+    "targets": 1082505,
+    "baseline_raw_nll": 0.9662483387944264,
+    "raw_nll": 0.9649651045966806,
+    "delta_raw_nll": -0.0012832341977457862
+  },
+  "held_short": {
+    "targets": 974858,
+    "baseline_raw_nll": 0.9339643356197023,
+    "raw_nll": 0.9327881360277934,
+    "delta_raw_nll": -0.0011761995919088442,
+    "source": "target-weighted reconstruction from held total and held-long"
+  },
+  "held_long": {
+    "targets": 107647,
+    "raw_nll": 1.2563617549922168,
+    "delta_raw_nll": -0.002252546317702553,
+    "target_fraction": 0.09944249680140045,
+    "share_of_epoch2_total_raw_gain": 0.1745580271992701
+  },
+  "independent_max_audit": {
+    "targets": 131071,
+    "raw_nll": 0.03888493969742897,
+    "delta_raw_nll": -0.00010148643407648789,
+    "role": "report-only; separate from held"
+  },
+  "weights": {
+    "original_bytes": 2904325,
+    "epoch1_bytes": 2904329,
+    "epoch2_bytes": 2904371,
+    "double_weight_saved_bytes": -92
+  },
+  "epoch1_to_epoch2": {
+    "held_delta_raw_nll": -9.518653590767645e-05,
+    "short_delta_raw_nll": 3.783310838467724e-05,
+    "long_delta_raw_nll": -0.0012998207978516252,
+    "audit_delta_raw_nll": -7.47741459623183e-05,
+    "target_weighted_short_contribution_nats": 3.407088962514694e-05,
+    "target_weighted_long_contribution_nats": -0.00012925742553275403,
+    "short_share_of_net_incremental_raw_gain": -0.35793811908643314,
+    "long_share_of_net_incremental_raw_gain": 1.3579381190857045,
+    "additional_double_weight_charge_bytes": 84
+  },
+  "kappa1_fullscope_scenario": {
+    "kind": "scenario",
+    "assumptions": "same epoch2 held raw rate covers all NN targets; kappa=1; common B/D/O",
+    "NN_targets": 586215331,
+    "prepared_bytes": 586459020,
+    "kappa": 1,
+    "gross_payload_saved_bytes": 135658.69938588905,
+    "net_saved_bytes": 135566.69938588905,
+    "net_change_from_epoch1_bytes": 9978.763042761188,
+    "historical_gap_bytes": 952225,
+    "historical_gap_identity": "historical record/static15 component scenario; current actual S0 and latest L are separate inputs",
+    "gap_covered_fraction": 0.14236834717203292,
+    "remaining_gap_bytes": 816658.3006141109,
+    "required_kappa_at_same_raw_delta": 7.019947886210224,
+    "mature_interval_bytes": 1041690,
+    "minimum_mature_actual_saved_bytes_historical_gate": 1692
+  },
+  "actual_coded_measurements": 0,
+  "actual_new_coded_gain_reported_bytes": 0
+}

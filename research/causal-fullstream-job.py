@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """One admitted v22/static15 fullstream side, in two explicit phases.
 
-encode runs the retained batch encoder and assembles the real native package.
+With an original_input record, encode runs the whole native cmix -e program
+and measures its authentic archive. The retained prepared-only study entry
+uses the batch encoder and assembler.
 decode consumes that package once and verifies the official 1GB restoration.
 The caller freezes the mixed-selected W and approves resources in entry.json.
 No candidate search, prepared decode, native preprocessing, or polling occurs.
@@ -36,6 +38,14 @@ DEPTH_FAMILY = 'old-v22-depth8-static15'
 def cpu():
     own, child = resource.getrusage(resource.RUSAGE_SELF), resource.getrusage(resource.RUSAGE_CHILDREN)
     return own.ru_utime + own.ru_stime + child.ru_utime + child.ru_stime
+
+
+def md5_file(path):
+    h = hashlib.md5()
+    with path.open('rb') as source:
+        for block in iter(lambda: source.read(1 << 20), b''):
+            h.update(block)
+    return h.hexdigest()
 
 
 def measurements_from_mixed(s):
@@ -182,6 +192,10 @@ def admitted(entry):
         estimate = s['forecast_remaining_cpu_seconds']
         assert math.isfinite(estimate) and estimate > 0
         assert s['prep_cpu_seconds'] + estimate + CPU_RESERVE_SECONDS <= s['cpu_limit_seconds']
+        if entry.get('original_input'):
+            peaks = s['native_peak_scratch_bytes']
+            assert set(peaks) == {'encode', 'decode'}
+            assert all(isinstance(n, int) and n > 0 for n in peaks.values())
     assert sum(s['cpu_limit_seconds'] for s in sides.values()) <= 2*SIDE_CPU_MAX
 
 
@@ -233,6 +247,10 @@ def run(a):
         assert digest(path) == records[name]['sha256'], f'{name} identity changed'
     identity = {'entry_sha256': digest(a.entry), 'side': a.side,
                 'family': entry['family'], 'files': records}
+    original = entry.get('original_input')
+    if original:
+        assert original['bytes'] == ORIGINAL_BYTES and original['md5'] == ORIGINAL_MD5
+        identity['original_input'] = original
     job.mkdir(parents=True, exist_ok=True)
     lock = (job/'runner.lock').open('a')
     # Replayed deployment commands share the same simple exclusion as batch.py.
@@ -293,6 +311,7 @@ def run(a):
         # wait4 measures this waited command and its reaped descendants only;
         # the cumulative owner ledger below adds each phase once.
         state['phases'][stage] = {'exit_code': code, 'cpu_seconds': usage.ru_utime + usage.ru_stime,
+                                 'user_cpu_seconds': usage.ru_utime, 'system_cpu_seconds': usage.ru_stime,
                                  'max_process_rss_kib': usage.ru_maxrss,
                                  'wall_elapsed_seconds': time.time()-wall_started,
                                  'command': argv, 'log': str(job/(stage+'.log')),
@@ -305,45 +324,75 @@ def run(a):
         scratch = PPMD_MAP_BYTES + PREPARED_BYTES + DISK_HEADROOM_BYTES
         if a.phase == 'decode':
             scratch += ORIGINAL_BYTES
+        if original:
+            # Native preprocessing retains whole-region copies, and the
+            # PPMd mapping survives to program exit. Freeze that complete
+            # phase footprint at admission, above the prepared-route floor.
+            native_peak = side['native_peak_scratch_bytes'][a.phase]
+            assert native_peak >= scratch, 'native scratch forecast omits the retained range/decode floor'
+            scratch = native_peak
         free = shutil.disk_usage(job).free
         checkpoint('inputs_ready', phase=a.phase, free_disk_bytes=free,
                    required_free_disk_bytes=scratch)
         assert free >= scratch, 'reclaim completed caches before this model phase'
         if a.phase == 'encode':
-            q = job/'batch-root'
-            (q/'build'/a.side).mkdir(parents=True, exist_ok=True)
-            for path, target in [(q/'prepared', root/'prepared'), (q/'upstream', root/'upstream'),
-                                 (q/'build'/a.side/'probe', files['probe'])]:
-                if path.is_symlink():
-                    assert path.resolve() == target
-                else:
-                    path.symlink_to(target)
-            plan = job/'plan.json'
-            plan.write_text(json.dumps([{'name': 'fullstream', 'offset': 0, 'length': PREPARED_BYTES}])+'\n')
-            command('prepared_encode', [sys.executable, '-B', '-u', scripts/'batch.py',
-                    '--root', q, '--plan', plan, '--out', job/'runs', '--variants', a.side,
-                    '--weights', a.side+'='+str(files['weights']), '--phase', 'encode',
-                    '--timeout', '604800'], job)
-            trial = job/'runs/fullstream'/a.side
-            encoded = json.loads((trial/'result.json').read_text())
-            payload = trial/'encoded.bin'
-            assert encoded['status'] == 'encoded'
-            assert encoded['identity']['sample'] == {'name':'fullstream','offset':0,'length':PREPARED_BYTES}
-            for name, key in [('stream', 'stream_sha256'), ('vocab', 'vocab_sha256'),
-                              ('dictionary', 'dictionary_sha256'), ('weights', 'weights_sha256'),
-                              ('probe', 'binary_sha256')]:
-                assert encoded['identity'][key] == records[name]['sha256']
-            assert encoded['encode']['input_bytes'] == PREPARED_BYTES
-            assert payload.stat().st_size == encoded['encoded_bytes'] == encoded['encode']['output_bytes']
-            checkpoint('assemble_native', status='running', encoded_receipt=str(trial/'result.json'),
-                       raw_payload_bytes=payload.stat().st_size, raw_payload_sha256=digest(payload))
-            subprocess.run([sys.executable, '-B', str(scripts/'archive-package.py'),
+            package_command = [sys.executable, '-B', str(scripts/'archive-package.py'),
                 '--binary', str(files['binary']), '--compressed-dictionary', str(files['compressed_dictionary']),
                 '--compressed-order', str(files['compressed_order']), '--weights', str(files['weights']),
-                '--raw-payload', str(payload), '--vocab', str(files['vocab']),
-                '--prepared-bytes', str(PREPARED_BYTES), '--out', str(package)], check=True)
+                '--vocab', str(files['vocab']), '--prepared-bytes', str(PREPARED_BYTES), '--out', str(package)]
+            if original:
+                input_path = Path(original['path']).resolve()
+                assert input_path.stat().st_size == ORIGINAL_BYTES
+                assert md5_file(input_path) == ORIGINAL_MD5
+                checkpoint('bootstrap_native_compressor', status='running')
+                subprocess.run([*package_command, '--compressor-only'], check=True)
+                payload = package/'payload.cmix'
+                command('formal_encode', ['./cmix', '-e', input_path, payload], package)
+                # The original program assembles archive9 itself. Measure that
+                # output directly, preserving its exact B/D/W/P concatenation.
+                subprocess.run([*package_command, '--native-output', str(payload)], check=True)
+                checkpoint('native_archive_measured', status='running',
+                           native_output_file=str(payload), native_output_bytes=payload.stat().st_size,
+                           encode_scope={'program':'cmix -e', 'original_input_bytes':ORIGINAL_BYTES,
+                             'prepared_input_bytes':PREPARED_BYTES,
+                             'includes':'self-extraction, D/O subprocesses, all preprocessing, NN/range and archive assembly',
+                             'timing':'whole command wait4 CPU including descendants; whole command wall includes platform pauses'})
+                retained = {'cmix', 'archive9', 'package.json', 'payload.cmix'}
+                for path in package.iterdir():
+                    if path.is_file() and path.name not in retained:
+                        path.unlink()
+            else:
+                q = job/'batch-root'
+                (q/'build'/a.side).mkdir(parents=True, exist_ok=True)
+                for path, target in [(q/'prepared', root/'prepared'), (q/'upstream', root/'upstream'),
+                                     (q/'build'/a.side/'probe', files['probe'])]:
+                    if path.is_symlink():
+                        assert path.resolve() == target
+                    else:
+                        path.symlink_to(target)
+                plan = job/'plan.json'
+                plan.write_text(json.dumps([{'name': 'fullstream', 'offset': 0, 'length': PREPARED_BYTES}])+'\n')
+                command('prepared_encode', [sys.executable, '-B', '-u', scripts/'batch.py',
+                        '--root', q, '--plan', plan, '--out', job/'runs', '--variants', a.side,
+                        '--weights', a.side+'='+str(files['weights']), '--phase', 'encode',
+                        '--timeout', '604800'], job)
+                trial = job/'runs/fullstream'/a.side
+                encoded = json.loads((trial/'result.json').read_text())
+                payload = trial/'encoded.bin'
+                assert encoded['status'] == 'encoded'
+                assert encoded['identity']['sample'] == {'name':'fullstream','offset':0,'length':PREPARED_BYTES}
+                for name, key in [('stream', 'stream_sha256'), ('vocab', 'vocab_sha256'),
+                                  ('dictionary', 'dictionary_sha256'), ('weights', 'weights_sha256'),
+                                  ('probe', 'binary_sha256')]:
+                    assert encoded['identity'][key] == records[name]['sha256']
+                assert encoded['encode']['input_bytes'] == PREPARED_BYTES
+                assert payload.stat().st_size == encoded['encoded_bytes'] == encoded['encode']['output_bytes']
+                checkpoint('assemble_native', status='running', encoded_receipt=str(trial/'result.json'),
+                           raw_payload_bytes=payload.stat().st_size, raw_payload_sha256=digest(payload))
+                subprocess.run([*package_command, '--raw-payload', str(payload)], check=True)
             p = json.loads((package/'package.json').read_text())
             checkpoint('encoded_package_ready', status='encoded', package=p,
+                       raw_payload_bytes=p['components']['raw_payload'],
                        package_files={name: {'bytes': (package/name).stat().st_size,
                                              'sha256': digest(package/name)} for name in ['cmix','archive9']},
                        next_step='compare both actual S values, then explicitly start each formal decode')
@@ -355,12 +404,9 @@ def run(a):
             command('formal_decode', ['./archive9'], package)
             checkpoint('verify_official_original', status='running')
             final = package/'enwik9_uncompressed'
-            h = hashlib.md5()
-            with final.open('rb') as f:
-                for block in iter(lambda: f.read(1 << 20), b''):
-                    h.update(block)
             assert final.stat().st_size == ORIGINAL_BYTES
-            assert h.hexdigest() == ORIGINAL_MD5
+            restored_md5 = md5_file(final)
+            assert restored_md5 == ORIGINAL_MD5
             retained = {'cmix', 'archive9', 'package.json', 'enwik9_uncompressed'}
             # Only this fresh package directory receives native intermediates.
             for path in package.iterdir():
@@ -368,9 +414,10 @@ def run(a):
                     path.unlink()
             checkpoint('formal_original_passed', status='passed', completed_at=time.time(),
                        next_step='collect paired formal results and actual resource qualification',
-                       result={'restored_bytes': final.stat().st_size, 'restored_md5': h.hexdigest(),
+                       result={'restored_bytes': final.stat().st_size, 'restored_md5': restored_md5,
                                'full_s': state['package']['full_s'], 'retained_original': str(final),
-                               'actual_compressor_e_preprocessing': 'outside this prepared-encode receipt'})
+                               'actual_compressor_e_preprocessing': ('included in formal_encode'
+                                    if original else 'outside this prepared-encode receipt')})
     except Exception as error:
         state.update(status='failed', error=repr(error), completed_at=time.time(),
                      cpu_used_seconds=prior_cpu + cpu() - started_cpu)

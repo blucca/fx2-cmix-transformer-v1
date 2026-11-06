@@ -4,8 +4,8 @@ Each whole-stream causal or fixed-depth trajectory has one mixed-codec
 candidate. The shared runner keeps the original **old-v22, untraced, static15**
 codec and uses each side's actual native model:
 
-1. W0 encodes the complete 586,459,020-byte prepared stream.
-2. The single selected W1 encodes that same stream.
+1. W0 runs the whole native `cmix -e` on the official 1,000,000,000-byte input.
+2. The single selected W1 runs that same complete program with its own W/B.
 3. Each real `archive9` restores the original 1,000,000,000 bytes, with MD5
    `e206c3450ac99950df65bf70ef61a12d`.
 
@@ -16,10 +16,12 @@ sizes are 181,956 / 177,444 bytes, saving **9,024 bytes across both B copies**.
 Selected trained W1 bytes and actual full-stream payloads come from their
 completed measurements.
 
-[`causal-fullstream-job.py`](causal-fullstream-job.py) reuses
-[`batch.py`](batch.py) for the prepared encoder and
-[`archive-package.py`](archive-package.py) for the original self-extracting
-sections. Its explicit `encode` phase also assembles the package. The two
+[`causal-fullstream-job.py`](causal-fullstream-job.py) bootstraps the compressor
+with [`archive-package.py`](archive-package.py)'s `--compressor-only` mode.
+The native `./cmix -e ORIGINAL payload.cmix` performs self-extraction, D/O
+subprocesses, article reordering, PHDA9/WRT, one full NN/range pass and its
+original archive assembly. `--native-output` then checks the authentic
+37-byte header, complete B/D/W/payload sections and actual file sizes. The two
 actual S values become available **before** committing the native decode
 budget. Each subsequent `decode` phase verifies the official original and
 keeps the real archive, compressor, original, logs and Linux resource receipt.
@@ -34,6 +36,12 @@ The [depth extension receipt](results/depth-fullstream-orchestration.json)
 also exercises two actual fixture probes/Bs, a five-byte payload increase
 paid by the fixed W/B saving, and the exact integer record boundary. The
 real model/full-1GB call count in these orchestration checks is **0**.
+The [whole-program route check](results/native-e-fullstream-orchestration.json)
+adds both native entry families, compressor bootstrap, authentic archive
+measurement, whole-command descendant CPU and phase reuse. It uses the same
+10,000/17,000-byte stand-ins. Actual native full-stream execution remains
+pending the admitted mixed result. Entries without `original_input` retain
+the prepared-only `batch.py` study path and label that timing scope explicitly.
 
 ## One factual entry, shared by both machines
 
@@ -76,6 +84,16 @@ two sides and both phases.
   540,000 CPU seconds per side and 1,080,000 in total. Original auxiliary
   preparation cost is 502.463058 CPU seconds, paid once on its actual worker
   and allocated to W0's preparation ledger.
+- `original_input`: an absolute local `path`, `bytes: 1000000000` and
+  `md5: e206c3450ac99950df65bf70ef61a12d`, backed by the completed prepared
+  inverse. Both machines hold that canonical original at the entry's path.
+  This record selects the whole native encode route and travels in its
+  persisted identity. New formal entries use this route.
+- Each side also freezes `native_peak_scratch_bytes: {encode: BYTES,
+  decode: BYTES}` for the full native program. Include its retained region
+  copies, range scratch, output and native assembly/restoration footprint;
+  use the inverse/native file inventory and the execution machine's actual
+  free disk. The original prepared-route reserve remains a lower bound.
 - `admission`: `decision: continue`; the true facts `mixed_complete`,
   `prepared_inverse_passed`, `original_queues_terminal`,
   `scope_extension_recorded`, `cpu_calendar_passed`; plus the numerical fields
@@ -125,6 +143,12 @@ for each compressor and archive. Score and complete active program time
 follow the actual execution machine; other workers carry their own scores.
 Prepared/mixed CPU rates and the complete `cmix -e` preprocessing scope enter
 the admission forecast separately from each owner's 150-CPU-hour budget.
+The `formal_encode` receipt covers the whole command and records user/system
+CPU including D/O descendants, largest-process RSS and raw wall elapsed.
+Formal active wall time uses the same command's pause/resume intervals and
+the actual machine score; its strict program limit and the owner CPU ledger
+retain their separate scopes. PPMd's mapped file remains referenced until
+program exit, including native archive assembly and post-range restoration.
 
 ## Execute two sides, then use their actual sizes
 

@@ -237,13 +237,16 @@ prefix8_payload_saved + q2_payload_saved
 
 The mature interval lies inside prefix8 and is reported separately. Each named
 mature or prefix fullstream-rate scenario adds the shared W/B deltas once.
-The complete archive path preserves the existing two prepared encodes and two
+The complete archive path runs two whole native `cmix -e` programs and two
 formal archive decodes, reusing passed identical W0 phases in the same event
 ledger. Its final result uses actual `S=P+2B+2D+O+2W+69`, both deployed code
 families, restored official 1 GB and the latest record. The depth-specific
 fullstream entry is formed from the actual mixed receipt. The
 [shared full-stream runner](causal-fullstream.md) now reads that receipt,
 uses each side's frozen probe/B and charges its actual package components.
+Its `original_input` entry selects the canonical 1 GB source and includes
+all compressor preprocessing in the same single NN/range pass. The native
+program assembles its own archive; measurement reads that authentic output.
 Its [model-free acceptance](results/depth-fullstream-orchestration.json)
 covers the depth schema, signed payload changes, double-W/dual-B fees and
 the named integer record margin; the original causal contract stays fixed.

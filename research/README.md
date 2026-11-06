@@ -2,6 +2,13 @@
 
 **Active:** [Whole-stream causal priors and complete-piece learning](causal-priors.md) addresses the measured cold-prior fit with an independent 16-epoch trajectory and a reserved `2^17` native audit. The original [fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) trajectory continues to its existing terminal native/mixed measurements. [Rate/distortion attribution](integer-coordinate-attribution.md) and [mature PPMd validation](mature-ppmd.md) provide the measured mechanism; the earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe. Original production weights stay fixed. The [single-pass capture recovery](results/causal-capture-recovery.json) preserves all 205 prior columns and the seeded sample while sharing its independent long audit.
 
+The [formal full-stream path](causal-fullstream.md) now runs a whole native
+`cmix -e` from the canonical 1 GB original, measuring its authentic archive
+before the explicit official decode. This includes every preprocessing and
+D/O subprocess in one main NN/range pass. The model-free route check covers
+both twelve/eight-layer families; actual full-stream execution follows the
+sole mixed-codec candidate's net-S and resource admission.
+
 [Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
 
 [Exact attention tile checkpoints](tile-checkpoint.md) reduce the measured attention graph storage by 92.66%. The 1,346-target whole-model adjoints are bit-exact; the 131,071-target OpenBLAS forward is bit-exact and its full backward hits the 7 GiB memory gate. [Terminal receipt](results/tile-checkpoint-full-model.json). The running causal trajectory stays fixed.
