@@ -318,3 +318,27 @@ for 16 epochs, with remaining native/export costs reported separately.
 The completed source inputs are ready for the existing student transfer.
 Student input copying, its 32-epoch trajectory, the sole mixed measurements
 and both actual full-stream package sizes follow their existing queues.
+
+## Original trajectory through epoch seven
+
+[Seven completed native epochs](results/causal-first-seven-epochs.json) preserve
+**e2 as the leading completed trained checkpoint**: held delta -0.0012832342
+nats/target and the named NN-scope net proxy +135,566.70 B. The actual coded
+payload remains reserved for the original sole terminal-checkpoint mixed run.
+
+Held NLL rises at every later checkpoint: e3 **0.9685833913**, e4
+**0.9737138769**, e5 **0.9806894135**, e6 **0.9856440491**, e7 **0.9911895843**.
+Short, long and the independent 131,071-target audit follow the same increasing
+sequence. One e6/raw-baseline pairing regresses on 416/473 held pieces,
+covering 99.13% of held targets. The completed e7 scores come from the original
+metric event included in the one collection; an additional e7 log request is zero.
+
+Across the same 2,941,307 training targets per epoch, online CE declines from
+**0.9739061217** to **0.9125720870**, while teacher KL increases from
+**0.0012172271** to **0.0363675444**. Hard-symbol changes reach 393,775/5,868,864
+at e7, with frozen scales intact and 111 finite, nonzero-gradient tensors per
+recorded update. This strengthens the early-generalization-peak diagnosis
+for the fixed learning recipe. The reserved complete trajectory supplies the
+remaining candidate-selection evidence; no new numerical repair or learning
+recipe is added. Original 16 epochs/48 CPU hours and one actual mixed run
+continue. [Stdlib replay](causal-first-seven-epochs-check.py).

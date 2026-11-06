@@ -300,3 +300,35 @@ cross-worker observations stay separate from submitted-program runtime:
 worker 3 has T=1709, while worker 2's score has absent status in these receipts.
 The admitted mixed and complete-program measurements determine the actual
 execution-machine time gate.
+
+## Continuous-stage terminal: native epoch eight
+
+[The original e8 event](results/depth-continuous-terminal-e8.json) completes all
+eight continuous epochs. Target-weighted online CE descends to **1.0464341695**
+and teacher KL to **0.1520567919**. The original hard-QAT stage starts at step
+633: its first 24 updates cover 906,563 targets with 134 finite, nonzero-gradient
+tensors per update. The next scheduled fixed-checkpoint hard-native score is e12.
+
+The rounded e8 export has held NLL **1.1688038834**, or **+0.2025555446** against
+W0. It improves by 0.0183546357 from e4, on 390/473 pieces covering 94.16% of held
+targets. Against W0, 466/473 pieces still regress. The independent 131,071-target
+maximum-length audit worsens from e4 by 0.0386711509, to **0.2249766262**.
+Its report-only scope stays outside the random held estimator.
+
+Hard symbols now differ from initialization in **33.41%** of coordinates, up
+from 18.13% at e4; 2,604,816 displaced coordinates still round to their initial
+symbol. This is the observed fractional-fit retention geometry. The scheduled
+hard stage supplies the unchanged deployment-shaped training experiment.
+
+Actual e8 W is **1,960,160 B**. Both weights and binaries save **1,897,354 B**.
+The named linear fullstream scenario projects a 21,413,411.35 B payload penalty
+at kappa=1, requiring kappa <= **0.0441372458** to cover the historical 952,225 B
+record gap. The sole terminal-checkpoint mixed run measures actual transmission;
+full-S admission uses that coded result and the latest record.
+
+The authentic e8 held probe uses **97.669719 CPU seconds**, and the audit
+12.438901 seconds. The original held probe on worker 2 used 92.774640 seconds.
+Each complete submitted program retains its own actual time/memory receipt and
+execution-machine T. The original 32-epoch/48-CPU-hour trajectory, selected
+checkpoint and one mixed run continue; added recipes, probes and early full-S
+calls are zero. [Stdlib replay](check-depth-continuous-terminal-e8.py).
