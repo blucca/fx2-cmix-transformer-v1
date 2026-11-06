@@ -1,0 +1,120 @@
+{
+  "schema": "hutter.native-loss-regimes.v1",
+  "scope": {
+    "held_pieces": 473,
+    "distinct_articles": 473,
+    "held_targets": 1082505,
+    "causal_per_piece_epochs": [
+      0,
+      1,
+      2,
+      6
+    ],
+    "depth_per_piece_epochs": [
+      4,
+      8
+    ],
+    "independent_maximum_article_audit": "report-only; excluded from these domains",
+    "regime_variable": "Frozen W0 per-piece logits_mean, nat/target",
+    "boundaries": "[0,.25), [.25,1), [1,infinity), chosen before reading trained contrasts",
+    "raw_scope": "native logits NLL, before mixed coding",
+    "full_nn_projection_targets": 586215331
+  },
+  "source_results": [
+    "causal-epochs01-03-paired-pieces.json",
+    "causal-first-seven-epochs.json",
+    "depth-first-native-e4.json",
+    "depth-continuous-terminal-e8.json"
+  ],
+  "all": {
+    "pieces": 473,
+    "targets": 1082505,
+    "target_share": 1.0,
+    "w0_native_nll": 0.9662483387944293,
+    "w0_native_surprisal_share": 1.0,
+    "c2_minus_w0_nats_per_target": -0.0012832341977461544,
+    "c2_minus_c1_summed_nats": -103.039901013948,
+    "c2_minus_c1_nats_per_target": -9.51865358718417e-05,
+    "c6_minus_c2_nats_per_target": 0.020678944480844036,
+    "d8_minus_d4_nats_per_target": -0.018354635709883476,
+    "d8_minus_w0_nats_per_target": 0.20255554458403952,
+    "d8_relative_to_w0_native_nll": 0.20963093694604892,
+    "depth_fraction_of_e4_gap_recovered": 0.08308641858633434,
+    "share_of_all_c2_w0_gain": 1.0,
+    "share_of_all_c6_c2_loss": 1.0,
+    "share_of_all_d4_d8_recovery": 1.0,
+    "share_of_all_d8_w0_loss": 1.0
+  },
+  "regimes": [
+    {
+      "regime": "w0_lt_0.25",
+      "lower_inclusive": 0.0,
+      "upper_exclusive": 0.25,
+      "pieces": 140,
+      "targets": 115152,
+      "target_share": 0.10637549018249338,
+      "w0_native_nll": 0.14632618416406246,
+      "w0_native_surprisal_share": 0.016109232939439527,
+      "c2_minus_w0_nats_per_target": -1.106936145045969e-05,
+      "c2_minus_c1_summed_nats": 36.4834684502848,
+      "c2_minus_c1_nats_per_target": 0.0003168287867365291,
+      "c6_minus_c2_nats_per_target": 0.009410048318443201,
+      "d8_minus_d4_nats_per_target": -0.009713011619533297,
+      "d8_minus_w0_nats_per_target": 0.0639444879591869,
+      "d8_relative_to_w0_native_nll": 0.4369996274042906,
+      "depth_fraction_of_e4_gap_recovered": 0.13186724603857455,
+      "share_of_all_c2_w0_gain": 0.0009176101699658542,
+      "share_of_all_c6_c2_loss": 0.04840665361051766,
+      "share_of_all_d4_d8_recovery": 0.05629239329548469,
+      "share_of_all_d8_w0_loss": 0.03358153569726093
+    },
+    {
+      "regime": "w0_0.25_to_1",
+      "lower_inclusive": 0.25,
+      "upper_exclusive": 1.0,
+      "pieces": 203,
+      "targets": 296310,
+      "target_share": 0.2737262183546496,
+      "w0_native_nll": 0.6817382723959221,
+      "w0_native_surprisal_share": 0.1931280310850493,
+      "c2_minus_w0_nats_per_target": -0.0009093823294451038,
+      "c2_minus_c1_summed_nats": 24.65692163238102,
+      "c2_minus_c1_nats_per_target": 8.321326189592326e-05,
+      "c6_minus_c2_nats_per_target": 0.017149281529429742,
+      "d8_minus_d4_nats_per_target": -0.016353947853222275,
+      "d8_minus_w0_nats_per_target": 0.1743145306288426,
+      "d8_relative_to_w0_native_nll": 0.25569127873109754,
+      "depth_fraction_of_e4_gap_recovered": 0.0857716387282159,
+      "share_of_all_c2_w0_gain": 0.19398001277923502,
+      "share_of_all_c6_c2_loss": 0.22700423539018302,
+      "share_of_all_d4_d8_recovery": 0.2438895749165535,
+      "share_of_all_d8_w0_loss": 0.2355623361053061
+    },
+    {
+      "regime": "w0_ge_1",
+      "lower_inclusive": 1.0,
+      "upper_exclusive": null,
+      "pieces": 130,
+      "targets": 671043,
+      "target_share": 0.619898291462857,
+      "w0_native_nll": 1.2325782963746998,
+      "w0_native_surprisal_share": 0.790762735975511,
+      "c2_minus_w0_nats_per_target": -0.0016666200200040515,
+      "c2_minus_c1_summed_nats": -164.18029109661381,
+      "c2_minus_c1_nats_per_target": -0.00024466433760074067,
+      "c6_minus_c2_nats_per_target": 0.024171284554470242,
+      "d8_minus_d4_nats_per_target": -0.020720987964596337,
+      "d8_minus_w0_nats_per_target": 0.23881169394783505,
+      "d8_relative_to_w0_native_nll": 0.19374971525154702,
+      "depth_fraction_of_e4_gap_recovered": 0.0798396094546111,
+      "share_of_all_c2_w0_gain": 0.8051023770507991,
+      "share_of_all_c6_c2_loss": 0.7245891109992992,
+      "share_of_all_d4_d8_recovery": 0.6998180317879616,
+      "share_of_all_d8_w0_loss": 0.7308561281974331
+    }
+  ],
+  "paired_causal_late_loss_and_depth_recovery": {
+    "pieces": 356,
+    "targets": 1012417
+  }
+}

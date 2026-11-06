@@ -1,5 +1,11 @@
 # Hutter compression research
 
+**New paired analysis:** [native-loss domains](native-loss-regimes.md) reuse the
+same 473 held articles to locate causal e2's gain and late regression alongside
+eight-block compensation. The high domain carries most absolute residual;
+the low domain has the largest relative distortion. Supplied per-piece loss
+accumulators and a standard-library replay reproduce the result.
+
 **Active:** [Whole-stream causal priors and complete-piece learning](causal-priors.md) addresses the measured cold-prior fit with an independent 16-epoch trajectory and a reserved `2^17` native audit. The original [fixed-scale integer-coordinate QAT](integer-coordinate-qat.md) trajectory continues to its existing terminal native/mixed measurements. [Rate/distortion attribution](integer-coordinate-attribution.md) and [mature PPMd validation](mature-ppmd.md) provide the measured mechanism; the earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe. Original production weights stay fixed. The [single-pass capture recovery](results/causal-capture-recovery.json) preserves all 205 prior columns and the seeded sample while sharing its independent long audit.
 
 The [formal full-stream path](causal-fullstream.md) now runs a whole native
