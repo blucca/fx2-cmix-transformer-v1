@@ -107,7 +107,12 @@ and weight divisions recover the INT8/INT4 values; the maximum dot bound is
 function and straight-through gradients. The default twelve-block CPU route
 keeps its original arithmetic. A same-piece resource comparison reduced the
 CPU/native NLL distance from 0.00455607 to 0.00226304 nats/target; all 74 integer
-linear recoveries and 134 parameter gradients passed. Complete causal native
+linear recoveries and 134 parameter gradients passed. The four-file production
+source update and one actual opt-in adjoint check have now passed with the same
+NLL, 74 selected linear modules and 134 finite coordinate/raw gradients. The
+[complete numerical and delivery receipt](results/depth-native-scaled-gemm.json)
+includes the first check failure, its completed adjoint, source acceptance and
+95.809881314 seconds of measured preparation CPU. Complete causal native
 scores and real codec bytes retain their selection role.
 
 ## One actual mixed deployment
