@@ -1,5 +1,7 @@
 # Hutter research: transformer × statistical experts
 
+**Original-v22 slope:** [source-specific FXCM/outer chain](research/v22-codec-local-slope.md) verifies the two neutral tail slots, the live internal 10+7 outputs and the compact `(intercept,slope)` anchor. New capture/training allocation remains zero.
+
 Research maintained by Blucca / Codex, building on Vladimir Ivanov’s published 6M transformer compressor and Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts. Original authorship and licenses are preserved. Our complete CPU learning, native export, causal-prior and archive measurement tools live in the default branch; the upstream production weights stay fixed.
 
 **Active research:** [eight-block causal distillation](research/depth-distillation.md) learns a fixed smaller native model from the original twelve-block teacher, sharing the [whole-stream causal priors and complete-piece inputs](research/causal-priors.md). The [first four hard-QAT epochs](research/results/depth-first-hard-e12.json) recover **0.023662491 nats/target** from the continuous-stage terminal, across **97.106% of held targets**. The real e12 model is **1,960,982 B** and its runner **177,444 B**, saving **1,895,710 B across both W/B copies**. The held deployment gap is **+0.178893054 nats/target** against W0; the independent maximum-article audit follows a separate regression. The fixed 32-epoch method and one same-weight mixed-codec measurement select the trained candidate.

@@ -1,0 +1,192 @@
+{
+  "schema": "hutter.v22-local-slope-source.v1",
+  "source_revision": "83f2603f3f7751da5f429fd32669807eb8510494",
+  "output_array_size": 431,
+  "maximum_written": 429,
+  "constant_padding_indices": [
+    429,
+    430
+  ],
+  "prediction_components": {
+    "contexts": 394,
+    "stationary": 7,
+    "match": 7,
+    "sparse_match": 2,
+    "run": 1,
+    "bias": 1,
+    "first_level_mixes": 10,
+    "apm": 7
+  },
+  "context_arrays": [
+    {
+      "name": "cmC2[0]",
+      "contexts": 3,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[1]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[2]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[3]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[4]",
+      "contexts": 2,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[5]",
+      "contexts": 6,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[6]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[7]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[8]",
+      "contexts": 4,
+      "skip2": 1
+    },
+    {
+      "name": "cmC1[0]",
+      "contexts": 2,
+      "skip2": 0
+    },
+    {
+      "name": "cmC1[1]",
+      "contexts": 3,
+      "skip2": 1
+    },
+    {
+      "name": "cmC1[2]",
+      "contexts": 4,
+      "skip2": 1
+    },
+    {
+      "name": "cmC1[4]",
+      "contexts": 5,
+      "skip2": 1
+    },
+    {
+      "name": "cmC[0]",
+      "contexts": 7,
+      "skip2": 1
+    },
+    {
+      "name": "cmC[1]",
+      "contexts": 3,
+      "skip2": 0
+    },
+    {
+      "name": "cmC[2]",
+      "contexts": 2,
+      "skip2": 0
+    },
+    {
+      "name": "cmC1[3]",
+      "contexts": 2,
+      "skip2": 0
+    },
+    {
+      "name": "cmC2[9]",
+      "contexts": 4,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[10]",
+      "contexts": 6,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[11]",
+      "contexts": 5,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[12]",
+      "contexts": 2,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[13]",
+      "contexts": 2,
+      "skip2": 1
+    },
+    {
+      "name": "cmC[3]",
+      "contexts": 2,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[14]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[15]",
+      "contexts": 1,
+      "skip2": 0
+    },
+    {
+      "name": "cmC[4]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC[5]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[16]",
+      "contexts": 1,
+      "skip2": 1
+    },
+    {
+      "name": "cmC2[17]",
+      "contexts": 2,
+      "skip2": 1
+    },
+    {
+      "name": "cmC1[6]",
+      "contexts": 1,
+      "skip2": 0
+    },
+    {
+      "name": "cmC1[7]",
+      "contexts": 4,
+      "skip2": 1
+    }
+  ],
+  "smooth_affine_anchor": {
+    "fields": [
+      "intercept",
+      "slope"
+    ],
+    "formula": "eta=intercept+slope*x",
+    "intercept": "Z0-slope*x0",
+    "fixture_fp32_anchor_error": 9.150137980640238e-09,
+    "fixture_z0_slope_only_intercept_spread": 1.7868737772056755,
+    "selected_targets": 4023812,
+    "eight_bit_stats_bytes": 257523968
+  },
+  "model_calls": 0,
+  "codec_calls": 0,
+  "passed": true
+}

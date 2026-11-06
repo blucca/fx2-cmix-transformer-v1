@@ -1,5 +1,7 @@
 # Hutter compression research
 
+**Original-v22 slope:** [source-specific FXCM/outer chain](v22-codec-local-slope.md) verifies the two neutral tail slots, the live internal 10+7 outputs and the compact `(intercept,slope)` anchor. New capture/training allocation remains zero.
+
 **Conditional mechanism:** [signed local byte-to-bit coding objective](codec-aware-byte-surrogate.md) defines the complete gradient and the pre-SSE/final-u16 boundary. A [stdlib mathematical check](check-codec-aware-byte-surrogate.py) covers signed slopes and guarded probabilities; new capture/training allocation remains zero until the current actual mixed measurement locates the bottleneck.
 
 **Length support:** [census-calibrated native sensitivity](native-length-support.md) separates six observed length cells from the missing >64 KiB cell. At κA=.05, e12's historical record scenario leaves 69,500 B for that cell's payload growth. One natural article contains 81.38% of its targets. [Stdlib replay](check-native-length-support.py).

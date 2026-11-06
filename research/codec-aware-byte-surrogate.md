@@ -58,7 +58,9 @@ reference logit x0 and observed pre-SSE mixer Z0, define
     gradient_z L = sum_k r_k(z) * gradient_z x_k(z).
 
 At the reference the loss, probability and local first derivative match the
-frozen smooth mixer. s=0 gives a constant loss and zero task gradient. s<0
+frozen smooth mixer. The [source-specific v22 continuation](v22-codec-local-slope.md)
+adds its live internal FXCM paths and pairs the cached derivative with the
+correct bit; its explicit last-output skip is neutral padding. s=0 gives a constant loss and zero task gradient. s<0
 reverses the useful NN-logit direction while preserving a proper binary CE.
 
 For each scalar bit logit x, curvature is
