@@ -280,3 +280,23 @@ The [stdlib replay](check-depth-first-native-e4.py) reconstructs the target
 weighting, actual package space and explicitly named linear size scenarios.
 Full-stream admission follows real mixed bytes, the final package and latest
 record margin.
+
+The original metrics were collected once after the sole watch resumed the
+worker. Target-weighted online CE fell from 1.263542 at e1 to 1.121158 at e4;
+teacher KL fell from 0.288198 to 0.180042. All 315 updates through e4 recorded
+134 finite, nonzero gradient tensors, and all 1,313 teacher pieces were cached
+by e1. At e4, 3,204,734 of 3,951,936 coordinates had moved while still rounding
+to their initial symbols (81.09%). The rounded export regressed on 470 of 473
+held pieces. This supplies a concrete fractional-fit retention mechanism for
+the frozen hard-QAT stage; the same-piece continuous/hard loss decomposition
+has unmeasured status. The collected snapshot also contains seven complete
+continuous epochs and part of e8; the latest native export remains e4, with
+zero completed hard-QAT epochs.
+
+The authentic e4 native CPU footers are 86.674688 seconds for held and
+11.567634 seconds for the maximum-length audit; both are model-scoring scope.
+The original W0 on worker 2 used 92.774640 and 12.169647 seconds. These raw
+cross-worker observations stay separate from submitted-program runtime:
+worker 3 has T=1709, while worker 2's score has absent status in these receipts.
+The admitted mixed and complete-program measurements determine the actual
+execution-machine time gate.
