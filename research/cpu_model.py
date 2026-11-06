@@ -8,7 +8,13 @@ import types
 import torch
 
 
-def load_model(checkpoint, kernel=None):
+def build_model(kernel=None, config_transform=None):
+    """Construct the cooldown CPU model, optionally transforming its config.
+
+    The default remains the original twelve-block model. Import adapters and
+    their diagnostic counters retain the existing process-wide import route.
+    Co-loaded teacher/student models use the same CPU kernel.
+    """
     repo = Path(__file__).resolve().parents[1]
     sys.path.insert(0, str(repo))
     from pysrc import kda_reference as ref
@@ -81,7 +87,15 @@ def load_model(checkpoint, kernel=None):
     cfg = replace(original_cfg, attention_implementation="sdpa")
     assert cfg.window_size == 1024 and cfg.n_layers == 12
     assert sum(cfg.kimi_linear) == 9 and cfg.gradient_checkpointing
+    if config_transform is not None:
+        cfg = config_transform(cfg)
     model = Transformer(cfg)
+    model.train()
+    return model, counts
+
+
+def load_model(checkpoint, kernel=None):
+    model, counts = build_model(kernel)
     state = torch.load(checkpoint, map_location="cpu", weights_only=True)
     model.load_state_dict(state, strict=True)
     del state

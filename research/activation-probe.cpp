@@ -365,7 +365,7 @@ int Eval(char** argv, const char* explicit_bounds = nullptr) {
   std::fprintf(units, "layer,unit,first_hits,first_q2,second_hits,second_q2,norm2\n");
   const auto wf = fx2::WeightsFile::load_compressed(weights_path);
   const auto& us = model.activation_stats();
-  for (unsigned l = 0; l < 12; ++l) {
+  for (unsigned l = 0; l < fx2::shape::NL; ++l) {
     const std::string prefix = "blocks." + std::to_string(l) + ".mlp.down";
     const auto& w = wf.get(prefix + ".weight.q", fx2::DT_I8, {192, 768});
     const auto& s = wf.get(prefix + ".weight.scale", fx2::DT_BF16, {192});
@@ -447,7 +447,7 @@ int Eval(char** argv, const char* explicit_bounds = nullptr) {
 #ifdef FX2_ACTIVATION_STATS
   const auto& stats = model.activation_stats();
   std::printf(",\"mlp_steps\":%llu,\"down_nnz_sum\":[", static_cast<U64>(stats.steps));
-  for (unsigned l = 0; l < 12; ++l)
+  for (unsigned l = 0; l < fx2::shape::NL; ++l)
     std::printf("%s%llu", l ? "," : "", static_cast<U64>(stats.down_nnz[l]));
   std::printf("]");
 #endif

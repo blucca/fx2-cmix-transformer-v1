@@ -15,6 +15,8 @@
 #include <cstdint>
 #include <memory>
 
+#include "../model_shape.h"
+
 namespace fx2 {
 namespace opt {
 
@@ -28,11 +30,11 @@ struct TransformerOptImpl;
 // Research-only totals; retained across article resets, absent from production.
 struct ActivationStats {
   uint64_t steps = 0;
-  uint64_t down_nnz[12] = {};
+  uint64_t down_nnz[shape::NL] = {};
 #ifdef FX2_MLP_UNIT_STATS
   bool second_half = false;
-  uint64_t hit[2][12][768] = {};
-  uint64_t q2[2][12][768] = {};
+  uint64_t hit[2][shape::NL][768] = {};
+  uint64_t q2[2][shape::NL][768] = {};
 #endif
 };
 #endif

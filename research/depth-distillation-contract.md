@@ -1,8 +1,11 @@
 # Eight-block distillation: a fixed structural candidate
 
-This is a static contract and byte-budget study. New student construction,
-training, native encoding and weight-file measurements have zero calls.
-The running [causal complete-piece trajectory](causal-priors.md) stays fixed.
+This records the original static contract and byte-budget study. The
+[complete eight-block distillation method](depth-distillation.md) is now being
+implemented; its fixed native family has compiled successfully. Actual student
+construction, training, native encoding and weight-file measurements have zero
+calls at that publication. The original [causal trajectory](causal-priors.md)
+stays fixed.
 
 ## One coherent initialization
 

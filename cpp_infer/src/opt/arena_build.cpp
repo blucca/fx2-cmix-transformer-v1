@@ -53,9 +53,8 @@ void OptModel::load(const char* weights_path) {
 
   {  // config sanity (same checks as the naive loader)
     const WTensor& ci = wf.get("config.ints", DT_I32, {11});
-    const int32_t want[11] = {V, D, NL, DH, NH, DMLP, 1024, DH, NH, 4, 10000};
     for (int i = 0; i < 11; i++)
-      if (ci.i32()[i] != want[i]) die("config.ints mismatch");
+      if (ci.i32()[i] != shape::CONFIG_INTS[i]) die("config.ints mismatch");
     const WTensor& ck = wf.get("config.kimi", DT_I32, {NL});
     for (int i = 0; i < NL; i++)
       if ((ck.i32()[i] != 0) != KIMI_L[i]) die("config.kimi mismatch");
@@ -127,8 +126,8 @@ void OptModel::load(const char* weights_path) {
   prior = qsp4("prior_embedding", V, &prior_s_act);
 
   {
-    const WTensor& sw = wf.get("skip_connection_weights.value", DT_F32, {6});
-    for (int i = 0; i < 6; i++) skip_w[i] = sw.f32()[i];
+    const WTensor& sw = wf.get("skip_connection_weights.value", DT_F32, {NSKIP});
+    for (int i = 0; i < NSKIP; i++) skip_w[i] = sw.f32()[i];
   }
 
   int ki = 0, vi = 0;
@@ -203,7 +202,7 @@ void OptModel::load(const char* weights_path) {
     mlp[l].up = qsite(b + "mlp.up", DMLP, D, true);
     mlp[l].down = qsp4(b + "mlp.down", DMLP, &mlp[l].down_s_act);
   }
-  if (ki != 9 || vi != 3) die("layer pattern mismatch");
+  if (ki != NK || vi != NV) die("layer pattern mismatch");
 
   unembed = qsite("unembedding", V, D, true);
   stream_bytes = round64(off);

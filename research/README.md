@@ -960,3 +960,8 @@ original static15 bytes and exact teacher logits before the single trajectory.
 [Immutable-coordinate attribution](integer-coordinate-attribution.md) now covers
 CE/KL/H gradients, all-symbol entropy accounting and an epoch-4 mature/fresh
 prior-state control. Terminal native and end-to-end coding measurements remain.
+
+
+### Fixed eight-block complete-piece distillation
+
+[Method](depth-distillation.md) · [CPU student/export](depth_student.py) · [32-epoch trainer](depth-distillation.py) · [Native family build](depth-native-build.py) · [Actual compile receipt](results/depth-native-build.json).

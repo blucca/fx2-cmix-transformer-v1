@@ -88,3 +88,10 @@ We tested the code on a google cloud machine with os image `ubuntu-2004-focal-v2
 ```bash
 gcloud compute instances create fast-vm-decomp --zone=us-central1-b --machine-type=n4d-highmem-2 --boot-disk-size=90GB --boot-disk-type=hyperdisk-balanced --image=ubuntu-2004-focal-v20240731 --image-project=ubuntu-os-cloud
 ```
+
+
+## Eight-block causal distillation
+
+A fixed eight-block student keeps the outer two KDA/attention groups and learns
+the removed transform with full-piece teacher logits and final RMS features.
+[Method and actual compilation](research/depth-distillation.md).
