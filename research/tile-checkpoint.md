@@ -52,16 +52,36 @@ bytes exercise the original vocabulary mapping. A uniform f16 prior, where
 used, defines a resource/numerical fixture; causal PPMd native and coded
 measurements use their original independent experiment.
 
-The real 1,346-target complete-piece check also passed: original and tile
-routes have bit-exact logits and all 111 integer-coordinate CE/KL adjoints,
-with 429 frozen original tensors and zero coordinate updates. This observation
-uses its own CPU runtime; the maximum-length resource check remains in progress.
+### Terminal full-model measurements
 
-The first maximum-shape runtime used Debian reference BLAS, taking 462.896
-CPU seconds for the no-grad teacher. Its generic BLAS dependency is being
-replaced with the existing single-thread OpenBLAS backend, within the same
-experiment's total CPU ceiling. Full-model memory and completion use that
-recovered run's own receipt.
+| Shape / backend | Teacher CPU | Tile student forward CPU | Complete backward |
+| --- | ---: | ---: | --- |
+| 1,346 targets / reference BLAS | 4.002737 s | 4.043078 s | Passed; all 111 CE/KL adjoints bit-exact against original route |
+| 131,071 targets / OpenBLAS 0.3.29 | 66.312530 s | 67.173544 s | Failed at the 7 GiB virtual-memory ceiling |
+
+Both pairs have **bit-exact teacher/student logits and zero teacher KL**,
+using each run's own backend. The short pair preserves all 429 frozen
+original tensors and 230 BF16 scale tensors; every integer-coordinate
+gradient is finite and nonzero. Its process used 35.108133 CPU seconds,
+738,572 KiB peak RSS and 1,197,520 KiB peak virtual address space.
+
+The complete native-cap student's backward fails during whole-block
+recomputation at `MLP.relu_squared`, while requesting **402,650,112 bytes**
+(`131071 x 768 x 4`). Peak RSS was **6,443,480 KiB** and peak virtual address
+space **7,250,308 KiB** before the rejected allocation. The child exited 1
+after 143.719536 CPU seconds, including process startup. Full-length gradient
+completion is a failed gate for this exact implementation at 7 GiB.
+
+The first full-length attempt used reference BLAS: teacher 462.895825 CPU
+seconds and partial child 848.635834 CPU seconds, followed by an orderly stop
+and replacement with OpenBLAS. Preparation, that attempt, installation,
+short pair and recovered full probe together consumed **1,050.152785 CPU
+seconds** from the shared 1,800-second budget. The resource experiment is
+closed. [Complete terminal receipt](results/tile-checkpoint-full-model.json).
+
+The currently sampled causal training pieces remain within the original
+complete-backward range. This opt-in operator stays available; the running
+16-epoch causal data/teacher/trajectory and its original length limit stay fixed.
 
 ## Complete learning scope
 
@@ -81,3 +101,30 @@ python3 -B research/tile-checkpoint-attention-check.py \
 
 Use the installed CPU Torch runtime; no model checkpoint or training data is
 required for this operator fixture. [Receipt](results/tile-checkpoint-attention.json).
+
+## Reproduce the whole-piece probe
+
+The published [input builder](tile-checkpoint-inputs.py) extracts the same two
+native pieces from the exact prepared stream and maps ascending vocabulary
+members to token IDs. It writes uniform f16 prior rows and a fresh manifest;
+source offsets, membership mask, native article boundaries and file digests
+are checked. Use the original CPU model runtime and compiled KDA kernel from
+[CPU backpropagation](cpu-backward.md).
+
+```sh
+python3 -B research/tile-checkpoint-inputs.py \
+  --prepared /YOUR/temp/prepared --out /YOUR/temp/tile-inputs
+python3 -B research/tile-checkpoint-probe.py \
+  --checkpoint models/6m-q4-fp32.tch --kernel /YOUR/temp/cpu-kda.so \
+  --manifest /YOUR/temp/tile-inputs/inputs.json --case short \
+  --compare-original-gradients --cpu-seconds 180 \
+  --output /YOUR/temp/tile-short.json
+python3 -B research/tile-checkpoint-probe.py \
+  --checkpoint models/6m-q4-fp32.tch --kernel /YOUR/temp/cpu-kda.so \
+  --manifest /YOUR/temp/tile-inputs/inputs.json --case full \
+  --cpu-seconds 893 --output /YOUR/temp/tile-full.json
+```
+
+Each probe sets one CPU and a 7 GiB address-space cap. The full command
+reproduces the measured memory gate, subject to the runtime's allocator and
+library footprint. Bit identity compares the two routes within one backend.

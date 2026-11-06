@@ -4,6 +4,8 @@
 
 [Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
 
+[Exact attention tile checkpoints](tile-checkpoint.md) reduce the measured attention graph storage by 92.66%. The 1,346-target whole-model adjoints are bit-exact; the 131,071-target OpenBLAS forward is bit-exact and its full backward hits the 7 GiB memory gate. [Terminal receipt](results/tile-checkpoint-full-model.json). The running causal trajectory stays fixed.
+
 ## Fixed sources
 
 **Latest independent component:** [lossless per-tensor weight coding](weights-static15.md)
