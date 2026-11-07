@@ -183,7 +183,7 @@ python3 research/check-integer-coordinate-terminal-64.py
 
 ## Complete same-W mixed-codec terminal
 
-The original 64-epoch W is measured once through the actual codec: [full result](results/integer-coordinate-mixed-terminal-64.json) · [standard-library replay](check-integer-coordinate-mixed-terminal-64.py). No model or encode is rerun for the held attribution.
+The original 64-epoch W is measured once through the actual codec: [full result](results/integer-coordinate-mixed-terminal-64.json) · [standard-library replay](check-integer-coordinate-mixed-terminal-64.py). The held attribution replays each existing trace once.
 
 | Scope | W0 coded bytes | W64 coded bytes | Candidate growth |
 | --- | ---: | ---: | ---: |
