@@ -1,0 +1,81 @@
+{
+  "schema": "hutter.teacher-objective-audit.v1",
+  "status": "measured-trajectory-and-logit-analysis",
+  "source": "results/depth-hard-e16.json; original target-weighted optimizer metrics",
+  "prepared_bytes": 586459020,
+  "full_nn_targets": 586215331,
+  "training_targets": 2941307,
+  "training_pieces": 1313,
+  "output_columns": 205,
+  "hidden_columns": 192,
+  "original_weights": {
+    "ce": 1.0,
+    "teacher_kl": 1.0,
+    "hidden_mse": 0.1,
+    "dual_weight_entropy": 2.0
+  },
+  "proposed_weights": {
+    "ce": 0.0,
+    "teacher_kl": 2.0,
+    "hidden_mse": 0.1,
+    "dual_weight_entropy": 2.0
+  },
+  "curvature_coordinate": "output logits",
+  "curvature_original_and_proposed": "2*(diag(p)-p*pT)",
+  "original_gradient_at_teacher_distribution": "q-y",
+  "proposed_gradient_at_teacher_distribution": "0",
+  "epochs": [
+    {
+      "epoch": 8,
+      "steps": 80,
+      "targets": 2941307,
+      "ce_mean": 1.0464341694879835,
+      "teacher_kl_mean": 0.15205679185672052,
+      "final_hidden_mse_mean": 0.16506986949860725,
+      "soft_entropy_target_sum_nats": 30571165263356.42,
+      "objective_target_sum": 3677938.75286141,
+      "rate_mean": 0.035445732987739294,
+      "objective_mean": 1.250443681282304
+    },
+    {
+      "epoch": 12,
+      "steps": 80,
+      "targets": 2941307,
+      "ce_mean": 1.0070205502392655,
+      "teacher_kl_mean": 0.1430427550442246,
+      "final_hidden_mse_mean": 0.16685147837401595,
+      "soft_entropy_target_sum_nats": 30582082706297.82,
+      "objective_target_sum": 3536059.406694019,
+      "rate_mean": 0.03545839121532323,
+      "objective_mean": 1.2022068443362148
+    },
+    {
+      "epoch": 16,
+      "steps": 78,
+      "targets": 2941307,
+      "ce_mean": 0.9918124112938157,
+      "teacher_kl_mean": 0.1443646940310497,
+      "final_hidden_mse_mean": 0.1715883764028351,
+      "soft_entropy_target_sum_nats": 30590725832665.58,
+      "objective_target_sum": 3496638.572321589,
+      "rate_mean": 0.035468412486896354,
+      "objective_mean": 1.1888043554520453
+    }
+  ],
+  "e16_minus_e12": {
+    "ce": -0.015208138945449812,
+    "teacher_kl": 0.0013219389868251163,
+    "weighted_hidden": 0.0004736898028819159,
+    "rate": 1.0021271573124046e-05,
+    "objective": -0.013402488884169506,
+    "held_native": 0.004113873254,
+    "independent_max_audit": 0.00682991867
+  },
+  "e12_held_gap_against_frozen_w0": 0.178893053815,
+  "directly_observed_late_drift_fraction_of_e12_gap": 0.022996271606243082,
+  "cache_hit_seconds_per_epoch_including_existing_native_cadence": 2738.8169659055,
+  "estimated_cache_hit_32epoch_cpu_seconds": 87642.142908976,
+  "existing_teacher_cache_f32_data_bytes": 4670795516,
+  "proposed_method_status": "unrun",
+  "new_model_or_codec_runs": 0
+}

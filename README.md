@@ -12,6 +12,8 @@ The independent sixteen-epoch causal-prior trajectory addresses the measured pri
 
 [A direct causal-prior scan](research/causal-prior-value.md) now measures the frozen NN's contribution: all **473 held pieces** improve over guarded PPMd, by **0.589101 nats/target** overall. The independent giant-article audit improves by **1.179914 nats/target**. The original predictor remains the strong reference for the two complete learning methods.
 
+[The original training-objective audit](research/teacher-objective-audit.md) locates the e12-to-e16 conflict: online loss falls while teacher/held retention regresses. A controlled 2KL ablation preserves output-logit curvature and the hidden/rate terms. Its complete cache/measurement contract is specified; the proposed method remains unrun.
+
 [A conditional codec-aware objective](research/codec-aware-byte-surrogate.md) turns signed mixer slopes into a stable byte-logit learning loss, with the guarded-probability and SSE boundaries explicit. The original actual mixed measurements remain its admission gate.
 
 [Native length support](research/native-length-support.md) reweights the observed cells against the full-stream census and gives the missing >64 KiB cell an explicit payload budget. One article contains 81.38% of those unobserved targets; same-weight coded/full-archive results decide the remaining deployment question.
