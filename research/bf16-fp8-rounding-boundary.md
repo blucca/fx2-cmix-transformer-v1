@@ -20,10 +20,23 @@ Run the complete, standard-library check:
 python3 -B research/check-bf16-fp8-boundary.py
 ```
 
-Its scope is this finite positive rounding cell and round-to-nearest-even.
-The local converter explicitly accepts `[1.0, 1.125]`. Device conversion,
-other cells, overflow and whole-model equivalence have their own validation
-scope.
+The check also covers a uniform band of **65,536 exactly representable FP32
+values**, `1 + i/65536`, for `i=0…65535`. **2,048 values (3.125%)** yield
+different final FP8 values along the two paths.
+
+### Why the uniform-band rate is 1/32
+
+On `[1,2]`, FP8 spacing is 1/8 and BF16 spacing is 1/128. Each FP8 midpoint
+is an exact BF16 value. BF16 maps a window of width 1/128 onto that
+midpoint. One half of that window changes the final FP8 value: the tie goes
+to one endpoint, while the original value on the other side goes to the
+other endpoint. The changed width per FP8 interval is therefore 1/256, or
+`(1/256)/(1/8) = 1/32` of a uniform band.
+
+The reported fraction applies to this uniform control, with
+round-to-nearest-even. The local FP8 converter explicitly accepts `[1,2]`.
+Device conversion, other bands, overflow and model-valued distributions
+have their own validation scope.
 
 ## Applying the contract to a fusion
 
