@@ -34,6 +34,7 @@ It connects the complete methods, measured results and reusable tools.
 Focused analyses cover [the frozen NN’s prior value](research/causal-prior-value.md),
 [method-specific training exposure](research/mixed-sample-exposure.md),
 [teacher-objective conflict](research/depth-objective-gradients.md),
+[the practical CPU-student diagnostic](research/teacher-drift-cpu-student.md),
 and [the exact missing-middle oracle](research/depth-middle-bridge.md).
 
 The original champion’s documentation follows, with its authorship and results preserved.
