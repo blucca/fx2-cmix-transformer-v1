@@ -1,0 +1,1964 @@
+{
+  "status": "passed",
+  "scope": "24 local linear maps on original native inputs; one train piece and one held piece",
+  "rank": 64,
+  "ridge_rule": "1e-3 * trace(uncentered_second_moment) / input_dimension",
+  "train_rows": 1199,
+  "held_rows": 1606,
+  "held_rows_in_fit_or_calibration": 0,
+  "original_weight_histograms_match_census": true,
+  "original_outputs_bit_exact_all_48_cases": true,
+  "full_replacement_model_forwards": 0,
+  "optimizer_updates": 0,
+  "native_factor_family_calls": 0,
+  "codec_calls": 0,
+  "factor_coordinates": 1474560,
+  "summary": {
+    "up": {
+      "train": {
+        "fp64_relative_squared_error": 0.11331766379997857,
+        "int4_int8_relative_squared_error": 0.12846937872621678
+      },
+      "held": {
+        "fp64_relative_squared_error": 0.2414944227910507,
+        "int4_int8_relative_squared_error": 0.25574975976506686
+      }
+    },
+    "down": {
+      "train": {
+        "fp64_relative_squared_error": 0.13698835616734842,
+        "int4_int8_relative_squared_error": 0.1579719321208656
+      },
+      "held": {
+        "fp64_relative_squared_error": 0.3143893553117444,
+        "int4_int8_relative_squared_error": 0.3342881953894661
+      }
+    }
+  },
+  "per_matrix": [
+    {
+      "name": "blocks.0.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009962410512494872,
+      "weighted_regularized_tail_fraction": 0.1295947458632762,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.1298828125,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            59,
+            103,
+            218,
+            471,
+            889,
+            1446,
+            1866,
+            2089,
+            1871,
+            1489,
+            930,
+            486,
+            229,
+            93,
+            49
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            587,
+            449,
+            872,
+            1709,
+            3162,
+            5272,
+            7802,
+            9357,
+            8011,
+            5308,
+            3093,
+            1718,
+            919,
+            419,
+            474
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 118384.96673625693,
+        "fp64_rank64_output_squared_error": 15282.272332468156,
+        "fp64_rank64_relative_squared_error": 0.12908963657957223,
+        "int4_int8_output_squared_error": 17433.22064025136,
+        "int4_int8_relative_squared_error": 0.1472587366526852,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 174181.8281964155,
+        "fp64_rank64_output_squared_error": 44638.406910612226,
+        "fp64_rank64_relative_squared_error": 0.2562747639798331,
+        "int4_int8_output_squared_error": 47492.49203387862,
+        "int4_int8_relative_squared_error": 0.27266042919427785,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 1.4502751522165175e-05,
+      "weighted_regularized_tail_fraction": 0.13712658917685774,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.049560546875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            59,
+            117,
+            361,
+            912,
+            2426,
+            5301,
+            9358,
+            11814,
+            9583,
+            5309,
+            2430,
+            946,
+            347,
+            116,
+            73
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            127,
+            115,
+            253,
+            461,
+            835,
+            1310,
+            1968,
+            2160,
+            1939,
+            1285,
+            840,
+            484,
+            247,
+            125,
+            139
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 2716.2391477204387,
+        "fp64_rank64_output_squared_error": 371.57631060268164,
+        "fp64_rank64_relative_squared_error": 0.13679808381913694,
+        "int4_int8_output_squared_error": 431.9683306403459,
+        "int4_int8_relative_squared_error": 0.15903177413626066,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 3860.933281711921,
+        "fp64_rank64_output_squared_error": 950.4331429292125,
+        "fp64_rank64_relative_squared_error": 0.24616668395466149,
+        "int4_int8_output_squared_error": 1044.8686141967228,
+        "int4_int8_relative_squared_error": 0.27062591812864284,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009994274628964094,
+      "weighted_regularized_tail_fraction": 0.12446909052417647,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.14453125,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            53,
+            91,
+            241,
+            494,
+            929,
+            1430,
+            1931,
+            2034,
+            1865,
+            1432,
+            888,
+            499,
+            246,
+            93,
+            62
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            344,
+            414,
+            825,
+            1682,
+            3200,
+            5466,
+            7829,
+            8731,
+            7689,
+            5619,
+            3276,
+            1865,
+            943,
+            548,
+            721
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 172138.24521686288,
+        "fp64_rank64_output_squared_error": 21349.890232621314,
+        "fp64_rank64_relative_squared_error": 0.12402758146932621,
+        "int4_int8_output_squared_error": 23973.986990279,
+        "int4_int8_relative_squared_error": 0.13927170548343942,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 234170.27078693255,
+        "fp64_rank64_output_squared_error": 50884.067667740695,
+        "fp64_rank64_relative_squared_error": 0.21729516516654337,
+        "int4_int8_output_squared_error": 54459.817497200245,
+        "int4_int8_relative_squared_error": 0.23256503617725363,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 1.7695167378183534e-05,
+      "weighted_regularized_tail_fraction": 0.14361741442106427,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.0537109375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            41,
+            103,
+            258,
+            801,
+            2271,
+            5236,
+            9625,
+            12118,
+            9594,
+            5409,
+            2373,
+            867,
+            295,
+            109,
+            52
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            131,
+            126,
+            231,
+            483,
+            822,
+            1368,
+            1772,
+            2123,
+            1921,
+            1406,
+            931,
+            461,
+            245,
+            132,
+            136
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 3476.9175261033024,
+        "fp64_rank64_output_squared_error": 498.2666149151576,
+        "fp64_rank64_relative_squared_error": 0.1433069985624829,
+        "int4_int8_output_squared_error": 570.7492621737265,
+        "int4_int8_relative_squared_error": 0.16415381092268364,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 4664.614671754432,
+        "fp64_rank64_output_squared_error": 1345.5648711414206,
+        "fp64_rank64_relative_squared_error": 0.28846217015291714,
+        "int4_int8_output_squared_error": 1431.555186263996,
+        "int4_int8_relative_squared_error": 0.30689677218838024,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009996364291248964,
+      "weighted_regularized_tail_fraction": 0.1014655034096088,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.1435546875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            59,
+            94,
+            229,
+            499,
+            936,
+            1429,
+            1909,
+            1998,
+            1906,
+            1493,
+            877,
+            443,
+            253,
+            103,
+            60
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            721,
+            394,
+            761,
+            1537,
+            3085,
+            5641,
+            8018,
+            9418,
+            8137,
+            5617,
+            3068,
+            1489,
+            697,
+            311,
+            258
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 212979.26330694178,
+        "fp64_rank64_output_squared_error": 21534.870703055705,
+        "fp64_rank64_relative_squared_error": 0.1011125232038203,
+        "int4_int8_output_squared_error": 24264.9554615497,
+        "int4_int8_relative_squared_error": 0.11393107049384191,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 297570.10722460935,
+        "fp64_rank64_output_squared_error": 51108.218064123575,
+        "fp64_rank64_relative_squared_error": 0.17175185552339942,
+        "int4_int8_output_squared_error": 54453.0876937649,
+        "int4_int8_relative_squared_error": 0.18299246588187396,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 4.859683561364843e-06,
+      "weighted_regularized_tail_fraction": 0.15575336108422783,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.03662109375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            44,
+            123,
+            402,
+            1144,
+            2770,
+            5714,
+            9135,
+            10636,
+            8971,
+            5690,
+            2795,
+            1186,
+            356,
+            123,
+            63
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            125,
+            129,
+            260,
+            490,
+            822,
+            1332,
+            1920,
+            2139,
+            1852,
+            1352,
+            913,
+            458,
+            236,
+            122,
+            138
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 814.6846024805321,
+        "fp64_rank64_output_squared_error": 126.6349779883144,
+        "fp64_rank64_relative_squared_error": 0.1554404951348525,
+        "int4_int8_output_squared_error": 145.11902272647117,
+        "int4_int8_relative_squared_error": 0.1781290849055159,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 758.0000502924555,
+        "fp64_rank64_output_squared_error": 235.31406789099572,
+        "fp64_rank64_relative_squared_error": 0.31044070221394526,
+        "int4_int8_output_squared_error": 252.19672581980296,
+        "int4_int8_relative_squared_error": 0.33271333652616397,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.00099967672908834,
+      "weighted_regularized_tail_fraction": 0.11444345647157511,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.1435546875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            47,
+            80,
+            199,
+            488,
+            882,
+            1409,
+            1960,
+            2135,
+            1925,
+            1419,
+            924,
+            456,
+            212,
+            91,
+            61
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            736,
+            406,
+            803,
+            1674,
+            3194,
+            5469,
+            8106,
+            9239,
+            8086,
+            5456,
+            3153,
+            1557,
+            693,
+            320,
+            260
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 193119.06446482148,
+        "fp64_rank64_output_squared_error": 22032.14466398472,
+        "fp64_rank64_relative_squared_error": 0.11408580879904837,
+        "int4_int8_output_squared_error": 24752.481944922147,
+        "int4_int8_relative_squared_error": 0.1281721305636868,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 246902.74821767624,
+        "fp64_rank64_output_squared_error": 52635.244769066914,
+        "fp64_rank64_relative_squared_error": 0.2131820935531355,
+        "int4_int8_output_squared_error": 56095.28311544347,
+        "int4_int8_relative_squared_error": 0.22719586363610794,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 1.2049173021803371e-05,
+      "weighted_regularized_tail_fraction": 0.14807296606490417,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.04736328125,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            43,
+            80,
+            306,
+            789,
+            2149,
+            5020,
+            9744,
+            12996,
+            9591,
+            5062,
+            2154,
+            785,
+            282,
+            91,
+            60
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            122,
+            140,
+            214,
+            479,
+            860,
+            1410,
+            1876,
+            2110,
+            1906,
+            1384,
+            866,
+            433,
+            245,
+            108,
+            135
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 2266.704604409667,
+        "fp64_rank64_output_squared_error": 334.91255963853826,
+        "fp64_rank64_relative_squared_error": 0.14775306803850685,
+        "int4_int8_output_squared_error": 386.1681350835711,
+        "int4_int8_relative_squared_error": 0.17036544344257132,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 3668.536887115598,
+        "fp64_rank64_output_squared_error": 969.6348750081745,
+        "fp64_rank64_relative_squared_error": 0.2643110604703648,
+        "int4_int8_output_squared_error": 1042.8560740829619,
+        "int4_int8_relative_squared_error": 0.2842702979887199,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009997446936919501,
+      "weighted_regularized_tail_fraction": 0.11595045028738739,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.146484375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            59,
+            110,
+            260,
+            517,
+            965,
+            1376,
+            1910,
+            1993,
+            1917,
+            1378,
+            928,
+            489,
+            245,
+            85,
+            56
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            372,
+            388,
+            741,
+            1589,
+            3014,
+            5455,
+            7993,
+            9263,
+            8149,
+            5386,
+            3156,
+            1655,
+            873,
+            472,
+            646
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 182870.98047333513,
+        "fp64_rank64_output_squared_error": 21129.292033017053,
+        "fp64_rank64_relative_squared_error": 0.11554207222122903,
+        "int4_int8_output_squared_error": 23999.968890814205,
+        "int4_int8_relative_squared_error": 0.13123989836273503,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 236816.53270896373,
+        "fp64_rank64_output_squared_error": 66062.7373722817,
+        "fp64_rank64_relative_squared_error": 0.27896167812519096,
+        "int4_int8_output_squared_error": 69871.37356711371,
+        "int4_int8_relative_squared_error": 0.2950443229948912,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 2.647234673032106e-05,
+      "weighted_regularized_tail_fraction": 0.12336379589724279,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.059814453125,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            56,
+            112,
+            302,
+            858,
+            2310,
+            5327,
+            9484,
+            12018,
+            9502,
+            5396,
+            2386,
+            921,
+            314,
+            107,
+            59
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            134,
+            108,
+            201,
+            475,
+            768,
+            1354,
+            2020,
+            2151,
+            2015,
+            1364,
+            780,
+            438,
+            236,
+            108,
+            136
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 5478.575100253286,
+        "fp64_rank64_output_squared_error": 673.9531649822324,
+        "fp64_rank64_relative_squared_error": 0.12301614062953596,
+        "int4_int8_output_squared_error": 787.4272854277817,
+        "int4_int8_relative_squared_error": 0.1437284825011119,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 6957.027797873488,
+        "fp64_rank64_output_squared_error": 2430.7077249426857,
+        "fp64_rank64_relative_squared_error": 0.34938881884095174,
+        "int4_int8_output_squared_error": 2564.684104619425,
+        "int4_int8_relative_squared_error": 0.368646522499645,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009997989877831622,
+      "weighted_regularized_tail_fraction": 0.11756876721398542,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.1455078125,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            49,
+            113,
+            238,
+            521,
+            971,
+            1394,
+            1792,
+            2067,
+            1848,
+            1402,
+            910,
+            516,
+            285,
+            112,
+            70
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            622,
+            498,
+            833,
+            1721,
+            3223,
+            5496,
+            7983,
+            9149,
+            7914,
+            5354,
+            3088,
+            1679,
+            809,
+            387,
+            396
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 167517.59463710428,
+        "fp64_rank64_output_squared_error": 19619.916237388636,
+        "fp64_rank64_relative_squared_error": 0.11712152553223759,
+        "int4_int8_output_squared_error": 22274.223141905106,
+        "int4_int8_relative_squared_error": 0.13296646952314511,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 215713.00202498876,
+        "fp64_rank64_output_squared_error": 73612.07578973947,
+        "fp64_rank64_relative_squared_error": 0.34125006419970944,
+        "int4_int8_output_squared_error": 77251.66392511688,
+        "int4_int8_relative_squared_error": 0.3581224274843101,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 2.057986572583682e-05,
+      "weighted_regularized_tail_fraction": 0.15028974481140323,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.05419921875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            64,
+            148,
+            467,
+            1262,
+            2972,
+            5784,
+            8820,
+            10263,
+            8918,
+            5659,
+            2934,
+            1250,
+            428,
+            138,
+            45
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            138,
+            116,
+            233,
+            494,
+            822,
+            1325,
+            1940,
+            2093,
+            1922,
+            1386,
+            819,
+            486,
+            269,
+            120,
+            125
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 3251.5859454259275,
+        "fp64_rank64_output_squared_error": 487.3028674986872,
+        "fp64_rank64_relative_squared_error": 0.149866211651021,
+        "int4_int8_output_squared_error": 551.3471313188506,
+        "int4_int8_relative_squared_error": 0.16956252750890435,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 4143.171520286009,
+        "fp64_rank64_output_squared_error": 1586.948595021699,
+        "fp64_rank64_relative_squared_error": 0.38302749168157774,
+        "int4_int8_output_squared_error": 1665.906376070693,
+        "int4_int8_relative_squared_error": 0.4020848202672752,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.000999654491093413,
+      "weighted_regularized_tail_fraction": 0.10266533365439207,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.146484375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            54,
+            85,
+            250,
+            545,
+            929,
+            1412,
+            1911,
+            2002,
+            1921,
+            1376,
+            904,
+            520,
+            242,
+            87,
+            50
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            649,
+            465,
+            834,
+            1680,
+            3087,
+            5519,
+            8081,
+            9310,
+            8012,
+            5438,
+            3080,
+            1516,
+            777,
+            347,
+            357
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 192116.3021488058,
+        "fp64_rank64_output_squared_error": 19644.376468912636,
+        "fp64_rank64_relative_squared_error": 0.10225252229608744,
+        "int4_int8_output_squared_error": 22605.834539742624,
+        "int4_int8_relative_squared_error": 0.11766744564046952,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 250099.1528895051,
+        "fp64_rank64_output_squared_error": 62658.438555311426,
+        "fp64_rank64_relative_squared_error": 0.25053438938673334,
+        "int4_int8_output_squared_error": 65882.82177606788,
+        "int4_int8_relative_squared_error": 0.26342680898713483,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 1.1915471642994039e-05,
+      "weighted_regularized_tail_fraction": 0.16242705883400768,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.0458984375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            48,
+            135,
+            412,
+            1204,
+            2984,
+            5743,
+            8834,
+            10346,
+            8969,
+            5778,
+            2832,
+            1257,
+            428,
+            120,
+            62
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            133,
+            139,
+            262,
+            495,
+            846,
+            1397,
+            1811,
+            2110,
+            1878,
+            1336,
+            883,
+            480,
+            242,
+            142,
+            134
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 1947.6816993511316,
+        "fp64_rank64_output_squared_error": 315.6192641934716,
+        "fp64_rank64_relative_squared_error": 0.1620486880883154,
+        "int4_int8_output_squared_error": 357.56990154133746,
+        "int4_int8_relative_squared_error": 0.18358744227070653,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 1733.8504618029372,
+        "fp64_rank64_output_squared_error": 692.8445310888961,
+        "fp64_rank64_relative_squared_error": 0.39959878106699276,
+        "int4_int8_output_squared_error": 728.8223577117749,
+        "int4_int8_relative_squared_error": 0.4203490288048901,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009995969139540003,
+      "weighted_regularized_tail_fraction": 0.10540962295893491,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.1416015625,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            58,
+            122,
+            253,
+            551,
+            978,
+            1386,
+            1844,
+            2056,
+            1814,
+            1388,
+            881,
+            546,
+            250,
+            106,
+            55
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            721,
+            404,
+            816,
+            1583,
+            3115,
+            5576,
+            8187,
+            9337,
+            8158,
+            5449,
+            3024,
+            1512,
+            689,
+            298,
+            283
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 168352.70634814491,
+        "fp64_rank64_output_squared_error": 17671.839262149493,
+        "fp64_rank64_relative_squared_error": 0.10496914273302516,
+        "int4_int8_output_squared_error": 20287.260173175047,
+        "int4_int8_relative_squared_error": 0.12050450873787567,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 224714.81682557246,
+        "fp64_rank64_output_squared_error": 60466.01848887103,
+        "fp64_rank64_relative_squared_error": 0.2690789122988975,
+        "int4_int8_output_squared_error": 63792.17300832071,
+        "int4_int8_relative_squared_error": 0.28388058210615147,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 1.2008718519188333e-05,
+      "weighted_regularized_tail_fraction": 0.13761825631651242,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.045166015625,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            37,
+            125,
+            423,
+            1114,
+            2875,
+            5672,
+            8952,
+            10514,
+            8954,
+            5789,
+            2895,
+            1196,
+            407,
+            137,
+            62
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            129,
+            112,
+            242,
+            469,
+            821,
+            1357,
+            1905,
+            2167,
+            1892,
+            1429,
+            845,
+            443,
+            253,
+            89,
+            135
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 1997.7496735963555,
+        "fp64_rank64_output_squared_error": 274.12928294892106,
+        "fp64_rank64_relative_squared_error": 0.13721903528355114,
+        "int4_int8_output_squared_error": 316.79134830623946,
+        "int4_int8_relative_squared_error": 0.15857409589057805,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 2443.37920607073,
+        "fp64_rank64_output_squared_error": 980.0082174748957,
+        "fp64_rank64_relative_squared_error": 0.4010872381331573,
+        "int4_int8_output_squared_error": 1024.502421924604,
+        "int4_int8_relative_squared_error": 0.4192973482704457,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.8.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.000999454926596869,
+      "weighted_regularized_tail_fraction": 0.10951636416689549,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.1396484375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            56,
+            112,
+            257,
+            498,
+            966,
+            1429,
+            1880,
+            1963,
+            1784,
+            1456,
+            928,
+            553,
+            236,
+            112,
+            58
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            335,
+            366,
+            773,
+            1653,
+            3067,
+            5323,
+            8102,
+            9162,
+            8131,
+            5494,
+            3178,
+            1597,
+            862,
+            430,
+            679
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 167843.55722463282,
+        "fp64_rank64_output_squared_error": 18312.302261823937,
+        "fp64_rank64_relative_squared_error": 0.10910339702414514,
+        "int4_int8_output_squared_error": 20716.230857806433,
+        "int4_int8_relative_squared_error": 0.12342583296230394,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 217209.03979234514,
+        "fp64_rank64_output_squared_error": 54111.41110240178,
+        "fp64_rank64_relative_squared_error": 0.2491213586420392,
+        "int4_int8_output_squared_error": 57150.19634377659,
+        "int4_int8_relative_squared_error": 0.2631115003243556,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.8.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 6.361484982698331e-06,
+      "weighted_regularized_tail_fraction": 0.17229514116078415,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.038818359375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            54,
+            130,
+            405,
+            1308,
+            3059,
+            5914,
+            8945,
+            10031,
+            8684,
+            5672,
+            3042,
+            1253,
+            455,
+            141,
+            59
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            155,
+            137,
+            258,
+            473,
+            876,
+            1369,
+            1834,
+            2009,
+            1850,
+            1418,
+            901,
+            478,
+            260,
+            140,
+            130
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 1001.4101876988183,
+        "fp64_rank64_output_squared_error": 172.15094783905954,
+        "fp64_rank64_relative_squared_error": 0.17190852455241373,
+        "int4_int8_output_squared_error": 192.1269314803071,
+        "int4_int8_relative_squared_error": 0.1918563779761453,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 1223.8623842491802,
+        "fp64_rank64_output_squared_error": 474.04970178548496,
+        "fp64_rank64_relative_squared_error": 0.38733905697764115,
+        "int4_int8_output_squared_error": 496.9643047834918,
+        "int4_int8_relative_squared_error": 0.40606224292804893,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.9.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.000999644488462863,
+      "weighted_regularized_tail_fraction": 0.11256190838845666,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.138671875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            53,
+            99,
+            260,
+            483,
+            925,
+            1412,
+            1936,
+            2050,
+            1890,
+            1386,
+            894,
+            500,
+            228,
+            114,
+            58
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            690,
+            419,
+            823,
+            1629,
+            3231,
+            5512,
+            8017,
+            9302,
+            8067,
+            5488,
+            3093,
+            1575,
+            683,
+            326,
+            297
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 175351.173354065,
+        "fp64_rank64_output_squared_error": 19665.186669747127,
+        "fp64_rank64_relative_squared_error": 0.11214744842362498,
+        "int4_int8_output_squared_error": 22194.570001431777,
+        "int4_int8_relative_squared_error": 0.12657212140016322,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 237546.8525923083,
+        "fp64_rank64_output_squared_error": 53560.488692226165,
+        "fp64_rank64_relative_squared_error": 0.22547336707571447,
+        "int4_int8_output_squared_error": 56527.378131103185,
+        "int4_int8_relative_squared_error": 0.2379630692397291,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.9.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 5.653038508837956e-06,
+      "weighted_regularized_tail_fraction": 0.17998920060963763,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.03662109375,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            50,
+            188,
+            480,
+            1364,
+            3065,
+            5797,
+            8549,
+            10036,
+            8629,
+            5769,
+            3055,
+            1397,
+            524,
+            181,
+            68
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            139,
+            124,
+            277,
+            504,
+            888,
+            1369,
+            1800,
+            2044,
+            1804,
+            1399,
+            851,
+            534,
+            269,
+            149,
+            137
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 855.8464021238735,
+        "fp64_rank64_output_squared_error": 153.71099479247133,
+        "fp64_rank64_relative_squared_error": 0.1796011461998569,
+        "int4_int8_output_squared_error": 171.89352628434224,
+        "int4_int8_relative_squared_error": 0.2008462334570435,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 873.8309287154937,
+        "fp64_rank64_output_squared_error": 339.77260956541693,
+        "fp64_rank64_relative_squared_error": 0.3888310637675333,
+        "int4_int8_output_squared_error": 357.0109548183594,
+        "int4_int8_relative_squared_error": 0.4085583870819899,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.10.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009998656537871593,
+      "weighted_regularized_tail_fraction": 0.11432162228645885,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.13671875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            56,
+            91,
+            246,
+            496,
+            924,
+            1512,
+            1836,
+            2063,
+            1844,
+            1420,
+            885,
+            515,
+            259,
+            90,
+            51
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            687,
+            365,
+            827,
+            1698,
+            3266,
+            5536,
+            7950,
+            9050,
+            8011,
+            5530,
+            3202,
+            1639,
+            723,
+            342,
+            326
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 162219.65180306847,
+        "fp64_rank64_output_squared_error": 18472.380165398736,
+        "fp64_rank64_relative_squared_error": 0.11387264095366109,
+        "int4_int8_output_squared_error": 20883.537637418412,
+        "int4_int8_relative_squared_error": 0.12873617595216283,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 219811.35779647686,
+        "fp64_rank64_output_squared_error": 48261.24385313917,
+        "fp64_rank64_relative_squared_error": 0.21955755306249555,
+        "int4_int8_output_squared_error": 51130.54269777904,
+        "int4_int8_relative_squared_error": 0.23261101341779056,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.10.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 5.329837981531194e-06,
+      "weighted_regularized_tail_fraction": 0.1030838441988741,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.035888671875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            75,
+            155,
+            517,
+            1336,
+            2901,
+            5639,
+            8752,
+            10505,
+            8762,
+            5556,
+            2957,
+            1291,
+            476,
+            173,
+            57
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            121,
+            105,
+            193,
+            353,
+            724,
+            1324,
+            2106,
+            2481,
+            2044,
+            1338,
+            750,
+            365,
+            188,
+            76,
+            120
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 1082.6774214509858,
+        "fp64_rank64_output_squared_error": 111.27218637963959,
+        "fp64_rank64_relative_squared_error": 0.10277501329113754,
+        "int4_int8_output_squared_error": 132.82268235432107,
+        "int4_int8_relative_squared_error": 0.12267983031946338,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 1246.6898699031149,
+        "fp64_rank64_output_squared_error": 249.02343059760244,
+        "fp64_rank64_relative_squared_error": 0.19974769716942917,
+        "int4_int8_output_squared_error": 272.48760409429286,
+        "int4_int8_relative_squared_error": 0.2185688764082674,
+        "intermediate_clipped_fraction": 9.729140722291407e-06
+      }
+    },
+    {
+      "name": "blocks.11.mlp.up.weight.q",
+      "shape": [
+        768,
+        192
+      ],
+      "ridge_lambda": 0.0009998658839022868,
+      "weighted_regularized_tail_fraction": 0.12842239468152075,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.13671875,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            192
+          ],
+          "histogram": [
+            63,
+            99,
+            259,
+            512,
+            929,
+            1464,
+            1795,
+            2039,
+            1862,
+            1367,
+            969,
+            523,
+            239,
+            111,
+            57
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            768,
+            64
+          ],
+          "histogram": [
+            698,
+            488,
+            955,
+            1743,
+            3223,
+            5504,
+            7925,
+            9102,
+            7872,
+            5400,
+            3095,
+            1672,
+            796,
+            346,
+            333
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 139697.59469164326,
+        "fp64_rank64_output_squared_error": 17880.35720403168,
+        "fp64_rank64_relative_squared_error": 0.1279933075691051,
+        "int4_int8_output_squared_error": 20308.833168783895,
+        "int4_int8_relative_squared_error": 0.14537711414152768,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 184343.56394222542,
+        "fp64_rank64_output_squared_error": 43474.01674607335,
+        "fp64_rank64_relative_squared_error": 0.23583148668916054,
+        "int4_int8_output_squared_error": 46412.036257152315,
+        "int4_int8_relative_squared_error": 0.25176922516100525,
+        "intermediate_clipped_fraction": 0.0
+      }
+    },
+    {
+      "name": "blocks.11.mlp.down.weight.q",
+      "shape": [
+        192,
+        768
+      ],
+      "ridge_lambda": 9.160701091154531e-06,
+      "weighted_regularized_tail_fraction": 0.08469840399560866,
+      "actual_original_outputs_bit_exact": true,
+      "intermediate_activation_scale_f32": 0.04345703125,
+      "factors": [
+        {
+          "side": "right",
+          "shape": [
+            64,
+            768
+          ],
+          "histogram": [
+            72,
+            159,
+            460,
+            1255,
+            2998,
+            5485,
+            8757,
+            10457,
+            8900,
+            5657,
+            2921,
+            1289,
+            502,
+            165,
+            75
+          ]
+        },
+        {
+          "side": "left",
+          "shape": [
+            192,
+            64
+          ],
+          "histogram": [
+            120,
+            98,
+            173,
+            362,
+            712,
+            1339,
+            2102,
+            2523,
+            2088,
+            1262,
+            710,
+            374,
+            209,
+            93,
+            123
+          ]
+        }
+      ],
+      "train": {
+        "rows": 1199,
+        "original_output_squared_energy": 2089.9239737002786,
+        "fp64_rank64_output_squared_error": 176.41616861025034,
+        "fp64_rank64_relative_squared_error": 0.08441272066844602,
+        "int4_int8_output_squared_error": 218.09858430965699,
+        "int4_int8_relative_squared_error": 0.10435718574178865,
+        "intermediate_clipped_fraction": 0.0
+      },
+      "held": {
+        "rows": 1606,
+        "original_output_squared_energy": 2175.4821372564147,
+        "fp64_rank64_output_squared_error": 356.14380047993296,
+        "fp64_rank64_relative_squared_error": 0.1637079865565248,
+        "int4_int8_output_squared_error": 400.164342904416,
+        "int4_int8_relative_squared_error": 0.18394283090233912,
+        "intermediate_clipped_fraction": 0.0
+      }
+    }
+  ],
+  "input_source": {
+    "npz": "research/results/depth-middle-bridge.npz",
+    "weights": "models/6m-q4-fp32.tfwc2",
+    "native_model_layers": 12,
+    "native_model_instances": 1,
+    "native_piece_forwards": 2,
+    "train": {
+      "article": 1447,
+      "source_token_range": [
+        1256446,
+        1257646
+      ],
+      "targets": 1199
+    },
+    "held": {
+      "article": 3363,
+      "source_token_range": [
+        5055675,
+        5057282
+      ],
+      "targets": 1606
+    },
+    "priors": "original full-history causal PPMd F16, 205 columns; NN begin_article(0) per piece"
+  },
+  "original_native_piece_nll": {
+    "train": 0.6413397255740929,
+    "held": 0.5391691254720278
+  }
+}

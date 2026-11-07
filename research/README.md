@@ -29,6 +29,7 @@ walks through the complete causal result, direct-update exposure and package cha
 - [Teacher loss and curvature](teacher-objective-audit.md), [actual parameter gradients](depth-objective-gradients.md), and [activation counterfactual](depth-activation-counterfactual.md)
 - [Exact middle-state oracle and one fixed bridge](depth-middle-bridge.md)
 - [All 24 MLP spectra and the fixed rank64 weight-space tail](mlp-rank64-spectrum.md)
+- [Task-aware rank64 on native INT8 inputs: calibration and held output error](task-aware-mlp-rank64.md)
 - [Signed codec-local objective](codec-aware-byte-surrogate.md) and [original-v22 slope](v22-codec-local-slope.md)
 - [Zero8 native control](depth-zero-native.md), [causal eleven-epoch curve](results/causal-first-eleven-epochs.json), and [depth hard e16](results/depth-hard-e16.json)
 

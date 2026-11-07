@@ -1,0 +1,35 @@
+--- cpp_infer/src/model.cpp
++++ model-capture.cpp
+@@ -178,7 +178,7 @@
+ }
+ 
+ void TransformerImpl::load(const char* path) {
+-  WeightsFile wf = WeightsFile::load(path);
++  WeightsFile wf = WeightsFile::load_compressed(path);
+ 
+   // config sanity
+   {
+@@ -499,12 +499,23 @@
+     rms_norm_vec(x, xn, D);
+     const MlpW& m = mlp[l];
+     quantize_i8(xn, D, D, m.up.s_act, q8);
++    if (cap_fn) {
++      alignas(32) float fq[D];
++      for (int i = 0; i < D; i++) fq[i] = static_cast<float>(q8[i]);
++      capL(l, "mlp_up_input_int8", fq, D);
++    }
+     qmatvec(m.up.w, m.up.stride, m.up.fold, DMLP, q8, h768);
++    capL(l, "mlp_up_out", h768, DMLP);
+     for (int j = 0; j < DMLP; j++) {
+       float hj = h768[j];
+       h768[j] = hj > 0.0f ? hj * hj : 0.0f;  // relu^2
+     }
+     quantize_i8(h768, DMLP, DMLP, m.down.s_act, q8);
++    if (cap_fn) {
++      alignas(32) float fq[DMLP];
++      for (int i = 0; i < DMLP; i++) fq[i] = static_cast<float>(q8[i]);
++      capL(l, "mlp_down_input_int8", fq, DMLP);
++    }
+     qmatvec(m.down.w, m.down.stride, m.down.fold, D, q8, yb);
+     capL(l, "mlp_out", yb, D);
+     for (int i = 0; i < D; i++) x[i] += yb[i];
