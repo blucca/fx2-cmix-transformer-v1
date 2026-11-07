@@ -11,6 +11,8 @@ weights stay fixed.
 same-weight NN/mixer/u16 transmission → actual range bytes → two-copy archive size.
 It connects the complete methods, measured results and reusable tools.
 
+**[A readable byte-ledger walkthrough](research/causal-byte-ledger-dev.md):** follow 221 saved bytes through neural prediction, mixer, u16 and actual range coding.
+
 ## Complete methods
 
 - **[Integer-coordinate QAT](research/integer-coordinate-qat.md#complete-64-epoch-terminal):** complete 64-epoch curve, native domains and same-W coded failure. Mature and independent-held code grow; the training-containing q2 saving has its own scope.

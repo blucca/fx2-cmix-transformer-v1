@@ -5,6 +5,9 @@ chain from native prediction loss to the selected weight’s actual range bytes
 and the authentic two-copy archive. The overview records published coverage
 and links the finished implementation paths.
 
+**[Following 221 saved bytes through a neural compressor](causal-byte-ledger-dev.md)**
+walks through the complete causal result, direct-update exposure and package charge.
+
 ## Complete methods
 
 - [Integer64: full trajectory, native domains and actual mixed-codec failure](integer-coordinate-qat.md#complete-64-epoch-terminal)
