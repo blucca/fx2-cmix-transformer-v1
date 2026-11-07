@@ -9,6 +9,8 @@
 
 **Zero-step control:** [original zero8 native loss before learning](depth-zero-native.md) supplies full held/long/short and the separate maximum-article audit. E12 repairs **74.33%** of the held starting gap; giant e4→e16 returns **+.089503050 nats/target**. [Complete scientific result](results/depth-zero-native.json) · [read-only measurement source](depth-zero-native.py) · [stdlib replay](check-depth-zero-native.py). The original 32-epoch and sole selected-W mixed terminal precede the complete 2KL investment.
 
+**Sample exposure:** [seed414's actual update positions](mixed-sample-exposure.md) occupy **0.1604%** of mature-prefix NN targets and **1.0668%** of full q2 targets. The old W64 held window contains the new q2 training piece (**2.1658%**); source, scope-local and trace-local attribution ranges are recorded. [Self-contained plan/result](results/mixed-sample-exposure.json) · [stdlib replay](mixed-sample-exposure.py). Original selections and running measurements remain fixed.
+
 **Eight hard-QAT epochs:** [native e16](results/depth-hard-e16.json) adds 0.004113873 nats/target from e12 across 800,662 worsening held targets; e12 remains the current native minimum. W16/B save 1,894,244 B across both copies. The original 32-epoch method and sole mixed run continue. [Stdlib replay](check-depth-hard-e16.py).
 
 **Actual parameter direction:** [one original 1,199-target gradient measurement](depth-objective-gradients.md) locates the teacher conflict in a first-block embedding coefficient. The sign persists under the original 100-fold group-LR difference; all 134 gradients and both composite reconstructions pass. [Stdlib replay](check-depth-objective-gradients.py). The original optimizer and sole mixed run continue.
