@@ -18,6 +18,8 @@ The independent sixteen-epoch causal-prior trajectory addresses the measured pri
 
 [A bounded parameter-gradient measurement](research/depth-objective-gradients.md) locates teacher conflict in a first-block embedding coefficient on the original eight-layer checkpoint. Its CE/KL cosine is −0.859338, with the opposing sign preserved after the original group learning rates. All 134 parameters and composite-gradient reconstructions pass; the original training and same-weight coded measurement continue.
 
+[A paired activation counterfactual](research/depth-activation-counterfactual.md) keeps the original hard eight-block snapshot fixed and bypasses all 80 INT8 activation quantizers on one 1,199-target input. CE rises **0.035037220 nats/target** and teacher KL rises **0.024262831**; all z/raw, model-state and scale tensors stay byte-identical. This measured branch stops, retaining fixed scales for the conditional output-objective method.
+
 [The original training-objective audit](research/teacher-objective-audit.md) locates the e12-to-e16 conflict: online loss falls while teacher/held retention regresses. A controlled 2KL ablation preserves output-logit curvature and the hidden/rate terms. Its complete cache/measurement contract is specified; the proposed method remains unrun.
 
 [A conditional codec-aware objective](research/codec-aware-byte-surrogate.md) turns signed mixer slopes into a stable byte-logit learning loss, with the guarded-probability and SSE boundaries explicit. The original actual mixed measurements remain its admission gate.

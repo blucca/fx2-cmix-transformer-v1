@@ -1,0 +1,6603 @@
+{
+  "schema": "hutter.depth8.activation-counterfactual.round449.v1",
+  "status": "passed",
+  "stage": "complete",
+  "started_at": 1794031634.6376538,
+  "scope": "one same hard-coordinate snapshot and original1199-target train piece; A original80 activation quantizers; B floating activations, identical original native-scaled FP32 GEMM",
+  "top_level_student_forwards": 2,
+  "optimizer_updates": 0,
+  "optimizer_instances": 0,
+  "gradient_calls": 0,
+  "new_teacher_calls": 0,
+  "new_cache_files": 0,
+  "capture_calls": 0,
+  "native_calls": 0,
+  "codec_calls": 0,
+  "model_exports": 0,
+  "scale_searches": 0,
+  "scale_calibrations": 0,
+  "source_writes": 0,
+  "checkpoint_reads": 1,
+  "cpu_seconds": 4.627273114,
+  "wall_seconds": 8.748970809014281,
+  "peak_rss_kib": 528496,
+  "updated_at": 1794031643.3866303,
+  "cpu_affinity": [
+    1
+  ],
+  "address_space_limit_bytes": 3221225472,
+  "cpu_limit_seconds": [
+    176,
+    178
+  ],
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "piece": {
+    "manifest_index_zero_based": 7,
+    "manifest_ordinal": 8,
+    "sample_index": 0,
+    "sample_name": "causal",
+    "lo": 5321,
+    "hi": 6521,
+    "targets": 1199,
+    "bounds": [
+      [
+        0,
+        1199
+      ]
+    ],
+    "selection": "same manifest piece as round446",
+    "priors_dtype": "float16",
+    "vocabulary_columns": 205,
+    "tokens_role": "original train capture uint8",
+    "priors_role": "original causal float16 205-column capture"
+  },
+  "manifest": {
+    "training_pieces": 1313,
+    "training_targets": 2941307
+  },
+  "teacher_cache": {
+    "bytes": 1904522,
+    "logits_shape": [
+      1,
+      1199,
+      205
+    ],
+    "hidden_shape": [
+      1,
+      1199,
+      192
+    ],
+    "dtype": "float32",
+    "cache_hits": 1,
+    "role": "existing complete twelve-layer teacher logits/final hidden for this exact piece"
+  },
+  "checkpoint": {
+    "bytes": 47800931,
+    "cursor": {
+      "epoch": 23,
+      "step": 1832,
+      "next_piece": 264,
+      "seen_targets": 68310679,
+      "epoch_targets": 660618
+    },
+    "epoch_semantics": "completed full epochs; cursor is in epoch+1",
+    "role": "one open file-handle original hard-coordinate training checkpoint"
+  },
+  "counts": {
+    "z_tensors": 75,
+    "raw_tensors": 59,
+    "mutable_tensors": 134,
+    "z_elements": 3951936,
+    "raw_elements": 18854,
+    "activation_quantizers": 80,
+    "weight_quantizers": 75,
+    "model_state_tensors": 289,
+    "native_scaled_linear_modules": 74
+  },
+  "hard_mode": true,
+  "dropout": 0.0,
+  "model_training": true,
+  "gradient_checkpointing": true,
+  "torch_version": "2.6.0+debian",
+  "torch_threads": 1,
+  "torch_interop_threads": 1,
+  "native_scaled_gemm": true,
+  "native_scaled_gemm_modules": [
+    "prior_embedding",
+    "blocks.0.attention.query_projection",
+    "blocks.0.attention.key_projection",
+    "blocks.0.attention.value_projection",
+    "blocks.0.attention.forget_gate_projection.up",
+    "blocks.0.attention.forget_gate_projection.down",
+    "blocks.0.attention.output_gate_projection.up",
+    "blocks.0.attention.output_gate_projection.down",
+    "blocks.0.attention.output_projection",
+    "blocks.0.mlp.up",
+    "blocks.0.mlp.down",
+    "blocks.1.attention.query_projection",
+    "blocks.1.attention.key_projection",
+    "blocks.1.attention.value_projection",
+    "blocks.1.attention.forget_gate_projection.up",
+    "blocks.1.attention.forget_gate_projection.down",
+    "blocks.1.attention.output_gate_projection.up",
+    "blocks.1.attention.output_gate_projection.down",
+    "blocks.1.attention.output_projection",
+    "blocks.1.mlp.up",
+    "blocks.1.mlp.down",
+    "blocks.2.attention.query_projection",
+    "blocks.2.attention.key_projection",
+    "blocks.2.attention.value_projection",
+    "blocks.2.attention.forget_gate_projection.up",
+    "blocks.2.attention.forget_gate_projection.down",
+    "blocks.2.attention.output_gate_projection.up",
+    "blocks.2.attention.output_gate_projection.down",
+    "blocks.2.attention.output_projection",
+    "blocks.2.mlp.up",
+    "blocks.2.mlp.down",
+    "blocks.3.attention.query_projection",
+    "blocks.3.attention.key_projection",
+    "blocks.3.attention.value_projection",
+    "blocks.3.attention.output_projection",
+    "blocks.3.mlp.up",
+    "blocks.3.mlp.down",
+    "blocks.4.attention.query_projection",
+    "blocks.4.attention.key_projection",
+    "blocks.4.attention.value_projection",
+    "blocks.4.attention.forget_gate_projection.up",
+    "blocks.4.attention.forget_gate_projection.down",
+    "blocks.4.attention.output_gate_projection.up",
+    "blocks.4.attention.output_gate_projection.down",
+    "blocks.4.attention.output_projection",
+    "blocks.4.mlp.up",
+    "blocks.4.mlp.down",
+    "blocks.5.attention.query_projection",
+    "blocks.5.attention.key_projection",
+    "blocks.5.attention.value_projection",
+    "blocks.5.attention.forget_gate_projection.up",
+    "blocks.5.attention.forget_gate_projection.down",
+    "blocks.5.attention.output_gate_projection.up",
+    "blocks.5.attention.output_gate_projection.down",
+    "blocks.5.attention.output_projection",
+    "blocks.5.mlp.up",
+    "blocks.5.mlp.down",
+    "blocks.6.attention.query_projection",
+    "blocks.6.attention.key_projection",
+    "blocks.6.attention.value_projection",
+    "blocks.6.attention.forget_gate_projection.up",
+    "blocks.6.attention.forget_gate_projection.down",
+    "blocks.6.attention.output_gate_projection.up",
+    "blocks.6.attention.output_gate_projection.down",
+    "blocks.6.attention.output_projection",
+    "blocks.6.mlp.up",
+    "blocks.6.mlp.down",
+    "blocks.7.attention.query_projection",
+    "blocks.7.attention.key_projection",
+    "blocks.7.attention.value_projection",
+    "blocks.7.attention.output_projection",
+    "blocks.7.mlp.up",
+    "blocks.7.mlp.down",
+    "unembedding"
+  ],
+  "floating_activation_support": {
+    "supported": true,
+    "source": "pysrc/model.py:CastedLinear.forward",
+    "preserved_expression": "linear(x / sa, weight.type_as(x) / sw) * (sa * sw.flatten())",
+    "reason": "FP32 GEMM accepts floating x/sa; original scale fold is retained"
+  },
+  "counter_definitions": {
+    "out_of_range": "input/effective_signed_BF16_scale < qmin or > qmax before rounding",
+    "round_to_zero": "round(input/scale)==0 including original input zeros",
+    "nonzero_round_to_zero": "round(input/scale)==0 and input!=0",
+    "error": "actual hook output minus input; B identity gives zero error",
+    "B_counts": "shadow old-scale range/rounding counts on B floating inputs; no quantization is applied",
+    "calls": "actual forward hook calls; no one-call-per-module assumption"
+  },
+  "activation_quantizers": [
+    {
+      "name": "prior_embedding.quantize_activation",
+      "teacher_name": "prior_embedding.quantize_activation",
+      "student_layer": null,
+      "teacher_layer": null,
+      "size": [
+        205
+      ],
+      "n_blocks": 1,
+      "block_size": 205,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0027618408203125,
+        "maximum": 0.0027618408203125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.002765921875834465,
+        "raw_maximum": 0.002765921875834465
+      },
+      "A": {
+        "calls": 1,
+        "elements": 245795,
+        "below_qmin": 0,
+        "above_qmax": 1021,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 1019,
+        "round_to_zero": 226210,
+        "nonzero_round_to_zero": 214251,
+        "input_zero": 11959,
+        "output_zero": 226210,
+        "quantization_error_squared_sum": 283.43478247378516,
+        "input_squared_sum": 790.6773134208415,
+        "out_of_range_error_squared_sum": 283.4139024366159,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            205
+          ]
+        ],
+        "out_of_range_fraction": 0.004153868060782359,
+        "nonzero_round_to_zero_fraction": 0.871665412233772,
+        "error_to_input_squared_ratio": 0.35847086752434204
+      },
+      "B": {
+        "calls": 1,
+        "elements": 245795,
+        "below_qmin": 0,
+        "above_qmax": 1021,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 1019,
+        "round_to_zero": 226210,
+        "nonzero_round_to_zero": 214251,
+        "input_zero": 11959,
+        "output_zero": 11959,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 790.6773134208415,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            205
+          ]
+        ],
+        "out_of_range_fraction": 0.004153868060782359,
+        "nonzero_round_to_zero_fraction": 0.871665412233772,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.0.attention.query_projection.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02685546875,
+        "maximum": 0.02685546875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.026836039498448372,
+        "raw_maximum": 0.026836039498448372
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 46,
+        "above_qmax": 14,
+        "rounded_below_qmin": 44,
+        "rounded_above_qmax": 14,
+        "round_to_zero": 3597,
+        "nonzero_round_to_zero": 2644,
+        "input_zero": 953,
+        "output_zero": 3597,
+        "quantization_error_squared_sum": 16.458957228633487,
+        "input_squared_sum": 229548.51996878936,
+        "out_of_range_error_squared_sum": 2.6336659654278947,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026063386155129273,
+        "nonzero_round_to_zero_fraction": 0.011485265499026967,
+        "error_to_input_squared_ratio": 7.170143040291148e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 48,
+        "above_qmax": 14,
+        "rounded_below_qmin": 46,
+        "rounded_above_qmax": 14,
+        "round_to_zero": 3974,
+        "nonzero_round_to_zero": 3974,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 229549.50838770627,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026932165693633583,
+        "nonzero_round_to_zero_fraction": 0.017262649430080622,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.0.attention.key_projection.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02685546875,
+        "maximum": 0.02685546875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.026828734204173088,
+        "raw_maximum": 0.026828734204173088
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 46,
+        "above_qmax": 14,
+        "rounded_below_qmin": 44,
+        "rounded_above_qmax": 14,
+        "round_to_zero": 3597,
+        "nonzero_round_to_zero": 2644,
+        "input_zero": 953,
+        "output_zero": 3597,
+        "quantization_error_squared_sum": 16.458957228633487,
+        "input_squared_sum": 229548.51996878936,
+        "out_of_range_error_squared_sum": 2.6336659654278947,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026063386155129273,
+        "nonzero_round_to_zero_fraction": 0.011485265499026967,
+        "error_to_input_squared_ratio": 7.170143040291148e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 48,
+        "above_qmax": 14,
+        "rounded_below_qmin": 46,
+        "rounded_above_qmax": 14,
+        "round_to_zero": 3974,
+        "nonzero_round_to_zero": 3974,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 229549.50838770627,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026932165693633583,
+        "nonzero_round_to_zero_fraction": 0.017262649430080622,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.0.attention.value_projection.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.027587890625,
+        "maximum": 0.027587890625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02752685733139515,
+        "raw_maximum": 0.02752685733139515
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 36,
+        "above_qmax": 10,
+        "rounded_below_qmin": 34,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 3674,
+        "nonzero_round_to_zero": 2721,
+        "input_zero": 953,
+        "output_zero": 3674,
+        "quantization_error_squared_sum": 15.641477525395084,
+        "input_squared_sum": 229548.51996878936,
+        "out_of_range_error_squared_sum": 1.173366780147262,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00019981929385599111,
+        "nonzero_round_to_zero_fraction": 0.011819745621351126,
+        "error_to_input_squared_ratio": 6.814018024390565e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 40,
+        "above_qmax": 10,
+        "rounded_below_qmin": 38,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 4037,
+        "nonzero_round_to_zero": 4037,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 229549.50838770627,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002171948846260773,
+        "nonzero_round_to_zero_fraction": 0.01753631498470948,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.forget_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.0.attention.forget_gate_projection.up.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02783203125,
+        "maximum": 0.02783203125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02782096341252327,
+        "raw_maximum": 0.02782096341252327
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 30,
+        "above_qmax": 10,
+        "rounded_below_qmin": 22,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 3715,
+        "nonzero_round_to_zero": 2762,
+        "input_zero": 953,
+        "output_zero": 3715,
+        "quantization_error_squared_sum": 15.759336554019109,
+        "input_squared_sum": 229548.51996878936,
+        "out_of_range_error_squared_sum": 0.8738680635837,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00017375590770086184,
+        "nonzero_round_to_zero_fraction": 0.01199784542674451,
+        "error_to_input_squared_ratio": 6.865361866049858e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 35,
+        "above_qmax": 10,
+        "rounded_below_qmin": 24,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 4059,
+        "nonzero_round_to_zero": 4059,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 229549.50838770627,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00019547539616346956,
+        "nonzero_round_to_zero_fraction": 0.017631880733944953,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.forget_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.0.attention.forget_gate_projection.down.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.060302734375,
+        "maximum": 0.060302734375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.060423344373703,
+        "raw_maximum": 0.060423344373703
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 26,
+        "above_qmax": 8,
+        "rounded_below_qmin": 25,
+        "rounded_above_qmax": 8,
+        "round_to_zero": 817,
+        "nonzero_round_to_zero": 807,
+        "input_zero": 10,
+        "output_zero": 817,
+        "quantization_error_squared_sum": 28.357033426753134,
+        "input_squared_sum": 359298.1215068805,
+        "out_of_range_error_squared_sum": 5.239409383386828,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0004430775646371977,
+        "nonzero_round_to_zero_fraction": 0.010516576313594662,
+        "error_to_input_squared_ratio": 7.892341131043209e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 28,
+        "above_qmax": 10,
+        "rounded_below_qmin": 24,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 865,
+        "nonzero_round_to_zero": 865,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 358049.6864896472,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0004952043369474562,
+        "nonzero_round_to_zero_fraction": 0.01127241451209341,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.output_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.0.attention.output_gate_projection.up.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0277099609375,
+        "maximum": 0.0277099609375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.027752362191677094,
+        "raw_maximum": 0.027752362191677094
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 32,
+        "above_qmax": 10,
+        "rounded_below_qmin": 31,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 3688,
+        "nonzero_round_to_zero": 2735,
+        "input_zero": 953,
+        "output_zero": 3688,
+        "quantization_error_squared_sum": 15.676210234922673,
+        "input_squared_sum": 229548.51996878936,
+        "out_of_range_error_squared_sum": 1.013221427981648,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00018244370308590491,
+        "nonzero_round_to_zero_fraction": 0.011880560189046428,
+        "error_to_input_squared_ratio": 6.829148903706325e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 38,
+        "above_qmax": 10,
+        "rounded_below_qmin": 36,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 4052,
+        "nonzero_round_to_zero": 4052,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 229549.50838770627,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002085070892410342,
+        "nonzero_round_to_zero_fraction": 0.017601473450097303,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.output_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.0.attention.output_gate_projection.down.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.07470703125,
+        "maximum": 0.07470703125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.07475925236940384,
+        "raw_maximum": 0.07475925236940384
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 0,
+        "above_qmax": 23,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 23,
+        "round_to_zero": 1089,
+        "nonzero_round_to_zero": 1085,
+        "input_zero": 4,
+        "output_zero": 1089,
+        "quantization_error_squared_sum": 48.86216391394936,
+        "input_squared_sum": 351331.0924358674,
+        "out_of_range_error_squared_sum": 13.255484886567501,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00029972894078398666,
+        "nonzero_round_to_zero_fraction": 0.014139386989157631,
+        "error_to_input_squared_ratio": 0.00013907725494824726
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 0,
+        "above_qmax": 23,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 22,
+        "round_to_zero": 1028,
+        "nonzero_round_to_zero": 1028,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 347104.0467152051,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00029972894078398666,
+        "nonzero_round_to_zero_fraction": 0.013396580483736447,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.0.attention.output_projection.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.000713348388671875,
+        "maximum": 0.000713348388671875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.0007126269629225135,
+        "raw_maximum": 0.0007126269629225135
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 33,
+        "above_qmax": 137,
+        "rounded_below_qmin": 33,
+        "rounded_above_qmax": 134,
+        "round_to_zero": 39969,
+        "nonzero_round_to_zero": 39969,
+        "input_zero": 0,
+        "output_zero": 39969,
+        "quantization_error_squared_sum": 0.13045359919421723,
+        "input_squared_sum": 20.388534339406984,
+        "out_of_range_error_squared_sum": 0.1208998601414018,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0007384626077286628,
+        "nonzero_round_to_zero_fraction": 0.17362124687239366,
+        "error_to_input_squared_ratio": 0.006398380433951858
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 35,
+        "above_qmax": 133,
+        "rounded_below_qmin": 35,
+        "rounded_above_qmax": 127,
+        "round_to_zero": 39467,
+        "nonzero_round_to_zero": 39467,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 20.621778614424663,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0007297748123436197,
+        "nonzero_round_to_zero_fraction": 0.17144061023074786,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.mlp.up.quantize_activation",
+      "teacher_name": "blocks.0.mlp.up.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0274658203125,
+        "maximum": 0.0274658203125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02743964083492756,
+        "raw_maximum": 0.02743964083492756
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 30,
+        "above_qmax": 53,
+        "rounded_below_qmin": 28,
+        "rounded_above_qmax": 50,
+        "round_to_zero": 2547,
+        "nonzero_round_to_zero": 2547,
+        "input_zero": 0,
+        "output_zero": 2547,
+        "quantization_error_squared_sum": 20.966171357025573,
+        "input_squared_sum": 229572.90797775565,
+        "out_of_range_error_squared_sum": 6.526141263628972,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003605435084792883,
+        "nonzero_round_to_zero_fraction": 0.011063907422852378,
+        "error_to_input_squared_ratio": 9.132685359832215e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 34,
+        "above_qmax": 49,
+        "rounded_below_qmin": 33,
+        "rounded_above_qmax": 47,
+        "round_to_zero": 2583,
+        "nonzero_round_to_zero": 2583,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 229574.9222496907,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003605435084792883,
+        "nonzero_round_to_zero_fraction": 0.011220287739783152,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.0.mlp.down.quantize_activation",
+      "teacher_name": "blocks.0.mlp.down.quantize_activation",
+      "student_layer": 0,
+      "teacher_layer": 0,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0145263671875,
+        "maximum": 0.0145263671875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.014556880109012127,
+        "raw_maximum": 0.014556880109012127
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 316,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 311,
+        "round_to_zero": 493943,
+        "nonzero_round_to_zero": 90703,
+        "input_zero": 403240,
+        "output_zero": 493943,
+        "quantization_error_squared_sum": 71.05311650960428,
+        "input_squared_sum": 20143.808630638658,
+        "out_of_range_error_squared_sum": 62.526693180402845,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.0003431679177092021,
+        "nonzero_round_to_zero_fraction": 0.09850113810119544,
+        "error_to_input_squared_ratio": 0.0035272930661946794
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 314,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 310,
+        "round_to_zero": 486575,
+        "nonzero_round_to_zero": 90181,
+        "input_zero": 396394,
+        "output_zero": 396394,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 20902.650628092946,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.00034099596886294134,
+        "nonzero_round_to_zero_fraction": 0.09793425945232138,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.1.attention.query_projection.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0262451171875,
+        "maximum": 0.0262451171875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.026197630912065506,
+        "raw_maximum": 0.026197630912065506
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 21,
+        "above_qmax": 45,
+        "rounded_below_qmin": 20,
+        "rounded_above_qmax": 43,
+        "round_to_zero": 2355,
+        "nonzero_round_to_zero": 2355,
+        "input_zero": 0,
+        "output_zero": 2355,
+        "quantization_error_squared_sum": 16.617616251069958,
+        "input_squared_sum": 230189.65040027528,
+        "out_of_range_error_squared_sum": 3.4028258137910825,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00028669724770642203,
+        "nonzero_round_to_zero_fraction": 0.01022987906588824,
+        "error_to_input_squared_ratio": 7.219097914338761e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 23,
+        "above_qmax": 49,
+        "rounded_below_qmin": 22,
+        "rounded_above_qmax": 46,
+        "round_to_zero": 2501,
+        "nonzero_round_to_zero": 2501,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230190.12309208486,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003127606338615513,
+        "nonzero_round_to_zero_fraction": 0.010864088128996386,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.1.attention.key_projection.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0264892578125,
+        "maximum": 0.0264892578125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.026428652927279472,
+        "raw_maximum": 0.026428652927279472
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 19,
+        "above_qmax": 40,
+        "rounded_below_qmin": 19,
+        "rounded_above_qmax": 38,
+        "round_to_zero": 2372,
+        "nonzero_round_to_zero": 2372,
+        "input_zero": 0,
+        "output_zero": 2372,
+        "quantization_error_squared_sum": 16.211625670378307,
+        "input_squared_sum": 230189.65040027528,
+        "out_of_range_error_squared_sum": 2.755507215605917,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002562899638587712,
+        "nonzero_round_to_zero_fraction": 0.010303725326661106,
+        "error_to_input_squared_ratio": 7.042725701258948e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 20,
+        "above_qmax": 42,
+        "rounded_below_qmin": 17,
+        "rounded_above_qmax": 41,
+        "round_to_zero": 2517,
+        "nonzero_round_to_zero": 2517,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230190.12309208486,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026932165693633583,
+        "nonzero_round_to_zero_fraction": 0.01093359049207673,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.1.attention.value_projection.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.025390625,
+        "maximum": 0.025390625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02533046528697014,
+        "raw_maximum": 0.02533046528697014
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 41,
+        "above_qmax": 78,
+        "rounded_below_qmin": 39,
+        "rounded_above_qmax": 75,
+        "round_to_zero": 2286,
+        "nonzero_round_to_zero": 2286,
+        "input_zero": 0,
+        "output_zero": 2286,
+        "quantization_error_squared_sum": 19.181259189004173,
+        "input_squared_sum": 230189.65040027528,
+        "out_of_range_error_squared_sum": 6.842889830613558,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0005169238254100639,
+        "nonzero_round_to_zero_fraction": 0.009930150125104254,
+        "error_to_input_squared_ratio": 8.332806950985853e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 51,
+        "above_qmax": 74,
+        "rounded_below_qmin": 48,
+        "rounded_above_qmax": 69,
+        "round_to_zero": 2431,
+        "nonzero_round_to_zero": 2431,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230190.12309208486,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0005429872115651932,
+        "nonzero_round_to_zero_fraction": 0.010560015290519878,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.forget_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.1.attention.forget_gate_projection.up.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.028076171875,
+        "maximum": 0.028076171875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02809319831430912,
+        "raw_maximum": 0.02809319831430912
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 9,
+        "above_qmax": 10,
+        "rounded_below_qmin": 8,
+        "rounded_above_qmax": 9,
+        "round_to_zero": 2529,
+        "nonzero_round_to_zero": 2529,
+        "input_zero": 0,
+        "output_zero": 2529,
+        "quantization_error_squared_sum": 15.760398703203773,
+        "input_squared_sum": 230189.65040027528,
+        "out_of_range_error_squared_sum": 0.6589757902839324,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 8.253405615790937e-05,
+        "nonzero_round_to_zero_fraction": 0.010985717264386989,
+        "error_to_input_squared_ratio": 6.846701698272758e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 6,
+        "above_qmax": 11,
+        "rounded_below_qmin": 6,
+        "rounded_above_qmax": 8,
+        "round_to_zero": 2641,
+        "nonzero_round_to_zero": 2641,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230190.12309208486,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 7.384626077286628e-05,
+        "nonzero_round_to_zero_fraction": 0.011472233805949403,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.forget_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.1.attention.forget_gate_projection.down.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0830078125,
+        "maximum": 0.0830078125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.08305605500936508,
+        "raw_maximum": 0.08305605500936508
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 128,
+        "above_qmax": 7,
+        "rounded_below_qmin": 119,
+        "rounded_above_qmax": 6,
+        "round_to_zero": 883,
+        "nonzero_round_to_zero": 869,
+        "input_zero": 14,
+        "output_zero": 883,
+        "quantization_error_squared_sum": 167.42008412419185,
+        "input_squared_sum": 767445.883867915,
+        "out_of_range_error_squared_sum": 123.35931951711427,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.001759278565471226,
+        "nonzero_round_to_zero_fraction": 0.01132454128440367,
+        "error_to_input_squared_ratio": 0.00021815229926102058
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 117,
+        "above_qmax": 6,
+        "rounded_below_qmin": 110,
+        "rounded_above_qmax": 6,
+        "round_to_zero": 849,
+        "nonzero_round_to_zero": 849,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 766777.1122359766,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0016028982485404503,
+        "nonzero_round_to_zero_fraction": 0.011063907422852378,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.output_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.1.attention.output_gate_projection.up.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0264892578125,
+        "maximum": 0.0264892578125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.026430964469909668,
+        "raw_maximum": 0.026430964469909668
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 19,
+        "above_qmax": 40,
+        "rounded_below_qmin": 19,
+        "rounded_above_qmax": 38,
+        "round_to_zero": 2372,
+        "nonzero_round_to_zero": 2372,
+        "input_zero": 0,
+        "output_zero": 2372,
+        "quantization_error_squared_sum": 16.211625670378307,
+        "input_squared_sum": 230189.65040027528,
+        "out_of_range_error_squared_sum": 2.755507215605917,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002562899638587712,
+        "nonzero_round_to_zero_fraction": 0.010303725326661106,
+        "error_to_input_squared_ratio": 7.042725701258948e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 20,
+        "above_qmax": 42,
+        "rounded_below_qmin": 17,
+        "rounded_above_qmax": 41,
+        "round_to_zero": 2517,
+        "nonzero_round_to_zero": 2517,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230190.12309208486,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026932165693633583,
+        "nonzero_round_to_zero_fraction": 0.01093359049207673,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.output_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.1.attention.output_gate_projection.down.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.048095703125,
+        "maximum": 0.048095703125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.047984398901462555,
+        "raw_maximum": 0.047984398901462555
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 20,
+        "above_qmax": 0,
+        "rounded_below_qmin": 18,
+        "rounded_above_qmax": 0,
+        "round_to_zero": 845,
+        "nonzero_round_to_zero": 835,
+        "input_zero": 10,
+        "output_zero": 845,
+        "quantization_error_squared_sum": 16.036249782525687,
+        "input_squared_sum": 224859.92141398785,
+        "out_of_range_error_squared_sum": 1.1897187718439,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00026063386155129273,
+        "nonzero_round_to_zero_fraction": 0.010881463719766471,
+        "error_to_input_squared_ratio": 7.131662095087845e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 18,
+        "above_qmax": 0,
+        "rounded_below_qmin": 14,
+        "rounded_above_qmax": 0,
+        "round_to_zero": 910,
+        "nonzero_round_to_zero": 910,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 222574.9750499509,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00023457047539616346,
+        "nonzero_round_to_zero_fraction": 0.011858840700583819,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.1.attention.output_projection.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0079345703125,
+        "maximum": 0.0079345703125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.007904056459665298,
+        "raw_maximum": 0.007904056459665298
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 7,
+        "above_qmax": 218,
+        "rounded_below_qmin": 7,
+        "rounded_above_qmax": 217,
+        "round_to_zero": 15217,
+        "nonzero_round_to_zero": 15217,
+        "input_zero": 0,
+        "output_zero": 15217,
+        "quantization_error_squared_sum": 16.002414604585837,
+        "input_squared_sum": 3340.906111440524,
+        "out_of_range_error_squared_sum": 14.799112938759265,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0009773769808173478,
+        "nonzero_round_to_zero_fraction": 0.06610109118710036,
+        "error_to_input_squared_ratio": 0.004789842656693502
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 7,
+        "above_qmax": 213,
+        "rounded_below_qmin": 7,
+        "rounded_above_qmax": 212,
+        "round_to_zero": 15109,
+        "nonzero_round_to_zero": 15109,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 3332.774978409878,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00095565749235474,
+        "nonzero_round_to_zero_fraction": 0.06563195023630804,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.mlp.up.quantize_activation",
+      "teacher_name": "blocks.1.mlp.up.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0277099609375,
+        "maximum": 0.0277099609375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.027767851948738098,
+        "raw_maximum": 0.027767851948738098
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 27,
+        "above_qmax": 47,
+        "rounded_below_qmin": 24,
+        "rounded_above_qmax": 44,
+        "round_to_zero": 2476,
+        "nonzero_round_to_zero": 2476,
+        "input_zero": 0,
+        "output_zero": 2476,
+        "quantization_error_squared_sum": 22.286603513433157,
+        "input_squared_sum": 230197.22411396986,
+        "out_of_range_error_squared_sum": 7.536942797640165,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003214484292465944,
+        "nonzero_round_to_zero_fraction": 0.010755490686683347,
+        "error_to_input_squared_ratio": 9.681525743507287e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 26,
+        "above_qmax": 59,
+        "rounded_below_qmin": 26,
+        "rounded_above_qmax": 56,
+        "round_to_zero": 2630,
+        "nonzero_round_to_zero": 2630,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230197.49438823867,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003692313038643314,
+        "nonzero_round_to_zero_fraction": 0.011424450931331665,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.1.mlp.down.quantize_activation",
+      "teacher_name": "blocks.1.mlp.down.quantize_activation",
+      "student_layer": 1,
+      "teacher_layer": 1,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.03125,
+        "maximum": 0.03125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.03125568851828575,
+        "raw_maximum": 0.03125568851828575
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 117,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 116,
+        "round_to_zero": 766082,
+        "nonzero_round_to_zero": 84774,
+        "input_zero": 681308,
+        "output_zero": 766082,
+        "quantization_error_squared_sum": 109.29497861106877,
+        "input_squared_sum": 19998.45430131176,
+        "out_of_range_error_squared_sum": 92.6930625627931,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.00012705900750625522,
+        "nonzero_round_to_zero_fraction": 0.09206239574645537,
+        "error_to_input_squared_ratio": 0.005465171305959369
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 118,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 116,
+        "round_to_zero": 764029,
+        "nonzero_round_to_zero": 85704,
+        "input_zero": 678325,
+        "output_zero": 678325,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 20396.514015087276,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.0001281449819293856,
+        "nonzero_round_to_zero_fraction": 0.09307235195996665,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.2.attention.query_projection.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.026611328125,
+        "maximum": 0.026611328125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02655416913330555,
+        "raw_maximum": 0.02655416913330555
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 71,
+        "above_qmax": 44,
+        "rounded_below_qmin": 69,
+        "rounded_above_qmax": 41,
+        "round_to_zero": 2399,
+        "nonzero_round_to_zero": 2399,
+        "input_zero": 0,
+        "output_zero": 2399,
+        "quantization_error_squared_sum": 24.019193862732926,
+        "input_squared_sum": 230199.15825846695,
+        "out_of_range_error_squared_sum": 10.441736285011586,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0004995482346399777,
+        "nonzero_round_to_zero_fraction": 0.010421010564359188,
+        "error_to_input_squared_ratio": 0.00010434092828334431
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 80,
+        "above_qmax": 44,
+        "rounded_below_qmin": 75,
+        "rounded_above_qmax": 38,
+        "round_to_zero": 2451,
+        "nonzero_round_to_zero": 2451,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230199.32517361493,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0005386433138726717,
+        "nonzero_round_to_zero_fraction": 0.010646893244370308,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.2.attention.key_projection.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.026611328125,
+        "maximum": 0.026611328125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.026577305048704147,
+        "raw_maximum": 0.026577305048704147
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 71,
+        "above_qmax": 44,
+        "rounded_below_qmin": 69,
+        "rounded_above_qmax": 41,
+        "round_to_zero": 2399,
+        "nonzero_round_to_zero": 2399,
+        "input_zero": 0,
+        "output_zero": 2399,
+        "quantization_error_squared_sum": 24.019193862732926,
+        "input_squared_sum": 230199.15825846695,
+        "out_of_range_error_squared_sum": 10.441736285011586,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0004995482346399777,
+        "nonzero_round_to_zero_fraction": 0.010421010564359188,
+        "error_to_input_squared_ratio": 0.00010434092828334431
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 80,
+        "above_qmax": 44,
+        "rounded_below_qmin": 75,
+        "rounded_above_qmax": 38,
+        "round_to_zero": 2451,
+        "nonzero_round_to_zero": 2451,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230199.32517361493,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0005386433138726717,
+        "nonzero_round_to_zero_fraction": 0.010646893244370308,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.2.attention.value_projection.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.027099609375,
+        "maximum": 0.027099609375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.027156420052051544,
+        "raw_maximum": 0.027156420052051544
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 63,
+        "above_qmax": 29,
+        "rounded_below_qmin": 59,
+        "rounded_above_qmax": 24,
+        "round_to_zero": 2440,
+        "nonzero_round_to_zero": 2440,
+        "input_zero": 0,
+        "output_zero": 2440,
+        "quantization_error_squared_sum": 21.779068716401788,
+        "input_squared_sum": 230199.15825846695,
+        "out_of_range_error_squared_sum": 7.662256787989747,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00039963858771198223,
+        "nonzero_round_to_zero_fraction": 0.010599110369752572,
+        "error_to_input_squared_ratio": 9.460968007514742e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 69,
+        "above_qmax": 29,
+        "rounded_below_qmin": 67,
+        "rounded_above_qmax": 29,
+        "round_to_zero": 2503,
+        "nonzero_round_to_zero": 2503,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230199.32517361493,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0004257019738671115,
+        "nonzero_round_to_zero_fraction": 0.010872775924381428,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.forget_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.2.attention.forget_gate_projection.up.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.029052734375,
+        "maximum": 0.029052734375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02907468006014824,
+        "raw_maximum": 0.02907468006014824
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 19,
+        "above_qmax": 7,
+        "rounded_below_qmin": 19,
+        "rounded_above_qmax": 7,
+        "round_to_zero": 2609,
+        "nonzero_round_to_zero": 2609,
+        "input_zero": 0,
+        "output_zero": 2609,
+        "quantization_error_squared_sum": 18.28554312699206,
+        "input_squared_sum": 230199.15825846695,
+        "out_of_range_error_squared_sum": 2.130346010002313,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0001129413400055602,
+        "nonzero_round_to_zero_fraction": 0.011333229079788712,
+        "error_to_input_squared_ratio": 7.94335794506299e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 24,
+        "above_qmax": 6,
+        "rounded_below_qmin": 24,
+        "rounded_above_qmax": 5,
+        "round_to_zero": 2688,
+        "nonzero_round_to_zero": 2688,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230199.32517361493,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00013031693077564637,
+        "nonzero_round_to_zero_fraction": 0.011676396997497914,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.forget_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.2.attention.forget_gate_projection.down.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.072265625,
+        "maximum": 0.072265625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.0720706358551979,
+        "raw_maximum": 0.0720706358551979
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 1,
+        "above_qmax": 115,
+        "rounded_below_qmin": 1,
+        "rounded_above_qmax": 110,
+        "round_to_zero": 926,
+        "nonzero_round_to_zero": 912,
+        "input_zero": 14,
+        "output_zero": 926,
+        "quantization_error_squared_sum": 99.73046863206534,
+        "input_squared_sum": 571203.6538121573,
+        "out_of_range_error_squared_sum": 66.46127544351475,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.001511676396997498,
+        "nonzero_round_to_zero_fraction": 0.01188490408673895,
+        "error_to_input_squared_ratio": 0.00017459704251972819
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 1,
+        "above_qmax": 117,
+        "rounded_below_qmin": 1,
+        "rounded_above_qmax": 109,
+        "round_to_zero": 867,
+        "nonzero_round_to_zero": 867,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 569959.3430146483,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0015377397831526272,
+        "nonzero_round_to_zero_fraction": 0.011298477898248541,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.output_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.2.attention.output_gate_projection.up.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0279541015625,
+        "maximum": 0.0279541015625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028005462139844894,
+        "raw_maximum": 0.028005462139844894
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 40,
+        "above_qmax": 15,
+        "rounded_below_qmin": 39,
+        "rounded_above_qmax": 15,
+        "round_to_zero": 2514,
+        "nonzero_round_to_zero": 2514,
+        "input_zero": 0,
+        "output_zero": 2514,
+        "quantization_error_squared_sum": 19.376134040706155,
+        "input_squared_sum": 230199.15825846695,
+        "out_of_range_error_squared_sum": 4.410859870146339,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.000238914373088685,
+        "nonzero_round_to_zero_fraction": 0.010920558798999166,
+        "error_to_input_squared_ratio": 8.41711767640379e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 46,
+        "above_qmax": 14,
+        "rounded_below_qmin": 45,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 2581,
+        "nonzero_round_to_zero": 2581,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230199.32517361493,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026063386155129273,
+        "nonzero_round_to_zero_fraction": 0.01121159994439811,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.output_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.2.attention.output_gate_projection.down.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0478515625,
+        "maximum": 0.0478515625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.04777419567108154,
+        "raw_maximum": 0.04777419567108154
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 6,
+        "above_qmax": 9,
+        "rounded_below_qmin": 5,
+        "rounded_above_qmax": 9,
+        "round_to_zero": 1031,
+        "nonzero_round_to_zero": 1007,
+        "input_zero": 24,
+        "output_zero": 1031,
+        "quantization_error_squared_sum": 16.889172644797487,
+        "input_squared_sum": 176073.36022908014,
+        "out_of_range_error_squared_sum": 2.2587006156420557,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00019547539616346956,
+        "nonzero_round_to_zero_fraction": 0.013122914929107589,
+        "error_to_input_squared_ratio": 9.592122637305178e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 7,
+        "above_qmax": 8,
+        "rounded_below_qmin": 7,
+        "rounded_above_qmax": 8,
+        "round_to_zero": 1094,
+        "nonzero_round_to_zero": 1094,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 175592.96566357242,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00019547539616346956,
+        "nonzero_round_to_zero_fraction": 0.014256672226855713,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.2.attention.output_projection.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.00897216796875,
+        "maximum": 0.00897216796875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.008941653184592724,
+        "raw_maximum": 0.008941653184592724
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 78,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 76,
+        "round_to_zero": 10862,
+        "nonzero_round_to_zero": 10862,
+        "input_zero": 0,
+        "output_zero": 10862,
+        "quantization_error_squared_sum": 9.30662215963616,
+        "input_squared_sum": 5512.04491709407,
+        "out_of_range_error_squared_sum": 7.766590601298475,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003388240200166806,
+        "nonzero_round_to_zero_fraction": 0.04718341673616903,
+        "error_to_input_squared_ratio": 0.001688415515405955
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 86,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 85,
+        "round_to_zero": 10813,
+        "nonzero_round_to_zero": 10813,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 5541.928836467361,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00037357520155685293,
+        "nonzero_round_to_zero_fraction": 0.04697056574923547,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.mlp.up.quantize_activation",
+      "teacher_name": "blocks.2.mlp.up.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0279541015625,
+        "maximum": 0.0279541015625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02797042950987816,
+        "raw_maximum": 0.02797042950987816
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 50,
+        "above_qmax": 32,
+        "rounded_below_qmin": 48,
+        "rounded_above_qmax": 29,
+        "round_to_zero": 2583,
+        "nonzero_round_to_zero": 2583,
+        "input_zero": 0,
+        "output_zero": 2583,
+        "quantization_error_squared_sum": 22.313546463365835,
+        "input_squared_sum": 230203.33412970303,
+        "out_of_range_error_squared_sum": 7.297394603787154,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00035619961078676673,
+        "nonzero_round_to_zero_fraction": 0.011220287739783152,
+        "error_to_input_squared_ratio": 9.692972757203315e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 51,
+        "above_qmax": 25,
+        "rounded_below_qmin": 51,
+        "rounded_above_qmax": 24,
+        "round_to_zero": 2604,
+        "nonzero_round_to_zero": 2604,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230203.41804125602,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003301362246316375,
+        "nonzero_round_to_zero_fraction": 0.011311509591326105,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.2.mlp.down.quantize_activation",
+      "teacher_name": "blocks.2.mlp.down.quantize_activation",
+      "student_layer": 2,
+      "teacher_layer": 2,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.017578125,
+        "maximum": 0.017578125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.017639154568314552,
+        "raw_maximum": 0.017639154568314552
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 40,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 40,
+        "round_to_zero": 812125,
+        "nonzero_round_to_zero": 53261,
+        "input_zero": 758864,
+        "output_zero": 812125,
+        "quantization_error_squared_sum": 28.094290465274256,
+        "input_squared_sum": 4834.5506145477575,
+        "out_of_range_error_squared_sum": 24.510646805848012,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 4.343897692521546e-05,
+        "nonzero_round_to_zero_fraction": 0.057840083750347514,
+        "error_to_input_squared_ratio": 0.0058111482752368085
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 39,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 38,
+        "round_to_zero": 812004,
+        "nonzero_round_to_zero": 53417,
+        "input_zero": 758587,
+        "output_zero": 758587,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 4831.167082111367,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 4.235300250208507e-05,
+        "nonzero_round_to_zero_fraction": 0.05800949576035585,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.3.attention.query_projection.quantize_activation",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0284423828125,
+        "maximum": 0.0284423828125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028498558327555656,
+        "raw_maximum": 0.028498558327555656
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 48,
+        "above_qmax": 15,
+        "rounded_below_qmin": 48,
+        "rounded_above_qmax": 14,
+        "round_to_zero": 2576,
+        "nonzero_round_to_zero": 2576,
+        "input_zero": 0,
+        "output_zero": 2576,
+        "quantization_error_squared_sum": 20.738933347580733,
+        "input_squared_sum": 230200.89987368957,
+        "out_of_range_error_squared_sum": 5.186328946239939,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00027366555462885736,
+        "nonzero_round_to_zero_fraction": 0.011189880455935502,
+        "error_to_input_squared_ratio": 9.009058330771128e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 56,
+        "above_qmax": 15,
+        "rounded_below_qmin": 51,
+        "rounded_above_qmax": 12,
+        "round_to_zero": 2562,
+        "nonzero_round_to_zero": 2562,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230200.9674130902,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00030841673616902976,
+        "nonzero_round_to_zero_fraction": 0.0111290658882402,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.3.attention.key_projection.quantize_activation",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02880859375,
+        "maximum": 0.02880859375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02884930558502674,
+        "raw_maximum": 0.02884930558502674
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 45,
+        "above_qmax": 12,
+        "rounded_below_qmin": 41,
+        "rounded_above_qmax": 11,
+        "round_to_zero": 2605,
+        "nonzero_round_to_zero": 2605,
+        "input_zero": 0,
+        "output_zero": 2605,
+        "quantization_error_squared_sum": 19.872962387616287,
+        "input_squared_sum": 230200.89987368957,
+        "out_of_range_error_squared_sum": 3.9558757522072483,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002476021684737281,
+        "nonzero_round_to_zero_fraction": 0.011315853489018627,
+        "error_to_input_squared_ratio": 8.632877803049645e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 45,
+        "above_qmax": 12,
+        "rounded_below_qmin": 44,
+        "rounded_above_qmax": 12,
+        "round_to_zero": 2589,
+        "nonzero_round_to_zero": 2589,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230200.9674130902,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002476021684737281,
+        "nonzero_round_to_zero_fraction": 0.011246351125938282,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.3.attention.value_projection.quantize_activation",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02783203125,
+        "maximum": 0.02783203125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02778889425098896,
+        "raw_maximum": 0.02778889425098896
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 61,
+        "above_qmax": 24,
+        "rounded_below_qmin": 59,
+        "rounded_above_qmax": 23,
+        "round_to_zero": 2532,
+        "nonzero_round_to_zero": 2532,
+        "input_zero": 0,
+        "output_zero": 2532,
+        "quantization_error_squared_sum": 22.750696504983544,
+        "input_squared_sum": 230200.89987368957,
+        "out_of_range_error_squared_sum": 7.883280732150638,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003692313038643314,
+        "nonzero_round_to_zero_fraction": 0.010998748957464553,
+        "error_to_input_squared_ratio": 9.88297461802572e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 65,
+        "above_qmax": 21,
+        "rounded_below_qmin": 65,
+        "rounded_above_qmax": 20,
+        "round_to_zero": 2504,
+        "nonzero_round_to_zero": 2504,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230200.9674130902,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00037357520155685293,
+        "nonzero_round_to_zero_fraction": 0.01087711982207395,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.attention.quantize_queries",
+      "teacher_name": "blocks.3.attention.quantize_queries",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        3,
+        64
+      ],
+      "n_blocks": 3,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 3,
+        "minimum": 0.03564453125,
+        "maximum": 0.047119140625,
+        "positive": 3,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.0357169471681118,
+        "raw_maximum": 0.04720454290509224
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 1,
+        "above_qmax": 0,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 0,
+        "round_to_zero": 14872,
+        "nonzero_round_to_zero": 14872,
+        "input_zero": 0,
+        "output_zero": 14872,
+        "quantization_error_squared_sum": 33.26320684492758,
+        "input_squared_sum": 230207.78208515406,
+        "out_of_range_error_squared_sum": 1.0806442332977895e-05,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 4.343897692521546e-06,
+        "nonzero_round_to_zero_fraction": 0.06460244648318043,
+        "error_to_input_squared_ratio": 0.00014449210423574425
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 1,
+        "above_qmax": 0,
+        "rounded_below_qmin": 1,
+        "rounded_above_qmax": 0,
+        "round_to_zero": 15079,
+        "nonzero_round_to_zero": 15079,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230207.78252350897,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 4.343897692521546e-06,
+        "nonzero_round_to_zero_fraction": 0.0655016333055324,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.attention.quantize_keys",
+      "teacher_name": "blocks.3.attention.quantize_keys",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        3,
+        64
+      ],
+      "n_blocks": 3,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 3,
+        "minimum": 0.0400390625,
+        "maximum": 0.048095703125,
+        "positive": 3,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.04002434015274048,
+        "raw_maximum": 0.04816378653049469
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 2,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 2,
+        "round_to_zero": 14974,
+        "nonzero_round_to_zero": 14974,
+        "input_zero": 0,
+        "output_zero": 14974,
+        "quantization_error_squared_sum": 36.81874877347679,
+        "input_squared_sum": 230207.7905819206,
+        "out_of_range_error_squared_sum": 0.030323771058192506,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 8.687795385043092e-06,
+        "nonzero_round_to_zero_fraction": 0.06504552404781763,
+        "error_to_input_squared_ratio": 0.00015993702333186094
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 2,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 2,
+        "round_to_zero": 14952,
+        "nonzero_round_to_zero": 14952,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230207.79001738928,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 8.687795385043092e-06,
+        "nonzero_round_to_zero_fraction": 0.06494995829858215,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.attention.quantize_values",
+      "teacher_name": "blocks.3.attention.quantize_values",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        3,
+        64
+      ],
+      "n_blocks": 3,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 3,
+        "minimum": 0.00897216796875,
+        "maximum": 0.014404296875,
+        "positive": 3,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.008945531211793423,
+        "raw_maximum": 0.01439964585006237
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 12,
+        "above_qmax": 12,
+        "rounded_below_qmin": 12,
+        "rounded_above_qmax": 12,
+        "round_to_zero": 3034,
+        "nonzero_round_to_zero": 2988,
+        "input_zero": 46,
+        "output_zero": 3034,
+        "quantization_error_squared_sum": 2.937492890623461,
+        "input_squared_sum": 31538.280917517928,
+        "out_of_range_error_squared_sum": 0.24972901275414472,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0001042535446205171,
+        "nonzero_round_to_zero_fraction": 0.012979566305254379,
+        "error_to_input_squared_ratio": 9.314055189963863e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 13,
+        "above_qmax": 11,
+        "rounded_below_qmin": 13,
+        "rounded_above_qmax": 11,
+        "round_to_zero": 2978,
+        "nonzero_round_to_zero": 2978,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 31480.5713992354,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0001042535446205171,
+        "nonzero_round_to_zero_fraction": 0.012936127328329163,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.3.attention.output_projection.quantize_activation",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.005340576171875,
+        "maximum": 0.005340576171875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.005355823319405317,
+        "raw_maximum": 0.005355823319405317
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 12,
+        "above_qmax": 8,
+        "rounded_below_qmin": 12,
+        "rounded_above_qmax": 8,
+        "round_to_zero": 5535,
+        "nonzero_round_to_zero": 5535,
+        "input_zero": 0,
+        "output_zero": 5535,
+        "quantization_error_squared_sum": 0.721438152152399,
+        "input_squared_sum": 2384.4471612682187,
+        "out_of_range_error_squared_sum": 0.17460578773932767,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 8.687795385043092e-05,
+        "nonzero_round_to_zero_fraction": 0.024043473728106755,
+        "error_to_input_squared_ratio": 0.0003025599241078116
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 13,
+        "above_qmax": 9,
+        "rounded_below_qmin": 12,
+        "rounded_above_qmax": 9,
+        "round_to_zero": 5551,
+        "nonzero_round_to_zero": 5551,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 2390.558596077357,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 9.556574923547401e-05,
+        "nonzero_round_to_zero_fraction": 0.0241129760911871,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.mlp.up.quantize_activation",
+      "teacher_name": "blocks.3.mlp.up.quantize_activation",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0286865234375,
+        "maximum": 0.0286865234375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02870781533420086,
+        "raw_maximum": 0.02870781533420086
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 40,
+        "above_qmax": 16,
+        "rounded_below_qmin": 34,
+        "rounded_above_qmax": 15,
+        "round_to_zero": 2639,
+        "nonzero_round_to_zero": 2639,
+        "input_zero": 0,
+        "output_zero": 2639,
+        "quantization_error_squared_sum": 20.093790115173405,
+        "input_squared_sum": 230202.36939676807,
+        "out_of_range_error_squared_sum": 4.278179967833466,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00024325827078120656,
+        "nonzero_round_to_zero_fraction": 0.01146354601056436,
+        "error_to_input_squared_ratio": 8.728750345979502e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 40,
+        "above_qmax": 26,
+        "rounded_below_qmin": 40,
+        "rounded_above_qmax": 22,
+        "round_to_zero": 2655,
+        "nonzero_round_to_zero": 2655,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230202.40847318957,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00028669724770642203,
+        "nonzero_round_to_zero_fraction": 0.011533048373644704,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.3.mlp.down.quantize_activation",
+      "teacher_name": "blocks.3.mlp.down.quantize_activation",
+      "student_layer": 3,
+      "teacher_layer": 3,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0269775390625,
+        "maximum": 0.0269775390625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02703857235610485,
+        "raw_maximum": 0.02703857235610485
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 16,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 16,
+        "round_to_zero": 796480,
+        "nonzero_round_to_zero": 71409,
+        "input_zero": 725071,
+        "output_zero": 796480,
+        "quantization_error_squared_sum": 18.585026112101772,
+        "input_squared_sum": 9273.206663442188,
+        "out_of_range_error_squared_sum": 8.566497558915614,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 1.7375590770086183e-05,
+        "nonzero_round_to_zero_fraction": 0.07754834758131776,
+        "error_to_input_squared_ratio": 0.0020041639086260873
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 23,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 22,
+        "round_to_zero": 795713,
+        "nonzero_round_to_zero": 71954,
+        "input_zero": 723759,
+        "output_zero": 723759,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 9396.5007101771,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 2.497741173199889e-05,
+        "nonzero_round_to_zero_fraction": 0.07814020364192382,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.8.attention.query_projection.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.028564453125,
+        "maximum": 0.028564453125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02858249470591545,
+        "raw_maximum": 0.02858249470591545
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 37,
+        "above_qmax": 18,
+        "rounded_below_qmin": 37,
+        "rounded_above_qmax": 17,
+        "round_to_zero": 2753,
+        "nonzero_round_to_zero": 2753,
+        "input_zero": 0,
+        "output_zero": 2753,
+        "quantization_error_squared_sum": 21.98836901554564,
+        "input_squared_sum": 230205.0768391546,
+        "out_of_range_error_squared_sum": 6.364334078790193,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.000238914373088685,
+        "nonzero_round_to_zero_fraction": 0.011958750347511815,
+        "error_to_input_squared_ratio": 9.551643828823559e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 44,
+        "above_qmax": 18,
+        "rounded_below_qmin": 40,
+        "rounded_above_qmax": 17,
+        "round_to_zero": 2780,
+        "nonzero_round_to_zero": 2780,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230205.08652101379,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00026932165693633583,
+        "nonzero_round_to_zero_fraction": 0.012076035585209897,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.8.attention.key_projection.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0284423828125,
+        "maximum": 0.0284423828125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028503334149718285,
+        "raw_maximum": 0.028503334149718285
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 38,
+        "above_qmax": 19,
+        "rounded_below_qmin": 37,
+        "rounded_above_qmax": 18,
+        "round_to_zero": 2746,
+        "nonzero_round_to_zero": 2746,
+        "input_zero": 0,
+        "output_zero": 2746,
+        "quantization_error_squared_sum": 22.297385010918287,
+        "input_squared_sum": 230205.0768391546,
+        "out_of_range_error_squared_sum": 6.836496977097738,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002476021684737281,
+        "nonzero_round_to_zero_fraction": 0.011928343063664165,
+        "error_to_input_squared_ratio": 9.68587892025404e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 45,
+        "above_qmax": 19,
+        "rounded_below_qmin": 44,
+        "rounded_above_qmax": 18,
+        "round_to_zero": 2773,
+        "nonzero_round_to_zero": 2773,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230205.08652101379,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00027800945232137893,
+        "nonzero_round_to_zero_fraction": 0.012045628301362247,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.8.attention.value_projection.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0281982421875,
+        "maximum": 0.0281982421875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028186602517962456,
+        "raw_maximum": 0.028186602517962456
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 41,
+        "above_qmax": 22,
+        "rounded_below_qmin": 40,
+        "rounded_above_qmax": 20,
+        "round_to_zero": 2718,
+        "nonzero_round_to_zero": 2718,
+        "input_zero": 0,
+        "output_zero": 2718,
+        "quantization_error_squared_sum": 23.116712717897098,
+        "input_squared_sum": 230205.0768391546,
+        "out_of_range_error_squared_sum": 7.864548124480962,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00027366555462885736,
+        "nonzero_round_to_zero_fraction": 0.011806713928273562,
+        "error_to_input_squared_ratio": 0.00010041791013170773
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 46,
+        "above_qmax": 22,
+        "rounded_below_qmin": 45,
+        "rounded_above_qmax": 21,
+        "round_to_zero": 2751,
+        "nonzero_round_to_zero": 2751,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230205.08652101379,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00029538504309146513,
+        "nonzero_round_to_zero_fraction": 0.011950062552126772,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.forget_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.8.attention.forget_gate_projection.up.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0299072265625,
+        "maximum": 0.0299072265625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.029895447194576263,
+        "raw_maximum": 0.029895447194576263
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 25,
+        "above_qmax": 3,
+        "rounded_below_qmin": 25,
+        "rounded_above_qmax": 3,
+        "round_to_zero": 2885,
+        "nonzero_round_to_zero": 2885,
+        "input_zero": 0,
+        "output_zero": 2885,
+        "quantization_error_squared_sum": 19.851830238132102,
+        "input_squared_sum": 230205.0768391546,
+        "out_of_range_error_squared_sum": 2.716146815074694,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00012162913539060328,
+        "nonzero_round_to_zero_fraction": 0.01253214484292466,
+        "error_to_input_squared_ratio": 8.623541457342696e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 31,
+        "above_qmax": 3,
+        "rounded_below_qmin": 29,
+        "rounded_above_qmax": 3,
+        "round_to_zero": 2895,
+        "nonzero_round_to_zero": 2895,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230205.08652101379,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00014769252154573257,
+        "nonzero_round_to_zero_fraction": 0.012575583819849875,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.forget_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.8.attention.forget_gate_projection.down.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.07568359375,
+        "maximum": 0.07568359375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.07576774060726166,
+        "raw_maximum": 0.07576774060726166
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 5,
+        "above_qmax": 76,
+        "rounded_below_qmin": 5,
+        "rounded_above_qmax": 69,
+        "round_to_zero": 845,
+        "nonzero_round_to_zero": 831,
+        "input_zero": 14,
+        "output_zero": 845,
+        "quantization_error_squared_sum": 150.76710206891173,
+        "input_squared_sum": 575250.4751092922,
+        "out_of_range_error_squared_sum": 113.94856499523121,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0010555671392827356,
+        "nonzero_round_to_zero_fraction": 0.010829336947456214,
+        "error_to_input_squared_ratio": 0.0002620894872625136
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 4,
+        "above_qmax": 74,
+        "rounded_below_qmin": 4,
+        "rounded_above_qmax": 70,
+        "round_to_zero": 883,
+        "nonzero_round_to_zero": 883,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 577896.2795496976,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0010164720600500418,
+        "nonzero_round_to_zero_fraction": 0.011506984987489574,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.output_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.8.attention.output_gate_projection.up.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0289306640625,
+        "maximum": 0.0289306640625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028990555554628372,
+        "raw_maximum": 0.028990555554628372
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 36,
+        "above_qmax": 14,
+        "rounded_below_qmin": 35,
+        "rounded_above_qmax": 13,
+        "round_to_zero": 2796,
+        "nonzero_round_to_zero": 2796,
+        "input_zero": 0,
+        "output_zero": 2796,
+        "quantization_error_squared_sum": 21.16764837425212,
+        "input_squared_sum": 230205.0768391546,
+        "out_of_range_error_squared_sum": 5.104498989705746,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002171948846260773,
+        "nonzero_round_to_zero_fraction": 0.012145537948290241,
+        "error_to_input_squared_ratio": 9.19512665180797e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 38,
+        "above_qmax": 14,
+        "rounded_below_qmin": 37,
+        "rounded_above_qmax": 12,
+        "round_to_zero": 2817,
+        "nonzero_round_to_zero": 2817,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230205.08652101379,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002258826800111204,
+        "nonzero_round_to_zero_fraction": 0.012236759799833194,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.output_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.8.attention.output_gate_projection.down.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.060791015625,
+        "maximum": 0.060791015625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.060744140297174454,
+        "raw_maximum": 0.060744140297174454
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 0,
+        "above_qmax": 6,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 6,
+        "round_to_zero": 924,
+        "nonzero_round_to_zero": 912,
+        "input_zero": 12,
+        "output_zero": 924,
+        "quantization_error_squared_sum": 24.92725756738756,
+        "input_squared_sum": 321656.9668880286,
+        "out_of_range_error_squared_sum": 1.2608279477290125,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 7.819015846538782e-05,
+        "nonzero_round_to_zero_fraction": 0.01188490408673895,
+        "error_to_input_squared_ratio": 7.74964018611322e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 1,
+        "above_qmax": 6,
+        "rounded_below_qmin": 1,
+        "rounded_above_qmax": 6,
+        "round_to_zero": 905,
+        "nonzero_round_to_zero": 905,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 322367.5920049538,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 9.122185154295246e-05,
+        "nonzero_round_to_zero_fraction": 0.011793682235195996,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.8.attention.output_projection.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0152587890625,
+        "maximum": 0.0152587890625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.015228275209665298,
+        "raw_maximum": 0.015228275209665298
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 1,
+        "above_qmax": 93,
+        "rounded_below_qmin": 1,
+        "rounded_above_qmax": 93,
+        "round_to_zero": 40601,
+        "nonzero_round_to_zero": 40601,
+        "input_zero": 0,
+        "output_zero": 40601,
+        "quantization_error_squared_sum": 52.5342327230928,
+        "input_squared_sum": 5397.94523213928,
+        "out_of_range_error_squared_sum": 48.12446895531444,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0004083263830970253,
+        "nonzero_round_to_zero_fraction": 0.17636659021406728,
+        "error_to_input_squared_ratio": 0.009732264864471913
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 1,
+        "above_qmax": 94,
+        "rounded_below_qmin": 1,
+        "rounded_above_qmax": 94,
+        "round_to_zero": 40644,
+        "nonzero_round_to_zero": 40644,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 5317.074700794102,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00041267028078954685,
+        "nonzero_round_to_zero_fraction": 0.1765533778148457,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.mlp.up.quantize_activation",
+      "teacher_name": "blocks.8.mlp.up.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0281982421875,
+        "maximum": 0.0281982421875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.0282524973154068,
+        "raw_maximum": 0.0282524973154068
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 28,
+        "above_qmax": 29,
+        "rounded_below_qmin": 25,
+        "rounded_above_qmax": 26,
+        "round_to_zero": 2519,
+        "nonzero_round_to_zero": 2519,
+        "input_zero": 0,
+        "output_zero": 2519,
+        "quantization_error_squared_sum": 17.44982905450818,
+        "input_squared_sum": 230206.01791075422,
+        "out_of_range_error_squared_sum": 2.227706982037205,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002476021684737281,
+        "nonzero_round_to_zero_fraction": 0.010942278287461773,
+        "error_to_input_squared_ratio": 7.580092481019801e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 23,
+        "above_qmax": 23,
+        "rounded_below_qmin": 20,
+        "rounded_above_qmax": 19,
+        "round_to_zero": 2570,
+        "nonzero_round_to_zero": 2570,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230206.04190668295,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00019981929385599111,
+        "nonzero_round_to_zero_fraction": 0.011163817069780372,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.4.mlp.down.quantize_activation",
+      "teacher_name": "blocks.8.mlp.down.quantize_activation",
+      "student_layer": 4,
+      "teacher_layer": 8,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.017333984375,
+        "maximum": 0.017333984375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.017394915223121643,
+        "raw_maximum": 0.017394915223121643
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 15,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 14,
+        "round_to_zero": 784869,
+        "nonzero_round_to_zero": 61145,
+        "input_zero": 723724,
+        "output_zero": 784869,
+        "quantization_error_squared_sum": 5.464624605869244,
+        "input_squared_sum": 5857.814911715011,
+        "out_of_range_error_squared_sum": 1.1508536702424408,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 1.6289616346955796e-05,
+        "nonzero_round_to_zero_fraction": 0.06640190610230748,
+        "error_to_input_squared_ratio": 0.0009328776494696978
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 15,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 14,
+        "round_to_zero": 785679,
+        "nonzero_round_to_zero": 61337,
+        "input_zero": 724342,
+        "output_zero": 724342,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 5789.747930021252,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 1.6289616346955796e-05,
+        "nonzero_round_to_zero_fraction": 0.0666104131915485,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.9.attention.query_projection.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0286865234375,
+        "maximum": 0.0286865234375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028716515749692917,
+        "raw_maximum": 0.028716515749692917
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 7,
+        "above_qmax": 30,
+        "rounded_below_qmin": 6,
+        "rounded_above_qmax": 28,
+        "round_to_zero": 2622,
+        "nonzero_round_to_zero": 2622,
+        "input_zero": 0,
+        "output_zero": 2622,
+        "quantization_error_squared_sum": 18.257522164408623,
+        "input_squared_sum": 230204.45605343356,
+        "out_of_range_error_squared_sum": 2.485308351449987,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0001607242146232972,
+        "nonzero_round_to_zero_fraction": 0.011389699749791492,
+        "error_to_input_squared_ratio": 7.93100293426588e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 5,
+        "above_qmax": 33,
+        "rounded_below_qmin": 4,
+        "rounded_above_qmax": 32,
+        "round_to_zero": 2594,
+        "nonzero_round_to_zero": 2594,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230204.46914048342,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00016506811231581874,
+        "nonzero_round_to_zero_fraction": 0.01126807061440089,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.9.attention.key_projection.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0286865234375,
+        "maximum": 0.0286865234375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02873055264353752,
+        "raw_maximum": 0.02873055264353752
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 7,
+        "above_qmax": 30,
+        "rounded_below_qmin": 6,
+        "rounded_above_qmax": 28,
+        "round_to_zero": 2622,
+        "nonzero_round_to_zero": 2622,
+        "input_zero": 0,
+        "output_zero": 2622,
+        "quantization_error_squared_sum": 18.257522164408623,
+        "input_squared_sum": 230204.45605343356,
+        "out_of_range_error_squared_sum": 2.485308351449987,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0001607242146232972,
+        "nonzero_round_to_zero_fraction": 0.011389699749791492,
+        "error_to_input_squared_ratio": 7.93100293426588e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 5,
+        "above_qmax": 33,
+        "rounded_below_qmin": 4,
+        "rounded_above_qmax": 32,
+        "round_to_zero": 2594,
+        "nonzero_round_to_zero": 2594,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230204.46914048342,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00016506811231581874,
+        "nonzero_round_to_zero_fraction": 0.01126807061440089,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.9.attention.value_projection.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.029541015625,
+        "maximum": 0.029541015625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02954573929309845,
+        "raw_maximum": 0.02954573929309845
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 3,
+        "above_qmax": 19,
+        "rounded_below_qmin": 2,
+        "rounded_above_qmax": 17,
+        "round_to_zero": 2704,
+        "nonzero_round_to_zero": 2704,
+        "input_zero": 0,
+        "output_zero": 2704,
+        "quantization_error_squared_sum": 18.06144758529224,
+        "input_squared_sum": 230204.45605343356,
+        "out_of_range_error_squared_sum": 1.3250912875705012,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 9.556574923547401e-05,
+        "nonzero_round_to_zero_fraction": 0.011745899360578259,
+        "error_to_input_squared_ratio": 7.845828831871062e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 2,
+        "above_qmax": 19,
+        "rounded_below_qmin": 2,
+        "rounded_above_qmax": 18,
+        "round_to_zero": 2685,
+        "nonzero_round_to_zero": 2685,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230204.46914048342,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 9.122185154295246e-05,
+        "nonzero_round_to_zero_fraction": 0.01166336530442035,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.forget_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.9.attention.forget_gate_projection.up.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0301513671875,
+        "maximum": 0.0301513671875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.030120987445116043,
+        "raw_maximum": 0.030120987445116043
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 1,
+        "above_qmax": 16,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 15,
+        "round_to_zero": 2747,
+        "nonzero_round_to_zero": 2747,
+        "input_zero": 0,
+        "output_zero": 2747,
+        "quantization_error_squared_sum": 18.309830577044814,
+        "input_squared_sum": 230204.45605343356,
+        "out_of_range_error_squared_sum": 0.8219869568144986,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 7.384626077286628e-05,
+        "nonzero_round_to_zero_fraction": 0.011932686961356687,
+        "error_to_input_squared_ratio": 7.953725523364697e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 12,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 11,
+        "round_to_zero": 2738,
+        "nonzero_round_to_zero": 2738,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230204.46914048342,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 5.212677231025855e-05,
+        "nonzero_round_to_zero_fraction": 0.011893591882123992,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.forget_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.9.attention.forget_gate_projection.down.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.111328125,
+        "maximum": 0.111328125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.11143780499696732,
+        "raw_maximum": 0.11143780499696732
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 0,
+        "above_qmax": 84,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 80,
+        "round_to_zero": 1103,
+        "nonzero_round_to_zero": 1092,
+        "input_zero": 11,
+        "output_zero": 1103,
+        "quantization_error_squared_sum": 303.9224073297883,
+        "input_squared_sum": 912618.2340762111,
+        "out_of_range_error_squared_sum": 224.5810767308285,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0010946622185154294,
+        "nonzero_round_to_zero_fraction": 0.014230608840700584,
+        "error_to_input_squared_ratio": 0.0003330225016130987
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 0,
+        "above_qmax": 90,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 87,
+        "round_to_zero": 1144,
+        "nonzero_round_to_zero": 1144,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 914861.929851716,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0011728523769808173,
+        "nonzero_round_to_zero_fraction": 0.014908256880733946,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.output_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.9.attention.output_gate_projection.up.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.030029296875,
+        "maximum": 0.030029296875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.030086824670433998,
+        "raw_maximum": 0.030086824670433998
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 1,
+        "above_qmax": 16,
+        "rounded_below_qmin": 1,
+        "rounded_above_qmax": 16,
+        "round_to_zero": 2738,
+        "nonzero_round_to_zero": 2738,
+        "input_zero": 0,
+        "output_zero": 2738,
+        "quantization_error_squared_sum": 18.21911959981987,
+        "input_squared_sum": 230204.45605343356,
+        "out_of_range_error_squared_sum": 0.9054245734603228,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 7.384626077286628e-05,
+        "nonzero_round_to_zero_fraction": 0.011893591882123992,
+        "error_to_input_squared_ratio": 7.914320996284697e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 13,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 12,
+        "round_to_zero": 2726,
+        "nonzero_round_to_zero": 2726,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230204.46914048342,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 5.64706700027801e-05,
+        "nonzero_round_to_zero_fraction": 0.011841465109813733,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.output_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.9.attention.output_gate_projection.down.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.068359375,
+        "maximum": 0.068359375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.06822163611650467,
+        "raw_maximum": 0.06822163611650467
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 0,
+        "above_qmax": 2,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 2,
+        "round_to_zero": 1005,
+        "nonzero_round_to_zero": 994,
+        "input_zero": 11,
+        "output_zero": 1005,
+        "quantization_error_squared_sum": 30.84011170231642,
+        "input_squared_sum": 374386.1684139868,
+        "out_of_range_error_squared_sum": 0.8961227280378807,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 2.6063386155129273e-05,
+        "nonzero_round_to_zero_fraction": 0.012953502919099249,
+        "error_to_input_squared_ratio": 8.237513643456561e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 0,
+        "above_qmax": 2,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 2,
+        "round_to_zero": 984,
+        "nonzero_round_to_zero": 984,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 375004.70622643735,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 2.6063386155129273e-05,
+        "nonzero_round_to_zero_fraction": 0.012823185988323603,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.9.attention.output_projection.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0185546875,
+        "maximum": 0.0185546875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.018494687974452972,
+        "raw_maximum": 0.018494687974452972
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 30,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 30,
+        "round_to_zero": 62716,
+        "nonzero_round_to_zero": 62716,
+        "input_zero": 0,
+        "output_zero": 62716,
+        "quantization_error_squared_sum": 21.982179743379156,
+        "input_squared_sum": 3826.487265273044,
+        "out_of_range_error_squared_sum": 15.5502440990104,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00013031693077564637,
+        "nonzero_round_to_zero_fraction": 0.27243188768418125,
+        "error_to_input_squared_ratio": 0.0057447413827497965
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 33,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 33,
+        "round_to_zero": 63446,
+        "nonzero_round_to_zero": 63446,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 3802.5059465548948,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00014334862385321102,
+        "nonzero_round_to_zero_fraction": 0.275602932999722,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.mlp.up.quantize_activation",
+      "teacher_name": "blocks.9.mlp.up.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02880859375,
+        "maximum": 0.02880859375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028843337669968605,
+        "raw_maximum": 0.028843337669968605
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 17,
+        "above_qmax": 25,
+        "rounded_below_qmin": 15,
+        "rounded_above_qmax": 22,
+        "round_to_zero": 2713,
+        "nonzero_round_to_zero": 2713,
+        "input_zero": 0,
+        "output_zero": 2713,
+        "quantization_error_squared_sum": 19.01677069983352,
+        "input_squared_sum": 230205.09193529747,
+        "out_of_range_error_squared_sum": 3.0841306761601004,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00018244370308590491,
+        "nonzero_round_to_zero_fraction": 0.011784994439810953,
+        "error_to_input_squared_ratio": 8.260794989356039e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 14,
+        "above_qmax": 26,
+        "rounded_below_qmin": 13,
+        "rounded_above_qmax": 22,
+        "round_to_zero": 2693,
+        "nonzero_round_to_zero": 2693,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230205.09558048606,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00017375590770086184,
+        "nonzero_round_to_zero_fraction": 0.011698116485960523,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.5.mlp.down.quantize_activation",
+      "teacher_name": "blocks.9.mlp.down.quantize_activation",
+      "student_layer": 5,
+      "teacher_layer": 9,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0162353515625,
+        "maximum": 0.0162353515625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.016279030591249466,
+        "raw_maximum": 0.016279030591249466
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 40,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 40,
+        "round_to_zero": 799321,
+        "nonzero_round_to_zero": 53939,
+        "input_zero": 745382,
+        "output_zero": 799321,
+        "quantization_error_squared_sum": 27.54598704209241,
+        "input_squared_sum": 4738.81399955999,
+        "out_of_range_error_squared_sum": 24.189386806522577,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 4.343897692521546e-05,
+        "nonzero_round_to_zero_fraction": 0.058576374409229914,
+        "error_to_input_squared_ratio": 0.005812844109232841
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 39,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 38,
+        "round_to_zero": 800648,
+        "nonzero_round_to_zero": 53774,
+        "input_zero": 746874,
+        "output_zero": 746874,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 4642.662956751782,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 4.235300250208507e-05,
+        "nonzero_round_to_zero_fraction": 0.0583971886294134,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.10.attention.query_projection.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02685546875,
+        "maximum": 0.02685546875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.026880599558353424,
+        "raw_maximum": 0.026880599558353424
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 46,
+        "above_qmax": 54,
+        "rounded_below_qmin": 42,
+        "rounded_above_qmax": 50,
+        "round_to_zero": 2482,
+        "nonzero_round_to_zero": 2482,
+        "input_zero": 0,
+        "output_zero": 2482,
+        "quantization_error_squared_sum": 19.171407275845255,
+        "input_squared_sum": 230203.9531796095,
+        "out_of_range_error_squared_sum": 5.361159561587158,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0004343897692521546,
+        "nonzero_round_to_zero_fraction": 0.010781554072838477,
+        "error_to_input_squared_ratio": 8.328009580655358e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 40,
+        "above_qmax": 63,
+        "rounded_below_qmin": 37,
+        "rounded_above_qmax": 59,
+        "round_to_zero": 2475,
+        "nonzero_round_to_zero": 2475,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230203.962894613,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0004474214623297192,
+        "nonzero_round_to_zero_fraction": 0.010751146788990825,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.10.attention.key_projection.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0277099609375,
+        "maximum": 0.0277099609375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.027766425162553787,
+        "raw_maximum": 0.027766425162553787
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 24,
+        "above_qmax": 37,
+        "rounded_below_qmin": 22,
+        "rounded_above_qmax": 34,
+        "round_to_zero": 2558,
+        "nonzero_round_to_zero": 2558,
+        "input_zero": 0,
+        "output_zero": 2558,
+        "quantization_error_squared_sum": 17.196750827634347,
+        "input_squared_sum": 230203.9531796095,
+        "out_of_range_error_squared_sum": 2.4772030282719584,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0002649777592438143,
+        "nonzero_round_to_zero_fraction": 0.011111690297470113,
+        "error_to_input_squared_ratio": 7.470223942773526e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 20,
+        "above_qmax": 35,
+        "rounded_below_qmin": 18,
+        "rounded_above_qmax": 34,
+        "round_to_zero": 2556,
+        "nonzero_round_to_zero": 2556,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230203.962894613,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.000238914373088685,
+        "nonzero_round_to_zero_fraction": 0.01110300250208507,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.10.attention.value_projection.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.028564453125,
+        "maximum": 0.028564453125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02854478545486927,
+        "raw_maximum": 0.02854478545486927
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 12,
+        "above_qmax": 21,
+        "rounded_below_qmin": 12,
+        "rounded_above_qmax": 19,
+        "round_to_zero": 2637,
+        "nonzero_round_to_zero": 2637,
+        "input_zero": 0,
+        "output_zero": 2637,
+        "quantization_error_squared_sum": 16.691258083435756,
+        "input_squared_sum": 230203.9531796095,
+        "out_of_range_error_squared_sum": 1.0081309387470583,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00014334862385321102,
+        "nonzero_round_to_zero_fraction": 0.011454858215179315,
+        "error_to_input_squared_ratio": 7.25063920618814e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 11,
+        "above_qmax": 20,
+        "rounded_below_qmin": 11,
+        "rounded_above_qmax": 19,
+        "round_to_zero": 2639,
+        "nonzero_round_to_zero": 2639,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230203.962894613,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00013466082846816792,
+        "nonzero_round_to_zero_fraction": 0.01146354601056436,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.forget_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.10.attention.forget_gate_projection.up.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.029541015625,
+        "maximum": 0.029541015625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.029519598931074142,
+        "raw_maximum": 0.029519598931074142
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 5,
+        "above_qmax": 10,
+        "rounded_below_qmin": 5,
+        "rounded_above_qmax": 9,
+        "round_to_zero": 2722,
+        "nonzero_round_to_zero": 2722,
+        "input_zero": 0,
+        "output_zero": 2722,
+        "quantization_error_squared_sum": 16.98808558318457,
+        "input_squared_sum": 230203.9531796095,
+        "out_of_range_error_squared_sum": 0.27497940497613627,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 6.515846538782318e-05,
+        "nonzero_round_to_zero_fraction": 0.011824089519043648,
+        "error_to_input_squared_ratio": 7.379580301963861e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 6,
+        "above_qmax": 9,
+        "rounded_below_qmin": 6,
+        "rounded_above_qmax": 8,
+        "round_to_zero": 2727,
+        "nonzero_round_to_zero": 2727,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230203.962894613,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 6.515846538782318e-05,
+        "nonzero_round_to_zero_fraction": 0.011845809007506255,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.forget_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.10.attention.forget_gate_projection.down.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.064453125,
+        "maximum": 0.064453125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.06462907046079636,
+        "raw_maximum": 0.06462907046079636
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 31,
+        "above_qmax": 100,
+        "rounded_below_qmin": 29,
+        "rounded_above_qmax": 94,
+        "round_to_zero": 740,
+        "nonzero_round_to_zero": 725,
+        "input_zero": 15,
+        "output_zero": 740,
+        "quantization_error_squared_sum": 211.57957908268196,
+        "input_squared_sum": 496462.5235608476,
+        "out_of_range_error_squared_sum": 185.10988338540574,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0017071517931609675,
+        "nonzero_round_to_zero_fraction": 0.009447977481234361,
+        "error_to_input_squared_ratio": 0.00042617432140726384
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 33,
+        "above_qmax": 103,
+        "rounded_below_qmin": 32,
+        "rounded_above_qmax": 98,
+        "round_to_zero": 744,
+        "nonzero_round_to_zero": 744,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 498658.49237667094,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0017723102585487907,
+        "nonzero_round_to_zero_fraction": 0.00969557964970809,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.output_gate_projection.up.quantize_activation",
+      "teacher_name": "blocks.10.attention.output_gate_projection.up.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02880859375,
+        "maximum": 0.02880859375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.028815407305955887,
+        "raw_maximum": 0.028815407305955887
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 10,
+        "above_qmax": 18,
+        "rounded_below_qmin": 6,
+        "rounded_above_qmax": 18,
+        "round_to_zero": 2662,
+        "nonzero_round_to_zero": 2662,
+        "input_zero": 0,
+        "output_zero": 2662,
+        "quantization_error_squared_sum": 16.639434174980366,
+        "input_squared_sum": 230203.9531796095,
+        "out_of_range_error_squared_sum": 0.7551183598808393,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00012162913539060328,
+        "nonzero_round_to_zero_fraction": 0.011563455657492354,
+        "error_to_input_squared_ratio": 7.228127034811589e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 10,
+        "above_qmax": 17,
+        "rounded_below_qmin": 9,
+        "rounded_above_qmax": 13,
+        "round_to_zero": 2661,
+        "nonzero_round_to_zero": 2661,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230203.962894613,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00011728523769808173,
+        "nonzero_round_to_zero_fraction": 0.011559111759799833,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.output_gate_projection.down.quantize_activation",
+      "teacher_name": "blocks.10.attention.output_gate_projection.down.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        64
+      ],
+      "n_blocks": 1,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.05859375,
+        "maximum": 0.05859375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.05861709266901016,
+        "raw_maximum": 0.05861709266901016
+      },
+      "A": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 6,
+        "above_qmax": 15,
+        "rounded_below_qmin": 6,
+        "rounded_above_qmax": 15,
+        "round_to_zero": 991,
+        "nonzero_round_to_zero": 984,
+        "input_zero": 7,
+        "output_zero": 991,
+        "quantization_error_squared_sum": 39.08232393535981,
+        "input_squared_sum": 286655.1845759396,
+        "out_of_range_error_squared_sum": 17.210241073320503,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00027366555462885736,
+        "nonzero_round_to_zero_fraction": 0.012823185988323603,
+        "error_to_input_squared_ratio": 0.000136339149048275
+      },
+      "B": {
+        "calls": 1,
+        "elements": 76736,
+        "below_qmin": 8,
+        "above_qmax": 16,
+        "rounded_below_qmin": 7,
+        "rounded_above_qmax": 15,
+        "round_to_zero": 956,
+        "nonzero_round_to_zero": 956,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 287183.5811852334,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.0003127606338615513,
+        "nonzero_round_to_zero_fraction": 0.012458298582151793,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.10.attention.output_projection.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.01177978515625,
+        "maximum": 0.01177978515625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.011810203082859516,
+        "raw_maximum": 0.011810203082859516
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 55,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 55,
+        "round_to_zero": 37320,
+        "nonzero_round_to_zero": 37320,
+        "input_zero": 0,
+        "output_zero": 37320,
+        "quantization_error_squared_sum": 25.57006142672275,
+        "input_squared_sum": 4231.793602355759,
+        "out_of_range_error_squared_sum": 22.93745418345145,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.000238914373088685,
+        "nonzero_round_to_zero_fraction": 0.16211426188490408,
+        "error_to_input_squared_ratio": 0.0060423696969739695
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 49,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 49,
+        "round_to_zero": 37369,
+        "nonzero_round_to_zero": 37369,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 4190.376627424805,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00021285098693355574,
+        "nonzero_round_to_zero_fraction": 0.16232711287183765,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.mlp.up.quantize_activation",
+      "teacher_name": "blocks.10.mlp.up.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.02880859375,
+        "maximum": 0.02880859375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02883381024003029,
+        "raw_maximum": 0.02883381024003029
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 18,
+        "above_qmax": 11,
+        "rounded_below_qmin": 18,
+        "rounded_above_qmax": 10,
+        "round_to_zero": 2589,
+        "nonzero_round_to_zero": 2589,
+        "input_zero": 0,
+        "output_zero": 2589,
+        "quantization_error_squared_sum": 17.218543048477656,
+        "input_squared_sum": 230205.40060044947,
+        "out_of_range_error_squared_sum": 1.3187853296048502,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00012597303308312482,
+        "nonzero_round_to_zero_fraction": 0.011246351125938282,
+        "error_to_input_squared_ratio": 7.479643398272228e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 16,
+        "above_qmax": 10,
+        "rounded_below_qmin": 16,
+        "rounded_above_qmax": 8,
+        "round_to_zero": 2608,
+        "nonzero_round_to_zero": 2608,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230205.40388344016,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0001129413400055602,
+        "nonzero_round_to_zero_fraction": 0.011328885182096191,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.6.mlp.down.quantize_activation",
+      "teacher_name": "blocks.10.mlp.down.quantize_activation",
+      "student_layer": 6,
+      "teacher_layer": 10,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.01483154296875,
+        "maximum": 0.01483154296875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.014818074181675911,
+        "raw_maximum": 0.014818074181675911
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 104,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 104,
+        "round_to_zero": 803781,
+        "nonzero_round_to_zero": 53605,
+        "input_zero": 750176,
+        "output_zero": 803781,
+        "quantization_error_squared_sum": 76.31663402222864,
+        "input_squared_sum": 4478.73548099115,
+        "out_of_range_error_squared_sum": 73.61124056644843,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.0001129413400055602,
+        "nonzero_round_to_zero_fraction": 0.05821365895190436,
+        "error_to_input_squared_ratio": 0.017039772575570742
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 104,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 102,
+        "round_to_zero": 804310,
+        "nonzero_round_to_zero": 53396,
+        "input_zero": 750914,
+        "output_zero": 750914,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 4482.626418788083,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.0001129413400055602,
+        "nonzero_round_to_zero_fraction": 0.05798669029747011,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.attention.query_projection.quantize_activation",
+      "teacher_name": "blocks.11.attention.query_projection.quantize_activation",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0286865234375,
+        "maximum": 0.0286865234375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02870415709912777,
+        "raw_maximum": 0.02870415709912777
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 15,
+        "above_qmax": 21,
+        "rounded_below_qmin": 15,
+        "rounded_above_qmax": 18,
+        "round_to_zero": 2579,
+        "nonzero_round_to_zero": 2579,
+        "input_zero": 0,
+        "output_zero": 2579,
+        "quantization_error_squared_sum": 17.705983071729598,
+        "input_squared_sum": 230206.50834046974,
+        "out_of_range_error_squared_sum": 1.8806128008437213,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00015638031693077564,
+        "nonzero_round_to_zero_fraction": 0.011202912149013066,
+        "error_to_input_squared_ratio": 7.691347737894051e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 17,
+        "above_qmax": 17,
+        "rounded_below_qmin": 15,
+        "rounded_above_qmax": 17,
+        "round_to_zero": 2597,
+        "nonzero_round_to_zero": 2597,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230206.53477519803,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00014769252154573257,
+        "nonzero_round_to_zero_fraction": 0.011281102307478454,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.attention.key_projection.quantize_activation",
+      "teacher_name": "blocks.11.attention.key_projection.quantize_activation",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.029052734375,
+        "maximum": 0.029052734375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.02905253879725933,
+        "raw_maximum": 0.02905253879725933
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 13,
+        "above_qmax": 13,
+        "rounded_below_qmin": 11,
+        "rounded_above_qmax": 12,
+        "round_to_zero": 2630,
+        "nonzero_round_to_zero": 2630,
+        "input_zero": 0,
+        "output_zero": 2630,
+        "quantization_error_squared_sum": 17.60549616543468,
+        "input_squared_sum": 230206.50834046974,
+        "out_of_range_error_squared_sum": 1.3967160885934504,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0001129413400055602,
+        "nonzero_round_to_zero_fraction": 0.011424450931331665,
+        "error_to_input_squared_ratio": 7.647696971015514e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 14,
+        "above_qmax": 12,
+        "rounded_below_qmin": 13,
+        "rounded_above_qmax": 12,
+        "round_to_zero": 2639,
+        "nonzero_round_to_zero": 2639,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230206.53477519803,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0001129413400055602,
+        "nonzero_round_to_zero_fraction": 0.01146354601056436,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.attention.value_projection.quantize_activation",
+      "teacher_name": "blocks.11.attention.value_projection.quantize_activation",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.030029296875,
+        "maximum": 0.030029296875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.029987893998622894,
+        "raw_maximum": 0.029987893998622894
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 7,
+        "above_qmax": 6,
+        "rounded_below_qmin": 7,
+        "rounded_above_qmax": 6,
+        "round_to_zero": 2716,
+        "nonzero_round_to_zero": 2716,
+        "input_zero": 0,
+        "output_zero": 2716,
+        "quantization_error_squared_sum": 17.92691668152812,
+        "input_squared_sum": 230206.50834046974,
+        "out_of_range_error_squared_sum": 0.5810841214724292,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 5.64706700027801e-05,
+        "nonzero_round_to_zero_fraction": 0.011798026132888518,
+        "error_to_input_squared_ratio": 7.787319659535713e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 5,
+        "above_qmax": 4,
+        "rounded_below_qmin": 5,
+        "rounded_above_qmax": 4,
+        "round_to_zero": 2740,
+        "nonzero_round_to_zero": 2740,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230206.53477519803,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 3.909507923269391e-05,
+        "nonzero_round_to_zero_fraction": 0.011902279677509035,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.attention.quantize_queries",
+      "teacher_name": "blocks.11.attention.quantize_queries",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        3,
+        64
+      ],
+      "n_blocks": 3,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 3,
+        "minimum": 0.039794921875,
+        "maximum": 0.046142578125,
+        "positive": 3,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.039801664650440216,
+        "raw_maximum": 0.04604626074433327
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 8,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 7,
+        "round_to_zero": 5922,
+        "nonzero_round_to_zero": 5922,
+        "input_zero": 0,
+        "output_zero": 5922,
+        "quantization_error_squared_sum": 38.89098897640495,
+        "input_squared_sum": 230207.7061367813,
+        "out_of_range_error_squared_sum": 1.692275980843533,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 3.475118154017237e-05,
+        "nonzero_round_to_zero_fraction": 0.025724562135112594,
+        "error_to_input_squared_ratio": 0.00016893869292671418
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 6,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 6,
+        "round_to_zero": 6034,
+        "nonzero_round_to_zero": 6034,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230207.70386220605,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 2.6063386155129273e-05,
+        "nonzero_round_to_zero_fraction": 0.026211078676675006,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.attention.quantize_keys",
+      "teacher_name": "blocks.11.attention.quantize_keys",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        3,
+        64
+      ],
+      "n_blocks": 3,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 3,
+        "minimum": 0.041259765625,
+        "maximum": 0.046875,
+        "positive": 3,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.0412517711520195,
+        "raw_maximum": 0.046899959444999695
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 9,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 9,
+        "round_to_zero": 6822,
+        "nonzero_round_to_zero": 6822,
+        "input_zero": 0,
+        "output_zero": 6822,
+        "quantization_error_squared_sum": 39.36221655323085,
+        "input_squared_sum": 230207.75097430416,
+        "out_of_range_error_squared_sum": 0.7689852376711315,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 3.909507923269391e-05,
+        "nonzero_round_to_zero_fraction": 0.029634070058381985,
+        "error_to_input_squared_ratio": 0.00017098562662047148
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 0,
+        "above_qmax": 9,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 9,
+        "round_to_zero": 6682,
+        "nonzero_round_to_zero": 6682,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230207.74743098285,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 3.909507923269391e-05,
+        "nonzero_round_to_zero_fraction": 0.02902592438142897,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.attention.quantize_values",
+      "teacher_name": "blocks.11.attention.quantize_values",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        3,
+        64
+      ],
+      "n_blocks": 3,
+      "block_size": 64,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 3,
+        "minimum": 0.01495361328125,
+        "maximum": 0.016845703125,
+        "positive": 3,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.014979801140725613,
+        "raw_maximum": 0.016902854666113853
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 22,
+        "above_qmax": 19,
+        "rounded_below_qmin": 21,
+        "rounded_above_qmax": 19,
+        "round_to_zero": 3741,
+        "nonzero_round_to_zero": 3663,
+        "input_zero": 78,
+        "output_zero": 3741,
+        "quantization_error_squared_sum": 5.782529929700323,
+        "input_squared_sum": 43869.2520043925,
+        "out_of_range_error_squared_sum": 1.0011331776504733,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00017809980539338336,
+        "nonzero_round_to_zero_fraction": 0.01591169724770642,
+        "error_to_input_squared_ratio": 0.00013181282254644632
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 26,
+        "above_qmax": 20,
+        "rounded_below_qmin": 26,
+        "rounded_above_qmax": 20,
+        "round_to_zero": 3794,
+        "nonzero_round_to_zero": 3794,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 44433.31549251464,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            3,
+            64
+          ]
+        ],
+        "out_of_range_fraction": 0.00019981929385599111,
+        "nonzero_round_to_zero_fraction": 0.016480747845426743,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.attention.output_projection.quantize_activation",
+      "teacher_name": "blocks.11.attention.output_projection.quantize_activation",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.005615234375,
+        "maximum": 0.005615234375,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.0056298174895346165,
+        "raw_maximum": 0.0056298174895346165
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 37,
+        "above_qmax": 33,
+        "rounded_below_qmin": 37,
+        "rounded_above_qmax": 33,
+        "round_to_zero": 6873,
+        "nonzero_round_to_zero": 6870,
+        "input_zero": 3,
+        "output_zero": 6873,
+        "quantization_error_squared_sum": 4.327555534586706,
+        "input_squared_sum": 1921.123428617514,
+        "out_of_range_error_squared_sum": 3.7237344980372846,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003040728384765082,
+        "nonzero_round_to_zero_fraction": 0.02984257714762302,
+        "error_to_input_squared_ratio": 0.0022526171250229965
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 40,
+        "above_qmax": 34,
+        "rounded_below_qmin": 40,
+        "rounded_above_qmax": 32,
+        "round_to_zero": 6876,
+        "nonzero_round_to_zero": 6876,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 1876.506261009365,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003214484292465944,
+        "nonzero_round_to_zero_fraction": 0.02986864053377815,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.mlp.up.quantize_activation",
+      "teacher_name": "blocks.11.mlp.up.quantize_activation",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.0291748046875,
+        "maximum": 0.0291748046875,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.029119212180376053,
+        "raw_maximum": 0.029119212180376053
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 18,
+        "above_qmax": 11,
+        "rounded_below_qmin": 17,
+        "rounded_above_qmax": 9,
+        "round_to_zero": 2670,
+        "nonzero_round_to_zero": 2670,
+        "input_zero": 0,
+        "output_zero": 2670,
+        "quantization_error_squared_sum": 18.536285086487677,
+        "input_squared_sum": 230206.70282088465,
+        "out_of_range_error_squared_sum": 2.217049319898763,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00012597303308312482,
+        "nonzero_round_to_zero_fraction": 0.011598206839032527,
+        "error_to_input_squared_ratio": 8.052017973130034e-05
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 18,
+        "above_qmax": 10,
+        "rounded_below_qmin": 18,
+        "rounded_above_qmax": 8,
+        "round_to_zero": 2618,
+        "nonzero_round_to_zero": 2618,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230206.72425187012,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00012162913539060328,
+        "nonzero_round_to_zero_fraction": 0.011372324159021407,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "blocks.7.mlp.down.quantize_activation",
+      "teacher_name": "blocks.11.mlp.down.quantize_activation",
+      "student_layer": 7,
+      "teacher_layer": 11,
+      "size": [
+        768
+      ],
+      "n_blocks": 1,
+      "block_size": 768,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.014892578125,
+        "maximum": 0.014892578125,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.01491622719913721,
+        "raw_maximum": 0.01491622719913721
+      },
+      "A": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 252,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 248,
+        "round_to_zero": 743640,
+        "nonzero_round_to_zero": 66398,
+        "input_zero": 677242,
+        "output_zero": 743640,
+        "quantization_error_squared_sum": 152.48351128175509,
+        "input_squared_sum": 10107.246959673716,
+        "out_of_range_error_squared_sum": 148.4856683344703,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.00027366555462885736,
+        "nonzero_round_to_zero_fraction": 0.0721065297470114,
+        "error_to_input_squared_ratio": 0.015086552440060057
+      },
+      "B": {
+        "calls": 1,
+        "elements": 920832,
+        "below_qmin": 0,
+        "above_qmax": 252,
+        "rounded_below_qmin": 0,
+        "rounded_above_qmax": 250,
+        "round_to_zero": 741616,
+        "nonzero_round_to_zero": 67046,
+        "input_zero": 674570,
+        "output_zero": 674570,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 10362.160328622678,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            768
+          ]
+        ],
+        "out_of_range_fraction": 0.00027366555462885736,
+        "nonzero_round_to_zero_fraction": 0.07281024117319988,
+        "error_to_input_squared_ratio": 0.0
+      }
+    },
+    {
+      "name": "unembedding.quantize_activation",
+      "teacher_name": "unembedding.quantize_activation",
+      "student_layer": null,
+      "teacher_layer": null,
+      "size": [
+        192
+      ],
+      "n_blocks": 1,
+      "block_size": 192,
+      "qmin": -128,
+      "qmax": 127,
+      "buckets": 256,
+      "scale": {
+        "count": 1,
+        "minimum": 0.027587890625,
+        "maximum": 0.027587890625,
+        "positive": 1,
+        "negative": 0,
+        "zero": 0,
+        "scale_dtype": "torch.bfloat16",
+        "arithmetic_dtype": "torch.float32",
+        "epsilon": null,
+        "raw_minimum": 0.027599092572927475,
+        "raw_maximum": 0.027599092572927475
+      },
+      "A": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 65,
+        "above_qmax": 32,
+        "rounded_below_qmin": 64,
+        "rounded_above_qmax": 31,
+        "round_to_zero": 2573,
+        "nonzero_round_to_zero": 2573,
+        "input_zero": 0,
+        "output_zero": 2573,
+        "quantization_error_squared_sum": 27.677531100362884,
+        "input_squared_sum": 230207.07945245656,
+        "out_of_range_error_squared_sum": 13.049400418918765,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.00042135807617458995,
+        "nonzero_round_to_zero_fraction": 0.011176848762857938,
+        "error_to_input_squared_ratio": 0.00012022884424837585
+      },
+      "B": {
+        "calls": 1,
+        "elements": 230208,
+        "below_qmin": 59,
+        "above_qmax": 26,
+        "rounded_below_qmin": 57,
+        "rounded_above_qmax": 25,
+        "round_to_zero": 2497,
+        "nonzero_round_to_zero": 2497,
+        "input_zero": 0,
+        "output_zero": 0,
+        "quantization_error_squared_sum": 0.0,
+        "input_squared_sum": 230207.08955815583,
+        "out_of_range_error_squared_sum": 0.0,
+        "input_shapes": [
+          [
+            1,
+            1199,
+            192
+          ]
+        ],
+        "out_of_range_fraction": 0.0003692313038643314,
+        "nonzero_round_to_zero_fraction": 0.0108467125382263,
+        "error_to_input_squared_ratio": 0.0
+      }
+    }
+  ],
+  "losses": {
+    "A": {
+      "ce": 0.658460259437561,
+      "kl": 0.1375257968902588,
+      "hidden_weighted": 0.024538833647966385,
+      "hidden_unweighted": 0.24538833647966385,
+      "old_data_objective": 0.8205248899757862,
+      "proposed_2KL_data_objective": 0.29959042742848396
+    },
+    "B": {
+      "ce": 0.6934974789619446,
+      "kl": 0.16178862750530243,
+      "hidden_weighted": 0.025185182690620422,
+      "hidden_unweighted": 0.2518518269062042,
+      "old_data_objective": 0.8804712891578674,
+      "proposed_2KL_data_objective": 0.3487624377012253
+    }
+  },
+  "loss_reconstruction": {
+    "A": {
+      "float64_reconstruction": {
+        "ce": 0.6584602001624378,
+        "kl": 0.13752578226888776,
+        "hidden_weighted": 0.02453883195588187
+      },
+      "absolute_errors": {
+        "ce": 5.9275123254209916e-08,
+        "kl": 1.4621371030587582e-08,
+        "hidden_weighted": 1.6920845141710217e-09
+      }
+    },
+    "B": {
+      "float64_reconstruction": {
+        "ce": 0.6934975315755588,
+        "kl": 0.16178862025931148,
+        "hidden_weighted": 0.025185182572835082
+      },
+      "absolute_errors": {
+        "ce": 5.261361424313549e-08,
+        "kl": 7.245990946147529e-09,
+        "hidden_weighted": 1.177853405087692e-10
+      }
+    }
+  },
+  "loss_delta_B_minus_A": {
+    "ce": 0.035037219524383545,
+    "kl": 0.02426283061504364,
+    "hidden_weighted": 0.0006463490426540375,
+    "hidden_unweighted": 0.006463490426540375,
+    "old_data_objective": 0.05994639918208122,
+    "proposed_2KL_data_objective": 0.04917201027274132
+  },
+  "B_status": "passed",
+  "completed_at": 1794031643.386579,
+  "activation_aggregates": {
+    "A": {
+      "calls": 80,
+      "elements": 22115555,
+      "below_qmin": 1686,
+      "above_qmax": 4152,
+      "rounded_below_qmin": 1596,
+      "rounded_above_qmax": 4039,
+      "round_to_zero": 6627993,
+      "nonzero_round_to_zero": 1145989,
+      "input_zero": 5482004,
+      "output_zero": 6627993,
+      "quantization_error_squared_sum": 3058.148027101767,
+      "input_squared_sum": 16875521.020197257,
+      "out_of_range_error_squared_sum": 1765.8939412180582,
+      "visited_modules": 80,
+      "uncalled_modules": [],
+      "call_multiplicity": {
+        "1": 80
+      },
+      "out_of_range_fraction": 0.0002639770966634118,
+      "nonzero_round_to_zero_fraction": 0.051818233817781195,
+      "error_to_input_squared_ratio": 0.0001812179916366233,
+      "out_of_range_error_fraction": 0.5774390008490239
+    },
+    "B": {
+      "calls": 80,
+      "elements": 22115555,
+      "below_qmin": 1767,
+      "above_qmax": 4157,
+      "rounded_below_qmin": 1674,
+      "rounded_above_qmax": 4031,
+      "round_to_zero": 6621684,
+      "nonzero_round_to_zero": 1155960,
+      "input_zero": 5465724,
+      "output_zero": 5465724,
+      "quantization_error_squared_sum": 0.0,
+      "input_squared_sum": 16876036.15714343,
+      "out_of_range_error_squared_sum": 0.0,
+      "visited_modules": 80,
+      "uncalled_modules": [],
+      "call_multiplicity": {
+        "1": 80
+      },
+      "out_of_range_fraction": 0.0002678657623559526,
+      "nonzero_round_to_zero_fraction": 0.05226909295290125,
+      "error_to_input_squared_ratio": 0.0,
+      "out_of_range_error_fraction": 0.0
+    }
+  },
+  "output_differences": {
+    "logits": {
+      "elements": 245795,
+      "squared_error_sum": 70344.66636236108,
+      "mean_squared_difference": 0.2861924219872702,
+      "root_mean_squared_difference": 0.5349695523927228,
+      "mean_absolute_difference": 0.37539011738507416,
+      "maximum_absolute_difference": 7.274275779724121,
+      "relative_l2_to_A": 0.07666740940730624
+    },
+    "hidden": {
+      "elements": 230208,
+      "squared_error_sum": 3442.6305116549142,
+      "mean_squared_difference": 0.01495443473578205,
+      "root_mean_squared_difference": 0.12228832624491207,
+      "mean_absolute_difference": 0.08881920221093481,
+      "maximum_absolute_difference": 1.1800156310200691,
+      "relative_l2_to_A": 0.12228857074673743
+    }
+  },
+  "adapter_operator_counts": {
+    "kda": 12,
+    "convolution": 36,
+    "gated_norm": 12
+  },
+  "native_calls_scope": "new native evaluator or codec executions; original CPU KDA shared library remains in use",
+  "raw_readout": {
+    "path": "results/depth-activation-counterfactual.npz",
+    "bytes": 6225362,
+    "format": "npz without compression",
+    "keys": [
+      "A_hidden",
+      "A_logits",
+      "B_hidden",
+      "B_logits",
+      "bounds",
+      "input_tokens",
+      "priors_f16",
+      "target_tokens",
+      "teacher_hidden",
+      "teacher_logits"
+    ],
+    "contents": "scientific inputs/teacher cache arrays/A-B logits and hidden only; model weights absent"
+  },
+  "checks": {
+    "losses_finite": true,
+    "losses_reconstructed": true,
+    "counts_bounded": true,
+    "all_134_z_raw_byte_identical": true,
+    "all_model_state_byte_identical": true,
+    "all_155_scale_tensors_byte_identical": true,
+    "all_75_weight_forward_functions_unchanged": true,
+    "parameter_grad_slots_empty": true,
+    "activation_forward_methods_restored": true,
+    "no_grad": true,
+    "dropout_zero": true,
+    "hard_coordinates_fixed": true
+  },
+  "execution": {
+    "child_exit_code": 0,
+    "child_cpu_seconds": 5.6147100000000005,
+    "supervisor_cpu_seconds": 0.054286839,
+    "total_cpu_seconds": 5.668996839000001,
+    "wall_seconds": 9.904191808978794,
+    "max_process_rss_kib": 528496,
+    "child_limit_seconds": 178,
+    "cpu_affinity": [
+      1
+    ],
+    "address_space_limit_bytes": 3221225472,
+    "cpu_total_cap_seconds": 180,
+    "wall_total_cap_seconds": 240,
+    "resource_scope": "wait4 diagnostic child plus supervisor; largest single-process RSS",
+    "queue": "single foreground diagnostic on an original active training worker; unused CPU1",
+    "reruns": 0,
+    "optimizer_updates": 0
+  },
+  "log_tail": null,
+  "recipe": {
+    "method": "eight-block-causal-distillation-v1",
+    "seed": 419,
+    "epochs": 32,
+    "continuous_epochs": 8,
+    "evaluation_every": 4,
+    "coordinate_lr_continuous": 0.03,
+    "coordinate_lr_hard": 0.01,
+    "raw_lr_continuous": 0.0003,
+    "raw_lr_hard": 0.0001,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "teacher_kl": 1.0,
+    "final_hidden_mse": 0.1,
+    "entropy_tau": 0.5,
+    "full_prepared_bytes": 586459020,
+    "final_batch": "merge-short-tail",
+    "kept_layers": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "frozen": "all signed BF16 weight and activation scales",
+    "cpu_gemm": "integer-units-before-native-BF16-fold"
+  },
+  "loss_delta_A_minus_B": {
+    "ce": -0.035037219524383545,
+    "kl": -0.02426283061504364,
+    "hidden_weighted": -0.0006463490426540375,
+    "hidden_unweighted": -0.006463490426540375,
+    "old_data_objective": -0.05994639918208122,
+    "proposed_2KL_data_objective": -0.04917201027274132
+  }
+}
