@@ -68,9 +68,13 @@ def mapped_inputs(incoming, ready):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path("/data/workspace/temp/hutter"))
+    parser.add_argument("--job", type=Path, help="independent output directory; defaults to root/round419")
+    parser.add_argument("--teacher-only", action="store_true")
+    parser.add_argument("--teacher-cache", type=Path, help="existing read-only cache for teacher-only")
     args = parser.parse_args()
+    assert args.teacher_only == (args.teacher_cache is not None)
     root = args.root.resolve()
-    job = root / "round419"
+    job = args.job.resolve() if args.job is not None else root / "round419"
     job.mkdir(parents=True, exist_ok=True)
     state_path = job / "pipeline-state.json"
     assert not state_path.exists(), "inspect the existing pipeline; native pause retains its live process"
@@ -164,6 +168,8 @@ def main():
                             "--original-static15", str(files["original_static15"]),
                             "--output", str(training), "--cpu-seconds", str(CPU_SECONDS),
                             "--prior-cpu-seconds", str(prior_cpu)]
+        if args.teacher_only:
+            trainer_command += ["--teacher-only", "--teacher-cache", str(args.teacher_cache.resolve())]
         # Reuse the queue's native seven-day timeout; one command group includes
         # the trainer's recode/evaluator descendants and natural VM pause time.
         command = ["timeout", "-k", "30s", str(wall_remaining), *trainer_command]

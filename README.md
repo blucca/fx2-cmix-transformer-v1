@@ -17,7 +17,7 @@ It connects the complete methods, measured results and reusable tools.
 
 - **[Integer-coordinate QAT](research/integer-coordinate-qat.md#complete-64-epoch-terminal):** complete 64-epoch curve, native domains and same-W coded failure. Mature and independent-held code grow; the training-containing q2 saving has its own scope.
 - **[Whole-stream causal-prior learning](research/causal-priors.md):** all 205 prior columns, article-cluster sampling, full-piece CPU learning and one selected-weight codec measurement.
-- **[Complete depth32 and same-e12 coded failure](research/depth-complete-32-mixed.md):** all 32 epochs, zero8 structural repair, four retained-history codec scopes and the selected weight's physical byte charge. [Original eight-block method](research/depth-distillation.md).
+- **[Complete depth32 and same-e12 coded failure](research/depth-complete-32-mixed.md):** all 32 epochs, zero8 structural repair, four retained-history codec scopes and the selected weight's physical byte charge. [Fresh teacher-only control](research/teacher-only-distillation.md).
 
 ## Reuse the workbench
 

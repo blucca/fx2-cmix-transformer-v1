@@ -72,6 +72,18 @@ def install_student_coordinates(model):
     return coordinates, scales, initial_q, raw, frozen, mode
 
 
+def data_objective(ce, kl, hidden, recipe):
+    """One source for the actual VJP and its reported scalar."""
+    return (recipe.get("label_ce", 1.) * ce + recipe["teacher_kl"] * kl +
+            recipe["final_hidden_mse"] * hidden)
+
+
+def teacher_target_identity(identity):
+    """Legacy caches also record student settings; only these produce targets."""
+    return dict(checkpoint=identity["checkpoint"], data=identity["data"],
+                cpu_gemm=identity["recipe"]["cpu_gemm"])
+
+
 def main():
     p = argparse.ArgumentParser(description=__doc__)
     for name in ("checkpoint", "kernel", "data", "baseline", "weights",
@@ -83,9 +95,16 @@ def main():
     p.add_argument("--recovery-cpu-seconds", type=float)
     p.add_argument("--check-only", action="store_true",
                    help="one 1025–2048-target complete piece, one update, restore initialization")
+    p.add_argument("--teacher-only", action="store_true",
+                   help="fresh 2KL teacher objective; label CE is report-only")
+    p.add_argument("--teacher-cache", type=Path,
+                   help="existing teacher cache, strictly read-only; required for teacher-only")
     a = p.parse_args()
     assert 600 <= a.cpu_seconds <= 172800 and a.prior_cpu_seconds >= 0
     assert not (a.resume and a.check_only)
+    assert a.teacher_only == (a.teacher_cache is not None)
+    recipe = (dict(RECIPE, method="eight-block-teacher-only-distillation-v1",
+                   label_ce=0., teacher_kl=2.) if a.teacher_only else RECIPE)
     for k in ("OMP_NUM_THREADS", "OPENBLAS_NUM_THREADS", "MKL_NUM_THREADS"):
         os.environ[k] = "1"
     job = a.output.resolve()
@@ -99,7 +118,9 @@ def main():
     wall = time.monotonic()
     identity = dict(checkpoint=str(a.checkpoint.resolve()), data=str(a.data.resolve()),
                     weights=str(a.weights.resolve()), original_static15=str(a.original_static15.resolve()),
-                    recipe=RECIPE)
+                    recipe=recipe)
+    if a.teacher_cache is not None:
+        identity.update(teacher_cache=str(a.teacher_cache.resolve()), teacher_cache_mode="read-only")
     state_path, checkpoint_path = job / "state.json", job / "latest.pt"
     cursor = ("epoch", "step", "next_piece", "seen_targets", "epoch_targets",
               "epoch_ce_sum", "epoch_kl_sum", "epoch_hidden_sum")
@@ -158,15 +179,15 @@ def main():
 
         torch.set_num_threads(1)
         torch.set_num_interop_threads(1)
-        torch.manual_seed(RECIPE["seed"])
+        torch.manual_seed(recipe["seed"])
         model, _, initialization = load_student(a.checkpoint, a.kernel, native_scaled_gemm=True)
         assert model.cfg.n_layers == 8 and sum(model.cfg.kimi_linear) == 6
         z, scales, initial_q, raw, frozen, mode = install_student_coordinates(model)
         initial_raw = {k: v.detach().clone() for k, v in raw.items()}
         optimizer = torch.optim.AdamW([
-            {"params": list(z.values()), "lr": RECIPE["coordinate_lr_continuous"]},
-            {"params": list(raw.values()), "lr": RECIPE["raw_lr_continuous"]}],
-            betas=tuple(RECIPE["betas"]), eps=RECIPE["eps"], weight_decay=0, foreach=False)
+            {"params": list(z.values()), "lr": recipe["coordinate_lr_continuous"]},
+            {"params": list(raw.values()), "lr": recipe["raw_lr_continuous"]}],
+            betas=tuple(recipe["betas"]), eps=recipe["eps"], weight_decay=0, foreach=False)
         if a.resume:
             ckpt = torch.load(checkpoint_path, map_location="cpu", weights_only=True)
             assert ckpt["identity"] == identity and ckpt["z"].keys() == z.keys()
@@ -214,10 +235,17 @@ def main():
             logits = m.last_activation_to_logits(hidden, priors=pp)
             return logits, hidden
 
-        cache = job / "teacher-cache"
-        cache.mkdir(exist_ok=True)
+        cache = a.teacher_cache.resolve() if a.teacher_cache is not None else job / "teacher-cache"
+        if a.teacher_cache is None:
+            cache.mkdir(exist_ok=True)
         cache_identity = cache / "identity.json"
-        if cache_identity.exists():
+        if a.teacher_cache is not None:
+            assert cache_identity.is_file(), "existing read-only cache identity required"
+            target_identity = teacher_target_identity(identity)
+            assert teacher_target_identity(json.loads(cache_identity.read_text())) == target_identity
+            save("teacher_cache_ready", teacher_cache_contract=dict(
+                path=str(cache), mode="read-only", target_identity=target_identity))
+        elif cache_identity.exists():
             assert json.loads(cache_identity.read_text()) == identity
         else:
             cache_identity.write_text(json.dumps(identity, indent=2) + "\n")
@@ -231,6 +259,7 @@ def main():
                 with np.load(path, allow_pickle=False) as data:
                     logits, hidden = torch.from_numpy(data["logits"]), torch.from_numpy(data["hidden"])
             else:
+                assert a.teacher_cache is None, f"read-only teacher cache miss: {path}"
                 if teacher is None:
                     teacher, _ = load_model(a.checkpoint, a.kernel, native_scaled_gemm=True)
                     teacher.requires_grad_(False).eval()
@@ -316,22 +345,23 @@ def main():
                 x, y, pp, bounds = read_piece(piece)
                 reference, feature = teacher_targets(piece, x, pp, bounds)
                 logits, hidden = forward(model, x, pp, bounds)
-                ce = F.cross_entropy(logits.reshape(-1, 205), y.flatten(), reduction="sum")
+                reported_logits = logits.detach() if recipe.get("label_ce", 1.) == 0 else logits
+                ce = F.cross_entropy(reported_logits.reshape(-1, 205), y.flatten(), reduction="sum")
                 kl = F.kl_div(logits.log_softmax(-1), reference.log_softmax(-1),
                               reduction="sum", log_target=True)
                 mse = (hidden-feature).square().mean(-1).sum()
                 assert bool(torch.isfinite(ce) & torch.isfinite(kl) & torch.isfinite(mse))
                 ce_sum += float(ce.detach()); kl_sum += float(kl.detach()); hidden_sum += float(mse.detach())
-                (ce+RECIPE["teacher_kl"]*kl+RECIPE["final_hidden_mse"]*mse).backward()
-                del x, y, pp, bounds, reference, feature, logits, hidden, ce, kl, mse
+                data_objective(ce, kl, mse, recipe).backward()
+                del x, y, pp, bounds, reference, feature, logits, reported_logits, hidden, ce, kl, mse
             for key, value in [*z.items(), *raw.items()]:
                 assert value.grad is not None and bool(torch.isfinite(value.grad).all()), key
                 value.grad.div_(targets)
             soft_nats = 0.
             for value in z.values():
-                h = _old.entropy(value, RECIPE["entropy_tau"])
+                h = _old.entropy(value, recipe["entropy_tau"])
                 soft_nats += float(h.detach())
-                (2*h/RECIPE["full_prepared_bytes"]).backward()
+                (2*h/recipe["full_prepared_bytes"]).backward()
             norm, nonzero = 0., 0
             for key, value in [*z.items(), *raw.items()]:
                 assert bool(torch.isfinite(value.grad).all()), key
@@ -339,8 +369,8 @@ def main():
                 nonzero += int(bool((value.grad != 0).any()))
             return dict(ce_mean=ce_sum/targets, teacher_kl_mean=kl_sum/targets,
                         final_hidden_mse_mean=hidden_sum/targets, soft_entropy_nats=soft_nats,
-                        objective=(ce_sum+kl_sum+RECIPE["final_hidden_mse"]*hidden_sum)/targets+
-                                  2*soft_nats/RECIPE["full_prepared_bytes"],
+                        objective=data_objective(ce_sum, kl_sum, hidden_sum, recipe)/targets+
+                                  2*soft_nats/recipe["full_prepared_bytes"],
                         gradient_norm=math.sqrt(norm), finite_gradient_tensors=len(z)+len(raw),
                         nonzero_gradient_tensors=nonzero)
 
@@ -408,13 +438,13 @@ def main():
             save("check_complete", status="ready")
             return
         model.train()
-        while state["epoch"] < RECIPE["epochs"]:
+        while state["epoch"] < recipe["epochs"]:
             epoch = state["epoch"]
-            mode["hard"] = epoch >= RECIPE["continuous_epochs"]
-            optimizer.param_groups[0]["lr"] = RECIPE["coordinate_lr_hard" if mode["hard"] else "coordinate_lr_continuous"]
-            optimizer.param_groups[1]["lr"] = RECIPE["raw_lr_hard" if mode["hard"] else "raw_lr_continuous"]
+            mode["hard"] = epoch >= recipe["continuous_epochs"]
+            optimizer.param_groups[0]["lr"] = recipe["coordinate_lr_hard" if mode["hard"] else "coordinate_lr_continuous"]
+            optimizer.param_groups[1]["lr"] = recipe["raw_lr_hard" if mode["hard"] else "raw_lr_continuous"]
             order = pieces.copy()
-            random.Random(RECIPE["seed"]+epoch).shuffle(order)
+            random.Random(recipe["seed"]+epoch).shuffle(order)
             for batch, targets in _old.causal_batches(order[state["next_piece"]:]):
                 if cpu()+180 >= a.cpu_seconds or (job / "STOP").exists():
                     checkpoint()
@@ -440,7 +470,7 @@ def main():
                   ce_mean=state["epoch_ce_sum"]/state["epoch_targets"],
                   teacher_kl_mean=state["epoch_kl_sum"]/state["epoch_targets"],
                   final_hidden_mse_mean=state["epoch_hidden_sum"]/state["epoch_targets"])
-            if (epoch+1) % RECIPE["evaluation_every"] == 0:
+            if (epoch+1) % recipe["evaluation_every"] == 0:
                 if cpu()+120 >= a.cpu_seconds:
                     checkpoint(); save("evaluation_budget_stop", status="cpu_budget"); return
                 evaluate(epoch+1)

@@ -1,0 +1,54 @@
+{
+  "status": "passed",
+  "recipe": {
+    "method": "eight-block-teacher-only-distillation-v1",
+    "seed": 419,
+    "epochs": 32,
+    "continuous_epochs": 8,
+    "evaluation_every": 4,
+    "coordinate_lr_continuous": 0.03,
+    "coordinate_lr_hard": 0.01,
+    "raw_lr_continuous": 0.0003,
+    "raw_lr_hard": 0.0001,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "teacher_kl": 2.0,
+    "final_hidden_mse": 0.1,
+    "entropy_tau": 0.5,
+    "full_prepared_bytes": 586459020,
+    "final_batch": "merge-short-tail",
+    "kept_layers": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "frozen": "all signed BF16 weight and activation scales",
+    "cpu_gemm": "integer-units-before-native-BF16-fold",
+    "label_ce": 0.0
+  },
+  "target_identity": {
+    "checkpoint": "/data/workspace/temp/hutter/round416/source/models/6m-q4-fp32.tch",
+    "data": "/data/workspace/temp/hutter/round419/incoming/data-manifest.json",
+    "cpu_gemm": "integer-units-before-native-BF16-fold"
+  },
+  "teacher_cache_mode": "read-only",
+  "ce_report_only": true,
+  "output_gradient_formula": "2*(student_probability-teacher_probability)",
+  "output_gradient_max_abs_error": 1.734723475976807e-17,
+  "hidden_gradient_max_abs_error": 0.0,
+  "toy_objective": 1.4861427568406944,
+  "cpu_seconds": 0.963444042,
+  "model_forwards": 0,
+  "native_calls": 0,
+  "optimizer_updates": 0,
+  "teacher_cache_writes": 0
+}

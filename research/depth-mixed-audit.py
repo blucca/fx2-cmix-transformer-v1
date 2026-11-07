@@ -179,6 +179,8 @@ def main():
     p.add_argument("--wait-for-ready", action="store_true",
                    help="Wait locally for the reaped training pipeline and existing reference deployment, then measure once")
     p.add_argument("--self-check", action="store_true")
+    p.add_argument("--retained-build", action="store_true",
+                   help="reuse an already completed native deployment; charge zero new build CPU")
     a = p.parse_args()
     if a.self_check:
         self_check()
@@ -274,7 +276,7 @@ def main():
         assert completed <= 32 and (trajectory["status"] != "complete" or completed == 32)
         d = read(a.deployment)
         paths, build = deployment_contract(d)
-        build_cpu = build["cpu_seconds"]
+        build_cpu = 0. if a.retained_build else build["cpu_seconds"]
         remaining = math.floor(CPU_LIMIT-cpu())
         assert remaining > 30
         resource.setrlimit(resource.RLIMIT_CPU, (remaining-1, remaining))
@@ -315,6 +317,7 @@ def main():
             baseline_probe=d["baseline"]["probe"], candidate_probe=d["candidate"]["probe"],
             B0=d["baseline"]["binary"], B1=d["candidate"]["binary"], deployment_sha256=old.sha(a.deployment),
             build_receipt=build, prior_mixed_build_cpu_seconds=build_cpu, original_weight_bytes_equal=False,
+            retained_native_build=a.retained_build,
             double_weight_saved_bytes=best["double_weight_saved_bytes"], dual_code_saved_bytes=dual_b,
             pipeline_terminal=dict(status=trajectory["status"], training_exit=code, target_epochs=32,
                 completed_epochs=completed, completed_continuous_epochs=min(8, completed), completed_hard_epochs=max(0, completed-8),

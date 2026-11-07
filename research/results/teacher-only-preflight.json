@@ -1,0 +1,103 @@
+{
+  "schema": "hutter.teacher-only.preflight.v1",
+  "status": "passed",
+  "started_at": 1794075668.5692613,
+  "controller_pid": 39080,
+  "cpu_limit_seconds": 1800,
+  "new_native_builds": 0,
+  "new_teacher_forwards": 0,
+  "new_teacher_cache_files": 0,
+  "stage": "complete",
+  "updated_at": 1794075698.2535732,
+  "cpu_seconds": 25.952396032,
+  "runs": [
+    {
+      "id": "objective-contract",
+      "exit_code": 0,
+      "cpu_seconds": 1.217287,
+      "max_rss_kib": 247436,
+      "wall_seconds": 3.6873950958251953,
+      "log": "/data/workspace/temp/hutter/round458/teacher-only/check/objective-contract.log",
+      "resource_scope": "wait4 child and reaped descendants"
+    },
+    {
+      "id": "cached-causal-one-step",
+      "exit_code": 0,
+      "cpu_seconds": 24.675025,
+      "max_rss_kib": 1129744,
+      "wall_seconds": 25.97803258895874,
+      "log": "/data/workspace/temp/hutter/round458/teacher-only/check/cached-causal-one-step.log",
+      "resource_scope": "wait4 child and reaped descendants"
+    }
+  ],
+  "trainer": {
+    "ce_mean": 1.2836053767136677,
+    "teacher_kl_mean": 0.6251614708220392,
+    "final_hidden_mse_mean": 0.44593175994643974,
+    "soft_entropy_nats": 10374822.580078125,
+    "objective": 1.3302973539272462,
+    "gradient_norm": 123.86174016599757,
+    "finite_gradient_tensors": 134,
+    "nonzero_gradient_tensors": 134,
+    "status": "passed",
+    "piece": [
+      0,
+      5321,
+      6521
+    ],
+    "targets": 1199,
+    "changed_weight_symbols": 0,
+    "changed_z_coordinates": 3779241,
+    "changed_raw_values": 18852,
+    "hard_entropy_nats": 10352460.780664233,
+    "max_scale_delta": 0.0,
+    "stage_kind": "continuous",
+    "check_cpu_seconds": 2.5232683630000032,
+    "frozen_tensors": 230,
+    "coordinate_tensors": 75,
+    "raw_trainable_tensors": 59
+  },
+  "trainer_state": "/data/workspace/temp/hutter/round458/teacher-only/check/trainer/state.json",
+  "recipe": {
+    "method": "eight-block-teacher-only-distillation-v1",
+    "seed": 419,
+    "epochs": 32,
+    "continuous_epochs": 8,
+    "evaluation_every": 4,
+    "coordinate_lr_continuous": 0.03,
+    "coordinate_lr_hard": 0.01,
+    "raw_lr_continuous": 0.0003,
+    "raw_lr_hard": 0.0001,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "teacher_kl": 2.0,
+    "final_hidden_mse": 0.1,
+    "entropy_tau": 0.5,
+    "full_prepared_bytes": 586459020,
+    "final_batch": "merge-short-tail",
+    "kept_layers": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "frozen": "all signed BF16 weight and activation scales",
+    "cpu_gemm": "integer-units-before-native-BF16-fold",
+    "label_ce": 0.0
+  },
+  "initialization_restored": true,
+  "optimizer_reset": true,
+  "zero_weight_bytes_equal": true,
+  "retained_native_contract": "/data/workspace/temp/hutter/round419/native/depth8/repair-round420.json",
+  "cache_identity_bytes_unchanged": true,
+  "cache_misses": 0,
+  "completed_at": 1794075698.2535684
+}
