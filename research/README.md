@@ -996,3 +996,9 @@ prior-state control. Terminal native and end-to-end coding measurements remain.
 ## Canonical original now restored
 
 [Prepared→official-original provenance](prepared-original-provenance.md) passes 1,000,000,000 bytes / official MD5 with one inverse, 78.580048 cumulative CPU seconds and 1,516,000 KiB peak child RSS. The canonical input is retained for an admitted fullstream pair. [Receipt](results/prepared-original-provenance.json) · [stdlib replay](check-prepared-original-provenance.py).
+
+## Byte-path observation quotient
+
+[The nine-group coder target](byte-path-quotient.md) connects exact NN lookup/override
+observations to grouped teacher KL, three complete initial-eight held pieces and
+saved-row half/guard controls. The full 2KL trajectory stays frozen.
