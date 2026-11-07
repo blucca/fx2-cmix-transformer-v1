@@ -77,6 +77,30 @@ coordinates. A model's half/guard transform adds its own VJP.
 oracle**. The deployed predictor continues to receive the original causal
 inputs and emit a complete probability row.
 
+### Count each actually visited bit once
+
+For a learning objective, use `U(y) = Σ_d KL(Bern(t_d) || Bern(s_d))` along the
+actual target path. Deterministic vocabulary branches contribute zero. The
+nine-group certificate weights these terms by teacher prefix mass `A_d`.
+
+Enumerating a target drawn from the frozen teacher gives:
+
+```text
+E_{y~T} U(y) = KL(T || S)
+E_{y~T} D_path(y) = Σ_all_nodes A_node² × KL(Bern(t_node) || Bern(s_node))
+```
+
+The unweighted path preserves the expected full-KL scale under teacher-drawn
+targets and follows actual bit visits under the data distribution. **Recommendation:
+use equal-per-visited-bit teacher KL for a future learning comparison; use the
+nine-group KL as its observation-equivalence and capacity certificate.** Both
+have zero teacher-point gradient and the same exact-path-match zero set.
+
+[The saved-row check](results/byte-path-weighting-saved-rows.json) enumerates all
+205 targets on each of 12 saved rows to verify the expectation identity. These
+are objective identities; the complete compressed-model experiment supplies
+its learned native/coded performance.
+
 ## Initial-eight measurement: three complete causal held pieces
 
 The existing full-piece CPU loader ran the original 12-block teacher and the
@@ -134,6 +158,8 @@ python3 research/byte_path_kl.py \
   --evidence research/results/byte-path-initial8-geometry.json
 python3 research/byte-path-half-control.py \
   research/results/byte-path-initial8-geometry.json
+python3 research/byte-path-weighting-check.py \
+  research/results/byte-path-initial8-geometry.json
 ```
 
 The [measurement source](byte-path-measure.py) accepts the existing causal data
@@ -152,7 +178,7 @@ run's 1 GiB systemd memory limit is separate. Setup and complete-piece data
 provenance follow [the existing causal method](causal-priors.md).
 
 The complete 2KL control and its same-weight mixed result come first. A later
-path-learning comparison would explicitly target the half/guard effective row,
+unweighted bit-path learning comparison would explicitly target the half/guard effective row,
 retain causal inputs at deployment, and measure learned held/long/giant behavior
 plus its own G→M→u16→bytes. The current training and codec stay frozen.
 
