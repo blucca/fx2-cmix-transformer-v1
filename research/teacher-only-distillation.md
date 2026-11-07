@@ -60,6 +60,9 @@ and charges zero new build CPU. Passed original W0 traces, encoded bytes, and
 golden decodes are reused. The candidate encodes and decodes both samples with
 its own frozen weight. Full-stream archive measurements are a later gate.
 
+A self-contained check in the CPU/PyTorch environment is
+`python3 research/check-teacher-only.py`; it loads zero models or datasets.
+Passing `--cache`, `--checkpoint` and `--data` adds the real-cache identity check.
 The minimal `check-teacher-only.py` imports the production helpers and checks
 205-column logit VJP `2*(student_probability - teacher_probability)`, hidden MSE
 VJP, detached CE, the reported scalar, and the actual read-only cache identity.
