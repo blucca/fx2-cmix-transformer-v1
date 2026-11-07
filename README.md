@@ -36,7 +36,8 @@ Focused analyses cover [the frozen NN’s prior value](research/causal-prior-val
 [teacher-objective conflict](research/depth-objective-gradients.md),
 [complete teacher-target fidelity and frozen-cache label oracle](research/teacher-targets-and-label-oracle.md),
 [the practical CPU-student diagnostic](research/teacher-drift-cpu-student.md),
-and [the exact missing-middle oracle](research/depth-middle-bridge.md).
+[the exact missing-middle oracle](research/depth-middle-bridge.md),
+and [BF16 → FP8 rounding boundaries](research/bf16-fp8-rounding-boundary.md).
 
 The original champion’s documentation follows, with its authorship and results preserved.
 
