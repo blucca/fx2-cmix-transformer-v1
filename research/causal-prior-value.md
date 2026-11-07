@@ -22,6 +22,9 @@ probability floor, and row normalization. The NN column is the original native
 largest measured contribution occurs in the independent 131,071-target segment
 of the giant article: the NN removes about 96.8% of the prior's NLL there.
 The independent audit is reported separately from the sampled held total.
+Held/audit roles refer to the two new learning trajectories. The original
+checkpoint is the upstream enwik9-trained predictor described in the
+[training writeup](../writeup.md#training).
 This favors preserving the learned predictor and measuring compressed students.
 The original causal and eight-block methods continue to their selected-weight
 mixed-codec measurement.
