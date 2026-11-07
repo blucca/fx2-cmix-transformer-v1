@@ -387,3 +387,9 @@ all nine scopes, the original selector, piece coverage and resource accounting.
 The [completed e10 watch event and full original curve](results/causal-first-ten-epochs.json) preserve e2 as the leading trained export. All held, short, long and independent maximum-article scopes regress monotonically through e3–e10. Native e10 changes 644557 of 5868864 hard symbols (10.9827%); its full-held delta is +0.039673084438 nats/target, short +0.038772368899, long +0.047830020984 and independent audit +0.012173058547. Its 438 regressing pieces cover 1077457 of 1082505 held targets (99.5337%).
 
 The same complete epoch's online CE reaches 0.890642504573 while teacher KL rises to 0.049936596730; all fixed scales and 111 finite/nonzero gradient contracts hold. The original 16-epoch/48-CPU-hour trajectory and the e2-leading terminal selector remain fixed. One same-weight actual mixed run supplies G/M/u16/real-byte transmission. Extra recipes, model probes and early full-stream admissions have zero allocation. The original 473-piece pairing and [stdlib replay](causal-first-ten-epochs-check.py) reconstruct the published means and regression counts.
+
+## Complete native e11
+
+[Eleven-epoch receipt](results/causal-first-eleven-epochs.json) and [stdlib replay](causal-first-eleven-epochs-check.py) extend the original trajectory. Full held, short, long and the independent audit regress at every native endpoint from e3 through e11; e2 remains the selected proxy leader. Native e11 holds 1.007926533507 nats/target on the same 1,082,505 held targets, adding 0.002005110275 nats/target from e10. Its 2,907,839-byte W costs 7,028 B more across both copies than W0. The fixed sixteen-epoch method and its sole terminal-selected-W mixed measurement continue.
+
+[The canonical 1 GB original](prepared-original-provenance.md) now passes the official MD5. Its inverse preparation and the actual fullstream compressor/archive program scopes are recorded separately.

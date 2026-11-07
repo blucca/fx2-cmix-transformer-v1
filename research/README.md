@@ -9,7 +9,7 @@
 
 **Eight hard-QAT epochs:** [native e16](results/depth-hard-e16.json) adds 0.004113873 nats/target from e12 across 800,662 worsening held targets; e12 remains the current native minimum. W16/B save 1,894,244 B across both copies. The original 32-epoch method and sole mixed run continue. [Stdlib replay](check-depth-hard-e16.py).
 
-**Causal e10:** [ten original native epochs](results/causal-first-ten-epochs.json) preserve e2; the same four held/audit scopes regress through e3–e10. [Replay](causal-first-ten-epochs-check.py).
+**Causal e11:** [eleven original native epochs](results/causal-first-eleven-epochs.json) preserve e2; the same four held/audit scopes regress through e3–e11. Native e11 adds 0.002005110 nats/target from e10. [Replay](causal-first-eleven-epochs-check.py).
 
 **New paired analysis:** [native-loss domains](native-loss-regimes.md) reuse the
 same 473 held articles to locate causal e2's gain and late regression alongside
@@ -989,3 +989,7 @@ prior-state control. Terminal native and end-to-end coding measurements remain.
 ### Fixed eight-block complete-piece distillation
 
 [Method](depth-distillation.md) · [CPU student/export](depth_student.py) · [32-epoch trainer](depth-distillation.py) · [Native family build](depth-native-build.py) · [Actual compile receipt](results/depth-native-build.json).
+
+## Canonical original now restored
+
+[Prepared→official-original provenance](prepared-original-provenance.md) passes 1,000,000,000 bytes / official MD5 with one inverse, 78.580048 cumulative CPU seconds and 1,516,000 KiB peak child RSS. The canonical input is retained for an admitted fullstream pair. [Receipt](results/prepared-original-provenance.json) · [stdlib replay](check-prepared-original-provenance.py).

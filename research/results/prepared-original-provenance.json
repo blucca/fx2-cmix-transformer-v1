@@ -1,0 +1,51 @@
+{
+  "schema": "hutter.prepared-original.provenance.v1",
+  "status": "passed",
+  "completed_at": "2026-11-06T23:39:36.402127+00:00",
+  "method": "original-v22 prepared WRT/PHDA9/article-ID inverse",
+  "prepared": {
+    "bytes": 586459020,
+    "sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead",
+    "dictionary_sha256": "4c8568cca9343b9a6212477880f56f8efd162f8784224a25edd043097d36215a"
+  },
+  "restored": {
+    "bytes": 1000000000,
+    "md5": "e206c3450ac99950df65bf70ef61a12d"
+  },
+  "budget": {
+    "cpu_limit_seconds": 1800,
+    "address_space_limit_bytes": 4294967296,
+    "scratch_reserve_bytes": 8589934592
+  },
+  "cpu": {
+    "total_completed_seconds": 78.580047785,
+    "prior_preparation_seconds": 5.248301349,
+    "compile_seconds": 2.9027839999999996,
+    "original_waiting_queue_retirement_seconds": 0.9,
+    "native_user_seconds": 66.03,
+    "native_system_seconds": 5.82,
+    "native_elapsed_seconds": 71.96
+  },
+  "max_child_rss_kib": 1516000,
+  "completed_inverse_inventory": {
+    "logical_bytes": 5868408757,
+    "allocated_bytes": 5868449792,
+    "files": 8,
+    "file_sizes": {
+      "enwik9_uncompressed": 1000000000,
+      ".main_decomp_restored": 999988851,
+      ".intro_decomp": 1404,
+      ".coda_decomp": 9745,
+      ".main_decomp": 934209251,
+      ".main_decomp_restored_sorted": 999988851,
+      ".input_decomp": 934220400,
+      "un1_d": 999990255
+    }
+  },
+  "retained_files": [
+    "enwik9_uncompressed"
+  ],
+  "removed_duplicate_intermediates": 7,
+  "range_neural_calls": 0,
+  "next_measurement": "one admitted fullstream native compressor and archive per frozen side; actual W1/time/resource and net-S gates are separate"
+}

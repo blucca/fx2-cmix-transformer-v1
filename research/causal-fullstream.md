@@ -225,3 +225,7 @@ Run the single small check in a fresh scratch directory:
 ```sh
 python3 -B research/causal-fullstream-check.py --work /YOUR/temp/fullstream-check
 ```
+
+## Original-input identity completed
+
+The original prepared inverse has [passed its complete canonical provenance](prepared-original-provenance.md): 1,000,000,000 bytes, official MD5 e206c3450ac99950df65bf70ef61a12d, 78.580048 cumulative preparation CPU seconds. An admitted pair transfers that one retained original to its two execution hosts. Whole native compressor/archive timing, actual two-file S and W1 eligibility remain the measured fullstream stages.
