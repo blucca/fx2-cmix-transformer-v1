@@ -1,0 +1,76 @@
+{
+  "status": "measured",
+  "scope": "CPU; FP32 exact uniform [1,2); explicit BF16 and E4M3FN casts",
+  "torch_version": "2.6.0+debian",
+  "python_version": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+  "torch_git_version": "Unknown",
+  "emulate_precision_casts_default": false,
+  "uniform": {
+    "samples": 65536,
+    "eager_staged_vs_direct_changed": 2048,
+    "first_changed_indices": [
+      4097,
+      4098,
+      4099,
+      4100,
+      4101,
+      4102,
+      4103,
+      4104,
+      4105,
+      4106
+    ]
+  },
+  "scalar": {
+    "fp32": 1.062600016593933,
+    "bf16": 1.0625,
+    "staged_fp8": 1.0,
+    "direct_fp8": 1.125
+  },
+  "compiled": [
+    {
+      "emulate_precision_casts": false,
+      "status": "measured",
+      "mismatches_vs_eager": 2048,
+      "mismatches_vs_direct": 0,
+      "max_abs_vs_eager": 0.125,
+      "first_mismatch_indices": [
+        4097,
+        4098,
+        4099,
+        4100,
+        4101,
+        4102,
+        4103,
+        4104,
+        4105,
+        4106
+      ],
+      "generated_cpp": [
+        "emulate-false-0.cpp",
+        "emulate-false-1.cpp",
+        "emulate-false-2.cpp"
+      ]
+    },
+    {
+      "emulate_precision_casts": true,
+      "status": "measured",
+      "mismatches_vs_eager": 2048,
+      "mismatches_vs_direct": 0,
+      "max_abs_vs_eager": 0.125,
+      "first_mismatch_indices": [
+        4097,
+        4098,
+        4099,
+        4100,
+        4101,
+        4102,
+        4103,
+        4104,
+        4105,
+        4106
+      ],
+      "generated_cpp": []
+    }
+  ]
+}

@@ -1,0 +1,79 @@
+{
+  "scope": "CPU uniform FP32 [1,2); exact factor1.5 BF16 pointwise control",
+  "torch_version": "2.6.0+debian",
+  "eager_vs_direct_changed": 3071,
+  "to_copy_tags": [
+    "Tag.core",
+    "Tag.pt2_compliant_tag"
+  ],
+  "mul_tags": [
+    "Tag.core",
+    "Tag.pointwise",
+    "Tag.pt2_compliant_tag"
+  ],
+  "graphs": {
+    "cast_only": [
+      {
+        "target": "aten._to_copy.default",
+        "dtype": "torch.bfloat16",
+        "low_precision_pointwise_barrier": false
+      },
+      {
+        "target": "aten._to_copy.default",
+        "dtype": "torch.float8_e4m3fn",
+        "low_precision_pointwise_barrier": false
+      },
+      {
+        "target": "aten._to_copy.default",
+        "dtype": "torch.float32",
+        "low_precision_pointwise_barrier": false
+      }
+    ],
+    "pointwise": [
+      {
+        "target": "aten._to_copy.default",
+        "dtype": "torch.bfloat16",
+        "low_precision_pointwise_barrier": false
+      },
+      {
+        "target": "aten.mul.Tensor",
+        "dtype": "torch.bfloat16",
+        "low_precision_pointwise_barrier": true
+      },
+      {
+        "target": "aten._to_copy.default",
+        "dtype": "torch.float8_e4m3fn",
+        "low_precision_pointwise_barrier": false
+      },
+      {
+        "target": "aten._to_copy.default",
+        "dtype": "torch.float32",
+        "low_precision_pointwise_barrier": false
+      }
+    ]
+  },
+  "compiled": [
+    {
+      "emulate_precision_casts": false,
+      "status": "measured",
+      "mismatches_vs_eager": 3071,
+      "mismatches_vs_direct": 0,
+      "max_abs_vs_eager": 0.25,
+      "generated_cpp": [
+        "pointwise-false-0.cpp",
+        "pointwise-false-1.cpp",
+        "pointwise-false-2.cpp"
+      ]
+    },
+    {
+      "emulate_precision_casts": true,
+      "status": "measured",
+      "mismatches_vs_eager": 3071,
+      "mismatches_vs_direct": 0,
+      "max_abs_vs_eager": 0.25,
+      "generated_cpp": [
+        "pointwise-true-0.cpp"
+      ]
+    }
+  ]
+}

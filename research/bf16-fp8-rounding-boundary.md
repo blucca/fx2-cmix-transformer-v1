@@ -57,3 +57,7 @@ scale and cache layout. Those contracts travel with a backend port.
 Evidence here is the runnable numerical counterexample and the referenced
 implementation. A performance claim requires the device path's measured
 work and model validation.
+
+## Measured CPU compiler behavior
+
+[The 2.6/2.15 CPU comparison](bf16-fp8-inductor-cpu.md) runs this conversion band and an exact BF16 pointwise control under default and precision-emulation settings. It includes actual op tags, tracing barriers, generated C++ and all four result records.

@@ -37,7 +37,8 @@ Focused analyses cover [the frozen NN’s prior value](research/causal-prior-val
 [complete teacher-target fidelity and frozen-cache label oracle](research/teacher-targets-and-label-oracle.md),
 [the practical CPU-student diagnostic](research/teacher-drift-cpu-student.md),
 [the exact missing-middle oracle](research/depth-middle-bridge.md),
-and [BF16 → FP8 rounding boundaries](research/bf16-fp8-rounding-boundary.md).
+[BF16 → FP8 rounding boundaries](research/bf16-fp8-rounding-boundary.md),
+and [the two-version CPU compiler precision check](research/bf16-fp8-inductor-cpu.md).
 
 ## Private numerical repair
 
