@@ -17,7 +17,7 @@ It connects the complete methods, measured results and reusable tools.
 
 - **[Integer-coordinate QAT](research/integer-coordinate-qat.md#complete-64-epoch-terminal):** complete 64-epoch curve, native domains and same-W coded failure. Mature and independent-held code grow; the training-containing q2 saving has its own scope.
 - **[Whole-stream causal-prior learning](research/causal-priors.md):** all 205 prior columns, article-cluster sampling, full-piece CPU learning and one selected-weight codec measurement.
-- **[Eight-block distillation](research/depth-distillation.md):** a genuine eight-block model/export/native family, shared causal teacher inputs and a 32-epoch continuous→hard trajectory.
+- **[Complete depth32 and same-e12 coded failure](research/depth-complete-32-mixed.md):** all 32 epochs, zero8 structural repair, four retained-history codec scopes and the selected weight's physical byte charge. [Original eight-block method](research/depth-distillation.md).
 
 ## Reuse the workbench
 
@@ -34,6 +34,7 @@ It connects the complete methods, measured results and reusable tools.
 Focused analyses cover [the frozen NN’s prior value](research/causal-prior-value.md),
 [method-specific training exposure](research/mixed-sample-exposure.md),
 [teacher-objective conflict](research/depth-objective-gradients.md),
+[complete teacher-target fidelity and frozen-cache label oracle](research/teacher-targets-and-label-oracle.md),
 [the practical CPU-student diagnostic](research/teacher-drift-cpu-student.md),
 and [the exact missing-middle oracle](research/depth-middle-bridge.md).
 

@@ -14,6 +14,7 @@ walks through the complete causal result, direct-update exposure and package cha
 - [Whole-stream causal priors and complete-piece learning](causal-priors.md)
 - [Complete causal16 trajectory, frozen e2 and same-W real range bytes](causal-complete-16-mixed.md)
 - [Eight-block causal distillation and native export](depth-distillation.md)
+- [Complete depth32, selected e12 and four-scope actual coded failure](depth-complete-32-mixed.md)
 
 ## Reusable tools
 
@@ -27,6 +28,7 @@ walks through the complete causal result, direct-update exposure and package cha
 - [Frozen NN versus causal PPMd](causal-prior-value.md) and [native-loss regimes](native-loss-regimes.md)
 - [Each method’s actual update exposure](mixed-sample-exposure.md) and [observed length support](native-length-support.md)
 - [Teacher loss and curvature](teacher-objective-audit.md), [actual parameter gradients](depth-objective-gradients.md), and [activation counterfactual](depth-activation-counterfactual.md)
+- [Complete W0 teacher-target fidelity and all-training-cache CE+KL label oracle](teacher-targets-and-label-oracle.md)
 - [Exact middle-state oracle and one fixed bridge](depth-middle-bridge.md)
 - [All 24 MLP spectra and the fixed rank64 weight-space tail](mlp-rank64-spectrum.md)
 - [Task-aware rank64 on native INT8 inputs: calibration and held output error](task-aware-mlp-rank64.md)
