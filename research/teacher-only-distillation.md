@@ -89,3 +89,27 @@ The original complete CE + KL control increased the mature coded interval by
 28,333 bytes; q2 excluding direct training input increased by 36,021 bytes.
 The independent teacher-only trajectory's measurements will be reported with
 its completed curve and the same selected weight's actual coded samples.
+
+## First complete production epoch
+
+The independent run completed its first full epoch: **1,313 pieces, 2,941,307
+targets, 78 optimizer steps**. Pre-update, target-weighted means were CE
+`1.261342768708` (report-only), teacher KL `0.283563684847`, final-hidden MSE
+`0.273606457375`, and effective objective `0.629884257683`. All 134 gradients
+were finite and nonzero at every recorded step; the read-only cache had zero
+misses. The full [epoch record](results/teacher-only-first-epoch.json) includes
+all 78 step records and the original epoch accumulator.
+
+The fixed CE + KL control's first epoch had teacher KL `0.288198360923`. This is
+an online-training comparison. The new 32-epoch curve, scheduled native held/long/
+giant evaluations, and sole selected-weight coded samples remain in progress.
+
+### The frozen residual is spread across articles
+
+The completed CE + KL control's selected e12 worsened **457 of 473 held pieces**,
+covering **1,080,647 of 1,082,505 targets**. Its three longest held pieces account
+for 9.94% of targets and 11.58% of the total native loss increase; the remaining
+470 pieces retain a `+0.175646600207` nats/target gap. All five length bands have
+positive target-weighted residuals. The epoch record preserves these complete
+control aggregates alongside the first new training observation. The new
+control tests global teacher-target recovery with the fixed architecture.
