@@ -33,3 +33,8 @@ For deployment measurement, the **identical selected hard weight file** enters t
 Receive the causal method’s original mixed readout; finish the depth trajectory and its sole selected-weight mixed measurement. Their actual payload and component costs supply full-stream admission. The [complete archive runner](causal-fullstream.md) executes native `cmix -e` for W0 and the admitted W1, reads both authentic packages, then verifies each archive’s official-original restoration.
 
 The score is **`S = P + 2B + 2D + O + 2W + 69`**: range payload plus both binary, dictionary and weight copies, one article-order asset and fixed headers. [Original native auxiliary delivery](original-release-native-aux.md) already verifies the real package sections. Candidate S, paired full-original restoration, and whole-program CPU, memory and active-time qualification are the remaining end-to-end measurements.
+
+
+- [Native observer values and CPU shadow gradients](native-observer-training-contract.md):
+  three-layer forward contract, actual-index scalar loss and a standard-library
+  replay of the saved observations and labelled FP32 controls.

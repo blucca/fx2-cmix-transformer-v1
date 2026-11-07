@@ -1,0 +1,41 @@
+{
+  "ste_forward_value_control": {
+    "source": "controlled FP32 arithmetic",
+    "actual_center": 0.00010499895142856985,
+    "shadow": 0.9900000095367432,
+    "subtract_then_add": 0.00010502338409423828,
+    "zero_shadow_add": 0.00010499895142856985
+  },
+  "scope": "scalar loss/VJP over saved native observer indices",
+  "saved_native_pairs": 96,
+  "zero_loss_pairs": 95,
+  "changed_pairs": [
+    {
+      "key": [
+        "hard",
+        14,
+        0,
+        1
+      ],
+      "teacher_r": 0.527209727902721,
+      "oracle_r": 0.527219727802722,
+      "bernoulli_kl": 2.0059032845252131e-10,
+      "identity_shadow_vjp": 4.011849736206613e-05,
+      "finite_difference_in_relaxed_coordinate": 4.01183707463709e-05
+    }
+  ],
+  "clip_case": {
+    "source": "controlled scalar case, not native measurement",
+    "teacher_index": 20,
+    "student_index": 10,
+    "shadow_q": 1e-05,
+    "loss": 3.715980298480334e-05,
+    "ordinary_clip_chain_vjp": 0.0,
+    "identity_shadow_vjp": -0.9524809618818548
+  },
+  "new_native_runs": 0,
+  "model_forwards": 0,
+  "capture_runs": 0,
+  "learner_implementation": 0,
+  "check": "passed"
+}

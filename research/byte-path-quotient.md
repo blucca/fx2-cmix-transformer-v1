@@ -202,3 +202,13 @@ and [Generalized DKD](https://arxiv.org/abs/2512.04625) study grouped logit KL a
 valuable within-group knowledge for classification. Here the groups follow the
 literal bit-coder observation path; compression and learned generalization
 supply the performance criteria.
+
+
+## Native objective implementation boundary
+
+The [native-observer training contract](native-observer-training-contract.md)
+separates CPU logits, row consumption and the hard-exported native NN forward.
+It gives a scalar replay for the actual observation loss, an explicit shadow
+VJP and a forward-preserving STE expression. This is preparation for a full
+method; the current teacher-only trajectory and complete-byte acceptance stay
+unchanged.
