@@ -1,0 +1,23 @@
+{
+  "unit_execution_result": "success",
+  "exec_main_status": 0,
+  "scientific_same_observation_status": "failed",
+  "rows": 12,
+  "path_bits": 96,
+  "actual_consumer_observations": 192,
+  "formal_compile_strategies": 1,
+  "scientific_cpu_seconds": 1.755729,
+  "setup_repair_cpu_seconds": 0.944294,
+  "total_measured_cpu_seconds": 2.700023,
+  "peak_rss_kib": 134232,
+  "cpu_quota_percent": 100,
+  "memory_max_bytes": 536870912,
+  "runtime_max_seconds": 60,
+  "remaining_process_cpu_limit_seconds": 19,
+  "terminal_resource_properties": "default/unset after transient unit completion",
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "codec_runs": 0,
+  "dependency_installs": 0,
+  "new_watch_units": 0
+}

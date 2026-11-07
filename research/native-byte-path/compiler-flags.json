@@ -1,0 +1,33 @@
+{
+  "compiler": {
+    "path": "/usr/bin/clang++-17",
+    "version": "Debian clang version 17.0.6 (22+b2)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin"
+  },
+  "compile_flags": [
+    "-m64",
+    "-Wall",
+    "-std=c++17",
+    "-ffp-model=fast",
+    "-fno-exceptions",
+    "-fno-threadsafe-statics",
+    "-Wno-unknown-escape-sequence",
+    "-Wno-unused-variable",
+    "-ffp-model=fast",
+    "-fno-exceptions",
+    "-fno-threadsafe-statics",
+    "-Wno-unneeded-internal-declaration",
+    "-Wno-unused-but-set-variable",
+    "-Wno-format",
+    "-march=x86-64-v3",
+    "-mtune=generic",
+    "-mrecip=none",
+    "-O3",
+    "-fdata-sections",
+    "-ffunction-sections"
+  ],
+  "link_flags": [
+    "-m64",
+    "-Wl,--gc-sections",
+    "-std=c++17"
+  ]
+}

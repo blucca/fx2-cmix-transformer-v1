@@ -1,0 +1,27 @@
+{
+  "regime": "hard",
+  "piece": 14,
+  "row": 0,
+  "target_byte": 220,
+  "bit_depth_1_based": 1,
+  "teacher_probability": 0.5272147059440613,
+  "oracle_probability": 0.527214765548706,
+  "teacher_probability_bits": "3f06f78b",
+  "oracle_probability_bits": "3f06f78c",
+  "native_table_indices": [
+    52721,
+    52722
+  ],
+  "native_stretch_bits": [
+    "3ddf1f53",
+    "3ddf3457"
+  ],
+  "fp32_probability_times_100001": [
+    52721.99609375,
+    52722.00390625
+  ],
+  "override": [
+    "normal",
+    "normal"
+  ]
+}

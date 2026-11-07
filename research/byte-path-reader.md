@@ -92,8 +92,21 @@ Physical output representation matters too. A guard-feasible probability-space p
 
 A second, physically representable construction keeps the teacher's **actual half words** and reorders them inside each sibling and decoder domain. Sorting teacher values against the unchanged student's values minimizes `KL(R||S)` within that fixed-multiset family.
 
-On the same 12 rows, this changed **1,536/2,460 half words**, with **0/96** lookup changes and **0/96** override changes. The alternative target's distance to the fixed student fell from **1.339565** to **1.184487 nats**, or **11.58%**. Teacher→oracle KL was **0.181127 nats**. This is a literal output-buffer certificate; learned fitting and complete native payload remain the next performance measurements. [Construction, source and half buffers](https://github.com/blucca/fx2-cmix-transformer-v1/blob/main/research/byte-path-half-permutation.md).
+On the same 12 rows, this changed **1,536/2,460 half words**, with **0/96** lookup changes and **0/96** override changes. The alternative target's distance to the fixed student fell from **1.339565** to **1.184487 nats**, or **11.58%**. Teacher→oracle KL was **0.181127 nats**. This certifies half-buffer representability and exact group masses. The compiled consumer adds a final arithmetic constraint. [Construction, source and half buffers](https://github.com/blucca/fx2-cmix-transformer-v1/blob/main/research/byte-path-half-permutation.md).
 
+
+## The real compiler exposes one boundary crossing
+
+I then linked the original `ByteModel`, `MixerInput` and `Sigmoid` under **Clang 17's actual fast/O3 flags**, including `-ffp-model=fast` and `-mrecip=none`. Every decoded/guarded buffer value matched the saved-row control.
+
+The same 96 pairs produced **one changed lookup index**, with zero changed overrides. In hard/piece14/row0, target byte220, the first-bit probabilities were:
+
+```text
+teacher: 0.5272147059440613 → lookup 52721
+oracle:  0.5272147655487060 → lookup 52722
+```
+
+That one-ULP difference crosses the real table-cell boundary. The serial-FP32 check passed all 96 lookup pairs; the compiled fast/O3 same-observation check **failed at one pair**. The deployable target includes the consumer's compiled reductions and lookup behavior. [Frozen source, 192 native observations and replay](https://github.com/blucca/fx2-cmix-transformer-v1/tree/main/research/native-byte-path).
 
 ## Use the observation contract as the research boundary
 

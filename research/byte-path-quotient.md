@@ -155,8 +155,13 @@ domain. On the same 12 rows it changes 1,536 half words and 968 effective values
 preserves exact group masses, and changes **0/96 lookup indices and 0/96 overrides**
 under serial-FP32 source-order accumulation. The alternate target's `KL(R||S)`
 to the unchanged student is 11.5768% smaller; teacher-to-oracle KL is .1811266.
-This fixed-multiset rearrangement certificate uses no learned update; complete
-model/native-payload performance follows its existing experimental contract.
+The fixed-multiset result certifies physical half representation and exact
+group mass. The [real compiled consumer](native-byte-path/findings.md) produces
+**1/96 changed lookup indices, 0/96 changed overrides**, under the original
+Clang17 fast/O3 flags. At hard/piece14/row0, a one-ULP q change moves lookup
+52721→52722. The serial-FP32 pass and native fast/O3 failure have their own
+arithmetic contracts. Complete model/native-payload performance follows its
+existing experimental contract.
 
 
 ## Replay and continuation

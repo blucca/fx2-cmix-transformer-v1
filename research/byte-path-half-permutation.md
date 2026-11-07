@@ -56,6 +56,17 @@ clamp, and multiply/truncate for the 100,001-entry lookup. Results:
 - Maximum serial-FP32 conditional change: **2.384185791e-7**; table indices stay
   equal. Teacher/oracle each have 93 normal and three zero-override bits.
 
+## Real native consumer: one failed lookup pair
+
+The [compiled source-linked observer](native-byte-path/findings.md) checks these
+same buffers under Clang17's actual fast/O3 flags. It records **12/96 changed q
+bit patterns, 1/96 changed lookup/Stretch outputs and 0/96 changed overrides**.
+At hard/piece14/row0, target byte220, first-bit q changes from
+`.5272147059440613` to `.5272147655487060`, moving the real lookup from 52721 to
+52722. All 4,920 decoded/guarded FP32 values match the saved-row contract.
+The exact mass and half-representation certificates hold; the compiled
+fast/O3 same-observation acceptance **fails** at this pair.
+
 ## Artifact and continuation scope
 
 [`teacher.f16`](results/byte-path-permutation-teacher.f16) and

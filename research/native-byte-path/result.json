@@ -1,0 +1,1590 @@
+{
+  "schema": "hutter.native-byte-path-observer.round464.v1",
+  "status": "failed",
+  "scope": "12 existing half rows / 12 actual targets / 96 target path bits; real NN input consumer",
+  "compiler": {
+    "path": "/usr/bin/clang++-17",
+    "version": "Debian clang version 17.0.6 (22+b2)\nTarget: x86_64-pc-linux-gnu\nThread model: posix\nInstalledDir: /usr/bin"
+  },
+  "compile_flags": [
+    "-m64",
+    "-Wall",
+    "-std=c++17",
+    "-ffp-model=fast",
+    "-fno-exceptions",
+    "-fno-threadsafe-statics",
+    "-Wno-unknown-escape-sequence",
+    "-Wno-unused-variable",
+    "-ffp-model=fast",
+    "-fno-exceptions",
+    "-fno-threadsafe-statics",
+    "-Wno-unneeded-internal-declaration",
+    "-Wno-unused-but-set-variable",
+    "-Wno-format",
+    "-march=x86-64-v3",
+    "-mtune=generic",
+    "-mrecip=none",
+    "-O3",
+    "-fdata-sections",
+    "-ffunction-sections"
+  ],
+  "link_flags": [
+    "-m64",
+    "-Wl,--gc-sections",
+    "-std=c++17"
+  ],
+  "compiled_source_paths": [
+    "src/models/byte-model.cpp",
+    "src/mixer/sigmoid.cpp",
+    "src/mixer/mixer-input.cpp",
+    "source-half.cpp",
+    "observer.cpp"
+  ],
+  "source_identity": {
+    "src/models/byte-model.cpp": {
+      "path": "src/models/byte-model.cpp",
+      "bytes": 1057,
+      "local_exact_match": true
+    },
+    "src/models/byte-model.h": {
+      "path": "src/models/byte-model.h",
+      "bytes": 468,
+      "local_exact_match": true
+    },
+    "src/models/model.h": {
+      "path": "src/models/model.h",
+      "bytes": 402,
+      "local_exact_match": true
+    },
+    "src/mixer/sigmoid.cpp": {
+      "path": "src/mixer/sigmoid.cpp",
+      "bytes": 652,
+      "local_exact_match": true
+    },
+    "src/mixer/sigmoid.h": {
+      "path": "src/mixer/sigmoid.h",
+      "bytes": 314,
+      "local_exact_match": true
+    },
+    "src/mixer/mixer-input.cpp": {
+      "path": "src/mixer/mixer-input.cpp",
+      "bytes": 890,
+      "local_exact_match": true
+    },
+    "src/mixer/mixer-input.h": {
+      "path": "src/mixer/mixer-input.h",
+      "bytes": 1061,
+      "local_exact_match": true
+    },
+    "src/predictor.cpp": {
+      "path": "src/predictor.cpp",
+      "bytes": 30250,
+      "local_exact_match": true
+    },
+    "src/mixer/byte-mixer.cpp": {
+      "path": "src/mixer/byte-mixer.cpp",
+      "bytes": 1250,
+      "local_exact_match": true
+    },
+    "makefile": {
+      "path": "makefile",
+      "bytes": 8018,
+      "local_exact_match": true
+    }
+  },
+  "decoder": {
+    "source": "src/predictor.cpp",
+    "functions": [
+      "HalfToFloat",
+      "HalvesToFloats"
+    ],
+    "extracted_source": "source-half.cpp",
+    "f16c_indices": [
+      0,
+      199
+    ],
+    "scalar_tail_indices": [
+      200,
+      204
+    ],
+    "scalar_subnormal_scale": 0.5,
+    "guard_literal": "1e-6f",
+    "decoder_guard_mismatches": 0
+  },
+  "real_consumer": {
+    "path": [
+      "src/mixer/mixer-input.cpp",
+      "src/mixer/sigmoid.cpp"
+    ],
+    "calls": [
+      "MixerInput::SetInput",
+      "Sigmoid::Logit"
+    ],
+    "logit_table_entries": 100001,
+    "probability_epsilon": 0.0001,
+    "index_identity": "unique actual Logit output bits"
+  },
+  "native_vs_native": {
+    "q_bit_changes": 12,
+    "stretch_bit_changes": 1,
+    "lookup_changes": 1,
+    "override_changes": 0
+  },
+  "maximum_condition_error": 1.1920928955078125e-07,
+  "native_vs_serial": {
+    "teacher": {
+      "q_bit_changes": 27,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "maximum_condition_error": 3.4570693969726562e-06
+    },
+    "oracle": {
+      "q_bit_changes": 26,
+      "lookup_changes": 1,
+      "override_changes": 0,
+      "maximum_condition_error": 3.4570693969726562e-06
+    }
+  },
+  "teacher_override_counts": {
+    "-1": 93,
+    "0": 3,
+    "1": 0
+  },
+  "cases": [
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 0,
+      "target_index": 27,
+      "target_byte": 51,
+      "teacher_observation": {
+        "conditionals": [
+          0.00021065640612505376,
+          0.0016991097945719957,
+          0.9996456503868103,
+          0.9958630800247192,
+          0.19597063958644867,
+          0.46814361214637756,
+          0.6081585884094238,
+          0.5611714720726013
+        ],
+        "conditional_bits": [
+          "395ce3a6",
+          "3adeb4aa",
+          "3f7fe8c7",
+          "3f7ef0e2",
+          "3e48ac87",
+          "3eefb085",
+          "3f1bb048",
+          "3f0fa8ef"
+        ],
+        "stretched_bits": [
+          "c1071d5c",
+          "c0cc1bbd",
+          "40fe2d3e",
+          "40af7dec",
+          "bfb4b123",
+          "be02aca5",
+          "3ee11097",
+          "3e7bcfa5"
+        ],
+        "lookup": [
+          21,
+          169,
+          99965,
+          99587,
+          19597,
+          46814,
+          60816,
+          56117
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.000210656420676969,
+          0.0016991097945719957,
+          0.9996456503868103,
+          0.9958630800247192,
+          0.19597063958644867,
+          0.46814361214637756,
+          0.6081585884094238,
+          0.5611714720726013
+        ],
+        "conditional_bits": [
+          "395ce3a7",
+          "3adeb4aa",
+          "3f7fe8c7",
+          "3f7ef0e2",
+          "3e48ac87",
+          "3eefb085",
+          "3f1bb048",
+          "3f0fa8ef"
+        ],
+        "stretched_bits": [
+          "c1071d5c",
+          "c0cc1bbd",
+          "40fe2d3e",
+          "40af7dec",
+          "bfb4b123",
+          "be02aca5",
+          "3ee11097",
+          "3e7bcfa5"
+        ],
+        "lookup": [
+          21,
+          169,
+          99965,
+          99587,
+          19597,
+          46814,
+          60816,
+          56117
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 1,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 1.4551915228366852e-11
+    },
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 1,
+      "target_index": 30,
+      "target_byte": 54,
+      "teacher_observation": {
+        "conditionals": [
+          0.00042061731801368296,
+          0.01371462456882,
+          0.9998320937156677,
+          0.9948825240135193,
+          0.17905153334140778,
+          0.43832916021347046,
+          0.4624697268009186,
+          0.538145124912262
+        ],
+        "conditional_bits": [
+          "39dc864d",
+          "3c60b34e",
+          "3f7ff4ff",
+          "3f7eb09f",
+          "3e375949",
+          "3ee06cae",
+          "3eecc8d5",
+          "3f09c3e1"
+        ],
+        "stretched_bits": [
+          "c0f86a8c",
+          "c088d09d",
+          "410b5894",
+          "40a8a792",
+          "bfc2ea4d",
+          "be7de400",
+          "be1a02d5",
+          "3e1c90a4"
+        ],
+        "lookup": [
+          42,
+          1371,
+          99984,
+          99489,
+          17905,
+          43833,
+          46247,
+          53815
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00042061731801368296,
+          0.013714626431465149,
+          0.9998321533203125,
+          0.9948825240135193,
+          0.17905153334140778,
+          0.43832916021347046,
+          0.4624697268009186,
+          0.538145124912262
+        ],
+        "conditional_bits": [
+          "39dc864d",
+          "3c60b350",
+          "3f7ff500",
+          "3f7eb09f",
+          "3e375949",
+          "3ee06cae",
+          "3eecc8d5",
+          "3f09c3e1"
+        ],
+        "stretched_bits": [
+          "c0f86a8c",
+          "c088d09d",
+          "410b5894",
+          "40a8a792",
+          "bfc2ea4d",
+          "be7de400",
+          "be1a02d5",
+          "3e1c90a4"
+        ],
+        "lookup": [
+          42,
+          1371,
+          99984,
+          99489,
+          17905,
+          43833,
+          46247,
+          53815
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 2,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 5.960464477539063e-08
+    },
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 2,
+      "target_index": 37,
+      "target_byte": 76,
+      "teacher_observation": {
+        "conditionals": [
+          0.0001580980169819668,
+          0.9910253882408142,
+          2.6613482987158932e-05,
+          0.00011126562458230183,
+          0.9999978542327881,
+          0.9999790191650391,
+          2.0187221707601566e-06,
+          1.0093631317431573e-06
+        ],
+        "conditional_bits": [
+          "3925c71d",
+          "3f7db3d7",
+          "37df4005",
+          "38e95747",
+          "3f7fffdc",
+          "3f7ffea0",
+          "36077962",
+          "35877974"
+        ],
+        "stretched_bits": [
+          "c10c59de",
+          "409689a1",
+          "c1129552",
+          "c11120a9",
+          "41142ed7",
+          "41142ed7",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          15,
+          99103,
+          10,
+          11,
+          99991,
+          99991,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00015809798787813634,
+          0.9910253882408142,
+          2.6613484806148335e-05,
+          0.00011126562458230183,
+          0.9999978542327881,
+          0.9999790191650391,
+          2.0187221707601566e-06,
+          1.0093631317431573e-06
+        ],
+        "conditional_bits": [
+          "3925c71b",
+          "3f7db3d7",
+          "37df4006",
+          "38e95747",
+          "3f7fffdc",
+          "3f7ffea0",
+          "36077962",
+          "35877974"
+        ],
+        "stretched_bits": [
+          "c10c59de",
+          "409689a1",
+          "c1129552",
+          "c11120a9",
+          "41142ed7",
+          "41142ed7",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          15,
+          99103,
+          10,
+          11,
+          99991,
+          99991,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 2,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 2.9103830456733704e-11
+    },
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 3,
+      "target_index": 23,
+      "target_byte": 47,
+      "teacher_observation": {
+        "conditionals": [
+          0.00017381597717758268,
+          5.1720016926992685e-05,
+          0.9999691247940063,
+          9.99912208499154e-06,
+          0.9999344348907471,
+          0.9999911785125732,
+          0.9999980926513672,
+          0.9999990463256836
+        ],
+        "conditional_bits": [
+          "3936425f",
+          "3858edf2",
+          "3f7ffdfa",
+          "3727c1e7",
+          "3f7ffbb4",
+          "3f7fff6c",
+          "3f7fffe0",
+          "3f7ffff0"
+        ],
+        "stretched_bits": [
+          "c10a68b1",
+          "c1129552",
+          "41142ed7",
+          "c1129552",
+          "41142ed7",
+          "41142ed7",
+          "41142ed7",
+          "41142ed7"
+        ],
+        "lookup": [
+          17,
+          10,
+          99991,
+          10,
+          99991,
+          99991,
+          99991,
+          99991
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00017381597717758268,
+          5.172001328901388e-05,
+          0.9999691247940063,
+          9.99912208499154e-06,
+          0.9999344348907471,
+          0.9999911785125732,
+          0.9999980926513672,
+          0.9999990463256836
+        ],
+        "conditional_bits": [
+          "3936425f",
+          "3858edf1",
+          "3f7ffdfa",
+          "3727c1e7",
+          "3f7ffbb4",
+          "3f7fff6c",
+          "3f7fffe0",
+          "3f7ffff0"
+        ],
+        "stretched_bits": [
+          "c10a68b1",
+          "c1129552",
+          "41142ed7",
+          "c1129552",
+          "41142ed7",
+          "41142ed7",
+          "41142ed7",
+          "41142ed7"
+        ],
+        "lookup": [
+          17,
+          10,
+          99991,
+          10,
+          99991,
+          99991,
+          99991,
+          99991
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 1,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 3.637978807091713e-12
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 0,
+      "target_index": 197,
+      "target_byte": 248,
+      "teacher_observation": {
+        "conditionals": [
+          0.714286208152771,
+          0.9978617429733276,
+          0.958987295627594,
+          0.8867319822311401,
+          0.4083048105239868,
+          0.5056875944137573,
+          0.7251636981964111,
+          0.6444293260574341
+        ],
+        "conditional_bits": [
+          "3f36db76",
+          "3f7f73de",
+          "3f758031",
+          "3f6300de",
+          "3ed10d54",
+          "3f0174be",
+          "3f39a454",
+          "3f24f952"
+        ],
+        "stretched_bits": [
+          "3f6a92b4",
+          "40c4b58c",
+          "4049b982",
+          "4003b36f",
+          "bebdf2e9",
+          "3cba74a4",
+          "3f7861c9",
+          "3f183a2d"
+        ],
+        "lookup": [
+          71429,
+          99787,
+          95899,
+          88674,
+          40830,
+          50569,
+          72517,
+          64443
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.714286208152771,
+          0.9978617429733276,
+          0.958987295627594,
+          0.8867319822311401,
+          0.4083048105239868,
+          0.5056875944137573,
+          0.7251636981964111,
+          0.6444293260574341
+        ],
+        "conditional_bits": [
+          "3f36db76",
+          "3f7f73de",
+          "3f758031",
+          "3f6300de",
+          "3ed10d54",
+          "3f0174be",
+          "3f39a454",
+          "3f24f952"
+        ],
+        "stretched_bits": [
+          "3f6a92b4",
+          "40c4b58c",
+          "4049b982",
+          "4003b36f",
+          "bebdf2e9",
+          "3cba74a4",
+          "3f7861c9",
+          "3f183a2d"
+        ],
+        "lookup": [
+          71429,
+          99787,
+          95899,
+          88674,
+          40830,
+          50569,
+          72517,
+          64443
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 0,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 0.0
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 1,
+      "target_index": 188,
+      "target_byte": 239,
+      "teacher_observation": {
+        "conditionals": [
+          0.9999184012413025,
+          0.9279702305793762,
+          0.9227105379104614,
+          2.657275035744533e-05,
+          0.7270144820213318,
+          0.9637176394462585,
+          0.9445180892944336,
+          0.9455113410949707
+        ],
+        "conditional_bits": [
+          "3f7ffaa7",
+          "3f6d8f75",
+          "3f6c36c2",
+          "37dee88c",
+          "3f3a1d9f",
+          "3f76b633",
+          "3f71cbf0",
+          "3f720d08"
+        ],
+        "stretched_bits": [
+          "41142ed7",
+          "40239316",
+          "401eb342",
+          "c1129552",
+          "3f7ac363",
+          "4051e1b1",
+          "40356994",
+          "4036a4e4"
+        ],
+        "lookup": [
+          99991,
+          92797,
+          92271,
+          10,
+          72702,
+          96372,
+          94452,
+          94552
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.9999184012413025,
+          0.9279702305793762,
+          0.9227105379104614,
+          2.657275035744533e-05,
+          0.7270144820213318,
+          0.9637176394462585,
+          0.9445180892944336,
+          0.9455113410949707
+        ],
+        "conditional_bits": [
+          "3f7ffaa7",
+          "3f6d8f75",
+          "3f6c36c2",
+          "37dee88c",
+          "3f3a1d9f",
+          "3f76b633",
+          "3f71cbf0",
+          "3f720d08"
+        ],
+        "stretched_bits": [
+          "41142ed7",
+          "40239316",
+          "401eb342",
+          "c1129552",
+          "3f7ac363",
+          "4051e1b1",
+          "40356994",
+          "4036a4e4"
+        ],
+        "lookup": [
+          99991,
+          92797,
+          92271,
+          10,
+          72702,
+          96372,
+          94452,
+          94552
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 0,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 0.0
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 2,
+      "target_index": 135,
+      "target_byte": 186,
+      "teacher_observation": {
+        "conditionals": [
+          0.9999231100082397,
+          0.29047393798828125,
+          0.8585649728775024,
+          0.2139551341533661,
+          0.29400715231895447,
+          0.3535726070404053,
+          0.929481029510498,
+          0.07496065646409988
+        ],
+        "conditional_bits": [
+          "3f7ffaf6",
+          "3e94b900",
+          "3f5bcaea",
+          "3e5b170e",
+          "3e96881b",
+          "3eb50778",
+          "3f6df278",
+          "3d9984f9"
+        ],
+        "stretched_bits": [
+          "41142ed7",
+          "bf64a1b3",
+          "3fe6d6eb",
+          "bfa68fba",
+          "bf60400f",
+          "bf1a76ec",
+          "40250b51",
+          "c020d210"
+        ],
+        "lookup": [
+          99991,
+          29047,
+          85857,
+          21395,
+          29401,
+          35357,
+          92949,
+          7496
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.9999231100082397,
+          0.29047390818595886,
+          0.8585649728775024,
+          0.2139551341533661,
+          0.29400715231895447,
+          0.3535726070404053,
+          0.929481029510498,
+          0.07496065646409988
+        ],
+        "conditional_bits": [
+          "3f7ffaf6",
+          "3e94b8ff",
+          "3f5bcaea",
+          "3e5b170e",
+          "3e96881b",
+          "3eb50778",
+          "3f6df278",
+          "3d9984f9"
+        ],
+        "stretched_bits": [
+          "41142ed7",
+          "bf64a1b3",
+          "3fe6d6eb",
+          "bfa68fba",
+          "bf60400f",
+          "bf1a76ec",
+          "40250b51",
+          "c020d210"
+        ],
+        "lookup": [
+          99991,
+          29047,
+          85857,
+          21395,
+          29401,
+          35357,
+          92949,
+          7496
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 1,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 2.9802322387695312e-08
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 3,
+      "target_index": 37,
+      "target_byte": 76,
+      "teacher_observation": {
+        "conditionals": [
+          0.000136808623210527,
+          0.8733770847320557,
+          0.0019421752076596022,
+          0.00013119782670401037,
+          0.999572217464447,
+          0.9997864365577698,
+          3.816540356638143e-06,
+          1.1479806971692597e-06
+        ],
+        "conditional_bits": [
+          "390f7449",
+          "3f5f95a4",
+          "3afe9096",
+          "39099226",
+          "3f7fe3f7",
+          "3f7ff201",
+          "36800fd5",
+          "359a1451"
+        ],
+        "stretched_bits": [
+          "c10e8fd0",
+          "3ff72fce",
+          "c0c7b2a4",
+          "c10e8fd0",
+          "40f869ae",
+          "41071c4c",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          13,
+          87338,
+          194,
+          13,
+          99958,
+          99979,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00013680860865861177,
+          0.8733770847320557,
+          0.0019421752076596022,
+          0.00013119782670401037,
+          0.999572217464447,
+          0.9997864365577698,
+          3.816540356638143e-06,
+          1.1479806971692597e-06
+        ],
+        "conditional_bits": [
+          "390f7448",
+          "3f5f95a4",
+          "3afe9096",
+          "39099226",
+          "3f7fe3f7",
+          "3f7ff201",
+          "36800fd5",
+          "359a1451"
+        ],
+        "stretched_bits": [
+          "c10e8fd0",
+          "3ff72fce",
+          "c0c7b2a4",
+          "c10e8fd0",
+          "40f869ae",
+          "41071c4c",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          13,
+          87338,
+          194,
+          13,
+          99958,
+          99979,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 1,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 1.4551915228366852e-11
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 0,
+      "target_index": 169,
+      "target_byte": 220,
+      "teacher_observation": {
+        "conditionals": [
+          0.5272147059440613,
+          0.9927822351455688,
+          0.7726924419403076,
+          0.8724150657653809,
+          0.8753292560577393,
+          0.9916375279426575,
+          0.4832809269428253,
+          0.0940675213932991
+        ],
+        "conditional_bits": [
+          "3f06f78b",
+          "3f7e26fa",
+          "3f45cf2c",
+          "3f5f5698",
+          "3f601594",
+          "3f7ddbf5",
+          "3ef77099",
+          "3dc0a679"
+        ],
+        "stretched_bits": [
+          "3ddf1f53",
+          "409d9455",
+          "3f9c9f14",
+          "3ff61446",
+          "3ff9756d",
+          "4098cf45",
+          "bd89051b",
+          "c010f5a3"
+        ],
+        "lookup": [
+          52721,
+          99279,
+          77270,
+          87242,
+          87533,
+          99164,
+          48328,
+          9406
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.527214765548706,
+          0.9927823543548584,
+          0.7726924419403076,
+          0.8724150657653809,
+          0.8753292560577393,
+          0.9916375279426575,
+          0.4832809269428253,
+          0.0940675213932991
+        ],
+        "conditional_bits": [
+          "3f06f78c",
+          "3f7e26fc",
+          "3f45cf2c",
+          "3f5f5698",
+          "3f601594",
+          "3f7ddbf5",
+          "3ef77099",
+          "3dc0a679"
+        ],
+        "stretched_bits": [
+          "3ddf3457",
+          "409d9455",
+          "3f9c9f14",
+          "3ff61446",
+          "3ff9756d",
+          "4098cf45",
+          "bd89051b",
+          "c010f5a3"
+        ],
+        "lookup": [
+          52722,
+          99279,
+          77270,
+          87242,
+          87533,
+          99164,
+          48328,
+          9406
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 2,
+        "stretch_bit_changes": 1,
+        "lookup_changes": 1,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 1.1920928955078125e-07
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 1,
+      "target_index": 95,
+      "target_byte": 146,
+      "teacher_observation": {
+        "conditionals": [
+          0.9999231100082397,
+          0.058672480285167694,
+          0.47066807746887207,
+          0.32788729667663574,
+          0.3223758041858673,
+          0.33117419481277466,
+          0.4637337625026703,
+          0.2308375984430313
+        ],
+        "conditional_bits": [
+          "3f7ffaf6",
+          "3d70528e",
+          "3ef0fb68",
+          "3ea7e0d8",
+          "3ea50e71",
+          "3ea98faa",
+          "3eed6e83",
+          "3e6c60b1"
+        ],
+        "stretched_bits": [
+          "41142ed7",
+          "c0319e47",
+          "bdf08b92",
+          "bf37bd8e",
+          "bf3e2e41",
+          "bf33f0a1",
+          "be14d26d",
+          "bf9a1012"
+        ],
+        "lookup": [
+          99991,
+          5867,
+          47067,
+          32789,
+          32237,
+          33117,
+          46373,
+          23083
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.9999231100082397,
+          0.058672480285167694,
+          0.47066807746887207,
+          0.32788729667663574,
+          0.3223758041858673,
+          0.33117419481277466,
+          0.4637337625026703,
+          0.2308375984430313
+        ],
+        "conditional_bits": [
+          "3f7ffaf6",
+          "3d70528e",
+          "3ef0fb68",
+          "3ea7e0d8",
+          "3ea50e71",
+          "3ea98faa",
+          "3eed6e83",
+          "3e6c60b1"
+        ],
+        "stretched_bits": [
+          "41142ed7",
+          "c0319e47",
+          "bdf08b92",
+          "bf37bd8e",
+          "bf3e2e41",
+          "bf33f0a1",
+          "be14d26d",
+          "bf9a1012"
+        ],
+        "lookup": [
+          99991,
+          5867,
+          47067,
+          32789,
+          32237,
+          33117,
+          46373,
+          23083
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 0,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 0.0
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 2,
+      "target_index": 8,
+      "target_byte": 32,
+      "teacher_observation": {
+        "conditionals": [
+          0.00012795839575119317,
+          0.0025320022832602262,
+          0.9993842244148254,
+          1.107249681808753e-05,
+          0.0015055738622322679,
+          0.0028571742586791515,
+          9.533513548376504e-06,
+          8.586278454458807e-06
+        ],
+        "conditional_bits": [
+          "39062c92",
+          "3b25eff3",
+          "3f7fd7a5",
+          "3739c403",
+          "3ac556ad",
+          "3b3b3f6e",
+          "371ff221",
+          "37100dc9"
+        ],
+        "stretched_bits": [
+          "c10fcb16",
+          "c0bf3379",
+          "40ec95af",
+          "c1129552",
+          "c0cfeb3e",
+          "c0bb62ff",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          12,
+          253,
+          99939,
+          10,
+          150,
+          285,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00012795839575119317,
+          0.0025320022832602262,
+          0.9993842244148254,
+          1.107249681808753e-05,
+          0.0015055738622322679,
+          0.0028571742586791515,
+          9.533513548376504e-06,
+          8.586278454458807e-06
+        ],
+        "conditional_bits": [
+          "39062c92",
+          "3b25eff3",
+          "3f7fd7a5",
+          "3739c403",
+          "3ac556ad",
+          "3b3b3f6e",
+          "371ff221",
+          "37100dc9"
+        ],
+        "stretched_bits": [
+          "c10fcb16",
+          "c0bf3379",
+          "40ec95af",
+          "c1129552",
+          "c0cfeb3e",
+          "c0bb62ff",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          12,
+          253,
+          99939,
+          10,
+          150,
+          285,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 0,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 0.0
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 3,
+      "target_index": 34,
+      "target_byte": 64,
+      "teacher_observation": {
+        "conditionals": [
+          0.0049017504788935184,
+          0.9817072153091431,
+          0.0068632797338068485,
+          2.616323581605684e-05,
+          6.443580332415877e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditional_bits": [
+          "3ba09edd",
+          "3f7b512a",
+          "3be0e55d",
+          "37db791f",
+          "36d835ef",
+          "00000000",
+          "00000000",
+          "00000000"
+        ],
+        "stretched_bits": [
+          "c0aa00c3",
+          "407ee412",
+          "c09f2e9e",
+          "c1129552",
+          "c1129552",
+          "c1129552",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          490,
+          98171,
+          686,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          0,
+          0,
+          0
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.0049017504788935184,
+          0.9817072749137878,
+          0.0068632797338068485,
+          2.6163233997067437e-05,
+          6.443580332415877e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "conditional_bits": [
+          "3ba09edd",
+          "3f7b512b",
+          "3be0e55d",
+          "37db791e",
+          "36d835ef",
+          "00000000",
+          "00000000",
+          "00000000"
+        ],
+        "stretched_bits": [
+          "c0aa00c3",
+          "407ee412",
+          "c09f2e9e",
+          "c1129552",
+          "c1129552",
+          "c1129552",
+          "c1129552",
+          "c1129552"
+        ],
+        "lookup": [
+          490,
+          98171,
+          686,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          0,
+          0,
+          0
+        ]
+      },
+      "changes": {
+        "q_bit_changes": 2,
+        "stretch_bit_changes": 0,
+        "lookup_changes": 0,
+        "override_changes": 0
+      },
+      "maximum_condition_error": 5.960464477539063e-08
+    }
+  ],
+  "run_stdout": "original-byte-model-and-mixerinput-observed 12 rows 96 bits; actual Logit table unique entries 100001",
+  "cpu_seconds": 1.755729,
+  "wall_seconds": 2.906325578689575,
+  "peak_rss_kib": 134232,
+  "cpu_limit_seconds": 20,
+  "remaining_process_cpu_limit_seconds": 19,
+  "previous_setup_unit_cpu_seconds": 0.944294,
+  "memory_max_bytes": 536870912,
+  "runtime_max_seconds": 60,
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "codec_runs": 0,
+  "dependency_installs": 0,
+  "new_watch_units": 0,
+  "unit_execution_result": "success",
+  "exec_main_status": 0,
+  "scientific_same_observation_status": "failed",
+  "failed_setup_cpu_seconds": 0.944294,
+  "total_measured_cpu_seconds": 2.700023
+}
