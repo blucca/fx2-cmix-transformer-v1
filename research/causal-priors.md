@@ -393,3 +393,12 @@ The same complete epoch's online CE reaches 0.890642504573 while teacher KL rise
 [Eleven-epoch receipt](results/causal-first-eleven-epochs.json) and [stdlib replay](causal-first-eleven-epochs-check.py) extend the original trajectory. Full held, short, long and the independent audit regress at every native endpoint from e3 through e11; e2 remains the selected proxy leader. Native e11 holds 1.007926533507 nats/target on the same 1,082,505 held targets, adding 0.002005110275 nats/target from e10. Its 2,907,839-byte W costs 7,028 B more across both copies than W0. The fixed sixteen-epoch method and its sole terminal-selected-W mixed measurement continue.
 
 [The canonical 1 GB original](prepared-original-provenance.md) now passes the official MD5. Its inverse preparation and the actual fullstream compressor/archive program scopes are recorded separately.
+
+
+## Complete16 trajectory and same-W genuine codec result
+
+[The complete result](causal-complete-16-mixed.md) records all 17 exports,
+47,060,912 training targets and frozen e2. Its complete prefix8/q2 payloads save
+697/221 B; the shared two-copy weight change is −92 B. Four original trace
+scopes separate guarded NN, pre-SSE, final-u16 and actual interval bytes.
+The fixed historical mature-rate gate stops this candidate’s new fullS stage.

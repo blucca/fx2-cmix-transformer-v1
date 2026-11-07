@@ -9,6 +9,7 @@ and links the finished implementation paths.
 
 - [Integer64: full trajectory, native domains and actual mixed-codec failure](integer-coordinate-qat.md#complete-64-epoch-terminal)
 - [Whole-stream causal priors and complete-piece learning](causal-priors.md)
+- [Complete causal16 trajectory, frozen e2 and same-W real range bytes](causal-complete-16-mixed.md)
 - [Eight-block causal distillation and native export](depth-distillation.md)
 
 ## Reusable tools
