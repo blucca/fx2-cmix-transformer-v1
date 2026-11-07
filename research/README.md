@@ -9,6 +9,8 @@
 
 **Eight hard-QAT epochs:** [native e16](results/depth-hard-e16.json) adds 0.004113873 nats/target from e12 across 800,662 worsening held targets; e12 remains the current native minimum. W16/B save 1,894,244 B across both copies. The original 32-epoch method and sole mixed run continue. [Stdlib replay](check-depth-hard-e16.py).
 
+**Actual parameter direction:** [one original 1,199-target gradient measurement](depth-objective-gradients.md) locates the teacher conflict in a first-block embedding coefficient. The sign persists under the original 100-fold group-LR difference; all 134 gradients and both composite reconstructions pass. [Stdlib replay](check-depth-objective-gradients.py). The original optimizer and sole mixed run continue.
+
 **Teacher objective:** [actual loss drift and a curvature-matched 2KL ablation](teacher-objective-audit.md) pair the e8/e12/e16 objective with native held scores. The original teacher point has residual label pressure; the proposed output target removes it while retaining 2 Fisher curvature. [Stdlib replay](check-teacher-objective-audit.py). New model/codec runs remain zero.
 
 **Measured prior value:** [The original NN versus causal PPMd](causal-prior-value.md) improves every one of 473 held-piece mean losses and removes 96.8% of the prior NLL on the independent giant-article audit. [Complete piece-level result](results/causal-prior-value.json) and one bounded input-only probe preserve the original weights and queues.

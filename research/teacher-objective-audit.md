@@ -53,6 +53,10 @@ The proposed full objective is therefore:
 + 2 H_soft(z) / 586459020
 ```
 
+## Measured parameter direction
+
+[A single 1,199-target parameter-gradient measurement](depth-objective-gradients.md) now checks the same question on an original trained checkpoint. CE/KL cosine is −0.859338; the original LR-scaled descent direction raises KL locally while the proposed 2KL direction lowers it. A first-block raw embedding coefficient carries the opposing contribution. The original Adam trajectory and its actual coded measurement continue.
+
 ## Complete reuse and measurement contract
 
 The existing teacher cache holds 205 f32 logits and 192 f32 final RMS features
