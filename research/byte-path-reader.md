@@ -62,7 +62,7 @@ full_KL = KL(T_groups || S_groups)
 
 Matching all group masses fixes the visited conditionals. Probability mass inside each unvisited sibling remains free to redistribute.
 
-At the teacher point, this path certificate's Fisher rank is at most **8**, compared with **204** for the full 205-way output. These ranks describe effective-probability coordinates; shared model parameters introduce their own constraints.
+For one fixed context and target, at the teacher point this path certificate's Fisher rank is at most **8**, compared with **204** for the full 205-way output. These ranks describe effective-probability coordinates; shared model parameters introduce their own constraints.
 
 ## Count actual bit visits when choosing the loss
 
@@ -78,7 +78,7 @@ Deterministic branches contribute zero. For a fixed context and its effective te
 
 ## What the measured rows say
 
-On **3,934 targets** across three complete held-out pieces, the 12-block teacher versus an untrained mapped eight-block student gave the following FP64-softmax, `1e-6`-guarded, normalized geometry:
+On **3,934 targets** across three complete held-out pieces, the 12-block teacher versus an untrained mapped eight-block student gave the following FP32-logit → FP64-softmax → `1e-6`-guarded, normalized geometry:
 
 | Target-weighted mean | Nats |
 |---|---:|
@@ -89,6 +89,11 @@ On **3,934 targets** across three complete held-out pieces, the 12-block teacher
 **30.716%** of this measured KL lies inside unvisited siblings. This is initial-output geometry; learned fitting and actual archive size are the experiment's performance outcomes.
 
 Physical output representation matters too. A guard-feasible probability-space projection on 12 saved rows preserved all **96** serial-FP32 path lookup indices. Rounding that oracle through native half again changed **31/96**. The next learning comparison needs the deployed half/guard target and its own coded-byte measurement.
+
+A second, physically representable construction keeps the teacher's **actual half words** and reorders them inside each sibling and decoder domain. Sorting teacher values against the unchanged student's values minimizes `KL(R||S)` within that fixed-multiset family.
+
+On the same 12 rows, this changed **1,536/2,460 half words**, with **0/96** lookup changes and **0/96** override changes. The alternative target's distance to the fixed student fell from **1.339565** to **1.184487 nats**, or **11.58%**. Teacher→oracle KL was **0.181127 nats**. This is a literal output-buffer certificate; learned fitting and complete native payload remain the next performance measurements. [Construction, source and half buffers](https://github.com/blucca/fx2-cmix-transformer-v1/blob/main/research/byte-path-half-permutation.md).
+
 
 ## Use the observation contract as the research boundary
 

@@ -149,6 +149,16 @@ The last result exposes the physical half-representability question for any
 learning experiment. Production fast/O3 accumulation and actual payload bytes
 retain their native validation. [Saved-row controls](results/byte-path-half-guard-control.json).
 
+A [physical half-buffer oracle](byte-path-half-permutation.md) permutes the
+teacher's existing half words within each sibling and F16C/scalar-tail decoder
+domain. On the same 12 rows it changes 1,536 half words and 968 effective values,
+preserves exact group masses, and changes **0/96 lookup indices and 0/96 overrides**
+under serial-FP32 source-order accumulation. The alternate target's `KL(R||S)`
+to the unchanged student is 11.5768% smaller; teacher-to-oracle KL is .1811266.
+This fixed-multiset rearrangement certificate uses no learned update; complete
+model/native-payload performance follows its existing experimental contract.
+
+
 ## Replay and continuation
 
 Standard-library checks and saved-logit replay:

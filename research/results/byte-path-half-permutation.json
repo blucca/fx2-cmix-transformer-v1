@@ -1,0 +1,1310 @@
+{
+  "schema": "hutter.saved-logit-half-permutation-oracle.round464.v1",
+  "status": "passed",
+  "scope": "12 saved real-logit rows / 12 actual targets / 96 path bits; output-buffer certificate",
+  "mechanism": "single sorted permutation per nonempty target sibling/leaf x decoder domain",
+  "arithmetic": "FP64 softmax -> FP32 -> RNE half; source decode/guard; serial FP32 source-order observation",
+  "decoder_domains": {
+    "f16c_indices": [
+      0,
+      199
+    ],
+    "scalar_tail_indices": [
+      200,
+      204
+    ],
+    "scalar_subnormal_scale": 0.5
+  },
+  "objective": "min KL(R||S) within each fixed teacher-half-word decoder-cell multiset",
+  "normalization": "KL uses independently normalized effective teacher/student/oracle rows; coder uses absolute rows",
+  "floor": 9.999999974752427e-07,
+  "exact_group_error_unit_denominator": 8796093022208,
+  "rows": 12,
+  "path_bits": 96,
+  "means": {
+    "full_kl_teacher_student": 1.3395654167062732,
+    "full_kl_oracle_student": 1.1844869797305104,
+    "full_kl_teacher_oracle": 0.1811265966896215,
+    "path_kl_teacher_student": 1.066339893701128,
+    "path_kl_oracle_student": 1.066339893701128,
+    "target_distance_reduction": 0.15507843697576273,
+    "relative_target_distance_reduction": 0.11576772215952692,
+    "relative_within_sibling_kl_reduction": 0.5675840063186278
+  },
+  "totals": {
+    "lookup_changes": 0,
+    "override_changes": 0,
+    "previous_rehalf_lookup_changes": 31,
+    "moved_half_words": 1536,
+    "changed_effective_values": 968
+  },
+  "exact_group_max_error_units": 0,
+  "exact_decoder_cell_max_error_units": 0,
+  "maximum_absolute_group_mass_error": 0.0,
+  "maximum_native_condition_error": 2.384185791015625e-07,
+  "teacher_override_counts": {
+    "-1": 93,
+    "0": 3,
+    "1": 0
+  },
+  "certificate": {
+    "target_leaf_half_fixed": true,
+    "per_decoder_cell_half_multiset_preserved": true,
+    "sorted_rearrangement_minimizer": true,
+    "pre_half_fp32_permutation_rounding_matches": true
+  },
+  "deferred_evaluation": "learned architectural realizability and complete native fast/O3 payload after original 2KL terminal decision",
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "new_learning_engineering": 0,
+  "remote_calls": 0,
+  "native_calls": 0,
+  "codec_runs": 0,
+  "inputs": {
+    "saved_logits": {
+      "path": "research/results/byte-path-initial8-geometry.json"
+    },
+    "prior_half_guard_control": {
+      "path": "research/results/byte-path-half-guard-control.json"
+    }
+  },
+  "half_buffers": {
+    "byte-path-permutation-teacher.f16": {
+      "bytes": 4920,
+      "layout": "12 consecutive 205-word little-endian uint16 rows; cases order"
+    },
+    "byte-path-permutation-oracle.f16": {
+      "bytes": 4920,
+      "layout": "12 consecutive 205-word little-endian uint16 rows; cases order"
+    }
+  },
+  "cpu_seconds": 0.032299011999999995,
+  "wall_seconds": 0.03242479800246656,
+  "peak_rss_kib": 17008,
+  "cases": [
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 0,
+      "target_index": 27,
+      "target_byte": 51,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 0.5573857774966388,
+      "full_kl_oracle_student": 0.44061970908944487,
+      "full_kl_teacher_oracle": 0.11046075490215569,
+      "path_kl_teacher_student": 0.3551411272623199,
+      "path_kl_oracle_student": 0.3551411272623199,
+      "relative_target_distance_reduction": 0.20948878339095767,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 1.4551915228366852e-10,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 3,
+      "teacher_observation": {
+        "conditionals": [
+          0.00021065586770419031,
+          0.0016991099109873176,
+          0.9996456503868103,
+          0.9958630800247192,
+          0.19597063958644867,
+          0.46814361214637756,
+          0.6081585884094238,
+          0.5611714720726013
+        ],
+        "lookup": [
+          21,
+          169,
+          99965,
+          99587,
+          19597,
+          46814,
+          60816,
+          56117
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.0002106560132233426,
+          0.0016991099109873176,
+          0.9996456503868103,
+          0.9958630800247192,
+          0.19597063958644867,
+          0.46814361214637756,
+          0.6081585884094238,
+          0.5611714720726013
+        ],
+        "lookup": [
+          21,
+          169,
+          99965,
+          99587,
+          19597,
+          46814,
+          60816,
+          56117
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 140,
+      "changed_effective_values": 57,
+      "teacher_tail_words": [
+        0,
+        1,
+        4,
+        0,
+        1
+      ],
+      "oracle_tail_words": [
+        0,
+        1,
+        4,
+        0,
+        1
+      ],
+      "source_index_per_destination_u8_hex": "00010204060503070816090f0a110e0b0d17130c1214151019181a1b1c1e1f1d202122273f25262838364a39342a432b40232c3c334c4849242d29462f3a2e45423d3e30373541313b47444b328175949bb3a54d4ea784ad834f7a825051a152a98a53769158545556a05759898b8c5a5b7b90c05c88afabbdb1b05d6e8eb799c297b479c3be5e5f60617d62a49e63c795ac87b8c46465bfaabaae66678d92688f69a2c5966a6b866c9c6da69a6f70b9a87fa371c6bc9f9dbbc1b67e7893b5b27c72987785737480c8c9cacbcc"
+    },
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 1,
+      "target_index": 30,
+      "target_byte": 54,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 1.2969752876096794,
+      "full_kl_oracle_student": 1.19958579731091,
+      "full_kl_teacher_oracle": 0.040010072735016854,
+      "path_kl_teacher_student": 0.8133349589896063,
+      "path_kl_oracle_student": 0.8133349589896063,
+      "relative_target_distance_reduction": 0.0750897038896229,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 9.313225746154785e-10,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 2,
+      "teacher_observation": {
+        "conditionals": [
+          0.0004206170269753784,
+          0.013714625500142574,
+          0.9998320937156677,
+          0.9948825240135193,
+          0.17905153334140778,
+          0.43832916021347046,
+          0.4624697268009186,
+          0.538145124912262
+        ],
+        "lookup": [
+          42,
+          1371,
+          99984,
+          99489,
+          17905,
+          43833,
+          46247,
+          53815
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00042061699787154794,
+          0.013714626431465149,
+          0.9998320937156677,
+          0.9948825240135193,
+          0.17905153334140778,
+          0.43832916021347046,
+          0.4624697268009186,
+          0.538145124912262
+        ],
+        "lookup": [
+          42,
+          1371,
+          99984,
+          99489,
+          17905,
+          43833,
+          46247,
+          53815
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 149,
+      "changed_effective_values": 80,
+      "teacher_tail_words": [
+        15,
+        10,
+        1554,
+        11,
+        0
+      ],
+      "oracle_tail_words": [
+        1554,
+        15,
+        10,
+        0,
+        11
+      ],
+      "source_index_per_destination_u8_hex": "0002040703050601081013170a0e0b140d120c11090f16151b191a181c1d1e1f202135374c3624262d272a28462c292e442f3925434222343a313e483247493f4b41384a302b233c333b403d45b180a9c4924d4e894f79c6bc505152b653aa547a845556a457595a5bc7aeab5c5d8e5e5f6061956263649165acbe979e6dbbb9886667a3688d696b9b6cc286ad8b6e9d6fc1706aa6719899a0b5b272738f9c7475a585a89396c09faf7677ba8c787bbfa27d7e9058b87fb07cc3b3a1b4a78a949a81c5b78283bd87cac8c9cccb"
+    },
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 2,
+      "target_index": 37,
+      "target_byte": 76,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 7.598654033350625,
+      "full_kl_oracle_student": 7.580901744514236,
+      "full_kl_teacher_oracle": 0.06777461242940182,
+      "path_kl_teacher_student": 7.569525107695729,
+      "path_kl_oracle_student": 7.569525107695729,
+      "relative_target_distance_reduction": 0.0023362412288379145,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 1.4551915228366852e-11,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 0,
+      "teacher_observation": {
+        "conditionals": [
+          0.00015809788601472974,
+          0.9910250902175903,
+          2.6613484806148335e-05,
+          0.00011126562458230183,
+          0.9999978542327881,
+          0.9999790191650391,
+          2.0187221707601566e-06,
+          1.0093631317431573e-06
+        ],
+        "lookup": [
+          15,
+          99103,
+          10,
+          11,
+          99991,
+          99991,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.0001580978714628145,
+          0.9910250902175903,
+          2.6613484806148335e-05,
+          0.00011126562458230183,
+          0.9999978542327881,
+          0.9999790191650391,
+          2.0187221707601566e-06,
+          1.0093631317431573e-06
+        ],
+        "lookup": [
+          15,
+          99103,
+          10,
+          11,
+          99991,
+          99991,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 150,
+      "changed_effective_values": 34,
+      "teacher_tail_words": [
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "oracle_tail_words": [
+        2,
+        1,
+        1,
+        1,
+        0
+      ],
+      "source_index_per_destination_u8_hex": "0001020a160b1403181c060e0717130c0d1209151019081a21201e05111f0f041d1b222324252627282b302c2d2e2f312a32293948493e404133423c343a35444b3645464c373b384a3f47433dc2c46461c04da1b74eb956584f9fc5c751525354b85557a2595a5b5cbe5d5e5f60626365ae66b66768696a6b50717aafb2bfb3b56ca36d6e9c6f7072737475767778a679c17bc3b17c7da8a77eac7f80abaa8182838485a986879d88898ab48b8c8da09e8e8f90919293c694bba4bcbd95a5ad9697ba98999ab09bc8c9cacbcc"
+    },
+    {
+      "regime": "short",
+      "piece": 0,
+      "row": 3,
+      "target_index": 23,
+      "target_byte": 47,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 0.020405973316470247,
+      "full_kl_oracle_student": 0.02021412246365624,
+      "full_kl_teacher_oracle": 0.0004336486901794338,
+      "path_kl_teacher_student": 0.0196708542301549,
+      "path_kl_oracle_student": 0.0196708542301549,
+      "relative_target_distance_reduction": 0.009401700660813809,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 4.3655745685100555e-11,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 0,
+      "teacher_observation": {
+        "conditionals": [
+          0.00017381612269673496,
+          5.1720053306780756e-05,
+          0.999969482421875,
+          9.99912208499154e-06,
+          0.9999344348907471,
+          0.9999911785125732,
+          0.9999980926513672,
+          0.9999990463256836
+        ],
+        "lookup": [
+          17,
+          10,
+          99991,
+          10,
+          99991,
+          99991,
+          99991,
+          99991
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00017381607904098928,
+          5.172004966880195e-05,
+          0.999969482421875,
+          9.99912208499154e-06,
+          0.9999344348907471,
+          0.9999911785125732,
+          0.9999980926513672,
+          0.9999990463256836
+        ],
+        "lookup": [
+          17,
+          10,
+          99991,
+          10,
+          99991,
+          99991,
+          99991,
+          99991
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 102,
+      "changed_effective_values": 12,
+      "teacher_tail_words": [
+        5,
+        2,
+        6,
+        2,
+        9
+      ],
+      "oracle_tail_words": [
+        9,
+        2,
+        2,
+        5,
+        6
+      ],
+      "source_index_per_destination_u8_hex": "00010603020704050e080f090a0b0d0c11131012151416171d1a201c1e1b19211f184a23243b25262728292a2b2c2d2e452f3031223233343536374c384b393a3c46483d3e3f404149424743444db09baaa9a1aba44f505152bc53af5455565758595aa55b5cbd5d975e995f94adbb60619aa0626364be656698c69e67c468696ac56b6c6d6e6f707172737475767778797a7bb77c7d7eb57fb6808182c7bf8384c2aca29fa6b8b3858687ae4eb9a3c18889ba8a95c08b8c9db4c3a78d9c8e8fb2a89096b1919293cccbc9c8ca"
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 0,
+      "target_index": 197,
+      "target_byte": 248,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 0.4571334551557836,
+      "full_kl_oracle_student": 0.28727641966800027,
+      "full_kl_teacher_oracle": 0.11932025645752127,
+      "path_kl_teacher_student": 0.0774609350942102,
+      "path_kl_oracle_student": 0.0774609350942102,
+      "relative_target_distance_reduction": 0.37156990715085336,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 0.0,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 4,
+      "teacher_observation": {
+        "conditionals": [
+          0.7142859101295471,
+          0.9978615045547485,
+          0.958987295627594,
+          0.8867319822311401,
+          0.4083048105239868,
+          0.5056875944137573,
+          0.7251636981964111,
+          0.6444293260574341
+        ],
+        "lookup": [
+          71429,
+          99787,
+          95899,
+          88674,
+          40830,
+          50569,
+          72517,
+          64443
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.7142859101295471,
+          0.9978615045547485,
+          0.958987295627594,
+          0.8867319822311401,
+          0.4083048105239868,
+          0.5056875944137573,
+          0.7251636981964111,
+          0.6444293260574341
+        ],
+        "lookup": [
+          71429,
+          99787,
+          95899,
+          88674,
+          40830,
+          50569,
+          72517,
+          64443
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 176,
+      "changed_effective_values": 150,
+      "teacher_tail_words": [
+        10775,
+        10296,
+        10813,
+        10286,
+        8584
+      ],
+      "oracle_tail_words": [
+        10775,
+        10296,
+        10813,
+        10286,
+        8584
+      ],
+      "source_index_per_destination_u8_hex": "0032011b02251f04060730090a0b4720190c0d0f11121c131a0310080e1417311d21220524232f2627161528292a3b2b182c2d3336353d413a393f494348464538373e2e4034424b4a444c3c1e814e747e805162545657598c696a6c5f78646389718573685d7f84616f8a87707a50758667587c5b885e824f6d8360795c72778b556e7d4d765a527b536b66658d938e96a9a191a8909c959b99ac9497a79f8faaa09da6a39e9aa5a4aba29298b0aeb8b7afbcb9b2b5b6adb1b3bbbab4c4bec3c0c2c1bdbfc5c6c7c8c9cacbcc"
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 1,
+      "target_index": 188,
+      "target_byte": 239,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 0.6425083237443884,
+      "full_kl_oracle_student": 0.43444619841481985,
+      "full_kl_teacher_oracle": 0.5936094977155787,
+      "path_kl_teacher_student": 0.2626513833645511,
+      "path_kl_oracle_student": 0.2626513833645511,
+      "relative_target_distance_reduction": 0.32382790641066106,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 0.0,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 4,
+      "teacher_observation": {
+        "conditionals": [
+          0.9999175071716309,
+          0.9279700517654419,
+          0.9227105379104614,
+          2.657275035744533e-05,
+          0.7270144820213318,
+          0.9637176394462585,
+          0.9445180892944336,
+          0.9455113410949707
+        ],
+        "lookup": [
+          99991,
+          92797,
+          92271,
+          10,
+          72702,
+          96372,
+          94452,
+          94552
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.9999175071716309,
+          0.9279700517654419,
+          0.9227105379104614,
+          2.657275035744533e-05,
+          0.7270144820213318,
+          0.9637176394462585,
+          0.9445180892944336,
+          0.9455113410949707
+        ],
+        "lookup": [
+          99991,
+          92797,
+          92271,
+          10,
+          72702,
+          96372,
+          94452,
+          94552
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 139,
+      "changed_effective_values": 97,
+      "teacher_tail_words": [
+        15,
+        0,
+        1,
+        0,
+        26
+      ],
+      "oracle_tail_words": [
+        15,
+        0,
+        1,
+        0,
+        26
+      ],
+      "source_index_per_destination_u8_hex": "0001020305060708090a0b0c0d0e0f10041112131415161718191a1b1c1d1e1f2021224a23242526274b28292a2b4c2c2d2e2f303132333435363738393a3b3c3d3e3f40414243444546474849728852876c6a6785688077656486607c6e6d6b898c5a4e62847d5651548a667363595c6157535f78764f505e55817079718b5d74757f836f7b7a5b4d69827e58918e94979aa48f989596908d99929ca0aaa19b9faba3a6a9a293a89eac9da7a5b3aeb1afb2b0b4adb8b5b7b6b9babbbcbdc7c6bebfc2c0c1c3c4c5c8c9cacbcc"
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 2,
+      "target_index": 135,
+      "target_byte": 186,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 1.2127713124611745,
+      "full_kl_oracle_student": 0.5690238162938388,
+      "full_kl_teacher_oracle": 0.7197873544684976,
+      "path_kl_teacher_student": 0.3328030558358593,
+      "path_kl_oracle_student": 0.3328030558358593,
+      "relative_target_distance_reduction": 0.5308069951464527,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 0.0,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 6,
+      "teacher_observation": {
+        "conditionals": [
+          0.9999265670776367,
+          0.2904743552207947,
+          0.8585649728775024,
+          0.2139551341533661,
+          0.29400715231895447,
+          0.3535726070404053,
+          0.929481029510498,
+          0.07496065646409988
+        ],
+        "lookup": [
+          99991,
+          29047,
+          85857,
+          21395,
+          29401,
+          35357,
+          92949,
+          7496
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.9999265670776367,
+          0.2904743552207947,
+          0.8585649728775024,
+          0.2139551341533661,
+          0.29400715231895447,
+          0.3535726070404053,
+          0.929481029510498,
+          0.07496065646409988
+        ],
+        "lookup": [
+          99991,
+          29047,
+          85857,
+          21395,
+          29401,
+          35357,
+          92949,
+          7496
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 76,
+      "changed_effective_values": 75,
+      "teacher_tail_words": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "oracle_tail_words": [
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      "source_index_per_destination_u8_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c675751625566535c6c5f596150656064586b4e564d635d69685e5a52545b4f6a76757873796f7c74777b7072717a6d6e817e807f837d8482868587888c898b8a948e909b9197958f9398969299b58d9c9d9e9fa0a1a2a3a4a5a6a7a8a9aa9aaeadacafb0b1b2b3b4abb6b7bbb8b9babcbdbebfc0c1c2c3c4c5c6c7c8c9cacbcc"
+    },
+    {
+      "regime": "middle",
+      "piece": 7,
+      "row": 3,
+      "target_index": 37,
+      "target_byte": 76,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 3.0384165533608885,
+      "full_kl_oracle_student": 3.021915195063955,
+      "full_kl_teacher_oracle": 0.016982470439071643,
+      "path_kl_teacher_student": 2.956714514267902,
+      "path_kl_oracle_student": 2.956714514267902,
+      "relative_target_distance_reduction": 0.005430907187061188,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 2.384185791015625e-07,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 0,
+      "teacher_observation": {
+        "conditionals": [
+          0.00013680857955478132,
+          0.8733769655227661,
+          0.0019421749748289585,
+          0.00013119782670401037,
+          0.999572217464447,
+          0.9997864365577698,
+          3.816540356638143e-06,
+          1.1479806971692597e-06
+        ],
+        "lookup": [
+          13,
+          87338,
+          194,
+          13,
+          99958,
+          99979,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.0001368085650028661,
+          0.8733772039413452,
+          0.0019421749748289585,
+          0.00013119782670401037,
+          0.999572217464447,
+          0.9997864365577698,
+          3.816540356638143e-06,
+          1.1479806971692597e-06
+        ],
+        "lookup": [
+          13,
+          87338,
+          194,
+          13,
+          99958,
+          99979,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 84,
+      "changed_effective_values": 58,
+      "teacher_tail_words": [
+        4,
+        1,
+        0,
+        0,
+        0
+      ],
+      "oracle_tail_words": [
+        4,
+        1,
+        0,
+        0,
+        0
+      ],
+      "source_index_per_destination_u8_hex": "0001022112100507081a18170a1e1415031b0913160e0f0619040b1f1c11201d0c0d22232425262728292a322b2c302d2e2f313742393f34353e36463c4b3b41453a3d43384033474c4948444a4d4e4f505152585354c455b55657595a5b5c5d5e5f60616263c66465666768696a6b6c6d6e6f70717273747576777879c77a7b7c7d7e7f808182838485868788898a8bc3c08c93c28d8e8f9091929495969798999a9b9c9d9e9fa0a1a2a3a4a5a6a7a8a9aabfabacc5adaeafb0b1b2b3b4b6b7c1b8b9babbbcbdbec8c9cacbcc"
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 0,
+      "target_index": 169,
+      "target_byte": 220,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 0.5408048590125831,
+      "full_kl_oracle_student": 0.255551483972193,
+      "full_kl_teacher_oracle": 0.24893444012753588,
+      "path_kl_teacher_student": 0.07342156843460688,
+      "path_kl_oracle_student": 0.07342156843460688,
+      "relative_target_distance_reduction": 0.5274608211938292,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 0.0,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 5,
+      "teacher_observation": {
+        "conditionals": [
+          0.527214527130127,
+          0.9927821755409241,
+          0.7726924419403076,
+          0.8724150657653809,
+          0.8753292560577393,
+          0.9916375279426575,
+          0.4832809269428253,
+          0.0940675213932991
+        ],
+        "lookup": [
+          52721,
+          99279,
+          77270,
+          87242,
+          87533,
+          99164,
+          48328,
+          9406
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.527214527130127,
+          0.9927821755409241,
+          0.7726924419403076,
+          0.8724150657653809,
+          0.8753292560577393,
+          0.9916375279426575,
+          0.4832809269428253,
+          0.0940675213932991
+        ],
+        "lookup": [
+          52721,
+          99279,
+          77270,
+          87242,
+          87533,
+          99164,
+          48328,
+          9406
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 173,
+      "changed_effective_values": 157,
+      "teacher_tail_words": [
+        10916,
+        10723,
+        10817,
+        9797,
+        11573
+      ],
+      "oracle_tail_words": [
+        11573,
+        10723,
+        10817,
+        9797,
+        10916
+      ],
+      "source_index_per_destination_u8_hex": "00010231081625042007190f0a0b2c061b240c0d0e222a1027152e3205232f2b30214a1e260918112d281d1a1c124813291417343f393336493d3a443847463e40354243373c45411f4c033b4b7d72638a706c6b4e5254565d6f76756a808189828362857e7b6e7a73695a678b7851845771554d7461595b585f86875c794f53688c6d64507f5e77607c65668899978f95919498938d9b9c92909a8e96a29ea49da3a1a09fa6a5a7a8a9aaabacaebbadbcafb3bac3c2c6b5b2c1b7b1beb0c4bfbdc5b6c0b9c7b8b4ccc9cacbc8"
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 1,
+      "target_index": 95,
+      "target_byte": 146,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 0.45445232371417965,
+      "full_kl_oracle_student": 0.1784902352436884,
+      "full_kl_teacher_oracle": 0.22324458208828662,
+      "path_kl_teacher_student": 0.13604703194497747,
+      "path_kl_oracle_student": 0.13604703194497747,
+      "relative_target_distance_reduction": 0.6072410109273709,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 0.0,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 6,
+      "teacher_observation": {
+        "conditionals": [
+          0.9999265670776367,
+          0.05867240950465202,
+          0.47066807746887207,
+          0.32788729667663574,
+          0.3223758041858673,
+          0.33117419481277466,
+          0.4637337625026703,
+          0.2308375984430313
+        ],
+        "lookup": [
+          99991,
+          5867,
+          47067,
+          32789,
+          32237,
+          33117,
+          46373,
+          23083
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.9999265670776367,
+          0.05867240950465202,
+          0.47066807746887207,
+          0.32788729667663574,
+          0.3223758041858673,
+          0.33117419481277466,
+          0.4637337625026703,
+          0.2308375984430313
+        ],
+        "lookup": [
+          99991,
+          5867,
+          47067,
+          32789,
+          32237,
+          33117,
+          46373,
+          23083
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 98,
+      "changed_effective_values": 71,
+      "teacher_tail_words": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "oracle_tail_words": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_index_per_destination_u8_hex": "000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c56585350545a4f5152554e5b5c59574d5d5e5f606364616267666568696c6a6b8b6e778a8772808c847971817a857c896f7b767f7e746d70787386887d83758291958e998f9293969c98978d94909a9b9db49fa0a1a2bbb7a3c0a5baa6a7c5c2a4bea8bfa9bcc19ebdc6c7aaabacadc4aeafc3b0b1b2b3b5b6b8b9c8c9cacbcc"
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 2,
+      "target_index": 8,
+      "target_byte": 32,
+      "groups": 9,
+      "group_decoder_cells": 10,
+      "full_kl_teacher_student": 0.0751545651229524,
+      "full_kl_oracle_student": 0.06979277623819674,
+      "full_kl_teacher_oracle": 0.006424564632877518,
+      "path_kl_teacher_student": 0.06788744145655029,
+      "path_kl_oracle_student": 0.06788744145655029,
+      "relative_target_distance_reduction": 0.0713434889282349,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 1.4551915228366852e-11,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 0,
+      "teacher_observation": {
+        "conditionals": [
+          0.00012795839575119317,
+          0.0025320027489215136,
+          0.9993842244148254,
+          1.107249681808753e-05,
+          0.0015055738622322679,
+          0.0028571742586791515,
+          9.533513548376504e-06,
+          8.586278454458807e-06
+        ],
+        "lookup": [
+          12,
+          253,
+          99939,
+          10,
+          150,
+          285,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.00012795838119927794,
+          0.0025320027489215136,
+          0.9993842244148254,
+          1.107249681808753e-05,
+          0.0015055738622322679,
+          0.0028571742586791515,
+          9.533513548376504e-06,
+          8.586278454458807e-06
+        ],
+        "lookup": [
+          12,
+          253,
+          99939,
+          10,
+          150,
+          285,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          -1
+        ]
+      },
+      "moved_half_words": 63,
+      "changed_effective_values": 37,
+      "teacher_tail_words": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "oracle_tail_words": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "source_index_per_destination_u8_hex": "000307040502060108090a0b0c0d0e0f10111312151716141a1921181b1f1d1e201c22434b394426364146272a2b3e49452c252e484c3d2328374a342d3a3b242940382f42333f313247353c304d4e4f50b151b952bc5354c055565758595abe5b5c5d5e5fc4bd60616263646566676869bab46a6b6c6d6e6f707172737475767778797a7b7c7d7e7f808182c78384af85b586b7b38788898a8b8cac8d8e8f9091b29293949596979899bfb0c59ab69bae9c9d9eaac3c29fa0a1a2a3c6ada4a5a6a7a8a9abc1bbb8c8c9cacbcc"
+    },
+    {
+      "regime": "hard",
+      "piece": 14,
+      "row": 3,
+      "target_index": 34,
+      "target_byte": 64,
+      "groups": 6,
+      "group_decoder_cells": 7,
+      "full_kl_teacher_student": 0.18012253612991197,
+      "full_kl_oracle_student": 0.1560262584931874,
+      "full_kl_teacher_oracle": 0.02653690558933497,
+      "path_kl_teacher_student": 0.13142074583706684,
+      "path_kl_oracle_student": 0.13142074583706684,
+      "relative_target_distance_reduction": 0.13377713946546538,
+      "exact_group_max_error_units": 0,
+      "exact_decoder_cell_max_error_units": 0,
+      "native_condition_max_error": 1.3969838619232178e-09,
+      "lookup_changes": 0,
+      "override_changes": 0,
+      "previous_rehalf_lookup_changes": 1,
+      "teacher_observation": {
+        "conditionals": [
+          0.0049017490819096565,
+          0.9817070960998535,
+          0.006863278802484274,
+          2.616323581605684e-05,
+          6.443580332415877e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lookup": [
+          490,
+          98171,
+          686,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          0,
+          0,
+          0
+        ]
+      },
+      "oracle_observation": {
+        "conditionals": [
+          0.0049017504788935184,
+          0.9817070960998535,
+          0.006863278802484274,
+          2.6163233997067437e-05,
+          6.443580332415877e-06,
+          0.0,
+          0.0,
+          0.0
+        ],
+        "lookup": [
+          490,
+          98171,
+          686,
+          10,
+          10,
+          10,
+          10,
+          10
+        ],
+        "override": [
+          -1,
+          -1,
+          -1,
+          -1,
+          -1,
+          0,
+          0,
+          0
+        ]
+      },
+      "moved_half_words": 186,
+      "changed_effective_values": 140,
+      "teacher_tail_words": [
+        2403,
+        2817,
+        2925,
+        991,
+        2031
+      ],
+      "oracle_tail_words": [
+        2925,
+        2817,
+        991,
+        2031,
+        2403
+      ],
+      "source_index_per_destination_u8_hex": "0001021013190d041d050f151b071a06030b0c11120916081e0e0a20141f211c1817222523272826242d292a2b2f2e3031322c48373336424649383b403a3e3f4439474b4c3c4134453d43354a4d63754eb295b0779c4f525354876c8ea67bb7a38c66b9647669899255565767a4a96b596f9eb8b468bb5a9b975b5c5facab7ab382986ec5ad855d6065ae88c2707c8fbdc074a761716a628ba59472a1b1837fb5a87d9d7e738658a080906d9199bebf8a509aaa78c7c3af51938d96b68479bcc15eba81c6c49fa2cac9cbccc8"
+    }
+  ]
+}
