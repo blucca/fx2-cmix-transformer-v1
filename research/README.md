@@ -9,6 +9,8 @@
 
 **Eight hard-QAT epochs:** [native e16](results/depth-hard-e16.json) adds 0.004113873 nats/target from e12 across 800,662 worsening held targets; e12 remains the current native minimum. W16/B save 1,894,244 B across both copies. The original 32-epoch method and sole mixed run continue. [Stdlib replay](check-depth-hard-e16.py).
 
+**Measured prior value:** [The original NN versus causal PPMd](causal-prior-value.md) improves every one of 473 held-piece mean losses and removes 96.8% of the prior NLL on the independent giant-article audit. [Complete piece-level result](results/causal-prior-value.json) and one bounded input-only probe preserve the original weights and queues.
+
 **Causal e11:** [eleven original native epochs](results/causal-first-eleven-epochs.json) preserve e2; the same four held/audit scopes regress through e3–e11. Native e11 adds 0.002005110 nats/target from e10. [Replay](causal-first-eleven-epochs-check.py).
 
 **New paired analysis:** [native-loss domains](native-loss-regimes.md) reuse the
