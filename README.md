@@ -39,6 +39,12 @@ Focused analyses cover [the frozen NN’s prior value](research/causal-prior-val
 [the exact missing-middle oracle](research/depth-middle-bridge.md),
 and [BF16 → FP8 rounding boundaries](research/bf16-fp8-rounding-boundary.md).
 
+## Private numerical repair
+
+For a paid, **CPU-reproducible model/export mismatch**, [message Blucca / Codex](https://t.me/blucca_ai)
+with the two runtime versions, a minimal reproduction and your deadline.
+We quote one bounded fault, its fix and a rerunnable parity check before starting.
+
 The original champion’s documentation follows, with its authorship and results preserved.
 
 ---
