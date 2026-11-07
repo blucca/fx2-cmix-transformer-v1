@@ -1,0 +1,117 @@
+{
+  "schema": "hutter.depth8.zero-native.readout.round446.v1",
+  "status": "passed",
+  "weight_bytes": 1955187,
+  "w0_weight_bytes": 2904325,
+  "scopes": {
+    "held": {
+      "targets": 1082505,
+      "zero8_raw_nll": 1.6631390601151237,
+      "w0_raw_nll": 0.9662483387944293,
+      "zero8_minus_w0": 0.6968907213206944,
+      "zero8_probs_nll": 1.6631390366447534,
+      "w0_probs_nll": 0.9662483142713116,
+      "zero8_probs_minus_w0": 0.6968907223734417,
+      "learned_nll": {
+        "e4": 1.1871585190883955,
+        "e8": 1.1688038833784649,
+        "e12": 1.1451413926090206,
+        "e16": 1.1492552658631419
+      },
+      "learned_minus_zero8": {
+        "e4": -0.47598054102672815,
+        "e8": -0.49433517673665883,
+        "e12": -0.5179976675061031,
+        "e16": -0.5138837942519818
+      }
+    },
+    "held_long": {
+      "targets": 107647,
+      "zero8_raw_nll": 2.0520322084196705,
+      "w0_raw_nll": 1.2586143013099194,
+      "zero8_minus_w0": 0.7934179071097511,
+      "zero8_probs_nll": 2.052032188363545,
+      "w0_probs_nll": 1.258614281197843,
+      "zero8_probs_minus_w0": 0.7934179071657019,
+      "learned_nll": {
+        "e4": 1.518069217218576,
+        "e8": 1.4981257583566259,
+        "e12": 1.4669074431033173,
+        "e16": 1.4727867300938235
+      },
+      "learned_minus_zero8": {
+        "e4": -0.5339629912010946,
+        "e8": -0.5539064500630446,
+        "e12": -0.5851247653163532,
+        "e16": -0.5792454783258469
+      }
+    },
+    "held_short": {
+      "targets": 974858,
+      "zero8_raw_nll": 1.6201962102482308,
+      "w0_raw_nll": 0.9339643356197053,
+      "zero8_minus_w0": 0.6862318746285255,
+      "zero8_probs_nll": 1.6201961864008485,
+      "w0_probs_nll": 0.9339643106095061,
+      "zero8_probs_minus_w0": 0.6862318757913424,
+      "learned_nll": {
+        "e4": 1.150618280487882,
+        "e8": 1.132439087812573,
+        "e12": 1.1096109358270487,
+        "e16": 1.113529866338247
+      },
+      "learned_minus_zero8": {
+        "e4": -0.46957792976034884,
+        "e8": -0.48775712243565783,
+        "e12": -0.5105852744211821,
+        "e16": -0.5066663439099839
+      }
+    },
+    "maximum_length_audit": {
+      "targets": 131071,
+      "zero8_raw_nll": 0.22266586999380739,
+      "w0_raw_nll": 0.03898642613150546,
+      "zero8_minus_w0": 0.18367944386230192,
+      "zero8_probs_nll": 0.2226658274352886,
+      "w0_probs_nll": 0.038986374734534875,
+      "zero8_probs_minus_w0": 0.18367945270075373,
+      "learned_nll": {
+        "e4": 0.18630547531648686,
+        "e8": 0.2249766262079934,
+        "e12": 0.2689786062674665,
+        "e16": 0.2758085249375663
+      },
+      "learned_minus_zero8": {
+        "e4": -0.03636039467732052,
+        "e8": 0.002310756214186027,
+        "e12": 0.046312736273659116,
+        "e16": 0.053142654943758916
+      }
+    }
+  },
+  "fullheld_e12_structural_gap_repaired_fraction": 0.7432982699560603,
+  "audit_e16_structural_fraction_of_w0_gap": 0.7756009459772643,
+  "audit_e16_minus_e4": 0.08950304962107944,
+  "execution": {
+    "supervisor_cpu_seconds": 0.05027046,
+    "child_cpu_seconds": 96.67188300000001,
+    "total_cpu_seconds": 96.72215346,
+    "wall_seconds": 96.82703426899388,
+    "max_process_rss_kib": 92868,
+    "address_space_limit_bytes": 4294967296,
+    "cpu_affinity": [
+      1
+    ],
+    "threads_per_library": 1,
+    "cpu_total_cap_seconds": 180,
+    "wall_total_cap_seconds": 240,
+    "resource_scope": "wait4 native children plus this supervisor; largest process RSS"
+  },
+  "check_status": "passed",
+  "recommendation": {
+    "pureteacher_target": "Observed independent giant regression after e4, plus late e12-to-e16 native/teacher-away drift; preserve the already observed repair of fullheld structural mapping distortion.",
+    "next_complete_3_to_5h_entry": "After the unchanged original 32-epoch trajectory and sole terminal-selected mixed receipt; use these same zero8 and W0 scopes as the next complete run anchors.",
+    "original_protocol": "32 epochs / 48 CPU h / original sole mixed unchanged"
+  },
+  "scientific_reruns": 0
+}

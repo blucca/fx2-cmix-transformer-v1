@@ -7,6 +7,8 @@
 **Length support:** [census-calibrated native sensitivity](native-length-support.md) separates six observed length cells from the missing >64 KiB cell. At κA=.05, e12's historical record scenario leaves 69,500 B for that cell's payload growth. One natural article contains 81.38% of its targets. [Stdlib replay](check-native-length-support.py).
 
 
+**Zero-step control:** [original zero8 native loss before learning](depth-zero-native.md) supplies full held/long/short and the separate maximum-article audit. E12 repairs **74.33%** of the held starting gap; giant e4→e16 returns **+.089503050 nats/target**. [Complete scientific result](results/depth-zero-native.json) · [read-only measurement source](depth-zero-native.py) · [stdlib replay](check-depth-zero-native.py). The original 32-epoch and sole selected-W mixed terminal precede the complete 2KL investment.
+
 **Eight hard-QAT epochs:** [native e16](results/depth-hard-e16.json) adds 0.004113873 nats/target from e12 across 800,662 worsening held targets; e12 remains the current native minimum. W16/B save 1,894,244 B across both copies. The original 32-epoch method and sole mixed run continue. [Stdlib replay](check-depth-hard-e16.py).
 
 **Actual parameter direction:** [one original 1,199-target gradient measurement](depth-objective-gradients.md) locates the teacher conflict in a first-block embedding coefficient. The sign persists under the original 100-fold group-LR difference; all 134 gradients and both composite reconstructions pass. [Stdlib replay](check-depth-objective-gradients.py). The original optimizer and sole mixed run continue.

@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "stdlib_only": true,
+  "complete_native_logs": 2,
+  "held_pieces": 473,
+  "held_targets": 1082505,
+  "independent_audit_targets": 131071,
+  "new_model_calls": 0,
+  "checked": [
+    "counts",
+    "complete bounds and last-row mask",
+    "target-weighted piece means",
+    "W0 structural delta",
+    "e4/e8/e12/e16 same-scope learning deltas",
+    "real CPU/wall/RSS budgets"
+  ],
+  "execution": {
+    "supervisor_cpu_seconds": 0.05027046,
+    "child_cpu_seconds": 96.67188300000001,
+    "total_cpu_seconds": 96.72215346,
+    "wall_seconds": 96.82703426899388,
+    "max_process_rss_kib": 92868,
+    "address_space_limit_bytes": 4294967296,
+    "cpu_affinity": [
+      1
+    ],
+    "threads_per_library": 1,
+    "cpu_total_cap_seconds": 180,
+    "wall_total_cap_seconds": 240,
+    "resource_scope": "wait4 native children plus this supervisor; largest process RSS"
+  }
+}

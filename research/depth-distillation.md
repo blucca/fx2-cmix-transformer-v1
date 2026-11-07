@@ -28,6 +28,16 @@ The [original histogram estimate](depth-distillation-contract.md) suggests about
 file and prediction-loss tradeoff. Final score uses each side's executable and
 weight size: `S=P+2B+2D+O+2W+69`.
 
+## Native starting control
+
+The [original zero8 native baseline](depth-zero-native.md) now measures the
+same full held/long/short scopes and separate maximum-length audit before
+learning. E12 recovers 74.33% of the starting held loss gap against W0; the
+independent giant improves at e4 and regresses past zero8 from e8. Epoch zero
+retains its control role outside trained-candidate selection. The unchanged
+32-epoch terminal and sole selected-W mixed receipt precede a complete 2KL
+investment. [Complete scientific result](results/depth-zero-native.json).
+
 ## Frozen learning recipe
 
 Reuse the complete-piece, article-cluster-separated causal inputs from the
