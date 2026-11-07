@@ -58,13 +58,14 @@ The [full result](results/task-aware-mlp-rank64.json) includes every map, factor
 
 ## Reproduce
 
-From this repository's root, with NumPy, g++, GNU patch and x86-64-v3 support:
+From this repository's root, with NumPy, g++, Git and x86-64-v3 support:
 
 ```sh
 work=temp/native-mlp-rank64
 mkdir -p "$work"
 python3 research/prepare-native-mlp-inputs.py --out "$work/inputs"
-patch -o "$work/model-capture.cpp" cpp_infer/src/model.cpp < research/native-mlp-input-capture.patch
+cp cpp_infer/src/model.cpp "$work/model-capture.cpp"
+git apply --directory="$work" research/native-mlp-input-capture.patch
 g++ -m64 -O3 -march=x86-64-v3 -mtune=generic -mrecip=none \
   -std=c++17 -fno-math-errno -fno-fast-math -DFX2_MODEL_LAYERS=12 \
   -I cpp_infer/src research/native-mlp-input-capture.cpp "$work/model-capture.cpp" \

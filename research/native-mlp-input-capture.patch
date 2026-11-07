@@ -1,5 +1,5 @@
---- cpp_infer/src/model.cpp
-+++ model-capture.cpp
+--- a/model-capture.cpp
++++ b/model-capture.cpp
 @@ -178,7 +178,7 @@
  }
  
