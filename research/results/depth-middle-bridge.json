@@ -1,0 +1,483 @@
+{
+  "schema": "hutter.depth8.middle-bridge.round450.v1",
+  "status": "passed",
+  "stage": "complete",
+  "started_at": 1794035059.0310872,
+  "scope": "one fixed train piece, one original held piece; floating RMS-normalized residual ridge diagnostic",
+  "top_level_teacher_forwards": 2,
+  "top_level_student_forwards": 4,
+  "optimizer_updates": 0,
+  "optimizer_instances": 0,
+  "gradient_calls": 0,
+  "teacher_checkpoint_reads": 1,
+  "student_initialization_checkpoint_reads": 1,
+  "trained_checkpoint_reads": 0,
+  "new_cache_files": 0,
+  "ppmd_capture_calls": 0,
+  "native_evaluator_calls": 0,
+  "codec_calls": 0,
+  "model_exports": 0,
+  "scale_searches": 0,
+  "scale_calibrations": 0,
+  "ridge_solves": 1,
+  "native_int4_bridge_runs": 0,
+  "full_training_runs": 0,
+  "real_coded_stream_runs": 0,
+  "original_source_writes": 0,
+  "original_checkpoint_writes": 0,
+  "original_cache_writes": 0,
+  "original_native_writes": 0,
+  "cpu_seconds": 3.857994233,
+  "wall_seconds": 4.254299946012907,
+  "peak_rss_kib": 581556,
+  "updated_at": 1794035063.285393,
+  "cpu_affinity": [
+    1
+  ],
+  "address_space_limit_bytes": 4294967296,
+  "cpu_limit_seconds": [
+    174,
+    176
+  ],
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1"
+  },
+  "pieces": {
+    "train": {
+      "lo": 5321,
+      "hi": 6521,
+      "plan_piece_index": 7,
+      "role": "train",
+      "article": 1447,
+      "source_token_range": [
+        1256446,
+        1257646
+      ],
+      "selection": "original manifest ordinal 8; same piece as rounds446 and449",
+      "targets": 1199,
+      "local_token_range": [
+        5321,
+        6521
+      ],
+      "priors_dtype": "float16",
+      "vocabulary_columns": 205,
+      "bounds": [
+        [
+          0,
+          1199
+        ]
+      ],
+      "causal_history": "unchanged original full-pass PPMd f16 capture; NN reset at this complete piece",
+      "tokens_role": "original train causal uint8 capture",
+      "priors_role": "same-history original causal float16 capture with all205 columns"
+    },
+    "held": {
+      "lo": 14457,
+      "hi": 16064,
+      "plan_piece_index": 7,
+      "role": "validation",
+      "article": 3363,
+      "source_token_range": [
+        5055675,
+        5057282
+      ],
+      "selection": "first original validation complete piece with 1025\u20132048 targets",
+      "targets": 1606,
+      "local_token_range": [
+        14457,
+        16064
+      ],
+      "priors_dtype": "float16",
+      "vocabulary_columns": 205,
+      "bounds": [
+        [
+          0,
+          1606
+        ]
+      ],
+      "causal_history": "unchanged original full-pass PPMd f16 capture; NN reset at this complete piece",
+      "tokens_role": "original validation causal uint8 capture",
+      "priors_role": "same-history original causal float16 capture with all205 columns"
+    }
+  },
+  "manifest": {
+    "training_pieces": 1313,
+    "training_targets": 2941307,
+    "held_pieces": 473,
+    "held_targets": 1082505
+  },
+  "role_contract": "train rows enter ridge; validation rows enter metrics/oracle only",
+  "checkpoint": {
+    "role": "original twelve-layer W0 float32 initialization",
+    "teacher": "original W0 twelve layers",
+    "student": "hard zero8 mapped only from original W0",
+    "reads": {
+      "teacher": 1,
+      "student_initialization": 1,
+      "trained_latest": 0
+    }
+  },
+  "mapping": {
+    "kept_original_layers": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "skip_source_indices": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "teacher_skip_pairs": [
+      [
+        3,
+        8
+      ],
+      [
+        2,
+        9
+      ],
+      [
+        1,
+        10
+      ],
+      [
+        0,
+        11
+      ]
+    ],
+    "student_skip_pairs": [
+      [
+        3,
+        4
+      ],
+      [
+        2,
+        5
+      ],
+      [
+        1,
+        6
+      ],
+      [
+        0,
+        7
+      ]
+    ]
+  },
+  "bridge_contract": {
+    "main": "x3 + RMSnorm(x3) @ A.T + b",
+    "insertion": "student block4 prehook, after production source3 skip is popped",
+    "pre_block4": "main(x3) + original_teacher_skip[2] * unmodified x3",
+    "oracle": "teacher x7 + original_teacher_skip[2] * unmodified x3",
+    "rms_norm_source": "def rms_norm(x: Float[Tensor, \"... d\"]) -> Float[Tensor, \"... d\"]:\n    return torch.nn.functional.rms_norm(x, normalized_shape=(x.size(-1),))\n",
+    "bridge_arithmetic": "floating FP32",
+    "ridge_solution": "float64; FP32 inference matrix and bias"
+  },
+  "counts": {
+    "teacher_state_tensors": 429,
+    "student_state_tensors": 289,
+    "student_hard_coordinates": 75,
+    "student_raw_tensors": 59
+  },
+  "torch_version": "2.6.0+debian",
+  "torch_threads": 1,
+  "torch_interop_threads": 1,
+  "hard_mode": true,
+  "fixed_scales": true,
+  "native_scaled_gemm": true,
+  "ridge": {
+    "lambda_rule": "1e-3 * trace(X.T X) / 192",
+    "lambda_value": 1.198990670695526,
+    "bias_penalized": false,
+    "train_rows": 1199,
+    "input_dim": 192,
+    "output_dim": 192,
+    "lambda_candidates": 1,
+    "rank_candidates": 1,
+    "target": "teacher x7 - teacher x3",
+    "features": "production float32 RMSnorm(x3), promoted to float64",
+    "normal_equation_relative_l2": 8.384884951494807e-16
+  },
+  "completed_at": 1794035063.2853389,
+  "losses": {
+    "train": {
+      "teacher": {
+        "ce": 0.6413657665252686,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0,
+        "hidden_weighted": 0.0
+      },
+      "zero": {
+        "ce": 1.2836053371429443,
+        "kl_teacher_q_to_student_p": 0.6251614689826965,
+        "hidden_mse": 0.4459318220615387,
+        "hidden_weighted": 0.044593182206153874
+      }
+    },
+    "held": {
+      "teacher": {
+        "ce": 0.5385095477104187,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0,
+        "hidden_weighted": 0.0
+      },
+      "zero": {
+        "ce": 0.9645707011222839,
+        "kl_teacher_q_to_student_p": 0.43903252482414246,
+        "hidden_mse": 0.3939066231250763,
+        "hidden_weighted": 0.03939066231250763
+      },
+      "fitted": {
+        "ce": 0.9294558167457581,
+        "kl_teacher_q_to_student_p": 0.3890807032585144,
+        "hidden_mse": 0.2897243797779083,
+        "hidden_weighted": 0.028972437977790835
+      },
+      "oracle": {
+        "ce": 0.5385095477104187,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0,
+        "hidden_weighted": 0.0
+      }
+    }
+  },
+  "loss_reconstruction": {
+    "train_teacher": {
+      "float64_reconstruction": {
+        "ce": 0.6413657823227105,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0
+      },
+      "absolute_errors": {
+        "ce": 1.5797441910159193e-08,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0
+      }
+    },
+    "train_zero": {
+      "float64_reconstruction": {
+        "ce": 1.283605402541714,
+        "kl_teacher_q_to_student_p": 0.6251614378266089,
+        "hidden_mse": 0.4459317707378535
+      },
+      "absolute_errors": {
+        "ce": 6.539876973299386e-08,
+        "kl_teacher_q_to_student_p": 3.1156087598738225e-08,
+        "hidden_mse": 5.1323685190673984e-08
+      }
+    },
+    "held_teacher": {
+      "float64_reconstruction": {
+        "ce": 0.5385095487557925,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0
+      },
+      "absolute_errors": {
+        "ce": 1.0453737875337765e-09,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0
+      }
+    },
+    "held_zero": {
+      "float64_reconstruction": {
+        "ce": 0.9645708521386538,
+        "kl_teacher_q_to_student_p": 0.4390325072093948,
+        "hidden_mse": 0.39390662738909793
+      },
+      "absolute_errors": {
+        "ce": 1.5101636985370703e-07,
+        "kl_teacher_q_to_student_p": 1.7614747660488206e-08,
+        "hidden_mse": 4.264021635780324e-09
+      }
+    },
+    "held_fitted": {
+      "float64_reconstruction": {
+        "ce": 0.9294559138032434,
+        "kl_teacher_q_to_student_p": 0.38908065866322167,
+        "hidden_mse": 0.28972438436339365
+      },
+      "absolute_errors": {
+        "ce": 9.705748538202386e-08,
+        "kl_teacher_q_to_student_p": 4.4595292736371306e-08,
+        "hidden_mse": 4.585485324781757e-09
+      }
+    },
+    "held_oracle": {
+      "float64_reconstruction": {
+        "ce": 0.5385095487557925,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0
+      },
+      "absolute_errors": {
+        "ce": 1.0453737875337765e-09,
+        "kl_teacher_q_to_student_p": 0.0,
+        "hidden_mse": 0.0
+      }
+    }
+  },
+  "bridge_midpoint_error": {
+    "train": {
+      "unbridged_x7_mse": 0.02697326036255241,
+      "fitted_x7_mse": 0.005955536796623112,
+      "residual_error_ratio": 0.22079410188363136,
+      "residual_error_reduction_fraction": 0.7792058981163686
+    },
+    "held": {
+      "unbridged_x7_mse": 0.02823792685242607,
+      "fitted_x7_mse": 0.016083734156820816,
+      "residual_error_ratio": 0.5695791422959571,
+      "residual_error_reduction_fraction": 0.4304208577040429
+    }
+  },
+  "held_loss_delta_fitted_minus_zero": {
+    "ce": -0.03511488437652588,
+    "kl_teacher_q_to_student_p": -0.04995182156562805,
+    "hidden_mse": -0.10418224334716797,
+    "hidden_weighted": -0.010418224334716796
+  },
+  "held_ce_gap_recovery_fraction": 0.082417474804564,
+  "bridge_payload_estimate": {
+    "matrix_rows": 192,
+    "matrix_columns": 192,
+    "int4_matrix_bytes": 18432,
+    "fp32_bias_bytes": 768,
+    "bf16_row_scale_bytes": 384,
+    "nominal_payload_bytes": 19584,
+    "float32_diagnostic_matrix_bias_bytes": 148224,
+    "scope": "new-family payload estimate; exporter/codec metadata, compression and coded package unmeasured"
+  },
+  "raw_readout": {
+    "path": "results/depth-middle-bridge.npz",
+    "bytes": 19888704,
+    "format": "npz without compression",
+    "keys": [
+      "bridge_A_f32",
+      "bridge_b_f32",
+      "held_bounds",
+      "held_fitted_bridge_main",
+      "held_fitted_hidden",
+      "held_fitted_logits",
+      "held_input_tokens",
+      "held_oracle_hidden",
+      "held_oracle_logits",
+      "held_priors_f16",
+      "held_target_tokens",
+      "held_teacher_hidden",
+      "held_teacher_logits",
+      "held_teacher_x3",
+      "held_teacher_x7",
+      "held_zero_hidden",
+      "held_zero_logits",
+      "ridge_XTX_f64",
+      "ridge_XTY_f64",
+      "ridge_theta_f64",
+      "train_bounds",
+      "train_input_tokens",
+      "train_priors_f16",
+      "train_target_tokens",
+      "train_teacher_hidden",
+      "train_teacher_logits",
+      "train_teacher_x3",
+      "train_teacher_x7"
+    ],
+    "contents": "scientific input/capture/output arrays and learned bridge ridge coefficients; original checkpoint absent"
+  },
+  "checks": {
+    "all_losses_finite": true,
+    "all_losses_reconstructed": true,
+    "oracle_logits_bit_exact": true,
+    "oracle_hidden_bit_exact": true,
+    "oracle_all_four_tail_blocks_bit_exact": true,
+    "first_four_layers_bit_exact_train_and_all_held_paths": true,
+    "original_x3_skip_saved_before_bridge": true,
+    "production_pre_bridge_skip_input_bit_exact": true,
+    "train_held_roles_disjoint": true,
+    "held_rows_in_ridge": 0,
+    "teacher_student_all_original_state_byte_identical": true,
+    "student_coordinates_byte_identical": true,
+    "all_parameter_grad_slots_empty": true,
+    "no_grad": true,
+    "all_fixed_scales_unchanged": true,
+    "ridge_solves": 1,
+    "lambda_candidates": 1,
+    "model_forward_hooks_removed": true
+  },
+  "adapter_operator_counts": {
+    "teacher": {
+      "kda": 42,
+      "convolution": 126,
+      "gated_norm": 42
+    },
+    "student": {
+      "kda": 0,
+      "convolution": 0,
+      "gated_norm": 0
+    },
+    "scope": "shared cpu_model import-adapter counters; model-depth call counts are explicit above"
+  },
+  "execution": {
+    "child_exit_code": 0,
+    "child_cpu_seconds": 4.681803,
+    "supervisor_cpu_seconds": 0.048565072,
+    "total_cpu_seconds": 4.730368072,
+    "prior_diagnostic_cpu_seconds": 1.162367287,
+    "cumulative_total_cpu_seconds": 5.8927353590000005,
+    "cumulative_cpu_cap_seconds": 180,
+    "wall_seconds": 5.1174880449834745,
+    "max_process_rss_kib": 581556,
+    "child_limit_seconds": 176,
+    "cpu_affinity": [
+      1
+    ],
+    "address_space_limit_bytes": 4294967296,
+    "cpu_total_cap_seconds": 178,
+    "wall_total_cap_seconds": 240,
+    "resource_scope": "wait4 diagnostic child plus supervisor; largest single-process RSS",
+    "queue": "single foreground diagnostic on original active training worker; unused CPU1",
+    "reruns": 0,
+    "optimizer_updates": 0
+  },
+  "log_tail": null,
+  "diagnostic_attempts": {
+    "initial_import_order_failure": {
+      "status": "failed",
+      "error": "No module named 'fla'",
+      "teacher_forwards": 0,
+      "student_forwards": 0,
+      "ridge_solves": 0,
+      "child_cpu_seconds": 1.130348,
+      "supervisor_cpu_seconds": 0.032019287,
+      "total_cpu_seconds": 1.162367287,
+      "wall_seconds": 1.5883749350032303,
+      "max_process_rss_kib": 244320
+    },
+    "explicitly_authorized_import_order_recovery": 1,
+    "scientific_successful_measurements": 1,
+    "exec_posts": 2,
+    "science_bundle_gets": 2,
+    "third_execs": 0,
+    "dependency_installs": 0,
+    "state_queries": 0,
+    "resume_requests": 0
+  },
+  "decision": {
+    "bridge_full_successor": "stopped",
+    "next_gate": "original same-eight-layer mixed coding; plain2KL successor stays the scoped candidate",
+    "reason": "The fixed held piece recovers 8.241747% of the zero-initialization CE gap with a floating bridge. The successor requires a new INT4/native/export family. Keep the existing-model plain2KL candidate scoped to the original same-eight-layer mixed gate.",
+    "full_training_runs": 0,
+    "native_int4_bridge_runs": 0,
+    "real_coded_stream_runs": 0,
+    "bridge_middle_capture": "stopped",
+    "bridge_76_coordinate_training_trajectory": "stopped"
+  },
+  "fit_separation_scope": "Direct train and held rows of this single ridge fit are separate. Original W0 upstream pretraining and unchanged full-pass causal PPMd history remain in provenance."
+}

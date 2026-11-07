@@ -1,5 +1,7 @@
 # Hutter compression research
 
+**Missing-middle bridge:** [exact teacher oracle and one fixed ridge fit](depth-middle-bridge.md) preserve the original outer skip and match all four tail blocks/logits bit-for-bit. On one independent 1,606-target held piece, the fitted FP32 bridge recovers **43.04%** of midpoint MSE and **8.24%** of the initial CE gap. [Complete result/arrays](results/depth-middle-bridge.json) · [stdlib replay](check-depth-middle-bridge.py). This bounded study is complete; new bridge training and native engineering stop.
+
 **Original-v22 slope:** [source-specific FXCM/outer chain](v22-codec-local-slope.md) verifies the two neutral tail slots, the live internal 10+7 outputs and the compact `(intercept,slope)` anchor. New capture/training allocation remains zero.
 
 **Conditional mechanism:** [signed local byte-to-bit coding objective](codec-aware-byte-surrogate.md) defines the complete gradient and the pre-SSE/final-u16 boundary. A [stdlib mathematical check](check-codec-aware-byte-surrogate.py) covers signed slopes and guarded probabilities; new capture/training allocation remains zero until the current actual mixed measurement locates the bottleneck.
