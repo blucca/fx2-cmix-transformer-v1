@@ -1,0 +1,27 @@
+{
+  "stages": [
+    {
+      "stage": "compile",
+      "exit_code": 0,
+      "wall_seconds": 2.825377600034699,
+      "cpu_seconds": 2.5824100000000003
+    },
+    {
+      "stage": "decode",
+      "exit_code": 0,
+      "wall_seconds": 0.4155904520303011,
+      "cpu_seconds": 0.412986
+    },
+    {
+      "stage": "svd",
+      "exit_code": 0,
+      "wall_seconds": 0.5166445150971413,
+      "cpu_seconds": 0.3247459999999999
+    }
+  ],
+  "all_child_cpu_seconds": 3.320142,
+  "max_child_peak_rss_kib": 137064,
+  "aggregate_CPU_cap_seconds": 120,
+  "per_process_AS_cap_bytes": 1073741824,
+  "BLAS_threads": 1
+}
