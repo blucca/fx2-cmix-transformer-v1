@@ -1,0 +1,1383 @@
+{
+  "schema": "hutter.integer-coordinate.mixed-terminal-64.v1",
+  "status": "passed",
+  "date": "2026-11-07",
+  "event": "Original 07:55 CST ordinal-4 hutter_compute terminal mixed notice",
+  "fixed_method": {
+    "method": "fixed-scale-integer-coordinate-v1",
+    "epochs": 64,
+    "lr": 0.01,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "tau": 0.5,
+    "teacher_kl_coefficient": 1,
+    "full_targets": 586459020,
+    "seed": 245
+  },
+  "measured_export": {
+    "epoch": 64,
+    "step": 1904,
+    "training_status": "complete",
+    "mixed_status": "complete",
+    "baseline_weight_bytes": 2904325,
+    "candidate_weight_bytes": 2914354,
+    "single_weight_growth_bytes": 10029,
+    "double_weight_growth_bytes": 20058,
+    "same_final_export_train_native_mixed": true,
+    "fixed_scale_and_tiny_row_bits_preserved": true
+  },
+  "common_runtime": {
+    "family": "v22 static15 research probe, reused in both sides",
+    "inference_code_added_bytes": 0,
+    "baseline_reference_relink_bytes_equal": true,
+    "single_core": true
+  },
+  "mixed_pairs": {
+    "prefix8": {
+      "baseline": {
+        "status": "passed",
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 8388608,
+          "output_bytes": 1072279,
+          "seconds": 2485.950101,
+          "coding_seconds": 2428.761933,
+          "cpu_seconds": 2376.272157,
+          "max_rss_kib": 6018532
+        },
+        "interval": {
+          "status": "passed",
+          "full_input_bytes": 8388608,
+          "full_coded_bytes": 1072279,
+          "score_begin": 7344758,
+          "score_end": 8386448,
+          "pieces": 293,
+          "interval_coded_bytes": 177427,
+          "begin_closed_bytes": 894482,
+          "end_closed_bytes": 1071909,
+          "interval_range_residual_bytes": -0.3543837341712788,
+          "all": {
+            "bytes": 1041690,
+            "neural_bits": 1447414.5788625062,
+            "pre_sse_logit_bits": 1418805.9140148722,
+            "final_u16_bits": 1419418.8350698734,
+            "override_bits": 341613
+          },
+          "neural_targets": {
+            "bytes": 1041397,
+            "neural_bits": 1447329.4011273922,
+            "pre_sse_logit_bits": 1418717.8871054,
+            "final_u16_bits": 1419329.8686409618,
+            "override_bits": 340752
+          }
+        },
+        "decode": {
+          "reused_original_passed_decode": true
+        },
+        "baseline_golden_bytes_equal": true
+      },
+      "candidate": {
+        "status": "passed",
+        "encode": {
+          "mode": "encode",
+          "offset": 0,
+          "input_bytes": 8388608,
+          "output_bytes": 1158043,
+          "seconds": 2453.154189,
+          "coding_seconds": 2426.656213,
+          "cpu_seconds": 2449.718668,
+          "max_rss_kib": 6018672
+        },
+        "interval": {
+          "status": "passed",
+          "full_input_bytes": 8388608,
+          "full_coded_bytes": 1158043,
+          "score_begin": 7344758,
+          "score_end": 8386448,
+          "pieces": 293,
+          "interval_coded_bytes": 198262,
+          "begin_closed_bytes": 959366,
+          "end_closed_bytes": 1157628,
+          "interval_range_residual_bytes": 0.11707021031179465,
+          "all": {
+            "bytes": 1041690,
+            "neural_bits": 1783781.84665827,
+            "pre_sse_logit_bits": 1586465.2580781723,
+            "final_u16_bits": 1586095.0634383175,
+            "override_bits": 341613
+          },
+          "neural_targets": {
+            "bytes": 1041397,
+            "neural_bits": 1783696.6689231594,
+            "pre_sse_logit_bits": 1586374.4793270377,
+            "final_u16_bits": 1586002.1177844512,
+            "override_bits": 340752
+          }
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 0,
+          "input_bytes": 8388608,
+          "output_bytes": 8388608,
+          "seconds": 2319.556789,
+          "coding_seconds": 2295.027722,
+          "cpu_seconds": 2316.620269,
+          "max_rss_kib": 6016516
+        },
+        "candidate_roundtrip_bytes_equal": true
+      }
+    },
+    "q2": {
+      "baseline": {
+        "status": "passed",
+        "encode": {
+          "mode": "encode",
+          "offset": 293232482,
+          "input_bytes": 1048576,
+          "output_bytes": 208769,
+          "seconds": 326.332618,
+          "coding_seconds": 301.423259,
+          "cpu_seconds": 325.886301,
+          "max_rss_kib": 5828144
+        },
+        "interval": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 0,
+          "score_end": 1048576,
+          "pieces": 209,
+          "interval_coded_bytes": 208768,
+          "begin_closed_bytes": 1,
+          "end_closed_bytes": 208769,
+          "interval_range_residual_bytes": -0.6058038838091306,
+          "all": {
+            "bytes": 1048576,
+            "neural_bits": 1679520.6935241544,
+            "pre_sse_logit_bits": 1669622.407580404,
+            "final_u16_bits": 1670148.8464310705,
+            "override_bits": 357585
+          },
+          "neural_targets": {
+            "bytes": 1048367,
+            "neural_bits": 1679352.2748483906,
+            "pre_sse_logit_bits": 1669492.505570227,
+            "final_u16_bits": 1670019.9761105662,
+            "override_bits": 357285
+          }
+        },
+        "decode": {
+          "reused_original_passed_decode": true
+        },
+        "baseline_golden_bytes_equal": true
+      },
+      "candidate": {
+        "status": "passed",
+        "encode": {
+          "mode": "encode",
+          "offset": 293232482,
+          "input_bytes": 1048576,
+          "output_bytes": 151680,
+          "seconds": 323.259563,
+          "coding_seconds": 299.214071,
+          "cpu_seconds": 322.825578,
+          "max_rss_kib": 5828224
+        },
+        "interval": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 151680,
+          "score_begin": 0,
+          "score_end": 1048576,
+          "pieces": 209,
+          "interval_coded_bytes": 151679,
+          "begin_closed_bytes": 1,
+          "end_closed_bytes": 151680,
+          "interval_range_residual_bytes": -0.3027291673934087,
+          "all": {
+            "bytes": 1048576,
+            "neural_bits": 1339826.6289842362,
+            "pre_sse_logit_bits": 1213255.0322493599,
+            "final_u16_bits": 1213434.4218333391,
+            "override_bits": 357585
+          },
+          "neural_targets": {
+            "bytes": 1048367,
+            "neural_bits": 1339658.210308473,
+            "pre_sse_logit_bits": 1213117.139437194,
+            "final_u16_bits": 1213300.2404369789,
+            "override_bits": 357285
+          }
+        },
+        "decode": {
+          "mode": "decode",
+          "offset": 293232482,
+          "input_bytes": 1048576,
+          "output_bytes": 1048576,
+          "seconds": 314.076419,
+          "coding_seconds": 290.943095,
+          "cpu_seconds": 313.675927,
+          "max_rss_kib": 5827956
+        },
+        "candidate_roundtrip_bytes_equal": true
+      }
+    }
+  },
+  "native_scores": {
+    "prefix-1m-held": {
+      "input_bytes": 523828,
+      "pieces": 634,
+      "targets": 523194,
+      "same_full_piece_bounds": true,
+      "baseline": {
+        "count": 523194,
+        "logits_sum": 254223.42725328283,
+        "probs_sum": 254223.4090444538,
+        "logits_mean": 0.4859066182970042,
+        "probs_mean": 0.4859065834937973
+      },
+      "candidate": {
+        "count": 523194,
+        "logits_sum": 288172.00480484235,
+        "probs_sum": 288171.9857080085,
+        "logits_mean": 0.5507937873997836,
+        "probs_mean": 0.5507937508993003
+      },
+      "delta_raw_nll": 0.06488716910277936,
+      "delta_R_bits": 48977.4444788693,
+      "raw_nn_saved_bytes": -6122.1805598586625
+    },
+    "q2-held": {
+      "input_bytes": 516494,
+      "pieces": 103,
+      "targets": 516391,
+      "same_full_piece_bounds": true,
+      "baseline": {
+        "count": 516391,
+        "logits_sum": 485113.0850768222,
+        "probs_sum": 485113.0698627945,
+        "logits_mean": 0.9394297830071054,
+        "probs_mean": 0.9394297535448807
+      },
+      "candidate": {
+        "count": 516391,
+        "logits_sum": 546135.1353604572,
+        "probs_sum": 546135.1201359356,
+        "logits_mean": 1.0576000266473606,
+        "probs_mean": 1.0575999971648142
+      },
+      "delta_raw_nll": 0.11817024364025519,
+      "delta_R_bits": 88036.20932907723,
+      "raw_nn_saved_bytes": -11004.526166134654
+    },
+    "mature": {
+      "input_bytes": 1041690,
+      "pieces": 293,
+      "targets": 1041397,
+      "same_full_piece_bounds": true,
+      "baseline": {
+        "count": 1041397,
+        "logits_sum": 1003126.6267479078,
+        "probs_sum": 1003126.6009958041,
+        "logits_mean": 0.9632509280782524,
+        "probs_mean": 0.9632509033498311
+      },
+      "candidate": {
+        "count": 1041397,
+        "logits_sum": 1236313.6724739065,
+        "probs_sum": 1236313.6464288235,
+        "logits_mean": 1.1871684597458092,
+        "probs_mean": 1.187168434736055
+      },
+      "delta_raw_nll": 0.2239175316675568,
+      "delta_R_bits": 336417.7944684463,
+      "raw_nn_saved_bytes": -42052.224308555786
+    },
+    "same-text-cold": {
+      "input_bytes": 1041690,
+      "pieces": 293,
+      "targets": 1041397,
+      "same_full_piece_bounds": true,
+      "baseline": {
+        "count": 1041397,
+        "logits_sum": 1044823.430424631,
+        "probs_sum": 1044823.4052868546,
+        "logits_mean": 1.0032902249810889,
+        "probs_mean": 1.0032902008425746
+      },
+      "candidate": {
+        "count": 1041397,
+        "logits_sum": 1267497.3662636979,
+        "probs_sum": 1267497.3405749176,
+        "logits_mean": 1.2171125577120905,
+        "probs_mean": 1.2171125330444754
+      },
+      "delta_raw_nll": 0.2138223327310016,
+      "delta_R_bits": 321250.582970249,
+      "raw_nn_saved_bytes": -40156.322871281125
+    },
+    "q2-full": {
+      "input_bytes": 1048576,
+      "pieces": 209,
+      "targets": 1048367,
+      "same_full_piece_bounds": true,
+      "baseline": {
+        "count": 1048367,
+        "logits_sum": 1163964.5218370666,
+        "probs_sum": 1163964.4948392136,
+        "logits_mean": 1.1102643652814965,
+        "probs_mean": 1.1102643395292044
+      },
+      "candidate": {
+        "count": 1048367,
+        "logits_sum": 928493.0785669038,
+        "probs_sum": 928493.0503430922,
+        "logits_mean": 0.8856565292182068,
+        "probs_mean": 0.8856565022965166
+      },
+      "delta_raw_nll": -0.2246078360632897,
+      "delta_R_bits": -339713.48347683076,
+      "raw_nn_saved_bytes": 42464.185434603845
+    }
+  },
+  "propagation": {
+    "prefix8-mature": {
+      "baseline": {
+        "status": "passed",
+        "full_input_bytes": 8388608,
+        "full_coded_bytes": 1072279,
+        "score_begin": 7344758,
+        "score_end": 8386448,
+        "pieces": 293,
+        "interval_coded_bytes": 177427,
+        "begin_closed_bytes": 894482,
+        "end_closed_bytes": 1071909,
+        "interval_range_residual_bytes": -0.3543837341712788,
+        "all": {
+          "bytes": 1041690,
+          "neural_bits": 1447414.5788625062,
+          "pre_sse_logit_bits": 1418805.9140148722,
+          "final_u16_bits": 1419418.8350698734,
+          "override_bits": 341613
+        },
+        "neural_targets": {
+          "bytes": 1041397,
+          "neural_bits": 1447329.4011273922,
+          "pre_sse_logit_bits": 1418717.8871054,
+          "final_u16_bits": 1419329.8686409618,
+          "override_bits": 340752
+        }
+      },
+      "candidate": {
+        "status": "passed",
+        "full_input_bytes": 8388608,
+        "full_coded_bytes": 1158043,
+        "score_begin": 7344758,
+        "score_end": 8386448,
+        "pieces": 293,
+        "interval_coded_bytes": 198262,
+        "begin_closed_bytes": 959366,
+        "end_closed_bytes": 1157628,
+        "interval_range_residual_bytes": 0.11707021031179465,
+        "all": {
+          "bytes": 1041690,
+          "neural_bits": 1783781.84665827,
+          "pre_sse_logit_bits": 1586465.2580781723,
+          "final_u16_bits": 1586095.0634383175,
+          "override_bits": 341613
+        },
+        "neural_targets": {
+          "bytes": 1041397,
+          "neural_bits": 1783696.6689231594,
+          "pre_sse_logit_bits": 1586374.4793270377,
+          "final_u16_bits": 1586002.1177844512,
+          "override_bits": 340752
+        }
+      },
+      "native": {
+        "input_bytes": 1041690,
+        "pieces": 293,
+        "targets": 1041397,
+        "same_full_piece_bounds": true,
+        "baseline": {
+          "count": 1041397,
+          "logits_sum": 1003126.6267479078,
+          "probs_sum": 1003126.6009958041,
+          "logits_mean": 0.9632509280782524,
+          "probs_mean": 0.9632509033498311
+        },
+        "candidate": {
+          "count": 1041397,
+          "logits_sum": 1236313.6724739065,
+          "probs_sum": 1236313.6464288235,
+          "logits_mean": 1.1871684597458092,
+          "probs_mean": 1.187168434736055
+        },
+        "delta_raw_nll": 0.2239175316675568,
+        "delta_R_bits": 336417.7944684463,
+        "raw_nn_saved_bytes": -42052.224308555786
+      },
+      "candidate_minus_baseline": {
+        "all": {
+          "neural_bits": 336367.2677957639,
+          "pre_sse_logit_bits": 167659.34406330017,
+          "final_u16_bits": 166676.22836844414,
+          "override_bits": 0
+        },
+        "neural_targets": {
+          "neural_bits": 336367.26779576717,
+          "pre_sse_logit_bits": 167656.59222163772,
+          "final_u16_bits": 166672.2491434894,
+          "override_bits": 0
+        }
+      },
+      "piece_start_fallback": {
+        "baseline": {
+          "neural_bits": 85.17773511400446,
+          "pre_sse_logit_bits": 88.02690947218798,
+          "final_u16_bits": 88.96642891154625,
+          "override_bits": 861
+        },
+        "candidate": {
+          "neural_bits": 85.17773511074483,
+          "pre_sse_logit_bits": 90.7787511346396,
+          "final_u16_bits": 92.94565386627801,
+          "override_bits": 861
+        }
+      },
+      "piece_start_fallback_count": 293,
+      "candidate_minus_baseline_fallback": {
+        "neural_bits": -3.259629011154175e-09,
+        "pre_sse_logit_bits": 2.751841662451625,
+        "final_u16_bits": 3.9792249547317624,
+        "override_bits": 0
+      },
+      "delta_interval_coded_bytes": 20835,
+      "interval_saved_bytes": -20835,
+      "delta_range_residual_bytes": 0.47145394448307343,
+      "final_all_bit_delta_bytes": 20834.528546055517,
+      "neural_target_final_bit_delta_bytes": 20834.031142936175,
+      "fallback_final_bit_delta_bytes": 0.4974031193414703,
+      "mixer_G_transfer": 0.49843313625698604,
+      "u16_G_transfer": 0.49550674248330295
+    },
+    "q2-full": {
+      "baseline": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 208769,
+        "score_begin": 0,
+        "score_end": 1048576,
+        "pieces": 209,
+        "interval_coded_bytes": 208768,
+        "begin_closed_bytes": 1,
+        "end_closed_bytes": 208769,
+        "interval_range_residual_bytes": -0.6058038838091306,
+        "all": {
+          "bytes": 1048576,
+          "neural_bits": 1679520.6935241544,
+          "pre_sse_logit_bits": 1669622.407580404,
+          "final_u16_bits": 1670148.8464310705,
+          "override_bits": 357585
+        },
+        "neural_targets": {
+          "bytes": 1048367,
+          "neural_bits": 1679352.2748483906,
+          "pre_sse_logit_bits": 1669492.505570227,
+          "final_u16_bits": 1670019.9761105662,
+          "override_bits": 357285
+        }
+      },
+      "candidate": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 151680,
+        "score_begin": 0,
+        "score_end": 1048576,
+        "pieces": 209,
+        "interval_coded_bytes": 151679,
+        "begin_closed_bytes": 1,
+        "end_closed_bytes": 151680,
+        "interval_range_residual_bytes": -0.3027291673934087,
+        "all": {
+          "bytes": 1048576,
+          "neural_bits": 1339826.6289842362,
+          "pre_sse_logit_bits": 1213255.0322493599,
+          "final_u16_bits": 1213434.4218333391,
+          "override_bits": 357585
+        },
+        "neural_targets": {
+          "bytes": 1048367,
+          "neural_bits": 1339658.210308473,
+          "pre_sse_logit_bits": 1213117.139437194,
+          "final_u16_bits": 1213300.2404369789,
+          "override_bits": 357285
+        }
+      },
+      "native": {
+        "input_bytes": 1048576,
+        "pieces": 209,
+        "targets": 1048367,
+        "same_full_piece_bounds": true,
+        "baseline": {
+          "count": 1048367,
+          "logits_sum": 1163964.5218370666,
+          "probs_sum": 1163964.4948392136,
+          "logits_mean": 1.1102643652814965,
+          "probs_mean": 1.1102643395292044
+        },
+        "candidate": {
+          "count": 1048367,
+          "logits_sum": 928493.0785669038,
+          "probs_sum": 928493.0503430922,
+          "logits_mean": 0.8856565292182068,
+          "probs_mean": 0.8856565022965166
+        },
+        "delta_raw_nll": -0.2246078360632897,
+        "delta_R_bits": -339713.48347683076,
+        "raw_nn_saved_bytes": 42464.185434603845
+      },
+      "candidate_minus_baseline": {
+        "all": {
+          "neural_bits": -339694.0645399182,
+          "pre_sse_logit_bits": -456367.3753310442,
+          "final_u16_bits": -456714.4245977313,
+          "override_bits": 0
+        },
+        "neural_targets": {
+          "neural_bits": -339694.0645399175,
+          "pre_sse_logit_bits": -456375.36613303307,
+          "final_u16_bits": -456719.7356735873,
+          "override_bits": 0
+        }
+      },
+      "piece_start_fallback": {
+        "baseline": {
+          "neural_bits": 168.41867576376535,
+          "pre_sse_logit_bits": 129.9020101770293,
+          "final_u16_bits": 128.87032050429843,
+          "override_bits": 300
+        },
+        "candidate": {
+          "neural_bits": 168.41867576306686,
+          "pre_sse_logit_bits": 137.89281216589734,
+          "final_u16_bits": 134.18139636027627,
+          "override_bits": 300
+        }
+      },
+      "piece_start_fallback_count": 209,
+      "candidate_minus_baseline_fallback": {
+        "neural_bits": -6.984919309616089e-10,
+        "pre_sse_logit_bits": 7.990801988868043,
+        "final_u16_bits": 5.311075855977833,
+        "override_bits": 0
+      },
+      "delta_interval_coded_bytes": -57089,
+      "interval_saved_bytes": 57089,
+      "delta_range_residual_bytes": 0.3030747164157219,
+      "final_all_bit_delta_bytes": -57089.303074716416,
+      "neural_target_final_bit_delta_bytes": -57089.96695919841,
+      "fallback_final_bit_delta_bytes": 0.6638844819972292,
+      "mixer_G_transfer": 1.343489374037633,
+      "u16_G_transfer": 1.3445031378224688
+    },
+    "q2-held": {
+      "baseline": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 208769,
+        "score_begin": 531039,
+        "score_end": 1047533,
+        "pieces": 103,
+        "interval_coded_bytes": 86741,
+        "begin_closed_bytes": 121919,
+        "end_closed_bytes": 208660,
+        "interval_range_residual_bytes": 0.7615174386592116,
+        "all": {
+          "bytes": 516494,
+          "neural_bits": 699991.4440363178,
+          "pre_sse_logit_bits": 693780.4862169503,
+          "final_u16_bits": 693921.9078604907,
+          "override_bits": 199792
+        },
+        "neural_targets": {
+          "bytes": 516391,
+          "neural_bits": 699931.6717556826,
+          "pre_sse_logit_bits": 693750.6027147763,
+          "final_u16_bits": 693893.0230827484,
+          "override_bits": 199756
+        }
+      },
+      "candidate": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 151680,
+        "score_begin": 531039,
+        "score_end": 1047533,
+        "pieces": 103,
+        "interval_coded_bytes": 93826,
+        "begin_closed_bytes": 57739,
+        "end_closed_bytes": 151565,
+        "interval_range_residual_bytes": -0.48359940739464946,
+        "all": {
+          "bytes": 516494,
+          "neural_bits": 788017.0873788723,
+          "pre_sse_logit_bits": 750336.1444556671,
+          "final_u16_bits": 750611.8687952592,
+          "override_bits": 199792
+        },
+        "neural_targets": {
+          "bytes": 516391,
+          "neural_bits": 787957.3150982377,
+          "pre_sse_logit_bits": 750312.3137905003,
+          "final_u16_bits": 750587.9345362897,
+          "override_bits": 199756
+        }
+      },
+      "native": {
+        "input_bytes": 516494,
+        "pieces": 103,
+        "targets": 516391,
+        "same_full_piece_bounds": true,
+        "baseline": {
+          "count": 516391,
+          "logits_sum": 485113.0850768222,
+          "probs_sum": 485113.0698627945,
+          "logits_mean": 0.9394297830071054,
+          "probs_mean": 0.9394297535448807
+        },
+        "candidate": {
+          "count": 516391,
+          "logits_sum": 546135.1353604572,
+          "probs_sum": 546135.1201359356,
+          "logits_mean": 1.0576000266473606,
+          "probs_mean": 1.0575999971648142
+        },
+        "delta_raw_nll": 0.11817024364025519,
+        "delta_R_bits": 88036.20932907723,
+        "raw_nn_saved_bytes": -11004.526166134654
+      },
+      "candidate_minus_baseline": {
+        "all": {
+          "neural_bits": 88025.64334255457,
+          "pre_sse_logit_bits": 56555.65823871677,
+          "final_u16_bits": 56689.96093476843,
+          "override_bits": 0
+        },
+        "neural_targets": {
+          "neural_bits": 88025.64334255515,
+          "pre_sse_logit_bits": 56561.711075723986,
+          "final_u16_bits": 56694.91145354125,
+          "override_bits": 0
+        }
+      },
+      "piece_start_fallback": {
+        "baseline": {
+          "neural_bits": 59.772280635195784,
+          "pre_sse_logit_bits": 29.88350217405241,
+          "final_u16_bits": 28.884777742321603,
+          "override_bits": 36
+        },
+        "candidate": {
+          "neural_bits": 59.77228063461371,
+          "pre_sse_logit_bits": 23.830665166839026,
+          "final_u16_bits": 23.93425896950066,
+          "override_bits": 36
+        }
+      },
+      "piece_start_fallback_count": 103,
+      "candidate_minus_baseline_fallback": {
+        "neural_bits": -5.820766091346741e-10,
+        "pre_sse_logit_bits": -6.052837007213384,
+        "final_u16_bits": -4.950518772820942,
+        "override_bits": 0
+      },
+      "delta_interval_coded_bytes": 7085,
+      "interval_saved_bytes": -7085,
+      "delta_range_residual_bytes": -1.245116846053861,
+      "final_all_bit_delta_bytes": 7086.245116846054,
+      "neural_target_final_bit_delta_bytes": 7086.8639316926565,
+      "fallback_final_bit_delta_bytes": -0.6188148466026178,
+      "mixer_G_transfer": 0.642559473897986,
+      "u16_G_transfer": 0.6440726736061541
+    },
+    "q2-training-containing-complement": {
+      "baseline": {
+        "all": {
+          "bytes": 532082,
+          "neural_bits": 979529.2494878366,
+          "pre_sse_logit_bits": 975841.9213634537,
+          "final_u16_bits": 976226.9385705797,
+          "override_bits": 157793
+        },
+        "neural_targets": {
+          "bytes": 531976,
+          "neural_bits": 979420.603092708,
+          "pre_sse_logit_bits": 975741.9028554508,
+          "final_u16_bits": 976126.9530278178,
+          "override_bits": 157529
+        },
+        "interval_coded_bytes": 122027,
+        "interval_range_residual_bytes": -1.3673213224683423,
+        "raw_targets": 531976,
+        "raw_logits_sum": 678851.4367602444,
+        "raw_nll": 1.2760941034186588
+      },
+      "candidate": {
+        "all": {
+          "bytes": 532082,
+          "neural_bits": 551809.5416053638,
+          "pre_sse_logit_bits": 462918.88779369276,
+          "final_u16_bits": 462822.55303808,
+          "override_bits": 157793
+        },
+        "neural_targets": {
+          "bytes": 531976,
+          "neural_bits": 551700.8952102354,
+          "pre_sse_logit_bits": 462804.8256466937,
+          "final_u16_bits": 462712.3059006892,
+          "override_bits": 157529
+        },
+        "interval_coded_bytes": 57853,
+        "interval_range_residual_bytes": 0.18087024000124075,
+        "raw_targets": 531976,
+        "raw_logits_sum": 382357.9432064466,
+        "raw_nll": 0.7187503631863967
+      },
+      "native": {
+        "targets": 531976,
+        "delta_raw_nll": -0.5573437402322621,
+        "delta_R_bits": -427749.692805908
+      },
+      "candidate_minus_baseline": {
+        "all": {
+          "neural_bits": -427719.7078824728,
+          "pre_sse_logit_bits": -512923.03356976097,
+          "final_u16_bits": -513404.38553249976,
+          "override_bits": 0
+        },
+        "neural_targets": {
+          "neural_bits": -427719.70788247266,
+          "pre_sse_logit_bits": -512937.07720875705,
+          "final_u16_bits": -513414.64712712856,
+          "override_bits": 0
+        }
+      },
+      "piece_start_fallback": {
+        "baseline": {
+          "neural_bits": 108.64639512856957,
+          "pre_sse_logit_bits": 100.01850800297689,
+          "final_u16_bits": 99.98554276197683,
+          "override_bits": 264
+        },
+        "candidate": {
+          "neural_bits": 108.64639512845315,
+          "pre_sse_logit_bits": 114.06214699905831,
+          "final_u16_bits": 110.2471373907756,
+          "override_bits": 264
+        }
+      },
+      "piece_start_fallback_count": 106,
+      "candidate_minus_baseline_fallback": {
+        "neural_bits": -1.1641532182693481e-10,
+        "pre_sse_logit_bits": 14.043638996081427,
+        "final_u16_bits": 10.261594628798775,
+        "override_bits": 0
+      },
+      "delta_interval_coded_bytes": -64174,
+      "interval_saved_bytes": 64174,
+      "delta_range_residual_bytes": 1.548191562469583,
+      "final_all_bit_delta_bytes": -64175.54819156247,
+      "neural_target_final_bit_delta_bytes": -64176.83089089107,
+      "fallback_final_bit_delta_bytes": 1.282699328599847,
+      "mixer_G_transfer": 1.1992364807040878,
+      "u16_G_transfer": 1.200353029484914
+    }
+  },
+  "q2_manifest_roles": {
+    "train": {
+      "begin": 0,
+      "end": 521436,
+      "pieces": 104,
+      "targets": 521332
+    },
+    "cross_mid_piece": {
+      "begin": 521436,
+      "end": 531039,
+      "pieces": 1,
+      "targets": 9602
+    },
+    "independent_held": {
+      "begin": 531039,
+      "end": 1047533,
+      "pieces": 103,
+      "targets": 516391
+    },
+    "eof_piece": {
+      "begin": 1047533,
+      "end": 1048576,
+      "pieces": 1,
+      "targets": 1042
+    },
+    "full": {
+      "begin": 0,
+      "end": 1048576,
+      "pieces": 209,
+      "targets": 1048367
+    }
+  },
+  "q2_piece_geometry": {
+    "full_bounds": [
+      0,
+      9289,
+      21605,
+      34788,
+      50402,
+      53900,
+      66112,
+      81391,
+      89032,
+      124195,
+      132168,
+      144034,
+      146813,
+      171618,
+      172667,
+      174912,
+      185158,
+      186753,
+      188377,
+      190250,
+      193190,
+      202947,
+      205178,
+      206766,
+      237282,
+      240672,
+      241704,
+      243799,
+      244761,
+      246381,
+      247068,
+      247372,
+      248181,
+      251072,
+      252077,
+      259271,
+      260318,
+      260898,
+      262785,
+      268608,
+      269706,
+      270321,
+      273805,
+      275745,
+      276675,
+      277663,
+      278322,
+      280635,
+      285187,
+      286637,
+      287107,
+      287681,
+      288484,
+      289862,
+      291090,
+      292693,
+      293520,
+      297171,
+      302513,
+      303673,
+      306381,
+      307840,
+      313071,
+      316032,
+      320518,
+      323917,
+      328358,
+      335509,
+      342788,
+      345600,
+      349244,
+      353324,
+      355791,
+      360879,
+      362537,
+      363605,
+      366058,
+      370352,
+      374665,
+      378383,
+      381386,
+      387137,
+      388955,
+      391900,
+      396337,
+      402936,
+      405285,
+      405580,
+      406969,
+      408800,
+      411706,
+      413730,
+      426960,
+      427705,
+      435204,
+      437746,
+      445913,
+      454906,
+      465025,
+      476073,
+      484877,
+      494681,
+      502310,
+      510233,
+      521436,
+      531039,
+      535804,
+      540573,
+      551456,
+      561406,
+      573635,
+      585545,
+      596730,
+      605315,
+      617637,
+      625054,
+      630746,
+      634598,
+      651070,
+      651895,
+      659635,
+      662174,
+      667377,
+      668104,
+      670481,
+      672764,
+      676091,
+      678845,
+      682302,
+      686261,
+      689894,
+      692804,
+      695452,
+      698744,
+      702065,
+      705519,
+      708355,
+      711079,
+      714880,
+      718698,
+      722171,
+      725115,
+      728385,
+      733560,
+      739317,
+      744169,
+      748218,
+      751270,
+      754394,
+      758640,
+      762392,
+      765593,
+      769322,
+      772149,
+      775418,
+      778124,
+      781142,
+      785532,
+      801384,
+      804376,
+      810244,
+      813329,
+      816851,
+      821834,
+      824806,
+      836278,
+      840962,
+      844780,
+      849151,
+      852374,
+      855022,
+      859828,
+      864768,
+      868112,
+      873379,
+      879704,
+      883321,
+      887278,
+      890646,
+      894213,
+      897572,
+      904363,
+      906264,
+      909405,
+      913262,
+      918807,
+      924303,
+      927361,
+      928811,
+      930195,
+      931740,
+      937481,
+      945475,
+      951553,
+      959757,
+      964949,
+      971293,
+      977450,
+      986101,
+      995748,
+      1002701,
+      1008899,
+      1017225,
+      1019111,
+      1023933,
+      1029827,
+      1035422,
+      1041316,
+      1047533,
+      1048576
+    ],
+    "held_bounds": [
+      0,
+      4765,
+      9534,
+      20417,
+      30367,
+      42596,
+      54506,
+      65691,
+      74276,
+      86598,
+      94015,
+      99707,
+      103559,
+      120031,
+      120856,
+      128596,
+      131135,
+      136338,
+      137065,
+      139442,
+      141725,
+      145052,
+      147806,
+      151263,
+      155222,
+      158855,
+      161765,
+      164413,
+      167705,
+      171026,
+      174480,
+      177316,
+      180040,
+      183841,
+      187659,
+      191132,
+      194076,
+      197346,
+      202521,
+      208278,
+      213130,
+      217179,
+      220231,
+      223355,
+      227601,
+      231353,
+      234554,
+      238283,
+      241110,
+      244379,
+      247085,
+      250103,
+      254493,
+      270345,
+      273337,
+      279205,
+      282290,
+      285812,
+      290795,
+      293767,
+      305239,
+      309923,
+      313741,
+      318112,
+      321335,
+      323983,
+      328789,
+      333729,
+      337073,
+      342340,
+      348665,
+      352282,
+      356239,
+      359607,
+      363174,
+      366533,
+      373324,
+      375225,
+      378366,
+      382223,
+      387768,
+      393264,
+      396322,
+      397772,
+      399156,
+      400701,
+      406442,
+      414436,
+      420514,
+      428718,
+      433910,
+      440254,
+      446411,
+      455062,
+      464709,
+      471662,
+      477860,
+      486186,
+      488072,
+      492894,
+      498788,
+      504383,
+      510277,
+      516494
+    ],
+    "full_and_held_candidate_bounds_identical": true
+  },
+  "q2_online_history": {
+    "probe_source_offset": 293232482,
+    "held_q2_begin": 531039,
+    "held_q2_end": 1047533,
+    "held_source_begin": 293763521,
+    "held_source_end": 294280015,
+    "ppmd_and_mixer_history_bytes_before_held": 531039,
+    "range_replayed_from_q2_byte_zero": true,
+    "selected_tokens_and_vocab_bytes_checked": true,
+    "held_interval_definition": "closed(end)-closed(begin) in each original continuous q2 stream"
+  },
+  "mature_scope": {
+    "begin": 7344758,
+    "end": 8386448,
+    "input_bytes": 1041690,
+    "pieces": 293,
+    "targets": 1041397,
+    "training_overlap_targets": 0,
+    "history": "prefix probe advances PPMd/mixer from source byte 0"
+  },
+  "bit_layer_units": {
+    "R": "Native fp32 logits, double logsumexp, converted from nats to bits",
+    "G": "Observed-bit NLL of actual online rounded/guarded ByteModel ratios",
+    "M": "Pre-SSE mixer-logit observed-bit NLL; vocab override uses final u16 probability",
+    "u16": "Observed-bit NLL at the actual range-coder input probability/65536",
+    "coded": "Continuous interval byte counter including all piece-start fallbacks and range residual"
+  },
+  "q2_role_accounting": {
+    "full_payload_saved_bytes": 57089,
+    "held_interval_saved_bytes": -7085,
+    "training_containing_complement_interval_saved_bytes": 64174,
+    "complement_targets": 531976,
+    "complement_pieces": 106,
+    "complement_training_targets": 521332,
+    "complement_cross_eof_targets": 10644,
+    "complement_training_fraction": 0.9799915785674542
+  },
+  "same_component_package_margins": {
+    "prefix8-full": {
+      "payload_or_interval_saved_bytes": -85764,
+      "double_weight_growth_bytes": 20058,
+      "common_component_margin_bytes": -105822
+    },
+    "prefix8-mature-interval": {
+      "payload_or_interval_saved_bytes": -20835,
+      "double_weight_growth_bytes": 20058,
+      "common_component_margin_bytes": -40893
+    },
+    "q2-full-training-containing": {
+      "payload_or_interval_saved_bytes": 57089,
+      "double_weight_growth_bytes": 20058,
+      "common_component_margin_bytes": 37031
+    },
+    "q2-independent-held-interval": {
+      "payload_or_interval_saved_bytes": -7085,
+      "double_weight_growth_bytes": 20058,
+      "common_component_margin_bytes": -27143
+    }
+  },
+  "package_contract": {
+    "formula": "S=P+2B+2D+O+2W+69",
+    "comparison": "Same B,D,O and runtime; margin=(P0-P64)-20058",
+    "whole_prepared_stream_bytes": 586459020,
+    "interval_margin_role": "Component hurdle on the stated interval; formal S uses the complete payload and release package",
+    "full_release_S_measured": false,
+    "full_release_run_started": false,
+    "original_static15_verified_net_component_saved_bytes": 52022,
+    "original_minimum_prize_saved_bytes": 1004247
+  },
+  "actual_cpu": {
+    "training_terminal_seconds": 89684.526272298,
+    "training_limit_seconds": 172800,
+    "mature_queue_seconds": 298.649476,
+    "original_mixed_queue_seconds": 8216.751237999999,
+    "probe_encode_decode_seconds_included": 8104.9989000000005,
+    "q2_full_native_seconds_included": 96.794063,
+    "mixed_other_reader_wrapper_seconds_included": 14.958274999998423,
+    "held_readonly_seconds": 0.418341,
+    "held_receipt_cpu_sample_seconds": 0.418334,
+    "original_mixed_bucket_used_seconds": 8217.169579,
+    "original_mixed_bucket_limit_seconds": 28800,
+    "original_mixed_bucket_remaining_seconds": 20582.830421000002,
+    "independent_phase_total_seconds": 98200.345327298,
+    "mixed_peak_rss_kib": 6018672,
+    "mixed_virtual_as_limit_gib": 24,
+    "held_virtual_as_limit_gib": 1,
+    "held_single_core": [
+      1
+    ],
+    "held_cpu_limit_seconds": 120
+  },
+  "this_event_collection": {
+    "get_requests": 5,
+    "authenticated_exec_requests": 1,
+    "new_trace_reader_calls": 2,
+    "full_trace_reads": 2,
+    "new_nn_runs": 0,
+    "new_native_runs": 0,
+    "new_encode_runs": 0,
+    "new_decode_runs": 0,
+    "new_accounts": 0,
+    "new_tokens": 0,
+    "machine_restarts": 0,
+    "metadata_polls": 0,
+    "retries": 0,
+    "local_get_cpu_seconds": 0.025231365,
+    "local_exec_cpu_seconds": 0.012056378,
+    "get_wall_seconds": 4.756988670909777,
+    "exec_wall_seconds": 10.57375069707632
+  },
+  "source_lineage": {
+    "local_source_sha256": {
+      "mixed-state.json": {
+        "bytes": 12266,
+        "sha256": "17f91f2c17a3f0c7798ee028b9899b1a40ba34d8a7e5f14f624e7116560a9f8c"
+      },
+      "q2-held-readout.json": {
+        "bytes": 5367,
+        "sha256": "18dbe427f1e4b64d550ed5c114ebae74421a233fdbfa09e7386c2fafc0d288d2"
+      },
+      "terminal-readout.json": {
+        "bytes": 70526,
+        "sha256": "f29b9e9fc181c74e12adcb66976fe597cd5fb8339bd816ab0b5e21abd68b79be"
+      },
+      "collection-receipt.json": {
+        "bytes": 2603,
+        "sha256": "ff1938d3b8f71a008d47982f10ba6c3a292ae54800d85ec716e4993bb143bfdf"
+      },
+      "held-exec-receipt.json": {
+        "bytes": 759,
+        "sha256": "067c677582ad2fc3dc75be0af8cf7125243ccca195df6160ac6e58a3aaed6724"
+      },
+      "original-watch-notice.json": {
+        "bytes": 1391,
+        "sha256": "8933d60dc4da4ad3736a4aa6b012c311284a62867f78db6676a87b1bcf2a4459"
+      },
+      "prefix8-baseline-result.json": {
+        "bytes": 1189,
+        "sha256": "f1c316ac74d901a3b751f1af4f285b588e4564ce203db660715be733d5443c47"
+      },
+      "prefix8-candidate-result.json": {
+        "bytes": 1266,
+        "sha256": "215b8fea68937359c5a00e1fed3a81e4fc16fd00569cf8d7af82e1efc45f1863"
+      },
+      "q2-baseline-result.json": {
+        "bytes": 1182,
+        "sha256": "6d644c0c8a85090084fbbe280dde43219609b2298b937a3dc675da87e67ceac4"
+      },
+      "q2-candidate-result.json": {
+        "bytes": 1262,
+        "sha256": "a04fd7ecc3e87802c42420f85fe868f5d0ce9c78916cfe9ec6bf7d9597d01989"
+      },
+      "held-baseline.json": {
+        "bytes": 18232,
+        "sha256": "3ed9df1a9a9490404f7e3d3c818f95d6b6efd45663d904466f0c69a4cc25d293"
+      },
+      "epoch-64-prefix-1m.log": {
+        "bytes": 5524,
+        "sha256": "a4edada7a4fbf33d006eae20126c4feada93d706917ecbfc430a0feff07d283c"
+      },
+      "epoch-64-article-q2-1m.log": {
+        "bytes": 1930,
+        "sha256": "ffc3704635f89837702789c03a0bd0039b07c7a6fbc05db229054fe69b4d583d"
+      },
+      "mature-baseline.json": {
+        "bytes": 15200,
+        "sha256": "86baa37351c9fdf137f8ce163dfae71d7ac8a8cde5eb809f73a217d998567b40"
+      },
+      "final-completed-export-mature.log": {
+        "bytes": 3277,
+        "sha256": "95a0af4d5815cedb602c048883644c4d3e06c3cd53aa2dac1bd3d617ae67109b"
+      },
+      "same-text-cold-baseline.json": {
+        "bytes": 11255,
+        "sha256": "6d47136a30bfb32a15b7dc3232ef2b3de2c021f50ff15055bcf58e36b23c5a93"
+      },
+      "final-completed-export-same-text-cold.log": {
+        "bytes": 3281,
+        "sha256": "8f5c2f6e06753ca96ef21797be4c641d2585d5462bea90e5348fcd8aacc6463a"
+      },
+      "full-q2-baseline.log": {
+        "bytes": 2692,
+        "sha256": "20b2d18d6a3e9d02d759d6311e5dbf6557d01e26b1a3206ff1f73adbc4ac37a7"
+      },
+      "q2-candidate-raw.log": {
+        "bytes": 2692,
+        "sha256": "e6271b7164ea377c55ad0ed518b016ae399d42500db13fbbb1bf5d6aec0dd634"
+      },
+      "mixed-interval.cpp": {
+        "bytes": 6166,
+        "sha256": "64ca51c1c0650e43d2b383358488c6e99042f9acc7878bc306ad60dfc8d4eb26"
+      },
+      "mixed-audit.py": {
+        "bytes": 6454,
+        "sha256": "cd12b5e5279d0e1cf4a1f57b3e3cc2809b738a3c38b48d626231ed1336665664"
+      }
+    },
+    "reader_binary_sha256": "fd78381fdef0e79a4d0787f711bb7f563675de6b69cd9d1fb06481ab1f0a8b6f",
+    "q2_held_tokens_sha256": "2233e183bffe9ebab77c4c97afaf85aaf5eaca960b98c913e4f034af293eeff3",
+    "vocab_sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5",
+    "original_state_sha256": "17f91f2c17a3f0c7798ee028b9899b1a40ba34d8a7e5f14f624e7116560a9f8c",
+    "trace_bytes_per_q2_side": 134217728,
+    "baseline_expected_encoded_bytes": 208769,
+    "candidate_expected_encoded_bytes": 151680
+  },
+  "interpretation": [
+    "All preselected epoch-64 mixed pairs pass. Both fresh baseline encodes match the existing golden bytes; both candidates pass actual decode and source-byte equality.",
+    "The continuous prefix8 payload grows by 85764 bytes. The independent mature interval grows by 20835 bytes, matching its positive native/G/M/u16 loss deltas.",
+    "The independent q2 held interval grows by 7085 bytes. Its 103 piece-start fallbacks and range residual are reported separately from the 516391 NN targets.",
+    "The full cold q2 saves 57089 payload bytes. Its training-containing complement saves 64174 interval bytes and covers the 7085-byte held regression. Fixed-corpus fitting is evaluated separately from independent quality.",
+    "Same-runtime doubled weights grow by 20058 bytes. Prefix/mature/held component hurdles fail; q2-full has a positive 37031-byte sample component margin. Formal full-stream S retains its measured production baseline."
+  ],
+  "decision": {
+    "fixed_recipe_new_engineering": "STOP",
+    "fixed_recipe_full_stream_advance": "STOP",
+    "mature_quality_gate": "FAIL",
+    "independent_q2_held_gate": "FAIL",
+    "continuous_prefix_component_gate": "FAIL",
+    "q2_full_sample_component_gate": "PASS",
+    "original_training_native_mixed_complete": true,
+    "sole_mixed_remaining_work": "NONE",
+    "new_verified_positive_sample_payload_saved_bytes": 57089,
+    "new_verified_full_stream_net_saved_bytes": 0,
+    "new_prize_cash_eur": 0,
+    "new_compute_cash_eur": 0,
+    "production_baseline": "Retain original static15 production/export; preserve W64 and all negative results",
+    "other_methods": "Original causal/depth/inverse source and complete budgets retained separately"
+  }
+}

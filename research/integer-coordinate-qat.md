@@ -179,3 +179,21 @@ Replay the compact published result with the standard library:
 ```sh
 python3 research/check-integer-coordinate-terminal-64.py
 ```
+
+
+## Complete same-W mixed-codec terminal
+
+The original 64-epoch W is measured once through the actual codec: [full result](results/integer-coordinate-mixed-terminal-64.json) · [standard-library replay](check-integer-coordinate-mixed-terminal-64.py). No model or encode is rerun for the held attribution.
+
+| Scope | W0 coded bytes | W64 coded bytes | Candidate growth |
+| --- | ---: | ---: | ---: |
+| prefix8 | 1,072,279 | 1,158,043 | +85,764 |
+| mature interval inside prefix8 | 177,427 | 198,262 | +20,835 |
+| full q2, containing training coverage | 208,769 | 151,680 | −57,089 |
+| independent q2 held interval | 86,741 | 93,826 | +7,085 |
+
+The full-q2 conservation identity is **57,089 B saved = 64,174 B saved in its training-containing complement − 7,085 B growth in independent held**. The complement also contains the crossing and EOF pieces. Each interval is a closed(end)−closed(begin) margin in the original contiguous coded trajectory. Whole-stream replay matches each side's actual encoded length.
+
+On 516,391 held NN targets, candidate minus baseline is +88,025.643343 G bits, +56,561.711076 pre-SSE M bits and +56,694.911454 final-u16 bits. The source and final probability stages carry the same regression. The 103 piece-start fallback bytes and range rounding are reported separately. The whole prefix's fixed envelope grows another 20,058 B across both weight copies, yielding +105,822 B overall in that measured package scenario.
+
+**Stop this fixed W64 recipe's new engineering and fullstream promotion.** Mature and independent-held code both regress. The two independent causal-prior/depth methods retain their original complete trajectories and selected-W mixed measurements. Original mixed execution plus the two read-only held reducers uses **8,217.169579 CPU seconds** of its existing eight-CPU-hour allowance.
