@@ -1,47 +1,38 @@
-# Hutter research: transformer × statistical experts
+# Hutter research: let the codec decide
 
-**Original-v22 slope:** [source-specific FXCM/outer chain](research/v22-codec-local-slope.md) verifies the two neutral tail slots, the live internal 10+7 outputs and a two-FP32 anchor calibrated to the learner's same-weight CPU reference. New capture/training allocation remains zero.
+A CPU workbench for neural lossless compression: complete-piece learning,
+causal priors, fixed-depth native export and authentic archive measurement.
+Maintained by **Blucca / Codex**, building on **Vladimir Ivanov’s** published
+6M transformer compressor and **Kaido Orav / Ibrahim Marcouch’s** statistical
+experts. Original authorship and licenses are preserved; the upstream production
+weights stay fixed.
 
-Research maintained by Blucca / Codex, building on Vladimir Ivanov’s published 6M transformer compressor and Kaido Orav / Ibrahim Marcouch’s awarded fxcm_v26 statistical experts. Original authorship and licenses are preserved. Our complete CPU learning, native export, causal-prior and archive measurement tools live in the default branch; the upstream production weights stay fixed.
+**[Start with the research overview](research/overview.md):** prediction loss →
+same-weight NN/mixer/u16 transmission → actual range bytes → two-copy archive size.
+It connects the complete methods, measured results and reusable tools.
 
-**Zero-step control:** [original eight-block native baseline](research/depth-zero-native.md) measures the same 1,082,505 held targets and separate 131,071-target giant audit before learning. E12 repairs **74.33%** of the initial held mapping gap; the giant improves at e4, then regresses past zero8 from e8. [Complete native outputs and piece weights](research/results/depth-zero-native.json) · [stdlib replay](research/check-depth-zero-native.py). The original 32-epoch/sole-mixed terminal precedes a complete 2KL investment.
+## Complete methods
 
-**Sample exposure:** [seed414's actual update positions](research/mixed-sample-exposure.md) occupy **0.1604%** of mature-prefix NN targets and **1.0668%** of full q2 targets. The old W64 held window contains the new q2 training piece (**2.1658%**); source, scope-local and trace-local attribution ranges are recorded. [Self-contained plan/result](research/results/mixed-sample-exposure.json) · [stdlib replay](research/mixed-sample-exposure.py). Original selections and running measurements remain fixed.
+- **[Integer-coordinate QAT](research/integer-coordinate-qat.md#complete-64-epoch-terminal):** complete 64-epoch curve, native domains and same-W coded failure. Mature and independent-held code grow; the training-containing q2 saving has its own scope.
+- **[Whole-stream causal-prior learning](research/causal-priors.md):** all 205 prior columns, article-cluster sampling, full-piece CPU learning and one selected-weight codec measurement.
+- **[Eight-block distillation](research/depth-distillation.md):** a genuine eight-block model/export/native family, shared causal teacher inputs and a 32-epoch continuous→hard trajectory.
 
-**Active research:** [eight-block causal distillation](research/depth-distillation.md) shares the [whole-stream causal priors and complete-piece inputs](research/causal-priors.md) with the original twelve-block teacher. [Eight completed hard-QAT epochs](research/results/depth-hard-e16.json) follow the eight continuous epochs. Native e16 adds **0.004113873 nats/target** from e12 across **800,662 held targets**; e12 remains the current native minimum. W16/B save **1,894,244 B across both copies**, with a held gap of **+0.183006927 nats/target** against W0. The fixed 32-epoch method and one selected-weight mixed-codec measurement continue. [Stdlib replay](research/check-depth-hard-e16.py).
+## Reuse the workbench
 
-The independent sixteen-epoch causal-prior trajectory addresses the measured prior-state mismatch. Its [complete single-pass input and native baseline](research/results/causal-capture-terminal.json) have passed: 586,459,020 bytes, all 205 causal prior columns, 1,082,505 held targets and the independent long audit. [Eleven completed native epochs](research/results/causal-first-eleven-epochs.json) preserve e2 as the leading candidate (**−0.001283234 nats/target**); all four held/audit scopes regress monotonically through e3–e11. [Paired native-loss domains and observed-article precision](research/native-loss-regimes.md) separate the small e2-over-e1 margin from the broader late regression. The original [fixed-scale integer-coordinate trajectory](research/integer-coordinate-qat.md#complete-64-epoch-terminal) has completed **64 epochs / 1904 updates**. Its terminal mature NLL regresses **+.223917532 nats/target** and dual W grows **20,058 B**; the [completed same-W mixed audit](research/results/integer-coordinate-mixed-terminal-64.json) grows the mature interval by **20,835 B** and the independent q2 held interval by **7,085 B**; this fixed W64 recipe stops. The [complete q2 role accounting](research/results/integer-coordinate-terminal-64.json) separates the training-containing full sample from the regressed independent held portion. [Rate/distortion attribution](research/integer-coordinate-attribution.md) records the mechanism. Complete archive size and original-file restoration supply the Hutter score.
+| Capability | Open it |
+| :--- | :--- |
+| Full-piece CPU gradients through KDA, attention and QAT | [Measured backend](research/cpu-backward.md) |
+| Causal inputs, sampling and explicit piece resets | [Input contract and sources](research/causal-priors.md#exact-input-contract) |
+| Native eight-block construction and export | [Model and arithmetic](research/depth-distillation.md#native-identity-and-actual-measurement) |
+| Lossless weight-file coding; 52,022 B measured two-copy component saving | [Static15 format and recoder](research/weights-static15.md) |
+| Official 1 GB input restored through the original inverse transform | [Completed provenance](research/prepared-original-provenance.md) |
+| Full native compressor, authentic package size and official archive decode | [Complete archive path](research/causal-fullstream.md) |
 
-[A paired native-loss analysis](research/native-loss-regimes.md) now locates the two methods' gains and residuals on the same 473 held articles. Causal e2's incremental advantage comes from the high-surprisal domain; depth recovers in all three domains, with its largest relative distortion in the low domain. Per-piece accumulators and a standard-library replay reproduce the comparisons and one named transmission sensitivity.
-
-[A direct causal-prior scan](research/causal-prior-value.md) now measures the frozen NN's contribution: all **473 held pieces** improve over guarded PPMd, by **0.589101 nats/target** overall. The independent giant-article audit improves by **1.179914 nats/target**. The original predictor remains the strong reference for the two complete learning methods.
-
-[A bounded parameter-gradient measurement](research/depth-objective-gradients.md) locates teacher conflict in a first-block embedding coefficient on the original eight-layer checkpoint. Its CE/KL cosine is −0.859338, with the opposing sign preserved after the original group learning rates. All 134 parameters and composite-gradient reconstructions pass; the original training and same-weight coded measurement continue.
-
-[A paired activation counterfactual](research/depth-activation-counterfactual.md) keeps the original hard eight-block snapshot fixed and bypasses all 80 INT8 activation quantizers on one 1,199-target input. CE rises **0.035037220 nats/target** and teacher KL rises **0.024262831**; all z/raw, model-state and scale tensors stay byte-identical. This measured branch stops, retaining fixed scales for the conditional output-objective method.
-
-[The original training-objective audit](research/teacher-objective-audit.md) locates the e12-to-e16 conflict: online loss falls while teacher/held retention regresses. A controlled 2KL ablation preserves output-logit curvature and the hidden/rate terms. Its complete cache/measurement contract is specified; the proposed method remains unrun.
-
-[A conditional codec-aware objective](research/codec-aware-byte-surrogate.md) turns signed mixer slopes into a stable byte-logit learning loss, with the guarded-probability and SSE boundaries explicit. The original actual mixed measurements remain its admission gate.
-
-[Native length support](research/native-length-support.md) reweights the observed cells against the full-stream census and gives the missing >64 KiB cell an explicit payload budget. One article contains 81.38% of those unobserved targets; same-weight coded/full-archive results decide the remaining deployment question.
-
-[Research protocol and reproducible experiments](research/README.md). The original weights, dictionary, article order and PPMd are retained. Verified v26 savings are 3,698 B on an 8 MiB prefix, [7,488 B (0.1313%) on a 32 MiB prefix](research/results/prefix32-verified.json), and 1,665 B on a disjoint middle 8 MiB span; the longer growth curve flattens. Fixed auxiliary, history and cold recurrent-head screens are recorded alongside their failed gates.
-
-**Original native package verified:** [real dictionary/order and both packed-section entry points](research/original-release-native-aux.md) restore every component byte-for-byte. B/D/O/W fix the original two-file envelope at **6,573,938 B before range payload**; [Canonical original-input provenance](research/prepared-original-provenance.md) now passes the official 1,000,000,000-byte / MD5 restoration in 78.580048 CPU seconds. Full-stream compressor/archive measurements supply the final score. The [frozen full-stream phase runner](research/causal-fullstream.md) exposes both actual package sizes before the two official-original decodes. The eight-block method uses each side's actual W/B sizes and the same complete archive score.
-
-**New independent component:** [lossless per-tensor weight coding](research/weights-static15.md) reduces the weight file by **26,327 B**, with all **434 tensor payloads identical**. After charging the new decoder twice, the measured development-package saving is **52,022 B**. The default model stays unchanged; the optional recoder and loader are ready to reproduce.
-
-[A missing-middle bridge study](research/depth-middle-bridge.md) reproduces the twelve-block teacher bit-for-bit through an exact middle-state oracle while keeping the original outer skip. One fixed FP32 ridge bridge recovers **43.04%** of midpoint MSE and **8.24%** of the initial CE gap on a separate 1,606-target held article. The complete source, arrays and bounded execution are published; its full native successor stops.
-
-The [two-regime metadata rewrite](research/metadata-residual.md) has completed its real-v26 screen: 3,080 B net savings across two 16,384-record cases, with one case growing. It falls below the fixed 32,768 B gate, so the recipe stops despite its 823,081 B whole-header zlib gain. Exact [field-level costs](research/results/metadata-field-cost.json) show that repeated username→ID associations already cost just **43.1 B** across both slices, ending that elimination idea. The [mixer learning-age screen](research/context-age.md) has completed: two real 1 MiB round trips save 132 B against a 263 B gate, ending that recipe. Full-file prize measurements are a later milestone.
-
-Another completed screen: [same-weight positive ReLU² activation quantization](research/positive-activation.md) saves **227 B** across two real 1 MiB round trips at **+2.99% coding time** and **+24 B** in the development double-binary package. It falls below the fixed 263 B continuation gate, so longer runs stop. The [online hidden-state readout](research/dynamic-head.md) also stops at its measured magnitude gate.
-
-The [causal entity-spelling screen](research/entity-prefix.md) found substantial
-supported-bit capacity, while its frozen 1/16 mixture increased both held-out
-tails by a combined 388 B. The two baselines and exact range counts are recorded;
-this recipe and its full-file extension remain stopped.
+**[Reproduction, fixed sources and full experiment history](research/README.md).**
+Focused analyses cover [the frozen NN’s prior value](research/causal-prior-value.md),
+[method-specific training exposure](research/mixed-sample-exposure.md),
+[teacher-objective conflict](research/depth-objective-gradients.md),
+and [the exact missing-middle oracle](research/depth-middle-bridge.md).
 
 The original champion’s documentation follows, with its authorship and results preserved.
 

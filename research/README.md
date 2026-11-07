@@ -1,50 +1,31 @@
 # Hutter compression research
 
-**Missing-middle bridge:** [exact teacher oracle and one fixed ridge fit](depth-middle-bridge.md) preserve the original outer skip and match all four tail blocks/logits bit-for-bit. On one independent 1,606-target held piece, the fitted FP32 bridge recovers **43.04%** of midpoint MSE and **8.24%** of the initial CE gap. [Complete result/arrays](results/depth-middle-bridge.json) · [stdlib replay](check-depth-middle-bridge.py). This bounded study is complete; new bridge training and native engineering stop.
+**[Start here: research overview](overview.md).** Follow the complete measurement
+chain from native prediction loss to the selected weight’s actual range bytes
+and the authentic two-copy archive. The overview records published coverage
+and links the finished implementation paths.
 
-**Original-v22 slope:** [source-specific FXCM/outer chain](v22-codec-local-slope.md) verifies the two neutral tail slots, the live internal 10+7 outputs and the compact `(intercept,slope)` anchor. New capture/training allocation remains zero.
+## Complete methods
 
-**Conditional mechanism:** [signed local byte-to-bit coding objective](codec-aware-byte-surrogate.md) defines the complete gradient and the pre-SSE/final-u16 boundary. A [stdlib mathematical check](check-codec-aware-byte-surrogate.py) covers signed slopes and guarded probabilities; new capture/training allocation remains zero until the current actual mixed measurement locates the bottleneck.
+- [Integer64: full trajectory, native domains and actual mixed-codec failure](integer-coordinate-qat.md#complete-64-epoch-terminal)
+- [Whole-stream causal priors and complete-piece learning](causal-priors.md)
+- [Eight-block causal distillation and native export](depth-distillation.md)
 
-**Length support:** [census-calibrated native sensitivity](native-length-support.md) separates six observed length cells from the missing >64 KiB cell. At κA=.05, e12's historical record scenario leaves 69,500 B for that cell's payload growth. One natural article contains 81.38% of its targets. [Stdlib replay](check-native-length-support.py).
+## Reusable tools
 
+[CPU adjoints](cpu-backward.md) · [Causal inputs and resets](causal-priors.md#exact-input-contract) ·
+[Native eight-block export](depth-distillation.md#native-identity-and-actual-measurement) ·
+[Lossless weight coding](weights-static15.md) · [Official-input inverse](prepared-original-provenance.md) ·
+[Complete archive runner](causal-fullstream.md)
 
-**Zero-step control:** [original zero8 native loss before learning](depth-zero-native.md) supplies full held/long/short and the separate maximum-article audit. E12 repairs **74.33%** of the held starting gap; giant e4→e16 returns **+.089503050 nats/target**. [Complete scientific result](results/depth-zero-native.json) · [read-only measurement source](depth-zero-native.py) · [stdlib replay](check-depth-zero-native.py). The original 32-epoch and sole selected-W mixed terminal precede the complete 2KL investment.
+## Focused analyses
 
-**Sample exposure:** [seed414's actual update positions](mixed-sample-exposure.md) occupy **0.1604%** of mature-prefix NN targets and **1.0668%** of full q2 targets. The old W64 held window contains the new q2 training piece (**2.1658%**); source, scope-local and trace-local attribution ranges are recorded. [Self-contained plan/result](results/mixed-sample-exposure.json) · [stdlib replay](mixed-sample-exposure.py). Original selections and running measurements remain fixed.
-
-**Eight hard-QAT epochs:** [native e16](results/depth-hard-e16.json) adds 0.004113873 nats/target from e12 across 800,662 worsening held targets; e12 remains the current native minimum. W16/B save 1,894,244 B across both copies. The original 32-epoch method and sole mixed run continue. [Stdlib replay](check-depth-hard-e16.py).
-
-**Activation counterfactual:** [one fixed hard snapshot / 1,199 targets](depth-activation-counterfactual.md) raises CE by **0.035037220** and teacher KL by **0.024262831** when all 80 activation quantizers become identity. Original range exceedance is **0.0263977%** of quantizer elements. [Complete result](results/depth-activation-counterfactual.json) · [minimal replay](check-depth-activation-counterfactual.py). New activation-calibration engineering stops; fixed scales remain in the conditional 2KL method.
-
-**Actual parameter direction:** [one original 1,199-target gradient measurement](depth-objective-gradients.md) locates the teacher conflict in a first-block embedding coefficient. The sign persists under the original 100-fold group-LR difference; all 134 gradients and both composite reconstructions pass. [Stdlib replay](check-depth-objective-gradients.py). The original optimizer and sole mixed run continue.
-
-**Teacher objective:** [actual loss drift and a curvature-matched 2KL ablation](teacher-objective-audit.md) pair the e8/e12/e16 objective with native held scores. The original teacher point has residual label pressure; the proposed output target removes it while retaining 2 Fisher curvature. [Stdlib replay](check-teacher-objective-audit.py). New model/codec runs remain zero.
-
-**Measured prior value:** [The original NN versus causal PPMd](causal-prior-value.md) improves every one of 473 held-piece mean losses and removes 96.8% of the prior NLL on the independent giant-article audit. [Complete piece-level result](results/causal-prior-value.json) and one bounded input-only probe preserve the original weights and queues.
-
-**Causal e11:** [eleven original native epochs](results/causal-first-eleven-epochs.json) preserve e2; the same four held/audit scopes regress through e3–e11. Native e11 adds 0.002005110 nats/target from e10. [Replay](causal-first-eleven-epochs-check.py).
-
-**New paired analysis:** [native-loss domains](native-loss-regimes.md) reuse the
-same 473 held articles to locate causal e2's gain and late regression alongside
-eight-block compensation and observed-article precision. The small e2-over-e1 margin is 0.740 standard errors on this support. The high domain carries most absolute residual;
-the low domain has the largest relative distortion. Supplied per-piece loss
-accumulators and a standard-library replay reproduce the result.
-
-**Active:** [Whole-stream causal priors and complete-piece learning](causal-priors.md) addresses the measured cold-prior fit with an independent 16-epoch trajectory and a reserved `2^17` native audit. The original [fixed-scale integer-coordinate QAT](integer-coordinate-qat.md#complete-64-epoch-terminal) has completed all **64 epochs**; [terminal native, complete curve and exact q2 roles](results/integer-coordinate-terminal-64.json) are published. Its [completed same-W mixed measurement](results/integer-coordinate-mixed-terminal-64.json) grows prefix8 by 85,764 B, its mature interval by 20,835 B and q2 independent held by 7,085 B. The training-containing full q2 saves 57,089 B. The fixed recipe stops. [Stdlib replay](check-integer-coordinate-mixed-terminal-64.py). [Rate/distortion attribution](integer-coordinate-attribution.md) and [mature PPMd validation](mature-ppmd.md) provide the measured mechanism; the earlier [fixed entropy QAT](entropy-qat.md) is a completed failed recipe. Original production weights stay fixed. The [single-pass capture recovery](results/causal-capture-recovery.json) preserves all 205 prior columns and the seeded sample while sharing its independent long audit.
-
-The [formal full-stream path](causal-fullstream.md) now runs a whole native
-`cmix -e` from the canonical 1 GB original, measuring its authentic archive
-before the explicit official decode. This includes every preprocessing and
-D/O subprocess in one main NN/range pass. The model-free route check covers
-both twelve/eight-layer families; actual full-stream execution follows the
-sole mixed-codec candidate's net-S and resource admission.
-
-[Full-article CPU backpropagation](cpu-backward.md) takes 1.83 CPU seconds for 1,346 targets and 61.87 seconds for 35,162 targets under a 6 GiB address-space limit. KDA, attention and QAT adjoints retain the original full-article gradients.
-
-[Exact attention tile checkpoints](tile-checkpoint.md) reduce the measured attention graph storage by 92.66%. The 1,346-target whole-model adjoints are bit-exact; the 131,071-target OpenBLAS forward is bit-exact and its full backward hits the 7 GiB memory gate. [Terminal receipt](results/tile-checkpoint-full-model.json). The running causal trajectory stays fixed.
-
-[Real original native auxiliary delivery](original-release-native-aux.md) passes the dictionary/order roundtrips and both packed section entry points. B/D/O/W establish **6,573,938 B before range payload**, with reusable D/O and exact full-S charging. The [full-stream phase runner](causal-fullstream.md) uses one frozen model pair and records actual package S before both native original decodes. Its [depth extension](results/depth-fullstream-orchestration.json) accepts the actual two-probe/two-B family and charges double-W and dual-B once. [Eight-block complete distillation](depth-distillation.md) preserves the outer skip pairing and uses the same causal inputs; [the original structural budget](depth-distillation-contract.md) retains its static census scope.
+- [Frozen NN versus causal PPMd](causal-prior-value.md) and [native-loss regimes](native-loss-regimes.md)
+- [Each method’s actual update exposure](mixed-sample-exposure.md) and [observed length support](native-length-support.md)
+- [Teacher loss and curvature](teacher-objective-audit.md), [actual parameter gradients](depth-objective-gradients.md), and [activation counterfactual](depth-activation-counterfactual.md)
+- [Exact middle-state oracle and one fixed bridge](depth-middle-bridge.md)
+- [Signed codec-local objective](codec-aware-byte-surrogate.md) and [original-v22 slope](v22-codec-local-slope.md)
+- [Zero8 native control](depth-zero-native.md), [causal eleven-epoch curve](results/causal-first-eleven-epochs.json), and [depth hard e16](results/depth-hard-e16.json)
 
 ## Fixed sources
 
