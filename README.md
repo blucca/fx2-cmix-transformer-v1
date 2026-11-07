@@ -13,6 +13,8 @@ It connects the complete methods, measured results and reusable tools.
 
 **[A readable byte-ledger walkthrough](research/causal-byte-ledger-dev.md):** follow 221 saved bytes through neural prediction, mixer, u16 and actual range coding.
 
+**[Eight observed probabilities, nine groups](research/byte-path-reader.md):** a four-byte runnable example, measured initial-student geometry and the deployed half/lookup boundary.
+
 ## Complete methods
 
 - **[Integer-coordinate QAT](research/integer-coordinate-qat.md#complete-64-epoch-terminal):** complete 64-epoch curve, native domains and same-W coded failure. Mature and independent-held code grow; the training-containing q2 saving has its own scope.

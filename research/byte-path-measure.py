@@ -56,7 +56,7 @@ try:
     score=sample['score']; bounds=np.fromfile(score['boundaries'],dtype='<i4').tolist()
     assert len(bounds)==474 and score['targets']==1082505
     result['paths']=dict(source=str(S),checkpoint=str(a.checkpoint),
-                         kernel=str(a.kernel),data=stra.data)
+                         kernel=str(a.kernel),data=str(a.data))
     teacher,_=load_model(a.checkpoint,a.kernel,native_scaled_gemm=True)
     student,_,_=load_student(a.checkpoint,a.kernel,native_scaled_gemm=True)
     teacher.requires_grad_(False).eval(); student.requires_grad_(False).eval()
