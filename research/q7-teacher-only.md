@@ -135,3 +135,7 @@ python3 -B research/q7-terminal-readout.py \
 This readout writes `terminal-readout.json` inside the supplied collection.
 Running it without `--attribution` preserves the native curve and labels the
 selected-weight attribution as pending. It makes zero network or model calls.
+
+The [initialized rate diagnostic](q7-rate-initialization.md) reconstructs the
+soft entropy, static4096 payload cost and local hard-step direction from the
+existing exact histogram, with the admitted training recipe unchanged.

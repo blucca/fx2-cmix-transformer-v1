@@ -1,0 +1,86 @@
+{
+  "schema": "hutter.q7.initial-rate.v1",
+  "scope": "exact mapped initialization only",
+  "tensors": 111,
+  "coordinates": 5868864,
+  "hard_entropy_nats": 10612352.25236494,
+  "soft_entropy_nats_binary64": 10765850.485934058,
+  "admitted_soft_entropy_nats_fp32": 10765850.08984375,
+  "soft_minus_hard_one_copy_bytes": 27681.392544422997,
+  "double_copy_soft_minus_hard_nll": 0.0005234747129274919,
+  "static4096_payload_bytes": 1915868.2963434688,
+  "static4096_payload_excess_over_hard_bytes": 2069.800511753885,
+  "nominal_table_bytes": 3108,
+  "exported_file_bytes": 2044814,
+  "local_direction": {
+    "directed_count": 5864577,
+    "hard_step_rate_increase_count": 1882786,
+    "hard_step_rate_increase_fraction": 0.3210437854256155,
+    "absolute_gradient_weighted_fraction": 0.006196268167555148,
+    "maximum_abs_two_copy_objective_gradient": 2.474469831599104e-09,
+    "adam_epsilon": 1e-08,
+    "disagreements_by_initial_symbol": {
+      "0": {
+        "coordinates": 1839876,
+        "absolute_gradient_weight": 7661.318158717014
+      },
+      "-3": {
+        "coordinates": 23731,
+        "absolute_gradient_weight": 501.87392318894797
+      },
+      "3": {
+        "coordinates": 19179,
+        "absolute_gradient_weight": 480.52606028077565
+      }
+    },
+    "examples": [
+      {
+        "tensor": "blocks.0.mlp.down.weight.q",
+        "source": 0,
+        "target": -1,
+        "count": 48147,
+        "soft_dH_dz": 0.007575210108615027,
+        "hard_step_delta_nats": 0.6455609138938598
+      },
+      {
+        "tensor": "blocks.1.mlp.up.weight.q",
+        "source": 0,
+        "target": -1,
+        "count": 45165,
+        "soft_dH_dz": 0.00797840592727157,
+        "hard_step_delta_nats": 0.6134971319697797
+      },
+      {
+        "tensor": "blocks.8.mlp.up.weight.q",
+        "source": 0,
+        "target": -1,
+        "count": 44592,
+        "soft_dH_dz": 0.006668145006452315,
+        "hard_step_delta_nats": 0.5878494592034258
+      },
+      {
+        "tensor": "blocks.8.mlp.down.weight.q",
+        "source": 0,
+        "target": 1,
+        "count": 46156,
+        "soft_dH_dz": -0.005046777132110396,
+        "hard_step_delta_nats": 0.6068203188478947
+      },
+      {
+        "tensor": "blocks.0.mlp.up.weight.q",
+        "source": 0,
+        "target": -1,
+        "count": 43577,
+        "soft_dH_dz": 0.004955855680681301,
+        "hard_step_delta_nats": 0.5863694740692154
+      }
+    ]
+  },
+  "operations": {
+    "model_loads": 0,
+    "training_runs": 0,
+    "native_runs": 0,
+    "codec_runs": 0,
+    "network_calls": 0
+  }
+}
