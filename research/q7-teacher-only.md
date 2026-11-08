@@ -165,8 +165,9 @@ linear products; q7 and its cached teacher use integer-unit products followed
 by the native BF16-scale fold. Native reports share the original full12 family.
 Relative to that old e4, q7 adds 0.540430804 primary,
 0.614198438 contained-long and 1.260115665 independent-giant nats/target.
-The q7 initialization has an unmeasured native scope in this run; its admitted
-1,199-target training-piece result remains a separate measurement.
+The [separate e0 control](#training-relative-to-the-initial-quantized-model)
+now supplies the initialization's complete native domains. The admitted
+1,199-target training-piece result retains its own measurement scope.
 
 The e4 q7 archive is 2,073,263 bytes, 28,449 above its initialization. It saves
 1,662,124 bytes across both copies against W0. For the original kappa=1 native
@@ -233,11 +234,49 @@ whole-method comparison on the same native family and causal split.
 Q7 e8 weighs 2,073,147 bytes: 116 fewer than e4, 28,333 above its
 initialization, and 1,662,356 saved across both copies against W0. The original
 kappa=1 selector allows 0.015724698 nats/target; the observed primary residual
-is 0.315582217, giving proxy -31,699,810.61 bytes. The initialization's e0 native
-scope remains unmeasured. Same-weight probabilities and closed coded bytes follow
+is 0.315582217, giving proxy -31,699,810.61 bytes. The [separate e0 control](#training-relative-to-the-initial-quantized-model)
+now measures the initialization's native scope. Same-weight probabilities and closed coded bytes follow
 the original terminal audit; next input is new e12/native or actual terminal/error.
 This local report adds zero network, model, native, collector or codec calls.
 
 ```sh
 python3 -B research/check-q7-native-stage.py research/results/q7-native-e8.json
+```
+
+
+## Training relative to the initial quantized model
+
+On 2026-11-09, a [complete e0 control](results/q7-initial-native.json) measured
+the preserved 2,044,814-byte initialization with the same full12 evaluator and
+held inputs. The initial file matched the original quant7 reference byte for
+byte. Two native calls covered 1,213,576 independent targets in 103.131388 CPU
+seconds, with a peak child RSS of 94,212 KiB. The original W0 results were reused.
+
+Let `Q = N(e0) - N(W0)` denote initial quantization loss, and
+`T_e = N(e) - N(e0)` denote the change from learning. Their sum is the measured
+residual `N(e) - N(W0)`. All values below are native nats/target.
+
+| Scope | Q: initial quantization | T4: learning change | T8: learning change | Total e8 residual |
+|---|---:|---:|---:|---:|
+| Primary full-held | +0.361833348 | +0.186062994 | -0.046251131 | +0.315582217 |
+| Contained long-three | +0.410441185 | +0.212358267 | -0.036378567 | +0.374062618 |
+| Independent giant | +0.247456043 | +1.015044116 | +0.611062066 | +0.858518109 |
+
+At e8, learning has recovered 12.7824% of the primary initial loss and 8.8633%
+of the contained-long loss. The giant's loss grows by 0.611062066 from the
+initialization. The initial quantization raises loss on all 473 primary pieces.
+These observations separate the initial grid distortion from the trajectory's
+different domain responses. The primary holdout and same-weight byte audit
+continue to govern selection; the long and giant scopes retain their report-only
+role. The original complete32 trajectory continues unchanged.
+
+[The exact e0 measurement source](q7-initial-native.py) reads the preserved
+initial weight and original manifest; its two `eval-pieces` commands leave the
+training files intact. The [terminal reader](q7-terminal-readout.py) now adds
+`delta_nll_q7_e0`, an e0 paired-piece column, and the separate control CPU
+charge to the original complete/bounded readout. Its local check uses these
+actual e0/e8 data and the original admitted scalar:
+
+```sh
+python3 -B research/q7-terminal-readout.py --check
 ```
