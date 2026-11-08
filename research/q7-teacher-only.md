@@ -106,3 +106,32 @@ Initial teacher KL was 0.365677859805 nats/target; detached CE was
 optimizer, and RNG were restored, with zero teacher cache misses. The complete
 32-epoch run has started; native curves and its selected-weight codec results
 follow the original measurement sequence.
+
+## Offline complete-or-bounded readout
+
+[The readout](q7-terminal-readout.py) consumes the small originals collected at
+the mixed queue's actual terminal. It checks the q7 recipe against admission,
+reconstructs the target-weighted `2KL + 2H/N` objective, and reports every online
+epoch as hard. Completed epochs, a partial final epoch, and native evaluations
+retain their actual coverage. The existing full12 native reference is reused;
+the q7 initialization has its own weight identity and an unmeasured native scope
+in this run.
+
+The output includes the full-held, contained long-three, remaining short-piece,
+and independent giant curves; the selected and final evaluated epochs are named
+separately. The selected weight's own codec pairs and fixed-scope trace attribution
+are joined by their recorded weight identity. A retained-original outcome stops
+the candidate-attribution path. The training CPU ledger already includes its
+preparation carry; the codec and four-reader ledger are reported separately.
+
+```sh
+python3 -B research/q7-terminal-readout.py --check
+# After the original queue's terminal collection and its same-W attribution:
+python3 -B research/q7-terminal-readout.py \
+  --collection /path/to/q7-small-originals \
+  --attribution /path/to/q7-attribution/attribution-readout.json
+```
+
+This readout writes `terminal-readout.json` inside the supplied collection.
+Running it without `--attribution` preserves the native curve and labels the
+selected-weight attribution as pending. It makes zero network or model calls.
