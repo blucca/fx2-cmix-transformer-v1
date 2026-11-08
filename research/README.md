@@ -1002,3 +1002,5 @@ prior-state control. Terminal native and end-to-end coding measurements remain.
 [The nine-group coder target](byte-path-quotient.md) connects exact NN lookup/override
 observations to grouped teacher KL, three complete initial-eight held pieces and
 saved-row half/guard controls. The full 2KL trajectory stays frozen.
+
+- [Gated recurrence contracts](gated-recurrence-contract.md): exact scalar capacity/gradient witness, skip embedding, canonical export and bank/slot state separation; source-reviewed proposal.

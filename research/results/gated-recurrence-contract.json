@@ -1,0 +1,51 @@
+{
+  "scope": "exact scalar ReLU-squared family on positive test inputs; architecture/byte performance unmeasured",
+  "zero_gate_inclusion_checked": true,
+  "strict_expansion_witness": {
+    "inputs": [
+      1,
+      2
+    ],
+    "shared_outputs": [
+      6,
+      42
+    ],
+    "single_base_fit_a": 5,
+    "single_base_outputs": [
+      6,
+      22
+    ]
+  },
+  "shared_gradient_rows": [
+    {
+      "x": 1,
+      "output": 6,
+      "first_occurrence_d_a": 5,
+      "second_occurrence_d_a": 4,
+      "one_shared_d_a": 9,
+      "zero_gate_d_a": 1,
+      "zero_gate_d_g": 4
+    },
+    {
+      "x": 2,
+      "output": 42,
+      "first_occurrence_d_a": 52,
+      "second_occurrence_d_a": 36,
+      "one_shared_d_a": 88,
+      "zero_gate_d_a": 4,
+      "zero_gate_d_g": 36
+    }
+  ],
+  "zero_gate_two_parameter_output_jacobian_determinant": 20,
+  "stream_carry_zero_is_zero_when_residual_is_zero": true,
+  "reverse_skip_identity_cases": 3,
+  "extra_zero_skips_required": true,
+  "two_slot_state_witness": {
+    "independent_slot0_after_two_steps": 2,
+    "aliased_slot0_after_two_steps": 5
+  },
+  "transformer_targets": 0,
+  "native_observations": 0,
+  "trained_models": 0,
+  "coded_byte_measurements": 0
+}
