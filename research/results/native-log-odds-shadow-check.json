@@ -1,0 +1,34 @@
+{
+  "schema": "hutter.native-log-odds-shadow.scalar.v1",
+  "status": "passed",
+  "scope": "96 frozen native observer pairs plus one labelled scalar control",
+  "native_pairs": 96,
+  "zero_loss_and_carrier_pairs": 95,
+  "changed_pairs": [
+    {
+      "key": [
+        "hard",
+        14,
+        0,
+        1
+      ],
+      "teacher_r": 0.527209727902721,
+      "student_r": 0.527219727802722,
+      "observed_kl": 2.0059032845252131e-10,
+      "native_log_odds_vjp": 9.999900000945416e-06,
+      "finite_difference_in_relaxed_log_odds": 9.99987723382788e-06
+    }
+  ],
+  "clip_control": {
+    "source": "controlled clipped scalar; no native capture",
+    "teacher_r": 0.0002049979500204998,
+    "student_r": 0.0001049989500104999,
+    "observed_kl": 3.715980298480334e-05,
+    "native_log_odds_vjp": -9.99990000099999e-05,
+    "finite_difference_in_relaxed_log_odds": -9.999899983496375e-05
+  },
+  "model_forwards": 0,
+  "native_runs": 0,
+  "capture_runs": 0,
+  "learner_implementation": 0
+}

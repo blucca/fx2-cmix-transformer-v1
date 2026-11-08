@@ -113,3 +113,34 @@ for 9.94% of targets and 11.58% of the total native loss increase; the remaining
 positive target-weighted residuals. The epoch record preserves these complete
 control aggregates alongside the first new training observation. The new
 control tests global teacher-target recovery with the fixed architecture.
+
+
+## First native checkpoint: epoch 4
+
+The original unique watcher reported the complete e4 native aggregate. Both
+trajectories are at the same continuous-training epoch, with a hard-exported
+weight for native scoring. Shared data, native family, scale, optimizer, hidden
+alignment and rate settings retain the fixed method above.
+
+| Native scope | Targets | Original CE+KL e4 | Teacher-only e4 | Fresh minus old |
+| :--- | ---: | ---: | ---: | ---: |
+| Full held | 1,082,505 | 1.187158519088 | 1.191965251350 | +0.004806732262 |
+| Long held subset | 107,647 | 1.518069217219 | 1.516227199677 | −0.001842017541 |
+| Independent giant | 131,071 | 0.186305475316 | 0.206609864589 | +0.020304389273 |
+
+The primary full-held and independent-giant NLLs are higher in the fresh control;
+the long subset's NLL is lower. All three fresh domains retain a positive gap to
+the original 12-block W0: **+0.225716912556 / +0.257612898368 / +0.167623438458**
+nats/target. The 470 held pieces outside the long subset have a derived
+fresh-minus-old gap of **+0.005540908901** nats/target.
+
+The long subset is included in the full-held count. Independent coverage here
+is **1,213,576 targets**. Fresh e4 weighs **1,957,707 B**, versus **1,957,973 B**
+for old e4: **532 B** improvement across the two weight copies. Its total
+two-weight saving versus W0 is **1,893,236 B**; binary and payload components
+retain their separate accounting.
+
+The independent 32-epoch curve and its sole selected-weight mixed-codec
+measurement continue. This e4 report uses the actual native aggregate; complete
+raw checkpoint receipts will be collected together at the real terminal.
+[Full same-epoch comparison](results/teacher-only-first-native-e4.json).

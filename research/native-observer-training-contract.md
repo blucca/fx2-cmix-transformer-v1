@@ -76,7 +76,8 @@ reconstruction returns `0.00010502338409423828`. Adding the identical-shadow
 difference preserves the original center bit pattern.
 
 This declares an estimator, with actual native values and a CPU relaxation
-for derivatives. Learning, complete native held/long/giant evaluation and
+for derivatives. A [native log-odds residual carrier](native-log-odds-shadow.md)
+expresses the observed backward directly as `(r_student-r_teacher) × eta_shadow`. Learning, complete native held/long/giant evaluation and
 the selected W's real mixer/u16/range bytes remain the full-method acceptance.
 
 ## Replay
