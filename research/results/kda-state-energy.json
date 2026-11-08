@@ -161,5 +161,28 @@
       "state_energy": 0.308641975308642,
       "geometric_energy_bound": 0.30864197530864207
     }
-  ]
+  ],
+  "fixed_key_gate_response": {
+    "nominal_decay": 0.999,
+    "source_gate_x": -8.0,
+    "a_fixed": 2.9829496826360264,
+    "state_norm": 22.366272042129534,
+    "absolute_decay_local_sensitivity": 11188.730386258047,
+    "relative_source_gate_local_sensitivity": 0.49991607437803787,
+    "relative_source_gate_upper_bound": 0.5,
+    "finite_responses": [
+      {
+        "coordinate_control": "absolute_decay_change",
+        "new_decay": 0.99901,
+        "state_difference_norm": 0.11244926894240918,
+        "exact_formula": 0.11244926894297652
+      },
+      {
+        "coordinate_control": "source_gate_change",
+        "new_decay": 0.9989899566114995,
+        "state_difference_norm": 0.11181156349400231,
+        "exact_formula": 0.11181156349348811
+      }
+    ]
+  }
 }

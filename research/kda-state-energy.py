@@ -179,9 +179,49 @@ for decay, beta in ((.99, 1.), (.95, .4), (.8, .2)):
                     "exact_arithmetic_error_bound": exact_bound})
     decayed.append(row)
 
+# Hold the nominal optimal keys fixed while changing the actual decay coordinate.
+nominal_decay, gate_x = .999, -8.
+co = math.sqrt((1 + nominal_decay) / 2)
+si = math.sqrt((1 - nominal_decay) / 2)
+
+
+def gate_cycle(decay):
+    z = 1 - nominal_decay * decay
+    return [[(1 - decay) * co / z], [(1 + decay) * si / z]]
+
+
+nominal = gate_cycle(nominal_decay)
+amplitude = math.sqrt(energy(nominal))
+softplus = math.log1p(math.exp(gate_x))
+sigmoid = math.exp(gate_x) / (1 + math.exp(gate_x))
+a_fixed = -math.log(nominal_decay) / softplus
+close(math.exp(-a_fixed * softplus), nominal_decay)
+relative_sensitivity = (nominal_decay * a_fixed * sigmoid
+                        / (1 - nominal_decay * nominal_decay))
+close(relative_sensitivity,
+      -math.log(nominal_decay) / (2 * math.sinh(-math.log(nominal_decay)))
+      * sigmoid / softplus)
+assert 0. < relative_sensitivity <= .5
+responses = []
+for name, new_decay in (
+    ("absolute_decay_change", nominal_decay + 1e-5),
+    ("source_gate_change", math.exp(-a_fixed * math.log1p(math.exp(gate_x + .01)))),
+):
+    observed = math.sqrt(energy(subtract(gate_cycle(new_decay), nominal)))
+    exact = amplitude * abs(new_decay - nominal_decay) / (1 - nominal_decay * new_decay)
+    close(observed, exact)
+    responses.append({"coordinate_control": name, "new_decay": new_decay,
+                      "state_difference_norm": observed, "exact_formula": exact})
+gate_response = {"nominal_decay": nominal_decay, "source_gate_x": gate_x,
+                 "a_fixed": a_fixed, "state_norm": amplitude,
+                 "absolute_decay_local_sensitivity": amplitude / (1 - nominal_decay**2),
+                 "relative_source_gate_local_sensitivity": relative_sensitivity,
+                 "relative_source_gate_upper_bound": .5, "finite_responses": responses}
+
 result = {"status": "pass", "execution_scope": "stdlib binary64 algebra controls",
           "tolerance": TOL, "energy_cases": rows, "conditioned_key_toys": toys}
 result["decayed_key_toys"] = decayed
+result["fixed_key_gate_response"] = gate_response
 result_path = Path(__file__).parent / "results" / "kda-state-energy.json"
 result_path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
 print(json.dumps({"status": "pass", "energy_cases": len(rows),

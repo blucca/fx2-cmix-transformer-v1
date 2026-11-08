@@ -153,6 +153,44 @@ length in one stream. The deployed recurrence has learned anisotropic decay,
 epsilon-normalized keys and varying gates; its model-specific state amplitude
 and forcing stay with its own native measurements.
 
+### Gate changes in the source parameter's units
+
+For the unit-beta cycle, choose the energy-attaining keys at a nominal `d0`
+and hold those keys fixed. Write `c0 = cos(theta0)`, `s0 = sin(theta0)` and
+`R0 = ||S_+(d0)||`. For any `d1 ∈ (0,1)`, the new stationary state is
+
+\[
+S_+(d_1)=\frac{1}{1-d_0d_1}
+\begin{bmatrix}(1-d_1)c_0\\(1+d_1)s_0\end{bmatrix},
+\qquad
+\boxed{\|S_+(d_1)-S_+(d_0)\|
+=\frac{R_0|d_1-d_0|}{1-d_0d_1}.}
+\]
+
+The local sensitivity to an absolute decay change is
+`||dS_+/dd|| = R0/(1-d0²)`. The deployed reference computes decay from
+`x = g_raw+dt_bias` as `d = exp(-A*h(x))`, with `A = exp(A_log)` and
+threshold-20 softplus `h`. Holding `A` fixed, the local relative sensitivity
+to this **preactivation** is
+
+\[
+\frac{\|\partial S_+/\partial x\|}{R_0}
+=\frac{d_0(-\log d_0)}{1-d_0^2}\frac{h'(x)}{h(x)}
+\le\frac12.
+\]
+
+On the smooth branch, `h'/h = sigmoid(x)/log(1+exp(x)) ≤ 1`; on the linear
+branch `x > 20`, it is `1/x`. Setting `u = -log(d0)` gives
+`d0*u/(1-d0²) = u/(2*sinh(u)) ≤ 1/2`. These are local derivatives within a
+softplus branch, at the nominal energy-attaining angle with beta, keys,
+values, `A` and `dt_bias` held fixed.
+
+This gives two explicit coordinates for the same stationary-state response:
+absolute decay and the gate's source preactivation. The bound describes the
+fractional response of this fixed control. Key, value, beta and readout changes
+retain their separate forcing terms below; the model uses their actual learned
+streams and FP32 arithmetic.
+
 ## 3. Fixed-control propagation and cross-model forcing
 
 Write `F_t(S) = M_t*S + b_t`, with
@@ -213,7 +251,8 @@ python3 -B research/kda-state-energy.py
 and zero-boundary controls, fixed-control state differences, and two 2×1
 identity-decay conditioned-key sequences of 4,000 updates. Three decayed cycles
 check the fixed-point formula and energy equality, with a finite-period error
-check for one unit-beta stream. The check compares the expanded and
+check for one unit-beta stream. One fixed source-coordinate control checks the
+exact finite decay response and local preactivation bound. The check compares the expanded and
 completed-square energies with tolerance `1e-11`; both final toy errors are below
 `1e-7`. The result names its exact-arithmetic error bounds separately from the
 observed binary64 residuals.
