@@ -50,8 +50,8 @@ For `beta = 0` or `k = 0`, the actual update is `S' = DS`.
 The completed-square identity extends to `beta > 0, beta*c < 2`.
 
 Uniform forgetting `lambda_t ≤ rho < 1` and `||v_t|| ≤ V` give a bounded
-geometric energy sum. With `lambda_t ≤ 1`, the general bound grows at most
-linearly in squared energy with the number of value injections.
+geometric energy sum. With `lambda_t ≤ 1` and bounded values, the squared-energy bound grows at most
+linearly with sequence length.
 
 ## 2. A concrete key-conditioning mechanism
 
@@ -95,8 +95,8 @@ M_t=(I-\beta_tk_tk_t^\top)D_t,
 \]
 
 For the same controls, a state perturbation follows `E_t = M_t*E_(t-1)` and
-`||E_t||_F ≤ lambda_t*||E_(t-1)||_F`. The normalized key gives eigenvalues
-`1-beta*c` in its own direction and 1 in orthogonal directions. Uniform
+`||E_t||_F ≤ lambda_t*||E_(t-1)||_F`. The matrix `I-beta*k*k^T` has eigenvalues
+`1-beta*c` in the key direction and 1 in orthogonal directions. Uniform
 `lambda < 1` is a sufficient condition for strict contraction.
 
 For two models with their own controls, the exact finite difference is
