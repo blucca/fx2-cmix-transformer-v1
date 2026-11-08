@@ -81,3 +81,8 @@ loader with an explicitly selected v3 file.
 The separate [seven-value rate/distortion screen](weights-quant7.md) adds an
 explicit `--quant7` recoder mode. Its tensor values change; the default mode
 and all lossless results above stay unchanged.
+
+
+## Fixed adjacent-pair follow-up
+
+[Full-reference pair census](weights-pair-census.md): 2,934,336 pairs and 192 retained tails. Ideal pair data gain is 2,449.56B per W; total4096 data gain is 1,952.44B, against 46,648B of extra literal tables. Keep static15; the fixed-225 codec is stopped.
