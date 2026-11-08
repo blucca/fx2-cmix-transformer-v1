@@ -206,3 +206,38 @@ separate fixed-control state propagation from the key/decay/value forcing of a
 changed model. A sharp energy bound and a two-key value-fitting example connect
 long histories to state scale; the actual q7 native and same-weight results
 continue on the fixed measurement path.
+
+## Native checkpoint: hard epoch eight
+
+The original watcher cached [hard e8](results/q7-native-e8.json) at
+2026-11-08 21:27 UTC. The reserved complete32/48CPUh trajectory and sole
+selected-weight mixed audit within 8CPUh continue.
+
+| Native scope | Targets | W0 | Old full12 q15 causal e8 | Q7 e8 | Q7 e8 minus e4 |
+|---|---:|---:|---:|---:|---:|
+| Primary full-held | 1,082,505 | 0.966248339 | 0.995284567 | 1.281830556 | -0.232314125 |
+| Contained long-three | 107,647 | 1.258614301 | 1.293673241 | 1.632676920 | -0.248736834 |
+| Independent giant | 131,071 | 0.038986426 | 0.047069149 | 0.897504535 | -0.403982050 |
+
+Values are raw native nats/target. Long-three is counted inside full-held;
+independent coverage is 1,213,576 targets. The remaining 470 pieces / 974,858
+targets have q7 NLL 1.243088956, versus W0
+0.933964336 and old q15 e8 0.962335517; q7 e8 minus e4 is
+-0.230500676. Relative to old e8, q7 adds
+0.286545988 primary, 0.339003678 contained-long and
+0.850435386 independent-giant nats/target. The old CE+KL
+control uses scaled FP32 GEMM for student and teacher; q7 and its cached teacher
+use integer-unit products followed by the BF16-scale fold. This remains the
+whole-method comparison on the same native family and causal split.
+
+Q7 e8 weighs 2,073,147 bytes: 116 fewer than e4, 28,333 above its
+initialization, and 1,662,356 saved across both copies against W0. The original
+kappa=1 selector allows 0.015724698 nats/target; the observed primary residual
+is 0.315582217, giving proxy -31,699,810.61 bytes. The initialization's e0 native
+scope remains unmeasured. Same-weight probabilities and closed coded bytes follow
+the original terminal audit; next input is new e12/native or actual terminal/error.
+This local report adds zero network, model, native, collector or codec calls.
+
+```sh
+python3 -B research/check-q7-native-stage.py research/results/q7-native-e8.json
+```

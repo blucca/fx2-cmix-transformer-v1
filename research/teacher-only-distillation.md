@@ -305,3 +305,34 @@ The complete 32-epoch curve and sole selected-weight codec measurement continue.
 The next native checkpoint is e24; actual terminal/error receipts open the
 retained full collection. [Matched checkpoint and trajectory](results/teacher-only-native-e20.json) ·
 [standard-library arithmetic check](check-teacher-only-native-e20.py).
+
+## Teacher-only checkpoint 24: matched improvement and continued late rise
+
+The original unique watch returned native e24 at 05:27 CST on November 9.
+Both recipes retain the same eight-layer architecture, frozen scales, native
+family and held targets; the original complete CE+KL e24 is the matched control.
+
+| Native scope | Targets | Original CE+KL e24 | Teacher-only e24 | Fresh minus old | Fresh e24 minus e20 |
+|---|---:|---:|---:|---:|---:|
+| full_held | 1,082,505 | 1.160351253348 | 1.125847484732 | -0.034503768617 | +0.001621892213 |
+| held_long | 107,647 | 1.489268055688 | 1.444504741356 | -0.044763314332 | +0.003018047842 |
+| giant | 131,071 | 0.321076006584 | 0.286336036436 | -0.034739970148 | +0.012547192918 |
+
+Fresh e24 is below the matched original e24 in all three domains. All three
+fresh-domain NLLs rise from e20 to e24. The other 470 held pieces
+(974,858 targets) give **-0.033370876116** nats/target
+against old e24 and **+0.001467724155**
+from fresh e20. Long3 is included in the primary fullheld total; the
+independent giant stays report-only.
+
+Fresh W is **1,961,211 B**; old e24 W is **1,963,088 B**. The two-copy charge
+improves by **3,754 B** against old e24 and saves **1,886,228 B** against W0;
+fresh W grows by **432 B** from e20. Primary selection and the sole selected-W
+mixed stream continue under the original 32-epoch / 48-CPUh and 8-CPUh limits.
+The next scientific trigger is e28/native or actual same-weight terminal/error.
+
+[Checkpoint data](results/teacher-only-native-e24.json) ·
+[standard-library arithmetic check](check-teacher-only-native-e24.py).
+
+The e20 data's provenance label now names its actual retained e20 source;
+its measurements and arithmetic remain the recorded values.

@@ -129,7 +129,7 @@
   "provenance": {
     "old_e20_step": 1578,
     "old_stage_kind": "hard",
-    "old_source": "retained complete CE+KL training-state evaluations[epoch=16]",
+    "old_source": "retained complete CE+KL training-state evaluations[epoch=20]",
     "fresh_training_epoch": 20,
     "fresh_pipeline_stage": "training",
     "fresh_mixed_status": "waiting",
