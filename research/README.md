@@ -1,6 +1,5 @@
 # Hutter compression research
 
-- [Full12 seven-symbol teacher-only: fixed-grid method and real cached-piece preflight](q7-teacher-only.md).
 **[Start here: research overview](overview.md).** Follow the complete measurement
 chain from native prediction loss to the selected weight’s actual range bytes
 and the authentic two-copy archive. The overview records published coverage
@@ -11,6 +10,7 @@ walks through the complete causal result, direct-update exposure and package cha
 
 ## Complete methods
 
+- [Full12 seven-symbol teacher-only: fixed-grid method and real cached-piece preflight](q7-teacher-only.md).
 - [Integer64: full trajectory, native domains and actual mixed-codec failure](integer-coordinate-qat.md#complete-64-epoch-terminal)
 - [Whole-stream causal priors and complete-piece learning](causal-priors.md)
 - [Complete causal16 trajectory, frozen e2 and same-W real range bytes](causal-complete-16-mixed.md)
