@@ -97,8 +97,9 @@ nine-group KL as its observation-equivalence and capacity certificate.** Both
 have zero teacher-point gradient and the same exact-path-match zero set.
 
 [The saved-row check](results/byte-path-weighting-saved-rows.json) enumerates all
-205 targets on each of 12 saved rows to verify the expectation identity. These
-are objective identities; the complete compressed-model experiment supplies
+205 targets on each of 12 saved rows to verify the expectation identity. The [gradient-scale replay](byte-path-gradient-scale.md) additionally verifies
+that the mean gradient agrees while measuring the actual-label direction and
+teacher-label variance. The complete compressed-model experiment supplies
 its learned native/coded performance.
 
 ## Initial-eight measurement: three complete causal held pieces
