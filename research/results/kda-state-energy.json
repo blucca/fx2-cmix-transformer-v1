@@ -109,5 +109,57 @@
       "final_error_norm": 4.284687703254031e-14,
       "exact_arithmetic_error_bound": 1.0759328371499386e-34
     }
+  ],
+  "decayed_key_toys": [
+    {
+      "decay": 0.99,
+      "beta": 1.0,
+      "theta": 0.07076973666221363,
+      "plus_state": [
+        0.5012547071170854,
+        7.071067811865472
+      ],
+      "minus_state": [
+        -0.5012547071170854,
+        7.071067811865472
+      ],
+      "state_energy": 50.25125628140699,
+      "geometric_energy_bound": 50.25125628140696,
+      "cycles": 200,
+      "cycle_spectral_radius": 0.96059601,
+      "spectral_half_life_updates": 34.483781968264196,
+      "final_error_norm": 0.0023072462311013735,
+      "exact_arithmetic_error_bound": 0.0023072462311027595
+    },
+    {
+      "decay": 0.95,
+      "beta": 0.4,
+      "theta": 0.32502574902063286,
+      "plus_state": [
+        0.12149262874514738,
+        1.5966659341462621
+      ],
+      "minus_state": [
+        -0.12149262874514738,
+        1.5966659341462621
+      ],
+      "state_energy": 2.564102564102562,
+      "geometric_energy_bound": 2.5641025641025634
+    },
+    {
+      "decay": 0.8,
+      "beta": 0.2,
+      "theta": 1.5707963057214724,
+      "plus_state": [
+        1.1265506635768076e-09,
+        0.5555555555555556
+      ],
+      "minus_state": [
+        -1.1265506635768076e-09,
+        0.5555555555555556
+      ],
+      "state_energy": 0.308641975308642,
+      "geometric_energy_bound": 0.30864197530864207
+    }
   ]
 }

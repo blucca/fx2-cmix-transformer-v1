@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Fixed algebra controls: stdlib, Python binary64, 4x3 energy + 2x1 key toy."""
+"""Fixed algebra controls: stdlib binary64, energy and alternating-key cycles."""
 import json
 import math
 from pathlib import Path
@@ -140,9 +140,50 @@ for theta in (.2, .1):
                  "final_error_norm": error,
                  "exact_arithmetic_error_bound": abs(gamma) ** (2 * cycles - 1) / si})
 
+# Constant forgetting: the alternating stream attains the geometric energy cap.
+# Three fixed gate/decay cases cover the interior and beta=1-d boundary.
+decayed = []
+for decay, beta in ((.99, 1.), (.95, .4), (.8, .2)):
+    y = (1 - decay) * (1 + decay - beta) / (2 * decay * beta)
+    assert 0. <= y <= 1., (decay, beta, y)
+    si, co = math.sqrt(y), math.sqrt(1 - y)
+    z = ((1 - decay) * (1 + decay - decay * beta)
+         + 2 * decay * beta * y)
+    a, b = beta * (1 - decay) * co / z, beta * (1 + decay) * si / z
+    plus, minus = [[a], [b]], [[-a], [b]]
+    target_energy = beta / ((2 - beta) * (1 - decay * decay))
+    for before, k, value, after in (
+        (minus, [co, si], 1., plus), (plus, [co, -si], -1., minus)
+    ):
+        actual, _, retrieval = step(before, k, [value], [decay] * 2, beta)
+        matrix_close(actual, after)
+        close(retrieval[0], (1 - beta) / (2 - beta) * value)
+        close(energy(actual), target_energy)
+    row = {"decay": decay, "beta": beta, "theta": math.asin(si),
+           "plus_state": [a, b], "minus_state": [-a, b],
+           "state_energy": energy(plus), "geometric_energy_bound": target_energy}
+    if beta == 1.:
+        gamma = 1 - 2 * y
+        close(gamma, decay)
+        cycles = 200
+        state = [[0.], [0.]]
+        for _ in range(cycles):
+            state, _, _ = step(state, [co, si], [1.], [decay] * 2, beta)
+            state, _, _ = step(state, [co, -si], [-1.], [decay] * 2, beta)
+        observed_error = math.sqrt(energy(subtract(state, minus)))
+        exact_bound = decay ** (4 * cycles - 1) * math.sqrt(target_energy)
+        close(observed_error, exact_bound)
+        row.update({"cycles": cycles, "cycle_spectral_radius": decay ** 4,
+                    "spectral_half_life_updates": 2 * math.log(.5) / math.log(decay ** 4),
+                    "final_error_norm": observed_error,
+                    "exact_arithmetic_error_bound": exact_bound})
+    decayed.append(row)
+
 result = {"status": "pass", "execution_scope": "stdlib binary64 algebra controls",
           "tolerance": TOL, "energy_cases": rows, "conditioned_key_toys": toys}
+result["decayed_key_toys"] = decayed
 result_path = Path(__file__).parent / "results" / "kda-state-energy.json"
 result_path.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
 print(json.dumps({"status": "pass", "energy_cases": len(rows),
-                  "toy_cases": len(toys), "result_path": str(result_path)}))
+                  "toy_cases": len(toys), "decayed_cycle_cases": len(decayed),
+                  "result_path": str(result_path)}))

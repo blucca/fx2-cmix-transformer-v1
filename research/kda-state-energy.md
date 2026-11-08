@@ -85,6 +85,74 @@ opposite requested values build a large perpendicular state component through
 repeated fitting. The identity-decay/unit-beta cases are mathematical boundary
 controls; the current model uses its own learned qkv, decay and beta values.
 
+### Forgetting: a stream that reaches the geometric energy bound
+
+Keep the alternating unit keys and values, allow `0 ≤ theta ≤ pi/2`, and take
+constant `D = d*I`, `0 < d < 1`, `0 < beta ≤ 1`. The stream has a unique
+attracting periodic state pair:
+
+\[
+S_+=(a,b)^\top,\quad S_-=(-a,b)^\top,
+\qquad
+Z=(1-d)(1+d-d\beta)+2d\beta\sin^2\theta,
+\]
+\[
+\boxed{a=\frac{\beta(1-d)\cos\theta}{Z},\qquad
+b=\frac{\beta(1+d)\sin\theta}{Z}.}
+\]
+
+The plus update maps `S_-` to `S_+`; the minus update maps it back. Each
+homogeneous step has norm `d`, so the cycle attracts every initial state.
+Its squared norm, with `y = sin²(theta)`, is
+
+\[
+\|S_\pm\|^2=
+\frac{\beta^2[(1-d)^2+4dy]}
+{[(1-d)(1+d-d\beta)+2d\beta y]^2}.
+\]
+
+For `beta ≥ 1-d`, choose
+
+\[
+y_* = \frac{(1-d)(1+d-\beta)}{2d\beta}\in[0,1].
+\]
+
+At this angle, the retrieval before each update is
+`r = ((1-beta)/(2-beta))*v`. The completed-square residual is zero at both
+states, and the cycle reaches the stationary geometric energy ceiling exactly:
+
+\[
+\boxed{\|S_\pm\|^2=\frac{\beta}{(2-\beta)(1-d^2)}.}
+\]
+
+Thus the energy scale from Section 1 is attainable by a fixed input stream,
+even with forgetting and unit-amplitude values. The displayed angle is also
+the maximum of this cycle's squared norm over `y ∈ [0,1]` under the stated
+gate condition.
+At `beta = 1-d`, the angle is `pi/2` and the two states coincide. The near-key
+range `theta_* < pi/4` corresponds to `beta > 1-d²`.
+
+For `beta = 1`, `sin²(theta_*) = (1-d)/2`. If
+`P_± = I-k_±*k_±^T`, the period matrix is `d²*P_-*P_+` with spectral radius
+`d²*cos²(2*theta_*) = d⁴`. Starting from zero, after `m ≥ 1` periods the
+exact-arithmetic state error is
+
+\[
+\|S_{2m}-S_-\|=d^{4m-1}\|S_-\|.
+\]
+
+| Mathematical control, beta = 1 | theta_* | Cycle state norm | Period spectral radius | Spectral half-life, updates |
+| :--- | ---: | ---: | ---: | ---: |
+| d = 0.99 | 0.07076974 | 7.08881205 | 0.96059601 | 34.4838 |
+| d = 0.999 | 0.02236254 | 22.36627204 | 0.99600600 | 346.4003 |
+
+The half-life is `2*log(0.5)/log(d⁴)` for the slow period eigenmode. It measures
+asymptotic error decay; the finite-time norm formula includes its displayed
+prefactor. These controls connect state amplitude, key geometry and history
+length in one stream. The deployed recurrence has learned anisotropic decay,
+epsilon-normalized keys and varying gates; its model-specific state amplitude
+and forcing stay with its own native measurements.
+
 ## 3. Fixed-control propagation and cross-model forcing
 
 Write `F_t(S) = M_t*S + b_t`, with
@@ -143,7 +211,9 @@ python3 -B research/kda-state-energy.py
 
 [Result](results/kda-state-energy.json): eight fixed 4×3 energy cases, sharpness
 and zero-boundary controls, fixed-control state differences, and two 2×1
-conditioned-key sequences of 4,000 updates. The check compares the expanded and
+identity-decay conditioned-key sequences of 4,000 updates. Three decayed cycles
+check the fixed-point formula and energy equality, with a finite-period error
+check for one unit-beta stream. The check compares the expanded and
 completed-square energies with tolerance `1e-11`; both final toy errors are below
 `1e-7`. The result names its exact-arithmetic error bounds separately from the
 observed binary64 residuals.
