@@ -1,0 +1,364 @@
+{
+  "schema": "hutter.frozen-e12.gated-depth-probe.round482.v1",
+  "status": "passed",
+  "stage": "complete",
+  "started_at_epoch": 1794128878.6267233,
+  "banks": [
+    0,
+    1,
+    2,
+    3,
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "gates_initial": [
+    0.0,
+    0.0,
+    0.0,
+    0.0
+  ],
+  "active_gates": [
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0,
+    1.0
+  ],
+  "tiny_control": {
+    "gate_vector": [
+      0.001,
+      0.001,
+      0.001,
+      0.001
+    ],
+    "selection": "predeclared uniform positive control"
+  },
+  "tolerance": {
+    "hidden_atol": 2e-06,
+    "logits_atol": 2e-06,
+    "rtol": 2e-06,
+    "target_nll_atol": 1e-10
+  },
+  "teacher_forwards": 3,
+  "fixed8_forwards": 3,
+  "gated12_forwards": 6,
+  "gate_vjps": 6,
+  "optimizer_updates": 0,
+  "optimizer_instances": 0,
+  "gate_fits": 0,
+  "native_evaluator_calls": 0,
+  "new_native_builds": 0,
+  "teacher_cache_reads": 0,
+  "teacher_cache_writes": 0,
+  "model_exports": 0,
+  "pieces": [
+    {
+      "piece": 0,
+      "regime": "short",
+      "targets": 576,
+      "local_token_range": [
+        0,
+        577
+      ],
+      "tokens_sha256": "b4008b332a1f7abc1433ae12995098dad3898d76963590df29e225524e5b77c8",
+      "priors_sha256": "11aae19e6b39f6a458fe785993472fde58a470debc5bf42fa44b3a0a108b2537",
+      "teacher_ce": 0.16428483539197627,
+      "g0_control": {
+        "hidden_max_abs": 0.0,
+        "logits_max_abs": 0.0,
+        "target_nll_abs": 0.0,
+        "passed": true
+      },
+      "g0": {
+        "ce": 0.2284098611958978,
+        "teacher_kl": 0.07136991998691279
+      },
+      "gate_derivatives": {
+        "ce": [
+          0.00940471701323986,
+          -0.005210166331380606,
+          -0.005706717260181904,
+          -0.0194413922727108
+        ],
+        "teacher_kl": [
+          -0.012061253190040588,
+          -0.021347101777791977,
+          -0.01257653720676899,
+          0.0017695212736725807
+        ],
+        "jointly_improving_positive_coordinates": [
+          1,
+          2
+        ],
+        "predeclared_uniform_direction_ce": -0.020953558385372162,
+        "predeclared_uniform_direction_kl": -0.0442153736948967
+      },
+      "tiny_control": {
+        "gates": [
+          0.001,
+          0.001,
+          0.001,
+          0.001
+        ],
+        "means": {
+          "ce": 0.22912144557427913,
+          "teacher_kl": 0.07192122059873604
+        },
+        "delta": {
+          "ce": 0.0007115843783813414,
+          "teacher_kl": 0.0005513006118232494
+        },
+        "ste_linear_prediction": {
+          "ce": -2.095355838537216e-05,
+          "teacher_kl": -4.42153736948967e-05
+        }
+      }
+    },
+    {
+      "piece": 7,
+      "regime": "middle",
+      "targets": 1606,
+      "local_token_range": [
+        14457,
+        16064
+      ],
+      "tokens_sha256": "84c317ef0e3af9dc3458ce1de057c219d35ac9edf72f0ea9969da7822bd4738c",
+      "priors_sha256": "00d2d2f53788b4e3d256628cc8ccbc611b0637e55104331ab8b573c3fdab52e4",
+      "teacher_ce": 0.5385095487557925,
+      "g0_control": {
+        "hidden_max_abs": 0.0,
+        "logits_max_abs": 0.0,
+        "target_nll_abs": 0.0,
+        "passed": true
+      },
+      "g0": {
+        "ce": 0.6526977027798863,
+        "teacher_kl": 0.12015395786751244
+      },
+      "gate_derivatives": {
+        "ce": [
+          0.023667169734835625,
+          0.007685882970690727,
+          0.004269616678357124,
+          0.0022787207271903753
+        ],
+        "teacher_kl": [
+          0.02434493973851204,
+          -0.0066643767058849335,
+          0.00033253803849220276,
+          -0.0006885258480906487
+        ],
+        "jointly_improving_positive_coordinates": [],
+        "predeclared_uniform_direction_ce": 0.037901390343904495,
+        "predeclared_uniform_direction_kl": 0.017324574291706085
+      },
+      "tiny_control": {
+        "gates": [
+          0.001,
+          0.001,
+          0.001,
+          0.001
+        ],
+        "means": {
+          "ce": 0.6530800423978003,
+          "teacher_kl": 0.12011762294452831
+        },
+        "delta": {
+          "ce": 0.00038233961791400706,
+          "teacher_kl": -3.6334922984132545e-05
+        },
+        "ste_linear_prediction": {
+          "ce": 3.790139034390449e-05,
+          "teacher_kl": 1.7324574291706084e-05
+        }
+      }
+    },
+    {
+      "piece": 14,
+      "regime": "hard",
+      "targets": 1752,
+      "local_token_range": [
+        31947,
+        33700
+      ],
+      "tokens_sha256": "d26cdabb58ae4c3797f3bff870b081bdb249a00d1e3a8ea3e4db772f36c511be",
+      "priors_sha256": "f5a9ddf7103a118ba3f6a185c3454c48ba22666d20d6b17d16d28a79a72bd7d9",
+      "teacher_ce": 1.038986331976377,
+      "g0_control": {
+        "hidden_max_abs": 0.0,
+        "logits_max_abs": 0.0,
+        "target_nll_abs": 0.0,
+        "passed": true
+      },
+      "g0": {
+        "ce": 1.2561170404242157,
+        "teacher_kl": 0.2129204400113694
+      },
+      "gate_derivatives": {
+        "ce": [
+          -0.007851089350879192,
+          0.02222200483083725,
+          0.003317004069685936,
+          -0.005704497918486595
+        ],
+        "teacher_kl": [
+          0.008814221248030663,
+          -0.00827797781676054,
+          0.011606499552726746,
+          0.006370102986693382
+        ],
+        "jointly_improving_positive_coordinates": [],
+        "predeclared_uniform_direction_ce": 0.011983422562479973,
+        "predeclared_uniform_direction_kl": 0.018512845039367676
+      },
+      "tiny_control": {
+        "gates": [
+          0.001,
+          0.001,
+          0.001,
+          0.001
+        ],
+        "means": {
+          "ce": 1.2556910683530524,
+          "teacher_kl": 0.213033204376438
+        },
+        "delta": {
+          "ce": -0.00042597207116323865,
+          "teacher_kl": 0.00011276436506860166
+        },
+        "ste_linear_prediction": {
+          "ce": 1.1983422562479974e-05,
+          "teacher_kl": 1.8512845039367675e-05
+        }
+      }
+    }
+  ],
+  "gradient_scope": "four raw whole-block gates at zero; original hard-activation STE and CPU adjoints; W and BF16 scales frozen",
+  "finite_change_scope": "one all-positive 1e-3 vector; actual hard rounding; report-only held pieces",
+  "cpu_seconds": 13.164902082,
+  "wall_seconds": 16.216933613002766,
+  "peak_rss_kib": 686040,
+  "torch_version": "2.6.0+debian",
+  "input_sha256": {
+    "checkpoint": "2ca3428f729799a93927822c14c67ef99493ceeabf6e82895b7f07646b4024fd",
+    "kernel": "ab8666a54cebe40b177eb41bd1ddcad3136477a491590cbf92784771d380a895",
+    "data": "72c859b86b8c9d0e4cd13c1498d63b702977371dac820bb9ef86251597c714e1",
+    "selection": "0bece35f17cf8ceed5019d0c16cbd9e1f79729a3ce4404ef31ce85d9d0e5c35c"
+  },
+  "source_sha256": {
+    "pysrc/model.py": "2049f948b964d79e3e57c19cf41b47a52a141b6cbe812f7255f716e0a9b2645f",
+    "pysrc/quantization.py": "076dba090af4d9bb97c97b411f902fa11d46cc35d00d75f35146a74cf1c708b6",
+    "research/cpu_model.py": "3ce4a45ab9532dce62b2794b234886d44de6b9836b12381b2c06f1a94f894463",
+    "research/cpu_ops.py": "770ebe808793744c553d78510aa0fb0cf854649a25dca0bc71b910d3c55ac859",
+    "research/depth_student.py": "a07c59b6c9083bc020f26fb970e961d83a4743cb0f6c29da4fdf75d91a3f00c0",
+    "training_recipes/cooldown.py": "55d893427ce44af9472c987e16fad02a8f20f6c0477cd7a0bd748ae65240587a"
+  },
+  "actual_w": {
+    "sha256": "8dd9113b676830598d2dad13999f0a90ce738a84fe5ed482fa749aed9db7ce9e",
+    "bytes": 1960982,
+    "selected_epoch": 12,
+    "selected_step": 949,
+    "whole_material_tensors": 294,
+    "model_state_tensors": 289,
+    "all_payloads_loaded": true,
+    "all_loaded_f32_bits_equal": true,
+    "hard_requantized_int4_and_bf16_scale_equal": true,
+    "counts": {
+      "blocks": 8,
+      "kda_blocks": 6,
+      "attention_blocks": 2,
+      "block_types": [
+        "KDA",
+        "KDA",
+        "KDA",
+        "attention",
+        "KDA",
+        "KDA",
+        "KDA",
+        "attention"
+      ],
+      "state_tensors": 289,
+      "state_elements": 3988380,
+      "quantized_weights": 75,
+      "int4_values": 3951936,
+      "weight_scale_elements": 17498,
+      "activation_scales": 80,
+      "activation_scale_elements": 92,
+      "raw_fp32": 59,
+      "raw_fp32_elements": 18854
+    },
+    "derived_rope": {
+      "rope.sin": {
+        "shape": [
+          131072,
+          32
+        ],
+        "encoding": 4,
+        "source": "CUDA-derived format metadata; CPU uses recipe-generated piece-local RoPE"
+      },
+      "rope.cos": {
+        "shape": [
+          131072,
+          32
+        ],
+        "encoding": 5,
+        "source": "CUDA-derived format metadata; CPU uses recipe-generated piece-local RoPE"
+      }
+    },
+    "provenance": "original complete CE+KL selected-e12 hard export"
+  },
+  "forward_contract": {
+    "prior": "original score f16 PPMd 205 columns",
+    "rope": "piece-local positions start at offset zero",
+    "causal_bounds": "one complete held piece, cumulative bounds [[0,n]]",
+    "native_scaled_gemm": true,
+    "activation_and_weight_scale_dtype": "BF16",
+    "activation_dtype": "FP32",
+    "w_updates": 0,
+    "state": "each CPU KDA invocation allocates its own recurrent state/conv context; 12 position wrappers"
+  },
+  "twelve_skip_vector": [
+    0.0,
+    0.0,
+    0.5397343039512634,
+    -0.22280347347259521,
+    0.18714283406734467,
+    0.8318527936935425
+  ],
+  "targets": 3934,
+  "target_weighted": {
+    "g0": {
+      "ce": 0.8593069764963295,
+      "teacher_kl": 0.15432459103904575
+    },
+    "tiny_delta": {
+      "ce": 7.056608023374525e-05,
+      "teacher_kl": 0.00011610534664409377
+    },
+    "gate_derivatives": {
+      "ce": [
+        0.0075423190266984816,
+        0.012271333174296122,
+        0.0023846787935095388,
+        -0.004456760756075799
+      ],
+      "teacher_kl": [
+        0.01209791738920607,
+        -0.00953277497423077,
+        0.003463283648982409,
+        0.0028149192105461694
+      ]
+    }
+  },
+  "held_usage": "report-only; gate vector, tiny step, and tolerances fixed before execution",
+  "measurement_cpu_threads": 1
+}

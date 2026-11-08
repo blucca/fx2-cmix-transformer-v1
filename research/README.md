@@ -1003,4 +1003,4 @@ prior-state control. Terminal native and end-to-end coding measurements remain.
 observations to grouped teacher KL, three complete initial-eight held pieces and
 saved-row half/guard controls. The full 2KL trajectory stays frozen.
 
-- [Gated recurrence contracts](gated-recurrence-contract.md): exact scalar capacity/gradient witness, skip embedding, canonical export and bank/slot state separation; source-reviewed proposal.
+- [Gated recurrence contracts](gated-recurrence-contract.md): frozen selected-e12 hard-W transformer endpoint on 3,934 targets (zero-gate hidden/logit/NLL differences 0), four STE gate directions and the measured positive hard control; scalar/skip/export/bank-slot contracts retained.
