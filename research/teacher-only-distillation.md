@@ -39,6 +39,30 @@ isolates the target change while keeping its coefficient scale.
 - The actual backward and its scalar logger share `data_objective`. The default
   CE + KL recipe and default paths retain their previous identity.
 
+## Continuous recurrent history
+
+The [CPU adjoint](cpu-kda.cpp) and the [native KDA state](../cpp_infer/src/opt/kda.h)
+store the recurrent matrix **S in FP32**, with FP32 state writes at each step.
+The CPU's 128-token checkpoints organize reverse-mode storage and recomputation;
+the state and adjoint remain continuous over the complete input piece. Current
+training pieces contain at most 32,768 targets. Native evaluation starts each
+explicit piece with `begin_article(0)` and keeps its state through the piece,
+including the independent 131,071-target audit.
+
+For fixed one-step inputs, the state equation is
+
+```
+S_t = M_t S_(t-1) + beta_t * k_t * v_t^T
+M_t = (I - beta_t * k_t * k_t^T) D_t
+```
+
+`k_t` is L2-normalized with epsilon `1e-6`, `beta_t` is sigmoid-bounded, and
+`D_t` contains per-key-row forget decays. In exact arithmetic,
+`||M_t||_2 <= 1`; a historical state component follows the ordered product
+`M_t ... M_(s+1)`. Output RMS normalization and the sigmoid output gate act on
+the readout. The learned inputs, keys, decays, and readout over longer histories
+are measured by the separate long native domains.
+
 ## Admission and execution
 
 `depth-distillation.py --teacher-only --teacher-cache OLD/training/teacher-cache`
@@ -251,3 +275,33 @@ This report adds zero remote state reads, model/native runs or collectors.
 `python3 research/check-teacher-only-native-e16.py` checks counts, W0 gaps,
 target-weighted remainder identities and both weight charges using the standard
 library and the retained e12 JSON.
+
+
+## Native checkpoint: epoch 20
+
+The original unique watcher returned the complete e20 native aggregate. The
+matched CE+KL checkpoint is retained from its completed original run; the fresh
+checkpoint has completed twelve hard-coordinate epochs after eight continuous
+epochs.
+
+| Native scope | Targets | Original CE+KL e20 | Teacher-only e20 | Fresh minus old | Fresh e20 minus e16 |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| Full held | 1,082,505 | 1.158834673372 | 1.124225592518 | −0.034609080854 | +0.001056408676 |
+| Long held subset | 107,647 | 1.485189066030 | 1.441486693515 | −0.043702372516 | +0.001588799995 |
+| Independent giant | 131,071 | 0.282757025191 | 0.273788843518 | −0.008968181673 | +0.015000079034 |
+
+Fresh e20 has lower NLL than matched old e20 in all three domains. Within the
+fresh trajectory, all three NLLs rise from e16 to e20. The target-weighted other
+470 held pieces have a fresh-minus-old gap of **−0.033604969929**, and a
+fresh e20-minus-e16 change of **+0.000997620290** nats/target. Long3 remains
+included in full held; independent coverage remains 1,213,576 targets.
+
+Fresh e20 weighs **1,960,779 B**, versus old e20 **1,962,438 B**: **3,318 B**
+lower two-weight charge. It grows **540 B** from fresh e16; its two-weight
+saving versus original 12-block W0 is **1,887,092 B**. Fresh gaps to W0 are
+**+0.157977253724 / +0.182872392205 / +0.234802417386** nats/target.
+
+The complete 32-epoch curve and sole selected-weight codec measurement continue.
+The next native checkpoint is e24; actual terminal/error receipts open the
+retained full collection. [Matched checkpoint and trajectory](results/teacher-only-native-e20.json) ·
+[standard-library arithmetic check](check-teacher-only-native-e20.py).

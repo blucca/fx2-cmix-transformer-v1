@@ -1,0 +1,141 @@
+{
+  "schema": "hutter.teacher-only-native-e20.v1",
+  "source": "scheduler hutter_compute, 2026-11-08 23:56 CST, original unique watcher machine3 block",
+  "status": "e20 native checkpoint; full32 and sole selected-weight mixed continue",
+  "epoch": 20,
+  "phase": "twelve completed hard-coordinate epochs after the continuous stage; hard-exported native checkpoint",
+  "shared_contract": {
+    "family": "8 blocks /6KDA/2reference-order attention /75z+59raw",
+    "kept_layers": [
+      0,
+      1,
+      2,
+      3,
+      8,
+      9,
+      10,
+      11
+    ],
+    "native_scope": "same original causal f16PPMd pieces, explicit reset, next-target raw logits NLL before production half/guard/mixer/u16",
+    "same_epoch": 20,
+    "training_seed": 419,
+    "article_sampling_seed": 414,
+    "independent_scored_targets": 1213576,
+    "fullheld_primary": true,
+    "held_long_counted_inside_fullheld": true,
+    "giant_report_only": true
+  },
+  "recipes": {
+    "original": {
+      "label_ce": 1.0,
+      "teacher_kl": 1.0
+    },
+    "fresh": {
+      "label_ce": 0.0,
+      "teacher_kl": 2.0
+    },
+    "fixed_hidden_mse": 0.1,
+    "fixed_entropy_tau": 0.5,
+    "continuous_epochs": 8,
+    "target_epochs": 32
+  },
+  "baseline_weight_bytes": 2904325,
+  "original_e20_weight_bytes": 1962438,
+  "fresh_e20_weight_bytes": 1960779,
+  "original_e16_weight_bytes": 1961715,
+  "fresh_e16_weight_bytes": 1960239,
+  "old_double_weight_saved_bytes": 1883774,
+  "fresh_double_weight_saved_bytes": 1887092,
+  "fresh_double_weight_charge_improvement_over_old_bytes": 3318,
+  "fresh_weight_growth_from_e16_bytes": 540,
+  "weight_scope": "two physical model-weight copies; package binary and actual payload are separate measured components",
+  "domains": [
+    {
+      "scope": "full_held",
+      "role": "primary selection scope",
+      "targets": 1082505,
+      "pieces": 473,
+      "baseline_W0_raw_nll": 0.9662483387944264,
+      "old_CE_KL_e20_raw_nll": 1.1588346733718975,
+      "fresh_teacher_only_e20_raw_nll": 1.124225592518244,
+      "old_CE_KL_e16_raw_nll": 1.1492552658631419,
+      "fresh_teacher_only_e16_raw_nll": 1.1231691838425384,
+      "fresh_minus_old_raw_nll": -0.03460908085365344,
+      "old_minus_W0_raw_nll": 0.1925863345774711,
+      "fresh_minus_W0_raw_nll": 0.15797725372381766,
+      "fresh_e20_minus_fresh_e16_raw_nll": 0.0010564086757056668,
+      "old_e20_minus_old_e16_raw_nll": 0.009579407508755633,
+      "fresh_minus_old_target_nll_sum": -37464.50306948412
+    },
+    {
+      "scope": "held_long",
+      "role": "report-only subset of full_held",
+      "targets": 107647,
+      "pieces": 3,
+      "baseline_W0_raw_nll": 1.2586143013099194,
+      "old_CE_KL_e20_raw_nll": 1.4851890660300786,
+      "fresh_teacher_only_e20_raw_nll": 1.4414866935145085,
+      "old_CE_KL_e16_raw_nll": 1.4727867300938235,
+      "fresh_teacher_only_e16_raw_nll": 1.4398978935199716,
+      "fresh_minus_old_raw_nll": -0.043702372515570076,
+      "old_minus_W0_raw_nll": 0.22657476472015925,
+      "fresh_minus_W0_raw_nll": 0.18287239220458917,
+      "fresh_e20_minus_fresh_e16_raw_nll": 0.0015887999945369824,
+      "old_e20_minus_old_e16_raw_nll": 0.01240233593625506,
+      "fresh_minus_old_target_nll_sum": -4704.429294183572
+    },
+    {
+      "scope": "giant",
+      "role": "report-only independent giant audit",
+      "targets": 131071,
+      "pieces": 1,
+      "baseline_W0_raw_nll": 0.03898642613150546,
+      "old_CE_KL_e20_raw_nll": 0.28275702519130397,
+      "fresh_teacher_only_e20_raw_nll": 0.27378884351794175,
+      "old_CE_KL_e16_raw_nll": 0.2758085249375663,
+      "fresh_teacher_only_e16_raw_nll": 0.2587887644843464,
+      "fresh_minus_old_raw_nll": -0.008968181673362219,
+      "old_minus_W0_raw_nll": 0.2437705990597985,
+      "fresh_minus_W0_raw_nll": 0.23480241738643629,
+      "fresh_e20_minus_fresh_e16_raw_nll": 0.015000079033595348,
+      "old_e20_minus_old_e16_raw_nll": 0.006948500253737666,
+      "fresh_minus_old_target_nll_sum": -1175.4685401092595
+    }
+  ],
+  "derived_fullheld_remainder": {
+    "scope": "470 held pieces outside long3",
+    "pieces": 470,
+    "targets": 974858,
+    "status": "derived from actual target-weighted checkpoint aggregates",
+    "old_CE_KL_e20_raw_nll": 1.1227975568826494,
+    "fresh_teacher_only_e20_raw_nll": 1.0891925869533874,
+    "old_CE_KL_e16_raw_nll": 1.113529866338247,
+    "fresh_teacher_only_e16_raw_nll": 1.0881949666635782,
+    "baseline_W0_raw_nll": 0.9339643356197023,
+    "fresh_minus_old_raw_nll": -0.033604969929261985,
+    "fresh_minus_W0_raw_nll": 0.15522825133368512,
+    "old_minus_W0_raw_nll": 0.1888332212629471,
+    "fresh_e20_minus_fresh_e16_raw_nll": 0.000997620289809209,
+    "old_e20_minus_old_e16_raw_nll": 0.009267690544402463
+  },
+  "reporting_operations": {
+    "additional_remote_GETs": 0,
+    "additional_model_runs": 0,
+    "additional_native_runs_by_reporter": 0,
+    "additional_collectors": 0
+  },
+  "same_selected_weight_mixed_status": "waiting for training terminal",
+  "next_trigger": "unique watcher e24/native or actual same-selected-weight mixed terminal/error",
+  "provenance": {
+    "old_e20_step": 1578,
+    "old_stage_kind": "hard",
+    "old_source": "retained complete CE+KL training-state evaluations[epoch=16]",
+    "fresh_training_epoch": 20,
+    "fresh_pipeline_stage": "training",
+    "fresh_mixed_status": "waiting",
+    "fresh_mixed_phase": "training_terminal",
+    "fresh_step": null,
+    "fresh_full_raw_collection": "once at actual terminal"
+  },
+  "online_training_scope": "Each trajectory online CE/KL is its own pre-update sampled-train loss. This report compares the same native held/long/giant checkpoint."
+}
