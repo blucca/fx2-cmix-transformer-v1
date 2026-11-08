@@ -1,0 +1,139 @@
+{
+  "schema": "hutter.q7.teacher-only.native-stage.v1",
+  "epoch": 4,
+  "source": {
+    "kind": "original watcher cached native aggregation",
+    "observed_utc": "2026-11-08T16:26:52.804909+00:00",
+    "full_raw_collection": "at original mixed terminal"
+  },
+  "shared_contract": {
+    "layers": 12,
+    "width": 192,
+    "kda_blocks": 9,
+    "attention_blocks": 3,
+    "skip_connections": 6,
+    "quantized_matrices": 111,
+    "trainable_raw_tensors": 0,
+    "seed": 414,
+    "online_phase": "hard from first update",
+    "train_targets_per_epoch": 2941307,
+    "full_held_includes_long": true,
+    "independent_scored_targets": 1213576
+  },
+  "recipes": {
+    "q7": {
+      "method": "q7-teacher-only-fixed-scale-integer-coordinate-v1",
+      "alphabet": 7,
+      "integer_range": [
+        -3,
+        3
+      ],
+      "scale_mapping": "signed BF16_RNE(s15 * 7/3), fixed thereafter",
+      "data_objective": "2 KL(teacher || student)",
+      "hidden_coefficient": 0,
+      "cpu_gemm": "integer-units-before-native-BF16-fold"
+    },
+    "old_q15": {
+      "method": "causal-fixed-scale-integer-coordinate-v1",
+      "alphabet": 15,
+      "integer_range": [
+        -7,
+        7
+      ],
+      "scale_mapping": "original signed BF16, fixed",
+      "data_objective": "CE + KL(teacher || student)",
+      "hidden_coefficient": 0,
+      "cpu_gemm": "scaled-FP32-linear"
+    },
+    "rate": "2 H_soft / 586459020",
+    "tau": 0.5,
+    "lr": 0.01,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0
+  },
+  "domains": [
+    {
+      "scope": "full_held",
+      "pieces": 473,
+      "targets": 1082505,
+      "baseline_W0_raw_nll": 0.9662483387944264,
+      "old_q15_CE_KL_raw_nll": 0.9737138768835732,
+      "q7_teacher_only_raw_nll": 1.5141446811398998,
+      "q7_minus_old_raw_nll": 0.5404308042563265,
+      "q7_minus_W0_raw_nll": 0.5478963423454734,
+      "old_minus_W0_raw_nll": 0.00746553808914685
+    },
+    {
+      "scope": "held_long",
+      "pieces": 3,
+      "targets": 107647,
+      "baseline_W0_raw_nll": 1.2586143013099194,
+      "old_q15_CE_KL_raw_nll": 1.2672153154188144,
+      "q7_teacher_only_raw_nll": 1.8814137534625026,
+      "q7_minus_old_raw_nll": 0.6141984380436882,
+      "q7_minus_W0_raw_nll": 0.6227994521525833,
+      "old_minus_W0_raw_nll": 0.008601014108895022
+    },
+    {
+      "scope": "giant",
+      "pieces": 1,
+      "targets": 131071,
+      "baseline_W0_raw_nll": 0.03898642613150546,
+      "old_q15_CE_KL_raw_nll": 0.041370920420686845,
+      "q7_teacher_only_raw_nll": 1.3014865855589741,
+      "q7_minus_old_raw_nll": 1.2601156651382872,
+      "q7_minus_W0_raw_nll": 1.2625001594274687,
+      "old_minus_W0_raw_nll": 0.002384494289181388
+    }
+  ],
+  "derived_fullheld_remainder": {
+    "scope": "held_short",
+    "pieces": 470,
+    "targets": 974858,
+    "method": "target-weighted full-held minus its contained long-three",
+    "baseline_W0_raw_nll": 0.9339643356197023,
+    "old_q15_CE_KL_raw_nll": 0.9413044907432296,
+    "q7_teacher_only_raw_nll": 1.4735896322729762,
+    "q7_minus_old_raw_nll": 0.5322851415297466,
+    "q7_minus_W0_raw_nll": 0.539625296653274,
+    "old_minus_W0_raw_nll": 0.00734015512352737
+  },
+  "weights": {
+    "baseline_W0_bytes": 2904325,
+    "initial_q7_bytes": 2044814,
+    "initial_q7_native_scope": "unmeasured in this run",
+    "q7_bytes": 2073263,
+    "old_q15_bytes": 2904923,
+    "q7_growth_from_initial_bytes": 28449,
+    "q7_double_weight_saved_bytes": 1662124,
+    "old_double_weight_saved_bytes": -1196,
+    "q7_double_weight_charge_improvement_over_old_bytes": 1663320
+  },
+  "primary_selection_proxy": {
+    "target_denominator": 586215331,
+    "kappa": 1,
+    "current_native_delta_nats_per_target": 0.5478963423454734,
+    "delta_budget_for_zero_proxy_nats_per_target": 0.01572250336579503,
+    "proxy_saved_bytes": -56259419.34060009,
+    "scope": "original native kappa=1 selector proxy; selected weight codec follows training terminal"
+  },
+  "provenance": {
+    "baseline_public_result": "causal-first-eleven-epochs.json",
+    "old_epoch": 4,
+    "old_step": 318,
+    "old_complete_training_epochs": 16,
+    "old_e4_changed_weight_symbols": 132398
+  },
+  "decision": "Continue reserved complete32 training and the sole selected-weight mixed audit; next new native e8 or actual terminal/error.",
+  "reporting_operations": {
+    "remote_state_reads": 0,
+    "new_watchers": 0,
+    "model_runs": 0,
+    "native_runs": 0,
+    "codec_runs": 0
+  }
+}

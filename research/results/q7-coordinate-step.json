@@ -1,0 +1,81 @@
+{
+  "schema": "hutter.q7.coordinate-step.v1",
+  "scope": "local pre-round latent displacement; prescribed proportional gradient history; before projection",
+  "mapper": "signed normal BF16_RNE(s15 * 7/3)",
+  "mantissas": 128,
+  "signs": 2,
+  "scale_ratio_min": {
+    "source_bits": 16362,
+    "mapped_bits": 16520,
+    "ratio": 2.324786324786325
+  },
+  "scale_ratio_max": {
+    "source_bits": 16350,
+    "mapped_bits": 16514,
+    "ratio": 2.3423423423423424
+  },
+  "gradient_dominant_displacement_ratio_bounds": [
+    2.324786324786325,
+    2.3423423423423424
+  ],
+  "epsilon_dominant_limiting_ratio_bounds": [
+    5.404631455913508,
+    5.486567648729811
+  ],
+  "formula": "r * (sqrt(vhat15) + eps) / (sqrt(vhat15) + eps/r)",
+  "control_parameters": {
+    "lr": 0.01,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0
+  },
+  "examples": [
+    {
+      "physical_gradient_magnitude": 0.0001,
+      "old_scale": 1.0,
+      "new_scale": 2.328125,
+      "scale_ratio": 2.328125,
+      "last_old_coordinate_vroot": 0.00013266783401925602,
+      "last_scaled_latent_displacement_ratio": 2.328225105802688
+    },
+    {
+      "physical_gradient_magnitude": 1e-08,
+      "old_scale": 1.0,
+      "new_scale": 2.328125,
+      "scale_ratio": 2.328125,
+      "last_old_coordinate_vroot": 1.3266783401925601e-08,
+      "last_scaled_latent_displacement_ratio": 3.084370610125142
+    },
+    {
+      "physical_gradient_magnitude": 1e-12,
+      "old_scale": 1.0,
+      "new_scale": 2.328125,
+      "scale_ratio": 2.328125,
+      "last_old_coordinate_vroot": 1.32667834019256e-12,
+      "last_scaled_latent_displacement_ratio": 5.419211280148258
+    }
+  ],
+  "conditions": [
+    "fixed signed scales with positive ratio r",
+    "same complete gradient history up to factor r, including any covariantly transformed rate term",
+    "same Adam parameters and proportional moment states, including fresh zero states",
+    "scaled latent coordinate theta=s*z before rounding and projection"
+  ],
+  "actual_method": {
+    "q7_recipe_unchanged": true,
+    "hard_weight_displacement": "determined by threshold crossings",
+    "actual_gradient_history": "distinct loss, alphabet/rate centers and CPU forward math in the two runs",
+    "measured_model_moment_distribution": "outside this scalar control"
+  },
+  "operations": {
+    "model_runs": 0,
+    "native_runs": 0,
+    "model_training_steps": 0,
+    "network_calls": 0,
+    "scalar_control_histories": 12,
+    "scalar_control_steps": 36
+  }
+}

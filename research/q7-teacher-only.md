@@ -139,3 +139,55 @@ selected-weight attribution as pending. It makes zero network or model calls.
 The [initialized rate diagnostic](q7-rate-initialization.md) reconstructs the
 soft entropy, static4096 payload cost and local hard-step direction from the
 existing exact histogram, with the admitted training recipe unchanged.
+
+## First native holdout: hard epoch four
+
+The original watcher reported [epoch four](results/q7-native-e4.json) on
+2026-11-08 at 16:26 UTC. Training is continuing toward the reserved 32 epochs;
+the selected-weight codec queue is waiting for its training terminal.
+
+| Native scope | Targets | Original W0 | Full12 q15 CE+KL e4 | Full12 q7 teacher-only e4 |
+|---|---:|---:|---:|---:|
+| Primary full-held | 1,082,505 | 0.966248339 | 0.973713877 | 1.514144681 |
+| Contained long-three | 107,647 | 1.258614301 | 1.267215315 | 1.881413753 |
+| Independent giant | 131,071 | 0.038986426 | 0.041370920 | 1.301486586 |
+
+Values are raw native nats/target. The long-three belongs to the primary scope
+and is counted there once. Target-weighted subtraction gives the remaining 470
+pieces / 974,858 targets: q7 NLL 1.473589632, versus W0 0.933964336 and the older
+q15 e4 value 0.941304491.
+
+The old control uses the same twelve blocks, causal split, seed, hard phase from
+its first update, 111 trainable matrices and frozen raw parameters.
+This is a whole-method comparison: alphabet/scale initialization, the output
+objective and CPU forward math change. The old student/teacher use scaled FP32
+linear products; q7 and its cached teacher use integer-unit products followed
+by the native BF16-scale fold. Native reports share the original full12 family.
+Relative to that old e4, q7 adds 0.540430804 primary,
+0.614198438 contained-long and 1.260115665 independent-giant nats/target.
+The q7 initialization has an unmeasured native scope in this run; its admitted
+1,199-target training-piece result remains a separate measurement.
+
+The e4 q7 archive is 2,073,263 bytes, 28,449 above its initialization. It saves
+1,662,124 bytes across both copies against W0. For the original kappa=1 native
+selection proxy, that saving allows 0.015722503 nats/target; the measured primary
+residual is 0.547896342. The current proxy is therefore −56,259,419 bytes.
+This proxy guides selection; the selected weight's own G→M→u16 probabilities
+and closed codec bytes are measured after the complete trajectory.
+
+The reserved complete32 and sole selected-weight mixed audit continue. The next
+scientific input is a new e8 native aggregation or the original queue's actual
+terminal/error. Full raw originals are collected once at that terminal.
+
+```sh
+python3 -B research/check-q7-native-stage.py
+```
+
+The small check verifies the public old control, contained-scope subtraction,
+both weight copies and the native selector arithmetic. New model, native and
+codec calls for this readout: zero.
+
+[The coordinate-step control](q7-coordinate-step.md) describes how the exact
+signed-BF16 scale map changes pre-round Adam displacement in weight units.
+Its scalar, shared-gradient-history scope is reported separately from the
+actual complete training trajectory.
