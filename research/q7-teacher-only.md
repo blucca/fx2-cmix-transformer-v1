@@ -199,3 +199,10 @@ values, scale recovery and the exact integer reduction bound. For this seven-
 symbol grid, every 768-term INT8 dot has an absolute partial-sum bound of
 294,912. The fold is a FP32 product of two BF16-derived scales. Native curves
 and the selected weight's own codec retain their end-to-end measurement scope.
+
+
+The [KDA energy certificate and conditioned-key control](kda-state-energy.md)
+separate fixed-control state propagation from the key/decay/value forcing of a
+changed model. A sharp energy bound and a two-key value-fitting example connect
+long histories to state scale; the actual q7 native and same-weight results
+continue on the fixed measurement path.

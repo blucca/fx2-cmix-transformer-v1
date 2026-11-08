@@ -1,0 +1,113 @@
+{
+  "status": "pass",
+  "execution_scope": "stdlib binary64 algebra controls",
+  "tolerance": 1e-11,
+  "energy_cases": [
+    {
+      "case": "beta_zero",
+      "c": 0.9999987179503615,
+      "delta": 0.0,
+      "injection_bound": 0.0,
+      "state_bound": 3.185,
+      "state_energy": 1.0225
+    },
+    {
+      "case": "key_zero",
+      "c": 0.0,
+      "delta": 0.0,
+      "injection_bound": 0.519,
+      "state_bound": 3.704,
+      "state_energy": 1.0225
+    },
+    {
+      "case": "value_zero",
+      "c": 0.9999987179503615,
+      "delta": -0.17386075590310146,
+      "injection_bound": 0.0,
+      "state_bound": 3.185,
+      "state_energy": 0.8486392440968985
+    },
+    {
+      "case": "eps_normalized_anisotropic",
+      "c": 0.9999987179503615,
+      "delta": 0.24097322426718937,
+      "injection_bound": 0.36696959717234323,
+      "state_bound": 3.5519695971723433,
+      "state_energy": 1.2634732242671893
+    },
+    {
+      "case": "unit_key_beta_one",
+      "c": 1.0,
+      "delta": 0.7775000000000003,
+      "injection_bound": 1.7300000000000002,
+      "state_bound": 4.915,
+      "state_energy": 3.9625000000000004
+    },
+    {
+      "case": "sharp_interior",
+      "c": 0.9999987179503615,
+      "delta": 0.9315378184658415,
+      "injection_bound": 0.9315378184658412,
+      "state_bound": 1.132719121141044,
+      "state_energy": 1.0671876347780398
+    },
+    {
+      "case": "annihilated_key",
+      "c": 1.0,
+      "delta": 0.8476999999999999,
+      "injection_bound": 0.9315384615384616,
+      "state_bound": 4.116538461538462,
+      "state_energy": 2.335
+    },
+    {
+      "case": "annihilated_key_sharp_endpoint",
+      "c": 1.0,
+      "delta": 1.7300000000000002,
+      "injection_bound": 1.7300000000000002,
+      "state_bound": 4.915,
+      "state_energy": 3.2173000000000003
+    }
+  ],
+  "conditioned_key_toys": [
+    {
+      "theta": 0.2,
+      "cycles": 2000,
+      "steps": 4000,
+      "homogeneous_step_operator_norm": 1.0,
+      "cycle_spectral_radius": 0.8483533546735827,
+      "cycle_operator_norm": 0.9210609940028851,
+      "fixed_point": [
+        0.0,
+        5.033489547672344
+      ],
+      "fixed_point_norm": 5.033489547672344,
+      "key_pair_condition_number": 4.933154875586894,
+      "final_state": [
+        -9.702797239185176e-16,
+        5.033489547672339
+      ],
+      "final_error_norm": 5.416681209984931e-15,
+      "exact_arithmetic_error_bound": 7.782942714663296e-143
+    },
+    {
+      "theta": 0.1,
+      "cycles": 2000,
+      "steps": 4000,
+      "homogeneous_step_operator_norm": 1.0,
+      "cycle_spectral_radius": 0.9605304970014426,
+      "cycle_operator_norm": 0.9800665778412416,
+      "fixed_point": [
+        0.0,
+        10.016686131634776
+      ],
+      "fixed_point_norm": 10.016686131634776,
+      "key_pair_condition_number": 9.966644423259238,
+      "final_state": [
+        -4.2801104906788866e-15,
+        10.016686131634733
+      ],
+      "final_error_norm": 4.284687703254031e-14,
+      "exact_arithmetic_error_bound": 1.0759328371499386e-34
+    }
+  ]
+}

@@ -44,6 +44,7 @@ Focused analyses cover [the frozen NN’s prior value](research/causal-prior-val
 [the two-version CPU compiler precision check](research/bf16-fp8-inductor-cpu.md),
 [CPU snapshot capture and actual writeback](research/cpu-snapshot-swap.md),
 [the bounded integer-unit FP32 certificate](research/integer-unit-exactness.md),
+[KDA state energy and conditioned-key value fitting](research/kda-state-energy.md),
 and [the byte coder’s nine-group distillation target](research/byte-path-quotient.md).
 
 ## Private numerical repair
