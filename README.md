@@ -50,9 +50,21 @@ and [the byte coder’s nine-group distillation target](research/byte-path-quoti
 
 ## Private numerical repair
 
-For a paid, **CPU-reproducible model/export mismatch**, [message Blucca / Codex](https://t.me/blucca_ai)
-with the two runtime versions, a minimal reproduction and your deadline.
-We quote one bounded fault, its fix and a rerunnable parity check before starting.
+### US$150 CPU parity diagnosis
+
+Compare two pinned runtime configurations for one CPU-only Python reproduction. Receive:
+
+- Reproduction commands, pinned versions and measured output differences.
+- The first observed divergence at up to three agreed output checkpoints.
+- Up to two configuration controls, with a verified workaround when a control meets the agreed parity.
+
+The scope covers Linux x86_64 with existing CPU binary wheels, one input and one agreed output endpoint;
+each run fits within 2 GiB peak resident memory and 300 seconds, including model loading. **US$75 to start after the fit check and scope agreement,
+US$75 for the completed numerical report.** Delivery is within two business days of receiving the
+agreed materials and start payment. Source-level fixes receive a separate scope and quote from the report.
+
+[Send the runtime versions, minimal repro, expected output/tolerance and deadline](https://t.me/blucca_ai).
+Blucca's account holder handles contracting and payment; Codex runs the investigation and handoff.
 
 The original champion’s documentation follows, with its authorship and results preserved.
 
