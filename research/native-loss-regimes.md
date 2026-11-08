@@ -129,3 +129,32 @@ the existing [stdlib replay](check-native-loss-regimes.py) retain all five
 contrasts, intervals and leave-one-article ranges. The original fixed
 selector, trajectories and sole mixed runs continue unchanged; remaining
 uncertainty is concentrated on real native-to-codec transmission.
+
+## Complete hard stage: the early low-domain recovery ends
+
+The original **32-epoch CE+KL** trajectory now supplies all nine fixed native
+exports to the same predeclared W0 partition. From e12 to e32, native NLL
+increases in all three domains:
+
+| W0 native NLL | Depth e12 | Depth e16 | Depth e32 | e32−e12 | Share of summed late loss |
+|---|---:|---:|---:|---:|---:|
+| <.25 | .202819 | .201901 | .207156 | +.004337 | 2.09% |
+| .25–1 | .837478 | .840622 | .858205 | +.020728 | 25.67% |
+| ≥1 | 1.442699 | 1.448105 | 1.468457 | +.025758 | 72.24% |
+
+The low domain reaches its best positive-epoch native score at **e16**; the
+middle and high domains reach theirs at **e12**. By e32 the full held sample
+adds **23,925.705667 nats / +.022102166426 nats per target** versus e12.
+**383/473 pieces / 1,032,991 targets (95.43%)** worsen; the high domain has
+127 worsening pieces and three improving pieces. The original e12 selection
+and sole same-weight coded measurement retain their frozen roles.
+
+The independent **131,071-target maximum-article audit** moves from .268979
+at e12 to .375119 at e32, a **+.106140715121** increase. It remains a separate
+long-history stress case alongside the complete held partition.
+
+[Complete native-regime result](results/depth-complete-native-regimes.json)
+retains all nine scores, observed target counts, per-domain loss sums and
+the separate audit. The existing standard-library replay above recomputes
+them from the published complete trajectory. These are the frozen CE+KL
+controls for the independent [teacher-only full-trajectory experiment](teacher-only-distillation.md).

@@ -74,7 +74,46 @@ for item, (a, b) in zip(precision['comparisons'], paired_columns):
     for actual, saved in zip([min(deleted), max(deleted)], item['delete_one_article_delta_range']):
         assert math.isclose(actual, saved, abs_tol=1e-12)
     assert math.isclose(abs(theta)/se, item['absolute_studentized_ratio'], abs_tol=1e-10)
+# Complete the same frozen partition over the original full 32-epoch depth
+# trajectory. The independent giant remains outside the 473-article sample.
+complete = json.loads((results / 'depth-complete-native-regimes.json').read_text())
+trajectory = json.loads((results / complete['source']).read_text())
+matrix, columns = trajectory['paired_pieces'], trajectory['paired_piece_columns']
+assert len(matrix) == len(rows)
+assert all((r[0], r[1]) == (old[0], old[2]) for r, old in zip(matrix, rows))
+assert sum(g['targets'] for g in complete['regimes']) == N
+for group in [complete['all'], *complete['regimes']]:
+    selected = matrix if group is complete['all'] else [r for r in matrix
+        if r[1]/r[0] >= group['lower_inclusive'] and
+        (group['upper_exclusive'] is None or r[1]/r[0] < group['upper_exclusive'])]
+    n = sum(r[0] for r in selected)
+    assert (len(selected), n) == (group['pieces'], group['targets'])
+    scores = {str(e['epoch']): math.fsum(r[columns.index(f"e{e['epoch']}_logits_sum")]
+        for r in selected)/n for e in trajectory['exports']}
+    for epoch, score in scores.items():
+        assert math.isclose(score, group['native_nll_by_epoch'][epoch], abs_tol=1e-12)
+    assert int(min((e for e in scores if int(e)>0), key=lambda e: scores[e])) == group['best_positive_epoch']
+    ds = [r[columns.index('e32_logits_sum')]-r[columns.index('e12_logits_sum')] for r in selected]
+    contrast = group['e32_minus_e12']
+    assert math.isclose(math.fsum(ds), contrast['summed_nats'], abs_tol=1e-8)
+    assert math.isclose(math.fsum(ds)/n, contrast['nats_per_target'], abs_tol=1e-12)
+    for label, predicate in [('improved', lambda d: d<0), ('worsened', lambda d: d>0)]:
+        assert sum(predicate(d) for d in ds) == contrast[label+'_pieces']
+        assert sum(r[0] for r,d in zip(selected,ds) if predicate(d)) == contrast[label+'_targets']
+    if group is not complete['all']:
+        assert math.isclose(contrast['summed_nats']/complete['all']['e32_minus_e12']['summed_nats'],
+            group['share_of_e32_e12_summed_nats'], abs_tol=1e-12)
+assert math.isclose(math.fsum(g['e32_minus_e12']['summed_nats'] for g in complete['regimes']),
+    complete['all']['e32_minus_e12']['summed_nats'], abs_tol=1e-8)
+giant = complete['independent_giant']
+assert giant['targets'] == trajectory['native_scope_contract']['giant']['targets'] == 131071
+for e in trajectory['exports']:
+    assert math.isclose(e['native']['giant']['raw_nll'], giant['native_nll_by_epoch'][str(e['epoch'])], abs_tol=1e-12)
+assert math.isclose(giant['native_nll_by_epoch']['32']-giant['native_nll_by_epoch']['12'],
+    giant['e32_minus_e12_nats_per_target'], abs_tol=1e-12)
 print(json.dumps({'status': 'passed', 'pieces': len(rows), 'targets': N,
     'shared_late_loss_and_depth_recovery_targets': sum(r[0] for r in overlap),
     'named_e2_over_e1_all_kappa1_net_bytes': advantage,
-    'named_high_kappa_break_even_with_low_mid_kappa1': threshold}, indent=2))
+    'named_high_kappa_break_even_with_low_mid_kappa1': threshold,
+    'depth32_minus_depth12_nats_per_target': complete['all']['e32_minus_e12']['nats_per_target'],
+    'complete_depth_regime_best_positive_epochs': [g['best_positive_epoch'] for g in complete['regimes']]}, indent=2))

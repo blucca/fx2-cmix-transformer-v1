@@ -1,0 +1,142 @@
+{
+  "schema": "hutter.depth8.complete-native-regimes.v1",
+  "source": "depth-complete-32-trajectory.json",
+  "partition_source": "native-loss-regimes.json",
+  "scope": "473 distinct observed articles; 1082505 targets; W0 observed-target native logit NLL partition fixed before the trained contrasts; original 32-epoch CE+KL trajectory",
+  "all": {
+    "pieces": 473,
+    "targets": 1082505,
+    "w0_native_nll": 0.9662483387944293,
+    "native_nll_by_epoch": {
+      "0": 1.6631390601151237,
+      "4": 1.1871585190883522,
+      "8": 1.1688038833784689,
+      "12": 1.1451413926090095,
+      "16": 1.1492552658631523,
+      "20": 1.158834673371907,
+      "24": 1.1603512533482083,
+      "28": 1.1632966591464657,
+      "32": 1.1672435590346852
+    },
+    "e32_minus_e12": {
+      "summed_nats": 23925.70566662618,
+      "nats_per_target": 0.0221021664256758,
+      "improved_pieces": 90,
+      "improved_targets": 49514,
+      "worsened_pieces": 383,
+      "worsened_targets": 1032991
+    },
+    "best_positive_epoch": 12
+  },
+  "regimes": [
+    {
+      "lower_inclusive": 0,
+      "upper_exclusive": 0.25,
+      "pieces": 140,
+      "targets": 115152,
+      "w0_native_nll": 0.14632618416406246,
+      "native_nll_by_epoch": {
+        "0": 0.5598579453474086,
+        "4": 0.21998368374278263,
+        "8": 0.21027067212324932,
+        "12": 0.20281869217689777,
+        "16": 0.20190071225562395,
+        "20": 0.20380078882873784,
+        "24": 0.20521964587009853,
+        "28": 0.20508828006010993,
+        "32": 0.2071559862645599
+      },
+      "e32_minus_e12": {
+        "summed_nats": 499.44808878246835,
+        "nats_per_target": 0.004337294087662119,
+        "improved_pieces": 38,
+        "improved_targets": 29248,
+        "worsened_pieces": 102,
+        "worsened_targets": 85904
+      },
+      "best_positive_epoch": 16,
+      "share_of_e32_e12_summed_nats": 0.020874957493067607
+    },
+    {
+      "lower_inclusive": 0.25,
+      "upper_exclusive": 1,
+      "pieces": 203,
+      "targets": 296310,
+      "w0_native_nll": 0.6817382723959221,
+      "native_nll_by_epoch": {
+        "0": 1.2644933143685768,
+        "4": 0.872406750877987,
+        "8": 0.8560528030247647,
+        "12": 0.8374777090857141,
+        "16": 0.8406224566233356,
+        "20": 0.8497556575455205,
+        "24": 0.8503923482579192,
+        "28": 0.8549659663493269,
+        "32": 0.8582053080247941
+      },
+      "e32_minus_e12": {
+        "summed_nats": 6141.794841638815,
+        "nats_per_target": 0.02072759893908007,
+        "improved_pieces": 49,
+        "improved_targets": 17062,
+        "worsened_pieces": 154,
+        "worsened_targets": 279248
+      },
+      "best_positive_epoch": 12,
+      "share_of_e32_e12_summed_nats": 0.2567027667738121
+    },
+    {
+      "lower_inclusive": 1,
+      "upper_exclusive": null,
+      "pieces": 130,
+      "targets": 671043,
+      "w0_native_nll": 1.2325782963746998,
+      "native_nll_by_epoch": {
+        "0": 2.028492320412737,
+        "4": 1.4921109782871314,
+        "8": 1.471389990322535,
+        "12": 1.4426993280392966,
+        "16": 1.4481046082493547,
+        "20": 1.4591988304414711,
+        "24": 1.4611207093020335,
+        "28": 1.4638751300511204,
+        "32": 1.468456936324019
+      },
+      "e32_minus_e12": {
+        "summed_nats": 17284.462736204896,
+        "nats_per_target": 0.025757608284722285,
+        "improved_pieces": 3,
+        "improved_targets": 3204,
+        "worsened_pieces": 127,
+        "worsened_targets": 667839
+      },
+      "best_positive_epoch": 12,
+      "share_of_e32_e12_summed_nats": 0.7224222757331202
+    }
+  ],
+  "independent_giant": {
+    "pieces": 1,
+    "targets": 131071,
+    "role": "separate report-only maximum-article audit",
+    "w0_native_nll": 0.03898642613150546,
+    "native_nll_by_epoch": {
+      "0": 0.22266586999380739,
+      "4": 0.18630547531648686,
+      "8": 0.2249766262079934,
+      "12": 0.2689786062674665,
+      "16": 0.2758085249375663,
+      "20": 0.28275702519130397,
+      "24": 0.3210760065840484,
+      "28": 0.33288257611942346,
+      "32": 0.3751193213881372
+    },
+    "e32_minus_e12_nats_per_target": 0.10614071512067069
+  },
+  "selection": "Original fullheld two-copy-weight native criterion selects e12; the original sole e12 mixed result retains its scope.",
+  "operations": {
+    "model_calls": 0,
+    "native_calls": 0,
+    "codec_calls": 0,
+    "network_calls": 0
+  }
+}
