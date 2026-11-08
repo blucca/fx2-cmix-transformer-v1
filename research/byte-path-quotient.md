@@ -137,6 +137,76 @@ objective in shared parameters and its resulting held/giant performance.
 The complete hard-export and same-weight coded trajectories supply that
 performance measurement.
 
+### A shared parameter changes the optimum
+
+In a differentiable constrained student family, write `a_v = logit(s_v)` and
+`j_v = ∇_θ a_v`. At a stationary point of full teacher KL, the data-path gradient is
+
+```text
+g_Q = E_context Σ_v [Q(v) − T(v)] × (s_v − t_v) × j_v.
+```
+
+A feasible descent direction therefore requires visitation differences to
+interact with residual errors in shared parameters. An independently realizable
+teacher makes both objectives zero. Shared parameters can create a different
+trade-off, as this exact one-parameter family demonstrates:
+
+```text
+vocab = [0, 64, 128, 192]
+T     = [.45, .05, .45, .05]
+S(p)  = [.5p, .5(1−p), .5(1−p), .5p]
+```
+
+The root stays fixed at `.5`; the two child left-branch probabilities are tied
+to `p` and `1−p`. All remaining byte bits are deterministic. Full KL has the
+unique optimum `p=.5`. With data visiting the left subtree with probability
+`.9`, the path objective is
+
+```text
+U_Q(p) = .9 BernKL(.9 || p) + .1 BernKL(.9 || 1−p)
+       = BCE(.82, p) − h(.9),
+```
+
+so its unique optimum is `p=.82`. The same family gives three closed controls;
+positive numbers below mean improvement from `p=.5` to the path optimum:
+
+| Data distribution Q | Path optimum p | U gain, nat/label | Data CE gain, nat/label |
+| :--- | ---: | ---: | ---: |
+| T | .50 | 0 | 0 |
+| [.81, .09, .09, .01] | .82 | +.221754 | +.221754 |
+| [.09, .81, .01, .09] | .82 | +.221754 | −.748709 |
+
+The last two distributions have identical subtree visitation. Their conditional
+labels differ, which reverses the data CE outcome of the same shared movement.
+For both, full teacher KL increases by `.263478` nat/label.
+
+### Account for the observed-label mismatch
+
+For one actual byte `y`, let `b_y,v` be its observed bit at visited node `v`.
+For two student rows, define `Δa_v = logit(s_1,v) − logit(s_0,v)` and take
+positive gain to mean loss at `S_0` minus loss at `S_1`. An exact finite identity is
+
+```text
+G_CE,y = G_U,y + Σ_visited (b_y,v − t_v) × Δa_v.
+E_Q G_CE,y = E_Q G_U,y + Σ_v Q(v)(q_v − t_v) × Δa_v,
+q_v = Q(next bit=1 | prefix v).
+```
+
+This follows from `BCE(b,s) − BCE(t,s) = −(b−t)logit(s)`. Direct observed-bit
+summation supplies the empirical correction using the existing target labels.
+The finite-logit contract is `0<s_0,v,s_1,v<1` on changed nodes; fixed deterministic
+branches contribute zero. The two `.82` controls have correction `0` and
+`−.970462` nat/label respectively. A positive data CE gain requires the
+correction to exceed `−G_U`.
+
+[The standard-library checker](byte-path-capacity-check.py) verifies the closed
+optima, exact teacher-expectation identity, per-byte correction and Q-averaged
+correction on all four labels. [Exact result](results/byte-path-shared-capacity.json).
+Its scope is this probability-tree family. Hard/native shadow VJPs follow the
+[native-observer contract](native-observer-training-contract.md), and the
+complete same-weight mixed/u16/range measurement supplies actual coded gain.
+The ongoing teacher-only method stays fixed.
+
 ## Initial-eight measurement: three complete causal held pieces
 
 The existing full-piece CPU loader ran the original 12-block teacher and the
@@ -211,6 +281,7 @@ python3 research/byte-path-half-control.py \
   research/results/byte-path-initial8-geometry.json
 python3 research/byte-path-weighting-check.py \
   research/results/byte-path-initial8-geometry.json
+python3 research/byte-path-capacity-check.py
 ```
 
 The [measurement source](byte-path-measure.py) accepts the existing causal data

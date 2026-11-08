@@ -1,0 +1,73 @@
+{
+  "schema": "hutter.byte-path-shared-capacity.v1",
+  "status": "passed",
+  "scope": "One constrained probability tree; closed-form optima; exact four-label enumeration",
+  "vocab_bytes": [
+    0,
+    64,
+    128,
+    192
+  ],
+  "teacher": [
+    0.45,
+    0.05,
+    0.45,
+    0.05
+  ],
+  "model_forwards": 0,
+  "optimizer_updates": 0,
+  "native_runs": 0,
+  "cases": [
+    {
+      "name": "teacher_visitation",
+      "data": [
+        0.45,
+        0.05,
+        0.45,
+        0.05
+      ],
+      "full_kl_optimal_p": 0.5,
+      "path_optimal_p": 0.5,
+      "data_ce_optimal_p": 0.5,
+      "path_gain_nats": 0.0,
+      "data_ce_gain_nats": 0.0,
+      "mismatch_gain_correction_nats": 0.0,
+      "maximum_sample_identity_error_nats": 0.0,
+      "full_kl_change_nats": 0.0
+    },
+    {
+      "name": "matched_child_conditionals",
+      "data": [
+        0.81,
+        0.09,
+        0.09,
+        0.01
+      ],
+      "full_kl_optimal_p": 0.5,
+      "path_optimal_p": 0.8200000000000001,
+      "data_ce_optimal_p": 0.8200000000000001,
+      "path_gain_nats": 0.22175369374985118,
+      "data_ce_gain_nats": 0.221753693749851,
+      "mismatch_gain_correction_nats": 2.7755575615628914e-17,
+      "maximum_sample_identity_error_nats": 1.6653345369377348e-16,
+      "full_kl_change_nats": 0.26347750284793736
+    },
+    {
+      "name": "opposite_child_conditionals",
+      "data": [
+        0.09,
+        0.81,
+        0.01,
+        0.09
+      ],
+      "full_kl_optimal_p": 0.5,
+      "path_optimal_p": 0.8200000000000001,
+      "data_ce_optimal_p": 0.18,
+      "path_gain_nats": 0.22175369374985118,
+      "data_ce_gain_nats": -0.7487086994457257,
+      "mismatch_gain_correction_nats": -0.9704623931955769,
+      "maximum_sample_identity_error_nats": 1.6653345369377348e-16,
+      "full_kl_change_nats": 0.26347750284793736
+    }
+  ]
+}
