@@ -40,7 +40,8 @@ Focused analyses cover [the frozen NN’s prior value](research/causal-prior-val
 [the practical CPU-student diagnostic](research/teacher-drift-cpu-student.md),
 [the exact missing-middle oracle](research/depth-middle-bridge.md),
 [BF16 → FP8 rounding boundaries](research/bf16-fp8-rounding-boundary.md),
-and [the two-version CPU compiler precision check](research/bf16-fp8-inductor-cpu.md),
+[the two-version CPU compiler precision check](research/bf16-fp8-inductor-cpu.md),
+[CPU snapshot capture and actual writeback](research/cpu-snapshot-swap.md),
 and [the byte coder’s nine-group distillation target](research/byte-path-quotient.md).
 
 ## Private numerical repair

@@ -1,0 +1,213 @@
+{
+  "status": "measured",
+  "source_issue": "https://github.com/pytorch/pytorch/issues/203806",
+  "contract": "two float32 CPU inputs; capture both old values before any write; swap values; preserve original storage",
+  "sizes": [
+    3,
+    1048576
+  ],
+  "cases": [
+    {
+      "method": "foreach_snapshot",
+      "n": 3,
+      "status": "measured",
+      "compiled": {
+        "mismatches": {
+          "return_a": 0,
+          "return_b": 3,
+          "input_a": 0,
+          "input_b": 3,
+          "alias_a": 0,
+          "alias_b": 3
+        },
+        "storage_preserved": true,
+        "returned_input_storage": [
+          true,
+          true
+        ],
+        "passed": false
+      },
+      "compile_and_first_call_wall_seconds": 21.00077988798148,
+      "generated_files": [
+        "kernels/foreach_snapshot-3/0.cpp",
+        "kernels/foreach_snapshot-3/1.py",
+        "kernels/foreach_snapshot-3/2.cpp",
+        "kernels/foreach_snapshot-3/3.cpp",
+        "kernels/foreach_snapshot-3/4.cpp"
+      ]
+    },
+    {
+      "method": "explicit_snapshot",
+      "n": 3,
+      "status": "measured",
+      "compiled": {
+        "mismatches": {
+          "return_a": 0,
+          "return_b": 0,
+          "input_a": 0,
+          "input_b": 0,
+          "alias_a": 0,
+          "alias_b": 0
+        },
+        "storage_preserved": true,
+        "returned_input_storage": [
+          true,
+          true
+        ],
+        "passed": true
+      },
+      "compile_and_first_call_wall_seconds": 0.47679517199867405,
+      "generated_files": [
+        "kernels/explicit_snapshot-3/0.cpp",
+        "kernels/explicit_snapshot-3/1.py"
+      ]
+    },
+    {
+      "method": "explicit_snapshot",
+      "n": 1048576,
+      "status": "measured",
+      "compiled": {
+        "mismatches": {
+          "return_a": 0,
+          "return_b": 0,
+          "input_a": 0,
+          "input_b": 0,
+          "alias_a": 0,
+          "alias_b": 0
+        },
+        "storage_preserved": true,
+        "returned_input_storage": [
+          true,
+          true
+        ],
+        "passed": true
+      },
+      "compile_and_first_call_wall_seconds": 0.4930299110128544,
+      "timing_ms": {
+        "median": 1.13286,
+        "min": 1.106039,
+        "max": 1.22569,
+        "samples": [
+          1.22569,
+          1.1712,
+          1.18738,
+          1.12735,
+          1.12566,
+          1.14278,
+          1.15,
+          1.19642,
+          1.13858,
+          1.1153,
+          1.13252,
+          1.106039,
+          1.11303,
+          1.13164,
+          1.12099,
+          1.13461,
+          1.16877,
+          1.13065,
+          1.1332,
+          1.12405
+        ],
+        "definition": "warm CPU call only; two warmups; reset excluded; one thread"
+      },
+      "generated_files": [
+        "kernels/explicit_snapshot-1048576/0.py",
+        "kernels/explicit_snapshot-1048576/1.cpp"
+      ]
+    },
+    {
+      "method": "stack_snapshot",
+      "n": 3,
+      "status": "measured",
+      "compiled": {
+        "mismatches": {
+          "return_a": 0,
+          "return_b": 0,
+          "input_a": 0,
+          "input_b": 0,
+          "alias_a": 0,
+          "alias_b": 0
+        },
+        "storage_preserved": true,
+        "returned_input_storage": [
+          true,
+          true
+        ],
+        "passed": true
+      },
+      "compile_and_first_call_wall_seconds": 0.5361972579848953,
+      "generated_files": [
+        "kernels/stack_snapshot-3/0.py",
+        "kernels/stack_snapshot-3/1.cpp"
+      ]
+    },
+    {
+      "method": "stack_snapshot",
+      "n": 1048576,
+      "status": "measured",
+      "compiled": {
+        "mismatches": {
+          "return_a": 0,
+          "return_b": 0,
+          "input_a": 0,
+          "input_b": 0,
+          "alias_a": 0,
+          "alias_b": 0
+        },
+        "storage_preserved": true,
+        "returned_input_storage": [
+          true,
+          true
+        ],
+        "passed": true
+      },
+      "compile_and_first_call_wall_seconds": 0.5288988790125586,
+      "timing_ms": {
+        "median": 1.6472449999999998,
+        "min": 1.58689,
+        "max": 1.85759,
+        "samples": [
+          1.85759,
+          1.73045,
+          1.65893,
+          1.74251,
+          1.66997,
+          1.68113,
+          1.66166,
+          1.668759,
+          1.63883,
+          1.68864,
+          1.6512,
+          1.64329,
+          1.60083,
+          1.62933,
+          1.58689,
+          1.630199,
+          1.5944,
+          1.61871,
+          1.59186,
+          1.63453
+        ],
+        "definition": "warm CPU call only; two warmups; reset excluded; one thread"
+      },
+      "generated_files": [
+        "kernels/stack_snapshot-1048576/0.py",
+        "kernels/stack_snapshot-1048576/1.cpp"
+      ]
+    }
+  ],
+  "version": {
+    "torch": "2.15.0+cpu",
+    "git": "d0f2af8b66b20da4baa50644c0cd3f887a2eae2e",
+    "cuda": null,
+    "cpu_capability": "AVX512",
+    "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+    "emulate_precision_casts": false
+  },
+  "resources": {
+    "cpu_seconds": 9.355291342,
+    "wall_seconds": 31.847949171991786,
+    "process_peak_rss_kib": 440236
+  }
+}

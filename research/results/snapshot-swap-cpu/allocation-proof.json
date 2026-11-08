@@ -1,0 +1,26 @@
+{
+  "scope": "CPU PyTorch2.15.0+cpu, AVX512, two disjoint contiguous float32 inputs, N=1048576; exact capture-before-mutate swap",
+  "proof": {
+    "explicit_snapshot": {
+      "allocated_float32_elements": [
+        1048576
+      ],
+      "scratch_bytes": 4194304,
+      "cpp_full_length_loops": 3,
+      "compiled_entrypoint_calls": 1,
+      "median_ms": 1.13286
+    },
+    "stack_snapshot": {
+      "allocated_float32_elements": [
+        2097152
+      ],
+      "scratch_bytes": 8388608,
+      "cpp_full_length_loops": 4,
+      "compiled_entrypoint_calls": 1,
+      "median_ms": 1.6472449999999998
+    }
+  },
+  "stack_over_explicit_latency": 1.454058753950179,
+  "explicit_latency_reduction_fraction": 0.3122698809223885,
+  "result_identity_checks": 6
+}
