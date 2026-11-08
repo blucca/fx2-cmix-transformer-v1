@@ -1,5 +1,6 @@
 # Hutter compression research
 
+- [Full12 seven-symbol teacher-only: fixed-grid method and real cached-piece preflight](q7-teacher-only.md).
 **[Start here: research overview](overview.md).** Follow the complete measurement
 chain from native prediction loss to the selected weight’s actual range bytes
 and the authentic two-copy archive. The overview records published coverage

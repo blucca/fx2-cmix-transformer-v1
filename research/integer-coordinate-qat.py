@@ -5,6 +5,9 @@ Only 111 bounded FP32 integer coordinates learn. Whole-piece target means:
 CE + KL(original W || student) + 2 H(z)/586459020. Projected AdamW(.01),
 tau=.5, <=64 epochs / 48 CPUh, including export and native evaluation.
 causal-v1 keeps every optimizer constant and uses 16 complete representative epochs.
+q7-teacher-only-v1 keeps all twelve blocks, fixes the exact round241 q7 scales,
+and learns 111 hard coordinates with 2KL + 2H/N, read-only depth npz targets,
+32 epochs / 48 CPUh and hard-export/native evaluation every four epochs.
 """
 import argparse
 import importlib.util
@@ -20,10 +23,15 @@ import sys
 import time
 
 sys.dont_write_bytecode = True
+from q7_teacher_only import (check_teacher_cache_identity, data_objective,
+                             q7_recipe, quant7_scales, quant7_tensor,
+                             readonly_teacher_logits)
+
 FULL_TARGETS = 586459020
 RECIPE = dict(method="fixed-scale-integer-coordinate-v1", epochs=64, lr=.01,
               betas=[.9, .99], eps=1e-8, weight_decay=0, tau=.5,
               teacher_kl_coefficient=1, full_targets=FULL_TARGETS, seed=245)
+SOFT_LEVELS = None  # Original callers retain the original fifteen centers.
 # Reuse the original whole-piece >=32768-target batching, without its old main.
 _spec = importlib.util.spec_from_file_location(
     "original_entropy_qat", Path(__file__).with_name("entropy-qat.py"))
@@ -55,7 +63,8 @@ def causal_batches(order):
 def entropy(z, tau=.5):
     """Per-tensor soft code length in nats, directly in bounded integer units."""
     import torch
-    centers = torch.arange(-7, 8, dtype=z.dtype, device=z.device)
+    centers = (torch.arange(-7, 8, dtype=z.dtype, device=z.device) if SOFT_LEVELS is None
+               else torch.tensor(SOFT_LEVELS, dtype=z.dtype, device=z.device))
     p = (-((z.flatten()[:, None] - centers) ** 2) / tau).softmax(-1).mean(0)
     return -z.numel() * (p * p.clamp_min(1e-12).log()).sum()
 
@@ -96,6 +105,25 @@ def install_coordinates(model):
     assert len(coordinates) == 111 and sum(z.numel() for z in coordinates.values()) == 5868864
     assert len(model.state_dict()) == 429
     return coordinates, scales, original_q, original
+
+
+def install_q7_coordinates(model):
+    """Keep the original closures; update their captured scale and real scale together."""
+    import torch
+    coordinates, scales, original_q, _ = install_coordinates(model)
+    with torch.no_grad():
+        for key, z in coordinates.items():
+            q7 = quant7_tensor(original_q[key])
+            s7 = quant7_scales(scales[key])
+            z.copy_(q7)
+            scales[key].copy_(s7)
+            model.get_parameter(key[:-7] + ".quantize_weight.scale").copy_(s7)
+            original_q[key] = q7
+    # This new frozen snapshot includes the one-time scale map, all raw values,
+    # and every original weight parameter. Only the external z enters Adam.
+    frozen = {k: p.detach().clone() for k, p in model.named_parameters()}
+    assert len(frozen) == 429 and len(coordinates) == 111
+    return coordinates, scales, original_q, frozen
 
 
 def export_state(model, coordinates, scales):
@@ -140,13 +168,18 @@ def self_check():
 
 
 def main():
-    global RECIPE, batches
+    global RECIPE, batches, SOFT_LEVELS
     parser = argparse.ArgumentParser(description=__doc__)
     for name in ("checkpoint", "kernel", "data", "baseline", "weights", "recode", "evaluator", "output"):
         parser.add_argument("--" + name, type=Path, required=True)
     parser.add_argument("--cpu-seconds", type=int, default=172800)
-    parser.add_argument("--recipe", choices=("fixed-scale-v1", "causal-v1"), default="fixed-scale-v1",
-                        help="causal-v1: independent whole-stream priors, 16 complete epochs; all optimizer constants fixed")
+    parser.add_argument("--recipe", choices=("fixed-scale-v1", "causal-v1", "q7-teacher-only-v1"),
+                        default="fixed-scale-v1",
+                        help="causal-v1: 16 epochs; q7-teacher-only-v1: fixed q7, cached 2KL, 32 epochs")
+    parser.add_argument("--teacher-cache", type=Path,
+                        help="q7 mode: existing depth f32 npz teacher cache, strictly read-only")
+    parser.add_argument("--original-static15", type=Path,
+                        help="q7 mode: retained full12 W0 for the double-weight charge")
     parser.add_argument("--prior-cpu-seconds", type=float, default=0)
     parser.add_argument("--resume", action="store_true")
     parser.add_argument("--recovery-cpu-seconds", type=float,
@@ -156,9 +189,16 @@ def main():
     modes.add_argument("--check-only", action="store_true",
                        help="full zero-step signature and one complete 1025-2048-target piece update; restore zero")
     args = parser.parse_args()
+    q7_teacher = args.recipe == "q7-teacher-only-v1"
+    assert q7_teacher == (args.teacher_cache is not None)
+    assert q7_teacher == (args.original_static15 is not None)
     if args.recipe == "causal-v1":
         RECIPE = dict(RECIPE, method="causal-fixed-scale-integer-coordinate-v1", epochs=16, seed=414,
                       final_batch="merge-short-tail")
+        batches = causal_batches
+    elif q7_teacher:
+        RECIPE = q7_recipe(RECIPE)
+        SOFT_LEVELS = tuple(RECIPE["soft_symbols"])
         batches = causal_batches
     assert 600 <= args.cpu_seconds <= 172800 and args.prior_cpu_seconds >= 0
     assert not (args.resume and (args.zero_only or args.check_only))
@@ -176,6 +216,9 @@ def main():
     assert baseline["status"] == "passed"
     identity = dict(checkpoint=str(args.checkpoint.resolve()), data=str(args.data.resolve()),
                     weights=str(args.weights.resolve()), recipe=RECIPE)
+    if q7_teacher:
+        identity.update(original_static15=str(args.original_static15.resolve()),
+                        teacher_cache=str(args.teacher_cache.resolve()), teacher_cache_mode="read-only")
     state_path, checkpoint_path = job / "state.json", job / "latest.pt"
     cursor = ("step", "epoch", "next_piece", "seen_targets", "epoch_targets", "epoch_ce_sum", "epoch_kl_sum")
     if args.resume:
@@ -189,7 +232,10 @@ def main():
         cpu_base = state["total_cpu_seconds"] + recovery
     else:
         assert not state_path.exists() and not checkpoint_path.exists(), "inspect trajectory; use --resume"
-        cpu_base = baseline["child_cpu_seconds"] + args.prior_cpu_seconds
+        # q7 reuses the original W0 native receipt; charge only this method's
+        # actual preparation carry. The original recipes retain their ledger.
+        cpu_base = (args.prior_cpu_seconds if q7_teacher
+                    else baseline["child_cpu_seconds"] + args.prior_cpu_seconds)
         state = {"status": "starting", "started_at": time.time(), "identity": identity,
                  "step": 0, "epoch": 0, "next_piece": 0, "seen_targets": 0,
                  "epoch_targets": 0, "epoch_ce_sum": 0., "epoch_kl_sum": 0.,
@@ -237,9 +283,12 @@ def main():
         torch.set_num_interop_threads(1)
         torch.manual_seed(RECIPE["seed"])
         self_check()
-        model, _ = load_model(args.checkpoint, args.kernel)
+        model, _ = load_model(args.checkpoint, args.kernel, native_scaled_gemm=q7_teacher)
         assert model.cfg.dropout == 0 and model.cfg.vocabulary_size == 205
-        z, scales, original_q, original = install_coordinates(model)
+        if q7_teacher:
+            assert model.cfg.n_layers == 12 and model.cfg.d_model == 192 and sum(model.cfg.kimi_linear) == 9
+        z, scales, original_q, original = (install_q7_coordinates(model) if q7_teacher
+                                         else install_coordinates(model))
         optimizer = torch.optim.AdamW(list(z.values()), lr=RECIPE["lr"],
                                      betas=tuple(RECIPE["betas"]), eps=RECIPE["eps"],
                                      weight_decay=0, foreach=False)
@@ -256,6 +305,11 @@ def main():
 
         manifest = json.loads(args.data.read_text())
         samples = manifest["samples"]
+        if q7_teacher:
+            assert (manifest["method"], manifest["source_bytes"], manifest["training_pieces"],
+                    manifest["training_targets"]) == ("causal-whole-piece-v1", FULL_TARGETS, 1313, 2941307)
+            assert [s["name"] for s in samples] == ["causal", "long-audit"]
+            assert [s["score"]["targets"] for s in samples] == [1082505, 131071]
         tokens = [np.fromfile(sample["tokens"], dtype=np.uint8) for sample in samples]
         pieces = [(i, lo, hi) for i, sample in enumerate(samples) for lo, hi in sample["train_pieces"]]
         assert len(pieces) == manifest["training_pieces"]
@@ -278,18 +332,26 @@ def main():
             assert bool(torch.isfinite(p).all()) and int(x.max()) < 205 and int(y.max()) < 205
             return x, y, p, torch.tensor([[0, n]], dtype=torch.int32)
 
-        cache = job / "teacher-cache"
-        cache.mkdir(exist_ok=True)
-        cache_identity = cache / "identity.json"
-        if cache_identity.exists():
-            assert json.loads(cache_identity.read_text()) == identity
+        if q7_teacher:
+            cache = args.teacher_cache.resolve()
+            target_identity = check_teacher_cache_identity(cache, identity)
+            save("teacher_cache_ready", teacher_cache_contract=dict(
+                path=str(cache), mode="read-only", target_identity=target_identity))
         else:
-            cache_identity.write_text(json.dumps(identity, indent=2) + "\n")
+            cache = job / "teacher-cache"
+            cache.mkdir(exist_ok=True)
+            cache_identity = cache / "identity.json"
+            if cache_identity.exists():
+                assert json.loads(cache_identity.read_text()) == identity
+            else:
+                cache_identity.write_text(json.dumps(identity, indent=2) + "\n")
         teacher = None
         cache_misses = 0
 
         def teacher_logits(piece, x, p, bounds):
             nonlocal teacher, cache_misses
+            if q7_teacher:
+                return torch.from_numpy(readonly_teacher_logits(cache, piece, np))
             i, lo, hi = piece
             path = cache / f"sample-{i:04d}-{lo}-{hi}.npy"
             if path.exists():
@@ -321,7 +383,11 @@ def main():
                     assert torch.equal(parameter.detach().to(torch.bfloat16).view(torch.int16),
                                        original[key].to(torch.bfloat16).view(torch.int16)), key
             for key, value in z.items():
-                assert bool(torch.isfinite(value).all() & (value >= -7).all() & (value <= 7).all()), key
+                limit = 3 if q7_teacher else 7
+                assert bool(torch.isfinite(value).all() & (value >= -limit).all() & (value <= limit).all()), key
+                if q7_teacher:
+                    skey = key[:-7] + ".quantize_weight.scale"
+                    assert torch.equal(model.get_parameter(skey), scales[key]), skey
 
         def geometry():
             hard_nats, soft_nats, displacement, max_delta = 0., 0., 0., 0.
@@ -370,11 +436,22 @@ def main():
                                timeout=max(900, 3 * seconds), check=True)
 
         def export(label):
+            if q7_teacher:
+                validate()
             raw = job / "payloads.bin"
             info = export_payloads(export_state(model, z, scales), raw)
             weight = job / f"{label}.tfwc3"
             run([args.recode, args.weights, weight, "--replace-payloads", raw], job / f"{label}-recode.log")
             info.update(weight_bytes=weight.stat().st_size, weight_file=str(weight))
+            if q7_teacher:
+                receipt = json.loads((job / f"{label}-recode.log").read_text().splitlines()[-1])
+                assert receipt["status"] == "passed" and receipt["expected_tensor_bytes_equal"]
+                assert receipt["other_tensor_bytes_equal"] and receipt["tensor_count"] == 434
+                assert (receipt["int4_tensors"], receipt["int4_values"], receipt["replacement_tensors"]) == (111, 5868864, 429)
+                info.update(state_tensors=429, payload_tensor_count=429, tensor_count=434,
+                            derived_tensors=5, native_scaled_gemm=True, raw_trainable_tensors=0,
+                            hard_integer_limit=3, max_scale_delta=0., original_rope_bytes_equal=True,
+                            decoded_tensor_bytes_equal=True, static15_recode=receipt)
             return weight, info
 
         def backward(batch, targets, exact_teacher=False):
@@ -387,14 +464,15 @@ def main():
                 assert bool(torch.isfinite(logits).all())
                 if exact_teacher:
                     assert torch.equal(logits.detach(), reference), "zero-step student/teacher logits differ"
-                ce = F.cross_entropy(logits.view(-1, 205), y.flatten(), reduction="none").float().sum()
+                reported_logits = logits.detach() if q7_teacher else logits
+                ce = F.cross_entropy(reported_logits.view(-1, 205), y.flatten(), reduction="none").float().sum()
                 kl = F.kl_div(logits.log_softmax(-1), reference.log_softmax(-1),
                               reduction="sum", log_target=True)
                 assert bool(torch.isfinite(ce) & torch.isfinite(kl))
                 ce_sum += float(ce.detach())
                 kl_sum += float(kl.detach())
-                (ce + kl).backward()
-                del x, y, p, bounds, reference, logits, ce, kl
+                data_objective(ce, kl, RECIPE).backward()
+                del x, y, p, bounds, reference, logits, reported_logits, ce, kl
             for key, value in z.items():
                 assert value.grad is not None and bool(torch.isfinite(value.grad).all()), key
                 value.grad.div_(targets)
@@ -410,7 +488,8 @@ def main():
                 norm_squared += float(value.grad.double().square().sum())
                 nonzero += int(bool((value.grad != 0).any()))
             return dict(ce_mean=ce_sum / targets, teacher_kl_mean=kl_sum / targets,
-                        soft_entropy_nats=soft_nats, objective=(ce_sum + kl_sum) / targets + 2 * soft_nats / FULL_TARGETS,
+                        soft_entropy_nats=soft_nats,
+                        objective=data_objective(ce_sum, kl_sum, RECIPE) / targets + 2 * soft_nats / FULL_TARGETS,
                         gradient_norm=math.sqrt(norm_squared), finite_gradient_tensors=len(z),
                         nonzero_gradient_tensors=nonzero)
 
@@ -418,7 +497,7 @@ def main():
             optimizer.step()
             with torch.no_grad():
                 for value in z.values():
-                    value.clamp_(-7, 7)
+                    value.clamp_(-3 if q7_teacher else -7, 3 if q7_teacher else 7)
             validate()
 
         def evaluate():
@@ -447,9 +526,11 @@ def main():
                     assert long["targets"] == original_long["targets"]
                     long["delta_raw_nll"] = long["raw_nll"] - original_long["raw_nll"]
                     scores[name]["long_native"] = long
-            row = dict(epoch=epoch, step=state["step"], **info, scores=scores,
-                       double_weight_saved_bytes=2 * (state["original_static15_bytes"] - info["weight_bytes"]),
-                       **geometry())
+            row = dict(epoch=epoch, step=state["step"])
+            row.update(info)
+            row.update(scores=scores,
+                       double_weight_saved_bytes=2 * (state["original_static15_bytes"] - info["weight_bytes"]))
+            row.update(geometry())
             state["evaluations"] = [r for r in state["evaluations"] if r["epoch"] != epoch] + [row]
             torch.save({k: v.detach() for k, v in z.items()}, job / f"epoch-{epoch:02d}-z.pt")
             event("epoch_evaluated", **row)
@@ -457,11 +538,23 @@ def main():
         validate()
         if not args.resume:
             weight, info = export("step-0000")
-            reference = job / "original-static15.tfwc3"
-            run([args.recode, args.weights, reference], job / "original-static15-recode.log")
-            assert weight.read_bytes() == reference.read_bytes(), "integer-coordinate zero-step static15 differs"
-            state["original_static15_bytes"] = info["weight_bytes"]
-            state["zero_step"] = dict(**info, **geometry())
+            if q7_teacher:
+                reference = job / "quant7-reference.tfwc3"
+                run([args.recode, args.weights, reference, "--quant7"], job / "quant7-reference-recode.log")
+                assert weight.read_bytes() == reference.read_bytes(), "q7 zero-step differs from round241 map"
+                state["original_static15_bytes"] = args.original_static15.stat().st_size
+                assert state["original_static15_bytes"] == 2904325
+                state["quant7_initialization"] = dict(expected_tensor_bytes_equal=True,
+                    exact_round241_quant7_export=True, reference_weight_file=str(reference),
+                    frozen_tensors=429, coordinate_tensors=111, raw_trainable_tensors=0,
+                    signed_bf16_scales_fixed=True, hard_integer_range=[-3, 3])
+            else:
+                reference = job / "original-static15.tfwc3"
+                run([args.recode, args.weights, reference], job / "original-static15-recode.log")
+                assert weight.read_bytes() == reference.read_bytes(), "integer-coordinate zero-step static15 differs"
+                state["original_static15_bytes"] = info["weight_bytes"]
+            state["zero_step"] = dict(info)
+            state["zero_step"].update(geometry())
             event("zero_step_export_passed", **state["zero_step"])
             checkpoint()
         if args.check_only:
@@ -469,15 +562,20 @@ def main():
             n = piece[2] - piece[1] - 1
             rng = torch.get_rng_state()
             before = cpu()
-            result = backward([piece], n, exact_teacher=True)
-            assert result["teacher_kl_mean"] == 0 and result["nonzero_gradient_tensors"] == 111
+            result = backward([piece], n, exact_teacher=not q7_teacher)
+            if q7_teacher:
+                assert result["teacher_kl_mean"] > 0 and result["finite_gradient_tensors"] == 111
+            else:
+                assert result["teacher_kl_mean"] == 0 and result["nonzero_gradient_tensors"] == 111
             update()
             after = geometry()
             assert after["changed_z_coordinates"] > 0 and after["changed_weight_symbols"] == 0
             check_weight, check_info = export("check-step")
             assert check_weight.read_bytes() == (job / "step-0000.tfwc3").read_bytes()
-            result.update(status="passed", piece=list(piece), targets=n, zero_step_logits_exact=True,
-                          frozen_original_tensors=429, optimizer_tensors=111, **after, **check_info,
+            result.update(check_info)
+            result.update(after)
+            result.update(status="passed", piece=list(piece), targets=n, zero_step_logits_exact=not q7_teacher,
+                          frozen_original_tensors=429, optimizer_tensors=111,
                           check_cpu_seconds=cpu() - before)
             (job / "preflight.json").write_text(json.dumps(result, indent=2) + "\n")
             event("one_step_check_passed", **result)
@@ -487,6 +585,14 @@ def main():
             optimizer.state.clear()
             optimizer.zero_grad(set_to_none=True)
             torch.set_rng_state(rng)
+            if q7_teacher:
+                validate()
+                assert not optimizer.state and all(torch.equal(v.detach(), original_q[k].float()) for k, v in z.items())
+                result.update(initialization_restored=True, optimizer_reset=True, ce_report_only=True,
+                              native_scaled_gemm=True, raw_trainable_tensors=0,
+                              exact_round241_quant7_export=True, teacher_cache_misses=cache_misses,
+                              teacher_cache_mode="read-only", recipe=RECIPE)
+                (job / "preflight.json").write_text(json.dumps(result, indent=2) + "\n")
             checkpoint()
             save("check_complete", status="ready", preflight="passed")
             return
@@ -527,7 +633,8 @@ def main():
             if cpu() + 120 >= args.cpu_seconds:
                 save("evaluation_budget_stop", status="cpu_budget")
                 return
-            evaluate()
+            if not q7_teacher or (epoch + 1) % RECIPE["evaluation_every"] == 0:
+                evaluate()
             state.update(epoch=epoch + 1, next_piece=0, epoch_targets=0, epoch_ce_sum=0., epoch_kl_sum=0.)
             checkpoint()
         save("trajectory_complete", status="complete")

@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
-"""One trained depth8 export versus retained v22 depth12, <=8 CPU hours.
+"""One trained export versus retained v22 depth12, <=8 CPU hours.
 
 Reuse passed original sample traces/round trips. The supplied deployment must
 link old non-NN objects with the actual eight-block NN objects and charge each
 side's deployed UPX runner. Preceding phases supply build/capture/training receipts.
+--q7-teacher-only uses the retained full12 probe/runner on both sides, with zero
+new baseline NN/codec/build CPU, and selects a hard export changed from q7 epoch0.
 """
 import argparse
 from array import array
@@ -40,6 +42,7 @@ V22_SOURCES = {
     "research/trace.h": "13c37af0dc657506b0b51636951d3526d47561e9c77047cb584d44a48eb93dc3"}
 SPECS = {"prefix8": (0, 8 << 20, 7344758, 1041690, 1041397, 1072279),
          "q2": (293232482, 1 << 20, 0, 1048576, 1048367, 208769)}
+Q7_FAMILY = "old-v22-full12-q7-teacher-only"
 
 
 def read(path):
@@ -126,16 +129,26 @@ def build_contract(b):
     assert math.isfinite(b["cpu_seconds"]) and 0 <= b["cpu_seconds"] < CPU_LIMIT
 
 
-def deployment_contract(d):
-    assert d["status"] == "built" and d["family"] == "old-v22-depth8-static15"
+def deployment_contract(d, q7_teacher_only=False):
+    assert d["status"] == "built" and d["family"] == (Q7_FAMILY if q7_teacher_only else "old-v22-depth8-static15")
     b = read(d["build_receipt"])
-    build_contract(b)
+    if q7_teacher_only:
+        # This is the original full12 414 receipt, read without a new link.
+        assert b["status"] == "built" and b["reference_relink_byte_equal"] is True
+        assert b["retained_main_abi"] is True and b["changed_object"] == "tf_weights_io_compressed.o"
+        assert b["interval_strict_fp"] is True
+        assert math.isfinite(b["cpu_seconds"]) and b["cpu_seconds"] >= 0
+    else:
+        build_contract(b)
     paths = {name: checked_file(row) for name, row in d["common"].items()}
     for side in ("baseline", "candidate"):
         for name, row in d[side].items():
             paths[side + "_" + name] = checked_file(row)
     paths["interval"] = checked_file(d["interval"])
-    assert b["outputs"] == {"probe": d["candidate"]["probe"], "binary": d["candidate"]["binary"]}
+    if q7_teacher_only:
+        assert d["candidate"] == {k: d["baseline"][k] for k in ("probe", "binary")}
+    else:
+        assert b["outputs"] == {"probe": d["candidate"]["probe"], "binary": d["candidate"]["binary"]}
     assert (d["baseline"]["weights"]["bytes"], d["baseline"]["weights"]["sha256"]) == (2904325, W0_SHA)
     for name, expected in FIXED.items():
         row = d["baseline"][name] if name == "binary" else d["common"][name]
@@ -145,16 +158,65 @@ def deployment_contract(d):
     r = read(reference / "mixed-build/build.json")
     assert r["status"] == "built" and r["reference_relink_byte_equal"] is True
     assert paths["baseline_probe"] == reference / "mixed-build/probe"
+    if q7_teacher_only:
+        assert Path(d["build_receipt"]).resolve() == reference / "mixed-build/build.json"
+        assert b == r and paths["interval"] == reference / "mixed-build/mixed-interval"
+        assert d["baseline"]["probe"]["bytes"] == b["common_probe_bytes"]
+        assert d["interval"]["bytes"] == b["interval_bytes"]
     return paths, b
 
 
-def student_schema(row):
-    assert tuple(row[k] for k in ("state_tensors", "quantized_weights", "activation_scales", "raw_fp32", "tensor_count")) == (289, 75, 80, 59, 294)
+def student_schema(row, q7_teacher_only=False):
+    expected = (429, 111, 119, 88, 434) if q7_teacher_only else (289, 75, 80, 59, 294)
+    assert tuple(row[k] for k in ("state_tensors", "quantized_weights", "activation_scales", "raw_fp32", "tensor_count")) == expected
     assert row["max_scale_delta"] == 0 and row["original_rope_bytes_equal"] is True
     assert row["decoded_tensor_bytes_equal"] is True and row["derived_tensors"] == 5
     r = row["static15_recode"]
-    assert r["status"] == "passed" and r["all_tensor_bytes_equal"] is True and r["int4_tensors"] == 75
+    if q7_teacher_only:
+        assert row["payload_tensor_count"] == 429 and row["raw_trainable_tensors"] == 0
+        assert row["native_scaled_gemm"] is True and row["hard_integer_limit"] == 3
+        assert -3 <= row["hard_integer_range"][0] <= row["hard_integer_range"][1] <= 3
+        assert r["status"] == "passed" and r["expected_tensor_bytes_equal"] is True
+        assert r["other_tensor_bytes_equal"] is True
+        assert (r["tensor_count"], r["int4_tensors"], r["int4_values"], r["replacement_tensors"]) == (434, 111, 5868864, 429)
+    else:
+        assert r["status"] == "passed" and r["all_tensor_bytes_equal"] is True and r["int4_tensors"] == 75
     assert Path(row["weight_file"]).stat().st_size == row["weight_bytes"]
+
+
+def recipe_contract(recipe, q7_teacher_only=False):
+    if q7_teacher_only:
+        spec = importlib.util.spec_from_file_location(
+            "q7_mixed_recipe", Path(__file__).with_name("q7_teacher_only.py"))
+        helper = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(helper)  # Standard-library-only helper.
+        original = dict(method="fixed-scale-integer-coordinate-v1", epochs=64, lr=.01,
+                        betas=[.9, .99], eps=1e-8, weight_decay=0, tau=.5,
+                        teacher_kl_coefficient=1, full_targets=old.FULL_BYTES, seed=245)
+        assert recipe == helper.q7_recipe(original), "q7 teacher-only recipe identity mismatch"
+    else:
+        assert recipe["epochs"] == 32 and recipe["continuous_epochs"] == 8 and recipe["evaluation_every"] == 4
+        assert recipe["kept_layers"] == [0, 1, 2, 3, 8, 9, 10, 11]
+        assert recipe["frozen"] == "all signed BF16 weight and activation scales"
+
+
+def choose_q7_export(baseline, full_targets, original_bytes, exports):
+    """The q7 initialization is report-only; select real positive hard changes."""
+    rows = []
+    for export in exports:
+        held = export["held_total"]
+        assert held["count"] == baseline["count"] and math.isfinite(held["logits_mean"])
+        payload = (baseline["logits_mean"] - held["logits_mean"]) * full_targets / (8 * math.log(2))
+        double_w = 2 * (original_bytes - export["weight_bytes"])
+        eligible = (export["epoch"] > 0 and export["step"] > 0 and
+                    not export["original_byte_equal"] and not export["initial_student_byte_equal"])
+        rows.append(dict(export, held_delta_raw_nll=held["logits_mean"] - baseline["logits_mean"],
+                         projected_payload_saved_bytes=payload, double_weight_saved_bytes=double_w,
+                         proxy_net_saved_bytes=payload + double_w, selection_eligible=eligible))
+    assert len({row["epoch"] for row in rows}) == len(rows)
+    pool = [row for row in rows if row["selection_eligible"]]
+    best = max(pool, key=lambda row: (row["proxy_net_saved_bytes"], -row["epoch"])) if pool else None
+    return best, sorted(rows, key=lambda row: row["epoch"])
 
 
 def terminal_contract(pipeline, trajectory, code):
@@ -181,11 +243,14 @@ def main():
     p.add_argument("--self-check", action="store_true")
     p.add_argument("--retained-build", action="store_true",
                    help="reuse an already completed native deployment; charge zero new build CPU")
+    p.add_argument("--q7-teacher-only", action="store_true",
+                   help="full12 fixed-q7 2KL recipe; retained baseline/build only; require trained hard change from epoch0")
     a = p.parse_args()
     if a.self_check:
-        self_check()
+        q7_self_check() if a.q7_teacher_only else self_check()
         return
     assert a.deployment is not None
+    assert not a.q7_teacher_only or a.retained_build, "q7 mode requires --retained-build"
     job = a.job.resolve()
     out = job / "depth-mixed-audit"
     out.mkdir(exist_ok=True)
@@ -194,9 +259,15 @@ def main():
     os.sched_setaffinity(0, {min(os.sched_getaffinity(0))})
     resource.setrlimit(resource.RLIMIT_AS, (24 << 30, 24 << 30))
     build_cpu = 0.
-    state = dict(schema="hutter.depth-mixed.v1", status="checking", family="old-v22-depth8-static15",
+    state = dict(schema="hutter.q7-teacher-only-mixed.v1" if a.q7_teacher_only else "hutter.depth-mixed.v1",
+                 status="checking", family=Q7_FAMILY if a.q7_teacher_only else "old-v22-depth8-static15",
                  started_at=time.time(), steps={}, paired={}, commands={}, cpu_limit_seconds=CPU_LIMIT,
                  address_space_limit_gib=24, trace_budget_bytes=old.TRACE_LIMIT, new_ppmd_capture_runs=0)
+    if a.q7_teacher_only:
+        state.update(q7_teacher_only=True, new_baseline_native_runs=0, new_native_compile_runs=0,
+                     new_native_link_runs=0, original_encode_runs=0, original_decode_runs=0,
+                     candidate_encode_runs=0, candidate_decode_runs=0, candidate_interval_runs=0,
+                     cpu_scope="all new collector metadata, candidate codec/trace/reader; retained historical build CPU excluded")
     deadline = time.time() + 604800
 
     def cpu():
@@ -218,6 +289,10 @@ def main():
         env = dict(os.environ, OMP_NUM_THREADS="1", OPENBLAS_NUM_THREADS="1", MKL_NUM_THREADS="1",
                    HUTTER_TRACE_PATH=str(trace) if trace else "", HUTTER_PPMD_TRACE_PATH="", HUTTER_MIXER_TRACE_PATH="")
         log, started = out / (label+".log"), time.time()
+        if a.q7_teacher_only:
+            for phase in ("encode", "decode", "interval"):
+                if label.endswith("-candidate-" + phase):
+                    state["candidate_" + phase + "_runs"] += 1
         with log.open("w") as f:
             process = subprocess.Popen(command, stdout=f, stderr=subprocess.STDOUT,
                 stdin=subprocess.DEVNULL, env=env, cwd=out, preexec_fn=limits)
@@ -261,9 +336,10 @@ def main():
         code = int((job / "training.exit").read_text())
         terminal_contract(pipeline, trajectory, code)
         recipe = trajectory["identity"]["recipe"]
-        assert recipe["epochs"] == 32 and recipe["continuous_epochs"] == 8 and recipe["evaluation_every"] == 4
-        assert recipe["kept_layers"] == [0, 1, 2, 3, 8, 9, 10, 11]
-        assert recipe["frozen"] == "all signed BF16 weight and activation scales"
+        recipe_contract(recipe, a.q7_teacher_only)
+        if a.q7_teacher_only:
+            assert trajectory["identity"]["teacher_cache_mode"] == "read-only"
+            assert trajectory["quant7_initialization"]["exact_round241_quant7_export"] is True
         data = read(trajectory["identity"]["data"])
         assert (data["method"], data["source_bytes"], data["training_pieces"], data["training_targets"]) == ("causal-whole-piece-v1", old.FULL_BYTES, 1313, 2941307)
         assert [s["name"] for s in data["samples"]] == ["causal", "long-audit"]
@@ -275,7 +351,7 @@ def main():
         completed = trajectory["epoch"] + int(trajectory["next_piece"] == 1313)
         assert completed <= 32 and (trajectory["status"] != "complete" or completed == 32)
         d = read(a.deployment)
-        paths, build = deployment_contract(d)
+        paths, build = deployment_contract(d, a.q7_teacher_only)
         build_cpu = 0. if a.retained_build else build["cpu_seconds"]
         remaining = math.floor(CPU_LIMIT-cpu())
         assert remaining > 30
@@ -285,28 +361,44 @@ def main():
         assert baseline["status"] == "passed"
         base_total = old.native_total(baseline["steps"]["causal"]["result"], 1082505)
         zero = trajectory["zero_step"]
-        student_schema(zero)
+        student_schema(zero, a.q7_teacher_only)
         zero_sha = old.sha(Path(zero["weight_file"]))
         assert zero_sha != W0_SHA
         exports = []
         for row in trajectory["evaluations"]:
             epoch = row["epoch"]
             assert 0 < epoch <= completed and epoch % 4 == 0 and row["step"] > 0
-            student_schema(row)
+            student_schema(row, a.q7_teacher_only)
             for name, targets in [("causal", 1082505), ("long-audit", 131071)]:
-                held = old.native_total(old.activation_result(job / f"training/epoch-{epoch:02d}-{name}.log"), targets)
+                result = old.activation_result(job / f"training/epoch-{epoch:02d}-{name}.log")
+                held = old.native_total(result, targets)
                 assert (held["count"], held["logits_mean"]) == (row["scores"][name]["targets"], row["scores"][name]["raw_nll"])
+                if a.q7_teacher_only and name == "causal":
+                    long_losses = [result["piece_losses"][i]["loss"] for i in data["samples"][0]["score"]["long_piece_indices"]]
+                    long_targets = sum(x["count"] for x in long_losses)
+                    long_mean = sum(x["count"] * x["logits_mean"] for x in long_losses) / long_targets
+                    long = row["scores"][name]["long_native"]
+                    assert long_targets == long["targets"] == 107647 and long_mean == long["raw_nll"]
             digest = old.sha(Path(row["weight_file"]))
+            if a.q7_teacher_only:
+                assert (digest == zero_sha) == (row["changed_weight_symbols"] == 0)
             exports.append(dict(epoch=epoch, step=row["step"], weight_file=row["weight_file"], weight_bytes=row["weight_bytes"],
                 held_total={"count": 1082505, "logits_mean": row["scores"]["causal"]["raw_nll"]},
-                original_byte_equal=digest == W0_SHA, initial_student_byte_equal=digest == zero_sha, report_only=row["scores"]))
-        assert exports, "terminal trajectory has zero completed trained native exports"
-        best, rows = old.choose_export(base_total, old.FULL_TARGETS, 2904325, exports)
+                original_byte_equal=digest == W0_SHA, initial_student_byte_equal=digest == zero_sha, report_only=row["scores"],
+                **({"changed_weight_symbols": row["changed_weight_symbols"]} if a.q7_teacher_only else {})))
+        if a.q7_teacher_only:
+            best, rows = choose_q7_export(base_total, old.FULL_TARGETS, 2904325, exports)
+        else:
+            assert exports, "terminal trajectory has zero completed trained native exports"
+            best, rows = old.choose_export(base_total, old.FULL_TARGETS, 2904325, exports)
         dual_b = 2*(d["baseline"]["binary"]["bytes"]-d["candidate"]["binary"]["bytes"])
+        if a.q7_teacher_only:
+            assert dual_b == 0
         for row in rows:
             row.update(dual_code_saved_bytes=dual_b, proxy_net_saved_bytes=row["proxy_net_saved_bytes"]+dual_b)
-        best = next(row for row in rows if row["epoch"] == best["epoch"])
-        weight = Path(best["weight_file"])
+        if best is not None:
+            best = next(row for row in rows if row["epoch"] == best["epoch"])
+        weight = Path(best["weight_file"]) if best is not None else paths["baseline_weights"]
         plan = read(a.range_plan or job / "incoming/source-plan.json")
         boundaries = array("i")
         boundaries.frombytes((paths["stream"].parent / "article_boundaries.i32").read_bytes())
@@ -316,20 +408,48 @@ def main():
         state.update(baseline_weight=d["baseline"]["weights"], candidate_weight=file_record(weight),
             baseline_probe=d["baseline"]["probe"], candidate_probe=d["candidate"]["probe"],
             B0=d["baseline"]["binary"], B1=d["candidate"]["binary"], deployment_sha256=old.sha(a.deployment),
-            build_receipt=build, prior_mixed_build_cpu_seconds=build_cpu, original_weight_bytes_equal=False,
+            build_receipt=build, prior_mixed_build_cpu_seconds=build["cpu_seconds"] if a.q7_teacher_only else build_cpu,
+            original_weight_bytes_equal=best is None,
             retained_native_build=a.retained_build,
-            double_weight_saved_bytes=best["double_weight_saved_bytes"], dual_code_saved_bytes=dual_b,
+            double_weight_saved_bytes=best["double_weight_saved_bytes"] if best is not None else 0, dual_code_saved_bytes=dual_b,
             pipeline_terminal=dict(status=trajectory["status"], training_exit=code, target_epochs=32,
-                completed_epochs=completed, completed_continuous_epochs=min(8, completed), completed_hard_epochs=max(0, completed-8),
+                completed_epochs=completed, completed_continuous_epochs=0 if a.q7_teacher_only else min(8, completed),
+                completed_hard_epochs=completed if a.q7_teacher_only else max(0, completed-8),
                 partial_epoch_next_piece=trajectory["next_piece"], seen_targets=trajectory["seen_targets"],
                 training_cpu_seconds=trajectory["total_cpu_seconds"], large_python_child_reaped=True),
-            selection=dict(status="frozen", scope="one positive-epoch trained hard/native export; full realized held proxy",
+            selection=dict(status="frozen" if best is not None else "retained_original",
+                scope="one positive-epoch trained hard/native export; full realized held proxy",
                 criterion="(held_NLL0-held_NLL1)*586215331/(8*ln2)+2*(W0-W1)+2*(B0-B1)", kappa=1,
                 held_targets=1082505, baseline_held_total=base_total, original_weight_sha256=W0_SHA,
                 selected_weight_sha256=old.sha(weight), selected=best, completed_exports=rows,
                 initial_student=dict(epoch=0, original_byte_equal=False, selected=False, weight_file=zero["weight_file"], weight_bytes=zero["weight_bytes"], sha256=zero_sha),
                 tie_breaker="earliest epoch", independent_max_audit_role="report-only", held_long3_role="report-only",
                 realized_sampling_range=old.selection_range(plan, boundaries)))
+        if a.q7_teacher_only:
+            state.update(recipe=recipe, quant7_initialization=trajectory["quant7_initialization"], new_mixed_build_cpu_seconds=0.)
+            state["pipeline_terminal"].update(partial_epoch_targets=trajectory["epoch_targets"], target_training_targets=94121824)
+            state["selection"].update(initial_student_role="report-only q7 initialization, separate from retained W0",
+                eligibility="positive epoch and step; hard W byte-different from q7 initialization and retained W0",
+                retained_original_weight=d["baseline"]["weights"], hard_evaluated_epochs=[row["epoch"] for row in rows])
+            if best is None:
+                reason = ("zero_completed_positive_hard_exports" if not rows else
+                          "all_positive_hard_exports_equal_q7_initialization" if all(row["initial_student_byte_equal"] for row in rows)
+                          else "positive_hard_exports_retain_original_W0")
+                state["selection"].update(stop_reason=reason, selected=None,
+                    scope="retained W0 decision; hard-change checks at the recorded completed positive native epochs",
+                    selected_weight_sha256=None, retained_weight_sha256=W0_SHA,
+                    no_change_scope="completed positive hard/native exports relative to q7 initialization",
+                    all_evaluated_hard_exports_initial_byte_equal=bool(rows) and all(row["initial_student_byte_equal"] for row in rows))
+                state.update(candidate_weight=None, retained_weight=d["baseline"]["weights"],
+                    candidate_codec=dict(status="stopped", reason=reason, selected_trained_weight=None),
+                    actual_mixed=dict(status="retained_original_no_candidate_codec", sample_count=0,
+                        scope="retained W0 decision; completed-export hard-change scope recorded in selection"),
+                    full_s=dict(status="stopped_no_trained_candidate", source_bytes=old.FULL_BYTES,
+                        native_targets=old.FULL_TARGETS, known_double_weight_saved_bytes=0,
+                        known_dual_code_saved_bytes=0, actual_full_s_saved_bytes=None))
+                save(status="complete", phase="retained_original", finished_at=time.time())
+                return
+            assert best["initial_student_byte_equal"] is False and best["changed_weight_symbols"] > 0
         assert state["selection"]["selected"]["epoch"] > 0 and best["original_byte_equal"] is False
         save(status="frozen")
         token_dir = out / "data"
@@ -441,6 +561,34 @@ def self_check():
     assert trace == ["clang++-17", "-m64", "/old-trace/predictor.o", "/old-trace/fxcmv1.o", "/old-trace/mixer.o", "/native8/tf_model_opt.o", "/old-trace/probe_research.o", "/native8/tf_kernels_reference.o", "-o", "/out/probe"]
     assert runner[-6:] == ["/native8/tf_model_opt.o", "/old-prod/runner.o", "-s", "/native8/tf_kernels_reference.o", "-o", "/out/cmix"]
     print(json.dumps({"status": "passed", "checks": ["current complete/cpu_budget terminal", "positive trained epoch with earliest tie and negative proxy", "same held target mask", "double-W and real dual-B once", "depth epoch0 outside W0 selection", "v22 non-NN retained plus canonical-attention object"], "heavy_calls": 0}))
+
+
+def q7_self_check():
+    for status, code in (("complete", 0), ("cpu_budget", 124)):
+        terminal_contract(dict(status=status, stage="training_terminal", training_status=status,
+                               training_exit_code=code), dict(status=status), code)
+    baseline = {"count": 8, "logits_mean": 2.5}
+    initial = dict(epoch=0, step=0, weight_bytes=1, held_total={"count": 8, "logits_mean": 0.},
+                   original_byte_equal=False, initial_student_byte_equal=True)
+    unchanged = dict(initial, epoch=4, step=1)
+    changed = dict(initial, epoch=8, step=2, weight_bytes=90,
+                   held_total={"count": 8, "logits_mean": 3.}, initial_student_byte_equal=False)
+    later = dict(changed, epoch=12, step=3)
+    best, rows = choose_q7_export(baseline, 80*math.log(2), 100, [initial, unchanged, later, changed])
+    assert best["epoch"] == 8 and best["proxy_net_saved_bytes"] == 15
+    assert not rows[0]["selection_eligible"] and not rows[1]["selection_eligible"]
+    negative = dict(changed, held_total={"count": 8, "logits_mean": 10.})
+    best, _ = choose_q7_export(baseline, 80*math.log(2), 100, [unchanged, negative])
+    assert best["epoch"] == 8 and best["proxy_net_saved_bytes"] < 0
+    assert choose_q7_export(baseline, 80, 100, [unchanged])[0] is None
+    assert choose_q7_export(baseline, 80, 100, [])[0] is None
+    assert choose_q7_export(baseline, 80, 100, [dict(changed, original_byte_equal=True)])[0] is None
+    assert sum(spec[1]*128 for spec in SPECS.values()) == 1207959552
+    print(json.dumps({"status": "passed", "family": Q7_FAMILY,
+        "checks": ["complete/cpu_budget terminal", "q7 epoch0 report-only", "positive hard change from initialization",
+                   "fullheld-minus-doubleW earliest tie", "byte-different negative proxy measured once",
+                   "all-initial/no-export retain W0 and skip codec", "same full12 B delta0", "sameW trace bytes"],
+        "heavy_calls": 0}))
 
 
 if __name__ == "__main__":

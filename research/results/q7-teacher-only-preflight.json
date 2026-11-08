@@ -1,0 +1,90 @@
+{
+  "schema": "hutter.q7-teacher-only.preflight.v1",
+  "scope": "One complete cached causal piece, one optimizer update, restored initialization and optimizer",
+  "preflight": {
+    "status": "passed",
+    "piece": [
+      0,
+      5321,
+      6521
+    ],
+    "targets": 1199,
+    "ce_mean": 1.0366592725383132,
+    "teacher_kl_mean": 0.36567785980504586,
+    "objective": 0.768070476217787,
+    "finite_gradient_tensors": 111,
+    "nonzero_gradient_tensors": 111,
+    "changed_z_coordinates": 5443182,
+    "changed_weight_symbols": 0,
+    "initialization_restored": true,
+    "optimizer_reset": true,
+    "ce_report_only": true,
+    "teacher_cache_misses": 0,
+    "teacher_cache_mode": "read-only",
+    "raw_trainable_tensors": 0,
+    "native_scaled_gemm": true,
+    "check_cpu_seconds": 5.915475907000001
+  },
+  "recipe": {
+    "method": "q7-teacher-only-fixed-scale-integer-coordinate-v1",
+    "epochs": 32,
+    "lr": 0.01,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "tau": 0.5,
+    "teacher_kl_coefficient": 2.0,
+    "full_targets": 586459020,
+    "seed": 414,
+    "evaluation_every": 4,
+    "final_batch": "merge-short-tail",
+    "label_ce": 0.0,
+    "final_hidden_mse": 0.0,
+    "raw_trainable_tensors": 0,
+    "coordinate_tensors": 111,
+    "hard_integer_range": [
+      -3,
+      3
+    ],
+    "soft_symbols": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "quant7_map": "sign(q)*floor((3*abs(q)+3)/7)",
+    "weight_scale_map": "signed-BF16-exact-RNE-times-7/3",
+    "native_scaled_gemm": true,
+    "cpu_gemm": "integer-units-before-native-BF16-fold"
+  },
+  "initial_export": {
+    "weight_bytes": 2044814,
+    "tensor_count": 434,
+    "state_tensors": 429,
+    "quantized_weights": 111,
+    "activation_scales": 119,
+    "raw_fp32": 88,
+    "derived_tensors": 5,
+    "max_scale_delta": 0.0,
+    "original_rope_bytes_equal": true,
+    "decoded_tensor_bytes_equal": true,
+    "current_soft_entropy_nats": 10765850.08984375,
+    "hard_integer_range": [
+      -3,
+      3
+    ]
+  },
+  "round241_quant7_file_byte_equal": true,
+  "training": {
+    "status": "started",
+    "target_epochs": 32,
+    "epoch_at_start": 0,
+    "step_at_start": 0
+  }
+}
