@@ -102,6 +102,41 @@ that the mean gradient agrees while measuring the actual-label direction and
 teacher-label variance. The complete compressed-model experiment supplies
 its learned native/coded performance.
 
+### Actual-label visitation and finite capacity
+
+For a fixed context, let `Q` be the distribution of target labels and let
+`Q(v)` be its mass in prefix `v`. Summing the same visited binary terms gives:
+
+```text
+E_{y~Q} U(y) = Σ_all_nodes Q(v) × KL(Bern(t_v) || Bern(s_v))
+KL(T || S)   = Σ_all_nodes T(v) × KL(Bern(t_v) || Bern(s_v))
+
+D_path(y) ≤ U(y) ≤ D_path(y) / A_min(y),
+A_min(y) = min_{v on y's path} T(v) > 0.
+```
+
+The bound follows term by term from `A_min ≤ T(v) ≤ 1` and nonnegative
+Bernoulli KL. Deterministic vocabulary branches contribute zero. Under
+`Q = T`, the full function is the categorical KL, so its teacher-averaged
+Hessian in effective-row logit coordinates is the full categorical Fisher:
+rank **204** with positive support over 205 leaves. Each individual label still exposes at most eight path
+directions. The native-observer version uses the corresponding auxiliary
+trees `ρ_T` and `ρ_S` described below, and their prefix masses.
+
+Thus the learning mechanism follows **data-prefix weighting and shared-model
+capacity**. The 30.716% within-sibling measurement below is the initialization's
+nine-group geometry. On the 12 saved rows, actual-label equal-bit `U` averages
+**1.356488**, while full KL averages **1.339575**; the corresponding gradient
+ratios and sampling variance are in the [gradient-scale report](byte-path-gradient-scale.md).
+
+The [existing late parameter audit](depth-objective-gradients.md#hidden-loss-alignment-at-the-measured-checkpoint)
+also supplies a concrete control: after 18 completed epochs, full KL and
+weighted hidden MSE have cosine **+.914533** on its fixed 1,199-target piece.
+A finite-capacity path gain concerns competition with the **actual-path**
+objective in shared parameters and its resulting held/giant performance.
+The complete hard-export and same-weight coded trajectories supply that
+performance measurement.
+
 ## Initial-eight measurement: three complete causal held pieces
 
 The existing full-piece CPU loader ran the original 12-block teacher and the

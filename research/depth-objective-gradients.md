@@ -51,8 +51,35 @@ positive dots on this piece.
 This localizes the competing pressure inside the original learning method.
 The broad eight-layer capacity residual, independent long-article support
 and same-weight coded savings remain the next complete measurement targets.
-The existing 32-epoch method and sole mixed-codec measurement continue;
-a new teacher-only trajectory is still an unrun candidate.
+This measured point belongs to the original CE+KL trajectory. The later
+[independent teacher-only trajectory](teacher-only-distillation.md) has entered
+its complete 32-epoch comparison; its native and coded measurements retain
+their own checkpoint identities.
+
+## Hidden-loss alignment at the measured checkpoint
+
+The same compact result contains the ordinary parameter gradients of full KL
+and **0.1 × final-hidden MSE**. Their pairing at this nineteenth-pass hard-STE
+point is:
+
+| Parameter group | KL / weighted-hidden cosine | KL gradient · weighted-hidden gradient |
+|---|---:|---:|
+| All 134 | +.914533311 | +1.191338923 |
+| 75 bounded z | +.257986742 | +.000003049 |
+| 59 raw F32 | +.914556957 | +1.191335874 |
+
+Both groups have positive dots. With their original positive group step
+sizes, descent along the weighted-hidden gradient locally decreases full KL
+on this piece. This is the same one forward and the same published VJPs:
+3,970,790 trainable elements, 1,199 causal targets, completed epochs 18,
+step 1472. The original AdamW trajectory retains its historical moments and
+complete-batch updates.
+
+For the later [actual-label path objective](byte-path-quotient.md#actual-label-visitation-and-finite-capacity),
+shared-parameter competition concerns its actual path directions. The
+full-KL/hidden alignment here supplies a measured late-stage control for
+that interpretation; the complete trained-weight/native/coded comparison
+measures the resulting performance.
 
 ## Resource and reproducibility receipt
 
