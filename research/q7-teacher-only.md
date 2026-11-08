@@ -191,3 +191,11 @@ codec calls for this readout: zero.
 signed-BF16 scale map changes pre-round Adam displacement in weight units.
 Its scalar, shared-gradient-history scope is reported separately from the
 actual complete training trajectory.
+
+## Integer-unit arithmetic certificate
+
+The [normal-BF16/FP32 certificate](integer-unit-exactness.md) checks hard STE
+values, scale recovery and the exact integer reduction bound. For this seven-
+symbol grid, every 768-term INT8 dot has an absolute partial-sum bound of
+294,912. The fold is a FP32 product of two BF16-derived scales. Native curves
+and the selected weight's own codec retain their end-to-end measurement scope.

@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "scope": "hard bounded coordinates; normal BF16 scales; finite products; binary32 RNE integer GEMM",
+  "ste_scalar_points": 24603,
+  "normal_bf16_scales": 65024,
+  "scale_symbol_cases_passed": 1221856,
+  "overflow_cases_outside_finite_product_domain": 13600,
+  "dot_absolute_partial_sum_bounds": {
+    "q15": 688128,
+    "q7": 294912
+  },
+  "dot_order_controls": 18,
+  "fold": "FP32 product of the two BF16-derived scales; no second BF16 cast",
+  "operations": {
+    "torch_imports": 0,
+    "model_runs": 0,
+    "native_runs": 0,
+    "network_calls": 0
+  }
+}
