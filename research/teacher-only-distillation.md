@@ -219,3 +219,35 @@ mixed-codec samples follow the complete trajectory's terminal. This stage
 comparison uses the new watcher aggregate and retained original controls;
 additional model/native runs and remote reads are zero.
 [Complete e12 comparison and e8-to-e12 changes](results/teacher-only-native-e12.json).
+
+## Native checkpoint: epoch 16
+
+The unique watcher returned native e16 after eight hard-coordinate epochs,
+with the matched CE+KL e16 retained from the complete original trajectory.
+The shared data, architecture and native-scoring contract continue unchanged.
+
+| Native scope | Targets | Original CE+KL e16 | Teacher-only e16 | Fresh minus old | Fresh e16 minus e12 |
+| :--- | ---: | ---: | ---: | ---: | ---: |
+| Full held | 1,082,505 | 1.149255265863 | 1.123169183843 | −0.026086082021 | +0.000756564250 |
+| Long held subset | 107,647 | 1.472786730094 | 1.439897893520 | −0.032888836574 | −0.000777955899 |
+| Independent giant | 131,071 | 0.275808524938 | 0.258788764484 | −0.017019760453 | +0.025726246330 |
+
+Fresh e16 has lower NLL than old e16 in all three scopes. Within the fresh
+trajectory, full-held and giant NLL rise from e12, while long-held NLL falls.
+The derived other 470 held pieces (974,858 targets) improve by
+**0.025334899675** nats/target against old e16 and rise by **0.000926010970**
+from fresh e12. Fresh residuals versus W0 are **+0.156920845048 /
++0.181283592210 / +0.219802338353**. Long held stays inside full held;
+independent scored coverage remains **1,213,576 targets**.
+
+Fresh e16 weighs **1,960,239 B**, versus old e16's **1,961,715 B**: the
+two-copy weight charge improves by **2,952 B** against old e16 and saves
+**1,888,172 B** against W0. Fresh weight grew **511 B** from e12. Binary and
+actual coded payload retain their separate measurements and the sole selected
+weight's actual codec contract. Full32 and its paired codec run continue;
+the next trigger is e20/native or actual same-weight mixed terminal/error.
+This report adds zero remote state reads, model/native runs or collectors.
+[Stage data and e12-to-e16 changes](results/teacher-only-native-e16.json);
+`python3 research/check-teacher-only-native-e16.py` checks counts, W0 gaps,
+target-weighted remainder identities and both weight charges using the standard
+library and the retained e12 JSON.
