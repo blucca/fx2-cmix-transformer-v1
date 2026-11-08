@@ -178,7 +178,44 @@ complete trajectory's terminal; binary, payload and weight components remain
 separately measured.
 
 The complete 32-epoch run, its 24 hard-coordinate epochs, and the single
-selected-weight paired codec measurement continue. The next native checkpoint
-is e12. This report uses the actual watcher aggregate and the retained old
+selected-weight paired codec measurement continue. Scheduled native checkpoints follow every fourth epoch. This report uses the actual watcher aggregate and the retained old
 control; additional model/native runs and remote reads are zero.
 [Complete e8 comparison and e4-to-e8 changes](results/teacher-only-native-e8.json).
+
+
+## Native checkpoint: epoch 12
+
+The unique watcher returned the e12 native checkpoint after four completed
+hard-coordinate epochs. The retained matched CE+KL e12 is from the original
+complete trajectory. The fixed architecture, data and native scoring contract
+continue unchanged.
+
+| Native scope | Targets | Original CE+KL e12 | Teacher-only e12 | Fresh minus old |
+| :--- | ---: | ---: | ---: | ---: |
+| Full held | 1,082,505 | 1.145141392609 | 1.122412619593 | −0.022728773016 |
+| Long held subset | 107,647 | 1.466907443103 | 1.440675849419 | −0.026231593684 |
+| Independent giant | 131,071 | 0.268978606267 | 0.233062518154 | −0.035916088113 |
+
+Teacher-only e12 has lower NLL in all three reported domains than the original
+e12. The derived other 470 held pieces improve by **0.022341980133**
+nats/target. Within the fresh trajectory, e8 to e12 also lowers all three NLLs:
+**0.032959854121 / 0.037366480636 / 0.007940609129** nats/target for full held,
+its long subset and the independent giant, respectively.
+
+Fresh e12 retains positive residuals against the original 12-block W0:
+**+0.156164280798 / +0.182061548110 / +0.194076092023** nats/target.
+Primary selection continues to use full held; the long subset and giant retain
+their report-only roles. Independent scored coverage is **1,213,576 targets**,
+with long held counted inside full held.
+
+Fresh e12 weighs **1,959,728 B**, against old e12's **1,960,982 B**. This improves
+the two-copy weight charge by **2,508 B** versus old e12 and saves **1,889,194 B**
+versus W0. The fresh asset grew by **557 B** from e8. Binary and actual coded
+payload components retain their own measurements.
+
+The complete 32-epoch run and sole selected-weight paired codec measurement
+continue. The next scheduled native checkpoint is e16; selection and actual
+mixed-codec samples follow the complete trajectory's terminal. This stage
+comparison uses the new watcher aggregate and retained original controls;
+additional model/native runs and remote reads are zero.
+[Complete e12 comparison and e8-to-e12 changes](results/teacher-only-native-e12.json).
