@@ -144,3 +144,41 @@ The independent 32-epoch curve and its sole selected-weight mixed-codec
 measurement continue. This e4 report uses the actual native aggregate; complete
 raw checkpoint receipts will be collected together at the real terminal.
 [Full same-epoch comparison](results/teacher-only-first-native-e4.json).
+
+
+## Native checkpoint: epoch 8
+
+The unique watcher has now returned the e8 native checkpoint, at the end of
+the continuous stage. The matched CE+KL e8 is retained from its completed
+original trajectory. Both are hard-exported weights scored by the same native
+family and held-data contract.
+
+| Native scope | Targets | Original CE+KL e8 | Teacher-only e8 | Fresh minus old |
+| :--- | ---: | ---: | ---: | ---: |
+| Full held | 1,082,505 | 1.168803883378 | 1.155372473714 | −0.013431409664 |
+| Long held subset | 107,647 | 1.498125758357 | 1.478042330055 | −0.020083428301 |
+| Independent giant | 131,071 | 0.224976626208 | 0.241003127283 | +0.016026501075 |
+
+The new objective now has a lower NLL on the primary full-held scope and its
+long subset. The derived other 470 held pieces also have a lower NLL. The
+independent giant has a higher NLL. Against the original 12-block W0, fresh
+e8 retains gaps of **+0.189124134920 / +0.219428028745 / +0.202016701152**
+nats/target.
+
+Within the fresh trajectory, e4 to e8 lowers full-held NLL by
+**0.036592777636** and long-subset NLL by **0.038184869622**; giant NLL rises
+by **0.034393262694**. Primary selection and independent-audit behavior are
+reported on their own scored scopes.
+
+Fresh e8 weighs **1,959,171 B**, against old e8's **1,960,160 B**. Its two
+weight copies improve the weight charge by **1,978 B** versus old e8 and save
+**1,890,308 B** versus W0. Within the fresh trajectory the asset grew by
+**1,464 B** from e4. Actual mixed-codec bytes use the selected weight at the
+complete trajectory's terminal; binary, payload and weight components remain
+separately measured.
+
+The complete 32-epoch run, its 24 hard-coordinate epochs, and the single
+selected-weight paired codec measurement continue. The next native checkpoint
+is e12. This report uses the actual watcher aggregate and the retained old
+control; additional model/native runs and remote reads are zero.
+[Complete e8 comparison and e4-to-e8 changes](results/teacher-only-native-e8.json).
