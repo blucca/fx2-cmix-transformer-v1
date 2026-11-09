@@ -1,0 +1,62 @@
+name: ORT QDQ native macOS ARM64 control
+
+on:
+  push:
+    branches: [research/ort-native-macos-20261110]
+
+permissions:
+  contents: read
+
+jobs:
+  original-fixture:
+    runs-on: macos-15
+    timeout-minutes: 10
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+      OMP_NUM_THREADS: '1'
+      OPENBLAS_NUM_THREADS: '1'
+      VECLIB_MAXIMUM_THREADS: '1'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          architecture: arm64
+      - name: Install the two pinned binary packages
+        run: python -m pip install --only-binary=:all: --timeout 30 --retries 0 numpy==2.5.3 onnxruntime==1.30.0
+      - name: Record the native environment and obtain kadu-v's fixture
+        run: |
+          python - <<'PY'
+          import io, json, platform, urllib.request, zipfile
+          from pathlib import Path
+          import numpy as np
+          import onnxruntime as ort
+          assert platform.system() == 'Darwin' and platform.machine() == 'arm64'
+          assert np.__version__ == '2.5.3' and ort.__version__ == '1.30.0'
+          out = Path('temp/ort-qdq-macos-arm64')
+          out.mkdir(parents=True, exist_ok=True)
+          source = 'https://github.com/user-attachments/files/32810047/minimal_model.onnx.zip'
+          with urllib.request.urlopen(source, timeout=30) as response:
+              archive = response.read()
+          with zipfile.ZipFile(io.BytesIO(archive)) as z:
+              names = [n for n in z.namelist() if Path(n).name == 'minimal_model.onnx']
+              assert len(names) == 1
+              (out / 'minimal_model.onnx').write_bytes(z.read(names[0]))
+          (out / 'native-environment.json').write_text(json.dumps({
+              'system': platform.system(), 'machine': platform.machine(),
+              'platform': platform.platform(), 'mac_ver': platform.mac_ver()[0],
+              'python': platform.python_version(), 'numpy': np.__version__,
+              'onnxruntime': ort.__version__, 'ort_build': ort.get_build_info(),
+              'model_source': source
+          }, indent=2) + '\n')
+          PY
+      - name: Run the unchanged six routes and three endpoint-preserving probes
+        timeout-minutes: 5
+        run: python -B research/ort-qdq-fusion-control.py temp/ort-qdq-macos-arm64/minimal_model.onnx temp/ort-qdq-macos-arm64
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ort-qdq-macos-arm64-readout
+          path: temp/ort-qdq-macos-arm64/*.json
+          if-no-files-found: warn
+          retention-days: 14
