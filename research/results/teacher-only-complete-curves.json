@@ -1,0 +1,852 @@
+{
+  "schema": "hutter.teacher-only.complete-curves.v1",
+  "validation_status": "passed",
+  "training": {
+    "epochs_each": 32,
+    "targets_each_epoch": 2941307,
+    "targets_each_trajectory": 94121824,
+    "optimizer_steps_each": 2524,
+    "continuous_then_hard_epochs": [
+      8,
+      24
+    ],
+    "online_means": "pre-update, target-weighted, same 1313 training pieces",
+    "original_CE_KL": [
+      {
+        "epoch": 1,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.2635416268519422,
+        "teacher_kl_mean": 0.28819836092281653,
+        "final_hidden_mse_mean": 0.27887038886773546
+      },
+      {
+        "epoch": 2,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.1696923831475903,
+        "teacher_kl_mean": 0.2054537648950001,
+        "final_hidden_mse_mean": 0.19310860950032602
+      },
+      {
+        "epoch": 3,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.1376189555153213,
+        "teacher_kl_mean": 0.18572650567789048,
+        "final_hidden_mse_mean": 0.17745109320320687
+      },
+      {
+        "epoch": 4,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.1211579193161196,
+        "teacher_kl_mean": 0.1800423021254165,
+        "final_hidden_mse_mean": 0.17937605348994579
+      },
+      {
+        "epoch": 5,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0938829835487973,
+        "teacher_kl_mean": 0.16491400495689457,
+        "final_hidden_mse_mean": 0.16686105706960666
+      },
+      {
+        "epoch": 6,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.0743045769686919,
+        "teacher_kl_mean": 0.15780234182833355,
+        "final_hidden_mse_mean": 0.1635552363140134
+      },
+      {
+        "epoch": 7,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.062199677804932,
+        "teacher_kl_mean": 0.15640727125130754,
+        "final_hidden_mse_mean": 0.16505032799771405
+      },
+      {
+        "epoch": 8,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.0464341694879835,
+        "teacher_kl_mean": 0.15205679185672052,
+        "final_hidden_mse_mean": 0.16506986949860725
+      },
+      {
+        "epoch": 9,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.0272493502974471,
+        "teacher_kl_mean": 0.14532780507098936,
+        "final_hidden_mse_mean": 0.16673743352775636
+      },
+      {
+        "epoch": 10,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0150362975714495,
+        "teacher_kl_mean": 0.1411976987326738,
+        "final_hidden_mse_mean": 0.16369442156363065
+      },
+      {
+        "epoch": 11,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.010927228242436,
+        "teacher_kl_mean": 0.14218433764197433,
+        "final_hidden_mse_mean": 0.16505949117204222
+      },
+      {
+        "epoch": 12,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.0070205502392655,
+        "teacher_kl_mean": 0.1430427550442246,
+        "final_hidden_mse_mean": 0.16685147837401595
+      },
+      {
+        "epoch": 13,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 77,
+        "ce_mean": 1.0016554346286777,
+        "teacher_kl_mean": 0.14305147755755657,
+        "final_hidden_mse_mean": 0.16792419496756
+      },
+      {
+        "epoch": 14,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 0.9982661586220556,
+        "teacher_kl_mean": 0.1432434847529897,
+        "final_hidden_mse_mean": 0.1688698303969958
+      },
+      {
+        "epoch": 15,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9951335440651933,
+        "teacher_kl_mean": 0.14416113783880027,
+        "final_hidden_mse_mean": 0.17059542325780014
+      },
+      {
+        "epoch": 16,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 0.9918124112938157,
+        "teacher_kl_mean": 0.1443646940310497,
+        "final_hidden_mse_mean": 0.1715883764028351
+      },
+      {
+        "epoch": 17,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.987828741014575,
+        "teacher_kl_mean": 0.14425582232446602,
+        "final_hidden_mse_mean": 0.17228606061708845
+      },
+      {
+        "epoch": 18,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9859421679841515,
+        "teacher_kl_mean": 0.1456172965313043,
+        "final_hidden_mse_mean": 0.1738449174145236
+      },
+      {
+        "epoch": 19,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9817554932539936,
+        "teacher_kl_mean": 0.14489396133249943,
+        "final_hidden_mse_mean": 0.17419150390017618
+      },
+      {
+        "epoch": 20,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 0.9795729229583079,
+        "teacher_kl_mean": 0.1457643169259697,
+        "final_hidden_mse_mean": 0.17566879776822555
+      },
+      {
+        "epoch": 21,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 0.9770926831337664,
+        "teacher_kl_mean": 0.1463928774752052,
+        "final_hidden_mse_mean": 0.1769074843563652
+      },
+      {
+        "epoch": 22,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.97230045007648,
+        "teacher_kl_mean": 0.14560626272571417,
+        "final_hidden_mse_mean": 0.17682758109874938
+      },
+      {
+        "epoch": 23,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 0.9719450937793881,
+        "teacher_kl_mean": 0.14715002482212408,
+        "final_hidden_mse_mean": 0.1785628038466439
+      },
+      {
+        "epoch": 24,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9678120918924588,
+        "teacher_kl_mean": 0.1467079715223015,
+        "final_hidden_mse_mean": 0.17923144834242824
+      },
+      {
+        "epoch": 25,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9658904769503031,
+        "teacher_kl_mean": 0.1467320234386347,
+        "final_hidden_mse_mean": 0.17969218669843742
+      },
+      {
+        "epoch": 26,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 0.963732751662006,
+        "teacher_kl_mean": 0.14772810895325605,
+        "final_hidden_mse_mean": 0.18142327233606406
+      },
+      {
+        "epoch": 27,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 0.9601691428975436,
+        "teacher_kl_mean": 0.14711330970483522,
+        "final_hidden_mse_mean": 0.18131736851692198
+      },
+      {
+        "epoch": 28,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 0.9577142494952823,
+        "teacher_kl_mean": 0.14746386127897462,
+        "final_hidden_mse_mean": 0.1823206607282175
+      },
+      {
+        "epoch": 29,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9561489968206215,
+        "teacher_kl_mean": 0.1480753546054165,
+        "final_hidden_mse_mean": 0.18298937244988875
+      },
+      {
+        "epoch": 30,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9539146588535893,
+        "teacher_kl_mean": 0.14812689218133376,
+        "final_hidden_mse_mean": 0.18376695135644514
+      },
+      {
+        "epoch": 31,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 0.9514376135911191,
+        "teacher_kl_mean": 0.14846444902295644,
+        "final_hidden_mse_mean": 0.18449269957368836
+      },
+      {
+        "epoch": 32,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 0.9486738466702117,
+        "teacher_kl_mean": 0.1484383201542315,
+        "final_hidden_mse_mean": 0.1848459939349013
+      }
+    ],
+    "teacher_only": [
+      {
+        "epoch": 1,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.26134276870762,
+        "teacher_kl_mean": 0.28356368484695965,
+        "final_hidden_mse_mean": 0.2736064573747949
+      },
+      {
+        "epoch": 2,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.174591210031667,
+        "teacher_kl_mean": 0.1980536331600655,
+        "final_hidden_mse_mean": 0.18545297148105205
+      },
+      {
+        "epoch": 3,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.1517783073818744,
+        "teacher_kl_mean": 0.17574048659845246,
+        "final_hidden_mse_mean": 0.16691691675501305
+      },
+      {
+        "epoch": 4,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.1500282501112808,
+        "teacher_kl_mean": 0.1740317202550138,
+        "final_hidden_mse_mean": 0.1760330181123817
+      },
+      {
+        "epoch": 5,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.1273861751636152,
+        "teacher_kl_mean": 0.15180233390814427,
+        "final_hidden_mse_mean": 0.15446703274840598
+      },
+      {
+        "epoch": 6,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.1180859130863912,
+        "teacher_kl_mean": 0.14273276342818889,
+        "final_hidden_mse_mean": 0.14767747506712003
+      },
+      {
+        "epoch": 7,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.1132722664949175,
+        "teacher_kl_mean": 0.13802432780432453,
+        "final_hidden_mse_mean": 0.14556929658310777
+      },
+      {
+        "epoch": 8,
+        "stage": "continuous",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.1077173619639844,
+        "teacher_kl_mean": 0.13249175544035255,
+        "final_hidden_mse_mean": 0.1428279237246473
+      },
+      {
+        "epoch": 9,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.1008884345232088,
+        "teacher_kl_mean": 0.1259630282907608,
+        "final_hidden_mse_mean": 0.14480031105898628
+      },
+      {
+        "epoch": 10,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0940760855199323,
+        "teacher_kl_mean": 0.11920228816494118,
+        "final_hidden_mse_mean": 0.13878801151852976
+      },
+      {
+        "epoch": 11,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.0932017002923557,
+        "teacher_kl_mean": 0.11850601841628493,
+        "final_hidden_mse_mean": 0.1382292249739307
+      },
+      {
+        "epoch": 12,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.0926335287290068,
+        "teacher_kl_mean": 0.11804926707042454,
+        "final_hidden_mse_mean": 0.13883255184724227
+      },
+      {
+        "epoch": 13,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 77,
+        "ce_mean": 1.0911746546299501,
+        "teacher_kl_mean": 0.1166624341634431,
+        "final_hidden_mse_mean": 0.13826610005729936
+      },
+      {
+        "epoch": 14,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.0909369412313923,
+        "teacher_kl_mean": 0.11647989692188965,
+        "final_hidden_mse_mean": 0.13899517747628182
+      },
+      {
+        "epoch": 15,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0904121018473438,
+        "teacher_kl_mean": 0.1161143920603891,
+        "final_hidden_mse_mean": 0.1391471509507294
+      },
+      {
+        "epoch": 16,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.0892740244524821,
+        "teacher_kl_mean": 0.11511512347559374,
+        "final_hidden_mse_mean": 0.13895533444945996
+      },
+      {
+        "epoch": 17,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0887846987918455,
+        "teacher_kl_mean": 0.11475640040536728,
+        "final_hidden_mse_mean": 0.1394392549363504
+      },
+      {
+        "epoch": 18,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0891104861919116,
+        "teacher_kl_mean": 0.11507426881745077,
+        "final_hidden_mse_mean": 0.13995824212321578
+      },
+      {
+        "epoch": 19,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0878029543810488,
+        "teacher_kl_mean": 0.1137503958566555,
+        "final_hidden_mse_mean": 0.13954885293027677
+      },
+      {
+        "epoch": 20,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.0876230268030234,
+        "teacher_kl_mean": 0.1136087160653734,
+        "final_hidden_mse_mean": 0.1401845007727005
+      },
+      {
+        "epoch": 21,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.0865943503781703,
+        "teacher_kl_mean": 0.11268680804781175,
+        "final_hidden_mse_mean": 0.14012084411018286
+      },
+      {
+        "epoch": 22,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0859128323507108,
+        "teacher_kl_mean": 0.11196400207496265,
+        "final_hidden_mse_mean": 0.14021297960844015
+      },
+      {
+        "epoch": 23,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.0870224161206696,
+        "teacher_kl_mean": 0.11302397351082252,
+        "final_hidden_mse_mean": 0.14109783793189737
+      },
+      {
+        "epoch": 24,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0845406690210735,
+        "teacher_kl_mean": 0.11077336036915064,
+        "final_hidden_mse_mean": 0.1405309567831579
+      },
+      {
+        "epoch": 25,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0840471156832618,
+        "teacher_kl_mean": 0.11017580878469134,
+        "final_hidden_mse_mean": 0.14021591438201683
+      },
+      {
+        "epoch": 26,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.0852546161618115,
+        "teacher_kl_mean": 0.11160478639279123,
+        "final_hidden_mse_mean": 0.1423200217795473
+      },
+      {
+        "epoch": 27,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.0832817125017487,
+        "teacher_kl_mean": 0.1095484495797451,
+        "final_hidden_mse_mean": 0.1407062063896899
+      },
+      {
+        "epoch": 28,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 78,
+        "ce_mean": 1.082682229699113,
+        "teacher_kl_mean": 0.10931104302467388,
+        "final_hidden_mse_mean": 0.14121411492875463
+      },
+      {
+        "epoch": 29,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0830592865103583,
+        "teacher_kl_mean": 0.10956364887726,
+        "final_hidden_mse_mean": 0.14166747151991924
+      },
+      {
+        "epoch": 30,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0814999256359823,
+        "teacher_kl_mean": 0.10823618809341565,
+        "final_hidden_mse_mean": 0.1413146790632735
+      },
+      {
+        "epoch": 31,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 80,
+        "ce_mean": 1.0828188058233714,
+        "teacher_kl_mean": 0.10949601809658774,
+        "final_hidden_mse_mean": 0.14278141897223642
+      },
+      {
+        "epoch": 32,
+        "stage": "hard",
+        "targets": 2941307,
+        "optimizer_steps": 79,
+        "ce_mean": 1.0816191944116094,
+        "teacher_kl_mean": 0.1082938941010604,
+        "final_hidden_mse_mean": 0.1422971264365232
+      }
+    ]
+  },
+  "native_scope": {
+    "fullheld_primary_targets": 1082505,
+    "fullheld_pieces": 473,
+    "contained_held_long_targets": 107647,
+    "independent_report_only_giant_targets": 131071,
+    "independent_targets_each_evaluation": 1213576,
+    "measured_coordinate": "native FP32 logits NLL before half/guard/mixer/u16/range"
+  },
+  "matched_native_checkpoints": [
+    {
+      "epoch": 4,
+      "original_CE_KL": {
+        "epoch": 4,
+        "weight_bytes": 1957973,
+        "fullheld_nll": 1.1871585190883955,
+        "fullheld_delta_W0": 0.22091018029396914,
+        "held_long_nll": 1.518069217218576,
+        "giant_nll": 0.18630547531648686
+      },
+      "teacher_only": {
+        "epoch": 4,
+        "weight_bytes": 1957707,
+        "fullheld_nll": 1.191965251350133,
+        "fullheld_delta_W0": 0.2257169125557067,
+        "held_long_nll": 1.5162271996774344,
+        "giant_nll": 0.20660986458912814
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": 0.004806732261737556,
+        "held_long_nll": -0.0018420175411415496,
+        "giant_nll": 0.020304389272641277
+      },
+      "fresh_double_weight_charge_improvement_bytes": 532
+    },
+    {
+      "epoch": 8,
+      "original_CE_KL": {
+        "epoch": 8,
+        "weight_bytes": 1960160,
+        "fullheld_nll": 1.1688038833784649,
+        "fullheld_delta_W0": 0.20255554458403846,
+        "held_long_nll": 1.4981257583566259,
+        "giant_nll": 0.2249766262079934
+      },
+      "teacher_only": {
+        "epoch": 8,
+        "weight_bytes": 1959171,
+        "fullheld_nll": 1.1553724737141797,
+        "fullheld_delta_W0": 0.18912413491975333,
+        "held_long_nll": 1.4780423300552368,
+        "giant_nll": 0.2410031272832003
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": -0.013431409664285132,
+        "held_long_nll": -0.020083428301389095,
+        "giant_nll": 0.016026501075206895
+      },
+      "fresh_double_weight_charge_improvement_bytes": 1978
+    },
+    {
+      "epoch": 12,
+      "original_CE_KL": {
+        "epoch": 12,
+        "weight_bytes": 1960982,
+        "fullheld_nll": 1.1451413926090206,
+        "fullheld_delta_W0": 0.1788930538145942,
+        "held_long_nll": 1.4669074431033173,
+        "giant_nll": 0.2689786062674665
+      },
+      "teacher_only": {
+        "epoch": 12,
+        "weight_bytes": 1959728,
+        "fullheld_nll": 1.1224126195928954,
+        "fullheld_delta_W0": 0.156164280798469,
+        "held_long_nll": 1.4406758494194276,
+        "giant_nll": 0.2330625181543477
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": -0.022728773016125192,
+        "held_long_nll": -0.02623159368388972,
+        "giant_nll": -0.035916088113118805
+      },
+      "fresh_double_weight_charge_improvement_bytes": 2508
+    },
+    {
+      "epoch": 16,
+      "original_CE_KL": {
+        "epoch": 16,
+        "weight_bytes": 1961715,
+        "fullheld_nll": 1.1492552658631419,
+        "fullheld_delta_W0": 0.18300692706871546,
+        "held_long_nll": 1.4727867300938235,
+        "giant_nll": 0.2758085249375663
+      },
+      "teacher_only": {
+        "epoch": 16,
+        "weight_bytes": 1960239,
+        "fullheld_nll": 1.1231691838425384,
+        "fullheld_delta_W0": 0.156920845048112,
+        "held_long_nll": 1.4398978935199716,
+        "giant_nll": 0.2587887644843464
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": -0.026086082020603474,
+        "held_long_nll": -0.032888836573852,
+        "giant_nll": -0.0170197604532199
+      },
+      "fresh_double_weight_charge_improvement_bytes": 2952
+    },
+    {
+      "epoch": 20,
+      "original_CE_KL": {
+        "epoch": 20,
+        "weight_bytes": 1962438,
+        "fullheld_nll": 1.1588346733718975,
+        "fullheld_delta_W0": 0.1925863345774711,
+        "held_long_nll": 1.4851890660300786,
+        "giant_nll": 0.28275702519130397
+      },
+      "teacher_only": {
+        "epoch": 20,
+        "weight_bytes": 1960779,
+        "fullheld_nll": 1.124225592518244,
+        "fullheld_delta_W0": 0.15797725372381766,
+        "held_long_nll": 1.4414866935145085,
+        "giant_nll": 0.27378884351794175
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": -0.03460908085365344,
+        "held_long_nll": -0.043702372515570076,
+        "giant_nll": -0.008968181673362219
+      },
+      "fresh_double_weight_charge_improvement_bytes": 3318
+    },
+    {
+      "epoch": 24,
+      "original_CE_KL": {
+        "epoch": 24,
+        "weight_bytes": 1963088,
+        "fullheld_nll": 1.160351253348168,
+        "fullheld_delta_W0": 0.1941029145537415,
+        "held_long_nll": 1.4892680556875522,
+        "giant_nll": 0.3210760065840484
+      },
+      "teacher_only": {
+        "epoch": 24,
+        "weight_bytes": 1961211,
+        "fullheld_nll": 1.1258474847316426,
+        "fullheld_delta_W0": 0.15959914593721625,
+        "held_long_nll": 1.4445047413560275,
+        "giant_nll": 0.28633603643633593
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": -0.034503768616525266,
+        "held_long_nll": -0.044763314331524695,
+        "giant_nll": -0.03473997014771246
+      },
+      "fresh_double_weight_charge_improvement_bytes": 3754
+    },
+    {
+      "epoch": 28,
+      "original_CE_KL": {
+        "epoch": 28,
+        "weight_bytes": 1963682,
+        "fullheld_nll": 1.1632966591465026,
+        "fullheld_delta_W0": 0.1970483203520762,
+        "held_long_nll": 1.4921498312691603,
+        "giant_nll": 0.33288257611942346
+      },
+      "teacher_only": {
+        "epoch": 28,
+        "weight_bytes": 1961646,
+        "fullheld_nll": 1.1233339384479042,
+        "fullheld_delta_W0": 0.1570855996534778,
+        "held_long_nll": 1.438905641709327,
+        "giant_nll": 0.31184585832059203
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": -0.03996272069859841,
+        "held_long_nll": -0.05324418955983323,
+        "giant_nll": -0.021036717798831428
+      },
+      "fresh_double_weight_charge_improvement_bytes": 4072
+    },
+    {
+      "epoch": 32,
+      "original_CE_KL": {
+        "epoch": 32,
+        "weight_bytes": 1964319,
+        "fullheld_nll": 1.1672435590346368,
+        "fullheld_delta_W0": 0.20099522024021044,
+        "held_long_nll": 1.492512626993642,
+        "giant_nll": 0.3751193213881372
+      },
+      "teacher_only": {
+        "epoch": 32,
+        "weight_bytes": 1962097,
+        "fullheld_nll": 1.122611285101518,
+        "fullheld_delta_W0": 0.15636294630709158,
+        "held_long_nll": 1.4386495510352655,
+        "giant_nll": 0.32057853120512636
+      },
+      "fresh_minus_old_nll": {
+        "fullheld_nll": -0.04463227393311886,
+        "held_long_nll": -0.05386307595837647,
+        "giant_nll": -0.054540790183010834
+      },
+      "fresh_double_weight_charge_improvement_bytes": 4444
+    }
+  ],
+  "e12_to_e32": {
+    "original_CE_KL": {
+      "epochs": [
+        12,
+        32
+      ],
+      "online_training_changes": {
+        "ce_mean": -0.058346703569053804,
+        "teacher_kl_mean": 0.005395565110006911,
+        "final_hidden_mse_mean": 0.017994515560885355
+      },
+      "hard_exported_native_changes": {
+        "fullheld_nll": 0.022102166425616243,
+        "held_long_nll": 0.025605183890324623,
+        "giant_nll": 0.10614071512067069
+      },
+      "double_weight_charge_growth_bytes": 6674
+    },
+    "teacher_only": {
+      "epochs": [
+        12,
+        32
+      ],
+      "online_training_changes": {
+        "ce_mean": -0.0110143343173974,
+        "teacher_kl_mean": -0.009755372969364143,
+        "final_hidden_mse_mean": 0.0034645745892809277
+      },
+      "hard_exported_native_changes": {
+        "fullheld_nll": 0.00019866550862257526,
+        "held_long_nll": -0.0020262983841621285,
+        "giant_nll": 0.08751601305077866
+      },
+      "double_weight_charge_growth_bytes": 4738
+    }
+  },
+  "source_checks": {
+    "old_native_receipts": "eight entries in original complete training-state",
+    "fresh_native_log_files_verified": 16,
+    "target_weighted_optimizer_steps_verified": 5048
+  },
+  "readout_operations": {
+    "new_training_runs": 0,
+    "new_native_runs": 0,
+    "new_codec_runs": 0,
+    "additional_scientific_downloads": 0
+  }
+}

@@ -1,0 +1,639 @@
+{
+  "schema": "hutter.teacher-only.complete32.same-W-mixed.v1",
+  "status": "passed",
+  "training_status": "complete",
+  "completed_utc": "2026-11-09T08:31:38.321899+00:00",
+  "selection": {
+    "epoch": 12,
+    "step": 949,
+    "criterion": "(held_NLL0-held_NLL1)*586215331/(8*ln2)+2*(W0-W1)+2*(B0-B1)",
+    "primary_targets": 1082505,
+    "report_only_targets": {
+      "held_long_contained_in_primary": 107647,
+      "independent_giant": 131071
+    }
+  },
+  "same_W": {
+    "selected_epoch": 12,
+    "selected_step": 949,
+    "baseline_weight_bytes": 2904325,
+    "candidate_weight_bytes": 1959728,
+    "original_weight_identity": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18",
+    "selected_weight_identity": "71d182312506d1f9a000aca809355508ef232a143d1cff5e8819d7315f049b96",
+    "identity_source": "original terminal state metadata; new file hash calls 0"
+  },
+  "original_production_pairs": {
+    "prefix8": {
+      "payload_saved_bytes": -150888,
+      "guarded_transfer": {
+        "status": "defined",
+        "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+        "guarded_neural_saved_bits": -269332.09198127594,
+        "kappa_final_nn_targets": 0.7727614841086387,
+        "kappa_interval_bytes": 0.7727560368649612,
+        "fallback_final_saved_bits": 1.409471174934879,
+        "range_residual_saved_bytes": 0.007205795031040907
+      },
+      "interval_coded_saved_bytes": -26016,
+      "interval_range_residual_saved_bytes": 0.007205795031040907,
+      "same_native_target_mask": true,
+      "masks": {
+        "all": {
+          "bytes": 1041690,
+          "neural_bits_saved": -269332.09198127245,
+          "pre_sse_logit_bits_saved": -208979.2830431913,
+          "final_u16_bits_saved": -208128.05764636025,
+          "baseline_override_bits": 341613,
+          "candidate_override_bits": 341613
+        },
+        "neural_targets": {
+          "bytes": 1041397,
+          "neural_bits_saved": -269332.09198127594,
+          "pre_sse_logit_bits_saved": -208979.7853814587,
+          "final_u16_bits_saved": -208129.46711753518,
+          "baseline_override_bits": 340752,
+          "candidate_override_bits": 340752
+        },
+        "first_token_fallback": {
+          "bytes": 293,
+          "neural_bits_saved": 3.4924596548080444e-09,
+          "pre_sse_logit_bits_saved": 0.5023382673971355,
+          "final_u16_bits_saved": 1.409471174934879,
+          "baseline_override_bits": 861,
+          "candidate_override_bits": 861
+        }
+      }
+    },
+    "q2": {
+      "payload_saved_bytes": -33157,
+      "guarded_transfer": {
+        "status": "defined",
+        "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+        "guarded_neural_saved_bits": -309941.3835321425,
+        "kappa_final_nn_targets": 0.8558473323095095,
+        "kappa_interval_bytes": 0.8558263403779753,
+        "fallback_final_saved_bits": 7.839290007017553,
+        "range_residual_saved_bytes": -0.1666277130425442
+      },
+      "interval_coded_saved_bytes": -33157,
+      "interval_range_residual_saved_bytes": -0.1666277130425442,
+      "same_native_target_mask": true,
+      "masks": {
+        "all": {
+          "bytes": 1048576,
+          "neural_bits_saved": -309941.38353214436,
+          "pre_sse_logit_bits_saved": -266009.5552505199,
+          "final_u16_bits_saved": -265254.66697829566,
+          "baseline_override_bits": 357585,
+          "candidate_override_bits": 357585
+        },
+        "neural_targets": {
+          "bytes": 1048367,
+          "neural_bits_saved": -309941.3835321425,
+          "pre_sse_logit_bits_saved": -266018.65152676473,
+          "final_u16_bits_saved": -265262.5062683027,
+          "baseline_override_bits": 357285,
+          "candidate_override_bits": 357285
+        },
+        "first_token_fallback": {
+          "bytes": 209,
+          "neural_bits_saved": -1.862645149230957e-09,
+          "pre_sse_logit_bits_saved": 9.096276244847104,
+          "final_u16_bits_saved": 7.839290007017553,
+          "baseline_override_bits": 300,
+          "candidate_override_bits": 300
+        }
+      }
+    }
+  },
+  "original_two_sample_component": {
+    "scope": "full prefix8 plus fresh q2 payloads; one double-W and one dual-deployed-UPX-B delta; fixed D/O",
+    "sample_count": 2,
+    "sample_payload_saved_bytes": -184045,
+    "double_weight_saved_bytes": 1889194,
+    "dual_code_saved_bytes": 9024,
+    "paired_sample_component_saved_bytes": 1714173
+  },
+  "scopes": {
+    "q2-non-direct-update-input": {
+      "baseline": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 208769,
+        "score_begin": 0,
+        "score_end": 1048576,
+        "score_intervals": [
+          [
+            0,
+            585545
+          ],
+          [
+            596730,
+            1048576
+          ]
+        ],
+        "score_geometry": "sum of two separated intervals in the original parent trace",
+        "pieces": 208,
+        "interval_coded_bytes": 206871,
+        "interval_range_residual_bytes": -0.8413237814966124,
+        "parent_range_endpoints": [
+          {
+            "begin": 0,
+            "end": 585545,
+            "begin_closed_bytes": 1,
+            "end_closed_bytes": 131228
+          },
+          {
+            "begin": 596730,
+            "end": 1048576,
+            "begin_closed_bytes": 133125,
+            "end_closed_bytes": 208769
+          }
+        ],
+        "all": {
+          "bytes": 1037391,
+          "neural_bits": 1664212.7541805967,
+          "pre_sse_logit_bits": 1654445.0157458151,
+          "final_u16_bits": 1654974.730590252,
+          "override_bits": 352841
+        },
+        "neural_targets": {
+          "bytes": 1037183,
+          "neural_bits": 1664045.5766100176,
+          "pre_sse_logit_bits": 1654315.6632985715,
+          "final_u16_bits": 1654846.377596754,
+          "override_bits": 352541
+        }
+      },
+      "candidate": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 241926,
+        "score_begin": 0,
+        "score_end": 1048576,
+        "score_intervals": [
+          [
+            0,
+            585545
+          ],
+          [
+            596730,
+            1048576
+          ]
+        ],
+        "score_geometry": "sum of two separated intervals in the original parent trace",
+        "pieces": 208,
+        "interval_coded_bytes": 239802,
+        "interval_range_residual_bytes": -0.37125978722178843,
+        "parent_range_endpoints": [
+          {
+            "begin": 0,
+            "end": 585545,
+            "begin_closed_bytes": 1,
+            "end_closed_bytes": 152888
+          },
+          {
+            "begin": 596730,
+            "end": 1048576,
+            "begin_closed_bytes": 155011,
+            "end_closed_bytes": 241926
+          }
+        ],
+        "all": {
+          "bytes": 1037391,
+          "neural_bits": 1971930.5173852334,
+          "pre_sse_logit_bits": 1918625.2012368846,
+          "final_u16_bits": 1918418.970078298,
+          "override_bits": 352841
+        },
+        "neural_targets": {
+          "bytes": 1037183,
+          "neural_bits": 1971763.3398146548,
+          "pre_sse_logit_bits": 1918504.6986067437,
+          "final_u16_bits": 1918298.2198615305,
+          "override_bits": 352541
+        }
+      },
+      "paired": {
+        "guarded_transfer": {
+          "status": "defined",
+          "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+          "guarded_neural_saved_bits": -307717.7632046372,
+          "kappa_final_nn_targets": 0.8561476579094223,
+          "kappa_interval_bytes": 0.8561351715818982,
+          "fallback_final_saved_bits": 7.602776730433106,
+          "range_residual_saved_bytes": -0.4700639942748239
+        },
+        "interval_coded_saved_bytes": -32931,
+        "interval_range_residual_saved_bytes": -0.4700639942748239,
+        "same_native_target_mask": true,
+        "masks": {
+          "all": {
+            "bytes": 1037391,
+            "neural_bits_saved": -307717.76320463675,
+            "pre_sse_logit_bits_saved": -264180.18549106945,
+            "final_u16_bits_saved": -263444.2394880459,
+            "baseline_override_bits": 352841,
+            "candidate_override_bits": 352841
+          },
+          "neural_targets": {
+            "bytes": 1037183,
+            "neural_bits_saved": -307717.7632046372,
+            "pre_sse_logit_bits_saved": -264189.0353081722,
+            "final_u16_bits_saved": -263451.84226477635,
+            "baseline_override_bits": 352541,
+            "candidate_override_bits": 352541
+          },
+          "first_token_fallback": {
+            "bytes": 208,
+            "neural_bits_saved": 4.656612873077393e-10,
+            "pre_sse_logit_bits_saved": 8.849817102774978,
+            "final_u16_bits_saved": 7.602776730433106,
+            "baseline_override_bits": 300,
+            "candidate_override_bits": 300
+          }
+        }
+      },
+      "full_q2_payload_saved_bytes_reference": -33157,
+      "native_R_scope": "original random-held selection is reported separately",
+      "fallback_bytes": 208,
+      "source_intervals": [
+        [
+          293232482,
+          293818027
+        ],
+        [
+          293829212,
+          294281058
+        ]
+      ],
+      "side_first_token_fallback": {
+        "baseline": {
+          "bytes": 208,
+          "neural_bits": 167.17757057910785,
+          "pre_sse_logit_bits": 129.3524472436402,
+          "final_u16_bits": 128.35299349785782,
+          "override_bits": 300
+        },
+        "candidate": {
+          "bytes": 208,
+          "neural_bits": 167.1775705786422,
+          "pre_sse_logit_bits": 120.50263014086522,
+          "final_u16_bits": 120.75021676742472,
+          "override_bits": 300
+        }
+      },
+      "ideal_all_final_u16_bytes": {
+        "baseline": 206871.8413237815,
+        "candidate": 239802.37125978724
+      }
+    },
+    "old-w64-held-by-seed414-role": {
+      "baseline": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 208769,
+        "score_begin": 531039,
+        "score_end": 1047533,
+        "score_intervals": [
+          [
+            531039,
+            585545
+          ],
+          [
+            596730,
+            1047533
+          ]
+        ],
+        "score_geometry": "sum of two separated intervals in the original parent trace",
+        "pieces": 102,
+        "interval_coded_bytes": 84844,
+        "interval_range_residual_bytes": 0.5259978034846426,
+        "parent_range_endpoints": [
+          {
+            "begin": 531039,
+            "end": 585545,
+            "begin_closed_bytes": 121919,
+            "end_closed_bytes": 131228
+          },
+          {
+            "begin": 596730,
+            "end": 1047533,
+            "begin_closed_bytes": 133125,
+            "end_closed_bytes": 208660
+          }
+        ],
+        "all": {
+          "bytes": 505309,
+          "neural_bits": 684683.5046901571,
+          "pre_sse_logit_bits": 678603.0943759596,
+          "final_u16_bits": 678747.7920175721,
+          "override_bits": 195048
+        },
+        "neural_targets": {
+          "bytes": 505207,
+          "neural_bits": 684624.9735147089,
+          "pre_sse_logit_bits": 678573.7604367216,
+          "final_u16_bits": 678719.4245668502,
+          "override_bits": 195012
+        }
+      },
+      "candidate": {
+        "status": "passed",
+        "full_input_bytes": 1048576,
+        "full_coded_bytes": 241926,
+        "score_begin": 531039,
+        "score_end": 1047533,
+        "score_intervals": [
+          [
+            531039,
+            585545
+          ],
+          [
+            596730,
+            1047533
+          ]
+        ],
+        "score_geometry": "sum of two separated intervals in the original parent trace",
+        "pieces": 102,
+        "interval_coded_bytes": 97495,
+        "interval_range_residual_bytes": 0.334586784705607,
+        "parent_range_endpoints": [
+          {
+            "begin": 531039,
+            "end": 585545,
+            "begin_closed_bytes": 142186,
+            "end_closed_bytes": 152888
+          },
+          {
+            "begin": 596730,
+            "end": 1047533,
+            "begin_closed_bytes": 155011,
+            "end_closed_bytes": 241804
+          }
+        ],
+        "all": {
+          "bytes": 505309,
+          "neural_bits": 814636.6517204484,
+          "pre_sse_logit_bits": 780169.8670117339,
+          "final_u16_bits": 779957.3233057223,
+          "override_bits": 195048
+        },
+        "neural_targets": {
+          "bytes": 505207,
+          "neural_bits": 814578.1205450024,
+          "pre_sse_logit_bits": 780147.8533662288,
+          "final_u16_bits": 779935.3913621933,
+          "override_bits": 195012
+        }
+      },
+      "paired": {
+        "guarded_transfer": {
+          "status": "defined",
+          "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+          "guarded_neural_saved_bits": -129953.14703029348,
+          "kappa_final_nn_targets": 0.7788650687447266,
+          "kappa_interval_bytes": 0.7788037636087977,
+          "fallback_final_saved_bits": 6.435507192858495,
+          "range_residual_saved_bytes": 0.19141101877903566
+        },
+        "interval_coded_saved_bytes": -12651,
+        "interval_range_residual_saved_bytes": 0.19141101877903566,
+        "same_native_target_mask": true,
+        "masks": {
+          "all": {
+            "bytes": 505309,
+            "neural_bits_saved": -129953.14703029126,
+            "pre_sse_logit_bits_saved": -101566.77263577434,
+            "final_u16_bits_saved": -101209.53128815023,
+            "baseline_override_bits": 195048,
+            "candidate_override_bits": 195048
+          },
+          "neural_targets": {
+            "bytes": 505207,
+            "neural_bits_saved": -129953.14703029348,
+            "pre_sse_logit_bits_saved": -101574.09292950714,
+            "final_u16_bits_saved": -101215.96679534309,
+            "baseline_override_bits": 195012,
+            "candidate_override_bits": 195012
+          },
+          "first_token_fallback": {
+            "bytes": 102,
+            "neural_bits_saved": 2.2118911147117615e-09,
+            "pre_sse_logit_bits_saved": 7.320293732802384,
+            "final_u16_bits_saved": 6.435507192858495,
+            "baseline_override_bits": 36,
+            "candidate_override_bits": 36
+          }
+        }
+      },
+      "full_q2_payload_saved_bytes_reference": -33157,
+      "native_R_scope": "original random-held selection is reported separately",
+      "fallback_bytes": 102,
+      "source_intervals": [
+        [
+          293763521,
+          293818027
+        ],
+        [
+          293829212,
+          294280015
+        ]
+      ],
+      "side_first_token_fallback": {
+        "baseline": {
+          "bytes": 102,
+          "neural_bits": 58.53117544820998,
+          "pre_sse_logit_bits": 29.33393923798576,
+          "final_u16_bits": 28.367450721911155,
+          "override_bits": 36
+        },
+        "candidate": {
+          "bytes": 102,
+          "neural_bits": 58.53117544599809,
+          "pre_sse_logit_bits": 22.013645505183376,
+          "final_u16_bits": 21.93194352905266,
+          "override_bits": 36
+        }
+      },
+      "ideal_all_final_u16_bytes": {
+        "baseline": 84843.47400219651,
+        "candidate": 97494.66541321529
+      }
+    }
+  },
+  "full_files_and_flush": {
+    "prefix8": {
+      "baseline": {
+        "actual_encoded_file_bytes": 1072279,
+        "reader_full_coded_bytes": 1072279,
+        "end_flush_bytes": 1,
+        "production_scored_interval_bytes": 177427,
+        "production_score_intervals": [
+          [
+            7344758,
+            8386448
+          ]
+        ],
+        "full_continuous_emitted_bytes_before_flush": 1072278
+      },
+      "candidate": {
+        "actual_encoded_file_bytes": 1223167,
+        "reader_full_coded_bytes": 1223167,
+        "end_flush_bytes": 1,
+        "production_scored_interval_bytes": 203443,
+        "production_score_intervals": [
+          [
+            7344758,
+            8386448
+          ]
+        ],
+        "full_continuous_emitted_bytes_before_flush": 1223166
+      }
+    },
+    "q2": {
+      "baseline": {
+        "actual_encoded_file_bytes": 208769,
+        "reader_full_coded_bytes": 208769,
+        "end_flush_bytes": 1,
+        "production_scored_interval_bytes": 208768,
+        "production_score_intervals": [
+          [
+            0,
+            1048576
+          ]
+        ],
+        "full_continuous_emitted_bytes_before_flush": 208768,
+        "q2-non-direct-update-input_excluded_interval_plus_flush_bytes": 1898,
+        "q2-non-direct-update-input_excluded_continuous_emitted_bytes": 1897,
+        "old-w64-held-by-seed414-role_excluded_interval_plus_flush_bytes": 123925,
+        "old-w64-held-by-seed414-role_excluded_continuous_emitted_bytes": 123924
+      },
+      "candidate": {
+        "actual_encoded_file_bytes": 241926,
+        "reader_full_coded_bytes": 241926,
+        "end_flush_bytes": 1,
+        "production_scored_interval_bytes": 241925,
+        "production_score_intervals": [
+          [
+            0,
+            1048576
+          ]
+        ],
+        "full_continuous_emitted_bytes_before_flush": 241925,
+        "q2-non-direct-update-input_excluded_interval_plus_flush_bytes": 2124,
+        "q2-non-direct-update-input_excluded_continuous_emitted_bytes": 2123,
+        "old-w64-held-by-seed414-role_excluded_interval_plus_flush_bytes": 144431,
+        "old-w64-held-by-seed414-role_excluded_continuous_emitted_bytes": 144430
+      }
+    }
+  },
+  "original_random_held_R": {
+    "scope": "seed414 randomized sampled validation; selection/report-only native receipts",
+    "targets": 1082505,
+    "baseline": {
+      "count": 1082505,
+      "logits_mean": 0.9662483387944264
+    },
+    "candidate": {
+      "count": 1082505,
+      "logits_mean": 1.1224126195928954
+    },
+    "saved_bits": -243885.59822054548
+  },
+  "range_history": {
+    "parent_source_begin": 293232482,
+    "parent_input_bytes": 1048576,
+    "direct_train_input": [
+      585545,
+      596730
+    ],
+    "replay_from_parent_byte_zero": true,
+    "interval_definition": "sum of closed(end)-closed(begin); closed=emitted+1",
+    "online_ppmd_mixer_and_range_history": "original complete stream retained across excluded positions",
+    "scope_relation": "overlapping reporting scopes; each paired separately"
+  },
+  "layer_units": {
+    "G": "NN-target observed f16/guarded trace probability loss in bits",
+    "M": "pre-SSE mixer-logit ideal bits, with final-u16 override bits reported per side/mask",
+    "u16": "actual range input probability ideal loss; NN and first-token fallback masks separated",
+    "coded": "actual original continuous range interval bytes; final ideal/8 plus explicit residual"
+  },
+  "event_execution": {
+    "post_requests": 1,
+    "result_get_requests": 1,
+    "trace_reader_calls": 4,
+    "candidate_trace_reader_calls": 4,
+    "baseline_trace_reader_calls": 0,
+    "new_nn_runs": 0,
+    "new_native_runs": 0,
+    "new_encode_runs": 0,
+    "new_decode_runs": 0,
+    "new_compile_runs": 0,
+    "new_hash_runs": 0,
+    "retries": 0,
+    "metadata_polls": 0
+  },
+  "package_scope": "two original full sample payloads + one shared doubleW + one dual deployed UPX B delta; formal fullS uses actual whole payload/package",
+  "dual_code": {
+    "baseline_binary_bytes": 181956,
+    "candidate_binary_bytes": 177444,
+    "two_binary_saved_bytes": 9024
+  },
+  "complete_CE_KL_comparison": {
+    "q2-non-direct-update-input": {
+      "original_CE_KL_coded_saved_bytes": -36021,
+      "teacher_only_coded_saved_bytes": -32931,
+      "teacher_only_coded_improvement_bytes": 3090,
+      "fraction_of_original_coded_increase_recovered": 0.0857832930790372
+    },
+    "old-w64-held-by-seed414-role": {
+      "original_CE_KL_coded_saved_bytes": -13701,
+      "teacher_only_coded_saved_bytes": -12651,
+      "teacher_only_coded_improvement_bytes": 1050,
+      "fraction_of_original_coded_increase_recovered": 0.0766367418436611
+    },
+    "mature-prefix8": {
+      "original_CE_KL_coded_saved_bytes": -28333,
+      "teacher_only_coded_saved_bytes": -26016,
+      "teacher_only_coded_improvement_bytes": 2317,
+      "fraction_of_original_coded_increase_recovered": 0.0817774326756785,
+      "fraction_of_original_guarded_NN_increase_recovered": 0.12620556306293507
+    }
+  },
+  "constant_rate_admission": {
+    "scope": "measured interval byte-rate extended to the prepared input; fixed other assets",
+    "scenarios": [
+      {
+        "scope": "mature-prefix8",
+        "input_bytes": 1041690,
+        "measured_coded_increase_bytes": 26016,
+        "prepared_input_bytes": 586459020,
+        "constant_interval_rate_projected_archive_increase_bytes": 12748479.063732972
+      },
+      {
+        "scope": "q2-non-direct-update-input",
+        "input_bytes": 1037391,
+        "measured_coded_increase_bytes": 32931,
+        "prepared_input_bytes": 586459020,
+        "constant_interval_rate_projected_archive_increase_bytes": 16718371.104416754
+      },
+      {
+        "scope": "old-w64-held-by-seed414-role",
+        "input_bytes": 505309,
+        "measured_coded_increase_bytes": 12651,
+        "prepared_input_bytes": 586459020,
+        "constant_interval_rate_projected_archive_increase_bytes": 12784467.370773131
+      }
+    ],
+    "decision": "stop new full-stream archive run",
+    "actual_full_stream_candidate_runs": 0
+  },
+  "source_checks": {
+    "same_frozen_weight_for_all_candidate_encode_decode_and_four_readers": true,
+    "original_W0_interval_results_retained": true,
+    "four_new_candidate_readers": 4,
+    "new_baseline_reader_calls": 0,
+    "complete_sample_restoration": "both candidate samples match their original golden decodes"
+  }
+}

@@ -1,0 +1,77 @@
+{
+  "schema": "hutter.q7.native-stage-light.v1",
+  "round": 507,
+  "epoch": 16,
+  "validation_status": "passed",
+  "source": "hutter_compute original unique watcher 2026-11-09 16:27 CST",
+  "domains": [
+    {
+      "scope": "full_held",
+      "targets": 1082505,
+      "N_W0": 0.9662483387944264,
+      "N_q7_e0": 1.3280816870855146,
+      "N_q7_e12": 1.2023571275374252,
+      "initial_quantization_loss_Q": 0.36183334829108815,
+      "N_q7_e16": 1.1612190189306895,
+      "e16_minus_e12": -0.041138108606735724,
+      "learning_change_e16_T": -0.1668626681548251,
+      "total_residual_e16_R": 0.19497068013626306,
+      "e16_recovery_fraction_of_initial_loss": 0.4611588979924183
+    },
+    {
+      "scope": "held_long",
+      "targets": 107647,
+      "N_W0": 1.2586143013099194,
+      "N_q7_e0": 1.6690554864598135,
+      "N_q7_e12": 1.5363763756516202,
+      "initial_quantization_loss_Q": 0.41044118514989414,
+      "N_q7_e16": 1.4859329881503538,
+      "e16_minus_e12": -0.05044338750126642,
+      "learning_change_e16_T": -0.1831224983094597,
+      "total_residual_e16_R": 0.22731868684043444,
+      "e16_recovery_fraction_of_initial_loss": 0.44616014409612165
+    },
+    {
+      "scope": "giant",
+      "targets": 131071,
+      "N_W0": 0.03898642613150546,
+      "N_q7_e0": 0.286442469352807,
+      "N_q7_e12": 0.6297128032544527,
+      "initial_quantization_loss_Q": 0.24745604322130152,
+      "N_q7_e16": 0.5691827667271524,
+      "e16_minus_e12": -0.06053003652730027,
+      "learning_change_e16_T": 0.2827402973743454,
+      "total_residual_e16_R": 0.5301963405956469,
+      "e16_recovery_fraction_of_initial_loss": -1.1425879671141794
+    }
+  ],
+  "weights": {
+    "baseline_W0_bytes": 2904325,
+    "q7_e16_bytes": 2076739,
+    "e16_growth_from_e12_bytes": 2169,
+    "double_weight_saved_bytes": 1655172
+  },
+  "stage_native_proxy": {
+    "kappa": 1,
+    "target_denominator": 586215331,
+    "rate_loss_target_denominator": 586459020,
+    "proxy_saved_bytes": -18956395.96797539,
+    "proxy_improvement_from_e12_bytes": 4344628.321649406
+  },
+  "coverage": {
+    "fullheld_targets": 1082505,
+    "long3_targets": 107647,
+    "long3_contained_in_fullheld": true,
+    "held_short_targets": 974858,
+    "giant_independent_targets": 131071,
+    "independent_scored_targets": 1213576,
+    "fullheld_primary": true,
+    "long3_and_giant": "report-only"
+  },
+  "true_same_W_net_S": {
+    "status": "waiting for original complete training and its sole frozen W mixed"
+  },
+  "next_trigger": "machine2 fresh e20/native or true sameW terminal/error",
+  "new_model_native_remote_collector_fourreader_runs": 0,
+  "local_actual_data_check": "passed; one stdlib count/weight/Q+T=R assertion"
+}

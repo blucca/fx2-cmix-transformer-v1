@@ -95,244 +95,93 @@ verifies all 134 gradients, restores initialization and optimizer state, and
 compares the zero-step static15 bytes with the retained original eight-block
 export. The unchanged native family uses its existing passed admission.
 
-## Current measurements
+## Complete 32-epoch result
 
-Admission passed on the retained 1,199-target causal piece `[0, 5321, 6521]`.
-All 134 gradient tensors were finite and nonzero; the effective objective was
-`1.3302973539272462`, with report-only CE `1.2836053767136677`, KL
-`0.6251614708220392`, and hidden MSE `0.44593175994643974`. The restored
-zero-step weight is byte-identical to the original eight-block export. New
-preparation used `25.952396032` CPU seconds, with zero teacher resampling,
-cache writes, or native builds. The independent complete trajectory and its
-automatic single-weight mixed queue are running.
+Both fixed trajectories completed **94,121,824 training targets and 2,524
+optimizer steps**: eight continuous epochs followed by 24 hard-coordinate
+epochs. The cached teacher remained read-only, with zero cache misses.
+Admission restored the same initial eight-block bytes and verified all 134
+finite, nonzero gradient tensors. Preparation used 25.952396032 CPU seconds;
+the complete teacher-only training/evaluation trajectory used
+93,649.449389059 CPU seconds.
 
-[Real admission](results/teacher-only-preflight.json) ·
-[205-column objective/VJP check](results/teacher-only-objective-check.json)
+### Native checkpoints on the same held inputs
 
-The original complete CE + KL control increased the mature coded interval by
-28,333 bytes; q2 excluding direct training input increased by 36,021 bytes.
-The independent teacher-only trajectory's measurements will be reported with
-its completed curve and the same selected weight's actual coded samples.
+The primary held domain has **1,082,505 targets / 473 pieces**. Its long subset
+contains 107,647 targets; the separate giant audit has 131,071 targets. Native
+NLL is measured from FP32 logits before production half/guard/mixer/u16/range.
 
-## First complete production epoch
-
-The independent run completed its first full epoch: **1,313 pieces, 2,941,307
-targets, 78 optimizer steps**. Pre-update, target-weighted means were CE
-`1.261342768708` (report-only), teacher KL `0.283563684847`, final-hidden MSE
-`0.273606457375`, and effective objective `0.629884257683`. All 134 gradients
-were finite and nonzero at every recorded step; the read-only cache had zero
-misses. The full [epoch record](results/teacher-only-first-epoch.json) includes
-all 78 step records and the original epoch accumulator.
-
-The fixed CE + KL control's first epoch had teacher KL `0.288198360923`. This is
-an online-training comparison. The new 32-epoch curve, scheduled native held/long/
-giant evaluations, and sole selected-weight coded samples remain in progress.
-
-### The frozen residual is spread across articles
-
-The completed CE + KL control's selected e12 worsened **457 of 473 held pieces**,
-covering **1,080,647 of 1,082,505 targets**. Its three longest held pieces account
-for 9.94% of targets and 11.58% of the total native loss increase; the remaining
-470 pieces retain a `+0.175646600207` nats/target gap. All five length bands have
-positive target-weighted residuals. The epoch record preserves these complete
-control aggregates alongside the first new training observation. The new
-control tests global teacher-target recovery with the fixed architecture.
-
-
-## First native checkpoint: epoch 4
-
-The original unique watcher reported the complete e4 native aggregate. Both
-trajectories are at the same continuous-training epoch, with a hard-exported
-weight for native scoring. Shared data, native family, scale, optimizer, hidden
-alignment and rate settings retain the fixed method above.
-
-| Native scope | Targets | Original CE+KL e4 | Teacher-only e4 | Fresh minus old |
-| :--- | ---: | ---: | ---: | ---: |
-| Full held | 1,082,505 | 1.187158519088 | 1.191965251350 | +0.004806732262 |
-| Long held subset | 107,647 | 1.518069217219 | 1.516227199677 | −0.001842017541 |
-| Independent giant | 131,071 | 0.186305475316 | 0.206609864589 | +0.020304389273 |
-
-The primary full-held and independent-giant NLLs are higher in the fresh control;
-the long subset's NLL is lower. All three fresh domains retain a positive gap to
-the original 12-block W0: **+0.225716912556 / +0.257612898368 / +0.167623438458**
-nats/target. The 470 held pieces outside the long subset have a derived
-fresh-minus-old gap of **+0.005540908901** nats/target.
-
-The long subset is included in the full-held count. Independent coverage here
-is **1,213,576 targets**. Fresh e4 weighs **1,957,707 B**, versus **1,957,973 B**
-for old e4: **532 B** improvement across the two weight copies. Its total
-two-weight saving versus W0 is **1,893,236 B**; binary and payload components
-retain their separate accounting.
-
-The independent 32-epoch curve and its sole selected-weight mixed-codec
-measurement continue. This e4 report uses the actual native aggregate; complete
-raw checkpoint receipts will be collected together at the real terminal.
-[Full same-epoch comparison](results/teacher-only-first-native-e4.json).
-
-
-## Native checkpoint: epoch 8
-
-The unique watcher has now returned the e8 native checkpoint, at the end of
-the continuous stage. The matched CE+KL e8 is retained from its completed
-original trajectory. Both are hard-exported weights scored by the same native
-family and held-data contract.
-
-| Native scope | Targets | Original CE+KL e8 | Teacher-only e8 | Fresh minus old |
-| :--- | ---: | ---: | ---: | ---: |
-| Full held | 1,082,505 | 1.168803883378 | 1.155372473714 | −0.013431409664 |
-| Long held subset | 107,647 | 1.498125758357 | 1.478042330055 | −0.020083428301 |
-| Independent giant | 131,071 | 0.224976626208 | 0.241003127283 | +0.016026501075 |
-
-The new objective now has a lower NLL on the primary full-held scope and its
-long subset. The derived other 470 held pieces also have a lower NLL. The
-independent giant has a higher NLL. Against the original 12-block W0, fresh
-e8 retains gaps of **+0.189124134920 / +0.219428028745 / +0.202016701152**
-nats/target.
-
-Within the fresh trajectory, e4 to e8 lowers full-held NLL by
-**0.036592777636** and long-subset NLL by **0.038184869622**; giant NLL rises
-by **0.034393262694**. Primary selection and independent-audit behavior are
-reported on their own scored scopes.
-
-Fresh e8 weighs **1,959,171 B**, against old e8's **1,960,160 B**. Its two
-weight copies improve the weight charge by **1,978 B** versus old e8 and save
-**1,890,308 B** versus W0. Within the fresh trajectory the asset grew by
-**1,464 B** from e4. Actual mixed-codec bytes use the selected weight at the
-complete trajectory's terminal; binary, payload and weight components remain
-separately measured.
-
-The complete 32-epoch run, its 24 hard-coordinate epochs, and the single
-selected-weight paired codec measurement continue. Scheduled native checkpoints follow every fourth epoch. This report uses the actual watcher aggregate and the retained old
-control; additional model/native runs and remote reads are zero.
-[Complete e8 comparison and e4-to-e8 changes](results/teacher-only-native-e8.json).
-
-
-## Native checkpoint: epoch 12
-
-The unique watcher returned the e12 native checkpoint after four completed
-hard-coordinate epochs. The retained matched CE+KL e12 is from the original
-complete trajectory. The fixed architecture, data and native scoring contract
-continue unchanged.
-
-| Native scope | Targets | Original CE+KL e12 | Teacher-only e12 | Fresh minus old |
-| :--- | ---: | ---: | ---: | ---: |
-| Full held | 1,082,505 | 1.145141392609 | 1.122412619593 | −0.022728773016 |
-| Long held subset | 107,647 | 1.466907443103 | 1.440675849419 | −0.026231593684 |
-| Independent giant | 131,071 | 0.268978606267 | 0.233062518154 | −0.035916088113 |
-
-Teacher-only e12 has lower NLL in all three reported domains than the original
-e12. The derived other 470 held pieces improve by **0.022341980133**
-nats/target. Within the fresh trajectory, e8 to e12 also lowers all three NLLs:
-**0.032959854121 / 0.037366480636 / 0.007940609129** nats/target for full held,
-its long subset and the independent giant, respectively.
-
-Fresh e12 retains positive residuals against the original 12-block W0:
-**+0.156164280798 / +0.182061548110 / +0.194076092023** nats/target.
-Primary selection continues to use full held; the long subset and giant retain
-their report-only roles. Independent scored coverage is **1,213,576 targets**,
-with long held counted inside full held.
-
-Fresh e12 weighs **1,959,728 B**, against old e12's **1,960,982 B**. This improves
-the two-copy weight charge by **2,508 B** versus old e12 and saves **1,889,194 B**
-versus W0. The fresh asset grew by **557 B** from e8. Binary and actual coded
-payload components retain their own measurements.
-
-The complete 32-epoch run and sole selected-weight paired codec measurement
-continue. The next scheduled native checkpoint is e16; selection and actual
-mixed-codec samples follow the complete trajectory's terminal. This stage
-comparison uses the new watcher aggregate and retained original controls;
-additional model/native runs and remote reads are zero.
-[Complete e12 comparison and e8-to-e12 changes](results/teacher-only-native-e12.json).
-
-## Native checkpoint: epoch 16
-
-The unique watcher returned native e16 after eight hard-coordinate epochs,
-with the matched CE+KL e16 retained from the complete original trajectory.
-The shared data, architecture and native-scoring contract continue unchanged.
-
-| Native scope | Targets | Original CE+KL e16 | Teacher-only e16 | Fresh minus old | Fresh e16 minus e12 |
+| Epoch | CE + KL full held | Teacher-only full held | Teacher-only held long | Teacher-only giant | Teacher-only W, B |
 | :--- | ---: | ---: | ---: | ---: | ---: |
-| Full held | 1,082,505 | 1.149255265863 | 1.123169183843 | −0.026086082021 | +0.000756564250 |
-| Long held subset | 107,647 | 1.472786730094 | 1.439897893520 | −0.032888836574 | −0.000777955899 |
-| Independent giant | 131,071 | 0.275808524938 | 0.258788764484 | −0.017019760453 | +0.025726246330 |
+| 4 | 1.187158519 | 1.191965251 | 1.516227200 | 0.206609865 | 1,957,707 |
+| 8 | 1.168803883 | 1.155372474 | 1.478042330 | 0.241003127 | 1,959,171 |
+| 12 | 1.145141393 | 1.122412620 | 1.440675849 | 0.233062518 | 1,959,728 |
+| 16 | 1.149255266 | 1.123169184 | 1.439897894 | 0.258788764 | 1,960,239 |
+| 20 | 1.158834673 | 1.124225593 | 1.441486694 | 0.273788844 | 1,960,779 |
+| 24 | 1.160351253 | 1.125847485 | 1.444504741 | 0.286336036 | 1,961,211 |
+| 28 | 1.163296659 | 1.123333938 | 1.438905642 | 0.311845858 | 1,961,646 |
+| 32 | 1.167243559 | 1.122611285 | 1.438649551 | 0.320578531 | 1,962,097 |
 
-Fresh e16 has lower NLL than old e16 in all three scopes. Within the fresh
-trajectory, full-held and giant NLL rise from e12, while long-held NLL falls.
-The derived other 470 held pieces (974,858 targets) improve by
-**0.025334899675** nats/target against old e16 and rise by **0.000926010970**
-from fresh e12. Fresh residuals versus W0 are **+0.156920845048 /
-+0.181283592210 / +0.219802338353**. Long held stays inside full held;
-independent scored coverage remains **1,213,576 targets**.
+The frozen selector chose **e12 / step 949 / 1,959,728 B**, using the primary
+held proxy and earliest-epoch tie-breaker. Against the matched CE + KL e12,
+primary NLL improves by **0.022728773016 nats/target**; the W0 residual remains
+**+0.156164280798**. The selected long/giant residuals are
++0.182061548110 / +0.194076092023. Both weight copies save **1,889,194 B**
+against W0; both deployed binaries save **9,024 B**.
 
-Fresh e16 weighs **1,960,239 B**, versus old e16's **1,961,715 B**: the
-two-copy weight charge improves by **2,952 B** against old e16 and saves
-**1,888,172 B** against W0. Fresh weight grew **511 B** from e12. Binary and
-actual coded payload retain their separate measurements and the sole selected
-weight's actual codec contract. Full32 and its paired codec run continue;
-the next trigger is e20/native or actual same-weight mixed terminal/error.
-This report adds zero remote state reads, model/native runs or collectors.
-[Stage data and e12-to-e16 changes](results/teacher-only-native-e16.json);
-`python3 research/check-teacher-only-native-e16.py` checks counts, W0 gaps,
-target-weighted remainder identities and both weight charges using the standard
-library and the retained e12 JSON.
+From e12 to e32, online teacher KL falls **0.009755372969**, while the exported
+primary NLL rises **0.000198665509** and giant NLL rises **0.087516013051**.
+The matched CE + KL late primary increase is **0.022102166426**. Teacher-only
+learning reduces the late primary rebound; selection still favors e12.
+Online training means are pre-update and target-weighted over the fixed
+1,313 training pieces. Each native checkpoint has its own hard export.
 
+[Complete paired curves](results/teacher-only-complete-curves.json) ·
+[Raw-receipt summarizer](summarize-teacher-only-curves.py)
 
-## Native checkpoint: epoch 20
+The summarizer rebuilds all 64 epoch means from 5,048 optimizer records,
+checks the fresh trajectory's 16 native logs, and pairs the eight retained
+native checkpoints of each trajectory. Run it with the two collected raw
+directories: `python3 research/summarize-teacher-only-curves.py OLD/raw NEW/raw`.
 
-The original unique watcher returned the complete e20 native aggregate. The
-matched CE+KL checkpoint is retained from its completed original run; the fresh
-checkpoint has completed twelve hard-coordinate epochs after eight continuous
-epochs.
+### The same e12 through the actual codec
 
-| Native scope | Targets | Original CE+KL e20 | Teacher-only e20 | Fresh minus old | Fresh e20 minus e16 |
-| :--- | ---: | ---: | ---: | ---: | ---: |
-| Full held | 1,082,505 | 1.158834673372 | 1.124225592518 | −0.034609080854 | +0.001056408676 |
-| Long held subset | 107,647 | 1.485189066030 | 1.441486693515 | −0.043702372516 | +0.001588799995 |
-| Independent giant | 131,071 | 0.282757025191 | 0.273788843518 | −0.008968181673 | +0.015000079034 |
+Both complete sample encodes and their golden-decode restorations passed.
+The full prefix8 payload grows **150,888 B** and the full q2 payload grows
+**33,157 B**. The table uses retained stream histories and actual closed-range
+interval endpoints; each reporting scope is paired separately.
 
-Fresh e20 has lower NLL than matched old e20 in all three domains. Within the
-fresh trajectory, all three NLLs rise from e16 to e20. The target-weighted other
-470 held pieces have a fresh-minus-old gap of **−0.033604969929**, and a
-fresh e20-minus-e16 change of **+0.000997620290** nats/target. Long3 remains
-included in full held; independent coverage remains 1,213,576 targets.
+| Scope | Input B | NN-target B | Guarded NN extra bits | Mixer extra bits | u16 extra bits | Actual coded increase B |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: |
+| Mature prefix8 | 1,041,690 | 1,041,397 | 269,332.092 | 208,979.785 | 208,129.467 | 26,016 |
+| Full q2 | 1,048,576 | 1,048,367 | 309,941.384 | 266,018.652 | 265,262.506 | 33,157 |
+| q2 outside direct training input | 1,037,391 | 1,037,183 | 307,717.763 | 264,189.035 | 263,451.842 | 32,931 |
+| q2 seed414 held role | 505,309 | 505,207 | 129,953.147 | 101,574.093 | 101,215.967 | 12,651 |
 
-Fresh e20 weighs **1,960,779 B**, versus old e20 **1,962,438 B**: **3,318 B**
-lower two-weight charge. It grows **540 B** from fresh e16; its two-weight
-saving versus original 12-block W0 is **1,887,092 B**. Fresh gaps to W0 are
-**+0.157977253724 / +0.182872392205 / +0.234802417386** nats/target.
+The mature and non-direct q2 coded increases improve by **2,317 B / 3,090 B**
+against the complete CE + KL control, recovering **8.18% / 8.58%** of its
+increases. Mature guarded-NN recovery is **12.62%**; its final/NN transfer
+changes from 0.735351 to **0.772761**. The exact NN/fallback masks, override
+counts, u16 ideal lengths, range residuals, and baseline reuse are retained in
+the [complete same-weight readout](results/teacher-only-complete-mixed.json).
 
-The complete 32-epoch curve and sole selected-weight codec measurement continue.
-The next native checkpoint is e24; actual terminal/error receipts open the
-retained full collection. [Matched checkpoint and trajectory](results/teacher-only-native-e20.json) ·
-[standard-library arithmetic check](check-teacher-only-native-e20.py).
+Measured package scope: the two full sample payloads grow **184,045 B**;
+including their shared double-W and dual-B savings gives **1,714,173 B saved**
+for this two-sample component. For full-stream admission, extending each
+observed interval's byte-rate across the **586,459,020-byte prepared input**
+gives net archive increases of **12.748 MB / 16.718 MB / 12.784 MB** after the
+1,898,218 B weight/binary saving. These are constant-rate admission scenarios.
+The completed candidate stops new full-stream expansion; its measured curves,
+round trips and four-layer attribution remain reusable research assets.
 
-## Teacher-only checkpoint 24: matched improvement and continued late rise
+The original same-W codec used 5,583.029095088 CPU seconds. Four additional
+candidate reducers used 0.449368 CPU seconds; baseline reducers and native
+model/codec reruns were zero. The original controller state is retained.
 
-The original unique watch returned native e24 at 05:27 CST on November 9.
-Both recipes retain the same eight-layer architecture, frozen scales, native
-family and held targets; the original complete CE+KL e24 is the matched control.
-
-| Native scope | Targets | Original CE+KL e24 | Teacher-only e24 | Fresh minus old | Fresh e24 minus e20 |
-|---|---:|---:|---:|---:|---:|
-| full_held | 1,082,505 | 1.160351253348 | 1.125847484732 | -0.034503768617 | +0.001621892213 |
-| held_long | 107,647 | 1.489268055688 | 1.444504741356 | -0.044763314332 | +0.003018047842 |
-| giant | 131,071 | 0.321076006584 | 0.286336036436 | -0.034739970148 | +0.012547192918 |
-
-Fresh e24 is below the matched original e24 in all three domains. All three
-fresh-domain NLLs rise from e20 to e24. The other 470 held pieces
-(974,858 targets) give **-0.033370876116** nats/target
-against old e24 and **+0.001467724155**
-from fresh e20. Long3 is included in the primary fullheld total; the
-independent giant stays report-only.
-
-Fresh W is **1,961,211 B**; old e24 W is **1,963,088 B**. The two-copy charge
-improves by **3,754 B** against old e24 and saves **1,886,228 B** against W0;
-fresh W grows by **432 B** from e20. Primary selection and the sole selected-W
-mixed stream continue under the original 32-epoch / 48-CPUh and 8-CPUh limits.
-The next scientific trigger is e28/native or actual same-weight terminal/error.
-
-[Checkpoint data](results/teacher-only-native-e24.json) ·
-[standard-library arithmetic check](check-teacher-only-native-e24.py).
-
-The e20 data's provenance label now names its actual retained e20 source;
-its measurements and arithmetic remain the recorded values.
+Earlier checkpoint records remain available:
+[e4](results/teacher-only-first-native-e4.json) ·
+[e8](results/teacher-only-native-e8.json) ·
+[e12](results/teacher-only-native-e12.json) ·
+[e16](results/teacher-only-native-e16.json) ·
+[e20](results/teacher-only-native-e20.json) ·
+[e24](results/teacher-only-native-e24.json).

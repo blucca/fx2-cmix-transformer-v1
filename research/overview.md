@@ -17,12 +17,12 @@ For deployment measurement, the **identical selected hard weight file** enters t
 | [Fixed-scale integer coordinates](integer-coordinate-qat.md#complete-64-epoch-terminal) | All **64 epochs** completed. Online CE fell while mature native NLL increased **0.223917532 nats/target**; both weight copies grew **20,058 B**. | The [complete same-W mixed audit](results/integer-coordinate-mixed-terminal-64.json) failed its gate: mature code grew **20,835 B**, independent q2 held code **7,085 B**. This fixed recipe stops. |
 | [Complete causal-prior learning](causal-complete-16-mixed.md) | All **16 epochs** completed. The frozen **e2** has full-held native change **−0.001283234 nats/target**; the final e16 is worse. | The same e2 saves **697 B** on the complete prefix8 round trip and **221 B** on full q2. The retained-history mature interval saves **98 B**; q2 outside direct training input saves **212 B**. Its named historical full-stream gate stops expansion. |
 | [Complete eight-block CE + KL](depth-complete-32-mixed.md) | All **32 epochs** completed. Selected **e12** repairs **74.33%** of the zero8 full-held gap, leaving **+0.178893054 nats/target** against W0. | The same e12 grows the complete prefix8 payload **163,082 B**, mature interval **28,333 B**, and q2 outside direct training input **36,021 B**. This fixed selected-weight expansion stops. |
-| [Independent eight-block teacher-only](teacher-only-distillation.md) | The fixed **32-epoch** control is running. At published [**e20**](results/teacher-only-native-e20.json), full-held native loss is **-0.034609081 nats/target** against matched CE + KL e20, with a **+0.157977254** W0 gap. All three domains rise from e16; the lowest published primary loss is still e12. | Both e20 weight copies save **1,887,092 B** against W0. The sole terminal-selected weight's actual codec measurement is pending. |
-| [Full12 seven-symbol teacher-only](q7-teacher-only.md) | A separate fixed **32-epoch** run keeps all twelve blocks. First native [**e4**](results/q7-native-e4.json) has a **+0.547896342 nats/target** primary W0 gap; the independent giant gap is **+1.262500159**. The restored **1,199-target** admission and its **2,044,814 B** initial archive retain their separate scope. | Both e4 weight copies save **1,662,124 B** against W0. Its own selected-weight prefix8/q2 round trips follow the training terminal. |
+| [Complete eight-block teacher-only](teacher-only-distillation.md) | All **32 epochs** completed. The frozen **e12** improves primary NLL **0.022728773 nats/target** versus CE + KL e12, leaving **+0.156164281** against W0. The complete paired curve records the reduced late primary rebound. | Same e12 grows the mature interval **26,016 B** and q2 outside direct training input **32,931 B**; improvements over CE + KL are **2,317 / 3,090 B**. Both weight copies save **1,889,194 B**. This full-stream expansion stops. |
+| [Full12 seven-symbol teacher-only](q7-teacher-only.md) | The fixed **32-epoch** run keeps all twelve blocks. The [**e16 stage aggregate**](results/q7-native-e16-stage.json) has primary W0 gap **+0.194970680 nats/target**, recovering **46.12%** of the [initial q7 gap](results/q7-initial-native.json). Long/giant remain report-only. | Both e16 weight copies save **1,655,172 B** against W0. Its own terminal-selected-weight prefix8/q2 round trips remain in progress. |
 
 The eight-block comparison holds depth, scales, native family and the optimizer
 fixed while changing the output target. Its measured gain over CE + KL survives
-to e20, alongside a positive W0 gap and a late primary-loss rebound. The full12
+the complete curve and actual code, alongside a positive W0 gap. The full12
 run keeps all layers and changes the alphabet, scales and output target; its
 CPU GEMM uses integer units before the BF16 fold, while the older q15 control
 uses scaled FP32 GEMM. The [source-labelled comparison](q7-teacher-only.md#first-native-holdout-hard-epoch-four)
@@ -42,10 +42,10 @@ codec measurement supplies the payload component of the archive decision.
 
 ## Formal candidate archive measurements
 
-The completed fixed causal16 and CE + KL depth32 candidates stop new
-full-stream expansion under their recorded gates. Finish the independent
-teacher-only and seven-symbol trajectories, then use each terminal-selected
-weight's actual payload and component costs for admission. The
+The completed fixed causal16, CE + KL depth32, and teacher-only depth32
+candidates stop new full-stream expansion under their recorded gates. Finish
+the seven-symbol trajectory, then use its terminal-selected weight's actual
+payload and component costs for admission. The
 [complete archive runner](causal-fullstream.md) executes native `cmix -e` for W0
 and an admitted W1, reads both authentic packages, then verifies each archive's
 official-original restoration.

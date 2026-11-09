@@ -280,3 +280,15 @@ actual e0/e8 data and the original admitted scalar:
 ```sh
 python3 -B research/q7-terminal-readout.py --check
 ```
+
+
+## Latest stage aggregate: hard epoch sixteen
+
+The original unique watcher returned e16 on 9 November 2026 at 16:27 CST.
+Full held / contained long / independent giant NLL falls
+**0.041138109 / 0.050443388 / 0.060530037 nats/target** from e12.
+The primary initialization loss has recovered **46.1159%**; its W0 residual is
+**+0.194970680**. The hard export is **2,076,739 B**, saving **1,655,172 B**
+across both weight copies. This [stage readout](results/q7-native-e16-stage.json)
+uses the cached native aggregate; the complete raw curve and sole selected-W
+codec measurement follow the original training terminal.
