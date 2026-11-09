@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Rebuild the recorded fixture's FP32 → nearest-even UINT8 → DQ boundaries.
 
-Usage: python3 -B research/check-ort-qdq-boundaries.py research/results/ort-qdq-*.json
+Usage: python3 -B research/check-ort-qdq-boundaries.py CONTROL.json [CONTROL.json ...]
 The fixture's power-of-two scale gives an exact division in Python float.
 """
 import json
