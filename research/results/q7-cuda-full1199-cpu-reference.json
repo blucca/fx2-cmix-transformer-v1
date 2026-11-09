@@ -1,0 +1,244 @@
+{
+  "schema": "hutter.q7.cuda-resource.cpu-reference.v1",
+  "scope": "Recorded scalar summaries for the original 1199-target q7 initialization on CPU and the completed CUDA reference resource run",
+  "cpu_source_commit": "52c60a526874f84f7aeddf4d722c297351a949f6",
+  "cpu_public_preflight": "q7-teacher-only-preflight.json",
+  "cpu_original_preflight_receipt_sha256": "945993c6e62466a411178d4266328bb5ba0ca69ff59a6d14039e1034c97a8b0a",
+  "cpu_preflight": {
+    "status": "passed",
+    "piece": [
+      0,
+      5321,
+      6521
+    ],
+    "targets": 1199,
+    "ce_mean": 1.0366592725383132,
+    "teacher_kl_mean": 0.36567785980504586,
+    "soft_entropy_nats": 10765850.08984375,
+    "objective": 0.768070476217787,
+    "gradient_norm": 0.39286861187969224,
+    "finite_gradient_tensors": 111,
+    "nonzero_gradient_tensors": 111,
+    "check_cpu_seconds": 5.915475907000001,
+    "initialization_restored": true,
+    "optimizer_reset": true,
+    "ce_report_only": true,
+    "teacher_cache_misses": 0,
+    "teacher_cache_mode": "read-only",
+    "raw_trainable_tensors": 0,
+    "native_scaled_gemm": true
+  },
+  "cpu_timer": {
+    "unit": "single-core aggregate CPU seconds, parent process plus children",
+    "start": "immediately before backward([piece], targets)",
+    "included": [
+      "piece/prior/cache read",
+      "model forward",
+      "2KL backward",
+      "gradient target normalization",
+      "rate entropy forward/backward",
+      "gradient validation and L2 summary",
+      "AdamW update and projection",
+      "frozen-state validation",
+      "geometry",
+      "payload/static15 export",
+      "export byte check"
+    ],
+    "initialization_and_optimizer_restore": "after the recorded timer ends",
+    "forward_seconds": null,
+    "data_backward_seconds": null,
+    "rate_backward_seconds": null,
+    "wall_seconds": null,
+    "phase_fields": "The original preflight stores check_cpu_seconds as one aggregate."
+  },
+  "cuda_timer": {
+    "unit": "CUDA-synchronized monotonic seconds",
+    "forward_seconds": 5.175270038999997,
+    "data_backward_seconds": 11.299987716000004,
+    "rate_backward_seconds": 0.1584454929999879,
+    "complete_forward_backward_seconds": 16.63370324799999,
+    "script_wall_seconds": 39.36690528999998,
+    "phase_scope": "sum of the three recorded compute phases; setup, detached CE reporting, differentiable KL construction and inter-phase checks occupy the other script wall time",
+    "optimizer_updates": 0,
+    "native_evaluations": 0,
+    "rate_phase_definition": "entropy forward and rate backward, timed together",
+    "data_backward_fraction_of_recorded_compute": 0.6793428707680412,
+    "rate_backward_fraction_of_recorded_compute": 0.009525569299731203
+  },
+  "cuda_minus_cpu": {
+    "ce_mean": 0.0007787454714864861,
+    "teacher_kl_mean": 0.0015737805593202814,
+    "objective": 0.0031475615182848804,
+    "soft_entropy_nats": 0.1171875,
+    "gradient_l2_norm": 0.002444030167110589,
+    "gradient_l2_norm_relative_to_cpu": 0.006220986083405933,
+    "recorded_cuda_compute_seconds_over_cpu_check_seconds": 2.8118960349947018,
+    "gradient_comparison_scope": "two complete-gradient L2 norms; paired full-model gradient arrays are outside these stored results",
+    "timer_comparison_scope": "CUDA compute seconds divided by the broader original single-core CPU check seconds"
+  },
+  "shared_inputs_and_parameters": {
+    "article": [
+      0,
+      5321,
+      6521
+    ],
+    "targets": 1199,
+    "vocabulary": 205,
+    "sample_sha256": "57ac034c986a99ce37c8d1864e5163c199c610749c4577a1f88e07fffc295a86",
+    "checkpoint_sha256": "2ca3428f729799a93927822c14c67ef99493ceeabf6e82895b7f07646b4024fd",
+    "arrays": {
+      "tokens.npy": {
+        "dtype": "|u1",
+        "shape": [
+          1200
+        ],
+        "payload_bytes": 1200,
+        "payload_sha256": "66f053fd1a65079ebf603f488fd15f88862d2ddf089c889ea577655ecbee2677"
+      },
+      "priors.npy": {
+        "dtype": "<f2",
+        "shape": [
+          1,
+          1199,
+          205
+        ],
+        "payload_bytes": 491590,
+        "payload_sha256": "93855ca8091b5f0d7bcce10a5d413b2a7e6a7705e6a86037c5c7d4739dd29648"
+      },
+      "teacher_logits.npy": {
+        "dtype": "<f4",
+        "shape": [
+          1,
+          1199,
+          205
+        ],
+        "payload_bytes": 983180,
+        "payload_sha256": "6832153f5b91d3f086cf02691a8a3881c17ccb90594ce7a55db4093ddbf7690d"
+      }
+    },
+    "coordinate_tensors": 111,
+    "coordinate_elements": 5868864,
+    "frozen_tensors": 429,
+    "q7_map": "sign(q)*floor((3*abs(q)+3)/7)",
+    "weight_scale_map": "signed-BF16-exact-RNE-times-7/3, fixed after initialization",
+    "data_objective": "2KL(teacher||student) / 1199; detached CE report only",
+    "rate_objective": "2H(z)/586459020, seven centers, tau=0.5",
+    "full12_config": {
+      "layers": 12,
+      "width": 192,
+      "kda_layers": 9,
+      "attention_layers": 3,
+      "window": 1024,
+      "gradient_checkpointing": true,
+      "dropout": 0
+    },
+    "original_cpu_math_sources_unchanged_except_temporary_device_assert": true
+  },
+  "backend_comparison": {
+    "linear": "quantized CastedLinear: same FP32 integer-unit expression and post-GEMM fold of signed BF16 activation/weight scales; CUDA TF32 disabled",
+    "kda_cpu": "compiled C ABI recurrence/adjoint with states every 128 tokens",
+    "kda_cuda": "pure-torch per-token recurrent reference and autograd, FP32",
+    "conv_and_gated_norm": "same pure-torch reference functions on their respective devices",
+    "attention_cpu": "original CPU math-SDPA window tiles, including short-final-query overlap",
+    "attention_cuda": "dense CUDA math-SDPA; same causal, 1024-window and article masks",
+    "activation_quantizer_cpu": "tiled adjoint only when scaled.numel() > 2^20",
+    "activation_quantizer_cuda": "original untiled adjoint; the largest 1199x768 operand is below 2^20",
+    "floating_point_scope": "KDA reductions, SDPA kernels/tile layouts, softmax/log/entropy and noninteger VJP reductions execute on the respective devices",
+    "scope": "hard integer GEMM exactness applies to hard operands recovered within the prescribed FP32/BF16 arithmetic contract; model-wide floating outputs have the recorded scalar differences"
+  },
+  "source_provenance": {
+    "bundle_source_commit": "513a89c1d339848717684fa5993dea482a85208c",
+    "executed_script_sha256": "59bc8259e3752a4d6037f440fc1363739bc53396438e3ff3277c6108b14f7571",
+    "public_entrypoint_sha256": "9fb5b6f2326a0c368951422ba11191d5b56a5c27daaa06e502031f1d5c44de8a",
+    "public_entrypoint_changes": [
+      "corrected operator-scope docstring",
+      "configurable output path and parent creation",
+      "configurable input/source paths"
+    ],
+    "measured_compute_body_retained": true,
+    "bundled_source_files": {
+      "pysrc/model.py": {
+        "bytes": 53606,
+        "bundled_sha256": "2b6ad48f09721223dd6dee4228ff10dc589ebbc124e2bfb2832b59a9017dcc5d",
+        "original_public_sha256": "2049f948b964d79e3e57c19cf41b47a52a141b6cbe812f7255f716e0a9b2645f",
+        "temporary_cuda_device_assert": true
+      },
+      "pysrc/quantization.py": {
+        "bytes": 11263,
+        "bundled_sha256": "076dba090af4d9bb97c97b411f902fa11d46cc35d00d75f35146a74cf1c708b6",
+        "original_public_sha256": "076dba090af4d9bb97c97b411f902fa11d46cc35d00d75f35146a74cf1c708b6",
+        "temporary_cuda_device_assert": false
+      },
+      "pysrc/attention_function.py": {
+        "bytes": 15635,
+        "bundled_sha256": "1ac9c5f59d0f881565df23c4d809646f5adbe2eeb42059d3713a4cf82fb6973f",
+        "original_public_sha256": "1ac9c5f59d0f881565df23c4d809646f5adbe2eeb42059d3713a4cf82fb6973f",
+        "temporary_cuda_device_assert": false
+      },
+      "pysrc/kda_reference.py": {
+        "bytes": 13422,
+        "bundled_sha256": "c34a3a43a0c894400db62bba2c2aebe47544ef9e2bce1a72b8872c275faca5fb",
+        "original_public_sha256": "c34a3a43a0c894400db62bba2c2aebe47544ef9e2bce1a72b8872c275faca5fb",
+        "temporary_cuda_device_assert": false
+      },
+      "research/cpu_model.py": {
+        "bytes": 4834,
+        "bundled_sha256": "3ce4a45ab9532dce62b2794b234886d44de6b9836b12381b2c06f1a94f894463",
+        "original_public_sha256": "3ce4a45ab9532dce62b2794b234886d44de6b9836b12381b2c06f1a94f894463",
+        "temporary_cuda_device_assert": false
+      },
+      "research/q7_teacher_only.py": {
+        "bytes": 3955,
+        "bundled_sha256": "8749806184aa74d0ee2fe2f80c57332dad7135c78c22a9bc6f218b9651ac9579",
+        "original_public_sha256": "8749806184aa74d0ee2fe2f80c57332dad7135c78c22a9bc6f218b9651ac9579",
+        "temporary_cuda_device_assert": false
+      },
+      "research/integer-coordinate-qat.py": {
+        "bytes": 34815,
+        "bundled_sha256": "2cf8f1addbdc3a04574f9127a6a30397ded27dabc3da07b9195dc62cc85c91e8",
+        "original_public_sha256": "2cf8f1addbdc3a04574f9127a6a30397ded27dabc3da07b9195dc62cc85c91e8",
+        "temporary_cuda_device_assert": false
+      },
+      "research/entropy-qat.py": {
+        "bytes": 19802,
+        "bundled_sha256": "44901f12426f6445e0acdc4eb100ddf3cd3709cdc090bb18c126f73e46efea27",
+        "original_public_sha256": "44901f12426f6445e0acdc4eb100ddf3cd3709cdc090bb18c126f73e46efea27",
+        "temporary_cuda_device_assert": false
+      },
+      "training_recipes/cooldown.py": {
+        "bytes": 7296,
+        "bundled_sha256": "55d893427ce44af9472c987e16fad02a8f20f6c0477cd7a0bd748ae65240587a",
+        "original_public_sha256": "55d893427ce44af9472c987e16fad02a8f20f6c0477cd7a0bd748ae65240587a",
+        "temporary_cuda_device_assert": false
+      },
+      "models/6m-q4-fp32.tch": {
+        "bytes": 23868862,
+        "bundled_sha256": "2ca3428f729799a93927822c14c67ef99493ceeabf6e82895b7f07646b4024fd",
+        "original_public_sha256": "2ca3428f729799a93927822c14c67ef99493ceeabf6e82895b7f07646b4024fd",
+        "temporary_cuda_device_assert": false
+      },
+      "LICENSE": {
+        "bytes": 35149,
+        "bundled_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "original_public_sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "temporary_cuda_device_assert": false
+      },
+      "README.md": {
+        "bytes": 9240,
+        "bundled_sha256": "33d76729505c56c7a3f307ab6ceb8270e070b75de42d6e239641a96ee2a9863e",
+        "original_public_sha256": "33d76729505c56c7a3f307ab6ceb8270e070b75de42d6e239641a96ee2a9863e",
+        "temporary_cuda_device_assert": false
+      }
+    }
+  },
+  "decision": {
+    "resource_gate": "passed: complete original article, all 111 coordinate gradients finite/nonzero, frozen state preserved",
+    "reference_backend_training_expansion": "stopped",
+    "basis": "recorded CUDA compute is 16.6337s, while the broader original single-core CPU check is 5.9155 CPU-seconds; the original CPU method remains the active learning path",
+    "new_training_allocation": 0,
+    "new_cpu_benchmark_calls": 0,
+    "new_gpu_calls": 0,
+    "new_native_calls": 0,
+    "new_compile_or_fla_migration": 0
+  }
+}
