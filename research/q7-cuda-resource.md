@@ -6,7 +6,7 @@ This is a resource measurement for the existing full12 q7 research, using genera
 
 Python 3.13.16, Torch 2.11.0+cu130, CUDA 13.0, driver 580.178.04; two Tesla T4 devices were available, cuda:0 was used. Compute capability is 7.5. FP32 is the compute dtype; TF32 is disabled. T4 hardware BF16 support is false; Torch's default BF16 query includes emulation and returned true.
 
-All seven shapes passed: eight integer rows per shape compared exactly to integer products, and every complete-batch hard-STE VJP had relative L2 error 0.0 against its CPU FP32 expression. The census is 111 matrices / 5,868,864 coordinates. Total script wall time was 7.546727s including setup; peak CUDA allocation was 34,093,056 bytes. The original model, optimizer trajectory and native decoder remain their existing experiments.
+All seven shapes passed: eight integer rows per shape compared exactly to integer products, and every complete-batch hard-STE VJP had relative L2 error 0.0 against its CPU FP32 expression. The census is 111 matrices / 5,868,864 coordinates. Total script wall time was 7.546727s including setup; peak CUDA allocation was 34,126,848 bytes. The original model, optimizer trajectory and native decoder remain their existing experiments.
 
 | Output × input | Existing matrices | One GEMM, ms |
 | --- | ---: | ---: |
