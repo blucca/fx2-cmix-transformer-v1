@@ -463,8 +463,11 @@ def main():
         reference = Path(d["reference_job"])
         state["cases"] = []
         trace_bytes = sum(spec[1]*128 for spec in SPECS.values())
-        assert trace_bytes <= old.TRACE_LIMIT and shutil.disk_usage(out).free > old.TRACE_LIMIT
-        save(trace_planned_bytes=trace_bytes, required_free_disk_bytes=old.TRACE_LIMIT,
+        # The fixed two cases need their traces plus token/encoded/decoded outputs.
+        # Reserving the entire trace hard cap rejected a job with sufficient disk.
+        required_free = trace_bytes + 3*sum(spec[1] for spec in SPECS.values())
+        assert trace_bytes <= old.TRACE_LIMIT and shutil.disk_usage(out).free > required_free
+        save(trace_planned_bytes=trace_bytes, required_free_disk_bytes=required_free,
              original_encode_runs=0, original_decode_runs=0)
         for name, (offset, length, begin, count, targets, expected) in SPECS.items():
             with paths["stream"].open("rb") as f:
