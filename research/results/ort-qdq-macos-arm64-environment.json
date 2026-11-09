@@ -1,0 +1,11 @@
+{
+  "system": "Darwin",
+  "machine": "arm64",
+  "platform": "macOS-15.8.2-arm64-arm-64bit",
+  "mac_ver": "15.8.2",
+  "python": "3.12.10",
+  "numpy": "2.5.3",
+  "onnxruntime": "1.30.0",
+  "ort_build": "ORT Build Info: git-branch=HEAD, git-commit-id=f2c39fe, fp8-kv-cache=1, build type=Release",
+  "model_source": "https://github.com/user-attachments/files/32810047/minimal_model.onnx.zip"
+}

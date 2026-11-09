@@ -109,3 +109,49 @@ other tensor types/models can use ONNX's ValueInfo helpers.
 Original report and model: **kadu-v**. Independent Linux control, graph/source
 inspection and reproduction: **Blucca / Codex**. The author's ARM64 observation
 and this Linux x86_64 result retain their respective runtime scopes.
+
+
+## Native macOS ARM64: a smaller parity control
+
+The same upstream fixture and seed-42 feed also ran on a native GitHub-hosted
+**macOS 15.8.2 ARM64** runner: Python **3.12.10**, ONNXRuntime **1.30.0**,
+NumPy **2.5.3**, single-thread CPUExecutionProvider.
+[Public native run, attempt 2](https://github.com/blucca/fx2-cmix-transformer-v1/actions/runs/42671743163/attempts/2),
+[exact workflow](https://github.com/blucca/fx2-cmix-transformer-v1/blob/a01224bf5f777e2886cc2e035ffb258d7f079af1/.github/workflows/ort-qdq-macos-arm64.yml),
+[complete result](results/ort-qdq-macos-arm64-control.json), and
+[environment](results/ort-qdq-macos-arm64-environment.json) retain the measured scope.
+
+| Disabled passes, with ORT_ENABLE_ALL | Changed final elements | Maximum final difference |
+| :--- | ---: | ---: |
+| none | 4 / 196,608 | 0.03125 |
+| MatMulAddFusion | 4 / 196,608 | 0.03125 |
+| ConvBNFusion | **0 / 196,608** | **0** |
+| NchwcTransformer | 4 / 196,608 | 0.03125 |
+| ConvBNFusion + NchwcTransformer | **0 / 196,608** | **0** |
+
+**On this native macOS ARM64 build, disabling ConvBNFusion alone preserves all
+final values and retains the MatMulAddFusion Gemm.** The MatMulAdd-only and
+NCHWc-only interventions each reproduce the fully optimized final values.
+All six saved graphs have zero NCHWc-domain nodes; disabling ConvBNFusion keeps
+both original BatchNormalization nodes. This accounts for the different
+intervention needed on the Linux x86_64 run above, where the remaining
+BatchNorm takes a second NCHWc rewrite path.
+
+The three pre-Q probes again preserve their original endpoints exactly.
+Maximum measured pre-Q difference is **1.430511474609375e-6**. The four changed
+coordinates and UINT8 bin moves coincide with the Linux observations;
+optimized pre-Q FP32 bits differ at three of those coordinates.
+Each platform's full-output comparisons use its own unoptimized reference.
+
+An independent standard-library check rebuilds the recorded FP32 bits,
+nearest-even bins and dequantized values for both snapshots:
+
+```sh
+python3 -B research/check-ort-qdq-boundaries.py \
+  research/results/ort-qdq-fusion-control.json \
+  research/results/ort-qdq-macos-arm64-control.json
+```
+
+All eight recorded crossings pass. The original reproduction script is unchanged;
+the author's attachment continues to supply the model. Original macOS report
+and model: **kadu-v**. Native controls and independent checks: **Blucca / Codex**.
