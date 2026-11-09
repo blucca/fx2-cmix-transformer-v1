@@ -1,0 +1,108 @@
+{
+  "status": "passed",
+  "scope": "q7-integer-linear-resource-smoke",
+  "full_model": false,
+  "optimizer_updates": 0,
+  "wall_limit_seconds": 120,
+  "wall_seconds": 7.546727138999984,
+  "python": "3.13.16",
+  "torch": "2.11.0+cu130",
+  "cuda_build": "13.0",
+  "devices": [
+    {
+      "name": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "total_memory_bytes": 15636037632
+    },
+    {
+      "name": "Tesla T4",
+      "capability": [
+        7,
+        5
+      ],
+      "total_memory_bytes": 15636037632
+    }
+  ],
+  "nvidia_smi": "Tesla T4, 580.178.04, 15360 MiB\nTesla T4, 580.178.04, 15360 MiB",
+  "rows": [
+    {
+      "out": 64,
+      "in": 192,
+      "matrix_count": 18,
+      "batch_targets": 1199,
+      "integer_rows_checked": 8,
+      "integer_dots_exact": true,
+      "gradient_relative_l2": 0.0,
+      "fp32_gemm_ms": 0.04450000077486038
+    },
+    {
+      "out": 192,
+      "in": 64,
+      "matrix_count": 18,
+      "batch_targets": 1199,
+      "integer_rows_checked": 8,
+      "integer_dots_exact": true,
+      "gradient_relative_l2": 0.0,
+      "fp32_gemm_ms": 0.03799999877810478
+    },
+    {
+      "out": 192,
+      "in": 192,
+      "matrix_count": 48,
+      "batch_targets": 1199,
+      "integer_rows_checked": 8,
+      "integer_dots_exact": true,
+      "gradient_relative_l2": 0.0,
+      "fp32_gemm_ms": 0.05964399874210358
+    },
+    {
+      "out": 192,
+      "in": 205,
+      "matrix_count": 1,
+      "batch_targets": 1199,
+      "integer_rows_checked": 8,
+      "integer_dots_exact": true,
+      "gradient_relative_l2": 0.0,
+      "fp32_gemm_ms": 0.06173200160264969
+    },
+    {
+      "out": 192,
+      "in": 768,
+      "matrix_count": 12,
+      "batch_targets": 1199,
+      "integer_rows_checked": 8,
+      "integer_dots_exact": true,
+      "gradient_relative_l2": 0.0,
+      "fp32_gemm_ms": 0.17947199940681458
+    },
+    {
+      "out": 205,
+      "in": 192,
+      "matrix_count": 2,
+      "batch_targets": 1199,
+      "integer_rows_checked": 8,
+      "integer_dots_exact": true,
+      "gradient_relative_l2": 0.0,
+      "fp32_gemm_ms": 0.06193599849939346
+    },
+    {
+      "out": 768,
+      "in": 192,
+      "matrix_count": 12,
+      "batch_targets": 1199,
+      "integer_rows_checked": 8,
+      "integer_dots_exact": true,
+      "gradient_relative_l2": 0.0,
+      "fp32_gemm_ms": 0.16012799739837646
+    }
+  ],
+  "geometry_matrices": 111,
+  "coordinate_elements": 5868864,
+  "peak_gpu_allocated_bytes": 34126848,
+  "torch_bf16_supported_including_emulation": true,
+  "hardware_bf16_supported": false,
+  "used_device": 0
+}
