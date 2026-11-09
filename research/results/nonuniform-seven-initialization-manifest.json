@@ -1,0 +1,3252 @@
+{
+  "fit_sha256": "920e5d4f5afd35905435d56717d303adb184d85de248d8a9c291dd61cbc34418",
+  "source_sha256": "96c19c8a787894efe9f2c35522b49fa12af4251f5b8cd55d29c994aee1e51fe0",
+  "algorithm": {
+    "alphabet_shared_across_tensors": true,
+    "candidate_count": 35,
+    "support_cardinality": 7,
+    "positive_integer_levels": [
+      2,
+      4,
+      7
+    ],
+    "signed_integer_alphabet": [
+      -7,
+      -4,
+      -2,
+      0,
+      2,
+      4,
+      7
+    ],
+    "scale_per_tensor": true,
+    "scale_multiplier_min": 0.8145926321131599,
+    "scale_multiplier_max": 0.872075325973377,
+    "objective": "sum_tensor sum_original_q count(q)*(q-scale_tensor*nearest_code(q))^2",
+    "scale_solver": "exact Fraction assignment breakpoints; clipped quadratic B/A on each interval",
+    "selection_ties": "alphabet lexicographic; smaller positive scale",
+    "nearest_ties": "smaller absolute integer code (toward zero)",
+    "rate_is_selection_objective": false
+  },
+  "per_tensor": [
+    {
+      "name": "blocks.0.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 8879,
+        "denominator": 10649
+      },
+      "original_histogram_15": [
+        355,
+        305,
+        498,
+        761,
+        978,
+        1271,
+        1432,
+        1508,
+        1395,
+        1176,
+        924,
+        666,
+        418,
+        267,
+        334
+      ]
+    },
+    {
+      "name": "blocks.0.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 3371,
+        "denominator": 4125
+      },
+      "original_histogram_15": [
+        180,
+        211,
+        411,
+        667,
+        993,
+        1275,
+        1535,
+        1653,
+        1574,
+        1370,
+        962,
+        698,
+        367,
+        213,
+        179
+      ]
+    },
+    {
+      "name": "blocks.0.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 504719,
+        "denominator": 600720
+      },
+      "original_histogram_15": [
+        1298,
+        999,
+        1583,
+        2296,
+        2909,
+        3434,
+        4015,
+        4152,
+        3977,
+        3437,
+        2747,
+        2149,
+        1533,
+        968,
+        1367
+      ]
+    },
+    {
+      "name": "blocks.0.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 18586,
+        "denominator": 22117
+      },
+      "original_histogram_15": [
+        413,
+        321,
+        494,
+        715,
+        909,
+        1165,
+        1339,
+        1389,
+        1276,
+        1196,
+        991,
+        751,
+        522,
+        354,
+        453
+      ]
+    },
+    {
+      "name": "blocks.0.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 141187,
+        "denominator": 170925
+      },
+      "original_histogram_15": [
+        253,
+        269,
+        443,
+        704,
+        940,
+        1337,
+        1504,
+        1479,
+        1455,
+        1254,
+        962,
+        696,
+        456,
+        249,
+        287
+      ]
+    },
+    {
+      "name": "blocks.0.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 18374,
+        "denominator": 21343
+      },
+      "original_histogram_15": [
+        2309,
+        1141,
+        1659,
+        2076,
+        2693,
+        3285,
+        3527,
+        3588,
+        3544,
+        3179,
+        2668,
+        2173,
+        1650,
+        1154,
+        2218
+      ]
+    },
+    {
+      "name": "blocks.0.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 71860,
+        "denominator": 85619
+      },
+      "original_histogram_15": [
+        1336,
+        972,
+        1573,
+        2206,
+        2920,
+        3500,
+        3978,
+        4075,
+        3986,
+        3488,
+        2828,
+        2182,
+        1556,
+        969,
+        1295
+      ]
+    },
+    {
+      "name": "blocks.0.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 522768,
+        "denominator": 619447
+      },
+      "original_histogram_15": [
+        1465,
+        1013,
+        1571,
+        2235,
+        2770,
+        3397,
+        3874,
+        4082,
+        3792,
+        3507,
+        2830,
+        2202,
+        1586,
+        1094,
+        1446
+      ]
+    },
+    {
+      "name": "blocks.0.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2070767,
+        "denominator": 2447858
+      },
+      "original_histogram_15": [
+        6017,
+        4054,
+        5861,
+        8610,
+        11328,
+        13918,
+        15675,
+        16747,
+        15725,
+        13572,
+        11040,
+        8623,
+        6123,
+        4095,
+        6068
+      ]
+    },
+    {
+      "name": "blocks.0.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2309156,
+        "denominator": 2705695
+      },
+      "original_histogram_15": [
+        7605,
+        4740,
+        6693,
+        9100,
+        11035,
+        13208,
+        14339,
+        15086,
+        14152,
+        12915,
+        10982,
+        8968,
+        6637,
+        4527,
+        7469
+      ]
+    },
+    {
+      "name": "blocks.1.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 166533,
+        "denominator": 198143
+      },
+      "original_histogram_15": [
+        438,
+        310,
+        472,
+        709,
+        959,
+        1134,
+        1297,
+        1387,
+        1378,
+        1174,
+        986,
+        733,
+        532,
+        322,
+        457
+      ]
+    },
+    {
+      "name": "blocks.1.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 123643,
+        "denominator": 151661
+      },
+      "original_histogram_15": [
+        190,
+        203,
+        394,
+        645,
+        993,
+        1215,
+        1640,
+        1708,
+        1586,
+        1265,
+        1014,
+        681,
+        366,
+        211,
+        177
+      ]
+    },
+    {
+      "name": "blocks.1.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 485252,
+        "denominator": 580125
+      },
+      "original_histogram_15": [
+        1211,
+        939,
+        1505,
+        2145,
+        2814,
+        3629,
+        4161,
+        4209,
+        4025,
+        3514,
+        2841,
+        2205,
+        1538,
+        958,
+        1170
+      ]
+    },
+    {
+      "name": "blocks.1.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 4634,
+        "denominator": 5477
+      },
+      "original_histogram_15": [
+        486,
+        333,
+        488,
+        710,
+        895,
+        1130,
+        1272,
+        1292,
+        1340,
+        1182,
+        953,
+        748,
+        551,
+        363,
+        545
+      ]
+    },
+    {
+      "name": "blocks.1.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 50361,
+        "denominator": 60715
+      },
+      "original_histogram_15": [
+        314,
+        297,
+        492,
+        745,
+        998,
+        1214,
+        1460,
+        1434,
+        1403,
+        1203,
+        968,
+        686,
+        462,
+        291,
+        321
+      ]
+    },
+    {
+      "name": "blocks.1.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 94301,
+        "denominator": 108820
+      },
+      "original_histogram_15": [
+        2629,
+        1311,
+        1762,
+        2167,
+        2576,
+        2955,
+        3397,
+        3248,
+        3212,
+        3096,
+        2607,
+        2218,
+        1790,
+        1254,
+        2642
+      ]
+    },
+    {
+      "name": "blocks.1.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 499319,
+        "denominator": 595412
+      },
+      "original_histogram_15": [
+        1267,
+        1003,
+        1552,
+        2172,
+        2868,
+        3512,
+        3971,
+        4105,
+        3982,
+        3595,
+        2834,
+        2189,
+        1549,
+        992,
+        1273
+      ]
+    },
+    {
+      "name": "blocks.1.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 539301,
+        "denominator": 636569
+      },
+      "original_histogram_15": [
+        1618,
+        1127,
+        1535,
+        2180,
+        2875,
+        3368,
+        3804,
+        4003,
+        3711,
+        3350,
+        2890,
+        2150,
+        1584,
+        1089,
+        1580
+      ]
+    },
+    {
+      "name": "blocks.1.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2127629,
+        "denominator": 2510509
+      },
+      "original_histogram_15": [
+        6321,
+        4261,
+        6105,
+        8786,
+        11296,
+        13847,
+        15278,
+        15890,
+        15307,
+        13666,
+        11210,
+        8763,
+        6242,
+        4143,
+        6341
+      ]
+    },
+    {
+      "name": "blocks.1.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2238475,
+        "denominator": 2633502
+      },
+      "original_histogram_15": [
+        7158,
+        4722,
+        6684,
+        8958,
+        11152,
+        13302,
+        14879,
+        15495,
+        14791,
+        13018,
+        10902,
+        8777,
+        6365,
+        4533,
+        6720
+      ]
+    },
+    {
+      "name": "blocks.10.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 156280,
+        "denominator": 186831
+      },
+      "original_histogram_15": [
+        392,
+        285,
+        482,
+        734,
+        1020,
+        1184,
+        1391,
+        1413,
+        1392,
+        1253,
+        916,
+        698,
+        459,
+        296,
+        373
+      ]
+    },
+    {
+      "name": "blocks.10.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 127679,
+        "denominator": 156285
+      },
+      "original_histogram_15": [
+        215,
+        212,
+        396,
+        634,
+        984,
+        1258,
+        1537,
+        1674,
+        1580,
+        1332,
+        983,
+        641,
+        429,
+        210,
+        203
+      ]
+    },
+    {
+      "name": "blocks.10.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 499852,
+        "denominator": 595739
+      },
+      "original_histogram_15": [
+        1297,
+        982,
+        1571,
+        2162,
+        2794,
+        3569,
+        4054,
+        4156,
+        3973,
+        3509,
+        2802,
+        2158,
+        1551,
+        981,
+        1305
+      ]
+    },
+    {
+      "name": "blocks.10.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 34654,
+        "denominator": 41091
+      },
+      "original_histogram_15": [
+        526,
+        354,
+        550,
+        725,
+        999,
+        1159,
+        1314,
+        1329,
+        1255,
+        1152,
+        952,
+        716,
+        486,
+        323,
+        448
+      ]
+    },
+    {
+      "name": "blocks.10.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 73673,
+        "denominator": 88867
+      },
+      "original_histogram_15": [
+        305,
+        277,
+        457,
+        685,
+        993,
+        1254,
+        1400,
+        1474,
+        1387,
+        1292,
+        1021,
+        700,
+        470,
+        263,
+        310
+      ]
+    },
+    {
+      "name": "blocks.10.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 189703,
+        "denominator": 222497
+      },
+      "original_histogram_15": [
+        1919,
+        1058,
+        1648,
+        2207,
+        2731,
+        3356,
+        3697,
+        3732,
+        3632,
+        3296,
+        2765,
+        2201,
+        1690,
+        1086,
+        1846
+      ]
+    },
+    {
+      "name": "blocks.10.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 168947,
+        "denominator": 200591
+      },
+      "original_histogram_15": [
+        1363,
+        992,
+        1488,
+        2199,
+        2790,
+        3496,
+        3998,
+        4047,
+        3945,
+        3534,
+        2877,
+        2209,
+        1545,
+        996,
+        1385
+      ]
+    },
+    {
+      "name": "blocks.10.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 264169,
+        "denominator": 312795
+      },
+      "original_histogram_15": [
+        1468,
+        1070,
+        1580,
+        2153,
+        2826,
+        3443,
+        3736,
+        4056,
+        3847,
+        3383,
+        2859,
+        2271,
+        1592,
+        1064,
+        1516
+      ]
+    },
+    {
+      "name": "blocks.10.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2064266,
+        "denominator": 2449325
+      },
+      "original_histogram_15": [
+        5716,
+        4076,
+        6149,
+        8640,
+        11527,
+        13865,
+        15521,
+        16498,
+        15562,
+        13775,
+        11238,
+        8749,
+        6314,
+        4117,
+        5709
+      ]
+    },
+    {
+      "name": "blocks.10.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2201091,
+        "denominator": 2594555
+      },
+      "original_histogram_15": [
+        6625,
+        4509,
+        6513,
+        8779,
+        11279,
+        13517,
+        15018,
+        15481,
+        14791,
+        13302,
+        11314,
+        8748,
+        6403,
+        4441,
+        6736
+      ]
+    },
+    {
+      "name": "blocks.11.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 548386,
+        "denominator": 644505
+      },
+      "original_histogram_15": [
+        1824,
+        1037,
+        1595,
+        2167,
+        2831,
+        3414,
+        3786,
+        3885,
+        3748,
+        3375,
+        2828,
+        2081,
+        1561,
+        996,
+        1736
+      ]
+    },
+    {
+      "name": "blocks.11.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 582671,
+        "denominator": 682122
+      },
+      "original_histogram_15": [
+        1942,
+        1178,
+        1619,
+        2248,
+        2744,
+        3241,
+        3537,
+        3573,
+        3672,
+        3313,
+        2787,
+        2215,
+        1710,
+        1151,
+        1934
+      ]
+    },
+    {
+      "name": "blocks.11.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 275453,
+        "denominator": 324789
+      },
+      "original_histogram_15": [
+        1644,
+        1155,
+        1634,
+        2226,
+        2883,
+        3341,
+        3645,
+        4020,
+        3655,
+        3313,
+        2763,
+        2184,
+        1644,
+        1073,
+        1684
+      ]
+    },
+    {
+      "name": "blocks.11.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 660372,
+        "denominator": 761225
+      },
+      "original_histogram_15": [
+        2613,
+        1325,
+        1719,
+        2241,
+        2621,
+        2969,
+        3218,
+        3349,
+        3243,
+        3042,
+        2630,
+        2198,
+        1755,
+        1288,
+        2653
+      ]
+    },
+    {
+      "name": "blocks.11.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2137596,
+        "denominator": 2525335
+      },
+      "original_histogram_15": [
+        6275,
+        4259,
+        6277,
+        8769,
+        11359,
+        13662,
+        15370,
+        15854,
+        15199,
+        13510,
+        11311,
+        8707,
+        6320,
+        4250,
+        6334
+      ]
+    },
+    {
+      "name": "blocks.11.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 705631,
+        "denominator": 835579
+      },
+      "original_histogram_15": [
+        5990,
+        4336,
+        6374,
+        8757,
+        11475,
+        13527,
+        15354,
+        16080,
+        15300,
+        13615,
+        11257,
+        8810,
+        6298,
+        4264,
+        6019
+      ]
+    },
+    {
+      "name": "blocks.2.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 162867,
+        "denominator": 193780
+      },
+      "original_histogram_15": [
+        415,
+        327,
+        478,
+        733,
+        943,
+        1177,
+        1351,
+        1391,
+        1388,
+        1219,
+        913,
+        717,
+        467,
+        356,
+        413
+      ]
+    },
+    {
+      "name": "blocks.2.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 64151,
+        "denominator": 78280
+      },
+      "original_histogram_15": [
+        212,
+        203,
+        414,
+        676,
+        986,
+        1262,
+        1515,
+        1702,
+        1599,
+        1268,
+        934,
+        682,
+        394,
+        231,
+        210
+      ]
+    },
+    {
+      "name": "blocks.2.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 502864,
+        "denominator": 598051
+      },
+      "original_histogram_15": [
+        1352,
+        984,
+        1586,
+        2197,
+        2750,
+        3469,
+        4013,
+        4193,
+        3957,
+        3545,
+        2892,
+        2117,
+        1468,
+        1005,
+        1336
+      ]
+    },
+    {
+      "name": "blocks.2.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 176425,
+        "denominator": 208273
+      },
+      "original_histogram_15": [
+        543,
+        374,
+        557,
+        810,
+        928,
+        1120,
+        1293,
+        1301,
+        1310,
+        1163,
+        906,
+        696,
+        470,
+        330,
+        487
+      ]
+    },
+    {
+      "name": "blocks.2.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 151110,
+        "denominator": 181661
+      },
+      "original_histogram_15": [
+        336,
+        296,
+        477,
+        710,
+        926,
+        1215,
+        1453,
+        1471,
+        1374,
+        1240,
+        981,
+        737,
+        469,
+        279,
+        324
+      ]
+    },
+    {
+      "name": "blocks.2.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 324410,
+        "denominator": 373783
+      },
+      "original_histogram_15": [
+        2533,
+        1208,
+        1673,
+        2204,
+        2687,
+        3109,
+        3100,
+        3400,
+        3404,
+        3041,
+        2672,
+        2217,
+        1648,
+        1336,
+        2632
+      ]
+    },
+    {
+      "name": "blocks.2.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2886,
+        "denominator": 3415
+      },
+      "original_histogram_15": [
+        1395,
+        1051,
+        1515,
+        2279,
+        2910,
+        3393,
+        3878,
+        4040,
+        3752,
+        3428,
+        2899,
+        2214,
+        1527,
+        1044,
+        1539
+      ]
+    },
+    {
+      "name": "blocks.2.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 574953,
+        "denominator": 673882
+      },
+      "original_histogram_15": [
+        1861,
+        1189,
+        1616,
+        2337,
+        2777,
+        3214,
+        3609,
+        3755,
+        3635,
+        3221,
+        2746,
+        2228,
+        1667,
+        1152,
+        1857
+      ]
+    },
+    {
+      "name": "blocks.2.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 1046647,
+        "denominator": 1238813
+      },
+      "original_histogram_15": [
+        5865,
+        4226,
+        6165,
+        8738,
+        11302,
+        13843,
+        15176,
+        16568,
+        15421,
+        13682,
+        11323,
+        8649,
+        6247,
+        4184,
+        6067
+      ]
+    },
+    {
+      "name": "blocks.2.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2251264,
+        "denominator": 2646181
+      },
+      "original_histogram_15": [
+        7231,
+        4574,
+        6595,
+        8821,
+        11242,
+        13114,
+        14909,
+        15506,
+        14504,
+        13203,
+        10990,
+        8690,
+        6515,
+        4515,
+        7047
+      ]
+    },
+    {
+      "name": "blocks.3.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 619636,
+        "denominator": 712561
+      },
+      "original_histogram_15": [
+        2611,
+        1092,
+        1554,
+        2083,
+        2635,
+        3180,
+        3449,
+        3731,
+        3550,
+        3155,
+        2675,
+        2029,
+        1491,
+        1059,
+        2570
+      ]
+    },
+    {
+      "name": "blocks.3.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 644452,
+        "denominator": 745337
+      },
+      "original_histogram_15": [
+        2404,
+        1265,
+        1749,
+        2231,
+        2628,
+        3050,
+        3329,
+        3478,
+        3206,
+        3082,
+        2636,
+        2219,
+        1726,
+        1322,
+        2539
+      ]
+    },
+    {
+      "name": "blocks.3.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 611234,
+        "denominator": 702211
+      },
+      "original_histogram_15": [
+        2616,
+        996,
+        1502,
+        2054,
+        2667,
+        3170,
+        3614,
+        3716,
+        3631,
+        3169,
+        2656,
+        2040,
+        1432,
+        1021,
+        2580
+      ]
+    },
+    {
+      "name": "blocks.3.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 227872,
+        "denominator": 261621
+      },
+      "original_histogram_15": [
+        2921,
+        1394,
+        1783,
+        2214,
+        2562,
+        2971,
+        3177,
+        3186,
+        3178,
+        2895,
+        2592,
+        2190,
+        1715,
+        1313,
+        2773
+      ]
+    },
+    {
+      "name": "blocks.3.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2123789,
+        "denominator": 2505464
+      },
+      "original_histogram_15": [
+        6212,
+        4237,
+        5996,
+        8687,
+        11245,
+        13697,
+        15207,
+        16129,
+        15483,
+        13645,
+        11189,
+        8822,
+        6173,
+        4362,
+        6372
+      ]
+    },
+    {
+      "name": "blocks.3.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 544160,
+        "denominator": 642111
+      },
+      "original_histogram_15": [
+        6540,
+        4445,
+        6559,
+        8902,
+        11267,
+        13579,
+        14873,
+        15774,
+        14814,
+        13599,
+        11154,
+        8830,
+        6345,
+        4425,
+        6350
+      ]
+    },
+    {
+      "name": "blocks.4.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 166685,
+        "denominator": 199047
+      },
+      "original_histogram_15": [
+        427,
+        335,
+        546,
+        687,
+        987,
+        1188,
+        1331,
+        1368,
+        1347,
+        1122,
+        952,
+        755,
+        493,
+        337,
+        413
+      ]
+    },
+    {
+      "name": "blocks.4.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 132131,
+        "denominator": 160894
+      },
+      "original_histogram_15": [
+        211,
+        253,
+        372,
+        671,
+        997,
+        1375,
+        1505,
+        1574,
+        1490,
+        1243,
+        995,
+        716,
+        439,
+        240,
+        207
+      ]
+    },
+    {
+      "name": "blocks.4.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 495241,
+        "denominator": 590294
+      },
+      "original_histogram_15": [
+        1235,
+        969,
+        1539,
+        2165,
+        2813,
+        3489,
+        4011,
+        4282,
+        3938,
+        3510,
+        2932,
+        2198,
+        1472,
+        1034,
+        1277
+      ]
+    },
+    {
+      "name": "blocks.4.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 179385,
+        "denominator": 211897
+      },
+      "original_histogram_15": [
+        532,
+        358,
+        543,
+        715,
+        957,
+        1116,
+        1222,
+        1367,
+        1298,
+        1091,
+        906,
+        771,
+        540,
+        336,
+        536
+      ]
+    },
+    {
+      "name": "blocks.4.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 77650,
+        "denominator": 93079
+      },
+      "original_histogram_15": [
+        335,
+        338,
+        450,
+        712,
+        950,
+        1249,
+        1362,
+        1456,
+        1464,
+        1163,
+        917,
+        721,
+        484,
+        328,
+        359
+      ]
+    },
+    {
+      "name": "blocks.4.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 325595,
+        "denominator": 375121
+      },
+      "original_histogram_15": [
+        2623,
+        1249,
+        1731,
+        2119,
+        2640,
+        2971,
+        3376,
+        3544,
+        3223,
+        2999,
+        2615,
+        2227,
+        1652,
+        1247,
+        2648
+      ]
+    },
+    {
+      "name": "blocks.4.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 508654,
+        "denominator": 604513
+      },
+      "original_histogram_15": [
+        1376,
+        954,
+        1598,
+        2196,
+        2830,
+        3416,
+        3984,
+        4112,
+        3931,
+        3558,
+        2815,
+        2169,
+        1503,
+        1051,
+        1371
+      ]
+    },
+    {
+      "name": "blocks.4.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 174131,
+        "denominator": 206154
+      },
+      "original_histogram_15": [
+        1423,
+        1076,
+        1519,
+        2184,
+        2817,
+        3399,
+        3819,
+        4041,
+        3929,
+        3513,
+        2789,
+        2215,
+        1562,
+        1069,
+        1509
+      ]
+    },
+    {
+      "name": "blocks.4.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2182177,
+        "denominator": 2568498
+      },
+      "original_histogram_15": [
+        6641,
+        4447,
+        6277,
+        8686,
+        11057,
+        13511,
+        15098,
+        15813,
+        15081,
+        13366,
+        11100,
+        8990,
+        6234,
+        4436,
+        6719
+      ]
+    },
+    {
+      "name": "blocks.4.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2197774,
+        "denominator": 2590105
+      },
+      "original_histogram_15": [
+        6827,
+        4606,
+        6590,
+        8887,
+        11332,
+        13382,
+        14989,
+        15830,
+        14735,
+        13312,
+        11127,
+        8677,
+        6317,
+        4301,
+        6544
+      ]
+    },
+    {
+      "name": "blocks.5.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 159537,
+        "denominator": 191131
+      },
+      "original_histogram_15": [
+        415,
+        337,
+        517,
+        739,
+        991,
+        1283,
+        1423,
+        1415,
+        1300,
+        1183,
+        898,
+        649,
+        490,
+        305,
+        343
+      ]
+    },
+    {
+      "name": "blocks.5.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 137308,
+        "denominator": 166699
+      },
+      "original_histogram_15": [
+        223,
+        276,
+        421,
+        694,
+        975,
+        1276,
+        1435,
+        1538,
+        1506,
+        1282,
+        1026,
+        717,
+        419,
+        259,
+        241
+      ]
+    },
+    {
+      "name": "blocks.5.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 30882,
+        "denominator": 36901
+      },
+      "original_histogram_15": [
+        1199,
+        976,
+        1583,
+        2185,
+        2812,
+        3492,
+        4073,
+        4097,
+        4080,
+        3567,
+        2932,
+        2090,
+        1525,
+        954,
+        1299
+      ]
+    },
+    {
+      "name": "blocks.5.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 58881,
+        "denominator": 69440
+      },
+      "original_histogram_15": [
+        544,
+        339,
+        526,
+        715,
+        966,
+        1163,
+        1289,
+        1287,
+        1302,
+        1177,
+        903,
+        714,
+        483,
+        360,
+        520
+      ]
+    },
+    {
+      "name": "blocks.5.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 50152,
+        "denominator": 60493
+      },
+      "original_histogram_15": [
+        304,
+        273,
+        505,
+        704,
+        1023,
+        1273,
+        1350,
+        1485,
+        1356,
+        1228,
+        1017,
+        697,
+        461,
+        288,
+        324
+      ]
+    },
+    {
+      "name": "blocks.5.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 632735,
+        "denominator": 732678
+      },
+      "original_histogram_15": [
+        2417,
+        1269,
+        1690,
+        2224,
+        2712,
+        3024,
+        3357,
+        3462,
+        3418,
+        3100,
+        2655,
+        2214,
+        1710,
+        1206,
+        2406
+      ]
+    },
+    {
+      "name": "blocks.5.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 526062,
+        "denominator": 624179
+      },
+      "original_histogram_15": [
+        1462,
+        994,
+        1660,
+        2191,
+        2831,
+        3451,
+        3917,
+        3940,
+        3840,
+        3432,
+        2817,
+        2170,
+        1611,
+        1037,
+        1511
+      ]
+    },
+    {
+      "name": "blocks.5.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 171997,
+        "denominator": 204010
+      },
+      "original_histogram_15": [
+        1421,
+        1017,
+        1571,
+        2209,
+        2824,
+        3490,
+        3829,
+        4113,
+        3815,
+        3460,
+        2893,
+        2257,
+        1527,
+        1056,
+        1382
+      ]
+    },
+    {
+      "name": "blocks.5.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2177315,
+        "denominator": 2569022
+      },
+      "original_histogram_15": [
+        6488,
+        4319,
+        6468,
+        8902,
+        11305,
+        13463,
+        14892,
+        15547,
+        15155,
+        13428,
+        11358,
+        8808,
+        6406,
+        4356,
+        6561
+      ]
+    },
+    {
+      "name": "blocks.5.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 1106083,
+        "denominator": 1302020
+      },
+      "original_histogram_15": [
+        6851,
+        4577,
+        6556,
+        8923,
+        11242,
+        13354,
+        14959,
+        15353,
+        14867,
+        13403,
+        11078,
+        8841,
+        6283,
+        4451,
+        6718
+      ]
+    },
+    {
+      "name": "blocks.6.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 55837,
+        "denominator": 66396
+      },
+      "original_histogram_15": [
+        454,
+        283,
+        480,
+        681,
+        956,
+        1134,
+        1266,
+        1416,
+        1337,
+        1211,
+        998,
+        725,
+        532,
+        358,
+        457
+      ]
+    },
+    {
+      "name": "blocks.6.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 133065,
+        "denominator": 162014
+      },
+      "original_histogram_15": [
+        236,
+        244,
+        431,
+        659,
+        997,
+        1269,
+        1512,
+        1582,
+        1609,
+        1218,
+        1024,
+        660,
+        375,
+        233,
+        239
+      ]
+    },
+    {
+      "name": "blocks.6.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 506361,
+        "denominator": 601610
+      },
+      "original_histogram_15": [
+        1342,
+        988,
+        1524,
+        2140,
+        2877,
+        3518,
+        3848,
+        4153,
+        3932,
+        3594,
+        2844,
+        2172,
+        1554,
+        971,
+        1407
+      ]
+    },
+    {
+      "name": "blocks.6.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 11043,
+        "denominator": 13081
+      },
+      "original_histogram_15": [
+        520,
+        358,
+        527,
+        705,
+        967,
+        1156,
+        1281,
+        1289,
+        1285,
+        1136,
+        974,
+        719,
+        529,
+        346,
+        496
+      ]
+    },
+    {
+      "name": "blocks.6.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 76158,
+        "denominator": 91481
+      },
+      "original_histogram_15": [
+        324,
+        314,
+        466,
+        724,
+        1034,
+        1249,
+        1429,
+        1445,
+        1355,
+        1200,
+        934,
+        728,
+        461,
+        290,
+        335
+      ]
+    },
+    {
+      "name": "blocks.6.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 620421,
+        "denominator": 720641
+      },
+      "original_histogram_15": [
+        2315,
+        1220,
+        1710,
+        2129,
+        2623,
+        3111,
+        3444,
+        3556,
+        3335,
+        3169,
+        2799,
+        2261,
+        1698,
+        1246,
+        2248
+      ]
+    },
+    {
+      "name": "blocks.6.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 510819,
+        "denominator": 606868
+      },
+      "original_histogram_15": [
+        1399,
+        1024,
+        1625,
+        2112,
+        2745,
+        3508,
+        3906,
+        4133,
+        3977,
+        3480,
+        2897,
+        2178,
+        1496,
+        979,
+        1405
+      ]
+    },
+    {
+      "name": "blocks.6.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 534838,
+        "denominator": 633389
+      },
+      "original_histogram_15": [
+        1485,
+        1013,
+        1576,
+        2194,
+        2802,
+        3372,
+        3946,
+        4003,
+        3750,
+        3375,
+        2775,
+        2134,
+        1703,
+        1122,
+        1614
+      ]
+    },
+    {
+      "name": "blocks.6.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2106488,
+        "denominator": 2492789
+      },
+      "original_histogram_15": [
+        5997,
+        4189,
+        6183,
+        8861,
+        11380,
+        13693,
+        15338,
+        16045,
+        15400,
+        13650,
+        11357,
+        8787,
+        6315,
+        4226,
+        6035
+      ]
+    },
+    {
+      "name": "blocks.6.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2208257,
+        "denominator": 2602318
+      },
+      "original_histogram_15": [
+        6858,
+        4587,
+        6523,
+        8850,
+        11174,
+        13446,
+        15023,
+        15578,
+        14671,
+        13226,
+        11246,
+        8828,
+        6480,
+        4406,
+        6560
+      ]
+    },
+    {
+      "name": "blocks.7.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 259772,
+        "denominator": 307867
+      },
+      "original_histogram_15": [
+        1457,
+        1028,
+        1578,
+        2180,
+        2887,
+        3386,
+        3909,
+        4177,
+        3914,
+        3409,
+        2843,
+        2033,
+        1495,
+        1058,
+        1510
+      ]
+    },
+    {
+      "name": "blocks.7.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 648861,
+        "denominator": 750362
+      },
+      "original_histogram_15": [
+        2507,
+        1291,
+        1741,
+        2290,
+        2608,
+        3024,
+        3277,
+        3430,
+        3249,
+        3040,
+        2643,
+        2197,
+        1765,
+        1332,
+        2470
+      ]
+    },
+    {
+      "name": "blocks.7.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 512669,
+        "denominator": 607561
+      },
+      "original_histogram_15": [
+        1516,
+        975,
+        1517,
+        2184,
+        2905,
+        3528,
+        3995,
+        4133,
+        3810,
+        3428,
+        2877,
+        2095,
+        1501,
+        1011,
+        1389
+      ]
+    },
+    {
+      "name": "blocks.7.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 76781,
+        "denominator": 88044
+      },
+      "original_histogram_15": [
+        2894,
+        1395,
+        1777,
+        2235,
+        2588,
+        2847,
+        3211,
+        3294,
+        3082,
+        2840,
+        2522,
+        2153,
+        1739,
+        1336,
+        2951
+      ]
+    },
+    {
+      "name": "blocks.7.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2112409,
+        "denominator": 2501578
+      },
+      "original_histogram_15": [
+        5909,
+        4283,
+        6331,
+        8565,
+        11254,
+        13753,
+        15361,
+        16301,
+        15164,
+        13711,
+        11330,
+        8715,
+        6359,
+        4306,
+        6114
+      ]
+    },
+    {
+      "name": "blocks.7.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2214093,
+        "denominator": 2607166
+      },
+      "original_histogram_15": [
+        6783,
+        4492,
+        6412,
+        8879,
+        11246,
+        13469,
+        14823,
+        15353,
+        14798,
+        13326,
+        11275,
+        8817,
+        6481,
+        4543,
+        6759
+      ]
+    },
+    {
+      "name": "blocks.8.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 161483,
+        "denominator": 193075
+      },
+      "original_histogram_15": [
+        398,
+        332,
+        507,
+        661,
+        941,
+        1199,
+        1372,
+        1421,
+        1341,
+        1250,
+        970,
+        674,
+        488,
+        324,
+        410
+      ]
+    },
+    {
+      "name": "blocks.8.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 65666,
+        "denominator": 79829
+      },
+      "original_histogram_15": [
+        209,
+        252,
+        409,
+        714,
+        983,
+        1314,
+        1559,
+        1583,
+        1480,
+        1285,
+        1009,
+        663,
+        370,
+        230,
+        228
+      ]
+    },
+    {
+      "name": "blocks.8.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 242999,
+        "denominator": 289914
+      },
+      "original_histogram_15": [
+        1253,
+        984,
+        1458,
+        2159,
+        2938,
+        3527,
+        4024,
+        4326,
+        4078,
+        3544,
+        2836,
+        2120,
+        1488,
+        914,
+        1215
+      ]
+    },
+    {
+      "name": "blocks.8.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 59136,
+        "denominator": 69875
+      },
+      "original_histogram_15": [
+        548,
+        398,
+        528,
+        754,
+        959,
+        1190,
+        1292,
+        1314,
+        1276,
+        1108,
+        948,
+        646,
+        494,
+        337,
+        496
+      ]
+    },
+    {
+      "name": "blocks.8.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 73785,
+        "denominator": 89002
+      },
+      "original_histogram_15": [
+        294,
+        293,
+        426,
+        674,
+        1004,
+        1253,
+        1437,
+        1438,
+        1377,
+        1286,
+        1036,
+        703,
+        469,
+        295,
+        303
+      ]
+    },
+    {
+      "name": "blocks.8.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 575009,
+        "denominator": 673556
+      },
+      "original_histogram_15": [
+        1909,
+        1129,
+        1615,
+        2074,
+        2803,
+        3255,
+        3734,
+        3730,
+        3580,
+        3297,
+        2761,
+        2242,
+        1673,
+        1104,
+        1958
+      ]
+    },
+    {
+      "name": "blocks.8.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 25223,
+        "denominator": 30016
+      },
+      "original_histogram_15": [
+        1395,
+        1032,
+        1542,
+        2129,
+        2897,
+        3494,
+        4036,
+        4087,
+        4061,
+        3502,
+        2757,
+        2113,
+        1540,
+        954,
+        1325
+      ]
+    },
+    {
+      "name": "blocks.8.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 499331,
+        "denominator": 594219
+      },
+      "original_histogram_15": [
+        1307,
+        989,
+        1499,
+        2207,
+        2892,
+        3455,
+        4046,
+        4017,
+        4060,
+        3570,
+        2875,
+        2159,
+        1469,
+        1019,
+        1300
+      ]
+    },
+    {
+      "name": "blocks.8.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2133729,
+        "denominator": 2522279
+      },
+      "original_histogram_15": [
+        6152,
+        4322,
+        6271,
+        8848,
+        11314,
+        13480,
+        15177,
+        15772,
+        15207,
+        13757,
+        11401,
+        8961,
+        6370,
+        4242,
+        6182
+      ]
+    },
+    {
+      "name": "blocks.8.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2237716,
+        "denominator": 2632995
+      },
+      "original_histogram_15": [
+        7133,
+        4577,
+        6632,
+        9014,
+        11363,
+        13408,
+        14674,
+        15360,
+        14558,
+        13157,
+        11176,
+        8715,
+        6423,
+        4550,
+        6716
+      ]
+    },
+    {
+      "name": "blocks.9.attention.forget_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 32515,
+        "denominator": 38762
+      },
+      "original_histogram_15": [
+        475,
+        357,
+        556,
+        726,
+        967,
+        1245,
+        1426,
+        1406,
+        1287,
+        1193,
+        930,
+        638,
+        428,
+        278,
+        376
+      ]
+    },
+    {
+      "name": "blocks.9.attention.forget_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 62599,
+        "denominator": 76847
+      },
+      "original_histogram_15": [
+        184,
+        218,
+        426,
+        651,
+        994,
+        1304,
+        1574,
+        1622,
+        1592,
+        1327,
+        963,
+        667,
+        390,
+        198,
+        178
+      ]
+    },
+    {
+      "name": "blocks.9.attention.key_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 40691,
+        "denominator": 48450
+      },
+      "original_histogram_15": [
+        1282,
+        955,
+        1465,
+        2174,
+        2746,
+        3483,
+        4020,
+        4314,
+        4044,
+        3643,
+        2828,
+        2252,
+        1491,
+        945,
+        1222
+      ]
+    },
+    {
+      "name": "blocks.9.attention.output_gate_projection.down.weight.q",
+      "elements": 12288,
+      "shape": [
+        192,
+        64
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 183354,
+        "denominator": 215843
+      },
+      "original_histogram_15": [
+        581,
+        360,
+        545,
+        780,
+        890,
+        1104,
+        1238,
+        1309,
+        1253,
+        1150,
+        910,
+        711,
+        537,
+        377,
+        543
+      ]
+    },
+    {
+      "name": "blocks.9.attention.output_gate_projection.up.weight.q",
+      "elements": 12288,
+      "shape": [
+        64,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 48426,
+        "denominator": 58327
+      },
+      "original_histogram_15": [
+        318,
+        255,
+        438,
+        675,
+        943,
+        1232,
+        1500,
+        1461,
+        1480,
+        1288,
+        959,
+        697,
+        445,
+        284,
+        313
+      ]
+    },
+    {
+      "name": "blocks.9.attention.output_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 580993,
+        "denominator": 677617
+      },
+      "original_histogram_15": [
+        1983,
+        1152,
+        1607,
+        2201,
+        2794,
+        3213,
+        3594,
+        3737,
+        3595,
+        3251,
+        2805,
+        2237,
+        1534,
+        1116,
+        2045
+      ]
+    },
+    {
+      "name": "blocks.9.attention.query_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 498941,
+        "denominator": 594459
+      },
+      "original_histogram_15": [
+        1280,
+        1014,
+        1481,
+        2188,
+        2889,
+        3450,
+        3940,
+        4251,
+        3942,
+        3599,
+        2815,
+        2159,
+        1586,
+        986,
+        1284
+      ]
+    },
+    {
+      "name": "blocks.9.attention.value_projection.weight.q",
+      "elements": 36864,
+      "shape": [
+        192,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 480545,
+        "denominator": 575563
+      },
+      "original_histogram_15": [
+        1121,
+        899,
+        1536,
+        2180,
+        2931,
+        3501,
+        4150,
+        4235,
+        4076,
+        3524,
+        2868,
+        2232,
+        1485,
+        969,
+        1157
+      ]
+    },
+    {
+      "name": "blocks.9.mlp.down.weight.q",
+      "elements": 147456,
+      "shape": [
+        192,
+        768
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 2104965,
+        "denominator": 2491028
+      },
+      "original_histogram_15": [
+        6031,
+        4207,
+        6270,
+        8879,
+        11320,
+        13725,
+        15432,
+        16126,
+        15114,
+        13780,
+        11401,
+        8759,
+        6185,
+        4324,
+        5903
+      ]
+    },
+    {
+      "name": "blocks.9.mlp.up.weight.q",
+      "elements": 147456,
+      "shape": [
+        768,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 737777,
+        "denominator": 869862
+      },
+      "original_histogram_15": [
+        6692,
+        4444,
+        6667,
+        8927,
+        11381,
+        13397,
+        14714,
+        15579,
+        14622,
+        13169,
+        11308,
+        8893,
+        6494,
+        4495,
+        6674
+      ]
+    },
+    {
+      "name": "embedding.weight.q",
+      "elements": 39360,
+      "shape": [
+        205,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 533659,
+        "denominator": 636718
+      },
+      "original_histogram_15": [
+        1295,
+        1025,
+        1629,
+        2225,
+        3098,
+        3747,
+        4170,
+        4208,
+        4361,
+        3856,
+        3136,
+        2441,
+        1674,
+        1092,
+        1403
+      ]
+    },
+    {
+      "name": "prior_embedding.weight.q",
+      "elements": 39360,
+      "shape": [
+        192,
+        205
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 522179,
+        "denominator": 619176
+      },
+      "original_histogram_15": [
+        1568,
+        954,
+        1502,
+        2169,
+        2952,
+        3884,
+        4520,
+        4350,
+        4601,
+        3846,
+        3008,
+        2114,
+        1464,
+        959,
+        1469
+      ]
+    },
+    {
+      "name": "unembedding.weight.q",
+      "elements": 39360,
+      "shape": [
+        205,
+        192
+      ],
+      "scale_multiplier_exact": {
+        "numerator": 42855,
+        "denominator": 50951
+      },
+      "original_histogram_15": [
+        1382,
+        1174,
+        1725,
+        2395,
+        3089,
+        3833,
+        3994,
+        4165,
+        4023,
+        3659,
+        3125,
+        2430,
+        1705,
+        1160,
+        1501
+      ]
+    }
+  ]
+}
