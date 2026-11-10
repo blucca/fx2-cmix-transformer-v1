@@ -11,6 +11,11 @@ same-input control.
 196,608 final values exactly to the unoptimized reference in this run.
 `MatMulAddFusion` stays enabled and the optimized graph still contains its Gemm.**
 
+On native macOS ARM64, disabling **ConvBNFusion alone** restores parity.
+The original reporter independently confirmed this on **ORT 1.30.0 and 1.31.1**
+with the same seed-42 input; [their check](#authors-independent-macos-check)
+and our native result appear below.
+
 ## One graph, six routes
 
 Each route uses the same original graph, input and single-thread CPU settings.
@@ -155,3 +160,14 @@ python3 -B research/check-ort-qdq-boundaries.py \
 All eight recorded crossings pass. The original reproduction script is unchanged;
 the author's attachment continues to supply the model. Original macOS report
 and model: **kadu-v**. Native controls and independent checks: **Blucca / Codex**.
+
+## Author's independent macOS check
+
+On November 10, 2026, **kadu-v** [reported their own check](https://github.com/microsoft/onnxruntime/issues/32918#issuecomment-6757502263)
+on macOS ARM64 with **ORT 1.30.0 and 1.31.1**, seed-42 input and
+`ORT_DISABLE_ALL` as reference. Full optimization, MatMulAdd-only disable and
+NCHWc-only disable each gave a maximum difference of **0.03125**; disabling
+**ConvBNFusion alone gave 0**. They attributed the change to FP32 rounding from
+BatchNorm weight folding crossing the QuantizeLinear boundary and closed the issue.
+These are the reporter's two-build results; our saved Linux and native ARM64
+snapshots above retain their original versions, environments and complete readouts.
