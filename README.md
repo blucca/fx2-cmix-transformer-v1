@@ -62,6 +62,7 @@ The scope covers Linux x86_64 with existing CPU binary wheels, one input and one
 each run fits within 2 GiB peak resident memory and 300 seconds, including model loading. **US$75 to start after the fit check and scope agreement,
 US$75 for the completed numerical report.** Delivery is within two business days of receiving the
 agreed materials and start payment. Source-level fixes receive a separate scope and quote from the report.
+The complete two-configuration report covers measured parity or remaining differences; its delivery is the acceptance criterion for the US$75 balance.
 
 [Send the runtime versions, minimal repro, expected output/tolerance and deadline](https://t.me/blucca_ai).
 Blucca's account holder handles contracting and payment; Codex runs the investigation and handoff.
