@@ -1,0 +1,3348 @@
+{
+  "schema": "hutter.q7.teacher-only.terminal.public.v1",
+  "status": "passed_local",
+  "date": "2026-11-10",
+  "outcome": {
+    "training": "complete32",
+    "pipeline_correctness": "passed",
+    "decoder_correctness": "passed",
+    "same_W_four_scope_attribution": "passed",
+    "net_code_length": "failed fixed-recipe gate",
+    "recipe_decision": "stopped new full-stream/formal/continued-training/parameter-expansion work"
+  },
+  "recipe": {
+    "method": "q7-teacher-only-fixed-scale-integer-coordinate-v1",
+    "epochs": 32,
+    "lr": 0.01,
+    "betas": [
+      0.9,
+      0.99
+    ],
+    "eps": 1e-08,
+    "weight_decay": 0,
+    "tau": 0.5,
+    "teacher_kl_coefficient": 2.0,
+    "full_targets": 586459020,
+    "seed": 414,
+    "evaluation_every": 4,
+    "final_batch": "merge-short-tail",
+    "label_ce": 0.0,
+    "final_hidden_mse": 0.0,
+    "raw_trainable_tensors": 0,
+    "coordinate_tensors": 111,
+    "hard_integer_range": [
+      -3,
+      3
+    ],
+    "soft_symbols": [
+      -3,
+      -2,
+      -1,
+      0,
+      1,
+      2,
+      3
+    ],
+    "quant7_map": "sign(q)*floor((3*abs(q)+3)/7)",
+    "weight_scale_map": "signed-BF16-exact-RNE-times-7/3",
+    "native_scaled_gemm": true,
+    "cpu_gemm": "integer-units-before-native-BF16-fold"
+  },
+  "coverage": {
+    "target_epochs": 32,
+    "completed_epochs": 32,
+    "complete32": true,
+    "partial_epoch_next_piece": 0,
+    "partial_epoch_targets": 0,
+    "seen_targets": 94121824,
+    "native_epochs": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32
+    ]
+  },
+  "objective_contract": "2KL + 2H/586459020; CE report-only; all epochs hard",
+  "reporting_contract": {
+    "online": "target-weighted means over changing weights on each training batch",
+    "native": "frozen hard exports on fixed held whole pieces; raw NLL per target",
+    "rate_denominator_source_bytes": 586459020,
+    "full_native_targets": 586215331,
+    "q7_training_samples": "original seed414 causal-whole-piece-v1 manifest; 1313 whole pieces / 2941307 targets per epoch; piece cap 32768 bytes",
+    "old_full12_q15_training_samples": "original seed414 causal-whole-piece-v1 manifest; 1313 whole pieces / 2941307 targets per epoch",
+    "old_full12_q15_objective": "CE + KL + 2H/586459020; q15 W0 initialization with its original scales",
+    "old_full12_q15_training_math": "scaled FP32 GEMM",
+    "q7_student_and_read_only_teacher_math": "integer-units-before-native-BF16-fold",
+    "cross_recipe_comparison": "whole methods with their own initialization, objective and CPU arithmetic",
+    "native_comparison": "retained full12 W0, q7 e0 and each hard q7 export on the same full12 native evaluator and held inputs"
+  },
+  "training": {
+    "status": "complete",
+    "mixed_status": "complete",
+    "optimizer_steps": 2527,
+    "coordinate_tensors": 111,
+    "coordinate_values": 5868864,
+    "pieces_per_epoch": 1313,
+    "targets_per_epoch": 2941307,
+    "piece_consumptions": 42016,
+    "hard_online_epochs": 32,
+    "raw_trainable_tensors": 0,
+    "gradient_contract": {
+      "optimizer_steps_checked": 2527,
+      "unique_step_numbers": true,
+      "finite_gradient_tensors_every_step": 111,
+      "nonzero_gradient_tensors_every_step": 111,
+      "unit": "whole coordinate tensors per optimizer step",
+      "teacher_cache_misses": 0
+    }
+  },
+  "metric_counts": {
+    "zero_step_export_passed": 1,
+    "one_step_check_passed": 1,
+    "optimizer_step": 2527,
+    "epoch_evaluated": 8,
+    "trajectory_complete": 1
+  },
+  "online_epochs": [
+    {
+      "epoch": 1,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.6184176500920657,
+      "teacher_kl_mean": 0.6404105873974253,
+      "soft_entropy_nats": 10815123.802437626,
+      "objective": 1.317703969444126
+    },
+    {
+      "epoch": 2,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 81,
+      "ce_mean": 1.6212640634709605,
+      "teacher_kl_mean": 0.6423098454177529,
+      "soft_entropy_nats": 10866275.999624893,
+      "objective": 1.3216769297185396
+    },
+    {
+      "epoch": 3,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.5773670946250489,
+      "teacher_kl_mean": 0.5985995558477163,
+      "soft_entropy_nats": 10866250.513984244,
+      "objective": 1.234256263664838
+    },
+    {
+      "epoch": 4,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.5417052098607205,
+      "teacher_kl_mean": 0.5632075872639595,
+      "soft_entropy_nats": 10865809.765593281,
+      "objective": 1.1634708234139852
+    },
+    {
+      "epoch": 5,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.4609513230244966,
+      "teacher_kl_mean": 0.4825301777190361,
+      "soft_entropy_nats": 10864747.957092145,
+      "objective": 1.0021123832407723
+    },
+    {
+      "epoch": 6,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.3772275280283306,
+      "teacher_kl_mean": 0.3996965925974608,
+      "soft_entropy_nats": 10863179.6815286,
+      "objective": 0.8364398647106654
+    },
+    {
+      "epoch": 7,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.3254444967431365,
+      "teacher_kl_mean": 0.3485041575676399,
+      "soft_entropy_nats": 10861904.449893348,
+      "objective": 0.7340506457311783
+    },
+    {
+      "epoch": 8,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.29563883784561,
+      "teacher_kl_mean": 0.31894754235378264,
+      "soft_entropy_nats": 10860802.809563603,
+      "objective": 0.6749336583816937
+    },
+    {
+      "epoch": 9,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.2699485667381387,
+      "teacher_kl_mean": 0.2937400826866666,
+      "soft_entropy_nats": 10859871.634892397,
+      "objective": 0.6245155634643794
+    },
+    {
+      "epoch": 10,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.2476964606210466,
+      "teacher_kl_mean": 0.271642970541896,
+      "soft_entropy_nats": 10859085.596587315,
+      "objective": 0.5803186585500092
+    },
+    {
+      "epoch": 11,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.228008689223121,
+      "teacher_kl_mean": 0.25229539621788416,
+      "soft_entropy_nats": 10858778.978290642,
+      "objective": 0.5416224642422336
+    },
+    {
+      "epoch": 12,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.209181942205154,
+      "teacher_kl_mean": 0.2335470044085642,
+      "soft_entropy_nats": 10858934.707177067,
+      "objective": 0.5041262117054977
+    },
+    {
+      "epoch": 13,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.1901918744283984,
+      "teacher_kl_mean": 0.21477046959776389,
+      "soft_entropy_nats": 10859736.53666498,
+      "objective": 0.4665758765613644
+    },
+    {
+      "epoch": 14,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.1729476888492518,
+      "teacher_kl_mean": 0.19815405894828358,
+      "soft_entropy_nats": 10861027.539536113,
+      "objective": 0.43334745796686264
+    },
+    {
+      "epoch": 15,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.1596584394092804,
+      "teacher_kl_mean": 0.18468277267232713,
+      "soft_entropy_nats": 10862856.650040228,
+      "objective": 0.40641112322677203
+    },
+    {
+      "epoch": 16,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.146157866957115,
+      "teacher_kl_mean": 0.17199171080970885,
+      "soft_entropy_nats": 10864872.33629828,
+      "objective": 0.3810358735922709
+    },
+    {
+      "epoch": 17,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.1380154431433998,
+      "teacher_kl_mean": 0.16427542114681815,
+      "soft_entropy_nats": 10867516.90426185,
+      "objective": 0.3656123130312229
+    },
+    {
+      "epoch": 18,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 77,
+      "ce_mean": 1.1279949811958843,
+      "teacher_kl_mean": 0.1546614526784301,
+      "soft_entropy_nats": 10870177.752302038,
+      "objective": 0.3463934503790922
+    },
+    {
+      "epoch": 19,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.12257630023128,
+      "teacher_kl_mean": 0.14932964629197457,
+      "soft_entropy_nats": 10872951.616487218,
+      "objective": 0.33573929730955543
+    },
+    {
+      "epoch": 20,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.1179630191680172,
+      "teacher_kl_mean": 0.1449859437529861,
+      "soft_entropy_nats": 10876037.83402287,
+      "objective": 0.3270624171529469
+    },
+    {
+      "epoch": 21,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.1114140636429655,
+      "teacher_kl_mean": 0.13867291084901184,
+      "soft_entropy_nats": 10879161.154561182,
+      "objective": 0.3144470027986611
+    },
+    {
+      "epoch": 22,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.109261291219625,
+      "teacher_kl_mean": 0.13665900266435885,
+      "soft_entropy_nats": 10882310.817941932,
+      "objective": 0.3104299277199597
+    },
+    {
+      "epoch": 23,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.1072552177214912,
+      "teacher_kl_mean": 0.13511592946620743,
+      "soft_entropy_nats": 10886013.617201734,
+      "objective": 0.30735640897242184
+    },
+    {
+      "epoch": 24,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.1042063489278386,
+      "teacher_kl_mean": 0.13216501505326686,
+      "soft_entropy_nats": 10889655.47732043,
+      "objective": 0.301466999974677
+    },
+    {
+      "epoch": 25,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.1017335339117809,
+      "teacher_kl_mean": 0.12960130928896946,
+      "soft_entropy_nats": 10893512.597628558,
+      "objective": 0.2963527423756036
+    },
+    {
+      "epoch": 26,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.0982257613707649,
+      "teacher_kl_mean": 0.12682480075681848,
+      "soft_entropy_nats": 10897351.176879603,
+      "objective": 0.29081281601029385
+    },
+    {
+      "epoch": 27,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.094353110821346,
+      "teacher_kl_mean": 0.1228061145893016,
+      "soft_entropy_nats": 10900997.621501002,
+      "objective": 0.28278787913791664
+    },
+    {
+      "epoch": 28,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 80,
+      "ce_mean": 1.0957995543811143,
+      "teacher_kl_mean": 0.12413231891101467,
+      "soft_entropy_nats": 10905053.733031277,
+      "objective": 0.28545412033022327
+    },
+    {
+      "epoch": 29,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.094080187167821,
+      "teacher_kl_mean": 0.12221738760072909,
+      "soft_entropy_nats": 10909124.989403214,
+      "objective": 0.2816381419069552
+    },
+    {
+      "epoch": 30,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 79,
+      "ce_mean": 1.0907141262657944,
+      "teacher_kl_mean": 0.11954829493190518,
+      "soft_entropy_nats": 10913117.999035746,
+      "objective": 0.2763135739219147
+    },
+    {
+      "epoch": 31,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.0929057714956105,
+      "teacher_kl_mean": 0.12203504923352186,
+      "soft_entropy_nats": 10917236.700123891,
+      "objective": 0.2813011285230701
+    },
+    {
+      "epoch": 32,
+      "phase": "hard",
+      "complete": true,
+      "targets": 2941307,
+      "pieces": 1313,
+      "optimizer_steps": 78,
+      "ce_mean": 1.0879222931186185,
+      "teacher_kl_mean": 0.11669325926260427,
+      "soft_entropy_nats": 10921231.191439027,
+      "objective": 0.2706311709868214
+    }
+  ],
+  "initial_student": {
+    "epoch": 0,
+    "weight_bytes": 2044814,
+    "native_scope": "complete separate e0 control",
+    "native": {
+      "full_held": {
+        "pieces": 473,
+        "targets": 1082505,
+        "raw_nll": 1.3280816870855146,
+        "delta_nll_w0": 0.36183334829108815
+      },
+      "held_long": {
+        "pieces": 3,
+        "targets": 107647,
+        "raw_nll": 1.6690554864598135,
+        "delta_nll_w0": 0.41044118514989414
+      },
+      "held_short": {
+        "pieces": 470,
+        "targets": 974858,
+        "raw_nll": 1.2904302480233687,
+        "delta_nll_w0": 0.35646591240366643
+      },
+      "giant": {
+        "pieces": 1,
+        "targets": 131071,
+        "raw_nll": 0.286442469352807,
+        "delta_nll_w0": 0.24745604322130152
+      }
+    },
+    "quant7_initialization": {
+      "expected_tensor_bytes_equal": true,
+      "exact_round241_quant7_export": true,
+      "frozen_tensors": 429,
+      "coordinate_tensors": 111,
+      "raw_trainable_tensors": 0,
+      "signed_bf16_scales_fixed": true,
+      "hard_integer_range": [
+        -3,
+        3
+      ]
+    },
+    "sha256": "c42e78725aa34d3cc1f1227c5d8e39b8194260abc6f00f8132720a730410e9f2",
+    "coordinate_export": {
+      "hard_entropy_nats": 10612352.252364935,
+      "current_soft_entropy_nats": 10765850.08984375,
+      "changed_z_coordinates": 0,
+      "z_delta_l2": 0.0,
+      "z_max_delta": 0.0
+    }
+  },
+  "baseline_native": {
+    "full_held": 0.9662483387944264,
+    "held_long": 1.2586143013099194,
+    "held_short": 0.9339643356197023,
+    "giant": 0.03898642613150546
+  },
+  "native_scopes": {
+    "full_held": {
+      "pieces": 473,
+      "targets": 1082505,
+      "role": "primary selection holdout"
+    },
+    "held_long": {
+      "pieces": 3,
+      "targets": 107647,
+      "piece_indices": [
+        127,
+        157,
+        181
+      ],
+      "role": "contained in full_held; report-only"
+    },
+    "held_short": {
+      "pieces": 470,
+      "targets": 974858,
+      "role": "full_held with held_long removed"
+    },
+    "giant": {
+      "pieces": 1,
+      "targets": 131071,
+      "piece_bounds": [
+        0,
+        131072
+      ],
+      "original_source_interval": [
+        570595966,
+        570727038
+      ],
+      "role": "independent giant audit; report-only"
+    },
+    "independent_targets": 1213576
+  },
+  "exports": [
+    {
+      "epoch": 4,
+      "step": 318,
+      "selected": false,
+      "weight_bytes": 2073263,
+      "changed_weight_symbols": 1202068,
+      "double_weight_saved_bytes": 1662124,
+      "held_kappa1_proxy_saved_bytes": -56259419.34060201,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.514144681139918,
+          "delta_nll_w0": 0.5478963423454916,
+          "delta_nll_q7_e0": 0.1860629940544034
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.8814137534625026,
+          "delta_nll_w0": 0.6227994521525833,
+          "delta_nll_q7_e0": 0.21235826700268912
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.4735896322729967,
+          "delta_nll_w0": 0.5396252966532944,
+          "delta_nll_q7_e0": 0.18315938424962797
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 1.3014865855589741,
+          "delta_nll_w0": 1.2625001594274687,
+          "delta_nll_q7_e0": 1.0150441162061672
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10770061.650133222,
+        "current_soft_entropy_nats": 10865447.22265625,
+        "changed_z_coordinates": 5807720,
+        "z_delta_l2": 898.0179140706077,
+        "z_max_delta": 1.588620662689209
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    },
+    {
+      "epoch": 8,
+      "step": 634,
+      "selected": false,
+      "weight_bytes": 2073147,
+      "changed_weight_symbols": 1275193,
+      "double_weight_saved_bytes": 1662356,
+      "held_kappa1_proxy_saved_bytes": -31699810.611521963,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.281830555788988,
+          "delta_nll_w0": 0.31558221699456157,
+          "delta_nll_q7_e0": -0.04625113129652658
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.6326769197936122,
+          "delta_nll_w0": 0.3740626184836928,
+          "delta_nll_q7_e0": -0.03637856666620132
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.243088955939568,
+          "delta_nll_w0": 0.30912462031986565,
+          "delta_nll_q7_e0": -0.04734129208380078
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 0.8975045353455957,
+          "delta_nll_w0": 0.8585181092140902,
+          "delta_nll_q7_e0": 0.6110620659927888
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10769420.565896774,
+        "current_soft_entropy_nats": 10860292.23828125,
+        "changed_z_coordinates": 5809701,
+        "z_delta_l2": 926.4627371141428,
+        "z_max_delta": 2.390401840209961
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    },
+    {
+      "epoch": 12,
+      "step": 950,
+      "selected": false,
+      "weight_bytes": 2074570,
+      "changed_weight_symbols": 1369047,
+      "double_weight_saved_bytes": 1659510,
+      "held_kappa1_proxy_saved_bytes": -23301024.28961977,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.2023571275373777,
+          "delta_nll_w0": 0.23610878874295127,
+          "delta_nll_q7_e0": -0.12572455954813688
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.5363763756516202,
+          "delta_nll_w0": 0.27776207434170086,
+          "delta_nll_q7_e0": -0.13267911080819328
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.1654736327086395,
+          "delta_nll_w0": 0.2315092970889372,
+          "delta_nll_q7_e0": -0.12495661531472924
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 0.6297128032544527,
+          "delta_nll_w0": 0.5907263771229472,
+          "delta_nll_q7_e0": 0.3432703339016457
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10777314.562542709,
+        "current_soft_entropy_nats": 10859245.705078125,
+        "changed_z_coordinates": 5815293,
+        "z_delta_l2": 977.6693575466992,
+        "z_max_delta": 3.5522453784942627
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    },
+    {
+      "epoch": 16,
+      "step": 1267,
+      "selected": false,
+      "weight_bytes": 2076739,
+      "changed_weight_symbols": 1436896,
+      "double_weight_saved_bytes": 1655172,
+      "held_kappa1_proxy_saved_bytes": -18956395.967964403,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.1612190189305855,
+          "delta_nll_w0": 0.19497068013615915,
+          "delta_nll_q7_e0": -0.166862668154929
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.4859329881503538,
+          "delta_nll_w0": 0.22731868684043444,
+          "delta_nll_q7_e0": -0.1831224983094597
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.125363043347885,
+          "delta_nll_w0": 0.19139870772818268,
+          "delta_nll_q7_e0": -0.16506720467548375
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 0.5691827667271524,
+          "delta_nll_w0": 0.5301963405956469,
+          "delta_nll_q7_e0": 0.2827402973743454
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10789457.456502544,
+        "current_soft_entropy_nats": 10866023.849609375,
+        "changed_z_coordinates": 5816237,
+        "z_delta_l2": 1025.6438160678458,
+        "z_max_delta": 5.205986022949219
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    },
+    {
+      "epoch": 20,
+      "step": 1581,
+      "selected": false,
+      "weight_bytes": 2079609,
+      "changed_weight_symbols": 1526367,
+      "double_weight_saved_bytes": 1649432,
+      "held_kappa1_proxy_saved_bytes": -15954857.25694082,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.1327723148002367,
+          "delta_nll_w0": 0.16652397600581026,
+          "delta_nll_q7_e0": -0.1953093722852779
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.4551007652511272,
+          "delta_nll_w0": 0.19648646394120783,
+          "delta_nll_q7_e0": -0.2139547212086863
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.097179755980709,
+          "delta_nll_w0": 0.16321542036100678,
+          "delta_nll_q7_e0": -0.19325049204265965
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 0.5907502035280855,
+          "delta_nll_w0": 0.55176377739658,
+          "delta_nll_q7_e0": 0.3043077341752785
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10805391.462928386,
+        "current_soft_entropy_nats": 10877593.814453125,
+        "changed_z_coordinates": 5817461,
+        "z_delta_l2": 1072.5352314736842,
+        "z_max_delta": 6.0
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    },
+    {
+      "epoch": 24,
+      "step": 1896,
+      "selected": false,
+      "weight_bytes": 2082984,
+      "changed_weight_symbols": 1632016,
+      "double_weight_saved_bytes": 1642682,
+      "held_kappa1_proxy_saved_bytes": -14501154.590894768,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.1189574779063025,
+          "delta_nll_w0": 0.1527091391118761,
+          "delta_nll_q7_e0": -0.20912420917921204
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.4343338548748084,
+          "delta_nll_w0": 0.175719553564889,
+          "delta_nll_q7_e0": -0.23472163158500514
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.0841325897158904,
+          "delta_nll_w0": 0.15016825409618817,
+          "delta_nll_q7_e0": -0.20629765830747826
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 0.5571629887172433,
+          "delta_nll_w0": 0.5181765625857379,
+          "delta_nll_q7_e0": 0.27072051936443636
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10824091.880466582,
+        "current_soft_entropy_nats": 10891551.388671875,
+        "changed_z_coordinates": 5817185,
+        "z_delta_l2": 1120.8575082455407,
+        "z_max_delta": 6.0
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    },
+    {
+      "epoch": 28,
+      "step": 2213,
+      "selected": true,
+      "weight_bytes": 2087043,
+      "changed_weight_symbols": 1743461,
+      "double_weight_saved_bytes": 1634564,
+      "held_kappa1_proxy_saved_bytes": -14100683.541296056,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.1150925179469116,
+          "delta_nll_w0": 0.14884417915248516,
+          "delta_nll_q7_e0": -0.212989169138603
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.4301462409261438,
+          "delta_nll_w0": 0.17153193961622448,
+          "delta_nll_q7_e0": -0.23890924553366966
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.0803032582623777,
+          "delta_nll_w0": 0.14633892264267545,
+          "delta_nll_q7_e0": -0.21012698976099098
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 0.5406824955865788,
+          "delta_nll_w0": 0.5016960694550733,
+          "delta_nll_q7_e0": 0.2542400262337718
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10846587.320670737,
+        "current_soft_entropy_nats": 10907131.96875,
+        "changed_z_coordinates": 5817432,
+        "z_delta_l2": 1170.6796618497904,
+        "z_max_delta": 6.0
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    },
+    {
+      "epoch": 32,
+      "step": 2527,
+      "selected": false,
+      "weight_bytes": 2091192,
+      "changed_weight_symbols": 1856767,
+      "double_weight_saved_bytes": 1626266,
+      "held_kappa1_proxy_saved_bytes": -14281578.07675641,
+      "native": {
+        "full_held": {
+          "pieces": 473,
+          "targets": 1082505,
+          "raw_nll": 1.1167251576354666,
+          "delta_nll_w0": 0.15047681884104025,
+          "delta_nll_q7_e0": -0.2113565294500479
+        },
+        "held_long": {
+          "pieces": 3,
+          "targets": 107647,
+          "raw_nll": 1.4348564979971128,
+          "delta_nll_w0": 0.17624219668719343,
+          "delta_nll_q7_e0": -0.2341989884627007
+        },
+        "held_short": {
+          "pieces": 470,
+          "targets": 974858,
+          "raw_nll": 1.0815960574014736,
+          "delta_nll_w0": 0.1476317217817713,
+          "delta_nll_q7_e0": -0.20883419062189512
+        },
+        "giant": {
+          "pieces": 1,
+          "targets": 131071,
+          "raw_nll": 0.5440572058479202,
+          "delta_nll_w0": 0.5050707797164147,
+          "delta_nll_q7_e0": 0.2576147364951132
+        }
+      },
+      "coordinate_export": {
+        "hard_entropy_nats": 10869643.123062784,
+        "current_soft_entropy_nats": 10923241.6953125,
+        "changed_z_coordinates": 5811659,
+        "z_delta_l2": 1220.4267071170482,
+        "z_max_delta": 6.0
+      },
+      "export_checks": {
+        "tensor_count": 434,
+        "payload_tensor_count": 429,
+        "derived_tensors": 5,
+        "hard_integer_range": [
+          -3,
+          3
+        ],
+        "hard_integer_limit": 3,
+        "max_scale_delta": 0.0,
+        "raw_trainable_tensors": 0,
+        "original_rope_bytes_equal": true,
+        "decoded_tensor_bytes_equal": true
+      }
+    }
+  ],
+  "selected_epoch": 28,
+  "final_evaluated_epoch": 32,
+  "paired_piece_columns": [
+    "targets",
+    "W0_logits_sum",
+    "e0_logits_sum",
+    "e4_logits_sum",
+    "e8_logits_sum",
+    "e12_logits_sum",
+    "e16_logits_sum",
+    "e20_logits_sum",
+    "e24_logits_sum",
+    "e28_logits_sum",
+    "e32_logits_sum"
+  ],
+  "learning_decomposition": {
+    "full_held": {
+      "initial_quantization_delta_nll": 0.36183334829108815,
+      "selected_learning_delta_nll": -0.212989169138603,
+      "selected_residual_delta_nll": 0.14884417915248516,
+      "selected_initial_loss_recovery_fraction": 0.5886388585920422,
+      "final_learning_delta_nll": -0.2113565294500479,
+      "final_residual_delta_nll": 0.15047681884104025,
+      "final_initial_loss_recovery_fraction": 0.5841267269815482,
+      "final_minus_selected_delta_nll": 0.0016326396885550931
+    },
+    "held_long": {
+      "initial_quantization_delta_nll": 0.41044118514989414,
+      "selected_learning_delta_nll": -0.23890924553366966,
+      "selected_residual_delta_nll": 0.17153193961622448,
+      "selected_initial_loss_recovery_fraction": 0.5820791240684567,
+      "final_learning_delta_nll": -0.2341989884627007,
+      "final_residual_delta_nll": 0.17624219668719343,
+      "final_initial_loss_recovery_fraction": 0.5706030411572139,
+      "final_minus_selected_delta_nll": 0.004710257070968948
+    },
+    "held_short": {
+      "initial_quantization_delta_nll": 0.35646591240366643,
+      "selected_learning_delta_nll": -0.21012698976099098,
+      "selected_residual_delta_nll": 0.14633892264267545,
+      "selected_initial_loss_recovery_fraction": 0.5894728849221369,
+      "final_learning_delta_nll": -0.20883419062189512,
+      "final_residual_delta_nll": 0.1476317217817713,
+      "final_initial_loss_recovery_fraction": 0.5858461730988984,
+      "final_minus_selected_delta_nll": 0.001292799139095857
+    },
+    "giant": {
+      "initial_quantization_delta_nll": 0.24745604322130152,
+      "selected_learning_delta_nll": 0.2542400262337718,
+      "selected_residual_delta_nll": 0.5016960694550733,
+      "selected_initial_loss_recovery_fraction": -1.0274149013463507,
+      "final_learning_delta_nll": 0.2576147364951132,
+      "final_residual_delta_nll": 0.5050707797164147,
+      "final_initial_loss_recovery_fraction": -1.0410525164048092,
+      "final_minus_selected_delta_nll": 0.003374710261341396
+    }
+  },
+  "paired_piece_summary": {
+    "e0_vs_W0": {
+      "lower_nll": {
+        "pieces": 0,
+        "targets": 0
+      },
+      "higher_nll": {
+        "pieces": 473,
+        "targets": 1082505
+      },
+      "equal_nll": {
+        "pieces": 0,
+        "targets": 0
+      }
+    },
+    "selected_e28_vs_e0": {
+      "lower_nll": {
+        "pieces": 470,
+        "targets": 1082150
+      },
+      "higher_nll": {
+        "pieces": 3,
+        "targets": 355
+      },
+      "equal_nll": {
+        "pieces": 0,
+        "targets": 0
+      }
+    },
+    "selected_e28_vs_W0": {
+      "lower_nll": {
+        "pieces": 5,
+        "targets": 641
+      },
+      "higher_nll": {
+        "pieces": 468,
+        "targets": 1081864
+      },
+      "equal_nll": {
+        "pieces": 0,
+        "targets": 0
+      }
+    },
+    "final_e32_vs_e0": {
+      "lower_nll": {
+        "pieces": 472,
+        "targets": 1082380
+      },
+      "higher_nll": {
+        "pieces": 1,
+        "targets": 125
+      },
+      "equal_nll": {
+        "pieces": 0,
+        "targets": 0
+      }
+    },
+    "final_e32_vs_W0": {
+      "lower_nll": {
+        "pieces": 10,
+        "targets": 1121
+      },
+      "higher_nll": {
+        "pieces": 463,
+        "targets": 1081384
+      },
+      "equal_nll": {
+        "pieces": 0,
+        "targets": 0
+      }
+    }
+  },
+  "selection": {
+    "status": "frozen",
+    "scope": "one positive-epoch trained hard/native export; full realized held proxy",
+    "criterion": "(held_NLL0-held_NLL1)*586215331/(8*ln2)+2*(W0-W1)+2*(B0-B1)",
+    "kappa": 1,
+    "held_targets": 1082505,
+    "baseline_held_total": {
+      "count": 1082505,
+      "logits_mean": 0.9662483387944264
+    },
+    "original_weight_sha256": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18",
+    "selected_weight_sha256": "42cbb05ba360744e8faa8ce14f48faaea7987d07c236eaeec22468717ec7a4da",
+    "tie_breaker": "earliest epoch",
+    "independent_max_audit_role": "report-only",
+    "held_long3_role": "report-only",
+    "realized_sampling_range": {
+      "seed": 414,
+      "article_holdout_probability": 0.25,
+      "piece_sampling_probability": 0.0075,
+      "train_piece_limit": 32768,
+      "held_max_piece_bytes": 38537,
+      "score_weighting": "realized target share across sampled held pieces",
+      "length_strata": [
+        {
+          "piece_bytes": [
+            1,
+            2048
+          ],
+          "full": {
+            "pieces": 173004,
+            "targets": 120236973,
+            "target_fraction": 0.20510717929347363
+          },
+          "train": {
+            "pieces": 934,
+            "targets": 652183,
+            "target_fraction": 0.22173237951699704
+          },
+          "validation": {
+            "pieces": 340,
+            "targets": 245354,
+            "target_fraction": 0.22665391845765145
+          }
+        },
+        {
+          "piece_bytes": [
+            2049,
+            4096
+          ],
+          "full": {
+            "pieces": 36215,
+            "targets": 102834463,
+            "target_fraction": 0.17542097171798463
+          },
+          "train": {
+            "pieces": 192,
+            "targets": 540022,
+            "target_fraction": 0.18359933186165198
+          },
+          "validation": {
+            "pieces": 65,
+            "targets": 178382,
+            "target_fraction": 0.16478630583692455
+          }
+        },
+        {
+          "piece_bytes": [
+            4097,
+            8192
+          ],
+          "full": {
+            "pieces": 20047,
+            "targets": 114572295,
+            "target_fraction": 0.19544404409307406
+          },
+          "train": {
+            "pieces": 105,
+            "targets": 595377,
+            "target_fraction": 0.2024191966360533
+          },
+          "validation": {
+            "pieces": 40,
+            "targets": 226176,
+            "target_fraction": 0.20893760305957015
+          }
+        },
+        {
+          "piece_bytes": [
+            8193,
+            16384
+          ],
+          "full": {
+            "pieces": 10069,
+            "targets": 113544035,
+            "target_fraction": 0.19368997874264057
+          },
+          "train": {
+            "pieces": 59,
+            "targets": 641765,
+            "target_fraction": 0.21819041670930645
+          },
+          "validation": {
+            "pieces": 21,
+            "targets": 240561,
+            "target_fraction": 0.2222262252830241
+          }
+        },
+        {
+          "piece_bytes": [
+            16385,
+            32768
+          ],
+          "full": {
+            "pieces": 3589,
+            "targets": 77843076,
+            "target_fraction": 0.1327892190523417
+          },
+          "train": {
+            "pieces": 23,
+            "targets": 511960,
+            "target_fraction": 0.17405867527599125
+          },
+          "validation": {
+            "pieces": 4,
+            "targets": 84385,
+            "target_fraction": 0.07795345056142927
+          }
+        },
+        {
+          "piece_bytes": [
+            32769,
+            65536
+          ],
+          "full": {
+            "pieces": 456,
+            "targets": 18372088,
+            "target_fraction": 0.031340169777988966
+          },
+          "train": {
+            "pieces": 0,
+            "targets": 0,
+            "target_fraction": 0.0
+          },
+          "validation": {
+            "pieces": 3,
+            "targets": 107647,
+            "target_fraction": 0.09944249680140045
+          }
+        },
+        {
+          "piece_bytes": [
+            65537,
+            131072
+          ],
+          "full": {
+            "pieces": 309,
+            "targets": 38812401,
+            "target_fraction": 0.06620843732249643
+          },
+          "train": {
+            "pieces": 0,
+            "targets": 0,
+            "target_fraction": 0.0
+          },
+          "validation": {
+            "pieces": 0,
+            "targets": 0,
+            "target_fraction": 0.0
+          }
+        }
+      ]
+    },
+    "initial_student_role": "report-only q7 initialization, separate from retained W0",
+    "eligibility": "positive epoch and step; hard W byte-different from q7 initialization and retained W0",
+    "hard_evaluated_epochs": [
+      4,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32
+    ],
+    "selected": {
+      "epoch": 28,
+      "step": 2213,
+      "weight_bytes": 2087043,
+      "held_total": {
+        "count": 1082505,
+        "logits_mean": 1.1150925179468387
+      },
+      "original_byte_equal": false,
+      "initial_student_byte_equal": false,
+      "report_only": {
+        "causal": {
+          "targets": 1082505,
+          "raw_nll": 1.1150925179468387,
+          "delta_raw_nll": 0.14884417915241233,
+          "long_native": {
+            "targets": 107647,
+            "raw_nll": 1.4301462409261438,
+            "delta_raw_nll": 0.17153193961622448
+          }
+        },
+        "long-audit": {
+          "targets": 131071,
+          "raw_nll": 0.5406824955865788,
+          "delta_raw_nll": 0.5016960694550733
+        }
+      },
+      "changed_weight_symbols": 1743461,
+      "held_delta_raw_nll": 0.14884417915241233,
+      "projected_payload_saved_bytes": -15735247.541288357,
+      "double_weight_saved_bytes": 1634564,
+      "proxy_net_saved_bytes": -14100683.541288357,
+      "selection_eligible": true,
+      "dual_code_saved_bytes": 0
+    },
+    "completed_exports": [
+      {
+        "epoch": 4,
+        "step": 318,
+        "weight_bytes": 2073263,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.5141446811398998
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.5141446811398998,
+            "delta_raw_nll": 0.5478963423454734,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.8814137534625026,
+              "delta_raw_nll": 0.6227994521525833
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 1.3014865855589741,
+            "delta_raw_nll": 1.2625001594274687
+          }
+        },
+        "changed_weight_symbols": 1202068,
+        "held_delta_raw_nll": 0.5478963423454734,
+        "projected_payload_saved_bytes": -57921543.34060009,
+        "double_weight_saved_bytes": 1662124,
+        "proxy_net_saved_bytes": -56259419.34060009,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      },
+      {
+        "epoch": 8,
+        "step": 634,
+        "weight_bytes": 2073147,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.281830555788941
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.281830555788941,
+            "delta_raw_nll": 0.3155822169945145,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.6326769197936122,
+              "delta_raw_nll": 0.3740626184836928
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 0.8975045353455957,
+            "delta_raw_nll": 0.8585181092140902
+          }
+        },
+        "changed_weight_symbols": 1275193,
+        "held_delta_raw_nll": 0.3155822169945145,
+        "projected_payload_saved_bytes": -33362166.611516986,
+        "double_weight_saved_bytes": 1662356,
+        "proxy_net_saved_bytes": -31699810.611516986,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      },
+      {
+        "epoch": 12,
+        "step": 950,
+        "weight_bytes": 2074570,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.2023571275374252
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.2023571275374252,
+            "delta_raw_nll": 0.2361087887429988,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.5363763756516202,
+              "delta_raw_nll": 0.27776207434170086
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 0.6297128032544527,
+            "delta_raw_nll": 0.5907263771229472
+          }
+        },
+        "changed_weight_symbols": 1369047,
+        "held_delta_raw_nll": 0.2361087887429988,
+        "projected_payload_saved_bytes": -24960534.289624795,
+        "double_weight_saved_bytes": 1659510,
+        "proxy_net_saved_bytes": -23301024.289624795,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      },
+      {
+        "epoch": 16,
+        "step": 1267,
+        "weight_bytes": 2076739,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.1612190189306895
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.1612190189306895,
+            "delta_raw_nll": 0.19497068013626306,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.4859329881503538,
+              "delta_raw_nll": 0.22731868684043444
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 0.5691827667271524,
+            "delta_raw_nll": 0.5301963405956469
+          }
+        },
+        "changed_weight_symbols": 1436896,
+        "held_delta_raw_nll": 0.19497068013626306,
+        "projected_payload_saved_bytes": -20611567.96797539,
+        "double_weight_saved_bytes": 1655172,
+        "proxy_net_saved_bytes": -18956395.96797539,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      },
+      {
+        "epoch": 20,
+        "step": 1581,
+        "weight_bytes": 2079609,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.1327723148002817
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.1327723148002817,
+            "delta_raw_nll": 0.16652397600585533,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.4551007652511272,
+              "delta_raw_nll": 0.19648646394120783
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 0.5907502035280855,
+            "delta_raw_nll": 0.55176377739658
+          }
+        },
+        "changed_weight_symbols": 1526367,
+        "held_delta_raw_nll": 0.16652397600585533,
+        "projected_payload_saved_bytes": -17604289.256945588,
+        "double_weight_saved_bytes": 1649432,
+        "proxy_net_saved_bytes": -15954857.256945588,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      },
+      {
+        "epoch": 24,
+        "step": 1896,
+        "weight_bytes": 2082984,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.118957477906305
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.118957477906305,
+            "delta_raw_nll": 0.15270913911187856,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.4343338548748084,
+              "delta_raw_nll": 0.175719553564889
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 0.5571629887172433,
+            "delta_raw_nll": 0.5181765625857379
+          }
+        },
+        "changed_weight_symbols": 1632016,
+        "held_delta_raw_nll": 0.15270913911187856,
+        "projected_payload_saved_bytes": -16143836.590895029,
+        "double_weight_saved_bytes": 1642682,
+        "proxy_net_saved_bytes": -14501154.590895029,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      },
+      {
+        "epoch": 28,
+        "step": 2213,
+        "weight_bytes": 2087043,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.1150925179468387
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.1150925179468387,
+            "delta_raw_nll": 0.14884417915241233,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.4301462409261438,
+              "delta_raw_nll": 0.17153193961622448
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 0.5406824955865788,
+            "delta_raw_nll": 0.5016960694550733
+          }
+        },
+        "changed_weight_symbols": 1743461,
+        "held_delta_raw_nll": 0.14884417915241233,
+        "projected_payload_saved_bytes": -15735247.541288357,
+        "double_weight_saved_bytes": 1634564,
+        "proxy_net_saved_bytes": -14100683.541288357,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      },
+      {
+        "epoch": 32,
+        "step": 2527,
+        "weight_bytes": 2091192,
+        "held_total": {
+          "count": 1082505,
+          "logits_mean": 1.1167251576354316
+        },
+        "original_byte_equal": false,
+        "initial_student_byte_equal": false,
+        "report_only": {
+          "causal": {
+            "targets": 1082505,
+            "raw_nll": 1.1167251576354316,
+            "delta_raw_nll": 0.15047681884100517,
+            "long_native": {
+              "targets": 107647,
+              "raw_nll": 1.4348564979971128,
+              "delta_raw_nll": 0.17624219668719343
+            }
+          },
+          "long-audit": {
+            "targets": 131071,
+            "raw_nll": 0.5440572058479202,
+            "delta_raw_nll": 0.5050707797164147
+          }
+        },
+        "changed_weight_symbols": 1856767,
+        "held_delta_raw_nll": 0.15047681884100517,
+        "projected_payload_saved_bytes": -15907844.076752702,
+        "double_weight_saved_bytes": 1626266,
+        "proxy_net_saved_bytes": -14281578.076752702,
+        "selection_eligible": true,
+        "dual_code_saved_bytes": 0
+      }
+    ],
+    "unique_argmax": true,
+    "lead_over_final_e32_bytes": 180894.53546434455,
+    "positive_epoch_eligibility": "epoch > 0 and step > 0; all eight net proxies are negative",
+    "proxy_reduction_note": "The original selector and paired-piece reconstruction preserve their own FP64 reduction results."
+  },
+  "same_W_mixed": {
+    "weights": {
+      "baseline_W0": {
+        "bytes": 2904325,
+        "sha256": "659c0767bce4146d2c457b9aaa13b3e707561ed5d37173a2a6ea1e5965e86b18"
+      },
+      "selected_e28": {
+        "bytes": 2087043,
+        "sha256": "42cbb05ba360744e8faa8ce14f48faaea7987d07c236eaeec22468717ec7a4da"
+      }
+    },
+    "code_components": {
+      "baseline_B": {
+        "bytes": 181956,
+        "sha256": "686cb39ca80e6aeb24b558aefd1f59e56f01c6e4352cdc3304bb61256d8953ee"
+      },
+      "candidate_B": {
+        "bytes": 181956,
+        "sha256": "686cb39ca80e6aeb24b558aefd1f59e56f01c6e4352cdc3304bb61256d8953ee"
+      },
+      "baseline_probe": {
+        "bytes": 434544,
+        "sha256": "4bf441ea14a9fff59a3992808d7f82201cafa3fb083b215b657bc699615ab898"
+      },
+      "candidate_probe": {
+        "bytes": 434544,
+        "sha256": "4bf441ea14a9fff59a3992808d7f82201cafa3fb083b215b657bc699615ab898"
+      },
+      "interval_reader": {
+        "bytes": 31456,
+        "sha256": "aac0eb38d9e4a3ff3e99176630a934c2c733462cf03fc30c7110322232e039c4"
+      },
+      "compressed_dictionary": {
+        "bytes": 100098,
+        "sha256": "0bf16f1b29d854758c4fb3a16336a4b8fc112194b3cbfa8994c21c35a934b21a"
+      },
+      "compressed_order": {
+        "bytes": 201111,
+        "sha256": "05ea75cb2cc644e004f880c8e68cac2fbd43186b4d42d77877d2d5634ce61b49"
+      }
+    },
+    "source_stream": {
+      "bytes": 586459020,
+      "sha256": "a5cef5dfb651f7a12d3c6fec27dbe1e6290bde05ef1b893b24989081857fbead"
+    },
+    "vocabulary_mask": {
+      "bytes": 32,
+      "sha256": "3e7f8c043939ccba8675b3a260f65a665bc34acac883a7316cc50fecfd7d36b5"
+    },
+    "double_weight_saved_bytes": 1634564,
+    "dual_code_saved_bytes": 0,
+    "production_payloads": {
+      "prefix8": {
+        "input_bytes": 8388608,
+        "source_begin": 0,
+        "history": "continuous from stream byte zero",
+        "baseline_payload_bytes": 1072279,
+        "candidate_payload_bytes": 1205055,
+        "payload_saved_bytes": -132776,
+        "baseline_encoded_sha256": "52d4d3df328bf61bf53094725f7a0a9b304e026c957d91babcbbdc2951428686",
+        "candidate_encoded_sha256": "c6a1b95c10f26012f21442aae5d63ae1fe831db2c5067f42fb93ea6871c56fbb",
+        "baseline_restored_slice_sha256": "035c4d802428884114309bb893d24eeb8eb86b2837c1580e005ff61f7c9e81cc",
+        "candidate_restored_slice_sha256": "035c4d802428884114309bb893d24eeb8eb86b2837c1580e005ff61f7c9e81cc",
+        "decoder_correctness": "passed; both restored slice hashes match",
+        "baseline_decode_role": "reused original golden round trip",
+        "candidate_decode_role": "actual selected-e28 round trip"
+      },
+      "q2": {
+        "input_bytes": 1048576,
+        "source_begin": 293232482,
+        "history": "fresh cold from article-q2 source offset",
+        "baseline_payload_bytes": 208769,
+        "candidate_payload_bytes": 237498,
+        "payload_saved_bytes": -28729,
+        "baseline_encoded_sha256": "f84ecd063ed6bf74d5f7052b98f9a084a0ef112fad806cee9644ff65f3d4e01a",
+        "candidate_encoded_sha256": "db6a2894ed34cc86972deeb38e28fd7faa369b395e4f98d37519e01c7e32f467",
+        "baseline_restored_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+        "candidate_restored_slice_sha256": "8233fc9b3eba4518ad87574954a19df74dd60fbafa1a3f6df5ad206fa4dccd73",
+        "decoder_correctness": "passed; both restored slice hashes match",
+        "baseline_decode_role": "reused original golden round trip",
+        "candidate_decode_role": "actual selected-e28 round trip"
+      }
+    },
+    "scopes": {
+      "prefix8-mature": {
+        "baseline": {
+          "status": "passed",
+          "full_input_bytes": 8388608,
+          "full_coded_bytes": 1072279,
+          "score_begin": 7344758,
+          "score_end": 8386448,
+          "pieces": 293,
+          "interval_coded_bytes": 177427,
+          "begin_closed_bytes": 894482,
+          "end_closed_bytes": 1071909,
+          "interval_range_residual_bytes": -0.3543837341712788,
+          "all": {
+            "bytes": 1041690,
+            "neural_bits": 1447414.5788625062,
+            "pre_sse_logit_bits": 1418805.9140148722,
+            "final_u16_bits": 1419418.8350698734,
+            "override_bits": 341613
+          },
+          "neural_targets": {
+            "bytes": 1041397,
+            "neural_bits": 1447329.4011273922,
+            "pre_sse_logit_bits": 1418717.8871054,
+            "final_u16_bits": 1419329.8686409618,
+            "override_bits": 340752
+          }
+        },
+        "candidate": {
+          "status": "passed",
+          "full_input_bytes": 8388608,
+          "full_coded_bytes": 1205055,
+          "score_begin": 7344758,
+          "score_end": 8386448,
+          "pieces": 293,
+          "interval_coded_bytes": 199921,
+          "begin_closed_bytes": 1004722,
+          "end_closed_bytes": 1204643,
+          "interval_range_residual_bytes": 1.0585130950203165,
+          "all": {
+            "bytes": 1041690,
+            "neural_bits": 1699197.856158293,
+            "pre_sse_logit_bits": 1599663.8569483648,
+            "final_u16_bits": 1599359.5318952398,
+            "override_bits": 341613
+          },
+          "neural_targets": {
+            "bytes": 1041397,
+            "neural_bits": 1699112.6784231837,
+            "pre_sse_logit_bits": 1599573.6318950432,
+            "final_u16_bits": 1599268.0495616768,
+            "override_bits": 340752
+          }
+        },
+        "paired": {
+          "payload_saved_bytes": -132776,
+          "guarded_transfer": {
+            "status": "defined",
+            "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+            "guarded_neural_saved_bits": -251783.27729579154,
+            "kappa_final_nn_targets": 0.7146550114578343,
+            "kappa_interval_bytes": 0.7147098962755769,
+            "fallback_final_saved_bits": -2.515904651489109,
+            "range_residual_saved_bytes": -1.4128968291915953
+          },
+          "interval_coded_saved_bytes": -22494,
+          "interval_range_residual_saved_bytes": -1.4128968291915953,
+          "same_native_target_mask": true,
+          "masks": {
+            "all": {
+              "bytes": 1041690,
+              "neural_bits_saved": -251783.2772957869,
+              "pre_sse_logit_bits_saved": -180857.9429334926,
+              "final_u16_bits_saved": -179940.69682536647,
+              "baseline_override_bits": 341613,
+              "candidate_override_bits": 341613
+            },
+            "neural_targets": {
+              "bytes": 1041397,
+              "neural_bits_saved": -251783.27729579154,
+              "pre_sse_logit_bits_saved": -180855.7447896432,
+              "final_u16_bits_saved": -179938.18092071498,
+              "baseline_override_bits": 340752,
+              "candidate_override_bits": 340752
+            },
+            "first_token_fallback": {
+              "bytes": 293,
+              "neural_bits_saved": 4.6566128730773926e-09,
+              "pre_sse_logit_bits_saved": -2.198143849382177,
+              "final_u16_bits_saved": -2.515904651489109,
+              "baseline_override_bits": 861,
+              "candidate_override_bits": 861
+            }
+          }
+        },
+        "source_intervals": [
+          [
+            7344758,
+            8386448
+          ]
+        ],
+        "side_first_token_fallback": {
+          "baseline": {
+            "bytes": 293,
+            "neural_bits": 85.17773511400446,
+            "pre_sse_logit_bits": 88.02690947218798,
+            "final_u16_bits": 88.96642891154625,
+            "override_bits": 861
+          },
+          "candidate": {
+            "bytes": 293,
+            "neural_bits": 85.17773510934785,
+            "pre_sse_logit_bits": 90.22505332157016,
+            "final_u16_bits": 91.48233356303535,
+            "override_bits": 861
+          }
+        },
+        "seed414_direct_exposure": {
+          "train": {
+            "pieces": 1,
+            "input_bytes": 1671,
+            "target_positions": 1670
+          },
+          "validation": {
+            "pieces": 1,
+            "input_bytes": 4879,
+            "target_positions": 4878
+          }
+        }
+      },
+      "q2": {
+        "baseline": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 0,
+          "score_end": 1048576,
+          "pieces": 209,
+          "interval_coded_bytes": 208768,
+          "begin_closed_bytes": 1,
+          "end_closed_bytes": 208769,
+          "interval_range_residual_bytes": -0.6058038838091306,
+          "all": {
+            "bytes": 1048576,
+            "neural_bits": 1679520.6935241544,
+            "pre_sse_logit_bits": 1669622.407580404,
+            "final_u16_bits": 1670148.8464310705,
+            "override_bits": 357585
+          },
+          "neural_targets": {
+            "bytes": 1048367,
+            "neural_bits": 1679352.2748483906,
+            "pre_sse_logit_bits": 1669492.505570227,
+            "final_u16_bits": 1670019.9761105662,
+            "override_bits": 357285
+          }
+        },
+        "candidate": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 237498,
+          "score_begin": 0,
+          "score_end": 1048576,
+          "pieces": 209,
+          "interval_coded_bytes": 237497,
+          "begin_closed_bytes": 1,
+          "end_closed_bytes": 237498,
+          "interval_range_residual_bytes": -0.8288528291450348,
+          "all": {
+            "bytes": 1048576,
+            "neural_bits": 1964468.2182562102,
+            "pre_sse_logit_bits": 1900642.8196489143,
+            "final_u16_bits": 1899982.6308226332,
+            "override_bits": 357585
+          },
+          "neural_targets": {
+            "bytes": 1048367,
+            "neural_bits": 1964299.799580439,
+            "pre_sse_logit_bits": 1900523.1323611145,
+            "final_u16_bits": 1899862.3357545827,
+            "override_bits": 357285
+          }
+        },
+        "paired": {
+          "payload_saved_bytes": -28729,
+          "guarded_transfer": {
+            "status": "defined",
+            "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+            "guarded_neural_saved_bits": -284947.5247320484,
+            "kappa_final_nn_targets": 0.8066129363999555,
+            "kappa_interval_bytes": 0.8065765800777651,
+            "fallback_final_saved_bits": 8.575252453796566,
+            "range_residual_saved_bytes": 0.22304894533590414
+          },
+          "interval_coded_saved_bytes": -28729,
+          "interval_range_residual_saved_bytes": 0.22304894533590414,
+          "same_native_target_mask": true,
+          "masks": {
+            "all": {
+              "bytes": 1048576,
+              "neural_bits_saved": -284947.52473205584,
+              "pre_sse_logit_bits_saved": -231020.4120685102,
+              "final_u16_bits_saved": -229833.7843915627,
+              "baseline_override_bits": 357585,
+              "candidate_override_bits": 357585
+            },
+            "neural_targets": {
+              "bytes": 1048367,
+              "neural_bits_saved": -284947.5247320484,
+              "pre_sse_logit_bits_saved": -231030.62679088744,
+              "final_u16_bits_saved": -229842.35964401648,
+              "baseline_override_bits": 357285,
+              "candidate_override_bits": 357285
+            },
+            "first_token_fallback": {
+              "bytes": 209,
+              "neural_bits_saved": -7.450580596923828e-09,
+              "pre_sse_logit_bits_saved": 10.214722377248108,
+              "final_u16_bits_saved": 8.575252453796566,
+              "baseline_override_bits": 300,
+              "candidate_override_bits": 300
+            }
+          }
+        },
+        "source_intervals": [
+          [
+            293232482,
+            294281058
+          ]
+        ],
+        "side_first_token_fallback": {
+          "baseline": {
+            "bytes": 209,
+            "neural_bits": 168.41867576376535,
+            "pre_sse_logit_bits": 129.9020101770293,
+            "final_u16_bits": 128.87032050429843,
+            "override_bits": 300
+          },
+          "candidate": {
+            "bytes": 209,
+            "neural_bits": 168.41867577121593,
+            "pre_sse_logit_bits": 119.68728779978119,
+            "final_u16_bits": 120.29506805050187,
+            "override_bits": 300
+          }
+        },
+        "seed414_direct_exposure": {
+          "train": {
+            "pieces": 1,
+            "input_bytes": 11185,
+            "target_positions": 11184
+          },
+          "validation": {
+            "pieces": 0,
+            "input_bytes": 0,
+            "target_positions": 0
+          }
+        }
+      },
+      "q2-non-direct-update-input": {
+        "baseline": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 0,
+          "score_end": 1048576,
+          "score_intervals": [
+            [
+              0,
+              585545
+            ],
+            [
+              596730,
+              1048576
+            ]
+          ],
+          "score_geometry": "sum of two separated intervals in the original parent trace",
+          "pieces": 208,
+          "interval_coded_bytes": 206871,
+          "interval_range_residual_bytes": -0.8413237814966124,
+          "parent_range_endpoints": [
+            {
+              "begin": 0,
+              "end": 585545,
+              "begin_closed_bytes": 1,
+              "end_closed_bytes": 131228
+            },
+            {
+              "begin": 596730,
+              "end": 1048576,
+              "begin_closed_bytes": 133125,
+              "end_closed_bytes": 208769
+            }
+          ],
+          "all": {
+            "bytes": 1037391,
+            "neural_bits": 1664212.7541805967,
+            "pre_sse_logit_bits": 1654445.0157458151,
+            "final_u16_bits": 1654974.730590252,
+            "override_bits": 352841
+          },
+          "neural_targets": {
+            "bytes": 1037183,
+            "neural_bits": 1664045.5766100176,
+            "pre_sse_logit_bits": 1654315.6632985715,
+            "final_u16_bits": 1654846.377596754,
+            "override_bits": 352541
+          }
+        },
+        "candidate": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 237498,
+          "score_begin": 0,
+          "score_end": 1048576,
+          "score_intervals": [
+            [
+              0,
+              585545
+            ],
+            [
+              596730,
+              1048576
+            ]
+          ],
+          "score_geometry": "sum of two separated intervals in the original parent trace",
+          "pieces": 208,
+          "interval_coded_bytes": 235400,
+          "interval_range_residual_bytes": -1.3134891629888443,
+          "parent_range_endpoints": [
+            {
+              "begin": 0,
+              "end": 585545,
+              "begin_closed_bytes": 1,
+              "end_closed_bytes": 149974
+            },
+            {
+              "begin": 596730,
+              "end": 1048576,
+              "begin_closed_bytes": 152071,
+              "end_closed_bytes": 237498
+            }
+          ],
+          "all": {
+            "bytes": 1037391,
+            "neural_bits": 1946913.7485217284,
+            "pre_sse_logit_bits": 1883840.529977182,
+            "final_u16_bits": 1883210.507913304,
+            "override_bits": 352841
+          },
+          "neural_targets": {
+            "bytes": 1037183,
+            "neural_bits": 1946746.5709511433,
+            "pre_sse_logit_bits": 1883721.1236372655,
+            "final_u16_bits": 1883090.4732575307,
+            "override_bits": 352541
+          }
+        },
+        "paired": {
+          "guarded_transfer": {
+            "status": "defined",
+            "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+            "guarded_neural_saved_bits": -282700.9943411257,
+            "kappa_final_nn_targets": 0.8073692708182065,
+            "kappa_interval_bytes": 0.8073264847614939,
+            "fallback_final_saved_bits": 8.318337724544108,
+            "range_residual_saved_bytes": 0.472165381492232
+          },
+          "interval_coded_saved_bytes": -28529,
+          "interval_range_residual_saved_bytes": 0.472165381492232,
+          "same_native_target_mask": true,
+          "masks": {
+            "all": {
+              "bytes": 1037391,
+              "neural_bits_saved": -282700.99434113177,
+              "pre_sse_logit_bits_saved": -229395.5142313668,
+              "final_u16_bits_saved": -228235.77732305205,
+              "baseline_override_bits": 352841,
+              "candidate_override_bits": 352841
+            },
+            "neural_targets": {
+              "bytes": 1037183,
+              "neural_bits_saved": -282700.9943411257,
+              "pre_sse_logit_bits_saved": -229405.46033869404,
+              "final_u16_bits_saved": -228244.0956607766,
+              "baseline_override_bits": 352541,
+              "candidate_override_bits": 352541
+            },
+            "first_token_fallback": {
+              "bytes": 208,
+              "neural_bits_saved": -6.05359673500061e-09,
+              "pre_sse_logit_bits_saved": 9.946107327239588,
+              "final_u16_bits_saved": 8.318337724544108,
+              "baseline_override_bits": 300,
+              "candidate_override_bits": 300
+            }
+          }
+        },
+        "full_q2_payload_saved_bytes_reference": -28729,
+        "native_R_scope": "original random-held selection is reported separately",
+        "fallback_bytes": 208,
+        "source_intervals": [
+          [
+            293232482,
+            293818027
+          ],
+          [
+            293829212,
+            294281058
+          ]
+        ],
+        "side_first_token_fallback": {
+          "baseline": {
+            "bytes": 208,
+            "neural_bits": 167.17757057910785,
+            "pre_sse_logit_bits": 129.3524472436402,
+            "final_u16_bits": 128.35299349785782,
+            "override_bits": 300
+          },
+          "candidate": {
+            "bytes": 208,
+            "neural_bits": 167.17757058516145,
+            "pre_sse_logit_bits": 119.40633991640061,
+            "final_u16_bits": 120.03465577331372,
+            "override_bits": 300
+          }
+        },
+        "ideal_all_final_u16_bytes": {
+          "baseline": 206871.8413237815,
+          "candidate": 235401.313489163
+        },
+        "current_seed414_validation_input_bytes": 0,
+        "current_seed414_direct_train_input_bytes": 0,
+        "scope_role": "full q2 with the seed414 direct-train input excluded"
+      },
+      "old-w64-held-by-seed414-role": {
+        "baseline": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 531039,
+          "score_end": 1047533,
+          "score_intervals": [
+            [
+              531039,
+              585545
+            ],
+            [
+              596730,
+              1047533
+            ]
+          ],
+          "score_geometry": "sum of two separated intervals in the original parent trace",
+          "pieces": 102,
+          "interval_coded_bytes": 84844,
+          "interval_range_residual_bytes": 0.5259978034846426,
+          "parent_range_endpoints": [
+            {
+              "begin": 531039,
+              "end": 585545,
+              "begin_closed_bytes": 121919,
+              "end_closed_bytes": 131228
+            },
+            {
+              "begin": 596730,
+              "end": 1047533,
+              "begin_closed_bytes": 133125,
+              "end_closed_bytes": 208660
+            }
+          ],
+          "all": {
+            "bytes": 505309,
+            "neural_bits": 684683.5046901571,
+            "pre_sse_logit_bits": 678603.0943759596,
+            "final_u16_bits": 678747.7920175721,
+            "override_bits": 195048
+          },
+          "neural_targets": {
+            "bytes": 505207,
+            "neural_bits": 684624.9735147089,
+            "pre_sse_logit_bits": 678573.7604367216,
+            "final_u16_bits": 678719.4245668502,
+            "override_bits": 195012
+          }
+        },
+        "candidate": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 237498,
+          "score_begin": 531039,
+          "score_end": 1047533,
+          "score_intervals": [
+            [
+              531039,
+              585545
+            ],
+            [
+              596730,
+              1047533
+            ]
+          ],
+          "score_geometry": "sum of two separated intervals in the original parent trace",
+          "pieces": 102,
+          "interval_coded_bytes": 95873,
+          "interval_range_residual_bytes": -0.40178671237663366,
+          "parent_range_endpoints": [
+            {
+              "begin": 531039,
+              "end": 585545,
+              "begin_closed_bytes": 139409,
+              "end_closed_bytes": 149974
+            },
+            {
+              "begin": 596730,
+              "end": 1047533,
+              "begin_closed_bytes": 152071,
+              "end_closed_bytes": 237379
+            }
+          ],
+          "all": {
+            "bytes": 505309,
+            "neural_bits": 805116.3883341489,
+            "pre_sse_logit_bits": 767319.9137551989,
+            "final_u16_bits": 766987.214293699,
+            "override_bits": 195048
+          },
+          "neural_targets": {
+            "bytes": 505207,
+            "neural_bits": 805057.8571587018,
+            "pre_sse_logit_bits": 767298.5114204058,
+            "final_u16_bits": 766965.8381629474,
+            "override_bits": 195012
+          }
+        },
+        "paired": {
+          "guarded_transfer": {
+            "status": "defined",
+            "scope": "same NN-target mask and score interval; neural f16/guard boundary",
+            "guarded_neural_saved_bits": -120432.88364399283,
+            "kappa_final_nn_targets": 0.7327435076366619,
+            "kappa_interval_bytes": 0.7326238260707876,
+            "fallback_final_saved_bits": 6.991319970344193,
+            "range_residual_saved_bytes": 0.9277845158612763
+          },
+          "interval_coded_saved_bytes": -11029,
+          "interval_range_residual_saved_bytes": 0.9277845158612763,
+          "same_native_target_mask": true,
+          "masks": {
+            "all": {
+              "bytes": 505309,
+              "neural_bits_saved": -120432.88364399178,
+              "pre_sse_logit_bits_saved": -88716.81937923934,
+              "final_u16_bits_saved": -88239.42227612692,
+              "baseline_override_bits": 195048,
+              "candidate_override_bits": 195048
+            },
+            "neural_targets": {
+              "bytes": 505207,
+              "neural_bits_saved": -120432.88364399283,
+              "pre_sse_logit_bits_saved": -88724.75098368421,
+              "final_u16_bits_saved": -88246.41359609726,
+              "baseline_override_bits": 195012,
+              "candidate_override_bits": 195012
+            },
+            "first_token_fallback": {
+              "bytes": 102,
+              "neural_bits_saved": 1.0477378964424133e-09,
+              "pre_sse_logit_bits_saved": 7.931604444864206,
+              "final_u16_bits_saved": 6.991319970344193,
+              "baseline_override_bits": 36,
+              "candidate_override_bits": 36
+            }
+          }
+        },
+        "full_q2_payload_saved_bytes_reference": -28729,
+        "native_R_scope": "original random-held selection is reported separately",
+        "fallback_bytes": 102,
+        "source_intervals": [
+          [
+            293763521,
+            293818027
+          ],
+          [
+            293829212,
+            294280015
+          ]
+        ],
+        "side_first_token_fallback": {
+          "baseline": {
+            "bytes": 102,
+            "neural_bits": 58.53117544820998,
+            "pre_sse_logit_bits": 29.33393923798576,
+            "final_u16_bits": 28.367450721911155,
+            "override_bits": 36
+          },
+          "candidate": {
+            "bytes": 102,
+            "neural_bits": 58.53117544716224,
+            "pre_sse_logit_bits": 21.402334793121554,
+            "final_u16_bits": 21.37613075156696,
+            "override_bits": 36
+          }
+        },
+        "ideal_all_final_u16_bytes": {
+          "baseline": 84843.47400219651,
+          "candidate": 95873.40178671238
+        },
+        "current_seed414_validation_input_bytes": 0,
+        "current_seed414_direct_train_input_bytes": 0,
+        "scope_role": "original W64 held-position window with the seed414 direct-train input excluded"
+      }
+    },
+    "full_files_and_flush": {
+      "prefix8": {
+        "baseline": {
+          "actual_encoded_file_bytes": 1072279,
+          "reader_full_coded_bytes": 1072279,
+          "end_flush_bytes": 1,
+          "production_scored_interval_bytes": 177427,
+          "production_score_intervals": [
+            [
+              7344758,
+              8386448
+            ]
+          ],
+          "full_continuous_emitted_bytes_before_flush": 1072278
+        },
+        "candidate": {
+          "actual_encoded_file_bytes": 1205055,
+          "reader_full_coded_bytes": 1205055,
+          "end_flush_bytes": 1,
+          "production_scored_interval_bytes": 199921,
+          "production_score_intervals": [
+            [
+              7344758,
+              8386448
+            ]
+          ],
+          "full_continuous_emitted_bytes_before_flush": 1205054
+        }
+      },
+      "q2": {
+        "baseline": {
+          "actual_encoded_file_bytes": 208769,
+          "reader_full_coded_bytes": 208769,
+          "end_flush_bytes": 1,
+          "production_scored_interval_bytes": 208768,
+          "production_score_intervals": [
+            [
+              0,
+              1048576
+            ]
+          ],
+          "full_continuous_emitted_bytes_before_flush": 208768,
+          "q2-non-direct-update-input_excluded_interval_plus_flush_bytes": 1898,
+          "q2-non-direct-update-input_excluded_continuous_emitted_bytes": 1897,
+          "old-w64-held-by-seed414-role_excluded_interval_plus_flush_bytes": 123925,
+          "old-w64-held-by-seed414-role_excluded_continuous_emitted_bytes": 123924
+        },
+        "candidate": {
+          "actual_encoded_file_bytes": 237498,
+          "reader_full_coded_bytes": 237498,
+          "end_flush_bytes": 1,
+          "production_scored_interval_bytes": 237497,
+          "production_score_intervals": [
+            [
+              0,
+              1048576
+            ]
+          ],
+          "full_continuous_emitted_bytes_before_flush": 237497,
+          "q2-non-direct-update-input_excluded_interval_plus_flush_bytes": 2098,
+          "q2-non-direct-update-input_excluded_continuous_emitted_bytes": 2097,
+          "old-w64-held-by-seed414-role_excluded_interval_plus_flush_bytes": 141625,
+          "old-w64-held-by-seed414-role_excluded_continuous_emitted_bytes": 141624
+        }
+      }
+    },
+    "q2_interval_parts": {
+      "candidate": {
+        "full-a": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 237498,
+          "score_begin": 0,
+          "score_end": 585545,
+          "pieces": 111,
+          "interval_coded_bytes": 149973,
+          "begin_closed_bytes": 1,
+          "end_closed_bytes": 149974,
+          "interval_range_residual_bytes": -0.8576752714870963,
+          "all": {
+            "bytes": 585545,
+            "neural_bits": 1228974.1104786892,
+            "pre_sse_logit_bits": 1200171.5834308846,
+            "final_u16_bits": 1199790.861402172,
+            "override_bits": 180718
+          },
+          "neural_targets": {
+            "bytes": 585434,
+            "neural_bits": 1228856.7591355024,
+            "pre_sse_logit_bits": 1200071.8659770747,
+            "final_u16_bits": 1199690.5868755684,
+            "override_bits": 180454
+          }
+        },
+        "full-b": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 237498,
+          "score_begin": 596730,
+          "score_end": 1048576,
+          "pieces": 97,
+          "interval_coded_bytes": 85427,
+          "begin_closed_bytes": 152071,
+          "end_closed_bytes": 237498,
+          "interval_range_residual_bytes": -0.455813891501748,
+          "all": {
+            "bytes": 451846,
+            "neural_bits": 717939.6380430394,
+            "pre_sse_logit_bits": 683668.9465462974,
+            "final_u16_bits": 683419.646511132,
+            "override_bits": 172123
+          },
+          "neural_targets": {
+            "bytes": 451749,
+            "neural_bits": 717889.8118156408,
+            "pre_sse_logit_bits": 683649.2576601909,
+            "final_u16_bits": 683399.8863819623,
+            "override_bits": 172087
+          }
+        },
+        "held-a": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 237498,
+          "score_begin": 531039,
+          "score_end": 585545,
+          "pieces": 6,
+          "interval_coded_bytes": 10565,
+          "begin_closed_bytes": 139409,
+          "end_closed_bytes": 149974,
+          "interval_range_residual_bytes": -0.2964317633304745,
+          "all": {
+            "bytes": 54506,
+            "neural_bits": 88263.25537967602,
+            "pre_sse_logit_bits": 84607.78592857499,
+            "final_u16_bits": 84522.37145410664,
+            "override_bits": 23244
+          },
+          "neural_targets": {
+            "bytes": 54500,
+            "neural_bits": 88254.49343576132,
+            "pre_sse_logit_bits": 84606.05790759195,
+            "final_u16_bits": 84520.73507641436,
+            "override_bits": 23244
+          }
+        },
+        "held-b": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 237498,
+          "score_begin": 596730,
+          "score_end": 1047533,
+          "pieces": 96,
+          "interval_coded_bytes": 85308,
+          "begin_closed_bytes": 152071,
+          "end_closed_bytes": 237379,
+          "interval_range_residual_bytes": -0.10535494904615916,
+          "all": {
+            "bytes": 450803,
+            "neural_bits": 716853.1329544729,
+            "pre_sse_logit_bits": 682712.127826624,
+            "final_u16_bits": 682464.8428395924,
+            "override_bits": 171804
+          },
+          "neural_targets": {
+            "bytes": 450707,
+            "neural_bits": 716803.3637229404,
+            "pre_sse_logit_bits": 682692.4535128139,
+            "final_u16_bits": 682445.103086533,
+            "override_bits": 171768
+          }
+        }
+      },
+      "baseline": {
+        "full-a": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 0,
+          "score_end": 585545,
+          "pieces": 111,
+          "interval_coded_bytes": 131227,
+          "begin_closed_bytes": 1,
+          "end_closed_bytes": 131228,
+          "interval_range_residual_bytes": -0.4137143689149525,
+          "all": {
+            "bytes": 585545,
+            "neural_bits": 1053672.4723585125,
+            "pre_sse_logit_bits": 1049448.9455329191,
+            "final_u16_bits": 1049819.3097149513,
+            "override_bits": 180718
+          },
+          "neural_targets": {
+            "bytes": 585434,
+            "neural_bits": 1053555.121015333,
+            "pre_sse_logit_bits": 1049345.1217076695,
+            "final_u16_bits": 1049715.6769166756,
+            "override_bits": 180454
+          }
+        },
+        "full-b": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 596730,
+          "score_end": 1048576,
+          "pieces": 97,
+          "interval_coded_bytes": 75644,
+          "begin_closed_bytes": 133125,
+          "end_closed_bytes": 208769,
+          "interval_range_residual_bytes": -0.42760941258165985,
+          "all": {
+            "bytes": 451846,
+            "neural_bits": 610540.2818220842,
+            "pre_sse_logit_bits": 604996.070212896,
+            "final_u16_bits": 605155.4208753007,
+            "override_bits": 172123
+          },
+          "neural_targets": {
+            "bytes": 451749,
+            "neural_bits": 610490.4555946846,
+            "pre_sse_logit_bits": 604970.541590902,
+            "final_u16_bits": 605130.7006800785,
+            "override_bits": 172087
+          }
+        },
+        "held-a": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 531039,
+          "score_end": 585545,
+          "pieces": 6,
+          "interval_coded_bytes": 9309,
+          "begin_closed_bytes": 121919,
+          "end_closed_bytes": 131228,
+          "interval_range_residual_bytes": 0.3854075171657314,
+          "all": {
+            "bytes": 54506,
+            "neural_bits": 75057.36450646537,
+            "pre_sse_logit_bits": 74483.41147735024,
+            "final_u16_bits": 74468.91673986267,
+            "override_bits": 23244
+          },
+          "neural_targets": {
+            "bytes": 54500,
+            "neural_bits": 75048.6025625507,
+            "pre_sse_logit_bits": 74479.58356734553,
+            "final_u16_bits": 74465.24207177148,
+            "override_bits": 23244
+          }
+        },
+        "held-b": {
+          "status": "passed",
+          "full_input_bytes": 1048576,
+          "full_coded_bytes": 208769,
+          "score_begin": 596730,
+          "score_end": 1047533,
+          "pieces": 96,
+          "interval_coded_bytes": 75535,
+          "begin_closed_bytes": 133125,
+          "end_closed_bytes": 208660,
+          "interval_range_residual_bytes": 0.14059028631891124,
+          "all": {
+            "bytes": 450803,
+            "neural_bits": 609626.1401836918,
+            "pre_sse_logit_bits": 604119.6828986093,
+            "final_u16_bits": 604278.8752777094,
+            "override_bits": 171804
+          },
+          "neural_targets": {
+            "bytes": 450707,
+            "neural_bits": 609576.3709521582,
+            "pre_sse_logit_bits": 604094.1768693761,
+            "final_u16_bits": 604254.1824950787,
+            "override_bits": 171768
+          }
+        }
+      }
+    },
+    "range_history": {
+      "parent_source_begin": 293232482,
+      "parent_input_bytes": 1048576,
+      "direct_train_input": [
+        585545,
+        596730
+      ],
+      "replay_from_parent_byte_zero": true,
+      "interval_definition": "sum of closed(end)-closed(begin); closed=emitted+1",
+      "online_ppmd_mixer_and_range_history": "original complete stream retained across excluded positions",
+      "scope_relation": "overlapping reporting scopes; each paired separately"
+    },
+    "layer_units": {
+      "G": "NN-target observed f16/guarded trace probability loss in bits",
+      "M": "pre-SSE mixer-logit ideal bits, with final-u16 override bits reported per side/mask",
+      "u16": "actual range input probability ideal loss; NN and first-token fallback masks separated",
+      "coded": "actual original continuous range interval bytes; final ideal/8 plus explicit residual"
+    },
+    "original_random_held_R": {
+      "scope": "seed414 randomized sampled validation; selection/report-only native receipts",
+      "targets": 1082505,
+      "baseline": {
+        "count": 1082505,
+        "logits_mean": 0.9662483387944264
+      },
+      "candidate": {
+        "count": 1082505,
+        "logits_mean": 1.1150925179468387
+      },
+      "saved_bits": -232453.61544026018
+    },
+    "two_sample_component": {
+      "scope": "full prefix8 plus fresh q2 payloads; one double-W and one dual-deployed-UPX-B delta; fixed D/O",
+      "sample_count": 2,
+      "sample_payload_saved_bytes": -161505,
+      "double_weight_saved_bytes": 1634564,
+      "dual_code_saved_bytes": 0,
+      "paired_sample_component_saved_bytes": 1473059
+    },
+    "rate_scenarios": {
+      "mature": {
+        "scope": "same selected W and actual measured interval; fullstream rate scenario",
+        "score_bytes": 1041690,
+        "actual_payload_saved_bytes": -22494,
+        "projected_full_net_saved_bytes": -11029289.157734066
+      },
+      "prefix8": {
+        "scope": "same selected W and actual measured interval; fullstream rate scenario",
+        "score_bytes": 8388608,
+        "actual_payload_saved_bytes": -132776,
+        "projected_full_net_saved_bytes": -7647987.15026474
+      },
+      "q2": {
+        "scope": "same selected W and actual measured interval; fullstream constant-rate scenario",
+        "score_bytes": 1048576,
+        "actual_payload_saved_bytes": -28729,
+        "projected_full_net_saved_bytes": -14433304.40970993
+      },
+      "q2-non-direct-update-input": {
+        "scope": "same selected W and actual measured interval; fullstream constant-rate scenario",
+        "score_bytes": 1037391,
+        "actual_payload_saved_bytes": -28529,
+        "projected_full_net_saved_bytes": -14493481.62752135
+      },
+      "old-w64-held-by-seed414-role": {
+        "scope": "same selected W and actual measured interval; fullstream constant-rate scenario",
+        "score_bytes": 505309,
+        "actual_payload_saved_bytes": -11029,
+        "projected_full_net_saved_bytes": -11165636.533891143
+      }
+    },
+    "sign_contract": "saved = baseline minus candidate; negative saved values are candidate growth",
+    "attribution_contract": "same frozen e28/step2213; four actual candidate interval parts; original baseline parts reused"
+  },
+  "package": {
+    "status": "awaiting_actual_full_stream_package",
+    "source_bytes": 586459020,
+    "native_targets": 586215331,
+    "known_double_weight_saved_bytes": 1634564,
+    "known_dual_code_saved_bytes": 0,
+    "actual_full_s_saved_bytes": null,
+    "score": "P+2B+2D+O+2W+69",
+    "fixed_aux": {
+      "compressed_dictionary": {
+        "bytes": 100098,
+        "sha256": "0bf16f1b29d854758c4fb3a16336a4b8fc112194b3cbfa8994c21c35a934b21a"
+      },
+      "compressed_order": {
+        "bytes": 201111,
+        "sha256": "05ea75cb2cc644e004f880c8e68cac2fbd43186b4d42d77877d2d5634ce61b49"
+      }
+    },
+    "fixed_overhead_bytes": 69,
+    "baseline_fixed_package_bytes": 6573938,
+    "selected_fixed_package_bytes": 4939374,
+    "rate_scenario_formula": "double_weight_saved_bytes + dual_code_saved_bytes + measured_payload_saved_bytes*source_bytes/score_bytes",
+    "actual_acceptance_scope": "complete official-original archive round trip and the submitted two-copy package",
+    "record_gate": "S1 <= floor(99*L/100), using the record L at formal acceptance",
+    "experiment_decision": "stop new full-stream/formal/continued-training/expanded-parameter work for this fixed recipe",
+    "primary_kappa1_break_even_residual_nll": 0.015461805492013465,
+    "primary_initial_loss_recovery_required_fraction": 0.9572681579377953,
+    "historical_1004247_byte_award_gate_reference": {
+      "scope": "historical size-gate scenario; the current formal gate uses its own record L and actual whole archive",
+      "required_net_saved_bytes": 1004247,
+      "payload_growth_allowance_bytes": 630317,
+      "primary_residual_nll_room": 0.00596234766721245
+    }
+  },
+  "negative_results": [
+    "Initial quantization raises all four native-domain losses and all 473 held-piece losses.",
+    "Epoch four raises all four native losses relative to q7 e0.",
+    "All eight trained exports retain positive native loss residuals relative to W0 in all four domains.",
+    "Every trained giant loss exceeds q7 e0; selected learning adds 0.254240026234 nat/target.",
+    "Selected weight bytes and hard/soft entropy exceed q7 e0.",
+    "All four frozen native-domain losses rise from selected e28 to final e32.",
+    "All eight fixed native net selection proxies are negative.",
+    "Both actual same-W full sample payloads grow.",
+    "Mature, full q2 and both direct-train-excluded closed code scopes grow.",
+    "All five whole-stream constant-rate scenarios have negative net saved bytes.",
+    "The fixed-recipe net-code-length gate fails; new full-stream, formal and training expansion stop."
+  ],
+  "sources": {
+    "local_scientific_originals": [
+      {
+        "role": "complete terminal readout",
+        "sha256": "9d43a0bcdfbfc053d95fddc97d6468e050a1806e7588c0a330f96c79f4a474b6"
+      },
+      {
+        "role": "same-W four-scope attribution",
+        "sha256": "84d6cbefe70d996269190a9f03da21c2735001b19d21881bdeaf5b96b141bbec"
+      },
+      {
+        "role": "q2 paired interval originals",
+        "sha256": "6b4b7b0c033e1d4f0eda2d233ac24cb31b31ea60e73e44d04ad5da94fd24b3ba"
+      },
+      {
+        "role": "hard-export scientific metadata",
+        "sha256": "ff55bf92e0ac550a4cb70d8d07d0864591d2b7f02fea36cc05e90751ce0e268f"
+      },
+      {
+        "role": "seed414 source plan reused by this fixed recipe",
+        "sha256": "dbf9964a60e085f416da75551588c3375abee5fa561f18a7342467b280a38f46"
+      }
+    ],
+    "public_scientific_files": [
+      {
+        "path": "q7-terminal-readout.py",
+        "sha256": "2c732a588624eeba5d4b6c842e0c6e2ae06c440126ff789c329e9480329213b5"
+      },
+      {
+        "path": "q7_teacher_only.py",
+        "sha256": "8749806184aa74d0ee2fe2f80c57332dad7135c78c22a9bc6f218b9651ac9579"
+      },
+      {
+        "path": "integer-coordinate-qat.py",
+        "sha256": "2cf8f1addbdc3a04574f9127a6a30397ded27dabc3da07b9195dc62cc85c91e8"
+      },
+      {
+        "path": "depth-mixed-audit.py",
+        "sha256": "727ede670d112f4767008adff519d89a037187b60887ad477581dee31aeed6c5"
+      },
+      {
+        "path": "mixed-interval.cpp",
+        "sha256": "64ca51c1c0650e43d2b383358488c6e99042f9acc7878bc306ad60dfc8d4eb26"
+      },
+      {
+        "path": "results/q7-initial-native.json",
+        "sha256": "66f2c2c9d0e27a25fd0641dfae95756ecb85e8b439235c3b2e8533869da016bc"
+      },
+      {
+        "path": "results/causal-first-eleven-epochs.json",
+        "sha256": "d1ec3e3779526012a1b5f1bdfe3c327d9d6bb59abeb2a7c4bab6fd0dc5af0909"
+      },
+      {
+        "path": "results/q7-teacher-only-preflight.json",
+        "sha256": "46c2c1a10a2ac8adb6f2093960f999868e16816555dd099c5be92a20c3d0bd15"
+      },
+      {
+        "path": "integer-unit-exactness.md",
+        "sha256": "099dec90aa2e3082b78cdb15c05fded5a17763f48d53605dbbc326f68710d4de"
+      },
+      {
+        "path": "mixed-sample-exposure.md",
+        "sha256": "635b3190326856ff517759e4ecfbe300a147daef76f5b2cef50f94e268725b8b"
+      },
+      {
+        "path": "teacher-targets-and-label-oracle.md",
+        "sha256": "d2b94213fd6accfdc588f5e68170820f2ea49b5abb012b0ce693141631852239"
+      }
+    ],
+    "scope": "public numeric scientific projection of the admitted local originals"
+  },
+  "paired_pieces": [
+    [576, 94.33251349958277, 252.94884868664158, 187.68217704306505, 169.89307462028097, 157.23344904930275, 145.06913162247324, 132.25393224612083, 130.19420886892084, 123.63647368062388, 120.80625749584622],
+    [2262, 1535.8191549949809, 2372.7763634337234, 2391.252999526434, 2208.066047406094, 2096.5518258246934, 2025.0992351417774, 1919.167225384255, 1902.432466529148, 1873.71445287978, 1895.1627591252004],
+    [531, 131.9173376019341, 333.99983833308966, 279.22133049086375, 257.31287482636014, 240.95203989346223, 238.3462023750719, 209.5807095666181, 205.80834872025548, 205.88276066194172, 199.09465868305287],
+    [488, 23.3156598904481, 175.51428312022426, 135.95560067436725, 115.94001996557834, 82.90352835787726, 76.0424982101293, 74.77933143735653, 78.64048424903177, 82.18154540134435, 70.6497570923734],
+    [520, 78.55394400313236, 242.91552602428465, 180.7014514734299, 177.5904661851065, 153.35985761391788, 140.8457455509406, 131.6711022992942, 133.63886174504955, 142.49304975315835, 141.4385690534539],
+    [686, 201.32872198425235, 416.555262650421, 416.6627617502822, 361.09916145994447, 316.7464970332883, 320.11668803679424, 306.73845211529317, 294.0608342135495, 294.85476809461676, 287.6894216086231],
+    [9387, 11265.925065734524, 15101.617685601834, 17948.29040658785, 15339.79239463308, 14181.114386341844, 13636.26205452617, 13220.531669281458, 13098.760935095592, 13064.854474485603, 13084.146456467113],
+    [1606, 865.6552988991073, 1210.2055497476786, 1463.6834122995335, 1161.6497949390011, 1100.5228176373132, 1060.8392419531174, 1030.4872927652189, 1035.7309638415218, 1007.1114311047622, 1040.6014448737005],
+    [2211, 1163.418578509899, 1686.4145976806785, 1744.6124173863604, 1585.3305779933094, 1486.7654140289073, 1404.8519713597752, 1349.9068027619992, 1376.8710462716367, 1344.0790442765303, 1357.484194993782],
+    [377, 36.93903908851263, 104.73359252711798, 104.03692592128738, 59.4560353786197, 63.74749196813122, 63.33754846786299, 59.83284418076735, 57.95668580937141, 57.07650031294993, 57.344052155783636],
+    [1030, 974.0919123891099, 1484.3622942782722, 1868.498614721256, 1527.8782218329336, 1353.0117438351222, 1306.6201538228836, 1269.5758042731875, 1221.2324321081637, 1235.4771006575534, 1232.0434421919533],
+    [4878, 4336.341837586771, 6286.275942522403, 7495.723953218582, 6172.006828163049, 5668.067429966171, 5492.08471322875, 5306.600312942278, 5192.494897175106, 5160.222266625433, 5135.005034048661],
+    [1673, 989.9004429679894, 1541.6134195887041, 1664.4523481331682, 1391.12203176063, 1304.2173653534635, 1255.314873523402, 1188.7022960159034, 1173.1734032021695, 1180.6835210110369, 1155.2898546063025],
+    [5708, 3908.304057857773, 5229.245819708828, 6880.369644289993, 5101.181771638368, 4764.864781498903, 4704.13011999939, 4611.987308435779, 4545.956039267049, 4469.902572789216, 4558.995130618024],
+    [1752, 1821.7173533010587, 2420.2439712374644, 2781.9322962051997, 2387.137810834588, 2234.665344491585, 2157.0819135966785, 2098.5197974740868, 2070.231085127802, 2066.522479254339, 2076.637645347338],
+    [583, 336.07633553504485, 529.7388301632475, 566.226024884764, 487.1212691086575, 448.64280520823905, 427.3680150463531, 410.7610348372011, 412.89790396863475, 406.93672808191104, 411.3663284270656],
+    [777, 676.3613104613345, 892.551435813013, 1104.693590176919, 881.2219023382238, 851.3900748650096, 793.3496695088817, 796.3667636071616, 772.251163199857, 753.3136666004648, 784.0280370630079],
+    [746, 875.2687937171628, 1201.530508345752, 1630.9144712577063, 1257.9026723786878, 1123.823540298139, 1089.4472363001457, 1052.909097849401, 1047.8971085255882, 1045.3798703653645, 1056.253025972973],
+    [1334, 1288.0365898912316, 1736.4691652615538, 1900.3418021088307, 1709.1735241299832, 1607.3162993420563, 1545.3939757677101, 1508.497222088179, 1517.1731866708592, 1492.7509967512021, 1491.7671607174386],
+    [6147, 7863.290801246318, 10353.998404502483, 12281.303648347213, 10453.98524583602, 9871.996700168003, 9483.624036251522, 9212.242448427696, 9093.815809571315, 9100.069021534651, 9084.193969058728],
+    [1928, 1708.107789088269, 2426.9049152967737, 2859.3234171193308, 2401.658211724194, 2256.5599001250225, 2163.4855558490976, 2099.559503562823, 2081.180878941166, 2044.4532973297682, 2054.8434235267046],
+    [4543, 4044.3172072705715, 5499.852511888393, 6839.7035729522295, 5624.160308031763, 5220.795181882921, 5008.064316299565, 4898.267076121781, 4813.897578901123, 4868.603148563446, 4838.369137950271],
+    [3525, 3648.3242413461035, 4778.4491399203025, 6057.021957290737, 4734.482181077455, 4468.067851922992, 4373.447877750241, 4210.244946815495, 4181.936677739324, 4210.438695832248, 4206.531815888139],
+    [682, 406.494485935988, 730.8995600281469, 863.7966926424759, 719.2169801882208, 667.2327736542212, 633.8230309463712, 588.3254949454896, 603.2487488739309, 570.8982846384783, 572.6479066780953],
+    [6326, 5219.042356332455, 7040.618877228773, 9208.68539605732, 7304.810927507015, 6727.2858364678905, 6413.392566412428, 6228.691326436294, 6226.405522932258, 6111.948373594621, 6132.81159955575],
+    [3132, 4052.7375781748756, 5181.3564203242595, 5789.546037859884, 5112.608978944137, 4920.406174001902, 4743.984388562266, 4629.910404203779, 4585.5151973281445, 4576.55383500678, 4587.665192251534],
+    [1337, 607.6510724449022, 953.3574498696747, 1361.5051267282424, 964.7025365801962, 852.1931340171308, 796.7545376687963, 777.3372224159824, 776.8664948259901, 756.5215044504673, 741.8448279434647],
+    [2099, 2443.6192646390828, 3324.0130721769233, 3940.6910315567925, 3319.9308637051076, 3069.6875034874556, 2935.295350834085, 2845.33840112216, 2851.125297418264, 2814.0746412435474, 2807.840144737726],
+    [9343, 13033.768342294716, 16727.342333754492, 19188.490813341192, 16606.655720984385, 15674.405749164842, 15065.754060777372, 14768.650580433721, 14605.773073974491, 14634.318749222619, 14607.594556626551],
+    [5639, 7764.031618884381, 9975.181473289673, 11647.216843325441, 9929.617785710036, 9451.475165003661, 9174.594075509416, 8937.113543878908, 8837.960389494427, 8797.208991170368, 8822.529666005341],
+    [3585, 4721.63129954656, 6136.144653742977, 6973.89154931503, 6022.458772426256, 5783.200832048208, 5572.10289212066, 5433.423769368128, 5373.533578102268, 5413.032172845758, 5366.156072842485],
+    [1141, 1521.4155463598797, 2012.3472132999768, 2333.6146419682154, 1971.727588973454, 1860.0309414575386, 1788.6212986886528, 1740.6133920820282, 1713.7217153452093, 1743.173745587534, 1752.3035157407726],
+    [879, 851.8359041589605, 1168.6969149736042, 1351.851575576874, 1121.6361810275391, 1064.1903294607978, 1021.2626772836203, 1009.822444052731, 1006.3952184014388, 997.1504426388778, 1020.3113377142284],
+    [15012, 20697.916640582713, 27483.886540126812, 30877.72097243357, 27052.660388464265, 25344.964710490665, 24391.53064131214, 23725.31047205214, 23505.26602935767, 23398.24364401311, 23473.02925268739],
+    [1124, 1023.4841874240007, 1408.925937992923, 1615.0549366332127, 1363.7219509221156, 1279.88386483932, 1212.4777419271795, 1192.4793683282735, 1179.324335356736, 1182.1996004031798, 1167.366721070624],
+    [441, 303.2572631829303, 446.6985206265335, 585.039023155048, 411.71128631806823, 374.78146687436157, 347.46102962650815, 329.14599123049, 346.2159011534168, 344.042993165405, 337.00755414365494],
+    [4845, 6313.564850616531, 8166.0872697161185, 9976.359858418222, 8291.46996210102, 7720.080651643247, 7505.619564661198, 7275.7447119842445, 7250.212411414162, 7184.017111155247, 7254.30463917137],
+    [5050, 6693.981822726269, 8879.397079021815, 10473.623774743606, 8883.802487438603, 8198.398102419753, 7884.843798358314, 7715.909872858096, 7687.540286168608, 7626.319565601896, 7621.019267780044],
+    [4305, 5405.868731566208, 7284.014244649716, 8359.664853326145, 7065.957027514991, 6654.3981915662725, 6438.494287315576, 6270.519356426246, 6233.448737589083, 6166.443130117401, 6199.851757464476],
+    [658, 547.2169327796337, 803.3738291487975, 1000.0433323492999, 822.1561569901381, 739.967813929043, 690.4098312743511, 674.1128436419151, 684.1004163587315, 665.3318243943389, 655.6061343965341],
+    [746, 856.249721481614, 1217.055589680681, 1501.4972673029906, 1181.2532728089232, 1109.8283522193065, 1039.9685100364861, 1022.4533780122567, 1016.0790425934767, 1024.0281581057823, 1027.0680943343568],
+    [7812, 9319.571756778141, 12555.461200687787, 15086.728879183886, 12661.75592551605, 11860.520516927045, 11516.203390038081, 11027.142260987577, 10947.854808186925, 10870.597762729753, 10823.276975507866],
+    [4907, 7194.898469261957, 9521.10360085369, 10807.844558338966, 9305.290462922658, 8822.344660226914, 8462.970918749084, 8231.15748107312, 8179.008748617533, 8135.338907583778, 8129.907091738068],
+    [686, 809.3670339585938, 1097.9178356246928, 1257.585217484859, 1086.062560680837, 1037.7964740660295, 995.9021282302577, 979.8237693944222, 955.9051508846476, 959.3845492854603, 967.1926705751681],
+    [1307, 1662.5075070475455, 2219.658828561985, 2562.1613624818033, 2137.933121264483, 2023.9310446595953, 1946.1264221098575, 1917.8288657582987, 1880.5547899269936, 1880.7832617768074, 1893.2284283164154],
+    [1088, 1130.169413548028, 1541.8584082101745, 1707.9865103731054, 1481.8674904350814, 1398.823255583941, 1350.0164869480413, 1351.8119550584306, 1313.7012367323794, 1299.4990745519124, 1292.7063187931753],
+    [3564, 3413.526902991247, 4672.952733521831, 5930.362693953845, 4784.65502888966, 4401.869139875914, 4279.859446418345, 4037.894518890982, 4011.524939518646, 4005.8431311453387, 3984.088578327928],
+    [1844, 2517.7153268242964, 3286.3328858894156, 3844.522770670295, 3299.064034523008, 3089.8221770990635, 3023.245745779726, 2949.1974438613693, 2889.5520114298824, 2869.171963269299, 2863.951903170517],
+    [2271, 2305.4174938826577, 3319.5881867637318, 3565.532878992969, 3156.020266540769, 2986.9334877365313, 2828.7877366143457, 2747.068915486561, 2681.951230609101, 2671.9309622885507, 2646.158227388336],
+    [3899, 3780.74201058485, 5183.815423351118, 6176.922656920026, 5118.881872142362, 4780.002507256969, 4665.949000281338, 4544.022535970465, 4465.914689423839, 4489.817825894723, 4521.677723919905],
+    [462, 437.09234239473943, 597.7084577722516, 713.4809332876596, 619.3076158864473, 574.5436586151142, 549.7705616755352, 513.8163074128688, 515.3511593058479, 532.4134911853537, 519.9430818686377],
+    [1756, 2275.8053161654307, 3009.4230773073896, 3543.48083705148, 2984.3380079572066, 2754.6411264205194, 2698.8080421040686, 2606.9285553994823, 2569.56113075504, 2572.4307778082302, 2605.30961377634],
+    [1527, 993.1839583686035, 1474.7748603518835, 1844.3456802520532, 1473.2960308708841, 1338.3508536468646, 1306.4428879496816, 1276.5584990653304, 1251.4219806839678, 1218.9420844420115, 1217.7011571509017],
+    [2241, 1781.0702921567624, 2557.0570050299034, 3225.869773351319, 2606.2985991377805, 2336.5211031673666, 2328.641447404902, 2274.291125955383, 2151.3526344585375, 2173.5258025754842, 2186.1222171713284],
+    [1761, 2490.031696292542, 3158.1690199022664, 3597.9316193828754, 3142.095429661744, 3016.163634267991, 2878.475440345242, 2819.2342317352227, 2815.1814674835477, 2800.281398708897, 2820.4009530961657],
+    [1155, 1231.6103315000428, 1603.1896852332152, 1950.4582119713805, 1557.266625637381, 1475.9193316702322, 1452.8178192505386, 1441.3151263111627, 1394.240438887119, 1404.499680006406, 1387.8688006401815],
+    [2276, 2824.5921925927264, 3903.0713015751926, 4512.2954476970135, 3734.4476464426953, 3550.26664258604, 3400.867623572236, 3300.3945962738717, 3281.766016082938, 3268.9200816932075, 3269.005984857252],
+    [5619, 7566.014852150775, 9801.798969233796, 11032.119183309642, 9634.558303327463, 9091.392692862424, 8853.247907749555, 8634.262432394695, 8561.323684534835, 8509.858426189045, 8597.774186250985],
+    [346, 278.26190282267794, 394.3163307277286, 433.95466867135974, 370.24741747078616, 358.1613769812609, 337.77201204101107, 322.26616404446986, 319.5207952512515, 322.7201192182141, 322.57741001462796],
+    [365, 273.80474520709464, 437.6442104805128, 476.7800043602243, 404.0393389676255, 362.451028783747, 340.5479210164476, 343.79361828760307, 348.9603058117732, 327.68774632125877, 341.0016481524052],
+    [1351, 1424.989676605773, 1936.1339482697003, 2655.5443347991213, 2022.4711932569771, 1834.2055265068268, 1744.799873100229, 1709.8980733328588, 1700.7616891228356, 1682.977940556149, 1672.870064508588],
+    [839, 1074.337613909245, 1326.3429001017769, 1543.6745872609329, 1354.136100700065, 1292.5658398360513, 1261.0586009770893, 1236.450266062035, 1229.5566432934768, 1217.2213054787442, 1221.4103092738262],
+    [3868, 5176.301267068211, 6694.443695673361, 7691.937381943364, 6578.130420165442, 6214.372457674323, 6024.129309364818, 5906.067606192261, 5857.19165999254, 5853.047179757961, 5904.634606508037],
+    [1203, 1383.1138372810124, 1893.4734635175616, 2289.0483719767512, 1814.7662976368738, 1674.1394323071916, 1627.015602987928, 1597.2042168903597, 1585.4596093316343, 1578.1911706677688, 1598.237210811691],
+    [2214, 2905.0738725031474, 3869.1630969212265, 4373.238043628674, 3728.2647404049617, 3477.5873073317975, 3377.557084436775, 3286.9050331334056, 3264.974401674598, 3257.5043479294163, 3276.515284877176],
+    [2630, 3316.4440854250342, 4349.713326075392, 5167.62569714576, 4400.6097124628, 4112.342569551949, 3987.300568462371, 3874.795931633217, 3844.622480993305, 3815.2816192780933, 3835.2810327844895],
+    [334, 196.18604747057134, 301.7323578696337, 357.2727840394961, 292.1909059950166, 270.95747973261814, 245.2606940141479, 236.04282433766997, 223.03612663769906, 242.29525149217258, 230.73759715683195],
+    [1180, 1266.223663070358, 1700.7346675605454, 1942.2417249649259, 1667.4460710466724, 1541.1004767300356, 1518.576691864733, 1496.5784815204509, 1466.3674328114291, 1460.1707139387204, 1465.8455725663791],
+    [2356, 2966.069904578346, 3868.191845811151, 4159.475794933836, 3670.8954063708084, 3498.8910276336173, 3422.0155355908264, 3311.950852526405, 3304.562733282147, 3305.8207635069766, 3371.5506469035677],
+    [237, 136.7071075995555, 201.59584002862525, 204.67328915553665, 172.39611434302222, 173.01995233856672, 169.0582190086457, 160.359707163368, 162.04580235356494, 154.0956526844795, 153.1675265504974],
+    [762, 711.2163636659322, 988.9408770721243, 1121.9436917743003, 980.9821196294996, 915.8532744550171, 877.573581721904, 835.3730992890463, 828.8343347258946, 830.5558963923814, 823.3453886041294],
+    [817, 998.0583302105847, 1324.5395888216879, 1421.6986321176962, 1282.0137364067084, 1231.2374327806922, 1184.139340316895, 1161.8261920679797, 1170.930603327292, 1180.6349726444953, 1169.1312889993787],
+    [462, 381.9685461811155, 510.0491023531704, 619.1508569873964, 506.45066653283595, 476.89527708494103, 463.3587280682709, 448.57729414102045, 452.7516763325773, 454.4170326524216, 451.41364420311197],
+    [356, 384.9821855797104, 554.965147818935, 515.8547326157661, 477.29142287538275, 456.27645715722525, 467.11704389827554, 447.7765046952921, 450.91177523013897, 454.41932754668164, 454.2013581091024],
+    [188, 67.62317732272605, 89.02575975380023, 120.94164415025618, 85.05392147150137, 87.31814302743712, 85.47307985294948, 79.03179832365089, 79.80875244351006, 75.84025997938083, 75.21397607231047],
+    [1011, 1137.4032107809753, 1568.5489353056878, 1861.2344618651437, 1546.08329208934, 1446.5296340479213, 1352.7005867754501, 1294.4247591022242, 1333.923629212401, 1304.6542181792404, 1316.4803299231369],
+    [8724, 9337.264823760997, 12672.0751893702, 15510.054486946665, 12633.069228979008, 11581.777177129463, 10979.62089757589, 10850.57531652065, 10719.06282599484, 10622.338232264927, 10747.180265348285],
+    [5772, 6602.283523840303, 8838.8689622947, 10572.950748793442, 8757.638467330886, 8176.374739139568, 7870.041011955476, 7698.674233663717, 7615.020706279185, 7565.123579080746, 7683.973799391825],
+    [522, 285.98821774362517, 408.47095188783766, 496.7257918236334, 402.93318223967424, 364.1842168168804, 345.60449284294606, 329.02418465614096, 324.7638471064041, 338.32245703711754, 335.1011649362951],
+    [163, 30.437658182359957, 56.23416872033831, 51.26111503366109, 45.12820234927925, 43.027790251656995, 40.7084804945556, 36.35545745953393, 37.34942149238279, 36.39291189737933, 34.193795368189676],
+    [4468, 4436.731485365587, 6027.139119571333, 7289.934059772568, 6055.6003352831385, 5697.813558356772, 5475.893458252185, 5312.9670724260395, 5232.6271805274555, 5227.340585782633, 5217.824879623578],
+    [646, 856.2660338205272, 1070.4171207175737, 1245.2328929253804, 1056.838136805008, 1008.8857241931661, 974.9858284023735, 937.4920511583939, 950.6329650594564, 957.8379690665749, 965.0839391986016],
+    [5185, 5464.25373372964, 7078.782005245968, 8878.771203778862, 7002.860962057724, 6553.309782547207, 6287.699378465806, 6166.949934079012, 6105.072257174618, 6117.7098230628835, 6198.469213157185],
+    [708, 894.7145681229193, 1159.3901429281043, 1294.27749472111, 1149.8202215961132, 1063.0807162819622, 1030.4998573239975, 1023.1487077304745, 1027.6505848435515, 1019.3597352056693, 1001.5413165309045],
+    [1622, 1721.4637265519682, 2346.786921932552, 2757.217428699749, 2291.4918222429433, 2092.324898279882, 2032.4536984165713, 1973.2219114837405, 1978.097309361633, 1947.9174422180722, 1968.5590803230896],
+    [831, 902.9819846300339, 1223.9038957790776, 1314.9092679475168, 1188.7339965927936, 1090.7329970364613, 1053.8065132226423, 1057.4584270237522, 1041.9457000503135, 1054.3695161788492, 1020.0463207056032],
+    [3136, 3892.973946647668, 4984.193818808208, 5823.032105107456, 4896.977557046626, 4646.975294546789, 4526.4629034380105, 4439.5586925898315, 4412.010064822468, 4382.981066137097, 4367.127194219578],
+    [1599, 1921.5725614801838, 2587.0771038461958, 3037.3760628524255, 2479.7409882088855, 2318.0887375179586, 2226.7523790900414, 2178.1868647180377, 2153.921946422566, 2168.2732078338713, 2162.7071883199756],
+    [2705, 2892.8686316791573, 4006.844611300938, 4405.299006587991, 3847.8068145921548, 3626.7501248460912, 3506.4465807963884, 3397.432299231028, 3346.2275079835413, 3358.774177806308, 3398.2310128608847],
+    [3003, 3016.756043274211, 3940.0534720938786, 4740.7645810983695, 3810.561382587422, 3597.3814934418474, 3482.6398133675016, 3443.71264573455, 3377.4401282719778, 3366.2230965139797, 3436.670498710081],
+    [20498, 25384.544781052165, 33106.503714746395, 39524.19592123357, 32893.50766196713, 30720.96514917412, 29639.86306427416, 29171.840347381658, 28724.917451394962, 28745.775901340607, 28693.781904173302],
+    [7413, 6968.1515545154125, 9654.903356660898, 10993.536145167944, 9296.699435324996, 8691.098493231973, 8374.085055036658, 8154.943250204954, 8063.284262968774, 7995.239060127442, 7996.405889607127],
+    [1613, 1971.6870913675568, 2682.6096383029567, 3088.333482215346, 2576.62692000554, 2400.5609982538635, 2318.8700569950975, 2265.0730813389537, 2240.245763546679, 2237.9741377779737, 2237.2091464227647],
+    [3168, 3227.8496182423537, 4530.485216685983, 5018.402964402383, 4327.038674775036, 4027.2442733595826, 3848.018800190893, 3765.425926726448, 3688.9365661826464, 3668.129548778396, 3672.9996175654233],
+    [1929, 1101.6803029798568, 1767.5549104536449, 2021.0982174780086, 1577.3070530560067, 1473.292579237136, 1416.0553759745446, 1371.714820736884, 1343.7172902419209, 1335.287029644132, 1335.1319221686663],
+    [1327, 976.2083093792427, 1430.7429704615536, 1731.4636695544632, 1418.1596988777376, 1307.2336799949348, 1225.7908524667464, 1183.587461300943, 1189.9792044361213, 1158.948225121277, 1156.3281073461383],
+    [8054, 9230.332896550546, 12251.977855649071, 14108.332490177041, 11904.372850018186, 11112.662947285224, 10810.90868076669, 10592.562325995541, 10345.559603662035, 10363.96692831892, 10458.264902016343],
+    [1904, 1795.1531594652947, 2492.34249992913, 2766.857156693787, 2339.5291218267716, 2207.419617824246, 2152.2208511155404, 2076.704022113909, 2041.7519151621698, 2014.533537178997, 2037.7481752380445],
+    [7764, 10090.175952167487, 13144.594313518992, 14349.624526886839, 12581.257137394852, 11941.587892642327, 11614.962700091362, 11314.538758677787, 11240.148336677299, 11247.190461020513, 11251.4596271226],
+    [493, 272.6193885590616, 459.3958250530026, 470.24664213245353, 405.6484389225125, 369.02064889609153, 360.8646602088604, 340.14819625781, 333.57374113987345, 327.7214468046069, 338.9540619697198],
+    [5755, 4366.913297016335, 6057.056513326465, 7491.351472406466, 5846.1346231787875, 5520.154274024941, 5343.491280300815, 5160.403100023918, 5092.695008372067, 5090.267471850737, 5132.147059940781],
+    [2250, 2829.8042523825898, 3666.3740867616298, 4279.402743914772, 3574.544269167109, 3384.9767518558992, 3267.0639844233488, 3280.445907686652, 3215.4749762482265, 3236.925778500451, 3205.3089785201455],
+    [2196, 2877.1050066946505, 3873.685766732668, 4152.181441006509, 3735.828697816152, 3512.9891238487435, 3402.834712186084, 3282.982342500203, 3274.833428036661, 3262.1042777272255, 3238.758006665711],
+    [22316, 17869.288066652138, 24439.578906582912, 30567.944648367178, 22542.991604338804, 21700.33860718496, 21245.581671049204, 21199.790702567057, 20234.448360179504, 20208.858898491846, 20375.142381842834],
+    [10401, 12708.34427830702, 16427.996569694555, 19138.33040644567, 15945.491037260916, 15117.950732394786, 14566.019001253611, 14221.425182720737, 14194.710261678303, 14112.176129498297, 14140.1526669168],
+    [684, 596.6506936946422, 819.3731231617236, 1020.1440259751718, 820.0651055983801, 768.109172852397, 726.9909188876577, 721.7512527085089, 709.8901058924589, 712.3292155516968, 696.5820477688137],
+    [3728, 4976.226860442653, 6505.488449439448, 7354.149740240969, 6471.590006056672, 6013.788780948431, 5879.33520280102, 5714.4133114871565, 5636.383878689221, 5559.439564582493, 5646.862987243949],
+    [5939, 7088.085712362757, 9257.644316592769, 10347.605475467199, 8856.296386969212, 8392.289762734623, 8162.979777406341, 7961.76625621289, 7888.131212385676, 7843.157792936209, 7963.843543414608],
+    [4585, 4909.113368409538, 6584.147443443249, 7978.788137967716, 6652.980621405764, 6164.323802096605, 5878.797309468593, 5725.0316376424, 5693.91129809608, 5690.942700982563, 5620.782421402454],
+    [895, 797.9638551269825, 1086.9316086480253, 1362.0332721083241, 1143.726671211015, 1027.8583302372476, 962.8530747193274, 924.7142546154148, 918.5050830679485, 901.7799532611435, 911.1176102710649],
+    [1957, 2314.368972322512, 3038.602024235985, 3518.4273728664207, 2910.8087549853226, 2769.619112307054, 2683.7188079675643, 2634.082507084391, 2625.0414476019696, 2630.222571338748, 2644.7639671189436],
+    [968, 839.9564534647776, 1288.1965792787526, 1352.3088230044098, 1169.4689860322276, 1073.453550240835, 1039.037883499668, 997.714442367009, 1000.0587087203462, 980.3563665391964, 1010.6726167204258],
+    [1607, 1798.9629603081462, 2378.188336232688, 2734.273540821145, 2394.842700327114, 2234.6494687084546, 2171.8712862979887, 2111.7972717477064, 2091.963353391968, 2084.1055563193836, 2109.1985931083136],
+    [500, 401.8581136697088, 632.7901174368628, 750.5137849613152, 611.1319954378207, 574.4834744531927, 526.8842497947394, 521.8872720791131, 505.8063916801623, 502.63607329925, 511.53179076550526],
+    [2165, 2294.9741814221825, 3223.1238391882666, 4031.418453558901, 3260.338270534121, 2967.636015698374, 2892.7490371249214, 2800.034075184161, 2813.1034281599727, 2757.067147020816, 2756.3240000805877],
+    [910, 1110.331725311731, 1457.7816858657338, 1678.377068163481, 1442.4947207028579, 1369.397798804779, 1329.6155505864474, 1280.7634309385933, 1271.6297170163034, 1266.0496496029616, 1282.2811223923081],
+    [626, 791.5021162974384, 1034.4431487337765, 1209.6131232415378, 989.5765411476808, 949.428116171973, 905.0986793894032, 903.3627321887288, 895.8495000867812, 895.3029761337832, 901.2640639868281],
+    [5699, 7235.295338845514, 9495.673274697989, 11008.9917800673, 9378.881459474089, 8868.690686438045, 8583.351485094283, 8366.966207366972, 8306.026011952463, 8333.017773121357, 8270.446724268968],
+    [1286, 1606.5249216460645, 2124.616467243439, 2431.593029798489, 2093.879113544985, 1983.5562437692986, 1924.969729980755, 1872.076950373667, 1826.9483411057226, 1817.721218836291, 1840.8308181952575],
+    [633, 679.3520543747196, 916.4677883833546, 1100.866049339238, 886.3497324199326, 823.2430481955757, 809.0479217505604, 799.4640877381344, 776.1776763210015, 768.2660841739216, 790.9401062789234],
+    [1352, 1635.161339767002, 2182.7514273709667, 2367.465690276068, 2116.884117494368, 2030.122440582177, 1941.570655790129, 1921.3637633625854, 1871.6299533667827, 1888.9588575400248, 1867.358113412272],
+    [1947, 2103.7195321398212, 2900.478098528654, 3295.888129154527, 2785.5467013413067, 2637.5953412477434, 2496.272975016237, 2402.031223903074, 2428.1777571706193, 2416.222683429139, 2425.4550213436514],
+    [2411, 2916.0631444774335, 3874.420297899745, 4139.433730985377, 3748.3794798864214, 3527.846949483266, 3426.6020681049545, 3340.8461694435077, 3294.097586273335, 3298.285968447326, 3305.8754088589753],
+    [1834, 1969.836582325593, 2809.824757376787, 3208.7290523498064, 2750.103630173138, 2541.635887133525, 2431.996457864421, 2379.3024850073057, 2364.567662051191, 2319.5811346046385, 2326.951017683376],
+    [2662, 3537.279375605876, 4660.655905549763, 5056.7055471380845, 4515.332301822654, 4263.091976724362, 4132.243955444447, 4018.286484201127, 3974.9216739104927, 3971.581562954333, 3984.054583220228],
+    [6102, 7311.959845961012, 9884.383791101245, 10993.586360203326, 9706.697654226651, 9144.999961670934, 8733.421283207541, 8567.98661511884, 8500.857950370013, 8445.542886918935, 8471.365058191997],
+    [9292, 11815.675680894057, 15782.345405221953, 17563.627750968946, 15465.568267234996, 14563.422122514372, 14147.027645181704, 13734.509088309356, 13502.548413304721, 13474.427581206635, 13507.87239995293],
+    [36253, 47364.21908077766, 62549.64456351029, 70716.46731436397, 61393.16790429175, 57788.40406215743, 55767.04835171878, 54474.02707916402, 53637.5320274676, 53652.62648217542, 53873.218602195666],
+    [13298, 16409.71758497916, 20991.67279923834, 23376.851428797112, 20787.985133596954, 19550.064471596976, 18840.918077264432, 18591.872465169305, 18466.950852101018, 18294.865889188288, 18374.793057790022],
+    [16545, 22397.015787711196, 28997.829789159, 32187.265159989347, 28243.640799547647, 26734.190637458138, 26013.747835107777, 25519.40803126423, 25207.460261123128, 25230.28485958955, 25167.52584595695],
+    [12016, 16011.342022243462, 21131.723945213012, 23274.196293540663, 20455.32773937244, 19265.417892682908, 18752.06850202738, 18298.14663469437, 18010.916309834167, 18003.889360363733, 18067.023614373862],
+    [10062, 14703.06576951437, 19152.768008203337, 20642.566929324043, 18491.75997085521, 17549.848638463878, 17054.27887726253, 16706.57831096115, 16545.285166443497, 16450.180093148378, 16551.636015762528],
+    [1171, 1530.5611546465427, 2034.8061196101705, 2250.220793024722, 2002.9186132743575, 1896.2536002872464, 1844.0760908375216, 1766.9515397866132, 1738.1718052210656, 1768.174657306756, 1750.4560305693558],
+    [311, 222.23186978491165, 345.0150108921248, 391.75134433030314, 318.41431564823796, 300.4603612712073, 282.8701392311566, 280.6383841613573, 269.7525364700385, 261.4228739057519, 271.2213079818622],
+    [1434, 1258.0064657254245, 1849.6070977184936, 2073.954588246751, 1775.7409311733156, 1619.9673848633531, 1567.9459344082616, 1523.4019085226473, 1510.380066730501, 1524.0438490746194, 1478.969308746174],
+    [25026, 34948.37317945637, 45698.37504229284, 51709.09321602401, 44390.5401797959, 42052.262010708764, 40926.561630907854, 40047.58431902163, 39614.537906271034, 39258.49352660008, 39684.8713846663],
+    [305, 223.36438579488012, 313.3561286497374, 368.2588160491333, 304.5108637417755, 282.8397332895897, 273.2682939522997, 253.91191293718563, 254.3986548642616, 258.9383659117715, 254.61544142335097],
+    [452, 338.10034466307906, 479.86175261497374, 549.0914385048392, 459.223660537894, 457.87809816606404, 417.002397885851, 410.08997430132746, 407.04228342583764, 391.78531850966294, 387.62593119877596],
+    [766, 848.2268927658823, 1116.0721300535313, 1299.4343983188933, 1099.5865895594968, 1035.0392440714274, 1007.1124899841623, 979.1381359247198, 969.4188298338319, 965.5541687379337, 955.6445534749907],
+    [1652, 2235.076560105797, 2829.16789762761, 3203.601202065138, 2747.9608758325644, 2575.0482599424795, 2563.694336107871, 2487.048578754544, 2485.6225658481767, 2500.4034457059506, 2451.728636880252],
+    [2733, 1763.0672605742577, 2636.7403853833125, 3618.0554105326632, 2614.817006668999, 2411.916385969236, 2257.3037156751416, 2204.948931925684, 2145.9200783068864, 2112.6412886186777, 2120.8292243494016],
+    [628, 773.2867083725088, 1017.3140957343094, 1165.5280124694227, 987.3507553671175, 938.9145022708849, 929.4238006966349, 915.5577682764882, 896.7117042005061, 870.0925544237391, 881.1004077179828],
+    [4276, 5987.279434300471, 7752.431659456837, 8741.52275178243, 7514.921396755816, 7155.841288106936, 6923.283647288429, 6845.501033743474, 6762.805528977643, 6747.09450085139, 6707.5425472204015],
+    [9812, 12642.79990450842, 16708.53469604766, 19008.518732984736, 16312.70728031726, 15264.619411920736, 14724.969381018478, 14460.504931711646, 14264.119818885743, 14156.407211162235, 14281.150780406511],
+    [990, 1040.0299688903472, 1315.1138712891357, 1774.6730535215172, 1365.489697783761, 1294.59493303406, 1241.2249581910266, 1202.0396272548262, 1202.4508525516087, 1170.5924868395666, 1182.6466142293457],
+    [5076, 6842.752183027126, 9086.640745283634, 10340.165201339876, 8852.132063005636, 8461.882434128185, 8126.744722349316, 7911.338985237585, 7892.118278232929, 7861.115624589629, 7914.639627802939],
+    [4101, 4801.61299326217, 6389.052417342861, 7164.516227238517, 6256.89750398299, 5857.654848277144, 5623.0104920407075, 5497.778316214593, 5387.22082576677, 5404.519343553297, 5398.598268711249],
+    [3064, 3387.8284567054966, 4551.9362390928945, 5174.472579802027, 4471.7930128547705, 4169.014525043804, 4034.692523043991, 3984.3283164914033, 3963.5793903894255, 3870.8537616674116, 3874.598957980691],
+    [1151, 282.40226916963314, 623.050912881975, 574.5991682967556, 514.4930973528308, 514.9033529040286, 537.2688667483835, 512.2036625087502, 511.9222809558485, 493.51514418964763, 513.1574746733373],
+    [3455, 4478.667924136252, 5976.220353246725, 6716.688183334139, 5722.510017811299, 5430.21885012961, 5326.123662605622, 5153.751575047938, 5085.625593190092, 5075.362574103532, 5107.461314783661],
+    [1478, 1566.891417862983, 2245.5074484016495, 2530.7756286328436, 2154.733607212213, 1999.504533261376, 1905.7386362939455, 1875.9947542709617, 1865.546939854031, 1846.2484999486078, 1839.0208002495212],
+    [6323, 7206.600633584065, 9623.074571907644, 10509.822347469697, 9184.402949607906, 8611.66612556809, 8421.033136145705, 8248.167963821423, 8188.482548594668, 8101.84277719018, 8122.925366663009],
+    [1303, 998.1783438882444, 1514.310178301843, 1805.5554307362493, 1463.6827255303338, 1317.2339544649892, 1257.8002323411947, 1226.939260894437, 1211.3763199770863, 1202.8698398049596, 1195.6423489452552],
+    [5679, 3075.7405021202267, 5243.5761696330055, 6190.562037393736, 5005.843429166762, 4404.346944713028, 4243.335578487675, 4053.0671591045952, 3889.280199383554, 3980.5268646813365, 3943.0543634864534],
+    [1608, 800.146816072345, 1368.9369532890037, 1593.1871800149397, 1251.5288719617754, 1134.8953819807762, 1076.7188825942467, 1046.7665562749116, 1038.432285704434, 1040.2567120684391, 1038.4237701562656],
+    [1997, 1784.445651562007, 2546.8139144295596, 2908.5215545842243, 2471.669816325895, 2329.856598854626, 2159.5704006360247, 2121.7869461115947, 2107.7106895231, 2095.55362841588, 2062.864308979065],
+    [5226, 6032.235260348655, 8202.84447320245, 8822.086698023195, 7765.977871672779, 7349.035370979129, 7095.105020603287, 7013.169127915924, 6882.070725380742, 6830.148134123283, 6834.258484573202],
+    [32858, 38471.022344679746, 51875.302544867875, 58922.111589940556, 50469.47008331189, 47234.131843001756, 45807.52251468081, 44907.00703729966, 44291.29482802356, 44084.41170316689, 44288.736409603676],
+    [11123, 12273.454541285722, 17391.67692853051, 19614.70653932766, 16797.017424534464, 15621.241749743047, 15027.884740207664, 14678.47828556714, 14387.883017047961, 14344.966618238414, 14439.087969294773],
+    [1412, 1231.164686002698, 1713.1947218042235, 1971.1489524196136, 1660.8071911353084, 1554.3054073245626, 1495.4867164095776, 1429.5217574722394, 1423.1689957172857, 1409.25939836027, 1431.6662507148596],
+    [3310, 2339.6612589997226, 3442.5634429194533, 4057.415728391249, 3233.324034401704, 3043.6002941413412, 2898.7936999679214, 2828.134777287033, 2799.3746644954053, 2786.4123604922293, 2787.5953850740257],
+    [13810, 11695.45588451492, 15596.654366061535, 21142.90133109878, 15619.149861988091, 14640.547335051991, 14286.488825866518, 13881.321115376715, 13573.399418461, 13720.134528298915, 13579.66639076641],
+    [336, 265.81637316708316, 393.8796840192851, 404.1874759288591, 356.31952002864404, 345.4290240121004, 316.4966527557596, 314.8320376582844, 306.9022662751281, 306.3188470722921, 309.4515259988332],
+    [2004, 1890.1889699090036, 2687.372585670218, 3020.4446870340485, 2539.087681986378, 2374.528333402738, 2273.8759395283523, 2220.740385596773, 2187.9847039168594, 2171.949094733107, 2177.478482596134],
+    [14194, 18571.067554354737, 24264.029128129183, 25800.359556129908, 23464.696468603317, 22204.386454862095, 21625.513750995255, 21009.439658708718, 20819.93417053872, 20830.759844516786, 20833.06809398714],
+    [2560, 2930.332518406555, 4017.4378631128006, 4404.638605864369, 3835.915657846081, 3581.9331039042213, 3460.108930761241, 3397.7005644292626, 3317.440137838206, 3338.0246054741488, 3381.0337677652205],
+    [2839, 2077.5411497498676, 3160.4812677557507, 3814.1816763133374, 3052.7789815886995, 2769.4849574261048, 2638.0986683830115, 2596.492479702215, 2535.488309314699, 2558.4623185575133, 2542.584688093393],
+    [866, 524.4563685010266, 835.626958814471, 967.463337126739, 773.0029221009225, 718.7456027153983, 674.1541902239238, 651.0465870311208, 655.8186115509068, 643.9250938799773, 646.3654984795869],
+    [1429, 1852.818335414786, 2497.358731183264, 2662.2318941645003, 2373.279827413488, 2227.468564272363, 2186.890408236001, 2107.2519400851306, 2101.7224107410484, 2113.9788399163754, 2128.1933160954577],
+    [1939, 1759.9116933112807, 2576.868956666107, 2998.8123295536016, 2548.054751626598, 2338.683663471727, 2191.353495020325, 2151.8731576495106, 2136.5363469032977, 2111.722789865347, 2143.0536020015984],
+    [12349, 13142.841567211246, 17932.098209926793, 20531.517859224066, 17453.87977823214, 16369.51713829379, 15782.439948648253, 15414.70754608588, 15332.677087081913, 15131.59341748869, 15208.868842837635],
+    [12203, 15930.644754873712, 20789.479281289452, 22318.45321752992, 20268.75392514407, 19337.409618819132, 18712.29890937904, 18241.927862428773, 18057.317677644172, 17914.533030967497, 18000.51759449989],
+    [935, 1046.9830771030086, 1409.5392210014672, 1594.6325976906155, 1385.8649485980973, 1315.3934763636373, 1238.611615220164, 1208.2068136807347, 1193.6901228750207, 1206.8137962576645, 1203.9242325491002],
+    [435, 222.98748067316777, 313.3752420797661, 360.71329083397615, 307.8512268054069, 286.9681917022244, 276.7951892998746, 284.86032643070877, 267.5963463774063, 268.8569344783681, 268.2483361664203],
+    [462, 74.84436840992744, 212.6950848812511, 237.45586573408113, 169.3188898092037, 170.78561512883778, 172.27866843350813, 166.1375084468636, 151.6950382608897, 156.96849637364284, 147.1275726274405],
+    [4212, 2219.6168003061894, 3435.1588122969365, 5290.565431362395, 3511.191047265552, 3183.6930591377554, 3077.5593889317265, 2902.456472280003, 2882.0574087875975, 2926.167351765553, 2879.018801722646],
+    [3666, 3601.678831482052, 5147.321080047567, 5905.47265949055, 4967.311200569537, 4685.073493664237, 4439.651464595023, 4350.5771154203185, 4278.681440368592, 4289.887713248574, 4289.445489818102],
+    [2013, 2243.1094181293934, 2939.328644384988, 3552.2039408129467, 2993.0306377951033, 2799.140872916983, 2727.9704247465056, 2752.534253456606, 2646.126763883179, 2621.117593636219, 2597.0953303897863],
+    [2633, 2832.931229828692, 3898.980810829874, 4580.821845347323, 3803.29009538524, 3545.7070622114384, 3341.3408851457893, 3304.8422777550345, 3224.124566653833, 3249.3150640116023, 3264.4377322439204],
+    [2126, 1937.8001874255112, 2828.0726959830017, 3001.5242877392457, 2582.830428953852, 2438.1472398297974, 2373.254615244477, 2306.1123988315376, 2246.571447618046, 2245.3416324725795, 2232.8799496053534],
+    [7165, 8050.072098704371, 10813.047765769774, 12895.131455361327, 10980.407120776077, 10280.294374553318, 9810.532323531133, 9471.724566241652, 9395.920455060646, 9397.532409350064, 9342.882266198423],
+    [38536, 49650.812267651505, 65243.86884256138, 72889.96741467348, 63890.13439741934, 60363.77180461078, 58381.657509021556, 57256.19796052441, 56472.909620217324, 56213.9142116343, 56296.04242809587],
+    [2210, 2386.8360663433014, 3265.318254608926, 3620.826029562179, 3197.496155884327, 3081.2218614647572, 2951.4154204977217, 2886.5877700763685, 2856.0387031733653, 2856.1475398073276, 2862.0470542653607],
+    [8653, 11596.13168984474, 15066.958986632912, 16832.56242670279, 14668.262129735103, 13876.429737272454, 13441.914071930194, 13226.671713762173, 13153.246529896078, 13060.55831671993, 13040.080073721836],
+    [3175, 2684.6224497846765, 3870.1220338153394, 5272.493929419667, 4030.8169412612256, 3658.4036721577713, 3632.2140720262855, 3379.5763105830592, 3378.3350664001605, 3359.266479272283, 3359.283889776673],
+    [4909, 5006.062150387921, 7082.194334005083, 7921.098965490265, 6970.287259747446, 6605.25069047366, 6324.563353232981, 6186.106300060845, 6116.933392885806, 6071.549535542485, 6046.395340324637],
+    [2391, 2833.855740743705, 3750.681794025237, 4258.966660937666, 3700.1914439959533, 3496.67347110093, 3358.354504232553, 3240.024680043555, 3241.8554314174485, 3237.9010007935035, 3246.876405014169],
+    [565, 562.3859120865548, 836.6492768599985, 939.9691349233433, 821.5609828301901, 769.8635078755423, 730.0799308673484, 710.8654954613694, 694.6091755017475, 696.0336411362485, 690.2630608652202],
+    [1352, 1805.8126247234418, 2342.822990690255, 2583.546261788818, 2290.1559618376286, 2165.905194180001, 2107.7082900128194, 2067.065348465379, 2030.371797760897, 2059.348761230145, 2045.792351179366],
+    [817, 858.1775651797234, 1158.6446174891792, 1358.307044038776, 1176.0399904207604, 1133.4504879076617, 1056.1561821760376, 1039.1160619650343, 1025.4142465044217, 1031.8519942495668, 1038.873039341844],
+    [12382, 13591.72245234123, 18994.073393735896, 22128.655507445277, 18816.801861584718, 17604.20157175458, 16946.102401434266, 16340.82933628688, 16243.069916788987, 16146.143764883593, 16121.421067889094],
+    [2705, 1047.5700556372349, 1758.4171849259003, 2814.3809280230494, 1794.4657540200647, 1605.4801357284446, 1561.040946521816, 1459.5857121466527, 1433.35205481012, 1451.0665677319996, 1419.3690654888646],
+    [3147, 3055.495650810881, 4228.943162893344, 4995.85056250172, 4218.36252853886, 3938.225398136062, 3773.4767082868275, 3648.173004170383, 3645.405357637983, 3600.19275395353, 3599.6909732351505],
+    [583, 623.4669456397345, 842.2989680451789, 965.2933341179288, 818.3648250591425, 794.5369812207844, 761.9820320258683, 739.9995696128098, 721.656673756819, 718.511644572588, 713.5763755252765],
+    [7995, 8339.188953233814, 11217.94454301553, 12323.89533035575, 10876.133653699715, 10222.65204472451, 9869.972968152952, 9624.546966440588, 9563.47076351341, 9538.022625611884, 9520.342354912784],
+    [5760, 4805.686898688397, 6785.539217547965, 7625.988007847536, 6643.904744560489, 6346.6155573747, 6068.9669573652, 5884.587493452632, 5791.906968671315, 5794.210291711426, 5813.043983459266],
+    [1191, 1410.6044180010485, 1935.4375647022273, 2109.3537573592635, 1858.475560256555, 1759.9385325974208, 1682.402015667709, 1599.1127623008508, 1593.8756700297292, 1587.0650817278495, 1586.4166651413889],
+    [2048, 2009.5456062469, 2693.2849306160074, 3290.3022928713353, 2660.3791329000596, 2436.945811708707, 2336.518125511669, 2316.8468689963634, 2276.3561743227838, 2283.2717051536715, 2247.8059652816237],
+    [4963, 4969.347392253239, 6653.966190991411, 9099.562964925031, 7010.5282077839665, 6478.082548995096, 6270.534980063784, 6122.860767261902, 6035.33545180656, 6044.920976684381, 6007.165034761029],
+    [2006, 2306.0611660716236, 3136.4544369319196, 3490.6417235156778, 3013.9021487673012, 2861.868539347415, 2791.9329364805817, 2698.3145676883987, 2634.8394044708375, 2674.8705990996273, 2670.5738774886822],
+    [830, 749.2317632236272, 1039.243806508666, 1212.161180293667, 1016.9831120660773, 983.3051180601055, 928.7640730015062, 918.4372517584965, 897.9840516079861, 894.7340820368373, 875.2197802178796],
+    [5978, 6162.732736011006, 8324.94511912838, 9182.383381812757, 8149.7621218346185, 7864.283350086732, 7557.259001809704, 7420.975956168805, 7218.814778884228, 7218.698174582466, 7180.884851051078],
+    [11002, 12640.130700966898, 16775.23690210832, 19509.006350915344, 16521.312052115183, 15589.400158752846, 15045.017659651472, 14682.159356925247, 14491.427320702755, 14458.381324053693, 14439.234123052873],
+    [2623, 3091.050724001166, 3978.701883466857, 4383.4893574075395, 3894.6012168729076, 3685.3820212633273, 3573.632460128681, 3508.340511043037, 3496.3648089965554, 3497.2931370944875, 3495.8553014636486],
+    [2635, 1674.3765152408578, 2543.7344770483815, 3047.903758907431, 2494.3478710141585, 2312.605215428908, 2239.9528384632263, 2183.8473731015697, 2179.4924336156764, 2220.5374370780014, 2181.9703332663817],
+    [1743, 1078.1666273803755, 1673.2896934201267, 1934.7972658607237, 1616.1492533389433, 1522.1936233124486, 1437.3854450231743, 1417.616763183967, 1395.9125107799175, 1408.8126375972238, 1423.4430661563586],
+    [1767, 1025.1127759733388, 1607.1891562869343, 1946.9333493767372, 1533.446748498627, 1442.6788713506849, 1382.433606198494, 1358.8027134078511, 1352.0304451466195, 1352.4165777000962, 1359.7179138090146],
+    [1760, 1216.982257936927, 1885.2997687194206, 2007.7922508312884, 1746.3959253944672, 1679.410593133226, 1602.6576657834792, 1521.624879343623, 1540.099443062019, 1517.4566963024986, 1538.030379866574],
+    [1909, 1210.523343200316, 1943.2988158791097, 2111.527893633514, 1756.2961825097188, 1654.6892394467202, 1584.9295263640179, 1541.5310189571787, 1526.2308128323614, 1522.7743008112232, 1523.769284755512],
+    [1037, 619.4989440394111, 884.3946301100783, 1002.1455831895138, 848.3423499262292, 784.623227069894, 770.1661950030636, 745.4590070402891, 730.8943078021065, 712.6388536345365, 736.6064641855878],
+    [5752, 7473.854696442503, 9650.279846195088, 10997.432634870942, 9731.585817226973, 9244.408793511113, 8905.43383386258, 8631.44822934368, 8557.48093668528, 8522.950463584506, 8579.151890799345],
+    [10390, 9834.03494039964, 13672.11400794378, 16367.335862590293, 13535.650566716711, 12550.0567285103, 11961.603224960709, 11716.655128159488, 11570.992916174067, 11446.627219930711, 11455.65011742568],
+    [12851, 13837.250492876357, 19089.02833347383, 21721.66541797735, 18549.29750212282, 17488.359340041516, 16690.779282701864, 16289.280546278602, 16026.183715095383, 16063.830239993737, 16007.041505303165],
+    [296, 69.96556750884216, 128.31764480440324, 178.7939035752858, 116.7829166152634, 109.40159898346492, 109.94411517385399, 99.83420621197223, 105.54829417507, 98.76476118511428, 100.08469406156938],
+    [1577, 1131.8127987533896, 1917.1451302394719, 2183.292973888372, 1790.6493119123854, 1689.7594157182778, 1593.5044686764504, 1566.4618819754019, 1546.1612885716095, 1502.2421604459787, 1500.674756146575],
+    [1604, 1167.7085970384978, 1560.8469916465983, 2173.870874114439, 1689.795076792276, 1578.7052652334628, 1557.4204576850943, 1472.1363346180356, 1433.924768871257, 1483.483036663107, 1428.5439783312092],
+    [1215, 1030.478744217203, 1478.1463690888306, 1682.8481059035232, 1378.5937343767803, 1315.7650439571782, 1232.28255291522, 1194.2692307527664, 1201.7575184416455, 1208.1959680985126, 1196.8827937082701],
+    [3526, 3463.94338865904, 4780.546979245056, 5501.774674300143, 4719.050996811201, 4483.2405907373395, 4241.474753509432, 4148.100258539811, 4130.090503514954, 4056.68155958754, 4045.2768562541055],
+    [591, 157.0108275944147, 332.3063270471014, 367.1980369602694, 312.47020242298015, 275.37588775225873, 256.85674175706384, 247.6887705583557, 231.86680059573374, 231.24805772784373, 225.69426043702083],
+    [2505, 1872.6209211599407, 2677.881986183253, 3085.5034363294526, 2526.5342820437595, 2385.9172358684723, 2361.1735574881873, 2237.6614178692034, 2210.9620958872397, 2198.6178829224596, 2221.5171681951047],
+    [1010, 1134.8151786904743, 1573.992520767313, 1792.412929398294, 1572.7328178620587, 1485.236081396108, 1401.9082510980445, 1386.7162698540042, 1334.0122708547665, 1333.673249983151, 1337.5372718654453],
+    [14257, 4419.098375734627, 7127.250264242512, 8956.405270228823, 7167.692426358524, 6367.433466474561, 6202.233305831279, 5817.496743628899, 6043.137264716382, 5850.431454262423, 5837.955981220095],
+    [1924, 1510.5519353649274, 2160.05674890135, 2763.417405658319, 2249.1850370505504, 2012.044943351877, 1964.875759788044, 1891.311427895092, 1860.7069516338559, 1803.002117560533, 1872.3244706914509],
+    [2480, 1249.1040407638384, 1985.118537107887, 2420.0867933778113, 1842.5734676863835, 1663.4123409507968, 1616.9838913584842, 1606.2764227211128, 1572.8574298091253, 1582.92359566134, 1566.2642092465169],
+    [5168, 6550.248870545175, 8654.704524651312, 10273.457614149596, 8664.709941283314, 8135.857974826313, 7784.895611631463, 7605.3504215093735, 7446.056118789615, 7470.8672093489395, 7489.184305095716],
+    [5242, 6241.656254878476, 8192.726366078123, 9117.083193015364, 7936.959551010475, 7548.068219931953, 7314.5486630856685, 7129.662383600959, 7021.303846321503, 7025.104690141925, 7001.039584466987],
+    [484, 65.94186208864575, 193.07387590518695, 166.4598828204956, 134.64416806045395, 130.51335606443317, 122.3748888279323, 120.61419641997901, 116.59786035859386, 116.93105288514545, 106.86071388179275],
+    [547, 114.84161758539472, 240.0485375905488, 237.66361479205392, 192.06762216905875, 169.21187999699714, 154.02474410397082, 148.08076332346354, 140.86679104300867, 134.2110359634296, 135.9818813459817],
+    [504, 98.28595619499205, 243.30853389378254, 179.76624938678876, 155.82234228248456, 147.70768328882914, 143.99103265604148, 129.91827381751762, 128.96155852172907, 127.33442334478019, 125.96765901971115],
+    [2522, 684.4512595514134, 1445.2554595855104, 2166.7013756906276, 1325.0283280494311, 1112.4468308965018, 1045.881585132032, 967.6608034401669, 947.424990458572, 945.3156810972819, 902.5225075827361],
+    [5836, 1559.0353080183434, 3065.31823917365, 3829.5417987252695, 2754.414845633564, 2427.275751489377, 2281.9181349709174, 2196.554876845038, 2150.3809734243705, 2114.268170817453, 2117.327087883808],
+    [2972, 541.2117602772121, 1561.7347867700976, 1655.80383777373, 1194.82092964842, 1012.5150898257791, 953.1773907418652, 885.7363524337514, 862.673049570004, 868.1809831411308, 810.0026944419749],
+    [2288, 632.4028699575285, 1389.190771164601, 1336.45026699201, 1064.3307359231594, 953.2749701418913, 879.0802250507553, 856.7499538074279, 852.3801802776035, 824.6651873077977, 810.6729854377616],
+    [1877, 300.2778134394669, 873.9082424923852, 749.4920285666643, 559.2294067666767, 474.6466621232997, 464.2562881708279, 440.22196219275537, 431.1823226448748, 428.6614380044178, 419.3206327865301],
+    [1910, 487.1484149705632, 1126.9892814075192, 1009.5705511819825, 791.2714694478731, 691.6025883958297, 663.1510069363668, 661.6453562799919, 627.9752399613297, 633.3530521982101, 620.302210991755],
+    [1872, 269.799049355565, 809.8279560914168, 670.8205175934517, 482.70679929174963, 418.3907031390231, 410.47479459472174, 407.7311876030668, 401.1397700373976, 390.804090881822, 379.4337592548167],
+    [1856, 317.7213731210265, 916.9917747327098, 790.3434007800403, 581.3255025803777, 497.1816750785795, 473.51292988132116, 469.2290767307649, 457.96308268073375, 465.58628134668464, 438.76302924921725],
+    [1864, 204.27872364142138, 643.3442033426628, 567.0521190238928, 441.5611747233204, 376.36318056172814, 344.2825992525954, 332.87818012204957, 341.3187244170752, 332.33151188776526, 345.47694707631763],
+    [3008, 1687.7733155045303, 2725.5975726166466, 2799.7581485354053, 2455.3108755670455, 2250.9842015063396, 2193.001615643702, 2122.063330793663, 2086.605396676395, 2115.5156698831565, 2101.574159164278],
+    [1935, 279.03761468256533, 787.6972529595145, 685.599446912236, 490.0918662477949, 429.6396671312043, 420.9351824133497, 409.55110572135567, 418.2225910221069, 404.5405536603552, 409.8372811548598],
+    [1865, 243.8309886077129, 745.0626489027671, 570.727499804439, 424.30978901748847, 374.0865315411289, 356.76209163277, 347.73784035411563, 355.813870638241, 351.0842170851572, 364.1605339551957],
+    [1880, 258.803489888024, 767.5829815431696, 560.3040106548268, 446.15954175370496, 404.10269207474295, 397.0531342381783, 382.6133393441734, 385.1015166034221, 380.5076630206713, 377.5774066482679],
+    [1974, 279.80591332444067, 820.82861590978, 657.3159594939186, 494.1029377931938, 439.4381449580481, 439.67423193000405, 422.98594365781094, 414.4071134360946, 401.52233700279345, 409.0382859841386],
+    [1927, 328.7589993943803, 929.7659278612623, 729.6280814562203, 568.1241719345059, 494.29747266575185, 471.2317164980382, 457.82081428421935, 449.8925214578066, 439.63075513859445, 435.43928534697613],
+    [1781, 251.18808879595363, 729.7298050840087, 607.3189179530449, 475.2403672024098, 417.3337866821854, 393.3994903643509, 370.3385140760795, 374.10621650434837, 375.51752903822506, 366.9815307730486],
+    [1804, 240.0264599749523, 667.0733756701692, 530.6858398134277, 418.49506400662295, 370.96901148863606, 361.0834492436545, 351.8733342842131, 340.38464301329276, 350.14590236535287, 338.7696878008333],
+    [1968, 260.23655061740095, 792.9380821057263, 594.8624267939931, 474.9594218494284, 412.7370685740431, 392.1324833529491, 368.64060330171554, 367.79574629482016, 364.21620401885235, 346.83623317201733],
+    [1779, 234.53703864877647, 763.7696081574376, 546.923912400954, 418.96632565357567, 375.9867041491712, 362.8630411247781, 344.85903532108875, 345.68689016254706, 347.8413024419926, 335.52745858739513],
+    [3510, 1113.820448809996, 2001.3299033969606, 2497.7000597281985, 1785.658306793917, 1546.8753585142033, 1486.2075168734527, 1414.9568398400304, 1403.6791235287174, 1406.2823850866023, 1371.9193787868535],
+    [3329, 1252.6054043978027, 2186.1649971414126, 2517.935963723594, 1916.9871551603133, 1732.0966713368919, 1662.5709789913913, 1591.0393192503252, 1565.882405045911, 1582.3033383007023, 1561.2819480495905],
+    [1872, 304.9317112934538, 786.7386921967251, 670.6497091605853, 514.0497226427804, 454.4651050303531, 443.775065444954, 448.59461016025665, 439.53242769433086, 436.6128984264361, 428.6726111070692],
+    [1825, 271.315573979822, 782.0640843020658, 609.0452546705995, 497.16255112604256, 437.94735067366724, 427.2823917515545, 401.8936859245656, 405.0566352829814, 395.0409727477432, 385.33163058395195],
+    [1859, 257.570065004213, 786.5385631316777, 588.0175830142442, 445.8245239958108, 404.0010397296654, 395.5214543415777, 381.0118472743474, 381.45946933656245, 370.2623960095052, 365.9301982315475],
+    [1767, 238.39347561086663, 692.9480816745163, 490.57352457992306, 408.1042149618574, 368.69741087879635, 349.50914296256497, 350.612607997598, 347.6093220103861, 341.5378321745724, 334.16202959229753],
+    [1760, 217.70193603483233, 661.5042822004369, 465.4280441003678, 370.2954370777975, 346.2839627982793, 330.46753675892046, 331.1202651602088, 321.43206559075446, 318.43761522463706, 311.4175913768548],
+    [2179, 593.993036541477, 1241.2418916810168, 1195.3264907373418, 919.4020380100657, 829.6981784834011, 789.6354435477544, 780.6583868105561, 764.6889172206531, 756.7425772989557, 739.6680233623588],
+    [1753, 199.53585379257254, 619.1897414631213, 464.57500688205573, 379.1603531878093, 328.45342101767505, 319.87449498618116, 315.7977810527702, 305.3964642789317, 308.5986680986215, 293.65164020240576],
+    [1445, 298.90991062156905, 691.4594384835806, 619.2762492203618, 536.1095797599748, 466.1257376677076, 450.9883597833676, 433.92076231015864, 426.37927617315256, 426.7236946726249, 423.1385347226579],
+    [2050, 407.94956004540046, 1019.7772708771881, 862.8100564017399, 667.3384553562805, 612.8552718742916, 600.26176412799, 587.8523494043978, 564.7330906190961, 561.0271311327243, 563.594913661136],
+    [1656, 198.9775266493066, 548.3953404093218, 370.9200791523715, 293.0119863628597, 276.6058839493201, 256.0511413024591, 254.98018723230564, 252.34110053020382, 242.71303108603178, 244.0587711039835],
+    [1671, 179.9109681500516, 545.1356595966054, 370.31684945490696, 279.35776404632173, 257.82245700098844, 250.50317995031926, 239.15072566107898, 240.66023057829662, 239.1482952709503, 230.00105743279116],
+    [2660, 885.0921117324267, 1820.8100754134036, 1799.726266125852, 1434.1118925659666, 1287.8909026734063, 1253.5915851376128, 1187.7420299250346, 1180.7698666428166, 1168.1665367852097, 1174.340820885131],
+    [1788, 241.54691508864283, 711.085543123335, 484.01002704355034, 405.681417764204, 359.6756329118913, 350.59202056563686, 344.00098202568347, 338.5566762428283, 343.98969572818913, 333.1828604944501],
+    [2243, 336.1228970439034, 929.9395619297624, 766.2090826018768, 615.0947302202376, 524.8711493095319, 524.5776996813108, 524.6400643139912, 498.67746707332725, 502.4704092337504, 505.7904075304609],
+    [1808, 259.0962927143542, 743.346307830642, 535.459850525112, 440.35624770486885, 408.9366771841599, 389.08557799304134, 382.70171977309957, 375.81957194670724, 377.90263946259915, 365.15168790793734],
+    [1791, 221.17402641504557, 659.4933695297525, 443.11935985594573, 372.4151418256622, 342.3702456484771, 335.71549338434517, 327.3187654065566, 323.47740475592815, 323.77307566639064, 312.82251301561996],
+    [1830, 269.33877222352197, 758.2197298108455, 576.7099379808369, 471.3894782834267, 409.42550031264, 405.06969838557836, 394.9610796730728, 383.1885194110357, 381.3295483905771, 382.2548288463767],
+    [3377, 2165.779562530184, 3327.818542249043, 3484.352184693102, 3012.728507252248, 2839.5760562941414, 2742.2765426113874, 2645.143314845786, 2622.1011056281136, 2609.553101845689, 2594.5101034755235],
+    [2536, 524.2236541849616, 1097.8718602731162, 967.7971267397807, 810.3487752289188, 743.0621103122347, 710.6168484228003, 700.6475693041829, 685.7190622263008, 665.6777742160672, 697.3055154143489],
+    [2662, 949.5190604942145, 1623.5791088769963, 1691.331439066658, 1372.4968224460492, 1291.9610497437886, 1243.0715226907464, 1195.5486272502521, 1222.27872349267, 1194.9764297845952, 1195.8858444518141],
+    [2173, 639.9459641105144, 1345.849931055883, 1213.2360355976627, 992.5398602215873, 913.0797425073717, 871.3268278861156, 852.4910688807354, 841.6825035957073, 838.5046296322978, 813.4722287751772],
+    [1925, 320.8041711219613, 842.0561849392118, 667.390832214533, 547.4748585526028, 495.6169392066756, 479.9932115975587, 466.310438085336, 456.8627350335754, 460.73277022476304, 453.52900216895284],
+    [1809, 244.9366238684323, 739.2384839297583, 516.684555346254, 397.9122905785762, 362.2144246881696, 357.4564045070729, 349.30638644324193, 346.2125980867178, 343.60417854330103, 335.96441556621505],
+    [1776, 214.86908967371735, 628.2318432728631, 417.95939717592483, 367.3631108106807, 329.7487594272387, 330.4625765122858, 311.68727815198986, 306.2782075380979, 318.00006907004024, 306.05739353823293],
+    [1724, 221.66271697565668, 581.2529454819502, 406.73577127530143, 332.08509101009827, 302.0881145807105, 287.8426539530152, 281.4777383333043, 283.1486376258303, 281.27732739795357, 281.42470679357393],
+    [1818, 246.84658348424534, 749.7109915818953, 557.5073927947358, 464.4512734521801, 400.9169913731255, 387.7622418962941, 379.39454582811805, 363.90836562826127, 363.5632644518393, 364.54319256796623],
+    [1768, 411.7027597514095, 859.233948203447, 635.2839861283612, 583.1904502266942, 556.9666729062283, 540.398598577582, 520.0834328694087, 511.58473869125464, 526.9447510116408, 526.2069036463528],
+    [2374, 743.263118676638, 1384.0299898994672, 1292.0917101755376, 1080.122842049424, 1005.0800667458824, 971.6551469307224, 945.4679490206593, 928.9985715523339, 917.8903600798851, 930.2140226870026],
+    [1738, 224.87035816240888, 623.3078841410096, 434.01544898991943, 352.4891686258517, 337.33400813423935, 334.5630510527565, 320.0174657598342, 317.8927858323875, 315.1453949518173, 316.93247368374006],
+    [1727, 288.16282549106927, 694.960095812524, 499.9289968652996, 419.23582832369175, 375.77089152448843, 380.89023562068087, 363.72173251516455, 352.8209103399042, 355.558908702857, 348.0263614912274],
+    [1826, 257.83252625894454, 763.672855342656, 530.4332146402916, 429.3913127053234, 389.35055621143783, 386.25548162332217, 379.26844544963785, 376.02958560641525, 360.5354046935594, 363.3805579131983],
+    [2865, 703.7096130726833, 1449.7649081603251, 1422.644939305864, 1142.0230378298018, 1037.6836847336285, 1000.7658494199268, 949.6757734970446, 915.0240924996757, 911.8594646222739, 891.326115597051],
+    [2859, 1147.1974987089538, 1903.945309448501, 2089.35966150865, 1700.409741237424, 1541.055830889615, 1532.4466429987099, 1460.0039788370864, 1421.2809505803475, 1426.2002727653621, 1427.4342781570888],
+    [2553, 1157.5190883031441, 1845.7233003018105, 1847.4109239329393, 1574.8935793854832, 1483.6204752239928, 1471.8931692087115, 1419.4373313881079, 1407.8889673903575, 1438.810280897158, 1409.0805368668339],
+    [2704, 1275.0117316468807, 2065.2156431539615, 2160.8271000804557, 1848.2623967412849, 1720.814354692931, 1669.6879726676952, 1593.0153498267314, 1571.036157841488, 1582.9311633756467, 1573.694972944942],
+    [1711, 208.98495252302504, 583.6254764543132, 389.8301719430804, 336.0402112847475, 308.5794752776289, 304.5746528379125, 300.6210144399241, 294.69787741429803, 292.37703351849933, 281.6684484355419],
+    [1848, 249.4667997885451, 635.8089289518305, 418.7125448678045, 354.6626594200198, 332.184734365927, 339.5112102905928, 327.6792674180668, 321.8580200273446, 321.94433918097724, 302.6528069864749],
+    [1617, 236.560159547871, 572.269681240309, 397.0484265756794, 362.78863257111067, 326.61889202843724, 322.947159226509, 323.0205797595549, 313.0462996433473, 308.0361214528244, 319.1430800871302],
+    [1751, 270.91421149531556, 679.3623019799903, 553.068715817137, 460.2313404670903, 403.1957176055615, 391.18695654028124, 378.981638574423, 380.9670045991396, 379.6110641691999, 366.4234195547499],
+    [1707, 197.1060856215372, 551.600011181205, 327.89759888931036, 290.486953280712, 278.13128043777226, 274.59039369927723, 268.5136015486535, 262.07758565724765, 263.88328747219464, 255.0742218811268],
+    [1659, 168.05980066812833, 460.6122772787656, 279.97473701485677, 253.5128443482951, 233.21146698426574, 229.79541275974046, 210.9771270163801, 215.49213818429325, 216.7020052093407, 208.46274612525045],
+    [1828, 292.9901602341, 765.2622410875348, 637.0850103396044, 496.53688093483504, 445.55968751783524, 442.42345442237337, 427.45872678884393, 421.7869020272309, 430.4714727007226, 429.57608312318206],
+    [2130, 700.4912530052361, 1256.6137350612662, 1090.6309709163763, 972.8408140613071, 919.8771623240074, 901.0579776113472, 880.5425264338411, 865.79342351655, 875.9484215220361, 856.7674830812635],
+    [1700, 207.65005838415064, 563.379554264742, 352.55388686089486, 294.30087546394, 280.1036569140127, 279.50511628402086, 264.0488623897261, 265.98833668994246, 261.441053584611, 249.77804866454656],
+    [1830, 287.28413426664247, 773.8737239390497, 593.7683991210787, 478.1259608503655, 440.47886730864394, 433.51167440319017, 427.97651168322955, 419.41131156817875, 416.77949856369236, 411.1338522194086],
+    [1786, 253.70525421557366, 719.4757742506262, 507.81635688730523, 417.5926639326792, 376.59729288929327, 376.59304404553035, 368.6000990207003, 355.59452526430795, 363.06198099743114, 353.6269567279156],
+    [1852, 263.8766633363678, 704.0495684781766, 486.8435507857072, 407.0053358803995, 367.8851196629508, 362.24247074434237, 359.80888107236876, 356.4097086970039, 346.6043769011142, 344.7957374864251],
+    [132, 6.59899416155667, 43.51178966746143, 30.006474080714693, 22.51045313356374, 24.17803187777907, 24.390874467707658, 22.21125361190996, 17.22146634940857, 17.483469542418433, 19.520622189946437],
+    [217, 91.2605020718825, 157.63212366898188, 140.41524567650944, 137.04190781466912, 128.38794070823442, 122.79378526982482, 117.43038385529896, 104.57072757085666, 115.5803756459281, 114.99276514811272],
+    [175, 14.97516104894067, 62.80418740410214, 70.30717823219264, 40.864122525284586, 41.5891843921794, 38.95521024152025, 30.509428078906474, 30.828501723809495, 34.40085213006067, 32.318652992547854],
+    [252, 105.32033992913966, 173.5279532140355, 136.34026781753346, 124.08810727460782, 119.46092816964332, 109.88012803866135, 108.23879186586821, 117.77313123476708, 115.81509416879203, 113.60404175978876],
+    [186, 51.45965872541532, 93.75992342958467, 93.47717770894077, 81.40006614242323, 72.35659337351419, 77.49311277910383, 69.20043202835527, 71.07182362652946, 66.18993262190426, 68.90353599278758],
+    [214, 136.79271990213724, 194.72558309960732, 193.39758655949427, 179.613596550401, 171.98613385617818, 165.08691340207602, 164.02962570062738, 157.36154366776725, 150.402852851125, 149.86349215460447],
+    [144, 86.21114769874521, 116.09461720958429, 135.509098025436, 119.2541190270308, 110.5492146054884, 97.42921692451685, 94.8436302316841, 97.9440565619338, 97.99455293032929, 102.76516535070704],
+    [143, 50.44557868336503, 78.19800956463567, 71.77511565679723, 68.70653030536022, 64.8842727647386, 67.24630775966547, 62.25308492308442, 55.89046061143945, 55.66350043608179, 55.20274899422661],
+    [147, 75.45832391284603, 115.48228378119157, 121.82449731435024, 114.50751654495568, 108.45209660043037, 104.58872414079653, 92.78383374863719, 93.48677764100321, 85.71601236730673, 94.5605754151423],
+    [187, 152.73963725836074, 205.87362452848515, 238.18873775516278, 215.03870830915497, 213.32293273211795, 193.94674068544685, 186.02263085176324, 177.77495368795326, 175.654535274884, 184.79912455245028],
+    [193, 8.422803896892491, 34.46926566586175, 12.577451368012037, 10.579216397100394, 10.909911848368184, 12.983389732192007, 12.769225928270199, 14.28963963691855, 10.911402468314263, 12.297210621834102],
+    [187, 10.809638356269256, 29.605193677196667, 12.260223585779453, 10.84470700375622, 9.572505884477232, 9.935832753451807, 9.817522345441851, 10.434136785588056, 9.722887769640055, 10.335116122588282],
+    [361, 272.3683802719255, 416.2817582806603, 405.05597484691253, 380.46493935237413, 359.2597489705161, 353.06564966782236, 346.62640929603486, 335.4477077315375, 335.0304385119661, 343.296170780593],
+    [249, 47.03510935564169, 102.69152906635281, 93.03162057926164, 82.33096760233191, 80.75837413325017, 74.00078741554513, 75.4354011203819, 67.30467305805975, 71.97013882952399, 69.382365802722],
+    [145, 92.99953357908677, 155.2626473176465, 141.44882267176632, 140.88350347772175, 138.0776450373446, 130.69883709248853, 129.35822149793455, 119.11578316753229, 120.61834428659785, 119.09298469931598],
+    [221, 139.83176301844307, 231.1543029008288, 213.89174858407011, 196.05121980659573, 178.02379230983917, 183.74520247126043, 169.6406563656447, 160.0369566929397, 165.59467985545882, 161.53982559976964],
+    [199, 156.5559648601051, 250.5001879718784, 252.84955592876085, 234.07903290471566, 212.6787870871129, 210.50756485101604, 222.97621742138173, 201.28837453837423, 186.0229503103092, 208.57846918104468],
+    [150, 41.90658630782809, 85.11632671050397, 68.41543202319214, 66.8831704344335, 66.97495661243826, 63.168244196785245, 53.579564270623806, 52.30536509725657, 52.70433972427337, 53.51341691203528],
+    [171, 82.68606859680897, 127.78327822545288, 144.48637928637314, 125.3509906752956, 114.5183641426643, 116.89427796111872, 107.73952860606475, 102.96829787236638, 106.81647460668363, 106.87173798634808],
+    [158, 150.62394810472082, 204.41975086820034, 216.47676371024934, 201.25947385204148, 199.34642591354088, 198.55565182181647, 187.74810896166278, 186.4645083993931, 179.06714906443833, 185.0811138496236],
+    [232, 22.468617792149274, 68.98438426478958, 47.79864184215494, 34.87778665713474, 35.73418724152843, 35.132115771066964, 37.56298812397116, 31.762982801760757, 35.49418311933255, 31.73489485630707],
+    [183, 37.68045496351525, 60.00945559300514, 67.836923427369, 61.10959072831832, 59.89101957023865, 51.3021847440479, 54.675265306784326, 51.7995975580355, 47.49382196613941, 54.3000123337632],
+    [453, 285.7112863716608, 423.9703888278915, 424.850928708074, 386.45308620957593, 364.5864901492897, 356.3974924061998, 339.85988256458154, 338.79836454220776, 356.5754740334944, 336.5081106456634],
+    [182, 97.1349699397043, 146.03336917003756, 148.98587748361632, 134.48513553525154, 130.51554959240664, 127.64578080720274, 128.35089192752656, 119.61417922208204, 122.66849654414474, 122.31612070971802],
+    [179, 46.981745730502425, 78.713604770685, 73.00682877125708, 64.14553480735393, 60.5501268886764, 55.089705181117466, 54.30458795999004, 59.9511181009191, 54.017288922137446, 59.793665436308345],
+    [137, 41.609511580924455, 62.88938701603866, 68.1066562699072, 54.284490401703636, 53.74867293540009, 45.27428631618189, 44.745469171296335, 49.474890615057674, 45.09909622105221, 47.88643576906648],
+    [208, 127.4538246201493, 202.01637791144054, 180.5335436894438, 168.95897902699156, 170.46393954225354, 160.76928357404898, 150.6055544830331, 144.41690289188034, 137.19175947851303, 143.65628626125124],
+    [409, 32.34501374144046, 63.98018907680771, 43.20235573702989, 44.13850006075582, 42.91021279000064, 40.97527466884307, 40.91917970860348, 40.651215791876865, 42.33692938245415, 40.309591115417604],
+    [128, 24.930863777019397, 50.386403744574, 56.11793253209396, 49.36551033384148, 46.22375919488266, 45.981631507057436, 41.37261927216163, 40.335155424821544, 39.801407112645656, 39.844972263340416],
+    [140, 39.65175838376776, 74.54245144462044, 89.22867511520164, 75.51376445854638, 78.9847877414888, 72.07838606942322, 68.05361077369469, 63.1569692143478, 70.63572520982197, 64.95770134378968],
+    [255, 49.87729128098953, 103.64874812214458, 86.30755075603504, 79.94354007091323, 82.36944295148106, 74.92694117393226, 67.50754148428385, 72.09512118973599, 70.49281182674814, 65.42456390877565],
+    [176, 25.557976496696945, 50.86399118821336, 53.76264092411728, 42.46873964707648, 40.01409781569333, 41.072865718370224, 39.80670827430499, 37.06603455746352, 37.599704907170114, 35.2808282891923],
+    [222, 26.642248541257953, 67.14216315741717, 48.18535118764014, 49.88841302082276, 45.52104619470561, 44.14949708609029, 40.57633690758431, 40.45968051634331, 39.817636840672016, 42.64030687072347],
+    [228, 15.868351157041198, 32.929281250335244, 33.74381680631629, 25.343824898948938, 23.139265512677177, 24.654050952729904, 22.01326851887335, 22.25609724238447, 25.218251956213933, 21.333057951423648],
+    [658, 8.88427610233636, 44.280959720644205, 28.16217864996956, 12.701701284079421, 14.027784627177073, 14.720559058598749, 13.573417440743215, 13.604738261124918, 14.446978210168595, 13.081488123193726],
+    [653, 11.429091610993815, 52.92001406042991, 37.239138053855875, 21.771914202567494, 19.90613354081485, 20.813893033324376, 22.082247607350993, 22.027323890058454, 19.26801942437853, 17.045035405041173],
+    [661, 5.928916945930349, 42.215423950558346, 19.79334113451379, 11.831102630833877, 9.664699664075787, 11.494102041766293, 10.244922652038692, 9.608663985732864, 9.396466136136313, 8.568650126898795],
+    [655, 7.91367578444957, 47.246602350090015, 23.520987737158716, 15.365366696604642, 15.39344368750526, 16.0371205995261, 12.36116450590102, 13.852100064670474, 13.554139853130199, 14.238623286228435],
+    [646, 8.108797553771332, 51.40572616828572, 33.97064196398493, 22.690317331312432, 18.589677632729995, 16.643487786623865, 17.61940175544923, 15.77899782747528, 17.317006405583626, 14.913874580431123],
+    [472, 595.9451708837953, 811.88843119308, 813.6924481316807, 736.3522344651881, 697.6278502858365, 682.4294022749328, 668.0714895034076, 673.1869403062451, 667.7985136589531, 690.8999017400894],
+    [221, 153.36604812888248, 241.1712070163855, 237.76326413473484, 219.74417167138267, 214.8590231726777, 204.9792449502774, 199.81438936842977, 189.67548230748812, 184.6923023224581, 183.6294350772022],
+    [1509, 1237.3432725319105, 1747.50928101788, 2162.489889156014, 1715.25005697121, 1600.7475443965113, 1500.1981142494874, 1440.8087945237173, 1445.4064113746906, 1441.7268135569543, 1434.441456404208],
+    [345, 178.232253335893, 285.4591992513321, 346.41683871982184, 271.30262456796817, 230.85247814048054, 225.43687064657036, 205.7967525552587, 208.6894560810258, 201.7916543672976, 200.97250335098377],
+    [906, 1196.7252428168867, 1602.3506737658956, 1719.103669647799, 1510.7280060958701, 1444.3730451940248, 1401.7267272150361, 1364.7849306141327, 1352.3380489296028, 1339.7994415335081, 1346.8809047783113],
+    [440, 421.7454725773332, 598.3588385523815, 709.868955627716, 583.0915410713876, 551.6187893964665, 524.0248151306303, 524.4481916205509, 513.569010309864, 509.00558743266754, 498.77498977012584],
+    [474, 428.6911540689896, 653.3574687316594, 601.6496869081025, 572.1387017081778, 549.5026462276528, 544.7120694448295, 531.556936485649, 528.6938326804386, 527.73320820324, 510.9787810098609],
+    [645, 611.7199988569305, 853.0979470857221, 1038.437597039359, 837.2669675284789, 800.9064359933276, 769.5141251725667, 719.5063566810421, 720.5697295673071, 714.1632784529285, 705.872395087288],
+    [859, 707.3533279702798, 993.1036765434053, 1170.1569569333694, 957.1587641024414, 880.5611216997531, 837.5447469736592, 869.6864613119577, 804.49960965166, 829.786240080245, 814.0567915230985],
+    [1382, 745.4470151654791, 1193.7130516119423, 1645.3507735183848, 1214.8513003804098, 1044.408260616823, 987.897825899019, 957.3131562416896, 944.9209042303133, 944.3736708533784, 930.9471935564136],
+    [1870, 1213.247603583391, 1730.8828421649296, 2429.218609379493, 1780.2292784106335, 1576.3527070304435, 1488.855213154444, 1459.2624456509266, 1447.480102971822, 1436.847064135448, 1439.226291704487],
+    [204, 133.88950022219245, 202.31565137615527, 261.026291132563, 196.65030593874906, 192.1715532697096, 170.7622182362417, 174.9900275755508, 165.87675875907036, 161.9961302222842, 158.65146560084213],
+    [674, 285.4284076904069, 469.7424996789898, 725.4425472316683, 520.6046533067733, 440.27225111951526, 408.94342769094, 394.71774462346104, 385.9355598011953, 379.08348600548123, 371.85247135592834],
+    [317, 110.52314890016558, 180.09514626732096, 233.34306583762046, 161.71963068824297, 149.24757595827504, 143.10068889537737, 140.91470385988134, 141.09316583759338, 143.097182429985, 140.84911181281203],
+    [275, 19.735012860547243, 59.140102188936574, 83.96726578471682, 52.09169108098193, 40.10916044165509, 46.11174367989569, 39.01319230367949, 40.81061735988666, 40.141861420096674, 38.089514871511625],
+    [367, 279.0642739559217, 403.48977876511054, 469.1598232808517, 378.6664180489611, 356.45544679435704, 337.5683382492846, 325.6411368280921, 320.76577229270885, 315.33074431044895, 318.27735317073666],
+    [645, 431.4302676030018, 649.973288323521, 789.3703502148967, 625.7100905902678, 572.1860011641496, 557.315490899326, 535.4810716359576, 537.0117835377811, 530.2081518682976, 526.5764127824452],
+    [519, 297.6400667378588, 431.01425600247137, 487.6318481340078, 389.9538170011164, 363.52996921319755, 370.5747866390328, 346.3285637150549, 343.38902708944363, 352.8296361130078, 357.5897740065022],
+    [284, 138.7249640243929, 234.9465301692842, 282.1686172220124, 207.86557620850178, 195.2994437541705, 190.97573049062572, 183.98995484532696, 179.3627603548068, 173.77090780583896, 177.1972067336585],
+    [241, 139.4252542913023, 227.90274722717754, 269.39750123069433, 205.4301497900543, 190.57148808907678, 174.0667677887608, 166.6322412548417, 166.8333437509476, 162.00372569907523, 164.21207269917733],
+    [150, 14.5137727505722, 29.9879786592431, 29.450187386873225, 22.156613604905935, 19.66349461046974, 21.027522842425874, 25.27301990177571, 20.74167902996118, 20.324767618404664, 22.070273523372393],
+    [125, 34.705490241291315, 49.91516778721749, 51.378704878062855, 46.52511000260454, 47.321262162698694, 47.27234552925467, 46.728448254121815, 44.054858823710575, 45.11294884550885, 45.38010916898457],
+    [87, 26.66205856391499, 43.278467939818896, 36.54900107192419, 37.45602833491034, 34.52013712642278, 32.67619728649172, 28.098934738222404, 27.67841968197593, 29.367407292219227, 26.68166214386602],
+    [107, 13.916240198188998, 45.8551890755192, 43.21898796004865, 37.87584232123278, 27.819374681548396, 28.913365967028934, 24.91006603310985, 27.388283342351453, 29.35514242677604, 25.674068432707525],
+    [107, 29.780973009277588, 46.41487225884031, 55.88185588148766, 40.90185144107329, 42.5451257969974, 38.75664164785396, 36.315438315750434, 37.40143094169317, 33.17420384990365, 35.18934180012044],
+    [153, 54.26137535232284, 97.03273137563818, 97.66402171009662, 87.62869285405145, 92.0938303619239, 79.67824542769756, 75.43452316967698, 67.97490213765435, 68.8681137477512, 72.7537715547097],
+    [115, 20.981237134036096, 54.21161680558885, 28.730421721507856, 31.451867872000378, 27.89131063476277, 28.287376339379627, 25.877037516823492, 27.27341548879054, 26.510181650553548, 22.83974550867729],
+    [116, 18.186431387167183, 30.328229944219288, 28.87059027895545, 23.0393979920726, 24.65484301796755, 25.218891528777164, 21.80853532499571, 21.528808427985876, 23.444451783711315, 22.980160945917607],
+    [145, 7.536403860248501, 30.61879205506478, 24.045982707061366, 22.667800985740087, 25.521527417632555, 23.86810171763758, 23.14232680938116, 22.681542039078018, 26.356183473358513, 21.42980840869557],
+    [130, 67.05544837658866, 94.0847671415947, 105.58257550522454, 83.0466597710768, 80.28376811724976, 73.9976411608808, 74.40345701147031, 79.45248768170308, 78.59917552321333, 71.61962738847456],
+    [87, 21.23384498165084, 31.205801518865833, 24.74327336470965, 26.476256023889604, 26.290646388949398, 24.714984705508144, 26.21261857636513, 23.947802354831744, 25.210644656833452, 23.811857368311404],
+    [124, 51.841708980728484, 69.81217449742557, 64.50788735480032, 61.90577493879597, 55.2965931292222, 57.63965719558049, 59.23819666971258, 62.37732275619315, 52.5796472681189, 61.9415384588457],
+    [133, 23.40124877570028, 33.35667691682374, 37.64261980541116, 33.22347124315482, 28.2939236351773, 29.304957899323952, 33.5332767174498, 30.21035250621389, 30.61454188637962, 29.087185973448918],
+    [149, 29.391592588753888, 54.032466285742075, 72.53921927951167, 37.62169584514646, 37.45057234359645, 35.686703835618644, 34.290752595526385, 32.00687274794451, 31.543316449193508, 38.38582187571757],
+    [124, 46.74804385289142, 68.29562579359708, 77.39282554828787, 55.540699977933876, 55.12596468541686, 54.91436961922318, 48.029593428346885, 52.07033560848535, 49.49049205676958, 48.64227308554071],
+    [131, 71.01890988483474, 94.57825779947291, 116.21571259005856, 92.85955777679337, 89.83217599838227, 82.76931033881044, 86.14897194820898, 79.00317796217205, 76.19746317193288, 73.28111744902604],
+    [101, 29.277766528106582, 47.85321723616749, 47.050164073538824, 41.82742905347665, 36.89103942243616, 36.62333613021896, 36.3906035152808, 36.25132784455268, 35.47928007304832, 34.38742000381819],
+    [110, 36.83695763421231, 54.22117610060167, 51.288013101124804, 46.4449437371635, 42.527280710526234, 44.57859357141354, 42.78771550249037, 39.590337018083204, 38.32783295879685, 43.399126233143775],
+    [144, 126.40225996342278, 159.9441402106714, 174.5337347796109, 150.40657455908945, 131.20223010152316, 139.26041705575955, 131.6647330255776, 137.84394955993142, 143.60366700890785, 136.0240864532316],
+    [104, 34.99941081056668, 62.93246901903816, 50.9551407545686, 49.3090419452655, 46.48319613689988, 51.482369816858686, 44.93295859571815, 48.59361699518716, 43.74932458539901, 43.29323994277782],
+    [173, 90.52280012782177, 123.1618823083727, 132.1625225172354, 114.78340150833655, 106.74059139341483, 98.73629521485498, 95.11458967430764, 98.79626237864203, 103.51342008998137, 106.6285044623693],
+    [118, 38.64426609090006, 82.56686490577022, 60.03131564319939, 41.94443650576105, 49.83749984111233, 44.38500849404862, 45.55281865537478, 44.09681354729499, 45.7807319167766, 45.82016938326558],
+    [139, 11.184924525854598, 38.79843024684587, 36.68277074685261, 23.782886066240557, 20.384577325275565, 21.790073803630946, 21.768132579091144, 20.5513834875782, 21.251293247374775, 22.5637329141832],
+    [121, 38.69834482587349, 61.77928768151171, 58.88546618404326, 50.80281585850496, 46.20388231588774, 44.7071935269241, 42.553071639039686, 41.51627754044926, 41.81264881358716, 41.37351404880895],
+    [98, 26.26289373953308, 32.27839053433222, 34.398191071047265, 26.507870293157403, 24.710936318364077, 27.10562457391196, 27.119378301649014, 24.638617249255404, 28.19715572769782, 25.453385277860086],
+    [103, 23.672049540664823, 36.29361477190822, 39.80476798690908, 28.158654557503375, 26.622027908141924, 26.786761951837594, 25.141036656477038, 26.903935336412715, 25.31156240747231, 24.23793498004725],
+    [142, 11.658386907355553, 39.9432998325046, 42.8414815770528, 23.2175468441068, 21.53039860534694, 22.54009052841822, 18.292537285732095, 22.179828381655724, 19.488106612259696, 21.530634437503963],
+    [103, 29.899682216355465, 52.62761726934791, 57.5203956423823, 47.038012383443046, 41.679512370756335, 36.57802055579405, 36.17459629910541, 36.12406388046945, 38.07030210255515, 36.29026598165799],
+    [109, 19.051096729523707, 36.23302823734993, 56.5760707178198, 27.171081833086284, 23.403512811957775, 25.445347100129204, 18.529926791203398, 23.409137731943282, 21.217290360740986, 22.746174243322965],
+    [129, 11.60724802766981, 28.518831004756805, 22.369977774817997, 26.331624469347815, 23.80319740044201, 24.494511182799947, 21.34602822141357, 24.128160112969677, 23.071459012306406, 21.568884356510807],
+    [142, 13.186860520789862, 48.34167339447241, 55.17921506817808, 37.0408090135302, 32.311988036504296, 26.486646759194763, 26.436022511215647, 21.64558290895212, 25.624871304698413, 21.664902383860543],
+    [123, 10.443811014943792, 31.807671271802842, 32.463251022654035, 25.677712815991747, 23.577383167102322, 16.803646912727253, 16.4633757704209, 17.09487980764386, 19.26684292749847, 15.88616749493236],
+    [125, 39.373239523752474, 66.75563294355776, 77.6982312639591, 57.597344197636296, 54.57963879100158, 50.89882514648837, 51.91367603099712, 49.858943979350315, 51.2558179721429, 54.23213213696313],
+    [86, 16.621908194532253, 26.484617785790135, 31.751831198827947, 23.088761495344247, 24.327463116860173, 22.828063006795873, 21.211108971711212, 20.691469890731934, 20.725489827289767, 19.836698765490066],
+    [83, 22.219153094079857, 32.909182094720464, 33.16044744307582, 28.92244703342177, 24.761015027713007, 25.024226950630975, 23.883432956173806, 25.61663431088278, 27.3886236345815, 25.000628896807765],
+    [96, 17.37859704571844, 38.147754615425704, 36.01143863035693, 19.58652784346993, 18.7985504485237, 20.89502298021616, 19.52832014645837, 21.164646951978582, 20.829552181999833, 19.09216135992738],
+    [147, 23.158232218827678, 46.28146891914572, 40.33629576099662, 31.129490079382677, 36.784670974998285, 30.72761299638138, 30.508745029364928, 31.062732696159877, 29.255741589513214, 30.267775906149268],
+    [122, 23.626138012816057, 50.24518602637904, 48.49382524888695, 27.26195850133643, 30.805658295220187, 28.04099515825709, 30.027585053810576, 26.079233162651843, 23.480694152548846, 26.67203465198066],
+    [158, 41.352109417396974, 110.52093211002169, 138.26588613854477, 78.32604256459273, 65.97516076083865, 62.85266855333232, 59.7059298078941, 56.55380091316184, 54.681249858308334, 54.012576379521306],
+    [128, 22.65958248401121, 30.76401531429422, 33.62650328760171, 25.99407176194871, 26.37759398204025, 28.428887362833887, 26.791513474596375, 26.057341734046226, 27.01202033396917, 24.228691085320108],
+    [125, 31.966849838795483, 45.23236609966018, 42.6860044312167, 46.35580231815588, 47.81169166244276, 46.223421575927844, 50.69837395308217, 47.0370312782561, 46.45122506299337, 46.61980995456164],
+    [129, 60.78619962894801, 77.66294677238845, 94.99417848130666, 82.15832251900541, 73.2002186525706, 71.21811544739396, 71.80289462790184, 69.55431052922393, 69.82665938012259, 65.76906705157322],
+    [111, 21.20862667274222, 51.39216811710771, 52.31469901197605, 26.947943544370133, 28.620678942644556, 24.771775049275035, 30.26971347800179, 23.074468973821403, 24.729943457640196, 25.44300297594367],
+    [130, 18.668647663510914, 34.218866788180556, 58.751010618858125, 30.533793548783617, 20.977766044597477, 21.86118865065795, 24.332441433621355, 24.08842819647674, 21.19819343264517, 21.570303706072757],
+    [149, 100.76418943231222, 139.7791782702873, 149.8690838243822, 135.59981393153512, 128.61875492411085, 121.05160432710476, 121.40135981176365, 117.52300813468658, 119.2575754168552, 112.62486242685023],
+    [125, 23.016927503713518, 28.991595078541536, 34.30521934145155, 25.07628144166309, 24.284269498978748, 23.504650013973546, 25.065001316017117, 23.380375058735304, 23.027927458953666, 23.608887272361343],
+    [149, 100.45376560195123, 116.75052551153257, 138.02762140151938, 123.44736364484913, 119.52099269009562, 118.77320887368207, 112.9851085300045, 114.0903680301506, 108.19628074753683, 109.46574718900878],
+    [106, 30.956772238094068, 43.85880091143588, 44.19687575699624, 35.24704428444606, 37.08132786436205, 35.83856418888183, 37.08398056156828, 34.088571424861435, 34.21801114404059, 35.992258963404446],
+    [124, 73.19978724064953, 85.06412522352032, 108.3031347424573, 92.23793947322089, 86.95831216518089, 89.80231210853452, 81.12590695703061, 79.92697366153706, 82.27560552225404, 76.51247529246251],
+    [92, 46.20121457901504, 48.54216812516687, 58.92863065803611, 52.21930696978364, 50.49997755879608, 54.12868308633871, 47.03194004182716, 41.97995072620004, 55.2346295585715, 47.58565957459732],
+    [130, 51.865023533686724, 70.08997928611738, 82.83011690334813, 60.27604887416982, 60.88668050873379, 60.099494553840685, 59.81567420517844, 62.410039634676686, 58.98534706697936, 59.52397593045464],
+    [81, 26.28440004710089, 44.7286478730891, 36.839969400958154, 33.48996438814374, 29.822377469631384, 28.751517295901955, 31.90814636441462, 27.683913946406047, 26.336252862544207, 26.21787579038945],
+    [108, 21.090759249820152, 35.061923494900725, 38.79721102665733, 24.216478152660386, 23.76691088200684, 22.23379596907312, 21.95429836285659, 24.10665883571445, 21.579407170055873, 22.183334415168083],
+    [119, 27.450319445029812, 57.685153123032975, 64.69577352187544, 39.46837777460887, 33.281510796524614, 33.34887109462726, 27.657024386343316, 29.91512423485608, 31.48298041465901, 30.473330328139376],
+    [90, 25.089267214115054, 38.878279110080555, 43.59842113205442, 31.166607682650564, 32.054215461857, 29.654172428279722, 29.35608158112599, 28.717241238274458, 31.122533190126973, 28.062767250045354],
+    [216, 31.7839712066533, 64.71790103532571, 58.5766858722649, 43.81608332490751, 41.63391990336413, 39.84266218131166, 37.43971168729793, 35.94322021576119, 34.95944757130741, 40.30160768194558],
+    [110, 7.025680022531151, 39.35058696801971, 29.72835485692358, 21.019896596826964, 14.838984503860027, 18.837858172688975, 14.159056828841155, 17.804781635681497, 16.929620994099032, 15.39054085866958],
+    [113, 27.783167561138825, 57.37206439843963, 50.98585821345824, 35.794794197338284, 39.68753601504543, 35.64753091185852, 32.76761046644954, 33.127345082314605, 35.65379565665117, 34.103973752898085],
+    [114, 31.372638168745517, 44.91725674468734, 49.942140755806506, 36.5988049742209, 34.44905523732283, 31.51832306382149, 31.55059635211144, 30.748915973103024, 30.632208341944935, 28.85755805003622],
+    [122, 37.51044652279302, 70.19818208852408, 71.87327488628002, 52.41379039568663, 48.18012733095516, 44.03708150856104, 48.24973410586487, 43.73403389381945, 44.85293144921785, 42.96884287378038],
+    [106, 25.01771683181495, 32.14152889387943, 34.311694243789816, 23.855125013936014, 26.178476291324298, 29.216606765109027, 26.288894760690937, 23.851312455905045, 23.849758774906253, 25.643468346704097],
+    [134, 5.723959128165395, 45.98932206216469, 40.494866380151294, 25.503891631890212, 23.604826016967735, 24.047432875426658, 17.39244277433442, 16.47463395830566, 14.157838538943444, 15.401513045521478],
+    [134, 7.08379282332871, 37.49345096276495, 25.594073265931385, 17.4671050600097, 12.202359439743995, 10.488896786233118, 10.692164716084163, 8.427811674173409, 10.00572872393437, 8.68685025650263],
+    [89, 31.02997698758265, 44.84236246933816, 33.15601147101628, 36.82120201870126, 35.84304999568911, 32.36393664380217, 33.76471400769021, 32.52218833664128, 31.419937086231673, 30.623762213645946],
+    [129, 33.56423125370577, 47.48439940085407, 57.84425819069652, 39.41424344302075, 33.07793723924081, 37.27334242170575, 33.54838096911344, 33.57836258583947, 35.53377352430742, 35.70706019358377],
+    [85, 18.105028008972006, 42.58751167549913, 41.86270309910964, 25.776675545547878, 20.353210659564674, 20.96079513836681, 18.911334241899585, 17.354522261177905, 21.151217366957134, 18.994764682798632],
+    [178, 22.722221198945533, 54.83016230709143, 69.22730044956728, 38.6966373296235, 30.875330018763627, 27.307179880380893, 24.8389123626319, 24.032753649403325, 23.16061125211308, 26.228938438796316],
+    [138, 42.33001730337154, 65.02894455919974, 75.75837410830832, 58.07003757733717, 49.59473649939839, 50.5168980209596, 58.90169780682811, 57.144823334676616, 55.9018067314965, 58.713341655249316],
+    [151, 28.657567008833176, 53.81836348342203, 64.27186757051976, 30.729503416897327, 33.820233380779975, 33.07536024855468, 29.67396748893031, 30.02490339171596, 29.63632291190461, 32.45812804612536],
+    [104, 38.87837801365492, 58.821494335372144, 45.46862102014735, 48.0350521754394, 38.28004435850069, 39.485673946145496, 34.447646439849315, 36.93155065087918, 40.04890697421632, 37.80923380802871],
+    [134, 34.13188755376039, 56.4236583023875, 71.94038734772349, 39.75962088957954, 40.192905103805316, 40.5506228892191, 37.01321307191463, 34.54360756910492, 39.74130553078113, 38.963630973190774],
+    [138, 37.69943809411396, 72.65944794852643, 93.01501875804898, 68.57185627660932, 57.687383171440146, 53.66593024823773, 54.328154305375264, 58.69257840084643, 55.288567921979464, 49.806923940361756],
+    [112, 39.88906796094544, 65.83312452788333, 67.28037478072454, 47.93827691306335, 48.80285236626828, 43.1111461908832, 46.51344532637412, 46.588189828626454, 51.39897548349357, 47.78753733262477],
+    [110, 26.605491015176856, 57.711477470163075, 42.31968022218267, 35.43133072472351, 35.21664304620742, 31.571589028160673, 35.48444132836977, 34.549402132257725, 32.12197651174738, 31.399724434281538],
+    [113, 31.646694459034414, 48.99909288393532, 49.096766644793945, 38.68806778112346, 34.24500211157685, 40.3293818088967, 34.079696098962636, 34.2287365487924, 38.935289890283144, 34.67281405571193],
+    [139, 7.5751534530309454, 43.63561594546682, 29.76772581222348, 23.788155554621532, 23.427692815198114, 22.816677561700942, 20.602685836765318, 23.793089349694597, 17.439545665735615, 19.037750235151098],
+    [113, 22.080024746466798, 37.742390130461764, 26.041273162911924, 28.84855235036445, 24.880981580186926, 23.463485489266738, 23.09508948420342, 22.71428512506099, 26.608300037577358, 28.05202658421856],
+    [123, 37.90987471751963, 47.980420443875424, 46.44910719046648, 48.008646882464916, 46.566108679407805, 44.262233968660496, 44.03828325551823, 42.3905620819019, 41.730112892770215, 43.60926109286887],
+    [119, 28.913232341926886, 52.36722042900436, 56.20828086179645, 35.93515049779805, 34.66445491569911, 27.553943340635826, 27.049869467574638, 27.630254664775176, 32.784323947503566, 32.20722111512363],
+    [113, 37.23654709063747, 53.04538684364166, 46.7555665022702, 45.0558483697864, 46.82036541926833, 46.838643864499616, 42.51807197479904, 41.195435799544875, 46.81441695797296, 44.486699601142405],
+    [163, 34.315710252576174, 66.69233002016384, 51.131588371647936, 37.25260856464458, 43.58144392225782, 42.24583328666948, 39.16557704014427, 42.210069042795745, 40.84170612980067, 40.20369889156155],
+    [123, 40.14299647450893, 59.53882271876168, 50.26244083225445, 46.55428234370304, 45.70939086419629, 41.29349191240359, 41.74385038294681, 46.60012943212916, 44.6234851304833, 41.679096853098066],
+    [130, 20.501356829877103, 39.01656859497696, 34.99702356568084, 20.88021148926599, 21.215558991142647, 20.912984684514484, 20.42670680991929, 19.5318232172801, 21.41009496880732, 20.493323089446896],
+    [120, 26.772559432503236, 43.98082628222845, 38.542520615319766, 31.05181222398935, 30.201115393752225, 27.2399935729834, 28.127809022229176, 25.624295906152838, 28.192433277529684, 30.47884166949825],
+    [110, 41.85702636496457, 68.2258788002012, 57.69545310647187, 48.97190636559422, 49.41458260917229, 46.270150975445944, 47.51595234155815, 46.83306485986422, 44.94506930009067, 45.66226390837639],
+    [129, 31.37256832863783, 48.18756722565208, 33.60734871817234, 36.341721815914745, 40.75332995084097, 37.95734411977433, 38.3376771061305, 40.358815870203316, 33.991811591954104, 39.99467562697815],
+    [131, 32.83743568715204, 60.752645569016025, 53.5953698768567, 38.713720116347986, 37.67837006077021, 34.05659274157312, 33.094083968103085, 35.4146821710908, 33.4407861303368, 33.794322981983484],
+    [158, 19.193409658861334, 65.16205527158789, 68.84473832699715, 35.603692378987574, 33.4077033634945, 28.11224670656165, 27.085526941300714, 24.542394086971854, 24.541165428439555, 25.65752460547734],
+    [161, 10.959826778977373, 37.31379325683031, 50.60938047030526, 27.722461574626948, 22.67304203545028, 22.372970693560212, 21.148402792857077, 23.453267710267106, 22.057471967289793, 26.376400166236117],
+    [133, 37.40442136932445, 70.61384122205806, 58.593463791475344, 45.32000204962174, 42.56120366440642, 43.86288955018024, 43.99625726111009, 46.119640363098604, 41.617334599010206, 43.51500285539132],
+    [110, 22.63126391204439, 40.505565620742864, 37.671774819272166, 38.131503070080925, 31.041226187043094, 29.536788922968647, 27.388994141488446, 27.034623574496425, 29.843260351482723, 26.01875952584262],
+    [131, 17.961792095860527, 31.34530002383162, 39.531466477716485, 21.63861998827154, 20.14661522504474, 22.472126546392722, 20.12425144544855, 19.28323995393786, 21.06317486506311, 19.55460548507768],
+    [102, 47.015595272576476, 76.97828827428388, 67.77111134284195, 51.34318902581185, 52.77309946858219, 52.212562196138435, 47.484729916530675, 48.56853614375573, 49.4526038502409, 48.63343262422312],
+    [115, 36.396688531456654, 64.79227476175458, 79.8846747026606, 49.15398683111927, 43.690766956597216, 42.10464027650677, 43.38061834973859, 43.36881752353081, 39.654751584930125, 41.20136500501799],
+    [117, 19.12543848937284, 50.133490577876344, 76.57917086526953, 32.46055066448442, 28.84659515550456, 24.70567377004708, 23.359331640581214, 22.45659097429453, 21.119248803701872, 22.381437131269728],
+    [98, 27.22523933885869, 36.01242909893681, 51.98972216912861, 34.325353602245855, 31.462184198936516, 30.109229613338222, 28.644375709921, 29.69153353266415, 29.219586787571252, 26.833643474349252],
+    [101, 33.395300210338334, 43.616657587046234, 50.374131542516835, 41.08081041450962, 34.301513058363994, 33.72460180694355, 36.46032281492901, 37.16335529425153, 38.23247909003865, 35.400783188847434],
+    [115, 7.68994090835057, 28.03811855123722, 26.442625441766122, 22.026738372206346, 19.67796124923931, 20.367715259472952, 18.66377424797934, 19.71649532783291, 22.720020406300662, 16.26679985676474],
+    [116, 6.978436468587507, 26.368555530276563, 16.384069361096106, 18.543699991565617, 14.437149474334309, 11.825144051870966, 10.373375916977867, 12.463645164200999, 12.877115031301047, 11.594194054007854],
+    [117, 3.895586905149957, 23.60308080807159, 18.364838753639454, 12.987454956759175, 12.366028544436265, 11.75512117724326, 10.111106317975198, 7.718426205591762, 10.817374420050324, 8.913850283155032],
+    [112, 45.06192106566777, 60.38612121666051, 59.03491660523319, 44.71884785342531, 46.67649962851762, 45.80402654645266, 43.95033357052431, 43.63005068349398, 44.931667350255864, 46.501006697327],
+    [138, 50.674409512091785, 67.06636401183056, 72.72380282516454, 73.43267355612778, 67.9529869506311, 70.15614885282966, 69.79595364158742, 69.56676476304452, 67.23114134965633, 63.755610024479545],
+    [127, 22.130031533962132, 50.848734666852366, 46.457691260240054, 34.57317096003267, 32.739430282794046, 30.34681964918244, 29.223407854961376, 27.18872813809556, 33.71973810677357, 29.03686410977044],
+    [148, 22.343267932267707, 54.87373146831437, 53.43509682755831, 32.826888780815594, 32.113707065966615, 31.637980412455157, 31.38126384097523, 30.543853436507376, 30.98832753092453, 33.519818381983036],
+    [124, 27.401203429914965, 49.252050494784676, 53.97632457312602, 38.42913541084033, 43.64831441598828, 38.19995990030566, 35.33136277529056, 36.50913118965392, 34.4081618168419, 34.19031079090861],
+    [132, 22.815481339163796, 33.7011008588481, 45.30760124143772, 24.922365441826905, 25.066636681211982, 26.986507166823564, 23.225307684241034, 24.539776805590712, 25.730326276032173, 24.561172598261685],
+    [103, 39.71390980940225, 57.92135798153396, 40.596229014421226, 41.989253759106354, 39.85143431533216, 43.540431217677764, 40.89591462162674, 37.410167582369574, 40.32711321170266, 41.99081962762307],
+    [142, 26.415506067471544, 65.25979065592362, 99.85049704526539, 55.78830673407667, 60.757804288691666, 55.247970520518734, 51.190992704947675, 51.53316130134737, 50.66138864875002, 42.46711957995363],
+    [89, 27.525366971844775, 39.58362080501827, 42.61984291047451, 31.880518114736567, 31.986818680016615, 33.01381587636286, 30.689448447998245, 30.446428679648065, 29.422974459530312, 28.627450687165343],
+    [96, 37.3865327586479, 49.55944904589857, 49.84204736400755, 45.694881441653514, 42.702970400004276, 41.17623171040689, 40.18899378033296, 40.07787449247171, 38.893820314637196, 39.64405883571909],
+    [191, 34.36175841109487, 58.89166531994372, 67.515341339481, 48.69586304873593, 44.81617517523409, 38.89305219135096, 35.68397019948892, 38.11199225818962, 37.60836585037442, 35.91864811160584],
+    [118, 22.67762581993221, 34.99830193281369, 32.21902440589824, 26.71374851680396, 23.461130838638514, 25.764162352656946, 23.455984020031817, 26.114475769442436, 24.37178686167583, 24.75412832737313],
+    [114, 28.918493603456067, 35.858843062085114, 38.87216570385935, 33.15842601337622, 31.598229260268, 30.565094911826968, 30.9563010317153, 29.367894956544152, 30.61436927533734, 30.46253362332296],
+    [133, 38.64374746230567, 52.570366614316235, 48.53855678860347, 43.56835883360811, 41.16723980642393, 42.70201146263146, 38.79572502236424, 43.74948801624615, 40.46095045462377, 37.24646557014572],
+    [87, 32.45378503090164, 41.93588890539923, 39.06360798497546, 39.258086309879396, 36.23183427279415, 36.98665964735869, 32.881424557834286, 33.39237966835388, 33.75703473719328, 32.410361071422315],
+    [84, 25.947910049422013, 37.505635484678955, 38.35756284896273, 30.417616758249785, 31.932805554776337, 32.355592565128866, 33.458781920579085, 28.691653278727962, 30.538421728289975, 33.13591816854987],
+    [145, 31.08946227063925, 50.145307155996655, 47.78245402023565, 34.993172134057644, 39.74113974507551, 35.16233928155732, 33.80863692180259, 34.49934214918369, 39.28887671737916, 39.187384990505464]
+  ]
+}

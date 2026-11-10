@@ -12,7 +12,7 @@ walks through the complete causal result, direct-update exposure and package cha
 
 - [Teacher-only32: complete paired curves and same-e12 four-scope actual code](teacher-only-distillation.md).
 
-- [Full12 seven-symbol teacher-only: fixed-grid method and real cached-piece preflight](q7-teacher-only.md).
+- [Full12 seven-symbol teacher-only: complete32, all eight native exports and selected-e28 actual coded failure](q7-teacher-only-terminal.md) · [Fixed-grid method and preserved stages](q7-teacher-only.md).
 - [Integer64: full trajectory, native domains and actual mixed-codec failure](integer-coordinate-qat.md#complete-64-epoch-terminal)
 - [Whole-stream causal priors and complete-piece learning](causal-priors.md)
 - [Complete causal16 trajectory, frozen e2 and same-W real range bytes](causal-complete-16-mixed.md)

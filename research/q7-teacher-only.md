@@ -5,6 +5,15 @@ three attention blocks, and all six skip connections. It reduces the matrix
 alphabet from fifteen symbols to seven and trains against the original teacher's
 complete output distribution.
 
+**[Complete terminal result: all 32 hard-online epochs, eight frozen native
+exports and selected-e28 actual code](q7-teacher-only-terminal.md).** The fixed
+recipe completed 94,121,824 targets / 2,527 updates. Primary initial-loss
+recovery is 58.8639%; selected e28 retains a +0.148844179152 nat/target W0
+residual and both actual payloads grow. Training/export/decoder/attribution
+passed; the net-code-length gate failed. This recipe stops new full-stream,
+formal, continued-training and parameter-expansion work. Earlier observations
+below retain their original stage coverage.
+
 ## One fixed method
 
 For each of the 111 quantized matrices, initialize its integer coordinates with
@@ -104,8 +113,8 @@ reference byte for byte, including all 434 stored/derived tensors.
 Initial teacher KL was 0.365677859805 nats/target; detached CE was
 1.036659272538. The effective objective was 0.768070476218. Initialization,
 optimizer, and RNG were restored, with zero teacher cache misses. The complete
-32-epoch run has started; native curves and its selected-weight codec results
-follow the original measurement sequence.
+32-epoch run is now complete; its native curves and selected-weight codec results
+are in the [terminal report](q7-teacher-only-terminal.md).
 
 ## Offline complete-or-bounded readout
 
@@ -114,8 +123,8 @@ the mixed queue's actual terminal. It checks the q7 recipe against admission,
 reconstructs the target-weighted `2KL + 2H/N` objective, and reports every online
 epoch as hard. Completed epochs, a partial final epoch, and native evaluations
 retain their actual coverage. The existing full12 native reference is reused;
-the q7 initialization has its own weight identity and an unmeasured native scope
-in this run.
+the q7 initialization has its own weight identity and a complete separately
+measured e0 native control.
 
 The output includes the full-held, contained long-three, remaining short-piece,
 and independent giant curves; the selected and final evaluated epochs are named
@@ -143,8 +152,9 @@ existing exact histogram, with the admitted training recipe unchanged.
 ## First native holdout: hard epoch four
 
 The original watcher reported [epoch four](results/q7-native-e4.json) on
-2026-11-08 at 16:26 UTC. Training is continuing toward the reserved 32 epochs;
-the selected-weight codec queue is waiting for its training terminal.
+2026-11-08 at 16:26 UTC. This is the historical first native stage; the
+[complete32 terminal](q7-teacher-only-terminal.md) now includes its selected-
+weight codec results.
 
 | Native scope | Targets | Original W0 | Full12 q15 CE+KL e4 | Full12 q7 teacher-only e4 |
 |---|---:|---:|---:|---:|
@@ -174,11 +184,11 @@ The e4 q7 archive is 2,073,263 bytes, 28,449 above its initialization. It saves
 selection proxy, that saving allows 0.015722503 nats/target; the measured primary
 residual is 0.547896342. The current proxy is therefore −56,259,419 bytes.
 This proxy guides selection; the selected weight's own G→M→u16 probabilities
-and closed codec bytes are measured after the complete trajectory.
+and closed codec bytes are now measured in the complete terminal audit.
 
-The reserved complete32 and sole selected-weight mixed audit continue. The next
-scientific input is a new e8 native aggregation or the original queue's actual
-terminal/error. Full raw originals are collected once at that terminal.
+The reserved complete32 and sole selected-weight mixed audit completed. The
+terminal report joins all eight native stages, e0 and the selected weight's
+actual G→M→u16→closed measurements from the original terminal collection.
 
 ```sh
 python3 -B research/check-q7-native-stage.py
@@ -205,14 +215,14 @@ and the selected weight's own codec retain their end-to-end measurement scope.
 The [KDA energy certificate and conditioned-key control](kda-state-energy.md)
 separate fixed-control state propagation from the key/decay/value forcing of a
 changed model. A sharp energy bound and a two-key value-fitting example connect
-long histories to state scale; the actual q7 native and same-weight results
-continue on the fixed measurement path.
+long histories to state scale; the [actual q7 terminal](q7-teacher-only-terminal.md)
+retains the fixed native and same-weight measurement path.
 
 ## Native checkpoint: hard epoch eight
 
 The original watcher cached [hard e8](results/q7-native-e8.json) at
-2026-11-08 21:27 UTC. The reserved complete32/48CPUh trajectory and sole
-selected-weight mixed audit within 8CPUh continue.
+2026-11-08 21:27 UTC. This historical stage belongs to the now-completed
+32-epoch trajectory and sole selected-weight mixed audit.
 
 | Native scope | Targets | W0 | Old full12 q15 causal e8 | Q7 e8 | Q7 e8 minus e4 |
 |---|---:|---:|---:|---:|---:|
@@ -235,8 +245,8 @@ Q7 e8 weighs 2,073,147 bytes: 116 fewer than e4, 28,333 above its
 initialization, and 1,662,356 saved across both copies against W0. The original
 kappa=1 selector allows 0.015724698 nats/target; the observed primary residual
 is 0.315582217, giving proxy -31,699,810.61 bytes. The [separate e0 control](#training-relative-to-the-initial-quantized-model)
-now measures the initialization's native scope. Same-weight probabilities and closed coded bytes follow
-the original terminal audit; next input is new e12/native or actual terminal/error.
+now measures the initialization's native scope. Same-weight probabilities and
+closed coded bytes are in the [complete terminal audit](q7-teacher-only-terminal.md).
 This local report adds zero network, model, native, collector or codec calls.
 
 ```sh
@@ -267,8 +277,9 @@ of the contained-long loss. The giant's loss grows by 0.611062066 from the
 initialization. The initial quantization raises loss on all 473 primary pieces.
 These observations separate the initial grid distortion from the trajectory's
 different domain responses. The primary holdout and same-weight byte audit
-continue to govern selection; the long and giant scopes retain their report-only
-role. The original complete32 trajectory continues unchanged.
+govern the original selection; the long and giant scopes retain their report-only
+role. The [complete32 terminal](q7-teacher-only-terminal.md) now supplies e28
+selection, e32 final and their paired native learning/residual decomposition.
 
 [The exact e0 measurement source](q7-initial-native.py) reads the preserved
 initial weight and original manifest; its two `eval-pieces` commands leave the
@@ -282,7 +293,7 @@ python3 -B research/q7-terminal-readout.py --check
 ```
 
 
-## Latest stage aggregate: hard epoch sixteen
+## Historical stage aggregate: hard epoch sixteen
 
 The original unique watcher returned e16 on 9 November 2026 at 16:27 CST.
 Full held / contained long / independent giant NLL falls
@@ -290,5 +301,6 @@ Full held / contained long / independent giant NLL falls
 The primary initialization loss has recovered **46.1159%**; its W0 residual is
 **+0.194970680**. The hard export is **2,076,739 B**, saving **1,655,172 B**
 across both weight copies. This [stage readout](results/q7-native-e16-stage.json)
-uses the cached native aggregate; the complete raw curve and sole selected-W
-codec measurement follow the original training terminal.
+uses the cached native aggregate; the [complete raw curve and sole selected-W
+codec measurement](q7-teacher-only-terminal.md) now follow the original
+training terminal in full.
