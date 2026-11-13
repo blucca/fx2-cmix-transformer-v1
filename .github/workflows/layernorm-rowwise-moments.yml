@@ -1,0 +1,52 @@
+name: LayerNorm row-wise moments native probe
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  moments:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-24.04, windows-2025]
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 15
+    env:
+      OMP_NUM_THREADS: "1"
+      MKL_NUM_THREADS: "1"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            /research/layernorm-rowwise-moments/
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install the stock CPU runtime
+        run: |
+          python -m pip install --no-cache-dir torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
+          python -m pip install --no-cache-dir numpy==2.5.4
+
+      - uses: ilammy/msvc-dev-cmd@v1
+        if: runner.os == 'Windows'
+        with:
+          arch: x64
+
+      - name: Record runtime and AVX2 header results
+        run: python research/layernorm-rowwise-moments/run.py --out temp/layernorm-moments
+
+      - name: Upload measurement records
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: layernorm-moments-${{ runner.os }}-torch-2.15.0
+          path: |
+            temp/layernorm-moments/*.json
+            temp/layernorm-moments/*.log
+            temp/layernorm-moments/installed-moments_utils.h
