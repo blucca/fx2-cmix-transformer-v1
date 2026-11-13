@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/gain/temp/round566/ovc-bf16/repro_bf16.py", line 137, in <module>
+    compiled = core.compile_model(f32_model, "CPU", {"INFERENCE_NUM_THREADS": 2,
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/gain/temp/round566/ovc-bf16/venv/lib/python3.12/site-packages/openvino/_ov_api.py", line 646, in compile_model
+    super().compile_model(model, device_name, {} if config is None else config),
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Exception from src/inference/src/cpp/core.cpp:117:
+Exception from src/inference/src/dev/plugin.cpp:54:
+Check 'output_index >= 0' failed at src/plugins/intel_cpu/src/graph.cpp:209:
+CPU plugin cannot find op: Result_7531 in model result list!
+
+
+

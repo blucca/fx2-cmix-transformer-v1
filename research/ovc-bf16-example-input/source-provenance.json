@@ -1,0 +1,11 @@
+{
+  "issue_url": "https://github.com/openvinotoolkit/openvino/issues/39490",
+  "issue_author": "Somay-kousis",
+  "source_path": "tools/ovc/openvino/tools/ovc/moc_frontend/pytorch_frontend_utils.py",
+  "source_contents_url": "https://api.github.com/repos/openvinotoolkit/openvino/contents/tools/ovc/openvino/tools/ovc/moc_frontend/pytorch_frontend_utils.py?ref=master",
+  "source_blob": "fcefef42b3abc31b63c6c52a119545db2fdab805",
+  "source_git_url": "https://api.github.com/repos/openvinotoolkit/openvino/git/blobs/fcefef42b3abc31b63c6c52a119545db2fdab805",
+  "source_sha256": "7b5adffcce6f5cb2d0c4117421c8006bef515b6a068fa927f249563edfba262a",
+  "source_bytes": 20174,
+  "source_commit_context": "Fetched master source; blob SHA is pinned. Issue states 313eee5a3de Python over 2026.5.0-23394 nightly."
+}

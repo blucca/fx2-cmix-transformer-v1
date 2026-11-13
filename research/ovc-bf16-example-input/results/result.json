@@ -1,0 +1,132 @@
+{
+  "issue": "https://github.com/openvinotoolkit/openvino/issues/39490",
+  "original_report_author": "Somay-kousis",
+  "platform": "Linux-6.8.0-142-generic-x86_64-with-glibc2.39",
+  "versions": {
+    "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+    "torch": "2.9.0+cpu",
+    "torch_cuda": null,
+    "openvino": "2026.4.1-22982-e213a147257-releases/2026/4",
+    "openvino_build": "2026.4.1-22982-e213a147257-releases/2026/4",
+    "numpy": "2.5.4"
+  },
+  "threads": {
+    "torch": 2,
+    "torch_interop": 1,
+    "openvino_cpu": 2,
+    "openvino_streams": 1
+  },
+  "installed_helper": {
+    "module": "openvino.tools.ovc.moc_frontend.pytorch_frontend_utils",
+    "path": "venv/lib/python3.12/site-packages/openvino/tools/ovc/moc_frontend/pytorch_frontend_utils.py",
+    "function_sha256": "25d07cb161ac26af39eafc9fafda5b677f119a0c090a682f3f1658b3a0cef940",
+    "package_file_sha256": "eaaa8f31aa8bc93d6a2a4b45ab5963dfc3eb07ff804e4632cb83ac97d81cd0c3"
+  },
+  "stock": {
+    "tensor_data_numpy_dtype": "float16",
+    "helper": {
+      "dtype": "torch.float16",
+      "values": [
+        1.9375,
+        -2.0
+      ],
+      "bits_u16": [
+        "0x3fc0",
+        "0xc000"
+      ]
+    },
+    "converted_input_type": "<Type: 'float16'>"
+  },
+  "numeric_cast_control": {
+    "helper": {
+      "dtype": "torch.bfloat16",
+      "values": [
+        1.9375,
+        -2.0
+      ],
+      "bits_u16": [
+        "0x3ff8",
+        "0xc000"
+      ]
+    },
+    "converted_input_type": "<Type: 'bfloat16'>",
+    "same_cpu_graph_input_type": "<Type: 'bfloat16'>",
+    "inference_output_numpy_dtype": "float32",
+    "inference_values": [
+      3.875,
+      -4.0
+    ]
+  },
+  "direct_torch_bf16": {
+    "helper": {
+      "dtype": "torch.bfloat16",
+      "values": [
+        1.5,
+        -2.0
+      ],
+      "bits_u16": [
+        "0x3fc0",
+        "0xc000"
+      ]
+    },
+    "converted_input_type": "<Type: 'bfloat16'>"
+  },
+  "edge_bits_preserved": [
+    "0x0000",
+    "0x8000",
+    "0x3fc0",
+    "0xc000",
+    "0x7f80",
+    "0xff80",
+    "0x7fc1"
+  ],
+  "copy_semantics": "PASS: mutating the ov.Tensor storage leaves the Torch copy unchanged",
+  "nested": {
+    "leaf_dtypes": [
+      "torch.bfloat16",
+      "torch.bfloat16",
+      "torch.bfloat16"
+    ],
+    "list_result_type": "tuple",
+    "tuple_dict": "PASS"
+  },
+  "ordinary_fp16_control": {
+    "helper": {
+      "dtype": "torch.float16",
+      "values": [
+        1.5,
+        -2.0
+      ],
+      "bits_u16": [
+        "0x3e00",
+        "0xc000"
+      ]
+    },
+    "converted_input_type": "<Type: 'float16'>"
+  },
+  "fixed": {
+    "helper": {
+      "dtype": "torch.bfloat16",
+      "values": [
+        1.5,
+        -2.0
+      ],
+      "bits_u16": [
+        "0x3fc0",
+        "0xc000"
+      ]
+    },
+    "converted_input_type": "<Type: 'bfloat16'>",
+    "output_type_in_graph": "<Type: 'float32'>",
+    "cpu_device": "AMD EPYC 9254 24-Core Processor                ",
+    "compiled_input_type": "<Type: 'bfloat16'>",
+    "compiled_output_type": "<Type: 'float32'>",
+    "inference_output_numpy_dtype": "float32",
+    "inference_values": [
+      3.0,
+      -4.0
+    ]
+  },
+  "package_file_unchanged": true,
+  "status": "PASS"
+}

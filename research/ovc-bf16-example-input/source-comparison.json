@@ -1,0 +1,6 @@
+{
+  "installed_vs_fetched_master_function_ast_equal": true,
+  "installed_overlay_vs_master_patch_function_ast_equal": true,
+  "fetched_master_blob": "fcefef42b3abc31b63c6c52a119545db2fdab805",
+  "installed_package_file_unchanged": true
+}

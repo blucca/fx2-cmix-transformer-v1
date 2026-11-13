@@ -1,0 +1,2 @@
+STOCK {"tensor_data_numpy_dtype": "float16", "helper": {"dtype": "torch.float16", "values": [1.9375, -2.0], "bits_u16": ["0x3fc0", "0xc000"]}, "converted_input_type": "<Type: 'float16'>"}
+DIRECT {"helper": {"dtype": "torch.bfloat16", "values": [1.5, -2.0], "bits_u16": ["0x3fc0", "0xc000"]}, "converted_input_type": "<Type: 'bfloat16'>"}

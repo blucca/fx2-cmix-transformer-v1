@@ -25,6 +25,8 @@ walks through the complete causal result, direct-update exposure and package cha
 with FP32 activations; complete AVX2 M1 improvement and M197 regressions.
 [Native Q8M1](ort-q8-m1-native/): a single custom operator with one-time
 constant-weight prepacking, 0.146 ms whole-call and full numerical controls.
+[OpenVINO BF16 example inputs](ovc-bf16-example-input/): a native dtype-and-value
+check plus a small helper patch; numeric-cast and typed-byte controls share one CPU graph.
 
 [CPU adjoints](cpu-backward.md) · [Causal inputs and resets](causal-priors.md#exact-input-contract) ·
 [Native eight-block export](depth-distillation.md#native-identity-and-actual-measurement) ·
