@@ -74,12 +74,12 @@ def main():
     header = include / 'ATen/native/cpu/moments_utils.h'
     shutil.copyfile(header, out / 'installed-moments_utils.h')
     if os.name == 'nt':
-        command = ['cl', '/nologo', '/O2', '/std:c++17', '/arch:AVX2', '/EHsc', '/DNDEBUG',
+        command = ['cl', '/nologo', '/O2', '/std:c++20', '/arch:AVX2', '/EHsc', '/DNDEBUG',
                    '/DCPU_CAPABILITY=AVX2', '/DCPU_CAPABILITY_AVX2', '/I' + str(include),
                    str(source), '/Fo' + str(out / 'moments.obj'), '/Fe' + str(executable),
                    '/link', '/LIBPATH:' + str(libraries), 'c10.lib', 'torch_cpu.lib']
     else:
-        command = [os.environ.get('CXX', 'c++'), '-O3', '-std=c++17', '-mavx2', '-mfma', '-DNDEBUG',
+        command = [os.environ.get('CXX', 'c++'), '-O3', '-std=c++20', '-mavx2', '-mfma', '-DNDEBUG',
                    '-DCPU_CAPABILITY=AVX2', '-DCPU_CAPABILITY_AVX2', '-I', str(include),
                    str(source), '-L', str(libraries), '-Wl,-rpath,' + str(libraries),
                    '-lc10', '-ltorch_cpu', '-o', str(executable)]

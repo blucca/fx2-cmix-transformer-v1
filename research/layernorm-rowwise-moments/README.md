@@ -6,7 +6,7 @@ The reported thresholds line up with a change from `RowwiseMomentsImpl<T,4>` to 
 
 ## Run
 
-Use Python 3.12, a C++17 compiler and an x86-64 AVX2/FMA CPU. On Windows run from a Visual Studio x64 developer shell.
+Use Python 3.12, a C++20 compiler and an x86-64 AVX2/FMA CPU. On Windows run from a Visual Studio x64 developer shell.
 
 ```sh
 python -m pip install torch==2.15.0 --index-url https://download.pytorch.org/whl/cpu
