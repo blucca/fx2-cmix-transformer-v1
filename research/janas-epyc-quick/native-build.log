@@ -1,0 +1,733 @@
+note: building without GPU support: it needs glslangValidator (glslang-tools, glslang), 15.2 or later and the Vulkan headers (libvulkan-dev, vulkan-headers)
+GEN src/server/monitor.html
+GEN src/server/test.html
+CC  src/third_party/libmicrohttpd/src/microhttpd/connection.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/daemon.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/internal.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/memorypool.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_compat.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_itc.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_mono_clock.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_panic.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_send.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_sockets.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_str.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/mhd_threads.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/reason_phrase.c
+CC  src/third_party/libmicrohttpd/src/microhttpd/response.c
+CC  src/third_party/mbedtls/library/debug.c
+CC  src/third_party/mbedtls/library/error.c
+CC  src/third_party/mbedtls/library/mbedtls_config.c
+CC  src/third_party/mbedtls/library/mps_reader.c
+CC  src/third_party/mbedtls/library/mps_trace.c
+CC  src/third_party/mbedtls/library/net_sockets.c
+CC  src/third_party/mbedtls/library/pkcs7.c
+CC  src/third_party/mbedtls/library/ssl_cache.c
+CC  src/third_party/mbedtls/library/ssl_ciphersuites.c
+CC  src/third_party/mbedtls/library/ssl_client.c
+CC  src/third_party/mbedtls/library/ssl_cookie.c
+CC  src/third_party/mbedtls/library/ssl_debug_helpers_generated.c
+CC  src/third_party/mbedtls/library/ssl_msg.c
+CC  src/third_party/mbedtls/library/ssl_ticket.c
+CC  src/third_party/mbedtls/library/ssl_tls12_client.c
+CC  src/third_party/mbedtls/library/ssl_tls12_server.c
+CC  src/third_party/mbedtls/library/ssl_tls13_client.c
+CC  src/third_party/mbedtls/library/ssl_tls13_generic.c
+CC  src/third_party/mbedtls/library/ssl_tls13_keys.c
+CC  src/third_party/mbedtls/library/ssl_tls13_server.c
+CC  src/third_party/mbedtls/library/ssl_tls.c
+CC  src/third_party/mbedtls/library/timing.c
+CC  src/third_party/mbedtls/library/version.c
+CC  src/third_party/mbedtls/library/version_features.c
+CC  src/third_party/mbedtls/library/x509.c
+CC  src/third_party/mbedtls/library/x509_create.c
+CC  src/third_party/mbedtls/library/x509_crl.c
+CC  src/third_party/mbedtls/library/x509_crt.c
+CC  src/third_party/mbedtls/library/x509_csr.c
+CC  src/third_party/mbedtls/library/x509_oid.c
+CC  src/third_party/mbedtls/library/x509write.c
+CC  src/third_party/mbedtls/library/x509write_crt.c
+CC  src/third_party/mbedtls/library/x509write_csr.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_crypto.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_crypto_client.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_crypto_driver_wrappers_no_static.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_crypto_random.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_crypto_slot_management.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_crypto_storage.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_its_file.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/psa_util.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/tf_psa_crypto_config.c
+CC  src/third_party/mbedtls/tf-psa-crypto/core/tf_psa_crypto_version.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/aes.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/aesce.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/aesni.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/aria.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/bignum.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/bignum_core.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/bignum_mod.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/bignum_mod_raw.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/block_cipher.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/camellia.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/ccm.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/chacha20.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/chacha20_neon.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/chachapoly.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/cipher.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/cipher_wrap.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/cmac.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/ctr_drbg.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/ecdsa.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/ecjpake.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/ecp.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/ecp_curves.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/entropy.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/entropy_poll.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/gcm.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/hmac_drbg.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/md5.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/poly1305.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_aead.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_cipher.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_ecp.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_ffdh.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_hash.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_mac.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_pake.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_rsa.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_crypto_xof.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/psa_util_internal.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/ripemd160.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/rsa_alt_helpers.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/rsa.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/sha1.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/sha256.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/sha3.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/builtin/src/sha512.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/everest/library/Hacl_Curve25519_joined.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/everest/library/x25519.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/p256-m/p256-m_driver_entrypoints.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/p256-m/p256-m/p256-m.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/pqcp/src/psa_crypto_mldsa.c
+CC  src/third_party/mbedtls/tf-psa-crypto/drivers/pqcp/src/wrap_mldsa_native.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/lmots.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/lms.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/md.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/nist_kw.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/pk.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/pk_ecc.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/pkparse.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/pk_rsa.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/pk_wrap.c
+CC  src/third_party/mbedtls/tf-psa-crypto/extras/pkwrite.c
+CC  src/third_party/mbedtls/tf-psa-crypto/platform/memory_buffer_alloc.c
+CC  src/third_party/mbedtls/tf-psa-crypto/platform/platform.c
+CC  src/third_party/mbedtls/tf-psa-crypto/platform/platform_util.c
+CC  src/third_party/mbedtls/tf-psa-crypto/platform/threading.c
+CC  src/third_party/mbedtls/tf-psa-crypto/utilities/asn1parse.c
+CC  src/third_party/mbedtls/tf-psa-crypto/utilities/asn1write.c
+CC  src/third_party/mbedtls/tf-psa-crypto/utilities/base64.c
+CC  src/third_party/mbedtls/tf-psa-crypto/utilities/constant_time.c
+CC  src/third_party/mbedtls/tf-psa-crypto/utilities/oid.c
+CC  src/third_party/mbedtls/tf-psa-crypto/utilities/pem.c
+CC  src/third_party/mbedtls/tf-psa-crypto/utilities/pkcs5.c
+CC  src/third_party/yyjson/yyjson.c
+CC  src/common/audio_aac.c
+CC  src/common/audio_aac_eld.c
+CC  src/common/audio_aac_ps.c
+CC  src/common/audio_aac_sbr.c
+CC  src/common/audio_aac_usac.c
+CC  src/common/audio_alac.c
+CC  src/common/audio.c
+CC  src/common/audio_fft.c
+CC  src/common/audio_flac.c
+CC  src/common/audio_mkv.c
+CC  src/common/audio_mp2.c
+CC  src/common/audio_mp3.c
+CC  src/common/audio_mp4.c
+CC  src/common/audio_ogg.c
+CC  src/common/audio_opus.c
+CC  src/common/audio_opus_celt.c
+CC  src/common/audio_opus_silk.c
+CC  src/common/audio_stream.c
+CC  src/common/audio_vorbis.c
+CC  src/common/audio_wav.c
+CC  src/common/catalog.c
+CC  src/common/cpu_features.c
+CC  src/common/deflate.c
+CC  src/common/devices.c
+CC  src/common/env_names.c
+CC  src/common/hf_download.c
+CC  src/common/hf_fetch.c
+CC  src/common/hf_safetensors.c
+CC  src/common/image.c
+CC  src/common/image_jpeg.c
+CC  src/common/image_png.c
+CC  src/common/image_resize.c
+CC  src/common/inflate.c
+CC  src/common/jsonc.c
+CC  src/common/mcp_client.c
+CC  src/common/mcp_client_http.c
+CC  src/common/mcp_config.c
+CC  src/common/mcp_content.c
+CC  src/common/mcp_http.c
+CC  src/common/mcp_policy.c
+CC  src/common/mcp_rpc.c
+CC  src/common/mcp_server.c
+CC  src/common/mcp_stdio.c
+CC  src/common/mcp_tls.c
+CC  src/common/md5.c
+CC  src/common/model_pick.c
+CC  src/common/model_scan.c
+CC  src/common/npu_amd.c
+CC  src/common/npu.c
+CC  src/common/npu_ir.c
+CC  src/common/pool.c
+CC  src/common/proc.c
+CC  src/common/proc_win.c
+CC  src/common/reopen.c
+CC  src/common/sandbox.c
+CC  src/common/sha256.c
+CC  src/common/sock.c
+CC  src/common/stop.c
+CC  src/common/sysinfo.c
+CC  src/common/sysinfo_win.c
+CC  src/common/uring.c
+CC  src/common/uring_win.c
+CC  src/common/win_compat.c
+CC  src/common/win_posix.c
+CC  src/common/words.c
+CC  src/llm/api_aside.c
+CC  src/llm/api.c
+CC  src/llm/api_chat.c
+CC  src/llm/api_chatfile.c
+CC  src/llm/api_embed.c
+CC  src/llm/api_find.c
+CC  src/llm/api_image.c
+CC  src/llm/api_keep.c
+CC  src/llm/api_keep_disk.c
+CC  src/llm/api_load.c
+CC  src/llm/api_nucleus.c
+CC  src/llm/api_reply.c
+CC  src/llm/api_speech.c
+CC  src/llm/api_speech_diar.c
+CC  src/llm/api_stats.c
+CC  src/llm/api_tools.c
+CC  src/llm/api_transcript.c
+CC  src/llm/arch.c
+CC  src/llm/attention.c
+CC  src/llm/bf16.c
+CC  src/llm/constrain.c
+CC  src/llm/deltanet.c
+CC  src/llm/diarize.c
+CC  src/llm/expert_cache.c
+CC  src/llm/gate.c
+CC  src/llm/generate.c
+CC  src/llm/gguf.c
+CC  src/llm/gmatch.c
+CC  src/llm/gpu.c
+CC  src/llm/gpu_fma.c
+CC  src/llm/gpu_selfcheck.c
+CC  src/llm/gpu_token.c
+CC  src/llm/gpu_token_hc.c
+CC  src/llm/gpu_token_moe.c
+CC  src/llm/gpu_token_qsa.c
+CC  src/llm/gpu_token_rec.c
+CC  src/llm/grammar.c
+CC  src/llm/jmath.c
+CC  src/llm/jns.c
+CC  src/llm/jns_write.c
+CC  src/llm/json.c
+CC  src/llm/matvec.c
+CC  src/llm/metrics.c
+CC  src/llm/model_ana.c
+CC  src/llm/model_assist.c
+CC  src/llm/model_attn.c
+CC  src/llm/model.c
+CC  src/llm/model_doubt.c
+CC  src/llm/model_ffn.c
+CC  src/llm/model_gate.c
+CC  src/llm/model_gpu.c
+CC  src/llm/model_hc.c
+CC  src/llm/model_hc_quant.c
+CC  src/llm/model_load.c
+CC  src/llm/model_mamba.c
+CC  src/llm/model_media.c
+CC  src/llm/model_monitor.c
+CC  src/llm/model_neurons.c
+CC  src/llm/model_nh.c
+CC  src/llm/model_npu.c
+CC  src/llm/model_observe.c
+CC  src/llm/model_ple.c
+CC  src/llm/model_qsa.c
+CC  src/llm/model_rec.c
+CC  src/llm/model_state.c
+CC  src/llm/model_tune.c
+CC  src/llm/quant.c
+CC  src/llm/quant_q6k.c
+CC  src/llm/sample.c
+CC  src/llm/schema.c
+CC  src/llm/schema_num.c
+CC  src/llm/schema_re.c
+CC  src/llm/speaker.c
+CC  src/llm/tokenizer.c
+CC  src/llm/tools.c
+CC  src/llm/tuner.c
+CC  src/llm/vad.c
+CC  src/llm/vision.c
+CC  src/llm/vision_gemma.c
+CC  src/llm/vision_gemma_u.c
+CC  src/llm/vision_kernels.c
+CC  src/llm/whisper_align.c
+CC  src/llm/whisper.c
+CC  src/llm/whisper_mel.c
+CC  src/llm/whisper_net.c
+CC  src/llm/whisper_run.c
+CC  src/services/common/conf.c
+CC  src/services/common/geo.c
+CC  src/services/common/https_get.c
+CC  src/services/common/locate.c
+CC  src/services/common/run.c
+CC  src/services/common/template.c
+CC  src/services/common/tz.c
+LD  bin/x86_64-linux/libjanas_llm.so
+LD  bin/x86_64-linux/libjanas_mcp.so
+CC  src/node/addon.c
+CC  src/node/chat.c
+CC  src/node/engine.c
+CC  src/node/history.c
+CC  src/node/model.c
+CC  src/node/reply.c
+CC  src/node/speech.c
+LD  bin/x86_64-linux/janas.node
+LD  bin/x86_64-linux/bench_attn
+LD  bin/x86_64-linux/bench_gemm
+LD  bin/x86_64-linux/bench_kernels
+LD  bin/x86_64-linux/bench_long
+LD  bin/x86_64-linux/bench_matvec
+LD  bin/x86_64-linux/bench_moe_layer
+LD  bin/x86_64-linux/bench_power
+LD  bin/x86_64-linux/fb_check
+LD  bin/x86_64-linux/gpu_check
+LD  bin/x86_64-linux/gpu_fast_check
+LD  bin/x86_64-linux/gpu_ffn_check
+LD  bin/x86_64-linux/jns_check
+LD  bin/x86_64-linux/llm_eval
+LD  bin/x86_64-linux/llm_gen
+LD  bin/x86_64-linux/llm_keep
+LD  bin/x86_64-linux/llm_session
+LD  bin/x86_64-linux/llm_slide
+LD  bin/x86_64-linux/mcp_fake_server
+LD  bin/x86_64-linux/mtp_eval
+LD  bin/x86_64-linux/node_check
+LD  bin/x86_64-linux/npu_check
+LD  bin/x86_64-linux/test_aligned
+LD  bin/x86_64-linux/test_attention
+LD  bin/x86_64-linux/test_audio
+LD  bin/x86_64-linux/test_chatfile
+LD  bin/x86_64-linux/test_deflate
+LD  bin/x86_64-linux/test_deltanet
+LD  bin/x86_64-linux/test_diarize
+LD  bin/x86_64-linux/test_expert_cache
+LD  bin/x86_64-linux/test_fb
+LD  bin/x86_64-linux/test_files
+LD  bin/x86_64-linux/test_flights_parse
+LD  bin/x86_64-linux/test_gate
+LD  bin/x86_64-linux/test_geo
+LD  bin/x86_64-linux/test_get_catalog
+LD  bin/x86_64-linux/test_gguf
+LD  bin/x86_64-linux/test_github_parse
+LD  bin/x86_64-linux/test_git_parse
+LD  bin/x86_64-linux/test_gpu_output_copy
+LD  bin/x86_64-linux/test_grammar
+LD  bin/x86_64-linux/test_image
+LD  bin/x86_64-linux/test_import_regions
+LD  bin/x86_64-linux/test_jmath
+LD  bin/x86_64-linux/test_jns
+LD  bin/x86_64-linux/test_jsonc
+LD  bin/x86_64-linux/test_layout
+LD  bin/x86_64-linux/test_locate
+LD  bin/x86_64-linux/test_maps_parse
+LD  bin/x86_64-linux/test_mcp
+LD  bin/x86_64-linux/test_model_pick
+LD  bin/x86_64-linux/test_mxfp4
+LD  bin/x86_64-linux/test_node
+LD  bin/x86_64-linux/test_npu
+LD  bin/x86_64-linux/test_nsm
+LD  bin/x86_64-linux/test_pool
+LD  bin/x86_64-linux/test_prices_parse
+LD  bin/x86_64-linux/test_quakes_parse
+LD  bin/x86_64-linux/test_quant
+LD  bin/x86_64-linux/test_sample
+LD  bin/x86_64-linux/test_sandbox
+LD  bin/x86_64-linux/test_server_anthropic
+LD  bin/x86_64-linux/test_server_files
+LD  bin/x86_64-linux/test_server_fim
+LD  bin/x86_64-linux/test_server_ollama
+LD  bin/x86_64-linux/test_server_origin
+LD  bin/x86_64-linux/test_server_request
+LD  bin/x86_64-linux/test_server_store
+LD  bin/x86_64-linux/test_setup
+LD  bin/x86_64-linux/test_sha256
+LD  bin/x86_64-linux/test_system_parse
+LD  bin/x86_64-linux/test_template
+LD  bin/x86_64-linux/test_tools
+LD  bin/x86_64-linux/test_tuner
+LD  bin/x86_64-linux/test_weather_parse
+LD  bin/x86_64-linux/test_wiki_parse
+LD  bin/x86_64-linux/test_words
+LD  bin/x86_64-linux/tok_check
+LD  bin/x86_64-linux/vocab_check
+LD  bin/x86_64-linux/gen_geo
+LD  bin/x86_64-linux/gen_unicode
+LD  bin/x86_64-linux/gguf2jns
+LD  bin/x86_64-linux/hf2gguf
+LD  bin/x86_64-linux/hf2jns_mtp
+LD  bin/x86_64-linux/hf2jns_vision
+LD  bin/x86_64-linux/hf2jns_whisper
+LD  bin/x86_64-linux/jns_neurons
+LD  bin/x86_64-linux/jns_planes
+LD  bin/x86_64-linux/openapi_routes
+LD  bin/x86_64-linux/silero2jns
+LD  bin/x86_64-linux/spv_fma
+LD  bin/x86_64-linux/vkcheck
+LD  bin/x86_64-linux/wespeaker2jns
+LD  bin/x86_64-linux/janas-bench
+CC  src/chat/audio_cmd.c
+CC  src/chat/chats_menu.c
+CC  src/chat/glossary.c
+CC  src/chat/layout.c
+CC  src/chat/mcp_chat.c
+CC  src/chat/menu_draw.c
+CC  src/chat/model_menu.c
+CC  src/chat/monitor_page.c
+CC  src/chat/options.c
+CC  src/chat/tty.c
+CC  src/chat/tune.c
+LD  bin/x86_64-linux/janas-chat
+CC  src/get/steps.c
+LD  bin/x86_64-linux/janas-get
+CC  src/mcp/tools.c
+LD  bin/x86_64-linux/janas-mcp
+CC  src/nsm/lexicon.c
+CC  src/nsm/score.c
+CC  src/nsm/vocab.c
+LD  bin/x86_64-linux/janas-nsm
+CC  src/server/anthropic.c
+CC  src/server/anthropic_req.c
+CC  src/server/assistants.c
+CC  src/server/audio.c
+CC  src/server/batches.c
+CC  src/server/chat.c
+CC  src/server/chat_out.c
+CC  src/server/chat_stream.c
+CC  src/server/containers.c
+CC  src/server/conversations.c
+CC  src/server/embeddings.c
+CC  src/server/engine.c
+CC  src/server/evals.c
+CC  src/server/evals_metrics.c
+CC  src/server/files.c
+CC  src/server/files_store.c
+CC  src/server/fim.c
+CC  src/server/http.c
+CC  src/server/images.c
+CC  src/server/infill.c
+CC  src/server/models.c
+CC  src/server/moderations.c
+CC  src/server/monitor.c
+CC  src/server/multipart.c
+CC  src/server/ollama.c
+CC  src/server/ollama_chat.c
+CC  src/server/ollama_req.c
+CC  src/server/origin.c
+CC  src/server/request.c
+CC  src/server/request_opts.c
+CC  src/server/responses.c
+CC  src/server/responses_in.c
+CC  src/server/responses_mcp.c
+CC  src/server/responses_out.c
+CC  src/server/runs.c
+CC  src/server/runs_stream.c
+CC  src/server/store.c
+CC  src/server/stored.c
+CC  src/server/store_disk.c
+CC  src/server/tls.c
+CC  src/server/uploads.c
+CC  src/server/vectors_api.c
+CC  src/server/vectors_batches.c
+CC  src/server/vectors.c
+CC  src/server/web_search.c
+LD  bin/x86_64-linux/janas-server
+CC  src/setup/continue_cfg.c
+CC  src/setup/editors.c
+CC  src/setup/plan.c
+CC  src/setup/serve.c
+CC  src/setup/vscode_cfg.c
+LD  bin/x86_64-linux/janas-setup
+CC  src/services/files/place.c
+CC  src/services/files/read.c
+CC  src/services/files/tools.c
+CC  src/services/files/write.c
+LD  bin/x86_64-linux/janas-files
+CC  src/services/flights/adsb.c
+CC  src/services/flights/layouts.c
+CC  src/services/flights/route.c
+CC  src/services/flights/schedule.c
+CC  src/services/flights/tools.c
+LD  bin/x86_64-linux/janas-flights
+CC  src/services/github/data.c
+CC  src/services/github/fetch.c
+CC  src/services/github/layouts.c
+CC  src/services/github/read.c
+CC  src/services/github/repo.c
+CC  src/services/github/seen.c
+CC  src/services/github/tools.c
+LD  bin/x86_64-linux/janas-github
+CC  src/services/git/data.c
+CC  src/services/git/layouts.c
+CC  src/services/git/read.c
+CC  src/services/git/repo.c
+CC  src/services/git/run.c
+CC  src/services/git/tools.c
+CC  src/services/git/write.c
+LD  bin/x86_64-linux/janas-git
+CC  src/services/maps/data.c
+CC  src/services/maps/fetch.c
+CC  src/services/maps/layouts.c
+CC  src/services/maps/nearby.c
+CC  src/services/maps/place.c
+CC  src/services/maps/read.c
+CC  src/services/maps/route.c
+CC  src/services/maps/tools.c
+CC  src/services/maps/transit.c
+LD  bin/x86_64-linux/janas-maps
+CC  src/services/prices/data.c
+CC  src/services/prices/fetch.c
+CC  src/services/prices/fuel.c
+CC  src/services/prices/layouts.c
+CC  src/services/prices/macro.c
+CC  src/services/prices/money.c
+CC  src/services/prices/place.c
+CC  src/services/prices/read.c
+CC  src/services/prices/read_fuel.c
+CC  src/services/prices/tools.c
+LD  bin/x86_64-linux/janas-prices
+CC  src/services/quakes/data.c
+CC  src/services/quakes/fetch.c
+CC  src/services/quakes/layouts.c
+CC  src/services/quakes/place.c
+CC  src/services/quakes/read.c
+CC  src/services/quakes/tools.c
+LD  bin/x86_64-linux/janas-quakes
+CC  src/services/system/data.c
+CC  src/services/system/layouts.c
+CC  src/services/system/linux.c
+CC  src/services/system/read.c
+CC  src/services/system/tools.c
+CC  src/services/system/usage.c
+CC  src/services/system/windows.c
+LD  bin/x86_64-linux/janas-system
+CC  src/services/weather/alerts.c
+CC  src/services/weather/fetch.c
+CC  src/services/weather/layouts.c
+CC  src/services/weather/metar.c
+CC  src/services/weather/metno.c
+CC  src/services/weather/openmeteo.c
+CC  src/services/weather/place.c
+CC  src/services/weather/report.c
+CC  src/services/weather/sea.c
+CC  src/services/weather/tools.c
+CC  src/services/weather/warn.c
+CC  src/services/weather/words.c
+LD  bin/x86_64-linux/janas-weather
+CC  src/services/wiki/fetch.c
+CC  src/services/wiki/read.c
+CC  src/services/wiki/tools.c
+LD  bin/x86_64-linux/janas-wiki
+RUN bin/x86_64-linux/test_aligned
+test_aligned: ok
+RUN bin/x86_64-linux/test_attention
+heads 16/2 dim 256, positions    0..   0, exact: error 5.96e-08, blocks bit-identical
+heads 16/2 dim 256, positions    0..  63, exact: error 9.18e-07, blocks bit-identical
+heads 16/2 dim 256, positions  250.. 266, exact: error 2.07e-06, blocks bit-identical
+heads 16/2 dim 256, positions  700.. 704, exact: error 1.13e-06, blocks bit-identical
+heads 32/4 dim 128, positions  300.. 363, exact: error 2.13e-06, blocks bit-identical
+heads 12/4 dim  64, positions  511.. 513, exact: error 4.67e-07, blocks bit-identical
+heads 16/2 dim 256, positions    0..   0, fast : error 2.10e-07, blocks bit-identical
+heads 16/2 dim 256, positions    0..  63, fast : error 2.43e-04, blocks bit-identical
+heads 16/2 dim 256, positions  250.. 266, fast : error 4.06e-04, blocks bit-identical
+heads 16/2 dim 256, positions  700.. 704, fast : error 2.17e-04, blocks bit-identical
+heads 32/4 dim 128, positions  300.. 363, fast : error 5.68e-04, blocks bit-identical
+heads 12/4 dim  64, positions  511.. 513, fast : error 2.67e-04, blocks bit-identical
+heads 16/8 dim 256, positions    0..  63, 16-bit, window    0: error 2.43e-07, blocks bit-identical
+heads 16/8 dim 256, positions  700.. 763, 16-bit, window  256: error 1.77e-07, blocks bit-identical
+heads 16/1 dim 512, positions  250.. 266, 16-bit, window    0: error 4.57e-07, blocks bit-identical
+heads 16/8 dim 256, positions 1030..1034, 16-bit, window 1024: error 5.41e-08, blocks bit-identical
+both ways, picture  230.. 289 in  200.. 299: error 1.62e-06
+both ways, picture    0..  63 in    0..  63: error 1.52e-06
+both ways, picture  510.. 689 in  500.. 699: error 1.72e-06
+test_attention: ok (avx512-vnni, checksum 98258d12b36e3415)
+RUN bin/x86_64-linux/test_audio
+test_audio: ok (WAV of 11 kinds, 15 clips of other formats, resampling; broken copies: 8843 read, 11101 refused)
+RUN bin/x86_64-linux/test_chatfile
+test_chatfile: ok
+RUN bin/x86_64-linux/test_deflate
+test_deflate: ok (12 texts, 6 generated, the sizes zlib gives)
+RUN bin/x86_64-linux/test_deltanet
+ref  dim   8, 64 steps: output error 6.27e-08, state error 9.19e-08
+fast dim   8, 64 steps: output error 3.45e-08, state error 3.88e-08
+ref  dim  24, 64 steps: output error 2.87e-08, state error 3.34e-08
+fast dim  24, 64 steps: output error 1.72e-08, state error 6.95e-08
+ref  dim 128, 64 steps: output error 1.55e-08, state error 2.74e-08
+fast dim 128, 64 steps: output error 5.46e-09, state error 3.14e-08
+half state dim 128, 256 steps: output error 1.25e-05 (of 0.04)
+kernel: avx2
+test_deltanet: ok
+RUN bin/x86_64-linux/test_diarize
+test_diarize: ok
+RUN bin/x86_64-linux/test_expert_cache
+test_expert_cache (io_uring if available): 9000 requests, 2432 hits (model 2432)
+test_expert_cache (both ways): 9000 requests, 2432 hits (model 2432)
+test_expert_cache (thread pool): 9000 requests, 2432 hits (model 2432)
+test_expert_cache: ok
+RUN bin/x86_64-linux/test_fb
+test_fb: skipped, no FreeBASIC compiler (FBC, or fbc in the PATH)
+RUN bin/x86_64-linux/test_files
+test_files: ok
+RUN bin/x86_64-linux/test_flights_parse
+test_flights_parse: ok
+RUN bin/x86_64-linux/test_gate
+test_gate: 16584 mutations accepted (weights and names), ok
+RUN bin/x86_64-linux/test_geo
+test_geo: ok
+RUN bin/x86_64-linux/test_get_catalog
+test_get_catalog: ok (20 models)
+RUN bin/x86_64-linux/test_gguf
+test_gguf: 2986 of 20000 mutated heads accepted, ok
+RUN bin/x86_64-linux/test_github_parse
+test_github_parse: ok
+RUN bin/x86_64-linux/test_git_parse
+test_git_parse: ok
+RUN bin/x86_64-linux/test_gpu_output_copy
+test_gpu_output_copy: GPU disabled, skipped
+RUN bin/x86_64-linux/test_grammar
+test_grammar: ok
+RUN bin/x86_64-linux/test_image
+test_image: ok (10 pictures as Pillow; broken copies: 4064 read, 13371 refused)
+RUN bin/x86_64-linux/test_import_regions
+test_import_regions: ok
+RUN bin/x86_64-linux/test_jmath
+test_jmath: ok (expf within 0 ulp)
+RUN bin/x86_64-linux/test_jns
+test_jns: 2/20000 byte flips and 3427/20000 field mutations accepted, ok
+RUN bin/x86_64-linux/test_jsonc
+test_jsonc: all passed
+RUN bin/x86_64-linux/test_layout
+janas-chat: the layout test2 in it is not usable (the text came back untranslated): English is used, and this model is not asked again
+test_layout: ok
+RUN bin/x86_64-linux/test_locate
+test_locate: ok
+RUN bin/x86_64-linux/test_maps_parse
+test_maps_parse: ok
+RUN bin/x86_64-linux/test_mcp
+test_mcp: ok
+RUN bin/x86_64-linux/test_model_pick
+test_model_pick: all passed
+RUN bin/x86_64-linux/test_mxfp4
+test_mxfp4: ok
+RUN bin/x86_64-linux/test_node
+test_node: ok (/workspace/gain/temp/round563/janas-source/bin/x86_64-linux/janas.node, exit 0: checks 6)
+RUN bin/x86_64-linux/test_npu
+test_npu: ok
+RUN bin/x86_64-linux/test_nsm
+test_nsm: ok
+RUN bin/x86_64-linux/test_pool
+test_pool: ok
+RUN bin/x86_64-linux/test_prices_parse
+test_prices_parse: ok
+RUN bin/x86_64-linux/test_quakes_parse
+test_quakes_parse: ok
+RUN bin/x86_64-linux/test_quant
+q6kpn chunk: factors of eight bits, at most 0.0180 off the float products
+silu_mul_det: scalar against AVX2 on 1024000 values
+q4k quantize, Gaussian weights: relative rms error 0.0677 (min/max rounding 0.0749)
+q4k quantize, heavy-tailed weights: relative rms error 0.0897 (min/max rounding 0.1106)
+q4k quantize fast, Gaussian weights: relative rms error 0.0725 (min/max rounding 0.0760)
+q4k quantize fast, heavy-tailed weights: relative rms error 0.0986 (min/max rounding 0.1122)
+q6k quantize, Gaussian weights: relative rms error 0.01676 (plain 0.01852, with float scales 0.01846)
+q6k quantize, heavy-tailed weights: relative rms error 0.02362 (plain 0.02519, with float scales 0.02496)
+test_quant: kernel avx512-vnni (512-bit tiles), ok
+RUN bin/x86_64-linux/test_sample
+test_sample: ok
+RUN bin/x86_64-linux/test_sandbox
+test_sandbox: ok
+RUN bin/x86_64-linux/test_server_anthropic
+test_server_anthropic: 1359 of 20000 mangled requests still JSON, 1058 taken, ok
+RUN bin/x86_64-linux/test_server_files
+test_server_files: ok
+RUN bin/x86_64-linux/test_server_fim
+test_server_fim: ok
+RUN bin/x86_64-linux/test_server_ollama
+test_server_ollama: 1613 of 20000 mangled requests still JSON, 1525 taken, ok
+RUN bin/x86_64-linux/test_server_origin
+test_server_origin: ok
+RUN bin/x86_64-linux/test_server_request
+test_server_request: 1452 of 20000 mangled requests accepted
+test_server_request: ok
+RUN bin/x86_64-linux/test_server_store
+janas-server: 1 unreadable files in /tmp/janas-store-test-24386 left as they are
+janas-server: 1 unreadable files in /tmp/janas-store-test-24386 left as they are
+test_server_store: ok
+RUN bin/x86_64-linux/test_setup
+janas-setup: /tmp/janas_test_setup_hI1uoD/User/settings.json is not JSON as the editor writes it: left as it is
+For code (chat, edits, the agent): coder-30b, 18.6 GB - this machine's 32 GB of memory hold it whole.
+For completion as you type: coder-1.5b, 1.0 GB - small, so it answers quickly; memory holds both.
+For code (chat, edits, the agent): coder-30b, 18.6 GB - this machine's 26 GB of memory hold it whole.
+For completion as you type: the same model - one model in memory: a second one would not fit beside it.
+For code (chat, edits, the agent): coder-next, 45.0 GB - this machine's 64 GB of memory hold it whole.
+For completion as you type: coder-1.5b, 1.0 GB - small, so it answers quickly; memory holds both.
+For code (chat, edits, the agent): coder-1.5b, 1.0 GB - this machine's 8 GB of memory hold it whole.
+For completion as you type: the same model - one model in memory.
+For code (chat, edits, the agent): general-4b, 2.5 GB - this machine's 32 GB of memory hold it whole.
+   None of the models installed is made for code: this one is a general model.
+For completion as you type: no model installed can (it takes one trained to fill in the middle, as the Qwen coders); none is set.
+For code (chat, edits, the agent): coder-1.5b, 1.0 GB, as asked - this machine's 32 GB of memory hold it whole.
+For completion as you type: the same model - one model in memory.
+For code (chat, edits, the agent): coder-30b, 18.6 GB, as asked - this machine's 32 GB of memory hold it whole.
+For completion as you type: coder-1.5b, 1.0 GB, as asked.
+For code (chat, edits, the agent): coder-30b, 18.6 GB - this machine's 32 GB of memory hold it whole.
+For completion as you type: none, as asked.
+   Continue: /tmp/janas_test_setup_hI1uoD/continue/models/janas.yaml
+   Continue: /tmp/janas_test_setup_hI1uoD/continue/models/janas.yaml removed
+   Continue: /tmp/janas_test_setup_hI1uoD/continue/models/janas.yaml
+   Continue: /tmp/janas_test_setup_hI1uoD/continue/models/janas.yaml removed
+   llama-vscode.endpoint_chat in /tmp/janas_test_setup_hI1uoD/User/settings.json was "http://mine:9": janas-setup editor --undo puts it back
+   llama.vscode: /tmp/janas_test_setup_hI1uoD/User/settings.json
+   Cline: /tmp/janas_test_setup_hI1uoD/cline/settings/providers.json (its Ollama provider; restart the editor)
+   VS Code's chat: /tmp/janas_test_setup_hI1uoD/User/chatLanguageModels.json (model "Janas coder")
+   llama.vscode: /tmp/janas_test_setup_hI1uoD/User/settings.json
+   Cline: /tmp/janas_test_setup_hI1uoD/cline/settings/providers.json (its Ollama provider; restart the editor)
+   VS Code's chat: /tmp/janas_test_setup_hI1uoD/User/chatLanguageModels.json (model "Janas coder")
+   /tmp/janas_test_setup_hI1uoD/User/settings.json: put back
+   /tmp/janas_test_setup_hI1uoD/User/settings.json: put back
+   /tmp/janas_test_setup_hI1uoD/User/settings.json: put back
+   /tmp/janas_test_setup_hI1uoD/cline/settings/providers.json: put back
+   /tmp/janas_test_setup_hI1uoD/User/chatLanguageModels.json: put back
+test_setup: all passed
+RUN bin/x86_64-linux/test_sha256
+test_sha256: ok
+RUN bin/x86_64-linux/test_system_parse
+test_system_parse: ok
+RUN bin/x86_64-linux/test_template
+test_template: ok
+RUN bin/x86_64-linux/test_tools
+test_tools: ok
+RUN bin/x86_64-linux/test_tuner
+test_tuner: ok
+RUN bin/x86_64-linux/test_weather_parse
+test_weather_parse: ok
+RUN bin/x86_64-linux/test_wiki_parse
+test_wiki_parse: ok
+RUN bin/x86_64-linux/test_words
+test_words: JANAS_EXPERT_BIT is not a variable of Janas (did you mean JANAS_EXPERT_BITS?): it does nothing
+test_words: ok

@@ -1,0 +1,3 @@
+quick answer fingerprint ok (c08f0f936eeba5cb)
+quick speed measured with the CPU 98% idle before (load 0.95 over 4 threads; idle)
+quick server 2/2 (chat, tool call)

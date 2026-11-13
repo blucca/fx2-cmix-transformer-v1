@@ -1,0 +1,4 @@
+janas-get: huggingface.co: Name or service not known
+== qwen3-4b: downloading, converted (prabanta-dev/Qwen3-4B-JNS)
+   not on Hugging Face yet (or unreachable): from the GGUF instead
+== qwen3-4b: downloading

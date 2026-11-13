@@ -1,0 +1,6 @@
+<models>/qwen3-4b-q4km.jns: already here, fingerprint checked
+== its draft, qwen3-0.6b
+<models>/qwen3-0.6b-q4km.jns: already here, fingerprint checked
+
+Ready: <models>/qwen3-4b-q4km.jns
+Chat with it: janas-chat qwen3-4b

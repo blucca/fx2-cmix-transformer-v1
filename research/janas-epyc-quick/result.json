@@ -1,0 +1,77 @@
+{
+  "source": {
+    "repository": "prabanta-dev/janas",
+    "commit": "c9220a467b3376ebb684165435512e3ee71c9f52",
+    "native_c_and_tests": "stock",
+    "build": "release",
+    "native_test_runs": 55
+  },
+  "host": {
+    "type": "Linux VM",
+    "guest_vcpus": 4,
+    "cpu_string": "AMD EPYC 9254 24-Core Processor",
+    "total_ram_gib": 7.74,
+    "available_ram_gib_reported": 3.8,
+    "gpu": false,
+    "npu": false,
+    "avx_vnni": false,
+    "avx512_vnni": true
+  },
+  "model_acquisition": {
+    "method": "Python urllib via existing HTTP(S) proxy, official preconverted JNS; stock janas-get rechecked both cached fingerprints",
+    "files": [
+      {
+        "repo": "prabanta-dev/Qwen3-4B-JNS",
+        "name": "qwen3-4b-q4km.jns",
+        "bytes": 2497753088,
+        "sha256": "1cbd8ebfdf14aee05777f5278e655382f040cdedc21d282e93806fc8cf279fc5"
+      },
+      {
+        "repo": "prabanta-dev/Qwen3-0.6B-JNS",
+        "name": "qwen3-0.6b-q4km.jns",
+        "bytes": 396926976,
+        "sha256": "9174da760919b16b9f3a4ae8738c2d53605412f40bb2c0fe68d60174bf8a4fb5"
+      }
+    ]
+  },
+  "reference_answer": {
+    "temperature": 0,
+    "max_tokens": 64,
+    "down_planes_bits": 6,
+    "attention": "exact",
+    "printed_output_fingerprint": "c08f0f936eeba5cb",
+    "passed": true
+  },
+  "stock_benchmark": {
+    "prompt_tokens": 256,
+    "generated_tokens": 64,
+    "context_tokens": 4096,
+    "rounds": 3,
+    "configurations_measured": 1,
+    "threads": 4,
+    "quality": "auto",
+    "attention": "auto",
+    "down_matrix_bits_reported": 4,
+    "expert_cache_gib": 1.0,
+    "cache_percent_reported": 68.5,
+    "cpu_idle_percent_before": 98,
+    "prefill_tokens_per_second": 69.6,
+    "decode_tokens_per_second": 5.8,
+    "kernels": "avx512-vnni (512-bit tiles)"
+  },
+  "localhost_stock_checks": {
+    "passed": 2,
+    "total": 2
+  },
+  "runtime": {
+    "largest_child_maxrss_kb": 2347552,
+    "final_started_at": "2026-11-13T09:52:51.843656+00:00",
+    "final_finished_at": "2026-11-13T09:55:29.640652+00:00"
+  },
+  "first_attempt": {
+    "build_and_native_tests": "passed",
+    "quick_model_get": "failed: direct huggingface.co DNS resolution",
+    "program_returncode": 0,
+    "model_reference_benchmark_server": "not run"
+  }
+}
