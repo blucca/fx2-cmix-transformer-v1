@@ -44,6 +44,7 @@ Focused analyses cover [the frozen NN’s prior value](research/causal-prior-val
 [the two-version CPU compiler precision check](research/bf16-fp8-inductor-cpu.md),
 [CPU snapshot capture and actual writeback](research/cpu-snapshot-swap.md),
 [a real ONNXRuntime QDQ discrepancy, Linux/ARM64 parity controls and the author's independent check](research/ort-qdq-fusion-control.md),
+[a single-token Q8-to-two-Q4 workaround with FP32 activations and full AVX2 tradeoffs](research/ort-split8-avx2.md),
 [the bounded integer-unit FP32 certificate](research/integer-unit-exactness.md),
 [KDA state energy and conditioned-key value fitting](research/kda-state-energy.md),
 and [the byte coder’s nine-group distillation target](research/byte-path-quotient.md).

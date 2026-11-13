@@ -21,6 +21,9 @@ walks through the complete causal result, direct-update exposure and package cha
 
 ## Reusable tools
 
+[Single-token ORT Split8](ort-split8-avx2.md): use two stock Q4 operators
+with FP32 activations; complete AVX2 M1 improvement and M197 regressions.
+
 [CPU adjoints](cpu-backward.md) · [Causal inputs and resets](causal-priors.md#exact-input-contract) ·
 [Native eight-block export](depth-distillation.md#native-identity-and-actual-measurement) ·
 [Lossless weight coding](weights-static15.md) · [Official-input inverse](prepared-original-provenance.md) ·
