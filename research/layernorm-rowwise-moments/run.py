@@ -98,6 +98,34 @@ def main():
     assert len(native) == 8 and {(r['dtype'], r['n']) for r in native} == {
         (dtype, n) for dtype in ('float32', 'float64') for n in SHAPES}
     result = {'runtime': results, 'native': native}
+    # One observed Windows optimizer discrepancy: isolate the forced-inline helper.
+    # The copied header changes only this qualifier; the original stays installed.
+    if os.name == 'nt':
+        overlay = out / 'noinline-include' / 'ATen/native/cpu/moments_utils.h'
+        overlay.parent.mkdir(parents=True, exist_ok=True)
+        original = header.read_text()
+        before = 'C10_ALWAYS_INLINE void AddMomentsVec('
+        assert original.count(before) == 1
+        overlay.write_text(original.replace(before, '__declspec(noinline) void AddMomentsVec('))
+        controlled = list(command)
+        index = controlled.index('/I' + str(include))
+        controlled.insert(index, '/I' + str(out / 'noinline-include'))
+        controlled = [arg.replace(str(out / 'moments.obj'), str(out / 'moments-noinline.obj'))
+                      .replace(str(executable), str(out / 'moments-noinline.exe')) for arg in controlled]
+        (out / 'noinline-build.json').write_text(json.dumps({'command': controlled,
+            'change': 'AddMomentsVec: C10_ALWAYS_INLINE -> __declspec(noinline)'}, indent=2) + '\n')
+        completed = subprocess.run(controlled, cwd=out, capture_output=True, text=True, timeout=180)
+        (out / 'noinline-build.log').write_text(completed.stdout + completed.stderr)
+        if completed.returncode:
+            raise RuntimeError('No-inline control build failed; read its saved log')
+        completed = subprocess.run([str(out / 'moments-noinline.exe')], env=env,
+                                   capture_output=True, text=True, timeout=60)
+        (out / 'noinline-native.log').write_text(completed.stdout + completed.stderr)
+        if completed.returncode:
+            raise RuntimeError('No-inline control failed; read its saved log')
+        control = [json.loads(line) for line in completed.stdout.splitlines() if line.startswith('{')]
+        assert {(r['dtype'], r['n']) for r in control} == {(r['dtype'], r['n']) for r in native}
+        result['native_noinline'] = control
     (out / 'results.json').write_text(json.dumps(result, indent=2, allow_nan=False) + '\n')
     print(json.dumps({'status': 'complete', 'torch': torch.__version__, 'native_rows': len(native),
                       'runtime_rows': sum(len(r['rows']) for r in results)}))

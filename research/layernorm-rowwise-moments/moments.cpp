@@ -1,6 +1,9 @@
 // Narrow, standalone RowwiseMoments probe for pytorch/pytorch#204610.
 // Build flags must select AVX2 ATen headers: CPU_CAPABILITY=AVX2,
 // CPU_CAPABILITY_AVX2, and the platform's AVX2/FMA compiler flags.
+#if !defined(CPU_CAPABILITY_AVX2) || !defined(CPU_CAPABILITY)
+#error "Build with CPU_CAPABILITY=AVX2 and CPU_CAPABILITY_AVX2."
+#endif
 #include <ATen/native/cpu/moments_utils.h>
 
 #include <cmath>
