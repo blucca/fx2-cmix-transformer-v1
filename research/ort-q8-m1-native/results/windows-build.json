@@ -1,0 +1,21 @@
+{
+  "platform": "Windows-2025Server-10.0.26100-SP0",
+  "ort_sdk": "1.31.1",
+  "command": [
+    "cl",
+    "/nologo",
+    "/O2",
+    "/LD",
+    "/std:c++17",
+    "/arch:AVX2",
+    "/EHsc",
+    "/ID:\\a\\fx2-cmix-transformer-v1\\fx2-cmix-transformer-v1\\temp\\q8-m1-native\\sdk-1.31.1",
+    "D:\\a\\fx2-cmix-transformer-v1\\fx2-cmix-transformer-v1\\research\\ort-q8-m1-native\\q8_m1_ort.cpp",
+    "/FoD:\\a\\fx2-cmix-transformer-v1\\fx2-cmix-transformer-v1\\temp\\q8-m1-native\\q8_m1.obj",
+    "/FeD:\\a\\fx2-cmix-transformer-v1\\fx2-cmix-transformer-v1\\temp\\q8-m1-native\\q8_m1.dll",
+    "/link",
+    "/IMPLIB:D:\\a\\fx2-cmix-transformer-v1\\fx2-cmix-transformer-v1\\temp\\q8-m1-native\\q8_m1.lib"
+  ],
+  "library": "q8_m1.dll",
+  "bytes": 133120
+}

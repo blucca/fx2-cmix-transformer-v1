@@ -1,0 +1,62 @@
+{
+  "status": "completed",
+  "startedAt": "2026-11-13T07:39:19.215631+00:00",
+  "platform": "Windows-2025Server-10.0.26100-SP0",
+  "cpu": "AMD64 Family 25 Model 17 Stepping 1, AuthenticAMD",
+  "features": {
+    "avx2": null,
+    "fma": null,
+    "avx512f": null,
+    "avx512_vnni": null,
+    "avx_vnni": null
+  },
+  "python": "3.12.10",
+  "ort": "1.31.1",
+  "onnx": "1.23.2",
+  "numpy": "2.5.3",
+  "threads": 1,
+  "warmup": 30,
+  "iterations": 200,
+  "controls": {
+    "all256_identity_equal": true,
+    "wrong_zero_encoding_max_abs": 16.0,
+    "arbitrary_scales_norm_max_error": 1.0193085259183318e-07,
+    "wrong_block_scales_norm_max_error": 0.025597252062932254
+  },
+  "M": 1,
+  "K": 768,
+  "N": 3072,
+  "modes": {
+    "fp32_same_weights": {
+      "p50_ms": 0.1232999999842832,
+      "p95_ms": 0.14340000001311637,
+      "max_abs_error": 1.1324882507324219e-06,
+      "norm_max_error": 5.128765483309853e-07,
+      "initializer_bytes": 9437184
+    },
+    "split_two_q4": {
+      "p50_ms": 0.42229999999676693,
+      "p95_ms": 0.4533000000037646,
+      "max_abs_error": 9.5367431640625e-07,
+      "norm_max_error": 4.3189604069977704e-07,
+      "initializer_bytes": 2985984
+    },
+    "native_q8_m1": {
+      "p50_ms": 0.09449999998878411,
+      "p95_ms": 0.18140000003086243,
+      "max_abs_error": 8.344650268554688e-07,
+      "norm_max_error": 3.779090356123049e-07,
+      "initializer_bytes": 2654208
+    }
+  },
+  "speedup_vs_split8": 4.468783069279241,
+  "speedup_vs_fp32": 1.3047619047504473,
+  "prepack_cache_tensor_bytes": 2654208,
+  "decision": {
+    "m1_precision_pass": true,
+    "speedup_vs_split8_pass": true,
+    "initializer_payload_pass": true,
+    "passed": true
+  },
+  "completedAt": "2026-11-13T07:39:19.595992+00:00"
+}

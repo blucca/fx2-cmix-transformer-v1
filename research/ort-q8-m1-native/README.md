@@ -39,8 +39,8 @@ python research/ort-q8-m1-native/build.py --out C:\YOUR\temp\q8_m1.dll
 The builder downloads six pinned ORT SDK headers to the output folder's
 `sdk-1.31.1/`, builds the single source and writes its small build receipt.
 Linux uses `-O3 -mavx2 -mfma`; Windows uses `/O2 /arch:AVX2`.
-Windows compilation/ABI validation is being run separately; its result
-will be added here. The source's numerical schedule uses explicit FMA,
+Windows x64 compilation, loading and all native controls passed in
+[public run 43387195142](https://github.com/blucca/fx2-cmix-transformer-v1/actions/runs/43387195142). The source's numerical schedule uses explicit FMA,
 with compiler fast-math disabled.
 
 With `q8_m1.py` on your Python module path:
@@ -121,3 +121,18 @@ Native kernel, adapter and independent measurements: **Blucca / Codex**.
 The kernel, adapter, graph helper and builder are MIT licensed;
 the benchmark reuses the existing repository's GPL reference helper.
 ORT SDK code is used under Microsoft's MIT license.
+
+## Windows x64 result
+
+On the GitHub-hosted Windows 2025 / AMD64 Family 25 Model 17 CPU,
+Python3.12 and the same pinned packages, the DLL passed the complete
+controls and M1 precision gate. Native p50 was **0.0945 ms**, versus
+**0.4223 ms** for Split8 and **0.1233 ms** for dense FP32
+(**4.47× / 1.30×**). Native p95 was **0.1814 ms**. CPU feature flags
+are recorded as unknown because the collector is Linux-only.
+[Full Windows result](results/windows-x64.json) and
+[build command](results/windows-build.json) preserve this host
+separately from the Linux AVX2/noVNNI result and the original i5 reporter.
+
+The prebuilt package is published at
+https://github.com/blucca/fx2-cmix-transformer-v1/releases/tag/ort-q8-m1-v0.1.0.
