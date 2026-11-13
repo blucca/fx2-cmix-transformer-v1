@@ -23,6 +23,8 @@ walks through the complete causal result, direct-update exposure and package cha
 
 [Single-token ORT Split8](ort-split8-avx2.md): use two stock Q4 operators
 with FP32 activations; complete AVX2 M1 improvement and M197 regressions.
+[Native Q8M1](ort-q8-m1-native/): a single custom operator with one-time
+constant-weight prepacking, 0.146 ms whole-call and full numerical controls.
 
 [CPU adjoints](cpu-backward.md) · [Causal inputs and resets](causal-priors.md#exact-input-contract) ·
 [Native eight-block export](depth-distillation.md#native-identity-and-actual-measurement) ·

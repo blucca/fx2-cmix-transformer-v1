@@ -15,6 +15,11 @@ original all-shape acceptance gate failed; the selected M1 gate passed.
 [Executable reproduction and graph-building helper](ort_split8.py) ·
 [Complete native results, including failed cases and negative controls](results/ort-split8-avx2.json).
 
+A subsequent [native Q8M1 custom operator](ort-q8-m1-native/) keeps the same
+Q8 initializer payload and reaches **0.146 ms** in a new same-host M1
+comparison, with its own prepack cache and precision controls. This page
+retains the earlier stock-only method and all three of its measured shapes.
+
 ## Use the helper on your own symmetric Q8 weights
 
 The script is standalone; downloading this file is sufficient. In an environment

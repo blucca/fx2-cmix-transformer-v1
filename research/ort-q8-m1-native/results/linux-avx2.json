@@ -1,0 +1,62 @@
+{
+  "status": "completed",
+  "startedAt": "2026-11-13T07:28:37.631039+00:00",
+  "platform": "Linux-7.2.11-arch1-1-x86_64-with-glibc2.44",
+  "cpu": "AMD EPYC 7K62 48-Core Processor",
+  "features": {
+    "avx2": true,
+    "fma": true,
+    "avx512f": false,
+    "avx512_vnni": false,
+    "avx_vnni": false
+  },
+  "python": "3.14.8",
+  "ort": "1.31.1",
+  "onnx": "1.23.2",
+  "numpy": "2.5.3",
+  "threads": 1,
+  "warmup": 30,
+  "iterations": 200,
+  "controls": {
+    "all256_identity_equal": true,
+    "wrong_zero_encoding_max_abs": 16.0,
+    "arbitrary_scales_norm_max_error": 1.0193085259183318e-07,
+    "wrong_block_scales_norm_max_error": 0.025597252062932254
+  },
+  "M": 1,
+  "K": 768,
+  "N": 3072,
+  "modes": {
+    "fp32_same_weights": {
+      "p50_ms": 0.2424619160592556,
+      "p95_ms": 0.2716421149671078,
+      "max_abs_error": 1.1324882507324219e-06,
+      "norm_max_error": 5.128765483309853e-07,
+      "initializer_bytes": 9437184
+    },
+    "split_two_q4": {
+      "p50_ms": 0.9783778805285692,
+      "p95_ms": 1.0038800537586212,
+      "max_abs_error": 7.152557373046875e-07,
+      "norm_max_error": 3.239220305248328e-07,
+      "initializer_bytes": 2985984
+    },
+    "native_q8_m1": {
+      "p50_ms": 0.14605559408664703,
+      "p95_ms": 0.1551932655274868,
+      "max_abs_error": 8.344650268554688e-07,
+      "norm_max_error": 3.779090356123049e-07,
+      "initializer_bytes": 2654208
+    }
+  },
+  "speedup_vs_split8": 6.698667631642713,
+  "speedup_vs_fp32": 1.6600659329447922,
+  "prepack_cache_tensor_bytes": 2654208,
+  "decision": {
+    "m1_precision_pass": true,
+    "speedup_vs_split8_pass": true,
+    "initializer_payload_pass": true,
+    "passed": true
+  },
+  "completedAt": "2026-11-13T07:28:38.199878+00:00"
+}

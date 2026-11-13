@@ -1,0 +1,60 @@
+name: Q8 M1 native Windows DLL
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  windows-dll:
+    runs-on: windows-2025
+    timeout-minutes: 15
+    env:
+      OPENBLAS_NUM_THREADS: "1"
+      OMP_NUM_THREADS: "1"
+    defaults:
+      run:
+        shell: pwsh
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            /research/ort-q8-m1-native/
+            /research/ort_split8.py
+          sparse-checkout-cone-mode: false
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install the benchmark dependencies
+        run: python -m pip install --no-cache-dir onnx==1.23.2 onnxruntime==1.31.1 numpy==2.5.3
+
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+
+      - name: Build the x64 AVX2 and FMA custom-op DLL
+        run: |
+          python research/ort-q8-m1-native/build.py --out temp/q8-m1-native/q8_m1.dll
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Check the ABI and mathematics; record this Windows host's timings
+        # bench.py exits nonzero for a mathematical/ABI failure. Speed is a
+        # separate report field; this host does not decide the Linux noVNNI gate.
+        run: |
+          python research/ort-q8-m1-native/bench.py `
+            --library temp/q8-m1-native/q8_m1.dll `
+            --out temp/q8-m1-native/windows.json
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload the small DLL and benchmark record
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: q8-m1-native-windows-x64-ort-1.31.1
+          path: |
+            temp/q8-m1-native/q8_m1.dll
+            temp/q8-m1-native/windows.json
+            temp/q8-m1-native/q8_m1.dll.build.json
