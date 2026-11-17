@@ -22,7 +22,8 @@ walks through the complete causal result, direct-update exposure and package cha
 ## Reusable tools
 
 [Single-token ORT Split8](ort-split8-avx2.md): use two stock Q4 operators
-with FP32 activations; complete AVX2 M1 improvement and M197 regressions.
+with FP32 activations; complete Linux M1 improvement/M197 regressions, plus
+the original author's independent i5-9400F/Windows measurements.
 [Native Q8M1](ort-q8-m1-native/): a single custom operator with one-time
 constant-weight prepacking, 0.146 ms whole-call and full numerical controls.
 [OpenVINO BF16 example inputs](ovc-bf16-example-input/): a native dtype-and-value

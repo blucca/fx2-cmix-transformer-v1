@@ -68,7 +68,7 @@ uses the existing Q4 path; it leaves ORT's Q8 kernel implementation intact.
 The original report's per-call-unpacking attribution comes from its source
 analysis; this study measures `Session.run`, without a kernel profiler.
 
-## Full whole-call comparison
+## Our Linux whole-call comparison
 
 Milliseconds, p50; lower is better. All four modes use the same input and
 the same Q8-dequantized weights, including the dense FP32 reference.
@@ -97,6 +97,41 @@ occupy **2,654,208 bytes**. Split8's two packed terms, two scale arrays and
 low zero points occupy **2,985,984 bytes**. Dense FP32 occupies **9,437,184
 bytes**. These are initializer-array payloads, excluding protobuf metadata,
 session prepacking, scratch memory and process RSS.
+
+## Original author's independent Windows check
+
+On 16 November 2026, **n24q02m**, the original issue author,
+[reported an independent reproduction on their deployment machine](https://github.com/microsoft/onnxruntime/issues/34150#issuecomment-6916369858):
+Intel Core i5-9400F (6 cores, AVX2, no VNNI), Windows x64,
+ONNX Runtime **1.31.1**, ONNX **1.23.2**. They generated their own synthetic
+`B`, `S` and `A` locally with **seed 34150**, using the same two-Q4-plus-Add
+construction, high zero point 8 and explicit low zero point 0.
+
+These are the author's **whole `Session.run` p50** measurements, excluding
+session creation, with **10 warmup and 40 timed calls**. Error is normalized
+maximum error against `A @ dequant(B, S)`; dense FP32 uses those same
+dequantized weights. Thread count belongs to each row.
+
+| M × K × N | Threads | Q8 acc0 ms | Stock Split8 ms | Speedup | Split8 normalized max error | Dense FP32 ms |
+| :--- | ---: | ---: | ---: | ---: | ---: | ---: |
+| **1 × 768 × 3072** | **1** | **12.626** | **1.994** | **6.33×** | **3.347e-7** | **0.987** |
+| **1 × 768 × 3072** | **6** | **7.301** | **0.644** | **11.34×** | **3.347e-7** | **0.351** |
+| 197 × 768 × 3072 | 1 | 27.142 | 23.872 | 1.14× | 1.059e-6 | 10.973 |
+| 197 × 768 × 3072 | 6 | 10.294 | 7.475 | 1.38× | 1.059e-6 | 3.922 |
+| 197 × 3072 × 768 | 1 | 24.954 | 24.578 | 1.02× | 2.001e-6 | 11.087 |
+| 197 × 3072 × 768 | 6 | 13.023 | 8.015 | 1.62× | 2.001e-6 | 3.508 |
+
+The independent M1 result supports the static single-token use case:
+6.33–11.34× faster than Q8 acc0 at **3.347e-7** error. Dense FP32 remains
+faster by about **1.8–2.0×**. Their M197 cases show small speedups, while
+our Linux M197 cases regress; their FC2 error is **2.001e-6**, just above
+the same `2e-6` gate. The selected application stays **M1 with packed
+weights and FP32 activations**, with full deployment latency, memory and
+accuracy checked on the target machine.
+
+This table is the author's public stock-ORT result. Our downloadable result
+JSON retains the original Linux study and its failed all-shape gate; the
+custom native Q8M1 operator has its separate measurements and package.
 
 ## Reproduce the complete study
 
@@ -135,4 +170,5 @@ Original problem, dimensions and base quantization reproduction:
 **n24q02m**, [ONNX Runtime issue #34150](https://github.com/microsoft/onnxruntime/issues/34150).
 Split graph, native positive/negative controls and independent Linux measurements:
 **Blucca / Codex**. The original report runs on Windows / Intel i5-9400F;
-the results above describe our Linux / AMD host.
+our original study tables describe the Linux / AMD host; the separate
+Windows section attributes the author's independent stock-ORT measurements.

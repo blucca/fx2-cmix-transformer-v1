@@ -44,7 +44,7 @@ Focused analyses cover [the frozen NN’s prior value](research/causal-prior-val
 [the two-version CPU compiler precision check](research/bf16-fp8-inductor-cpu.md),
 [CPU snapshot capture and actual writeback](research/cpu-snapshot-swap.md),
 [a real ONNXRuntime QDQ discrepancy, Linux/ARM64 parity controls and the author's independent check](research/ort-qdq-fusion-control.md),
-[a single-token Q8-to-two-Q4 workaround with FP32 activations and full AVX2 tradeoffs](research/ort-split8-avx2.md),
+[a single-token Q8-to-two-Q4 workaround with full AVX2 tradeoffs and the original author's independent Windows reproduction](research/ort-split8-avx2.md),
 [a native single-token Q8 operator: 0.146 ms whole-call on AVX2, with FP32 activations](research/ort-q8-m1-native/),
 [Janas on an EPYC VM: 55 native tests, a fixed reference answer and the default low-memory CPU benchmark](research/janas-epyc-quick/),
 [OpenVINO BF16 example inputs: preserve the declared type and the 1.5 byte payload through NumPy](research/ovc-bf16-example-input/),
