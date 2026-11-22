@@ -1,0 +1,67 @@
+{
+  "host": {
+    "cpu": "AMD EPYC",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": true,
+      "avx512_vnni": true,
+      "avx_vnni": true
+    },
+    "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+    "numpy": "2.5.5",
+    "ort": "1.31.1"
+  },
+  "rows": [
+    {
+      "past": 16,
+      "previous_native_conservative_p50_ms": 6.347073998767883,
+      "new_native_p50_ms": 4.750264502945356,
+      "time_reduction_vs_previous_native": 0.2515819881936945,
+      "same_weight_dense_conservative_p50_ms": 11.39512998634018,
+      "time_reduction_vs_same_weight_dense": 0.5831320477572702,
+      "same_weight_stock_q8_p50_ms": 251.87806000758428
+    },
+    {
+      "past": 128,
+      "previous_native_conservative_p50_ms": 6.9548894971376285,
+      "new_native_p50_ms": 5.1242100016679615,
+      "time_reduction_vs_previous_native": 0.2632219384970971,
+      "same_weight_dense_conservative_p50_ms": 11.243893997743726,
+      "time_reduction_vs_same_weight_dense": 0.5442673149803601,
+      "same_weight_stock_q8_p50_ms": 225.82327100099064
+    },
+    {
+      "past": 512,
+      "previous_native_conservative_p50_ms": 9.965363991796039,
+      "new_native_p50_ms": 7.417444488964975,
+      "time_reduction_vs_previous_native": 0.2556775151342824,
+      "same_weight_dense_conservative_p50_ms": 12.752028997056186,
+      "time_reduction_vs_same_weight_dense": 0.41833221280493504,
+      "same_weight_stock_q8_p50_ms": 261.0896045080153
+    }
+  ],
+  "precision_by_same_weight_mode": {
+    "dense-before": true,
+    "native": true,
+    "q8_acc0": true,
+    "dense-after": true
+  },
+  "numerical_pass": true,
+  "previous_native_conservative_peak_rss_kib": 455796,
+  "new_native_peak_rss_kib": 312120,
+  "rss_reduction": 0.31521996682726483,
+  "performance_pass": true,
+  "memory_pass": true,
+  "target_avx2_no_vnni": false,
+  "target_compute_gate_passed": false,
+  "quality_gate": "separate paired fixed-text probe",
+  "full_reports": [
+    "old-before",
+    "dense-before",
+    "native",
+    "q8_acc0",
+    "dense-after",
+    "old-after"
+  ]
+}

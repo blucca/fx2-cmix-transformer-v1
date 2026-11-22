@@ -1,0 +1,7 @@
+{
+  "source": "https://huggingface.co/Xenova/distilgpt2/resolve/a41c10485c18a64b6606729b6a082330cbd8f49e/tokenizer.json",
+  "bytes": 2107653,
+  "type": "BPE",
+  "vocab": 50257,
+  "source_family": "same Apache-2.0 pinned Xenova DistilGPT2 companion"
+}

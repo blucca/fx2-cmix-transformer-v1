@@ -1,0 +1,67 @@
+{
+  "host": {
+    "cpu": "AMD EPYC 7K62 48-Core Processor",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": false,
+      "avx512_vnni": false,
+      "avx_vnni": false
+    },
+    "python": "3.14.8 (main, Oct  2 2026, 10:23:31) [GCC 16.2.1 20260810]",
+    "numpy": "2.5.3",
+    "ort": "1.31.1"
+  },
+  "rows": [
+    {
+      "past": 16,
+      "previous_native_conservative_p50_ms": 12.929252116009593,
+      "new_native_p50_ms": 7.837075740098953,
+      "time_reduction_vs_previous_native": 0.3938492598195431,
+      "same_weight_dense_conservative_p50_ms": 19.06095747835934,
+      "time_reduction_vs_same_weight_dense": 0.5888414446652696,
+      "same_weight_stock_q8_p50_ms": 266.226266277954
+    },
+    {
+      "past": 128,
+      "previous_native_conservative_p50_ms": 13.47423531115055,
+      "new_native_p50_ms": 8.280840469524264,
+      "time_reduction_vs_previous_native": 0.3854315084826011,
+      "same_weight_dense_conservative_p50_ms": 19.533441634848714,
+      "time_reduction_vs_same_weight_dense": 0.576068538032192,
+      "same_weight_stock_q8_p50_ms": 268.998044077307
+    },
+    {
+      "past": 512,
+      "previous_native_conservative_p50_ms": 15.23932022973895,
+      "new_native_p50_ms": 9.925993392243981,
+      "time_reduction_vs_previous_native": 0.3486590449832674,
+      "same_weight_dense_conservative_p50_ms": 21.18547144345939,
+      "time_reduction_vs_same_weight_dense": 0.5314716777139061,
+      "same_weight_stock_q8_p50_ms": 282.11927018128335
+    }
+  ],
+  "precision_by_same_weight_mode": {
+    "dense-before": true,
+    "native": true,
+    "q8_acc0": true,
+    "dense-after": true
+  },
+  "numerical_pass": true,
+  "previous_native_conservative_peak_rss_kib": 460268,
+  "new_native_peak_rss_kib": 316740,
+  "rss_reduction": 0.3118357131062772,
+  "performance_pass": true,
+  "memory_pass": true,
+  "target_avx2_no_vnni": true,
+  "target_compute_gate_passed": true,
+  "quality_gate": "separate paired fixed-text probe",
+  "full_reports": [
+    "old-before",
+    "dense-before",
+    "native",
+    "q8_acc0",
+    "dense-after",
+    "old-after"
+  ]
+}

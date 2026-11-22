@@ -1,0 +1,1310 @@
+{
+  "status": "converted_checked_runtime_pending",
+  "base_root": "/data/workspace/temp/round725-whole-q8",
+  "source_ref": "Xenova/distilgpt2@a41c10485c18a64b6606729b6a082330cbd8f49e",
+  "converter_reused": "/data/workspace/temp/round725-whole-q8/converter.py",
+  "numpy": "2.5.5",
+  "onnx": "1.23.2",
+  "kernel_API": 31,
+  "batch": 1,
+  "decode_sequence": 1,
+  "K": 768,
+  "block_size": 32,
+  "vocab": 50257,
+  "padded_vocab": 50272,
+  "padding_rows": 15,
+  "quantization": "original FP32 absmax/block32; floor1e-8; /127; rint; +128; clip UINT8",
+  "padding": {
+    "weight": 0,
+    "B_code": 128,
+    "S_finite_positive": true,
+    "input_id_domain": [
+      0,
+      50256
+    ],
+    "head_slice_axis_2d": 1,
+    "head_slice_start": 0,
+    "head_slice_end_exclusive": 50257,
+    "slice_before_token_selection_or_NLL": true
+  },
+  "original_tie": {
+    "initializer": "transformer.wte.weight",
+    "shape": [
+      50257,
+      768
+    ],
+    "bytes": 154389504,
+    "embedding": "/transformer/wte/Gather",
+    "head": "/lm_head/MatMul",
+    "head_weight_parent": "rank2 Transpose of same initializer",
+    "source_weight_modified": false
+  },
+  "new_weight_files": [
+    {
+      "file": "__blucca_tied_vocab_q8_B.bin",
+      "bytes": 38608896,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_tied_vocab_q8_S.bin",
+      "bytes": 4826112,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_tied_vocab_q8_dense_E.bin",
+      "bytes": 154389504,
+      "used_by": [
+        "dense"
+      ]
+    }
+  ],
+  "new_unique_weight_bytes": 197824512,
+  "shared_vocab_B_S_payload_bytes": 43435008,
+  "native_additional_vocab_pack_payload_bytes": 43435008,
+  "array_payload_scope": "initializer tensor bytes and native code/scale arrays; ORT/allocator/RSS measured by runtime worker",
+  "copied_unchanged_files": [
+    {
+      "file": "__blucca_whole_q8_00_B.bin",
+      "bytes": 1769472,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_00_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_00_S.bin",
+      "bytes": 221184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_00_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_01_B.bin",
+      "bytes": 589824,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_01_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_01_S.bin",
+      "bytes": 73728,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_01_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_02_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_02_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_02_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_02_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_03_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_03_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_03_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_03_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_04_B.bin",
+      "bytes": 1769472,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_04_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_04_S.bin",
+      "bytes": 221184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_04_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_05_B.bin",
+      "bytes": 589824,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_05_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_05_S.bin",
+      "bytes": 73728,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_05_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_06_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_06_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_06_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_06_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_07_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_07_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_07_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_07_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_08_B.bin",
+      "bytes": 1769472,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_08_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_08_S.bin",
+      "bytes": 221184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_08_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_09_B.bin",
+      "bytes": 589824,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_09_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_09_S.bin",
+      "bytes": 73728,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_09_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_10_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_10_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_10_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_10_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_11_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_11_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_11_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_11_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_12_B.bin",
+      "bytes": 1769472,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_12_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_12_S.bin",
+      "bytes": 221184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_12_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_13_B.bin",
+      "bytes": 589824,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_13_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_13_S.bin",
+      "bytes": 73728,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_13_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_14_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_14_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_14_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_14_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_15_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_15_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_15_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_15_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_16_B.bin",
+      "bytes": 1769472,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_16_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_16_S.bin",
+      "bytes": 221184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_16_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_17_B.bin",
+      "bytes": 589824,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_17_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_17_S.bin",
+      "bytes": 73728,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_17_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_18_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_18_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_18_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_18_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_19_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_19_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_19_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_19_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_20_B.bin",
+      "bytes": 1769472,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_20_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_20_S.bin",
+      "bytes": 221184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_20_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_21_B.bin",
+      "bytes": 589824,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_21_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_21_S.bin",
+      "bytes": 73728,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_21_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_22_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_22_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_22_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_22_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_23_B.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_23_B.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "__blucca_whole_q8_23_S.bin",
+      "bytes": 294912,
+      "source": "/data/workspace/temp/round725-whole-q8/models/__blucca_whole_q8_23_S.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.0.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.0.attn.c_attn.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.0.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.0.attn.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.0.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.0.mlp.c_fc.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.0.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.0.mlp.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.1.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.1.attn.c_attn.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.1.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.1.attn.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.1.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.1.mlp.c_fc.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.1.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.1.mlp.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.2.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.2.attn.c_attn.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.2.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.2.attn.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.2.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.2.mlp.c_fc.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.2.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.2.mlp.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.3.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.3.attn.c_attn.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.3.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.3.attn.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.3.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.3.mlp.c_fc.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.3.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.3.mlp.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.4.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.4.attn.c_attn.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.4.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.4.attn.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.4.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.4.mlp.c_fc.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.4.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.4.mlp.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.5.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.5.attn.c_attn.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.5.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.5.attn.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.5.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.5.mlp.c_fc.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "dense__transformer.h.5.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "source": "/data/workspace/temp/round725-whole-q8/models/dense__transformer.h.5.mlp.c_proj.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.attn.c_attn.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.attn.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.ln_1.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.ln_1.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.ln_1.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.ln_1.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.ln_2.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.ln_2.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.ln_2.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.ln_2.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.mlp.c_fc.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.0.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.0.mlp.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.attn.c_attn.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.attn.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.ln_1.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.ln_1.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.ln_1.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.ln_1.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.ln_2.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.ln_2.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.ln_2.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.ln_2.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.mlp.c_fc.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.1.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.1.mlp.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.attn.c_attn.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.attn.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.ln_1.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.ln_1.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.ln_1.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.ln_1.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.ln_2.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.ln_2.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.ln_2.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.ln_2.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.mlp.c_fc.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.2.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.2.mlp.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.attn.c_attn.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.attn.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.ln_1.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.ln_1.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.ln_1.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.ln_1.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.ln_2.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.ln_2.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.ln_2.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.ln_2.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.mlp.c_fc.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.3.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.3.mlp.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.attn.c_attn.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.attn.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.ln_1.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.ln_1.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.ln_1.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.ln_1.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.ln_2.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.ln_2.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.ln_2.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.ln_2.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.mlp.c_fc.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.4.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.4.mlp.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.attn.c_attn.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.attn.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.ln_1.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.ln_1.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.ln_1.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.ln_1.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.ln_2.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.ln_2.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.ln_2.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.ln_2.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.mlp.c_fc.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.h.5.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.h.5.mlp.c_proj.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.ln_f.bias.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.ln_f.bias.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.ln_f.weight.bin",
+      "bytes": 3072,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.ln_f.weight.bin",
+      "source_bytes_preserved": true
+    },
+    {
+      "file": "transformer.wpe.weight.bin",
+      "bytes": 3145728,
+      "source": "/data/workspace/temp/round725-whole-q8/models/transformer.wpe.weight.bin",
+      "source_bytes_preserved": true
+    }
+  ],
+  "unchanged_bins_copied": 123,
+  "old_kernel_or_24_Gemm_changed": false,
+  "models": {
+    "dense": {
+      "nodes": 1600,
+      "initializer_count": 76,
+      "initializer_payload_bytes": 327650304,
+      "op_counts": {
+        "Shape": 142,
+        "Constant": 623,
+        "Gather": 100,
+        "Unsqueeze": 146,
+        "Concat": 88,
+        "Reshape": 76,
+        "Slice": 56,
+        "Squeeze": 44,
+        "Add": 64,
+        "Cast": 21,
+        "Range": 1,
+        "Sub": 20,
+        "Mul": 38,
+        "ReduceMean": 26,
+        "Pow": 25,
+        "Sqrt": 13,
+        "Div": 19,
+        "Gemm": 24,
+        "Split": 6,
+        "Transpose": 31,
+        "MatMul": 13,
+        "ConstantOfShape": 6,
+        "Where": 6,
+        "Softmax": 6,
+        "Tanh": 6
+      },
+      "preserved_old_initializer_count": 75,
+      "non_vocabulary_nodes_preserved_byte_for_byte": true,
+      "non_vocabulary_initializers_preserved_byte_for_byte": true,
+      "input_output_metadata_preserved_byte_for_byte": true,
+      "native_old_prepack_payload_bytes": 0,
+      "native_new_head_prepack_payload_bytes": 0,
+      "native_total_prepack_payload_bytes": 0,
+      "weight_tie": {
+        "kind": "shared_FP32_dequantized_E",
+        "embedding_and_head_same_quantized_rows": true,
+        "canonical_initializers": [
+          "transformer.wte.weight"
+        ],
+        "canonical_initializer_consumers": {
+          "transformer.wte.weight": [
+            "/transformer/wte/Gather",
+            "Transpose_1600"
+          ]
+        }
+      },
+      "file": "dense.onnx",
+      "file_bytes": 1295245,
+      "external_files": [
+        "__blucca_tied_vocab_q8_dense_E.bin",
+        "dense__transformer.h.0.attn.c_attn.weight.bin",
+        "dense__transformer.h.0.attn.c_proj.weight.bin",
+        "dense__transformer.h.0.mlp.c_fc.weight.bin",
+        "dense__transformer.h.0.mlp.c_proj.weight.bin",
+        "dense__transformer.h.1.attn.c_attn.weight.bin",
+        "dense__transformer.h.1.attn.c_proj.weight.bin",
+        "dense__transformer.h.1.mlp.c_fc.weight.bin",
+        "dense__transformer.h.1.mlp.c_proj.weight.bin",
+        "dense__transformer.h.2.attn.c_attn.weight.bin",
+        "dense__transformer.h.2.attn.c_proj.weight.bin",
+        "dense__transformer.h.2.mlp.c_fc.weight.bin",
+        "dense__transformer.h.2.mlp.c_proj.weight.bin",
+        "dense__transformer.h.3.attn.c_attn.weight.bin",
+        "dense__transformer.h.3.attn.c_proj.weight.bin",
+        "dense__transformer.h.3.mlp.c_fc.weight.bin",
+        "dense__transformer.h.3.mlp.c_proj.weight.bin",
+        "dense__transformer.h.4.attn.c_attn.weight.bin",
+        "dense__transformer.h.4.attn.c_proj.weight.bin",
+        "dense__transformer.h.4.mlp.c_fc.weight.bin",
+        "dense__transformer.h.4.mlp.c_proj.weight.bin",
+        "dense__transformer.h.5.attn.c_attn.weight.bin",
+        "dense__transformer.h.5.attn.c_proj.weight.bin",
+        "dense__transformer.h.5.mlp.c_fc.weight.bin",
+        "dense__transformer.h.5.mlp.c_proj.weight.bin",
+        "transformer.h.0.attn.c_attn.bias.bin",
+        "transformer.h.0.attn.c_proj.bias.bin",
+        "transformer.h.0.ln_1.bias.bin",
+        "transformer.h.0.ln_1.weight.bin",
+        "transformer.h.0.ln_2.bias.bin",
+        "transformer.h.0.ln_2.weight.bin",
+        "transformer.h.0.mlp.c_fc.bias.bin",
+        "transformer.h.0.mlp.c_proj.bias.bin",
+        "transformer.h.1.attn.c_attn.bias.bin",
+        "transformer.h.1.attn.c_proj.bias.bin",
+        "transformer.h.1.ln_1.bias.bin",
+        "transformer.h.1.ln_1.weight.bin",
+        "transformer.h.1.ln_2.bias.bin",
+        "transformer.h.1.ln_2.weight.bin",
+        "transformer.h.1.mlp.c_fc.bias.bin",
+        "transformer.h.1.mlp.c_proj.bias.bin",
+        "transformer.h.2.attn.c_attn.bias.bin",
+        "transformer.h.2.attn.c_proj.bias.bin",
+        "transformer.h.2.ln_1.bias.bin",
+        "transformer.h.2.ln_1.weight.bin",
+        "transformer.h.2.ln_2.bias.bin",
+        "transformer.h.2.ln_2.weight.bin",
+        "transformer.h.2.mlp.c_fc.bias.bin",
+        "transformer.h.2.mlp.c_proj.bias.bin",
+        "transformer.h.3.attn.c_attn.bias.bin",
+        "transformer.h.3.attn.c_proj.bias.bin",
+        "transformer.h.3.ln_1.bias.bin",
+        "transformer.h.3.ln_1.weight.bin",
+        "transformer.h.3.ln_2.bias.bin",
+        "transformer.h.3.ln_2.weight.bin",
+        "transformer.h.3.mlp.c_fc.bias.bin",
+        "transformer.h.3.mlp.c_proj.bias.bin",
+        "transformer.h.4.attn.c_attn.bias.bin",
+        "transformer.h.4.attn.c_proj.bias.bin",
+        "transformer.h.4.ln_1.bias.bin",
+        "transformer.h.4.ln_1.weight.bin",
+        "transformer.h.4.ln_2.bias.bin",
+        "transformer.h.4.ln_2.weight.bin",
+        "transformer.h.4.mlp.c_fc.bias.bin",
+        "transformer.h.4.mlp.c_proj.bias.bin",
+        "transformer.h.5.attn.c_attn.bias.bin",
+        "transformer.h.5.attn.c_proj.bias.bin",
+        "transformer.h.5.ln_1.bias.bin",
+        "transformer.h.5.ln_1.weight.bin",
+        "transformer.h.5.ln_2.bias.bin",
+        "transformer.h.5.ln_2.weight.bin",
+        "transformer.h.5.mlp.c_fc.bias.bin",
+        "transformer.h.5.mlp.c_proj.bias.bin",
+        "transformer.ln_f.bias.bin",
+        "transformer.ln_f.weight.bin",
+        "transformer.wpe.weight.bin"
+      ],
+      "onnx_checker_passed": true,
+      "saved_metadata_verified": true,
+      "head_output_shape": [
+        1,
+        1,
+        50257
+      ],
+      "runtime_gate_status": "pending_root_runner"
+    },
+    "native": {
+      "nodes": 1656,
+      "initializer_count": 134,
+      "initializer_payload_bytes": 94602748,
+      "op_counts": {
+        "Shape": 142,
+        "Constant": 623,
+        "Gather": 101,
+        "Unsqueeze": 146,
+        "Concat": 88,
+        "Reshape": 104,
+        "Slice": 57,
+        "Squeeze": 44,
+        "Add": 88,
+        "Cast": 22,
+        "Range": 1,
+        "Sub": 21,
+        "Mul": 39,
+        "ReduceMean": 26,
+        "Pow": 25,
+        "Sqrt": 13,
+        "Div": 19,
+        "Q8MatMulM1": 25,
+        "Split": 6,
+        "Transpose": 30,
+        "MatMul": 12,
+        "ConstantOfShape": 6,
+        "Where": 6,
+        "Softmax": 6,
+        "Tanh": 6
+      },
+      "preserved_old_initializer_count": 123,
+      "non_vocabulary_nodes_preserved_byte_for_byte": true,
+      "non_vocabulary_initializers_preserved_byte_for_byte": true,
+      "input_output_metadata_preserved_byte_for_byte": true,
+      "native_old_prepack_payload_bytes": 47775744,
+      "native_new_head_prepack_payload_bytes": 43435008,
+      "native_total_prepack_payload_bytes": 91210752,
+      "weight_tie": {
+        "kind": "shared_Q8_B_S",
+        "embedding_and_head_same_quantized_rows": true,
+        "canonical_initializers": [
+          "__blucca_tied_vocab_q8_B",
+          "__blucca_tied_vocab_q8_S"
+        ],
+        "canonical_initializer_consumers": {
+          "__blucca_tied_vocab_q8_B": [
+            "__blucca_tied_vocab_q8_embed_gather_B",
+            "__blucca_tied_vocab_q8_head_matmul"
+          ],
+          "__blucca_tied_vocab_q8_S": [
+            "__blucca_tied_vocab_q8_scale_reshape",
+            "__blucca_tied_vocab_q8_head_matmul"
+          ]
+        }
+      },
+      "file": "native.onnx",
+      "file_bytes": 1310016,
+      "external_files": [
+        "__blucca_tied_vocab_q8_B.bin",
+        "__blucca_tied_vocab_q8_S.bin",
+        "__blucca_whole_q8_00_B.bin",
+        "__blucca_whole_q8_00_S.bin",
+        "__blucca_whole_q8_01_B.bin",
+        "__blucca_whole_q8_01_S.bin",
+        "__blucca_whole_q8_02_B.bin",
+        "__blucca_whole_q8_02_S.bin",
+        "__blucca_whole_q8_03_B.bin",
+        "__blucca_whole_q8_03_S.bin",
+        "__blucca_whole_q8_04_B.bin",
+        "__blucca_whole_q8_04_S.bin",
+        "__blucca_whole_q8_05_B.bin",
+        "__blucca_whole_q8_05_S.bin",
+        "__blucca_whole_q8_06_B.bin",
+        "__blucca_whole_q8_06_S.bin",
+        "__blucca_whole_q8_07_B.bin",
+        "__blucca_whole_q8_07_S.bin",
+        "__blucca_whole_q8_08_B.bin",
+        "__blucca_whole_q8_08_S.bin",
+        "__blucca_whole_q8_09_B.bin",
+        "__blucca_whole_q8_09_S.bin",
+        "__blucca_whole_q8_10_B.bin",
+        "__blucca_whole_q8_10_S.bin",
+        "__blucca_whole_q8_11_B.bin",
+        "__blucca_whole_q8_11_S.bin",
+        "__blucca_whole_q8_12_B.bin",
+        "__blucca_whole_q8_12_S.bin",
+        "__blucca_whole_q8_13_B.bin",
+        "__blucca_whole_q8_13_S.bin",
+        "__blucca_whole_q8_14_B.bin",
+        "__blucca_whole_q8_14_S.bin",
+        "__blucca_whole_q8_15_B.bin",
+        "__blucca_whole_q8_15_S.bin",
+        "__blucca_whole_q8_16_B.bin",
+        "__blucca_whole_q8_16_S.bin",
+        "__blucca_whole_q8_17_B.bin",
+        "__blucca_whole_q8_17_S.bin",
+        "__blucca_whole_q8_18_B.bin",
+        "__blucca_whole_q8_18_S.bin",
+        "__blucca_whole_q8_19_B.bin",
+        "__blucca_whole_q8_19_S.bin",
+        "__blucca_whole_q8_20_B.bin",
+        "__blucca_whole_q8_20_S.bin",
+        "__blucca_whole_q8_21_B.bin",
+        "__blucca_whole_q8_21_S.bin",
+        "__blucca_whole_q8_22_B.bin",
+        "__blucca_whole_q8_22_S.bin",
+        "__blucca_whole_q8_23_B.bin",
+        "__blucca_whole_q8_23_S.bin",
+        "transformer.h.0.attn.c_attn.bias.bin",
+        "transformer.h.0.attn.c_proj.bias.bin",
+        "transformer.h.0.ln_1.bias.bin",
+        "transformer.h.0.ln_1.weight.bin",
+        "transformer.h.0.ln_2.bias.bin",
+        "transformer.h.0.ln_2.weight.bin",
+        "transformer.h.0.mlp.c_fc.bias.bin",
+        "transformer.h.0.mlp.c_proj.bias.bin",
+        "transformer.h.1.attn.c_attn.bias.bin",
+        "transformer.h.1.attn.c_proj.bias.bin",
+        "transformer.h.1.ln_1.bias.bin",
+        "transformer.h.1.ln_1.weight.bin",
+        "transformer.h.1.ln_2.bias.bin",
+        "transformer.h.1.ln_2.weight.bin",
+        "transformer.h.1.mlp.c_fc.bias.bin",
+        "transformer.h.1.mlp.c_proj.bias.bin",
+        "transformer.h.2.attn.c_attn.bias.bin",
+        "transformer.h.2.attn.c_proj.bias.bin",
+        "transformer.h.2.ln_1.bias.bin",
+        "transformer.h.2.ln_1.weight.bin",
+        "transformer.h.2.ln_2.bias.bin",
+        "transformer.h.2.ln_2.weight.bin",
+        "transformer.h.2.mlp.c_fc.bias.bin",
+        "transformer.h.2.mlp.c_proj.bias.bin",
+        "transformer.h.3.attn.c_attn.bias.bin",
+        "transformer.h.3.attn.c_proj.bias.bin",
+        "transformer.h.3.ln_1.bias.bin",
+        "transformer.h.3.ln_1.weight.bin",
+        "transformer.h.3.ln_2.bias.bin",
+        "transformer.h.3.ln_2.weight.bin",
+        "transformer.h.3.mlp.c_fc.bias.bin",
+        "transformer.h.3.mlp.c_proj.bias.bin",
+        "transformer.h.4.attn.c_attn.bias.bin",
+        "transformer.h.4.attn.c_proj.bias.bin",
+        "transformer.h.4.ln_1.bias.bin",
+        "transformer.h.4.ln_1.weight.bin",
+        "transformer.h.4.ln_2.bias.bin",
+        "transformer.h.4.ln_2.weight.bin",
+        "transformer.h.4.mlp.c_fc.bias.bin",
+        "transformer.h.4.mlp.c_proj.bias.bin",
+        "transformer.h.5.attn.c_attn.bias.bin",
+        "transformer.h.5.attn.c_proj.bias.bin",
+        "transformer.h.5.ln_1.bias.bin",
+        "transformer.h.5.ln_1.weight.bin",
+        "transformer.h.5.ln_2.bias.bin",
+        "transformer.h.5.ln_2.weight.bin",
+        "transformer.h.5.mlp.c_fc.bias.bin",
+        "transformer.h.5.mlp.c_proj.bias.bin",
+        "transformer.ln_f.bias.bin",
+        "transformer.ln_f.weight.bin",
+        "transformer.wpe.weight.bin"
+      ],
+      "onnx_checker_passed": true,
+      "saved_metadata_verified": true,
+      "head_output_shape": [
+        1,
+        1,
+        50257
+      ],
+      "runtime_gate_status": "pending_root_runner"
+    },
+    "q8_acc0": {
+      "nodes": 1656,
+      "initializer_count": 134,
+      "initializer_payload_bytes": 94602748,
+      "op_counts": {
+        "Shape": 142,
+        "Constant": 623,
+        "Gather": 101,
+        "Unsqueeze": 146,
+        "Concat": 88,
+        "Reshape": 104,
+        "Slice": 57,
+        "Squeeze": 44,
+        "Add": 88,
+        "Cast": 22,
+        "Range": 1,
+        "Sub": 21,
+        "Mul": 39,
+        "ReduceMean": 26,
+        "Pow": 25,
+        "Sqrt": 13,
+        "Div": 19,
+        "MatMulNBits": 25,
+        "Split": 6,
+        "Transpose": 30,
+        "MatMul": 12,
+        "ConstantOfShape": 6,
+        "Where": 6,
+        "Softmax": 6,
+        "Tanh": 6
+      },
+      "preserved_old_initializer_count": 123,
+      "non_vocabulary_nodes_preserved_byte_for_byte": true,
+      "non_vocabulary_initializers_preserved_byte_for_byte": true,
+      "input_output_metadata_preserved_byte_for_byte": true,
+      "native_old_prepack_payload_bytes": 0,
+      "native_new_head_prepack_payload_bytes": 0,
+      "native_total_prepack_payload_bytes": 0,
+      "weight_tie": {
+        "kind": "shared_Q8_B_S",
+        "embedding_and_head_same_quantized_rows": true,
+        "canonical_initializers": [
+          "__blucca_tied_vocab_q8_B",
+          "__blucca_tied_vocab_q8_S"
+        ],
+        "canonical_initializer_consumers": {
+          "__blucca_tied_vocab_q8_B": [
+            "__blucca_tied_vocab_q8_embed_gather_B",
+            "__blucca_tied_vocab_q8_head_matmul"
+          ],
+          "__blucca_tied_vocab_q8_S": [
+            "__blucca_tied_vocab_q8_scale_reshape",
+            "__blucca_tied_vocab_q8_head_matmul"
+          ]
+        }
+      },
+      "file": "q8_acc0.onnx",
+      "file_bytes": 1311494,
+      "external_files": [
+        "__blucca_tied_vocab_q8_B.bin",
+        "__blucca_tied_vocab_q8_S.bin",
+        "__blucca_whole_q8_00_B.bin",
+        "__blucca_whole_q8_00_S.bin",
+        "__blucca_whole_q8_01_B.bin",
+        "__blucca_whole_q8_01_S.bin",
+        "__blucca_whole_q8_02_B.bin",
+        "__blucca_whole_q8_02_S.bin",
+        "__blucca_whole_q8_03_B.bin",
+        "__blucca_whole_q8_03_S.bin",
+        "__blucca_whole_q8_04_B.bin",
+        "__blucca_whole_q8_04_S.bin",
+        "__blucca_whole_q8_05_B.bin",
+        "__blucca_whole_q8_05_S.bin",
+        "__blucca_whole_q8_06_B.bin",
+        "__blucca_whole_q8_06_S.bin",
+        "__blucca_whole_q8_07_B.bin",
+        "__blucca_whole_q8_07_S.bin",
+        "__blucca_whole_q8_08_B.bin",
+        "__blucca_whole_q8_08_S.bin",
+        "__blucca_whole_q8_09_B.bin",
+        "__blucca_whole_q8_09_S.bin",
+        "__blucca_whole_q8_10_B.bin",
+        "__blucca_whole_q8_10_S.bin",
+        "__blucca_whole_q8_11_B.bin",
+        "__blucca_whole_q8_11_S.bin",
+        "__blucca_whole_q8_12_B.bin",
+        "__blucca_whole_q8_12_S.bin",
+        "__blucca_whole_q8_13_B.bin",
+        "__blucca_whole_q8_13_S.bin",
+        "__blucca_whole_q8_14_B.bin",
+        "__blucca_whole_q8_14_S.bin",
+        "__blucca_whole_q8_15_B.bin",
+        "__blucca_whole_q8_15_S.bin",
+        "__blucca_whole_q8_16_B.bin",
+        "__blucca_whole_q8_16_S.bin",
+        "__blucca_whole_q8_17_B.bin",
+        "__blucca_whole_q8_17_S.bin",
+        "__blucca_whole_q8_18_B.bin",
+        "__blucca_whole_q8_18_S.bin",
+        "__blucca_whole_q8_19_B.bin",
+        "__blucca_whole_q8_19_S.bin",
+        "__blucca_whole_q8_20_B.bin",
+        "__blucca_whole_q8_20_S.bin",
+        "__blucca_whole_q8_21_B.bin",
+        "__blucca_whole_q8_21_S.bin",
+        "__blucca_whole_q8_22_B.bin",
+        "__blucca_whole_q8_22_S.bin",
+        "__blucca_whole_q8_23_B.bin",
+        "__blucca_whole_q8_23_S.bin",
+        "transformer.h.0.attn.c_attn.bias.bin",
+        "transformer.h.0.attn.c_proj.bias.bin",
+        "transformer.h.0.ln_1.bias.bin",
+        "transformer.h.0.ln_1.weight.bin",
+        "transformer.h.0.ln_2.bias.bin",
+        "transformer.h.0.ln_2.weight.bin",
+        "transformer.h.0.mlp.c_fc.bias.bin",
+        "transformer.h.0.mlp.c_proj.bias.bin",
+        "transformer.h.1.attn.c_attn.bias.bin",
+        "transformer.h.1.attn.c_proj.bias.bin",
+        "transformer.h.1.ln_1.bias.bin",
+        "transformer.h.1.ln_1.weight.bin",
+        "transformer.h.1.ln_2.bias.bin",
+        "transformer.h.1.ln_2.weight.bin",
+        "transformer.h.1.mlp.c_fc.bias.bin",
+        "transformer.h.1.mlp.c_proj.bias.bin",
+        "transformer.h.2.attn.c_attn.bias.bin",
+        "transformer.h.2.attn.c_proj.bias.bin",
+        "transformer.h.2.ln_1.bias.bin",
+        "transformer.h.2.ln_1.weight.bin",
+        "transformer.h.2.ln_2.bias.bin",
+        "transformer.h.2.ln_2.weight.bin",
+        "transformer.h.2.mlp.c_fc.bias.bin",
+        "transformer.h.2.mlp.c_proj.bias.bin",
+        "transformer.h.3.attn.c_attn.bias.bin",
+        "transformer.h.3.attn.c_proj.bias.bin",
+        "transformer.h.3.ln_1.bias.bin",
+        "transformer.h.3.ln_1.weight.bin",
+        "transformer.h.3.ln_2.bias.bin",
+        "transformer.h.3.ln_2.weight.bin",
+        "transformer.h.3.mlp.c_fc.bias.bin",
+        "transformer.h.3.mlp.c_proj.bias.bin",
+        "transformer.h.4.attn.c_attn.bias.bin",
+        "transformer.h.4.attn.c_proj.bias.bin",
+        "transformer.h.4.ln_1.bias.bin",
+        "transformer.h.4.ln_1.weight.bin",
+        "transformer.h.4.ln_2.bias.bin",
+        "transformer.h.4.ln_2.weight.bin",
+        "transformer.h.4.mlp.c_fc.bias.bin",
+        "transformer.h.4.mlp.c_proj.bias.bin",
+        "transformer.h.5.attn.c_attn.bias.bin",
+        "transformer.h.5.attn.c_proj.bias.bin",
+        "transformer.h.5.ln_1.bias.bin",
+        "transformer.h.5.ln_1.weight.bin",
+        "transformer.h.5.ln_2.bias.bin",
+        "transformer.h.5.ln_2.weight.bin",
+        "transformer.h.5.mlp.c_fc.bias.bin",
+        "transformer.h.5.mlp.c_proj.bias.bin",
+        "transformer.ln_f.bias.bin",
+        "transformer.ln_f.weight.bin",
+        "transformer.wpe.weight.bin"
+      ],
+      "onnx_checker_passed": true,
+      "saved_metadata_verified": true,
+      "head_output_shape": [
+        1,
+        1,
+        50257
+      ],
+      "runtime_gate_status": "pending_root_runner"
+    }
+  },
+  "outputs": [
+    "logits",
+    "present.0.key",
+    "present.0.value",
+    "present.1.key",
+    "present.1.value",
+    "present.2.key",
+    "present.2.value",
+    "present.3.key",
+    "present.3.value",
+    "present.4.key",
+    "present.4.value",
+    "present.5.key",
+    "present.5.value"
+  ]
+}

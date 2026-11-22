@@ -1,0 +1,25 @@
+{
+  "host": {
+    "cpu": "AMD EPYC 7K62 48-Core Processor",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": false,
+      "avx512_vnni": false,
+      "avx_vnni": false
+    },
+    "python": "3.14.8 (main, Oct  2 2026, 10:23:31) [GCC 16.2.1 20260810]",
+    "numpy": "2.5.3",
+    "ort": "1.31.1"
+  },
+  "scored_tokens": 2048,
+  "block_size": 1024,
+  "mean_nll_by_mode": {
+    "dense": 3.554234129100519,
+    "native": 3.554233919677929
+  },
+  "same_weight_chained_precision_pass": true,
+  "same_weight_greedy_4x64_identical": true,
+  "numerical_chain_gate_passed": true,
+  "probe_scope": "fixed NIST government narrative, 2048 targets, no text-driven quantizer tuning"
+}

@@ -1,0 +1,32 @@
+{
+  "host": {
+    "cpu": "AMD EPYC",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": true,
+      "avx512_vnni": true,
+      "avx_vnni": true
+    },
+    "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+    "numpy": "2.5.5",
+    "ort": "1.31.1"
+  },
+  "scored_tokens": 2048,
+  "block_size": 1024,
+  "mean_nll_by_mode": {
+    "dense": 3.5542341100060093,
+    "native": 3.554233893619238,
+    "original": 3.5454636996410622,
+    "old_native": 3.5464459867586497
+  },
+  "same_weight_chained_precision_pass": true,
+  "same_weight_greedy_4x64_identical": true,
+  "numerical_chain_gate_passed": true,
+  "probe_scope": "fixed NIST government narrative, 2048 targets, no text-driven quantizer tuning",
+  "delta_old24q8_minus_fp32": 0.0009822871175875214,
+  "delta_tiedq8_minus_old24q8": 0.0077879068605883894,
+  "delta_tiedq8_minus_fp32": 0.00877019397817591,
+  "quantization_loss_gate_passed": true,
+  "complete_language_gate_passed": true
+}

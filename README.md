@@ -26,7 +26,7 @@ It connects the complete methods, measured results and reusable tools.
 
 | Capability | Open it |
 | :--- | :--- |
-| Complete one-token CPU decode with FP32 activations and Q8 weights | [Same-weight DistilGPT2: all logits/KV and whole-call results](research/ort-q8-whole-decode/) |
+| Complete CPU decode with a shared Q8 vocabulary and FP32 activations | [DistilGPT2: whole-call/RSS, paired language loss and your own prompt](research/ort-q8-tied-vocabulary/) |
 | Full-piece CPU gradients through KDA, attention and QAT | [Measured backend](research/cpu-backward.md) |
 | Causal inputs, sampling and explicit piece resets | [Input contract and sources](research/causal-priors.md#exact-input-contract) |
 | Native eight-block construction and export | [Model and arithmetic](research/depth-distillation.md#native-identity-and-actual-measurement) |

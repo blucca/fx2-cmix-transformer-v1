@@ -21,6 +21,11 @@ walks through the complete causal result, direct-update exposure and package cha
 
 ## Reusable tools
 
+[Shared-Q8 vocabulary, complete DistilGPT2](ort-q8-tied-vocabulary/):
+one embedding/head code-and-scale pair, FP32 activations, complete fresh
+whole-call/RSS and fixed-text language gates, with a native-only own-prompt
+bundle. The earlier 24-Gemm/kernel and its complete source stay available.
+
 [Complete same-Q8 DistilGPT2 decode](ort-q8-whole-decode/): all 24 Gemm,
 all logits and KV, three controlled cache lengths, and five fresh
 whole-call workers on each host. Source, complete precision/timing results

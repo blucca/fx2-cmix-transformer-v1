@@ -1,0 +1,25 @@
+{
+  "status": "COMPLETE_ALL_GATES_PASS",
+  "gates": {
+    "remote_complete_numerical": true,
+    "remote_paired_fixed_text_language": true,
+    "target_compute": true,
+    "target_independent_language_chain": true
+  },
+  "frozen": {
+    "normalized_error_whole_and_each_new_KV_slice": 2e-05,
+    "minimum_time_reduction_each_cache_vs_faster_fresh_old_native": 0.15,
+    "minimum_RSS_reduction_vs_lower_fresh_old_native": 0.15,
+    "maximum_paired_FP32_to_Q8_fixed_document_NLL_increase_nats": 0.03
+  },
+  "measured": {
+    "target_time_reductions": [
+      0.3938492598195431,
+      0.3854315084826011,
+      0.3486590449832674
+    ],
+    "target_rss_reduction": 0.3118357131062772,
+    "paired_NLL_increase_nats": 0.00877019397817591
+  },
+  "scope": "Pinned DistilGPT2; Linux x64/ORT1.31.1/one-thread/FP32 activations; complete 13-output calls; fixed NIST2048 loss probe."
+}
