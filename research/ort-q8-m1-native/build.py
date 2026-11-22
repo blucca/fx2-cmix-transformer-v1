@@ -6,7 +6,6 @@ import os
 import platform
 import subprocess
 from pathlib import Path
-from urllib.request import urlretrieve
 
 HEADERS = ('onnxruntime_c_api.h', 'onnxruntime_cxx_api.h', 'onnxruntime_cxx_inline.h',
            'onnxruntime_float16.h', 'onnxruntime_error_code.h', 'onnxruntime_ep_c_api.h')
@@ -20,11 +19,10 @@ def main():
         raise SystemExit('Build target: Linux/Windows x64 with AVX2 and FMA')
     out = args.out.resolve()
     out.parent.mkdir(parents=True, exist_ok=True)
-    sdk = out.parent / 'sdk-1.31.1'
-    sdk.mkdir(exist_ok=True)
-    for name in HEADERS:
-        if not (sdk / name).exists():
-            urlretrieve('https://raw.githubusercontent.com/microsoft/onnxruntime/v1.31.1/include/onnxruntime/core/session/' + name, sdk / name)
+    # The exact six headers used by the published builds are bundled.
+    # This fixed API-31 build stays reproducible after upstream URL removal.
+    sdk = Path(__file__).resolve().parent / 'sdk-1.31.1'
+    assert all((sdk / name).is_file() for name in HEADERS)
     source = Path(__file__).resolve().parent / 'q8_m1_ort.cpp'
     if os.name == 'nt':
         command = ['cl', '/nologo', '/O2', '/LD', '/std:c++17', '/arch:AVX2', '/EHsc',

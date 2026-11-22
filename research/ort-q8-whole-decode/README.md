@@ -48,7 +48,7 @@ qualification gate requires all numerical checks and at least **15% time
 reduction at every tested cache length** on an AVX2/FMA, no-AVX-512/VNNI host.
 
 FP32-activation / W8 inference already has implementations:
-[ORT MatMulNBits](https://github.com/microsoft/onnxruntime/blob/v1.31.1/docs/ContribOperators.md#commicrosoftmatmulnbits)
+[ORT MatMulNBits](https://onnxruntime.ai/docs/performance/model-optimizations/quantization.html)
 and [Intel IPEX weight-only quantization](https://github.com/intel/intel-extension-for-pytorch/blob/main/docs/tutorials/llm/llm_optimize.md).
 The measured comparison here covers four same-contract ORT graphs: dense,
 stock Q8 `accuracy_level=0`, stock two-Q4 Split8 and the existing native Q8M1.
@@ -138,6 +138,9 @@ initialization seconds, peak RSS and every output check. `DONE` records
 completed execution; use `target_gate_passed` for the numerical/performance
 qualification. Keep each graph with **all sibling external `.bin` files**
 listed in the manifest when moving it.
+
+The native builder uses its bundled six ORT API-31 headers (Microsoft MIT).
+The kernel and API version are the same as the published measurements.
 
 Small checks, without the downloaded model:
 

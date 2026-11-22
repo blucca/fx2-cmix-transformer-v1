@@ -41,7 +41,7 @@ In a Windows x64 MSVC developer shell, use the same build entry:
 python research/ort-q8-m1-native/build.py --out C:\YOUR\temp\q8_m1.dll
 ```
 
-The builder downloads six pinned ORT SDK headers to the output folder's
+The builder uses the six included ORT API-31 headers in this package's
 `sdk-1.31.1/`, builds the single source and writes its small build receipt.
 Linux uses `-O3 -mavx2 -mfma`; Windows uses `/O2 /arch:AVX2`.
 Windows x64 compilation, loading and all native controls passed in
