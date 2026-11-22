@@ -41,6 +41,7 @@ check plus a small helper patch; numeric-cast and typed-byte controls share one 
 
 ## Focused analyses
 
+- [Typed exact field-reference coding: complete charged frozen-frequency screen, +1 B / 0 B; fixed recipe stopped](typed-field-copy-20261122/README.md).
 - [Frozen NN versus causal PPMd](causal-prior-value.md) and [native-loss regimes](native-loss-regimes.md)
 - [Each method’s actual update exposure](mixed-sample-exposure.md) and [observed length support](native-length-support.md)
 - [Teacher loss and curvature](teacher-objective-audit.md), [actual parameter gradients](depth-objective-gradients.md), and [activation counterfactual](depth-activation-counterfactual.md)

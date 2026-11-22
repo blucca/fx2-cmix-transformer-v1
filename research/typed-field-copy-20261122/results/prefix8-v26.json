@@ -1,0 +1,149 @@
+{
+  "schema": "hutter.field-copy.screen.v1",
+  "status": "complete",
+  "method": "TARGET prefix3; exact causal spelling; MRU ranks encoded with standard truncated binary; binary symbols p=32768; suffix copy",
+  "fixture_scope": "Observation-only fixed u16 probabilities; true range decode and source equality. Native Predictor integration, full archive S and formal qualification are later gates. No trace ships in entrant.",
+  "inputs": {
+    "trace": "PREFIX8_V26_TRACE.bin",
+    "prepared": "PREPARED_STREAM.bin",
+    "prepared_file_bytes": 586459020,
+    "offset": 0,
+    "length": 8388608,
+    "tail_start": 7340032,
+    "golden_bytes": 1068581
+  },
+  "fixed_contract": {
+    "prefix_bytes": 3,
+    "max_entries": 65536,
+    "max_spelling_bytes": 8388608,
+    "max_field_bytes": 1024,
+    "table_heap_limit_bytes": 67108864,
+    "copy_initial_count": 1,
+    "raw_initial_count": 256,
+    "event_probability": "1+floor(65534*one/(one+zero)); halve at total>=65536",
+    "target_only": true,
+    "delimiter_raw": true,
+    "one_event_per_field": true,
+    "empty_group_skip": true,
+    "nonempty_prefix3_at_eof_is_raw": true
+  },
+  "acceptance": {
+    "all_trace_labels_match": true,
+    "valid_trace_records": 67108864,
+    "original_golden_matches": true,
+    "source_equal_after_decode": true,
+    "encoder_decoder_counts_equal": true,
+    "encoder_decoder_costs_equal": true,
+    "original_predicts_and_perceives_each_once": true,
+    "frozen_fixture_bytes": 134217728,
+    "encoder_original_bits": 67108864,
+    "decoder_original_bits": 67108864,
+    "original_bit_order_fnv64": "21d53b819f623fab",
+    "source_bytes_fnv64": "8c9693b77d276f3b",
+    "decoded_bytes_fnv64": "8c9693b77d276f3b"
+  },
+  "range": {
+    "whole_base_bytes": 1068581,
+    "whole_candidate_bytes": 1068582,
+    "whole_saved_bytes": -1,
+    "tail_base_bytes": 178714,
+    "tail_candidate_bytes": 178714,
+    "tail_saved_bytes": 0,
+    "base_closed_prefix_at_tail_bytes": 889867,
+    "candidate_closed_prefix_at_tail_bytes": 889868,
+    "candidate_emitted_before_tail_bytes": 889867,
+    "base_terminal_inclusive_tail_bytes": 178715,
+    "candidate_terminal_inclusive_tail_bytes": 178715,
+    "tail_definition": "Physical closed-prefix byte difference at reconstructed source boundary; one termination byte cancels. Event/index attributed at prefix3 trigger even across copied suffix.",
+    "decoder_physical_bytes_read": 1068582,
+    "decoder_original_zero_padding_bytes": 3
+  },
+  "ideal": {
+    "original_base_bits": 8548639.95316524,
+    "original_tail_bits": 1429712.90046543,
+    "whole": {
+      "raw_event_bits": 17.6700921546476,
+      "copy_event_bits": 29,
+      "index_bits": 7,
+      "avoided_native_suffix_bits": 39.9647389316547,
+      "net_saved_ideal_bits": -13.7053532229929
+    },
+    "tail": {
+      "raw_event_bits": 0.738815720760296,
+      "copy_event_bits": 0,
+      "index_bits": 0,
+      "avoided_native_suffix_bits": 0,
+      "net_saved_ideal_bits": -0.738815720760296
+    }
+  },
+  "counts": {
+    "prefix3_triggers": 236699,
+    "empty_group_deterministic_skips": 6960,
+    "charged_events": 229739,
+    "raw_events": 229737,
+    "copy_events": 2,
+    "exact_completed_matches_at_charged_triggers": 162932,
+    "zero_suffix_matches": 29162,
+    "zero_suffix_copies": 0,
+    "copied_suffix_bytes": 27,
+    "max_prefix_group_size": 3080,
+    "complete_titles": 4534,
+    "complete_internal_targets": 241101,
+    "captions": 26944,
+    "external_links": 3026,
+    "aborts": 9,
+    "overlength_fields": 0,
+    "partial_fields": 1
+  },
+  "table": {
+    "accepted_completions": 245635,
+    "distinct_insertions": 75283,
+    "repeated_completions": 170352,
+    "global_completed_recency_evictions": 9747,
+    "rejected_invalid_spellings": 0,
+    "rejected_overlength_spellings": 0,
+    "current_entries": 65536,
+    "current_spelling_bytes": 863595,
+    "peak_entries": 65536,
+    "peak_spelling_bytes": 864043,
+    "tracked_heap_live_bytes": 10969425,
+    "tracked_heap_peak_bytes": 10969640,
+    "tracked_allocation_calls": 256084
+  },
+  "event_model_final": {
+    "one": 1,
+    "zero": 33387
+  },
+  "resources": {
+    "total_cpu_seconds": 1.845731,
+    "total_wall_seconds": 6.824114053,
+    "trace_validation_cpu_seconds": 1.015814,
+    "event_encoding_cpu_seconds": 0.446048,
+    "event_decoding_cpu_seconds": 0.383869,
+    "trace_validation_wall_seconds": 5.991284353,
+    "event_encoding_wall_seconds": 0.445756333,
+    "event_decoding_wall_seconds": 0.387073367,
+    "max_process_rss_kib": 166204,
+    "requested_replay_cpu_limit_seconds": 120,
+    "cpu_within_120_seconds": true
+  },
+  "override_original_bits": 2446731,
+  "artifacts": {
+    "coded_stream": "prefix8-v26.coded.bin (retained research-only payload; excluded from publication)",
+    "result": "results/prefix8-v26.json"
+  },
+  "public_copy": {
+    "scientific_values_unchanged": true,
+    "private_location_fields_replaced": [
+      "inputs.trace",
+      "inputs.prepared",
+      "artifacts.coded_stream",
+      "artifacts.result"
+    ],
+    "trace_prepared_and_coded_binaries_published": false,
+    "label_clarifications": {
+      "method": "Standard truncated-binary MRU ranks use p=32768 binary symbols; short/long rank code lengths differ.",
+      "original_predicts_and_perceives_each_once": "FrozenFixture bookkeeping; live native Predictor execution count is 0."
+    }
+  }
+}

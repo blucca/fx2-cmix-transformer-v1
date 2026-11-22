@@ -1,0 +1,54 @@
+{
+  "schema": "hutter.field-copy.publication-check.v1",
+  "date": "2026-11-22",
+  "status": "PASS",
+  "scope": "one fixed synthetic parser/event/range-code test; no observed fixture reruns, no native Predictor execution, no old model tests",
+  "source_paths": [
+    "field-copy.h",
+    "field-copy-test.cpp",
+    "field-event-replay.cpp"
+  ],
+  "compiler_flags": [
+    "-O3",
+    "-std=c++17",
+    "-Wall",
+    "-Wextra",
+    "-Wpedantic",
+    "-I research"
+  ],
+  "compilation": [
+    {
+      "source": "field-copy-test.cpp",
+      "exit_code": 0,
+      "warning_log_bytes": 0
+    },
+    {
+      "source": "field-event-replay.cpp",
+      "exit_code": 0,
+      "warning_log_bytes": 0
+    }
+  ],
+  "test_exit_code": 0,
+  "test": {
+    "status": "passed",
+    "checks": [
+      "inclusive counter and real decode",
+      "truncated-binary index",
+      "causal completion and title filter",
+      "global and byte-cap eviction",
+      "COPY plus charged RAW/parser branches",
+      "tail inside copied suffix",
+      "charged EOF prefix3",
+      "zero-suffix latch",
+      "every original bit Predict then Perceive once",
+      "event prior halving"
+    ],
+    "mixed_copy_events": 1,
+    "zero_fixture_copy_events": 301,
+    "table_heap_peak_bytes": 1374
+  },
+  "new_native_predictor_runs": 0,
+  "old_matrix_reruns": 0,
+  "new_observed_direction_replays": 0,
+  "fixture_callback_accounting": "Test Predict/Perceive counts and labels refer to FrozenFixture bookkeeping, with direct source equality. The test executes no live native Predictor."
+}

@@ -1,0 +1,276 @@
+{
+  "schema": "hutter.field-copy.public-summary.v1",
+  "date": "2026-11-22",
+  "status": "COMPLETE_NEGATIVE_SCREEN",
+  "method": "fixed TARGET prefix3 exact causal full-spelling references; one global COPY/RAW event prior; MRU ranks encoded with standard truncated binary, binary symbols p=32768",
+  "scope": "Two observed same-family v26 frozen-u16 fixtures, each starting with an empty table. Complete physically charged event/rank encode and causal decode/source equality. Live native Predictor execution and full archive/entrant qualification are separate unmeasured gates.",
+  "fixed_contract": {
+    "prefix_bytes": 3,
+    "max_entries": 65536,
+    "max_spelling_bytes": 8388608,
+    "max_field_bytes": 1024,
+    "table_heap_limit_bytes": 67108864,
+    "copy_initial_count": 1,
+    "raw_initial_count": 256,
+    "event_probability": "1+floor(65534*one/(one+zero)); halve at total>=65536",
+    "target_only": true,
+    "delimiter_raw": true,
+    "one_event_per_field": true,
+    "empty_group_skip": true,
+    "nonempty_prefix3_at_eof_is_raw": true
+  },
+  "initial_reference_table": "empty for each sample",
+  "first_stage_cost_gate": {
+    "requirement": "Strictly positive physically charged whole-byte savings in both fixed directional samples",
+    "outcome": "FAIL",
+    "whole_saved_bytes": [
+      -1,
+      0
+    ],
+    "tail_saved_bytes": [
+      0,
+      0
+    ],
+    "action": "STOP this fixed prefix/table/prior/index recipe before native integration, full S, parameter changes, field expansion or capacity sweeps"
+  },
+  "measurement_envelope": {
+    "allocated_cpus": 1,
+    "per_process_address_space_bytes": 1073741824,
+    "per_replay_cpu_limit_seconds": 120,
+    "per_replay_wall_limit_seconds": 240
+  },
+  "total_measured_replay_resources": {
+    "cpu_seconds": 2.103425,
+    "own_wall_seconds_sum": 7.572661268999999,
+    "max_process_rss_kib": 166204,
+    "validated_original_bits": 75497472
+  },
+  "new_native_predictor_runs": 0,
+  "old_matrix_reruns": 0,
+  "unmeasured_gates": [
+    "live native Predictor integration/state equality",
+    "full prepared-stream compression and official enwik9 restoration",
+    "full archive S/S0 and real decoder/model package charge",
+    "official entrant/award qualifying acceptance"
+  ],
+  "source_provenance": {
+    "repository_base_commit": "465fd0d314b2a501ac706b9940bf6756022b44a4",
+    "reviewed_and_executed_source_sha256": {
+      "field-copy.h": "31d113a2aeaa8c6abb8b9b8e95e7ea19c179128d1d7542a8a1542539e9248bd3",
+      "field-event-replay.cpp": "19cf7a2707f095e5b0c472759e99c1291052c990423a655de6f5924867011d31",
+      "field-copy-test.cpp": "e8bacc35995ea26c920057bf3f04bbc44aa9bae41eaa54989cb1d8c739aca54c"
+    },
+    "trace_header": "existing ../trace.h",
+    "license": "GPL-3.0-only",
+    "attribution": "Range arithmetic from src/coder and research/replay.cpp; parser/WRT title markers from research/entity-prefix-replay.cpp; original Vladimir Ivanov / Kaido Orav / Ibrahim Marcouch authorship retained; isolated research by Blucca / Codex"
+  },
+  "minimal_test_receipt": "test-check.json",
+  "public_copy_policy": "Scientific values retained. Private absolute location strings replaced with generic fixture labels. Source/review/scientific JSON only; prepared inputs, traces and coded binaries are excluded.",
+  "samples": [
+    {
+      "fixture": "prefix8-v26",
+      "family": "v26",
+      "prepared_offset_bytes": 0,
+      "original_length_bytes": 8388608,
+      "tail_start_bytes": 7340032,
+      "tail_length_bytes": 1048576,
+      "exit_code": 0,
+      "result": "results/prefix8-v26.json",
+      "range": {
+        "whole_base_bytes": 1068581,
+        "whole_candidate_bytes": 1068582,
+        "whole_saved_bytes": -1,
+        "tail_base_bytes": 178714,
+        "tail_candidate_bytes": 178714,
+        "tail_saved_bytes": 0,
+        "base_closed_prefix_at_tail_bytes": 889867,
+        "candidate_closed_prefix_at_tail_bytes": 889868,
+        "candidate_emitted_before_tail_bytes": 889867,
+        "base_terminal_inclusive_tail_bytes": 178715,
+        "candidate_terminal_inclusive_tail_bytes": 178715,
+        "tail_definition": "Physical closed-prefix byte difference at reconstructed source boundary; one termination byte cancels. Event/index attributed at prefix3 trigger even across copied suffix.",
+        "decoder_physical_bytes_read": 1068582,
+        "decoder_original_zero_padding_bytes": 3
+      },
+      "counts": {
+        "prefix3_triggers": 236699,
+        "empty_group_deterministic_skips": 6960,
+        "charged_events": 229739,
+        "raw_events": 229737,
+        "copy_events": 2,
+        "exact_completed_matches_at_charged_triggers": 162932,
+        "zero_suffix_matches": 29162,
+        "zero_suffix_copies": 0,
+        "copied_suffix_bytes": 27,
+        "max_prefix_group_size": 3080,
+        "complete_titles": 4534,
+        "complete_internal_targets": 241101,
+        "captions": 26944,
+        "external_links": 3026,
+        "aborts": 9,
+        "overlength_fields": 0,
+        "partial_fields": 1
+      },
+      "whole_ideal_costs": {
+        "raw_event_bits": 17.6700921546476,
+        "copy_event_bits": 29,
+        "index_bits": 7,
+        "avoided_native_suffix_bits": 39.9647389316547,
+        "net_saved_ideal_bits": -13.7053532229929
+      },
+      "tail_ideal_costs": {
+        "raw_event_bits": 0.738815720760296,
+        "copy_event_bits": 0,
+        "index_bits": 0,
+        "avoided_native_suffix_bits": 0,
+        "net_saved_ideal_bits": -0.738815720760296
+      },
+      "table": {
+        "accepted_completions": 245635,
+        "distinct_insertions": 75283,
+        "repeated_completions": 170352,
+        "global_completed_recency_evictions": 9747,
+        "rejected_invalid_spellings": 0,
+        "rejected_overlength_spellings": 0,
+        "current_entries": 65536,
+        "current_spelling_bytes": 863595,
+        "peak_entries": 65536,
+        "peak_spelling_bytes": 864043,
+        "tracked_heap_live_bytes": 10969425,
+        "tracked_heap_peak_bytes": 10969640,
+        "tracked_allocation_calls": 256084
+      },
+      "resources": {
+        "total_cpu_seconds": 1.845731,
+        "total_wall_seconds": 6.824114053,
+        "trace_validation_cpu_seconds": 1.015814,
+        "event_encoding_cpu_seconds": 0.446048,
+        "event_decoding_cpu_seconds": 0.383869,
+        "trace_validation_wall_seconds": 5.991284353,
+        "event_encoding_wall_seconds": 0.445756333,
+        "event_decoding_wall_seconds": 0.387073367,
+        "max_process_rss_kib": 166204,
+        "requested_replay_cpu_limit_seconds": 120,
+        "cpu_within_120_seconds": true
+      },
+      "acceptance": {
+        "all_trace_labels_match": true,
+        "valid_trace_records": 67108864,
+        "original_golden_matches": true,
+        "source_equal_after_decode": true,
+        "encoder_decoder_counts_equal": true,
+        "encoder_decoder_costs_equal": true,
+        "original_predicts_and_perceives_each_once": true,
+        "frozen_fixture_bytes": 134217728,
+        "encoder_original_bits": 67108864,
+        "decoder_original_bits": 67108864,
+        "original_bit_order_fnv64": "21d53b819f623fab",
+        "source_bytes_fnv64": "8c9693b77d276f3b",
+        "decoded_bytes_fnv64": "8c9693b77d276f3b"
+      }
+    },
+    {
+      "fixture": "interior1-v26",
+      "family": "v26",
+      "prepared_offset_bytes": 293232482,
+      "original_length_bytes": 1048576,
+      "tail_start_bytes": 524288,
+      "tail_length_bytes": 524288,
+      "exit_code": 0,
+      "result": "results/interior1-v26.json",
+      "range": {
+        "whole_base_bytes": 208696,
+        "whole_candidate_bytes": 208696,
+        "whole_saved_bytes": 0,
+        "tail_base_bytes": 87871,
+        "tail_candidate_bytes": 87871,
+        "tail_saved_bytes": 0,
+        "base_closed_prefix_at_tail_bytes": 120825,
+        "candidate_closed_prefix_at_tail_bytes": 120825,
+        "candidate_emitted_before_tail_bytes": 120824,
+        "base_terminal_inclusive_tail_bytes": 87872,
+        "candidate_terminal_inclusive_tail_bytes": 87872,
+        "tail_definition": "Physical closed-prefix byte difference at reconstructed source boundary; one termination byte cancels. Event/index attributed at prefix3 trigger even across copied suffix.",
+        "decoder_physical_bytes_read": 208696,
+        "decoder_original_zero_padding_bytes": 3
+      },
+      "counts": {
+        "prefix3_triggers": 34449,
+        "empty_group_deterministic_skips": 2607,
+        "charged_events": 31842,
+        "raw_events": 31842,
+        "copy_events": 0,
+        "exact_completed_matches_at_charged_triggers": 20855,
+        "zero_suffix_matches": 1655,
+        "zero_suffix_copies": 0,
+        "copied_suffix_bytes": 0,
+        "max_prefix_group_size": 411,
+        "complete_titles": 208,
+        "complete_internal_targets": 34843,
+        "captions": 3464,
+        "external_links": 497,
+        "aborts": 1,
+        "overlength_fields": 0,
+        "partial_fields": 0
+      },
+      "whole_ideal_costs": {
+        "raw_event_bits": 7.34312437249736,
+        "copy_event_bits": 0,
+        "index_bits": 0,
+        "avoided_native_suffix_bits": 0,
+        "net_saved_ideal_bits": -7.34312437249736
+      },
+      "tail_ideal_costs": {
+        "raw_event_bits": 1.92501433376397,
+        "copy_event_bits": 0,
+        "index_bits": 0,
+        "avoided_native_suffix_bits": 0,
+        "net_saved_ideal_bits": -1.92501433376397
+      },
+      "table": {
+        "accepted_completions": 35051,
+        "distinct_insertions": 13860,
+        "repeated_completions": 21191,
+        "global_completed_recency_evictions": 0,
+        "rejected_invalid_spellings": 0,
+        "rejected_overlength_spellings": 0,
+        "current_entries": 13860,
+        "current_spelling_bytes": 151768,
+        "peak_entries": 13860,
+        "peak_spelling_bytes": 151768,
+        "tracked_heap_live_bytes": 2373957,
+        "tracked_heap_peak_bytes": 2373957,
+        "tracked_allocation_calls": 46386
+      },
+      "resources": {
+        "total_cpu_seconds": 0.257694,
+        "total_wall_seconds": 0.748547216,
+        "trace_validation_cpu_seconds": 0.146459,
+        "event_encoding_cpu_seconds": 0.059256,
+        "event_decoding_cpu_seconds": 0.051979,
+        "trace_validation_wall_seconds": 0.635596762,
+        "event_encoding_wall_seconds": 0.061960697,
+        "event_decoding_wall_seconds": 0.050989757,
+        "max_process_rss_kib": 26060,
+        "requested_replay_cpu_limit_seconds": 120,
+        "cpu_within_120_seconds": true
+      },
+      "acceptance": {
+        "all_trace_labels_match": true,
+        "valid_trace_records": 8388608,
+        "original_golden_matches": true,
+        "source_equal_after_decode": true,
+        "encoder_decoder_counts_equal": true,
+        "encoder_decoder_costs_equal": true,
+        "original_predicts_and_perceives_each_once": true,
+        "frozen_fixture_bytes": 16777216,
+        "encoder_original_bits": 8388608,
+        "decoder_original_bits": 8388608,
+        "original_bit_order_fnv64": "0ffc935fd7121d43",
+        "source_bytes_fnv64": "affdf252a0a28744",
+        "decoded_bytes_fnv64": "affdf252a0a28744"
+      }
+    }
+  ],
+  "fixture_callback_accounting": "Predict/Perceive counts are FrozenFixture bookkeeping for each original reconstructed bit. Direct reconstructed-source equality is checked. Native-state preservation has a separate source-level induction; live native Predictor runs are 0."
+}
