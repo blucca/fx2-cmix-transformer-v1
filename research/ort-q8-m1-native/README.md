@@ -17,6 +17,11 @@ N16/K32 and N16/K64. M197 is outside the operator's static-M1 contract.
 The earlier [stock-two-Q4 workaround and its full M197 regressions](../ort-split8-avx2.md)
 remain available.
 
+**[Complete model study: same-Q8 DistilGPT2 decode](../ort-q8-whole-decode/).**
+The unchanged operator is integrated into all 24 constant Gemm layers;
+whole-call timing returns the complete logits and twelve KV outputs.
+The study records numerical controls, each host and all tested cache lengths.
+
 ## Build and use
 
 Prerequisites: **x64 CPU with AVX2 and FMA**, ORT **1.31.1**, NumPy and ONNX.

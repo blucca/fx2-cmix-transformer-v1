@@ -1,0 +1,70 @@
+{
+  "label": "target",
+  "host": {
+    "cpu": "AMD EPYC 7K62 48-Core Processor",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": false,
+      "avx512_vnni": false,
+      "avx_vnni": false
+    },
+    "python": "3.14.8 (main, Oct  2 2026, 10:23:31) [GCC 16.2.1 20260810]",
+    "numpy": "2.5.3",
+    "ort": "1.31.1"
+  },
+  "rows": [
+    {
+      "past": 16,
+      "dense_before_p50_ms": 19.476669374853373,
+      "dense_after_p50_ms": 19.273531856015325,
+      "conservative_dense_p50_ms": 19.273531856015325,
+      "native_p50_ms": 12.990152928978205,
+      "native_time_reduction": 0.3260107682378961,
+      "native_precision_pass": true,
+      "stock_q8_p50_ms": 94.0499713178724,
+      "split8_p50_ms": 30.27855372056365
+    },
+    {
+      "past": 128,
+      "dense_before_p50_ms": 19.7455957531929,
+      "dense_after_p50_ms": 19.69730854034424,
+      "conservative_dense_p50_ms": 19.69730854034424,
+      "native_p50_ms": 13.56723834760487,
+      "native_time_reduction": 0.31121359449610553,
+      "native_precision_pass": true,
+      "stock_q8_p50_ms": 95.06884985603392,
+      "split8_p50_ms": 30.846271431073546
+    },
+    {
+      "past": 512,
+      "dense_before_p50_ms": 21.371578564867377,
+      "dense_after_p50_ms": 21.41929347999394,
+      "conservative_dense_p50_ms": 21.371578564867377,
+      "native_p50_ms": 15.35108289681375,
+      "native_time_reduction": 0.2817057078764733,
+      "native_precision_pass": true,
+      "stock_q8_p50_ms": 115.02031865529716,
+      "split8_p50_ms": 32.52794104628265
+    }
+  ],
+  "numerical_pass": true,
+  "precision_by_mode": {
+    "dense-before": true,
+    "native": true,
+    "q8_acc0": true,
+    "split8": true,
+    "dense-after": true
+  },
+  "performance_pass": true,
+  "target_avx2_no_vnni": true,
+  "target_gate_passed": true,
+  "resource_peak_rss_kib": 534376,
+  "full_reports": {
+    "dense-before": "runs/target/dense-before/result.json",
+    "native": "runs/target/native/result.json",
+    "q8_acc0": "runs/target/q8_acc0/result.json",
+    "split8": "runs/target/split8/result.json",
+    "dense-after": "runs/target/dense-after/result.json"
+  }
+}

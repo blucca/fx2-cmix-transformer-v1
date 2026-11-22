@@ -21,6 +21,11 @@ walks through the complete causal result, direct-update exposure and package cha
 
 ## Reusable tools
 
+[Complete same-Q8 DistilGPT2 decode](ort-q8-whole-decode/): all 24 Gemm,
+all logits and KV, three controlled cache lengths, and five fresh
+whole-call workers on each host. Source, complete precision/timing results
+and an end-to-end reproduction are included.
+
 [Single-token ORT Split8](ort-split8-avx2.md): use two stock Q4 operators
 with FP32 activations; complete Linux M1 improvement/M197 regressions, plus
 the original author's independent i5-9400F/Windows measurements.

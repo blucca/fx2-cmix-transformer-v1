@@ -1,0 +1,1083 @@
+{
+  "source_url": "https://huggingface.co/Xenova/distilgpt2/resolve/a41c10485c18a64b6606729b6a082330cbd8f49e/onnx/decoder_with_past_model.onnx",
+  "source_oid": "2c9b7dd7f11facae49943e28ef08ba91d37850232962b5e945bb8bc6ede5495b",
+  "source_bytes": 328939971,
+  "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+  "numpy": "2.5.5",
+  "onnx": "1.23.2",
+  "ort": "1.31.1",
+  "cpu": "AMD EPYC",
+  "features": {
+    "avx2": true,
+    "fma": true,
+    "avx512f": true,
+    "avx512_vnni": true,
+    "avx_vnni": true
+  },
+  "nodes": 1600,
+  "ops": {
+    "Shape": 142,
+    "Constant": 623,
+    "Gather": 100,
+    "Unsqueeze": 146,
+    "Concat": 88,
+    "Reshape": 76,
+    "Slice": 56,
+    "Squeeze": 44,
+    "Add": 64,
+    "Cast": 21,
+    "Range": 1,
+    "Sub": 20,
+    "Mul": 38,
+    "ReduceMean": 26,
+    "Pow": 25,
+    "Sqrt": 13,
+    "Div": 19,
+    "Gemm": 24,
+    "Split": 6,
+    "Transpose": 31,
+    "MatMul": 13,
+    "ConstantOfShape": 6,
+    "Where": 6,
+    "Softmax": 6,
+    "Tanh": 6
+  },
+  "opsets": [
+    [
+      "",
+      13
+    ]
+  ],
+  "inputs": [
+    {
+      "name": "input_ids",
+      "dtype": 7,
+      "dims": [
+        "batch_size",
+        1
+      ]
+    },
+    {
+      "name": "past_key_values.0.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.0.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.1.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.1.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.2.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.2.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.3.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.3.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.4.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.4.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.5.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "past_key_values.5.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length",
+        64
+      ]
+    },
+    {
+      "name": "attention_mask",
+      "dtype": 7,
+      "dims": [
+        "batch_size",
+        "past_sequence_length + 1"
+      ]
+    }
+  ],
+  "outputs": [
+    {
+      "name": "logits",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        1,
+        50257
+      ]
+    },
+    {
+      "name": "present.0.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.0.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.1.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.1.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.2.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.2.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.3.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.3.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.4.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.4.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.5.key",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    },
+    {
+      "name": "present.5.value",
+      "dtype": 1,
+      "dims": [
+        "batch_size",
+        12,
+        "past_sequence_length + 1",
+        64
+      ]
+    }
+  ],
+  "Gemm_MatMul": [
+    {
+      "index": 83,
+      "op": "Gemm",
+      "name": "/transformer/h.0/attn/c_attn/Gemm",
+      "inputs": [
+        "/transformer/h.0/attn/c_attn/Reshape_output_0",
+        "transformer.h.0.attn.c_attn.weight",
+        "transformer.h.0.attn.c_attn.bias"
+      ],
+      "outputs": [
+        "/transformer/h.0/attn/c_attn/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        2304
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 141,
+      "op": "MatMul",
+      "name": "/transformer/h.0/attn/MatMul",
+      "inputs": [
+        "/transformer/h.0/attn/Transpose_output_0",
+        "/transformer/h.0/attn/Transpose_3_output_0"
+      ],
+      "outputs": [
+        "/transformer/h.0/attn/MatMul_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 191,
+      "op": "MatMul",
+      "name": "/transformer/h.0/attn/MatMul_1",
+      "inputs": [
+        "/transformer/h.0/attn/Cast_2_output_0",
+        "present.0.value"
+      ],
+      "outputs": [
+        "/transformer/h.0/attn/MatMul_1_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 224,
+      "op": "Gemm",
+      "name": "/transformer/h.0/attn/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.0/attn/c_proj/Reshape_output_0",
+        "transformer.h.0.attn.c_proj.weight",
+        "transformer.h.0.attn.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.0/attn/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 262,
+      "op": "Gemm",
+      "name": "/transformer/h.0/mlp/c_fc/Gemm",
+      "inputs": [
+        "/transformer/h.0/mlp/c_fc/Reshape_output_0",
+        "transformer.h.0.mlp.c_fc.weight",
+        "transformer.h.0.mlp.c_fc.bias"
+      ],
+      "outputs": [
+        "/transformer/h.0/mlp/c_fc/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        3072
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 301,
+      "op": "Gemm",
+      "name": "/transformer/h.0/mlp/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.0/mlp/c_proj/Reshape_output_0",
+        "transformer.h.0.mlp.c_proj.weight",
+        "transformer.h.0.mlp.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.0/mlp/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        3072,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 339,
+      "op": "Gemm",
+      "name": "/transformer/h.1/attn/c_attn/Gemm",
+      "inputs": [
+        "/transformer/h.1/attn/c_attn/Reshape_output_0",
+        "transformer.h.1.attn.c_attn.weight",
+        "transformer.h.1.attn.c_attn.bias"
+      ],
+      "outputs": [
+        "/transformer/h.1/attn/c_attn/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        2304
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 397,
+      "op": "MatMul",
+      "name": "/transformer/h.1/attn/MatMul",
+      "inputs": [
+        "/transformer/h.1/attn/Transpose_output_0",
+        "/transformer/h.1/attn/Transpose_3_output_0"
+      ],
+      "outputs": [
+        "/transformer/h.1/attn/MatMul_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 445,
+      "op": "MatMul",
+      "name": "/transformer/h.1/attn/MatMul_1",
+      "inputs": [
+        "/transformer/h.1/attn/Cast_2_output_0",
+        "present.1.value"
+      ],
+      "outputs": [
+        "/transformer/h.1/attn/MatMul_1_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 478,
+      "op": "Gemm",
+      "name": "/transformer/h.1/attn/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.1/attn/c_proj/Reshape_output_0",
+        "transformer.h.1.attn.c_proj.weight",
+        "transformer.h.1.attn.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.1/attn/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 516,
+      "op": "Gemm",
+      "name": "/transformer/h.1/mlp/c_fc/Gemm",
+      "inputs": [
+        "/transformer/h.1/mlp/c_fc/Reshape_output_0",
+        "transformer.h.1.mlp.c_fc.weight",
+        "transformer.h.1.mlp.c_fc.bias"
+      ],
+      "outputs": [
+        "/transformer/h.1/mlp/c_fc/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        3072
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 555,
+      "op": "Gemm",
+      "name": "/transformer/h.1/mlp/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.1/mlp/c_proj/Reshape_output_0",
+        "transformer.h.1.mlp.c_proj.weight",
+        "transformer.h.1.mlp.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.1/mlp/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        3072,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 593,
+      "op": "Gemm",
+      "name": "/transformer/h.2/attn/c_attn/Gemm",
+      "inputs": [
+        "/transformer/h.2/attn/c_attn/Reshape_output_0",
+        "transformer.h.2.attn.c_attn.weight",
+        "transformer.h.2.attn.c_attn.bias"
+      ],
+      "outputs": [
+        "/transformer/h.2/attn/c_attn/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        2304
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 651,
+      "op": "MatMul",
+      "name": "/transformer/h.2/attn/MatMul",
+      "inputs": [
+        "/transformer/h.2/attn/Transpose_output_0",
+        "/transformer/h.2/attn/Transpose_3_output_0"
+      ],
+      "outputs": [
+        "/transformer/h.2/attn/MatMul_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 699,
+      "op": "MatMul",
+      "name": "/transformer/h.2/attn/MatMul_1",
+      "inputs": [
+        "/transformer/h.2/attn/Cast_2_output_0",
+        "present.2.value"
+      ],
+      "outputs": [
+        "/transformer/h.2/attn/MatMul_1_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 732,
+      "op": "Gemm",
+      "name": "/transformer/h.2/attn/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.2/attn/c_proj/Reshape_output_0",
+        "transformer.h.2.attn.c_proj.weight",
+        "transformer.h.2.attn.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.2/attn/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 770,
+      "op": "Gemm",
+      "name": "/transformer/h.2/mlp/c_fc/Gemm",
+      "inputs": [
+        "/transformer/h.2/mlp/c_fc/Reshape_output_0",
+        "transformer.h.2.mlp.c_fc.weight",
+        "transformer.h.2.mlp.c_fc.bias"
+      ],
+      "outputs": [
+        "/transformer/h.2/mlp/c_fc/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        3072
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 809,
+      "op": "Gemm",
+      "name": "/transformer/h.2/mlp/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.2/mlp/c_proj/Reshape_output_0",
+        "transformer.h.2.mlp.c_proj.weight",
+        "transformer.h.2.mlp.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.2/mlp/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        3072,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 847,
+      "op": "Gemm",
+      "name": "/transformer/h.3/attn/c_attn/Gemm",
+      "inputs": [
+        "/transformer/h.3/attn/c_attn/Reshape_output_0",
+        "transformer.h.3.attn.c_attn.weight",
+        "transformer.h.3.attn.c_attn.bias"
+      ],
+      "outputs": [
+        "/transformer/h.3/attn/c_attn/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        2304
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 905,
+      "op": "MatMul",
+      "name": "/transformer/h.3/attn/MatMul",
+      "inputs": [
+        "/transformer/h.3/attn/Transpose_output_0",
+        "/transformer/h.3/attn/Transpose_3_output_0"
+      ],
+      "outputs": [
+        "/transformer/h.3/attn/MatMul_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 953,
+      "op": "MatMul",
+      "name": "/transformer/h.3/attn/MatMul_1",
+      "inputs": [
+        "/transformer/h.3/attn/Cast_2_output_0",
+        "present.3.value"
+      ],
+      "outputs": [
+        "/transformer/h.3/attn/MatMul_1_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 986,
+      "op": "Gemm",
+      "name": "/transformer/h.3/attn/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.3/attn/c_proj/Reshape_output_0",
+        "transformer.h.3.attn.c_proj.weight",
+        "transformer.h.3.attn.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.3/attn/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1024,
+      "op": "Gemm",
+      "name": "/transformer/h.3/mlp/c_fc/Gemm",
+      "inputs": [
+        "/transformer/h.3/mlp/c_fc/Reshape_output_0",
+        "transformer.h.3.mlp.c_fc.weight",
+        "transformer.h.3.mlp.c_fc.bias"
+      ],
+      "outputs": [
+        "/transformer/h.3/mlp/c_fc/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        3072
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1063,
+      "op": "Gemm",
+      "name": "/transformer/h.3/mlp/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.3/mlp/c_proj/Reshape_output_0",
+        "transformer.h.3.mlp.c_proj.weight",
+        "transformer.h.3.mlp.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.3/mlp/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        3072,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1101,
+      "op": "Gemm",
+      "name": "/transformer/h.4/attn/c_attn/Gemm",
+      "inputs": [
+        "/transformer/h.4/attn/c_attn/Reshape_output_0",
+        "transformer.h.4.attn.c_attn.weight",
+        "transformer.h.4.attn.c_attn.bias"
+      ],
+      "outputs": [
+        "/transformer/h.4/attn/c_attn/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        2304
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1159,
+      "op": "MatMul",
+      "name": "/transformer/h.4/attn/MatMul",
+      "inputs": [
+        "/transformer/h.4/attn/Transpose_output_0",
+        "/transformer/h.4/attn/Transpose_3_output_0"
+      ],
+      "outputs": [
+        "/transformer/h.4/attn/MatMul_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 1207,
+      "op": "MatMul",
+      "name": "/transformer/h.4/attn/MatMul_1",
+      "inputs": [
+        "/transformer/h.4/attn/Cast_2_output_0",
+        "present.4.value"
+      ],
+      "outputs": [
+        "/transformer/h.4/attn/MatMul_1_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 1240,
+      "op": "Gemm",
+      "name": "/transformer/h.4/attn/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.4/attn/c_proj/Reshape_output_0",
+        "transformer.h.4.attn.c_proj.weight",
+        "transformer.h.4.attn.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.4/attn/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1278,
+      "op": "Gemm",
+      "name": "/transformer/h.4/mlp/c_fc/Gemm",
+      "inputs": [
+        "/transformer/h.4/mlp/c_fc/Reshape_output_0",
+        "transformer.h.4.mlp.c_fc.weight",
+        "transformer.h.4.mlp.c_fc.bias"
+      ],
+      "outputs": [
+        "/transformer/h.4/mlp/c_fc/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        3072
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1317,
+      "op": "Gemm",
+      "name": "/transformer/h.4/mlp/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.4/mlp/c_proj/Reshape_output_0",
+        "transformer.h.4.mlp.c_proj.weight",
+        "transformer.h.4.mlp.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.4/mlp/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        3072,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1355,
+      "op": "Gemm",
+      "name": "/transformer/h.5/attn/c_attn/Gemm",
+      "inputs": [
+        "/transformer/h.5/attn/c_attn/Reshape_output_0",
+        "transformer.h.5.attn.c_attn.weight",
+        "transformer.h.5.attn.c_attn.bias"
+      ],
+      "outputs": [
+        "/transformer/h.5/attn/c_attn/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        2304
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1413,
+      "op": "MatMul",
+      "name": "/transformer/h.5/attn/MatMul",
+      "inputs": [
+        "/transformer/h.5/attn/Transpose_output_0",
+        "/transformer/h.5/attn/Transpose_3_output_0"
+      ],
+      "outputs": [
+        "/transformer/h.5/attn/MatMul_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 1461,
+      "op": "MatMul",
+      "name": "/transformer/h.5/attn/MatMul_1",
+      "inputs": [
+        "/transformer/h.5/attn/Cast_2_output_0",
+        "present.5.value"
+      ],
+      "outputs": [
+        "/transformer/h.5/attn/MatMul_1_output_0"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    },
+    {
+      "index": 1494,
+      "op": "Gemm",
+      "name": "/transformer/h.5/attn/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.5/attn/c_proj/Reshape_output_0",
+        "transformer.h.5.attn.c_proj.weight",
+        "transformer.h.5.attn.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.5/attn/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1532,
+      "op": "Gemm",
+      "name": "/transformer/h.5/mlp/c_fc/Gemm",
+      "inputs": [
+        "/transformer/h.5/mlp/c_fc/Reshape_output_0",
+        "transformer.h.5.mlp.c_fc.weight",
+        "transformer.h.5.mlp.c_fc.bias"
+      ],
+      "outputs": [
+        "/transformer/h.5/mlp/c_fc/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        768,
+        3072
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1571,
+      "op": "Gemm",
+      "name": "/transformer/h.5/mlp/c_proj/Gemm",
+      "inputs": [
+        "/transformer/h.5/mlp/c_proj/Reshape_output_0",
+        "transformer.h.5.mlp.c_proj.weight",
+        "transformer.h.5.mlp.c_proj.bias"
+      ],
+      "outputs": [
+        "/transformer/h.5/mlp/c_proj/Gemm_output_0"
+      ],
+      "attrs": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "B_constant": true,
+      "B_shape": [
+        3072,
+        768
+      ],
+      "B_dtype": 1
+    },
+    {
+      "index": 1599,
+      "op": "MatMul",
+      "name": "/lm_head/MatMul",
+      "inputs": [
+        "/transformer/Reshape_3_output_0",
+        "transformer.wte.weight_transposed"
+      ],
+      "outputs": [
+        "logits"
+      ],
+      "attrs": {},
+      "B_constant": false,
+      "B_shape": null,
+      "B_dtype": null
+    }
+  ],
+  "initializers": 76
+}

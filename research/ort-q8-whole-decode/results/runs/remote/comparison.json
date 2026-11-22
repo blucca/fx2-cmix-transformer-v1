@@ -1,0 +1,70 @@
+{
+  "label": "remote",
+  "host": {
+    "cpu": "AMD EPYC",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": true,
+      "avx512_vnni": true,
+      "avx_vnni": true
+    },
+    "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+    "numpy": "2.5.5",
+    "ort": "1.31.1"
+  },
+  "rows": [
+    {
+      "past": 16,
+      "dense_before_p50_ms": 11.824524510302581,
+      "dense_after_p50_ms": 12.933459001942538,
+      "conservative_dense_p50_ms": 11.824524510302581,
+      "native_p50_ms": 8.05977950221859,
+      "native_time_reduction": 0.3183844732871761,
+      "native_precision_pass": true,
+      "stock_q8_p50_ms": 51.24921699461993,
+      "split8_p50_ms": 10.453899507410824
+    },
+    {
+      "past": 128,
+      "dense_before_p50_ms": 12.269274506252259,
+      "dense_after_p50_ms": 13.528899478842504,
+      "conservative_dense_p50_ms": 12.269274506252259,
+      "native_p50_ms": 9.263694504625164,
+      "native_time_reduction": 0.24496802969853604,
+      "native_precision_pass": true,
+      "stock_q8_p50_ms": 51.78707699815277,
+      "split8_p50_ms": 9.868663983070292
+    },
+    {
+      "past": 512,
+      "dense_before_p50_ms": 14.053929495275952,
+      "dense_after_p50_ms": 14.83330900373403,
+      "conservative_dense_p50_ms": 14.053929495275952,
+      "native_p50_ms": 11.846264998894185,
+      "native_time_reduction": 0.15708521215535098,
+      "native_precision_pass": true,
+      "stock_q8_p50_ms": 55.6909720035037,
+      "split8_p50_ms": 13.337804019101895
+    }
+  ],
+  "numerical_pass": true,
+  "precision_by_mode": {
+    "dense-before": true,
+    "native": true,
+    "q8_acc0": true,
+    "split8": true,
+    "dense-after": true
+  },
+  "performance_pass": true,
+  "target_avx2_no_vnni": false,
+  "target_gate_passed": false,
+  "resource_peak_rss_kib": 529856,
+  "full_reports": {
+    "dense-before": "runs/remote/dense-before/result.json",
+    "native": "runs/remote/native/result.json",
+    "q8_acc0": "runs/remote/q8_acc0/result.json",
+    "split8": "runs/remote/split8/result.json",
+    "dense-after": "runs/remote/dense-after/result.json"
+  }
+}

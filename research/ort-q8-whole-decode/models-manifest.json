@@ -1,0 +1,3750 @@
+{
+  "source": {
+    "path": "source.onnx",
+    "bytes": 328939971,
+    "ref": "Xenova/distilgpt2@a41c10485c18a64b6606729b6a082330cbd8f49e",
+    "nodes": 1600,
+    "Gemm": 24,
+    "preserved_MatMul": 13
+  },
+  "batch": 1,
+  "decode_sequence": 1,
+  "block_size": 32,
+  "quantization": "FP32 absmax/block32; floor 1e-8; /127; rint; +128; clip uint8",
+  "common_Q8_B_payload_bytes": 42467328,
+  "common_Q8_S_payload_bytes": 5308416,
+  "common_Q8_B_S_payload_bytes": 47775744,
+  "native_additional_prepack_payload_bytes": 47775744,
+  "prepack_scope": "signed codes and reordered FP32 scales; excludes object/vector metadata",
+  "source_weights": [
+    {
+      "source_node_index": 83,
+      "source_node": "/transformer/h.0/attn/c_attn/Gemm",
+      "source_inputs": [
+        "/transformer/h.0/attn/c_attn/Reshape_output_0",
+        "transformer.h.0.attn.c_attn.weight",
+        "transformer.h.0.attn.c_attn.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.0/attn/c_attn/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.0.attn.c_attn.weight",
+      "source_W_shape": [
+        768,
+        2304
+      ],
+      "normalized_W_shape": [
+        768,
+        2304
+      ],
+      "source_bias_shape": [
+        2304
+      ],
+      "B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 1769472,
+      "S_shape": [
+        55296
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 221184
+    },
+    {
+      "source_node_index": 224,
+      "source_node": "/transformer/h.0/attn/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.0/attn/c_proj/Reshape_output_0",
+        "transformer.h.0.attn.c_proj.weight",
+        "transformer.h.0.attn.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.0/attn/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.0.attn.c_proj.weight",
+      "source_W_shape": [
+        768,
+        768
+      ],
+      "normalized_W_shape": [
+        768,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 589824,
+      "S_shape": [
+        18432
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 73728
+    },
+    {
+      "source_node_index": 262,
+      "source_node": "/transformer/h.0/mlp/c_fc/Gemm",
+      "source_inputs": [
+        "/transformer/h.0/mlp/c_fc/Reshape_output_0",
+        "transformer.h.0.mlp.c_fc.weight",
+        "transformer.h.0.mlp.c_fc.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.0/mlp/c_fc/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.0.mlp.c_fc.weight",
+      "source_W_shape": [
+        768,
+        3072
+      ],
+      "normalized_W_shape": [
+        768,
+        3072
+      ],
+      "source_bias_shape": [
+        3072
+      ],
+      "B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 301,
+      "source_node": "/transformer/h.0/mlp/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.0/mlp/c_proj/Reshape_output_0",
+        "transformer.h.0.mlp.c_proj.weight",
+        "transformer.h.0.mlp.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.0/mlp/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.0.mlp.c_proj.weight",
+      "source_W_shape": [
+        3072,
+        768
+      ],
+      "normalized_W_shape": [
+        3072,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        96,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 339,
+      "source_node": "/transformer/h.1/attn/c_attn/Gemm",
+      "source_inputs": [
+        "/transformer/h.1/attn/c_attn/Reshape_output_0",
+        "transformer.h.1.attn.c_attn.weight",
+        "transformer.h.1.attn.c_attn.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.1/attn/c_attn/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.1.attn.c_attn.weight",
+      "source_W_shape": [
+        768,
+        2304
+      ],
+      "normalized_W_shape": [
+        768,
+        2304
+      ],
+      "source_bias_shape": [
+        2304
+      ],
+      "B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 1769472,
+      "S_shape": [
+        55296
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 221184
+    },
+    {
+      "source_node_index": 478,
+      "source_node": "/transformer/h.1/attn/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.1/attn/c_proj/Reshape_output_0",
+        "transformer.h.1.attn.c_proj.weight",
+        "transformer.h.1.attn.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.1/attn/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.1.attn.c_proj.weight",
+      "source_W_shape": [
+        768,
+        768
+      ],
+      "normalized_W_shape": [
+        768,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 589824,
+      "S_shape": [
+        18432
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 73728
+    },
+    {
+      "source_node_index": 516,
+      "source_node": "/transformer/h.1/mlp/c_fc/Gemm",
+      "source_inputs": [
+        "/transformer/h.1/mlp/c_fc/Reshape_output_0",
+        "transformer.h.1.mlp.c_fc.weight",
+        "transformer.h.1.mlp.c_fc.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.1/mlp/c_fc/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.1.mlp.c_fc.weight",
+      "source_W_shape": [
+        768,
+        3072
+      ],
+      "normalized_W_shape": [
+        768,
+        3072
+      ],
+      "source_bias_shape": [
+        3072
+      ],
+      "B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 555,
+      "source_node": "/transformer/h.1/mlp/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.1/mlp/c_proj/Reshape_output_0",
+        "transformer.h.1.mlp.c_proj.weight",
+        "transformer.h.1.mlp.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.1/mlp/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.1.mlp.c_proj.weight",
+      "source_W_shape": [
+        3072,
+        768
+      ],
+      "normalized_W_shape": [
+        3072,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        96,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 593,
+      "source_node": "/transformer/h.2/attn/c_attn/Gemm",
+      "source_inputs": [
+        "/transformer/h.2/attn/c_attn/Reshape_output_0",
+        "transformer.h.2.attn.c_attn.weight",
+        "transformer.h.2.attn.c_attn.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.2/attn/c_attn/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.2.attn.c_attn.weight",
+      "source_W_shape": [
+        768,
+        2304
+      ],
+      "normalized_W_shape": [
+        768,
+        2304
+      ],
+      "source_bias_shape": [
+        2304
+      ],
+      "B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 1769472,
+      "S_shape": [
+        55296
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 221184
+    },
+    {
+      "source_node_index": 732,
+      "source_node": "/transformer/h.2/attn/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.2/attn/c_proj/Reshape_output_0",
+        "transformer.h.2.attn.c_proj.weight",
+        "transformer.h.2.attn.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.2/attn/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.2.attn.c_proj.weight",
+      "source_W_shape": [
+        768,
+        768
+      ],
+      "normalized_W_shape": [
+        768,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 589824,
+      "S_shape": [
+        18432
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 73728
+    },
+    {
+      "source_node_index": 770,
+      "source_node": "/transformer/h.2/mlp/c_fc/Gemm",
+      "source_inputs": [
+        "/transformer/h.2/mlp/c_fc/Reshape_output_0",
+        "transformer.h.2.mlp.c_fc.weight",
+        "transformer.h.2.mlp.c_fc.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.2/mlp/c_fc/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.2.mlp.c_fc.weight",
+      "source_W_shape": [
+        768,
+        3072
+      ],
+      "normalized_W_shape": [
+        768,
+        3072
+      ],
+      "source_bias_shape": [
+        3072
+      ],
+      "B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 809,
+      "source_node": "/transformer/h.2/mlp/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.2/mlp/c_proj/Reshape_output_0",
+        "transformer.h.2.mlp.c_proj.weight",
+        "transformer.h.2.mlp.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.2/mlp/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.2.mlp.c_proj.weight",
+      "source_W_shape": [
+        3072,
+        768
+      ],
+      "normalized_W_shape": [
+        3072,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        96,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 847,
+      "source_node": "/transformer/h.3/attn/c_attn/Gemm",
+      "source_inputs": [
+        "/transformer/h.3/attn/c_attn/Reshape_output_0",
+        "transformer.h.3.attn.c_attn.weight",
+        "transformer.h.3.attn.c_attn.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.3/attn/c_attn/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.3.attn.c_attn.weight",
+      "source_W_shape": [
+        768,
+        2304
+      ],
+      "normalized_W_shape": [
+        768,
+        2304
+      ],
+      "source_bias_shape": [
+        2304
+      ],
+      "B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 1769472,
+      "S_shape": [
+        55296
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 221184
+    },
+    {
+      "source_node_index": 986,
+      "source_node": "/transformer/h.3/attn/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.3/attn/c_proj/Reshape_output_0",
+        "transformer.h.3.attn.c_proj.weight",
+        "transformer.h.3.attn.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.3/attn/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.3.attn.c_proj.weight",
+      "source_W_shape": [
+        768,
+        768
+      ],
+      "normalized_W_shape": [
+        768,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 589824,
+      "S_shape": [
+        18432
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 73728
+    },
+    {
+      "source_node_index": 1024,
+      "source_node": "/transformer/h.3/mlp/c_fc/Gemm",
+      "source_inputs": [
+        "/transformer/h.3/mlp/c_fc/Reshape_output_0",
+        "transformer.h.3.mlp.c_fc.weight",
+        "transformer.h.3.mlp.c_fc.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.3/mlp/c_fc/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.3.mlp.c_fc.weight",
+      "source_W_shape": [
+        768,
+        3072
+      ],
+      "normalized_W_shape": [
+        768,
+        3072
+      ],
+      "source_bias_shape": [
+        3072
+      ],
+      "B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 1063,
+      "source_node": "/transformer/h.3/mlp/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.3/mlp/c_proj/Reshape_output_0",
+        "transformer.h.3.mlp.c_proj.weight",
+        "transformer.h.3.mlp.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.3/mlp/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.3.mlp.c_proj.weight",
+      "source_W_shape": [
+        3072,
+        768
+      ],
+      "normalized_W_shape": [
+        3072,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        96,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 1101,
+      "source_node": "/transformer/h.4/attn/c_attn/Gemm",
+      "source_inputs": [
+        "/transformer/h.4/attn/c_attn/Reshape_output_0",
+        "transformer.h.4.attn.c_attn.weight",
+        "transformer.h.4.attn.c_attn.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.4/attn/c_attn/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.4.attn.c_attn.weight",
+      "source_W_shape": [
+        768,
+        2304
+      ],
+      "normalized_W_shape": [
+        768,
+        2304
+      ],
+      "source_bias_shape": [
+        2304
+      ],
+      "B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 1769472,
+      "S_shape": [
+        55296
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 221184
+    },
+    {
+      "source_node_index": 1240,
+      "source_node": "/transformer/h.4/attn/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.4/attn/c_proj/Reshape_output_0",
+        "transformer.h.4.attn.c_proj.weight",
+        "transformer.h.4.attn.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.4/attn/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.4.attn.c_proj.weight",
+      "source_W_shape": [
+        768,
+        768
+      ],
+      "normalized_W_shape": [
+        768,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 589824,
+      "S_shape": [
+        18432
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 73728
+    },
+    {
+      "source_node_index": 1278,
+      "source_node": "/transformer/h.4/mlp/c_fc/Gemm",
+      "source_inputs": [
+        "/transformer/h.4/mlp/c_fc/Reshape_output_0",
+        "transformer.h.4.mlp.c_fc.weight",
+        "transformer.h.4.mlp.c_fc.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.4/mlp/c_fc/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.4.mlp.c_fc.weight",
+      "source_W_shape": [
+        768,
+        3072
+      ],
+      "normalized_W_shape": [
+        768,
+        3072
+      ],
+      "source_bias_shape": [
+        3072
+      ],
+      "B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 1317,
+      "source_node": "/transformer/h.4/mlp/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.4/mlp/c_proj/Reshape_output_0",
+        "transformer.h.4.mlp.c_proj.weight",
+        "transformer.h.4.mlp.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.4/mlp/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.4.mlp.c_proj.weight",
+      "source_W_shape": [
+        3072,
+        768
+      ],
+      "normalized_W_shape": [
+        3072,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        96,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 1355,
+      "source_node": "/transformer/h.5/attn/c_attn/Gemm",
+      "source_inputs": [
+        "/transformer/h.5/attn/c_attn/Reshape_output_0",
+        "transformer.h.5.attn.c_attn.weight",
+        "transformer.h.5.attn.c_attn.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.5/attn/c_attn/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.5.attn.c_attn.weight",
+      "source_W_shape": [
+        768,
+        2304
+      ],
+      "normalized_W_shape": [
+        768,
+        2304
+      ],
+      "source_bias_shape": [
+        2304
+      ],
+      "B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 1769472,
+      "S_shape": [
+        55296
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 221184
+    },
+    {
+      "source_node_index": 1494,
+      "source_node": "/transformer/h.5/attn/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.5/attn/c_proj/Reshape_output_0",
+        "transformer.h.5.attn.c_proj.weight",
+        "transformer.h.5.attn.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.5/attn/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.5.attn.c_proj.weight",
+      "source_W_shape": [
+        768,
+        768
+      ],
+      "normalized_W_shape": [
+        768,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 589824,
+      "S_shape": [
+        18432
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 73728
+    },
+    {
+      "source_node_index": 1532,
+      "source_node": "/transformer/h.5/mlp/c_fc/Gemm",
+      "source_inputs": [
+        "/transformer/h.5/mlp/c_fc/Reshape_output_0",
+        "transformer.h.5.mlp.c_fc.weight",
+        "transformer.h.5.mlp.c_fc.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.5/mlp/c_fc/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.5.mlp.c_fc.weight",
+      "source_W_shape": [
+        768,
+        3072
+      ],
+      "normalized_W_shape": [
+        768,
+        3072
+      ],
+      "source_bias_shape": [
+        3072
+      ],
+      "B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    },
+    {
+      "source_node_index": 1571,
+      "source_node": "/transformer/h.5/mlp/c_proj/Gemm",
+      "source_inputs": [
+        "/transformer/h.5/mlp/c_proj/Reshape_output_0",
+        "transformer.h.5.mlp.c_proj.weight",
+        "transformer.h.5.mlp.c_proj.bias"
+      ],
+      "source_outputs": [
+        "/transformer/h.5/mlp/c_proj/Gemm_output_0"
+      ],
+      "source_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0
+      },
+      "effective_attributes": {
+        "alpha": 1.0,
+        "beta": 1.0,
+        "transA": 0,
+        "transB": 0
+      },
+      "source_W": "transformer.h.5.mlp.c_proj.weight",
+      "source_W_shape": [
+        3072,
+        768
+      ],
+      "normalized_W_shape": [
+        3072,
+        768
+      ],
+      "source_bias_shape": [
+        768
+      ],
+      "B_shape": [
+        768,
+        96,
+        32
+      ],
+      "B_dtype": "UINT8",
+      "B_payload_bytes": 2359296,
+      "S_shape": [
+        73728
+      ],
+      "S_dtype": "FLOAT",
+      "S_payload_bytes": 294912
+    }
+  ],
+  "modes": {
+    "dense": {
+      "nodes": 1600,
+      "mapped_Gemm": 24,
+      "op_counts": {
+        "Shape": 142,
+        "Constant": 623,
+        "Gather": 100,
+        "Unsqueeze": 146,
+        "Concat": 88,
+        "Reshape": 76,
+        "Slice": 56,
+        "Squeeze": 44,
+        "Add": 64,
+        "Cast": 21,
+        "Range": 1,
+        "Sub": 20,
+        "Mul": 38,
+        "ReduceMean": 26,
+        "Pow": 25,
+        "Sqrt": 13,
+        "Div": 19,
+        "Gemm": 24,
+        "Split": 6,
+        "Transpose": 31,
+        "MatMul": 13,
+        "ConstantOfShape": 6,
+        "Where": 6,
+        "Softmax": 6,
+        "Tanh": 6
+      },
+      "removed_raw_weights": [],
+      "initializer_count": 76,
+      "initializer_payload_bytes": 327650304,
+      "file": "dense.onnx",
+      "file_bytes": 1295237,
+      "external_files": [
+        "dense__transformer.h.0.attn.c_attn.weight.bin",
+        "dense__transformer.h.0.attn.c_proj.weight.bin",
+        "dense__transformer.h.0.mlp.c_fc.weight.bin",
+        "dense__transformer.h.0.mlp.c_proj.weight.bin",
+        "dense__transformer.h.1.attn.c_attn.weight.bin",
+        "dense__transformer.h.1.attn.c_proj.weight.bin",
+        "dense__transformer.h.1.mlp.c_fc.weight.bin",
+        "dense__transformer.h.1.mlp.c_proj.weight.bin",
+        "dense__transformer.h.2.attn.c_attn.weight.bin",
+        "dense__transformer.h.2.attn.c_proj.weight.bin",
+        "dense__transformer.h.2.mlp.c_fc.weight.bin",
+        "dense__transformer.h.2.mlp.c_proj.weight.bin",
+        "dense__transformer.h.3.attn.c_attn.weight.bin",
+        "dense__transformer.h.3.attn.c_proj.weight.bin",
+        "dense__transformer.h.3.mlp.c_fc.weight.bin",
+        "dense__transformer.h.3.mlp.c_proj.weight.bin",
+        "dense__transformer.h.4.attn.c_attn.weight.bin",
+        "dense__transformer.h.4.attn.c_proj.weight.bin",
+        "dense__transformer.h.4.mlp.c_fc.weight.bin",
+        "dense__transformer.h.4.mlp.c_proj.weight.bin",
+        "dense__transformer.h.5.attn.c_attn.weight.bin",
+        "dense__transformer.h.5.attn.c_proj.weight.bin",
+        "dense__transformer.h.5.mlp.c_fc.weight.bin",
+        "dense__transformer.h.5.mlp.c_proj.weight.bin",
+        "transformer.h.0.attn.c_attn.bias.bin",
+        "transformer.h.0.attn.c_proj.bias.bin",
+        "transformer.h.0.ln_1.bias.bin",
+        "transformer.h.0.ln_1.weight.bin",
+        "transformer.h.0.ln_2.bias.bin",
+        "transformer.h.0.ln_2.weight.bin",
+        "transformer.h.0.mlp.c_fc.bias.bin",
+        "transformer.h.0.mlp.c_proj.bias.bin",
+        "transformer.h.1.attn.c_attn.bias.bin",
+        "transformer.h.1.attn.c_proj.bias.bin",
+        "transformer.h.1.ln_1.bias.bin",
+        "transformer.h.1.ln_1.weight.bin",
+        "transformer.h.1.ln_2.bias.bin",
+        "transformer.h.1.ln_2.weight.bin",
+        "transformer.h.1.mlp.c_fc.bias.bin",
+        "transformer.h.1.mlp.c_proj.bias.bin",
+        "transformer.h.2.attn.c_attn.bias.bin",
+        "transformer.h.2.attn.c_proj.bias.bin",
+        "transformer.h.2.ln_1.bias.bin",
+        "transformer.h.2.ln_1.weight.bin",
+        "transformer.h.2.ln_2.bias.bin",
+        "transformer.h.2.ln_2.weight.bin",
+        "transformer.h.2.mlp.c_fc.bias.bin",
+        "transformer.h.2.mlp.c_proj.bias.bin",
+        "transformer.h.3.attn.c_attn.bias.bin",
+        "transformer.h.3.attn.c_proj.bias.bin",
+        "transformer.h.3.ln_1.bias.bin",
+        "transformer.h.3.ln_1.weight.bin",
+        "transformer.h.3.ln_2.bias.bin",
+        "transformer.h.3.ln_2.weight.bin",
+        "transformer.h.3.mlp.c_fc.bias.bin",
+        "transformer.h.3.mlp.c_proj.bias.bin",
+        "transformer.h.4.attn.c_attn.bias.bin",
+        "transformer.h.4.attn.c_proj.bias.bin",
+        "transformer.h.4.ln_1.bias.bin",
+        "transformer.h.4.ln_1.weight.bin",
+        "transformer.h.4.ln_2.bias.bin",
+        "transformer.h.4.ln_2.weight.bin",
+        "transformer.h.4.mlp.c_fc.bias.bin",
+        "transformer.h.4.mlp.c_proj.bias.bin",
+        "transformer.h.5.attn.c_attn.bias.bin",
+        "transformer.h.5.attn.c_proj.bias.bin",
+        "transformer.h.5.ln_1.bias.bin",
+        "transformer.h.5.ln_1.weight.bin",
+        "transformer.h.5.ln_2.bias.bin",
+        "transformer.h.5.ln_2.weight.bin",
+        "transformer.h.5.mlp.c_fc.bias.bin",
+        "transformer.h.5.mlp.c_proj.bias.bin",
+        "transformer.ln_f.bias.bin",
+        "transformer.ln_f.weight.bin",
+        "transformer.wpe.weight.bin",
+        "transformer.wte.weight.bin"
+      ],
+      "native_extra_prepack_payload_bytes": 0
+    },
+    "native": {
+      "nodes": 1648,
+      "mapped_Gemm": 24,
+      "op_counts": {
+        "Shape": 142,
+        "Constant": 623,
+        "Gather": 100,
+        "Unsqueeze": 146,
+        "Concat": 88,
+        "Reshape": 100,
+        "Slice": 56,
+        "Squeeze": 44,
+        "Add": 88,
+        "Cast": 21,
+        "Range": 1,
+        "Sub": 20,
+        "Mul": 38,
+        "ReduceMean": 26,
+        "Pow": 25,
+        "Sqrt": 13,
+        "Div": 19,
+        "Q8MatMulM1": 24,
+        "Split": 6,
+        "Transpose": 31,
+        "MatMul": 13,
+        "ConstantOfShape": 6,
+        "Where": 6,
+        "Softmax": 6,
+        "Tanh": 6
+      },
+      "removed_raw_weights": [
+        "transformer.h.0.attn.c_attn.weight",
+        "transformer.h.0.attn.c_proj.weight",
+        "transformer.h.0.mlp.c_fc.weight",
+        "transformer.h.0.mlp.c_proj.weight",
+        "transformer.h.1.attn.c_attn.weight",
+        "transformer.h.1.attn.c_proj.weight",
+        "transformer.h.1.mlp.c_fc.weight",
+        "transformer.h.1.mlp.c_proj.weight",
+        "transformer.h.2.attn.c_attn.weight",
+        "transformer.h.2.attn.c_proj.weight",
+        "transformer.h.2.mlp.c_fc.weight",
+        "transformer.h.2.mlp.c_proj.weight",
+        "transformer.h.3.attn.c_attn.weight",
+        "transformer.h.3.attn.c_proj.weight",
+        "transformer.h.3.mlp.c_fc.weight",
+        "transformer.h.3.mlp.c_proj.weight",
+        "transformer.h.4.attn.c_attn.weight",
+        "transformer.h.4.attn.c_proj.weight",
+        "transformer.h.4.mlp.c_fc.weight",
+        "transformer.h.4.mlp.c_proj.weight",
+        "transformer.h.5.attn.c_attn.weight",
+        "transformer.h.5.attn.c_proj.weight",
+        "transformer.h.5.mlp.c_fc.weight",
+        "transformer.h.5.mlp.c_proj.weight"
+      ],
+      "initializer_count": 124,
+      "initializer_payload_bytes": 205557120,
+      "file": "native.onnx",
+      "file_bytes": 1307337,
+      "external_files": [
+        "__blucca_whole_q8_00_B.bin",
+        "__blucca_whole_q8_00_S.bin",
+        "__blucca_whole_q8_01_B.bin",
+        "__blucca_whole_q8_01_S.bin",
+        "__blucca_whole_q8_02_B.bin",
+        "__blucca_whole_q8_02_S.bin",
+        "__blucca_whole_q8_03_B.bin",
+        "__blucca_whole_q8_03_S.bin",
+        "__blucca_whole_q8_04_B.bin",
+        "__blucca_whole_q8_04_S.bin",
+        "__blucca_whole_q8_05_B.bin",
+        "__blucca_whole_q8_05_S.bin",
+        "__blucca_whole_q8_06_B.bin",
+        "__blucca_whole_q8_06_S.bin",
+        "__blucca_whole_q8_07_B.bin",
+        "__blucca_whole_q8_07_S.bin",
+        "__blucca_whole_q8_08_B.bin",
+        "__blucca_whole_q8_08_S.bin",
+        "__blucca_whole_q8_09_B.bin",
+        "__blucca_whole_q8_09_S.bin",
+        "__blucca_whole_q8_10_B.bin",
+        "__blucca_whole_q8_10_S.bin",
+        "__blucca_whole_q8_11_B.bin",
+        "__blucca_whole_q8_11_S.bin",
+        "__blucca_whole_q8_12_B.bin",
+        "__blucca_whole_q8_12_S.bin",
+        "__blucca_whole_q8_13_B.bin",
+        "__blucca_whole_q8_13_S.bin",
+        "__blucca_whole_q8_14_B.bin",
+        "__blucca_whole_q8_14_S.bin",
+        "__blucca_whole_q8_15_B.bin",
+        "__blucca_whole_q8_15_S.bin",
+        "__blucca_whole_q8_16_B.bin",
+        "__blucca_whole_q8_16_S.bin",
+        "__blucca_whole_q8_17_B.bin",
+        "__blucca_whole_q8_17_S.bin",
+        "__blucca_whole_q8_18_B.bin",
+        "__blucca_whole_q8_18_S.bin",
+        "__blucca_whole_q8_19_B.bin",
+        "__blucca_whole_q8_19_S.bin",
+        "__blucca_whole_q8_20_B.bin",
+        "__blucca_whole_q8_20_S.bin",
+        "__blucca_whole_q8_21_B.bin",
+        "__blucca_whole_q8_21_S.bin",
+        "__blucca_whole_q8_22_B.bin",
+        "__blucca_whole_q8_22_S.bin",
+        "__blucca_whole_q8_23_B.bin",
+        "__blucca_whole_q8_23_S.bin",
+        "transformer.h.0.attn.c_attn.bias.bin",
+        "transformer.h.0.attn.c_proj.bias.bin",
+        "transformer.h.0.ln_1.bias.bin",
+        "transformer.h.0.ln_1.weight.bin",
+        "transformer.h.0.ln_2.bias.bin",
+        "transformer.h.0.ln_2.weight.bin",
+        "transformer.h.0.mlp.c_fc.bias.bin",
+        "transformer.h.0.mlp.c_proj.bias.bin",
+        "transformer.h.1.attn.c_attn.bias.bin",
+        "transformer.h.1.attn.c_proj.bias.bin",
+        "transformer.h.1.ln_1.bias.bin",
+        "transformer.h.1.ln_1.weight.bin",
+        "transformer.h.1.ln_2.bias.bin",
+        "transformer.h.1.ln_2.weight.bin",
+        "transformer.h.1.mlp.c_fc.bias.bin",
+        "transformer.h.1.mlp.c_proj.bias.bin",
+        "transformer.h.2.attn.c_attn.bias.bin",
+        "transformer.h.2.attn.c_proj.bias.bin",
+        "transformer.h.2.ln_1.bias.bin",
+        "transformer.h.2.ln_1.weight.bin",
+        "transformer.h.2.ln_2.bias.bin",
+        "transformer.h.2.ln_2.weight.bin",
+        "transformer.h.2.mlp.c_fc.bias.bin",
+        "transformer.h.2.mlp.c_proj.bias.bin",
+        "transformer.h.3.attn.c_attn.bias.bin",
+        "transformer.h.3.attn.c_proj.bias.bin",
+        "transformer.h.3.ln_1.bias.bin",
+        "transformer.h.3.ln_1.weight.bin",
+        "transformer.h.3.ln_2.bias.bin",
+        "transformer.h.3.ln_2.weight.bin",
+        "transformer.h.3.mlp.c_fc.bias.bin",
+        "transformer.h.3.mlp.c_proj.bias.bin",
+        "transformer.h.4.attn.c_attn.bias.bin",
+        "transformer.h.4.attn.c_proj.bias.bin",
+        "transformer.h.4.ln_1.bias.bin",
+        "transformer.h.4.ln_1.weight.bin",
+        "transformer.h.4.ln_2.bias.bin",
+        "transformer.h.4.ln_2.weight.bin",
+        "transformer.h.4.mlp.c_fc.bias.bin",
+        "transformer.h.4.mlp.c_proj.bias.bin",
+        "transformer.h.5.attn.c_attn.bias.bin",
+        "transformer.h.5.attn.c_proj.bias.bin",
+        "transformer.h.5.ln_1.bias.bin",
+        "transformer.h.5.ln_1.weight.bin",
+        "transformer.h.5.ln_2.bias.bin",
+        "transformer.h.5.ln_2.weight.bin",
+        "transformer.h.5.mlp.c_fc.bias.bin",
+        "transformer.h.5.mlp.c_proj.bias.bin",
+        "transformer.ln_f.bias.bin",
+        "transformer.ln_f.weight.bin",
+        "transformer.wpe.weight.bin",
+        "transformer.wte.weight.bin"
+      ],
+      "native_extra_prepack_payload_bytes": 47775744
+    },
+    "q8_acc0": {
+      "nodes": 1648,
+      "mapped_Gemm": 24,
+      "op_counts": {
+        "Shape": 142,
+        "Constant": 623,
+        "Gather": 100,
+        "Unsqueeze": 146,
+        "Concat": 88,
+        "Reshape": 100,
+        "Slice": 56,
+        "Squeeze": 44,
+        "Add": 88,
+        "Cast": 21,
+        "Range": 1,
+        "Sub": 20,
+        "Mul": 38,
+        "ReduceMean": 26,
+        "Pow": 25,
+        "Sqrt": 13,
+        "Div": 19,
+        "MatMulNBits": 24,
+        "Split": 6,
+        "Transpose": 31,
+        "MatMul": 13,
+        "ConstantOfShape": 6,
+        "Where": 6,
+        "Softmax": 6,
+        "Tanh": 6
+      },
+      "removed_raw_weights": [
+        "transformer.h.0.attn.c_attn.weight",
+        "transformer.h.0.attn.c_proj.weight",
+        "transformer.h.0.mlp.c_fc.weight",
+        "transformer.h.0.mlp.c_proj.weight",
+        "transformer.h.1.attn.c_attn.weight",
+        "transformer.h.1.attn.c_proj.weight",
+        "transformer.h.1.mlp.c_fc.weight",
+        "transformer.h.1.mlp.c_proj.weight",
+        "transformer.h.2.attn.c_attn.weight",
+        "transformer.h.2.attn.c_proj.weight",
+        "transformer.h.2.mlp.c_fc.weight",
+        "transformer.h.2.mlp.c_proj.weight",
+        "transformer.h.3.attn.c_attn.weight",
+        "transformer.h.3.attn.c_proj.weight",
+        "transformer.h.3.mlp.c_fc.weight",
+        "transformer.h.3.mlp.c_proj.weight",
+        "transformer.h.4.attn.c_attn.weight",
+        "transformer.h.4.attn.c_proj.weight",
+        "transformer.h.4.mlp.c_fc.weight",
+        "transformer.h.4.mlp.c_proj.weight",
+        "transformer.h.5.attn.c_attn.weight",
+        "transformer.h.5.attn.c_proj.weight",
+        "transformer.h.5.mlp.c_fc.weight",
+        "transformer.h.5.mlp.c_proj.weight"
+      ],
+      "initializer_count": 124,
+      "initializer_payload_bytes": 205557120,
+      "file": "q8_acc0.onnx",
+      "file_bytes": 1308756,
+      "external_files": [
+        "__blucca_whole_q8_00_B.bin",
+        "__blucca_whole_q8_00_S.bin",
+        "__blucca_whole_q8_01_B.bin",
+        "__blucca_whole_q8_01_S.bin",
+        "__blucca_whole_q8_02_B.bin",
+        "__blucca_whole_q8_02_S.bin",
+        "__blucca_whole_q8_03_B.bin",
+        "__blucca_whole_q8_03_S.bin",
+        "__blucca_whole_q8_04_B.bin",
+        "__blucca_whole_q8_04_S.bin",
+        "__blucca_whole_q8_05_B.bin",
+        "__blucca_whole_q8_05_S.bin",
+        "__blucca_whole_q8_06_B.bin",
+        "__blucca_whole_q8_06_S.bin",
+        "__blucca_whole_q8_07_B.bin",
+        "__blucca_whole_q8_07_S.bin",
+        "__blucca_whole_q8_08_B.bin",
+        "__blucca_whole_q8_08_S.bin",
+        "__blucca_whole_q8_09_B.bin",
+        "__blucca_whole_q8_09_S.bin",
+        "__blucca_whole_q8_10_B.bin",
+        "__blucca_whole_q8_10_S.bin",
+        "__blucca_whole_q8_11_B.bin",
+        "__blucca_whole_q8_11_S.bin",
+        "__blucca_whole_q8_12_B.bin",
+        "__blucca_whole_q8_12_S.bin",
+        "__blucca_whole_q8_13_B.bin",
+        "__blucca_whole_q8_13_S.bin",
+        "__blucca_whole_q8_14_B.bin",
+        "__blucca_whole_q8_14_S.bin",
+        "__blucca_whole_q8_15_B.bin",
+        "__blucca_whole_q8_15_S.bin",
+        "__blucca_whole_q8_16_B.bin",
+        "__blucca_whole_q8_16_S.bin",
+        "__blucca_whole_q8_17_B.bin",
+        "__blucca_whole_q8_17_S.bin",
+        "__blucca_whole_q8_18_B.bin",
+        "__blucca_whole_q8_18_S.bin",
+        "__blucca_whole_q8_19_B.bin",
+        "__blucca_whole_q8_19_S.bin",
+        "__blucca_whole_q8_20_B.bin",
+        "__blucca_whole_q8_20_S.bin",
+        "__blucca_whole_q8_21_B.bin",
+        "__blucca_whole_q8_21_S.bin",
+        "__blucca_whole_q8_22_B.bin",
+        "__blucca_whole_q8_22_S.bin",
+        "__blucca_whole_q8_23_B.bin",
+        "__blucca_whole_q8_23_S.bin",
+        "transformer.h.0.attn.c_attn.bias.bin",
+        "transformer.h.0.attn.c_proj.bias.bin",
+        "transformer.h.0.ln_1.bias.bin",
+        "transformer.h.0.ln_1.weight.bin",
+        "transformer.h.0.ln_2.bias.bin",
+        "transformer.h.0.ln_2.weight.bin",
+        "transformer.h.0.mlp.c_fc.bias.bin",
+        "transformer.h.0.mlp.c_proj.bias.bin",
+        "transformer.h.1.attn.c_attn.bias.bin",
+        "transformer.h.1.attn.c_proj.bias.bin",
+        "transformer.h.1.ln_1.bias.bin",
+        "transformer.h.1.ln_1.weight.bin",
+        "transformer.h.1.ln_2.bias.bin",
+        "transformer.h.1.ln_2.weight.bin",
+        "transformer.h.1.mlp.c_fc.bias.bin",
+        "transformer.h.1.mlp.c_proj.bias.bin",
+        "transformer.h.2.attn.c_attn.bias.bin",
+        "transformer.h.2.attn.c_proj.bias.bin",
+        "transformer.h.2.ln_1.bias.bin",
+        "transformer.h.2.ln_1.weight.bin",
+        "transformer.h.2.ln_2.bias.bin",
+        "transformer.h.2.ln_2.weight.bin",
+        "transformer.h.2.mlp.c_fc.bias.bin",
+        "transformer.h.2.mlp.c_proj.bias.bin",
+        "transformer.h.3.attn.c_attn.bias.bin",
+        "transformer.h.3.attn.c_proj.bias.bin",
+        "transformer.h.3.ln_1.bias.bin",
+        "transformer.h.3.ln_1.weight.bin",
+        "transformer.h.3.ln_2.bias.bin",
+        "transformer.h.3.ln_2.weight.bin",
+        "transformer.h.3.mlp.c_fc.bias.bin",
+        "transformer.h.3.mlp.c_proj.bias.bin",
+        "transformer.h.4.attn.c_attn.bias.bin",
+        "transformer.h.4.attn.c_proj.bias.bin",
+        "transformer.h.4.ln_1.bias.bin",
+        "transformer.h.4.ln_1.weight.bin",
+        "transformer.h.4.ln_2.bias.bin",
+        "transformer.h.4.ln_2.weight.bin",
+        "transformer.h.4.mlp.c_fc.bias.bin",
+        "transformer.h.4.mlp.c_proj.bias.bin",
+        "transformer.h.5.attn.c_attn.bias.bin",
+        "transformer.h.5.attn.c_proj.bias.bin",
+        "transformer.h.5.ln_1.bias.bin",
+        "transformer.h.5.ln_1.weight.bin",
+        "transformer.h.5.ln_2.bias.bin",
+        "transformer.h.5.ln_2.weight.bin",
+        "transformer.h.5.mlp.c_fc.bias.bin",
+        "transformer.h.5.mlp.c_proj.bias.bin",
+        "transformer.ln_f.bias.bin",
+        "transformer.ln_f.weight.bin",
+        "transformer.wpe.weight.bin",
+        "transformer.wte.weight.bin"
+      ],
+      "native_extra_prepack_payload_bytes": 0
+    },
+    "split8": {
+      "nodes": 1696,
+      "mapped_Gemm": 24,
+      "op_counts": {
+        "Shape": 142,
+        "Constant": 623,
+        "Gather": 100,
+        "Unsqueeze": 146,
+        "Concat": 88,
+        "Reshape": 100,
+        "Slice": 56,
+        "Squeeze": 44,
+        "Add": 112,
+        "Cast": 21,
+        "Range": 1,
+        "Sub": 20,
+        "Mul": 38,
+        "ReduceMean": 26,
+        "Pow": 25,
+        "Sqrt": 13,
+        "Div": 19,
+        "MatMulNBits": 48,
+        "Split": 6,
+        "Transpose": 31,
+        "MatMul": 13,
+        "ConstantOfShape": 6,
+        "Where": 6,
+        "Softmax": 6,
+        "Tanh": 6
+      },
+      "removed_raw_weights": [
+        "transformer.h.0.attn.c_attn.weight",
+        "transformer.h.0.attn.c_proj.weight",
+        "transformer.h.0.mlp.c_fc.weight",
+        "transformer.h.0.mlp.c_proj.weight",
+        "transformer.h.1.attn.c_attn.weight",
+        "transformer.h.1.attn.c_proj.weight",
+        "transformer.h.1.mlp.c_fc.weight",
+        "transformer.h.1.mlp.c_proj.weight",
+        "transformer.h.2.attn.c_attn.weight",
+        "transformer.h.2.attn.c_proj.weight",
+        "transformer.h.2.mlp.c_fc.weight",
+        "transformer.h.2.mlp.c_proj.weight",
+        "transformer.h.3.attn.c_attn.weight",
+        "transformer.h.3.attn.c_proj.weight",
+        "transformer.h.3.mlp.c_fc.weight",
+        "transformer.h.3.mlp.c_proj.weight",
+        "transformer.h.4.attn.c_attn.weight",
+        "transformer.h.4.attn.c_proj.weight",
+        "transformer.h.4.mlp.c_fc.weight",
+        "transformer.h.4.mlp.c_proj.weight",
+        "transformer.h.5.attn.c_attn.weight",
+        "transformer.h.5.attn.c_proj.weight",
+        "transformer.h.5.mlp.c_fc.weight",
+        "transformer.h.5.mlp.c_proj.weight"
+      ],
+      "initializer_count": 196,
+      "initializer_payload_bytes": 211529088,
+      "file": "split8.onnx",
+      "file_bytes": 1330878,
+      "external_files": [
+        "__blucca_whole_q8_00_split_BH.bin",
+        "__blucca_whole_q8_00_split_BL.bin",
+        "__blucca_whole_q8_00_split_SH.bin",
+        "__blucca_whole_q8_00_split_SL.bin",
+        "__blucca_whole_q8_00_split_ZL.bin",
+        "__blucca_whole_q8_01_split_BH.bin",
+        "__blucca_whole_q8_01_split_BL.bin",
+        "__blucca_whole_q8_01_split_SH.bin",
+        "__blucca_whole_q8_01_split_SL.bin",
+        "__blucca_whole_q8_01_split_ZL.bin",
+        "__blucca_whole_q8_02_split_BH.bin",
+        "__blucca_whole_q8_02_split_BL.bin",
+        "__blucca_whole_q8_02_split_SH.bin",
+        "__blucca_whole_q8_02_split_SL.bin",
+        "__blucca_whole_q8_02_split_ZL.bin",
+        "__blucca_whole_q8_03_split_BH.bin",
+        "__blucca_whole_q8_03_split_BL.bin",
+        "__blucca_whole_q8_03_split_SH.bin",
+        "__blucca_whole_q8_03_split_SL.bin",
+        "__blucca_whole_q8_03_split_ZL.bin",
+        "__blucca_whole_q8_04_split_BH.bin",
+        "__blucca_whole_q8_04_split_BL.bin",
+        "__blucca_whole_q8_04_split_SH.bin",
+        "__blucca_whole_q8_04_split_SL.bin",
+        "__blucca_whole_q8_04_split_ZL.bin",
+        "__blucca_whole_q8_05_split_BH.bin",
+        "__blucca_whole_q8_05_split_BL.bin",
+        "__blucca_whole_q8_05_split_SH.bin",
+        "__blucca_whole_q8_05_split_SL.bin",
+        "__blucca_whole_q8_05_split_ZL.bin",
+        "__blucca_whole_q8_06_split_BH.bin",
+        "__blucca_whole_q8_06_split_BL.bin",
+        "__blucca_whole_q8_06_split_SH.bin",
+        "__blucca_whole_q8_06_split_SL.bin",
+        "__blucca_whole_q8_06_split_ZL.bin",
+        "__blucca_whole_q8_07_split_BH.bin",
+        "__blucca_whole_q8_07_split_BL.bin",
+        "__blucca_whole_q8_07_split_SH.bin",
+        "__blucca_whole_q8_07_split_SL.bin",
+        "__blucca_whole_q8_07_split_ZL.bin",
+        "__blucca_whole_q8_08_split_BH.bin",
+        "__blucca_whole_q8_08_split_BL.bin",
+        "__blucca_whole_q8_08_split_SH.bin",
+        "__blucca_whole_q8_08_split_SL.bin",
+        "__blucca_whole_q8_08_split_ZL.bin",
+        "__blucca_whole_q8_09_split_BH.bin",
+        "__blucca_whole_q8_09_split_BL.bin",
+        "__blucca_whole_q8_09_split_SH.bin",
+        "__blucca_whole_q8_09_split_SL.bin",
+        "__blucca_whole_q8_09_split_ZL.bin",
+        "__blucca_whole_q8_10_split_BH.bin",
+        "__blucca_whole_q8_10_split_BL.bin",
+        "__blucca_whole_q8_10_split_SH.bin",
+        "__blucca_whole_q8_10_split_SL.bin",
+        "__blucca_whole_q8_10_split_ZL.bin",
+        "__blucca_whole_q8_11_split_BH.bin",
+        "__blucca_whole_q8_11_split_BL.bin",
+        "__blucca_whole_q8_11_split_SH.bin",
+        "__blucca_whole_q8_11_split_SL.bin",
+        "__blucca_whole_q8_11_split_ZL.bin",
+        "__blucca_whole_q8_12_split_BH.bin",
+        "__blucca_whole_q8_12_split_BL.bin",
+        "__blucca_whole_q8_12_split_SH.bin",
+        "__blucca_whole_q8_12_split_SL.bin",
+        "__blucca_whole_q8_12_split_ZL.bin",
+        "__blucca_whole_q8_13_split_BH.bin",
+        "__blucca_whole_q8_13_split_BL.bin",
+        "__blucca_whole_q8_13_split_SH.bin",
+        "__blucca_whole_q8_13_split_SL.bin",
+        "__blucca_whole_q8_13_split_ZL.bin",
+        "__blucca_whole_q8_14_split_BH.bin",
+        "__blucca_whole_q8_14_split_BL.bin",
+        "__blucca_whole_q8_14_split_SH.bin",
+        "__blucca_whole_q8_14_split_SL.bin",
+        "__blucca_whole_q8_14_split_ZL.bin",
+        "__blucca_whole_q8_15_split_BH.bin",
+        "__blucca_whole_q8_15_split_BL.bin",
+        "__blucca_whole_q8_15_split_SH.bin",
+        "__blucca_whole_q8_15_split_SL.bin",
+        "__blucca_whole_q8_15_split_ZL.bin",
+        "__blucca_whole_q8_16_split_BH.bin",
+        "__blucca_whole_q8_16_split_BL.bin",
+        "__blucca_whole_q8_16_split_SH.bin",
+        "__blucca_whole_q8_16_split_SL.bin",
+        "__blucca_whole_q8_16_split_ZL.bin",
+        "__blucca_whole_q8_17_split_BH.bin",
+        "__blucca_whole_q8_17_split_BL.bin",
+        "__blucca_whole_q8_17_split_SH.bin",
+        "__blucca_whole_q8_17_split_SL.bin",
+        "__blucca_whole_q8_17_split_ZL.bin",
+        "__blucca_whole_q8_18_split_BH.bin",
+        "__blucca_whole_q8_18_split_BL.bin",
+        "__blucca_whole_q8_18_split_SH.bin",
+        "__blucca_whole_q8_18_split_SL.bin",
+        "__blucca_whole_q8_18_split_ZL.bin",
+        "__blucca_whole_q8_19_split_BH.bin",
+        "__blucca_whole_q8_19_split_BL.bin",
+        "__blucca_whole_q8_19_split_SH.bin",
+        "__blucca_whole_q8_19_split_SL.bin",
+        "__blucca_whole_q8_19_split_ZL.bin",
+        "__blucca_whole_q8_20_split_BH.bin",
+        "__blucca_whole_q8_20_split_BL.bin",
+        "__blucca_whole_q8_20_split_SH.bin",
+        "__blucca_whole_q8_20_split_SL.bin",
+        "__blucca_whole_q8_20_split_ZL.bin",
+        "__blucca_whole_q8_21_split_BH.bin",
+        "__blucca_whole_q8_21_split_BL.bin",
+        "__blucca_whole_q8_21_split_SH.bin",
+        "__blucca_whole_q8_21_split_SL.bin",
+        "__blucca_whole_q8_21_split_ZL.bin",
+        "__blucca_whole_q8_22_split_BH.bin",
+        "__blucca_whole_q8_22_split_BL.bin",
+        "__blucca_whole_q8_22_split_SH.bin",
+        "__blucca_whole_q8_22_split_SL.bin",
+        "__blucca_whole_q8_22_split_ZL.bin",
+        "__blucca_whole_q8_23_split_BH.bin",
+        "__blucca_whole_q8_23_split_BL.bin",
+        "__blucca_whole_q8_23_split_SH.bin",
+        "__blucca_whole_q8_23_split_SL.bin",
+        "__blucca_whole_q8_23_split_ZL.bin",
+        "transformer.h.0.attn.c_attn.bias.bin",
+        "transformer.h.0.attn.c_proj.bias.bin",
+        "transformer.h.0.ln_1.bias.bin",
+        "transformer.h.0.ln_1.weight.bin",
+        "transformer.h.0.ln_2.bias.bin",
+        "transformer.h.0.ln_2.weight.bin",
+        "transformer.h.0.mlp.c_fc.bias.bin",
+        "transformer.h.0.mlp.c_proj.bias.bin",
+        "transformer.h.1.attn.c_attn.bias.bin",
+        "transformer.h.1.attn.c_proj.bias.bin",
+        "transformer.h.1.ln_1.bias.bin",
+        "transformer.h.1.ln_1.weight.bin",
+        "transformer.h.1.ln_2.bias.bin",
+        "transformer.h.1.ln_2.weight.bin",
+        "transformer.h.1.mlp.c_fc.bias.bin",
+        "transformer.h.1.mlp.c_proj.bias.bin",
+        "transformer.h.2.attn.c_attn.bias.bin",
+        "transformer.h.2.attn.c_proj.bias.bin",
+        "transformer.h.2.ln_1.bias.bin",
+        "transformer.h.2.ln_1.weight.bin",
+        "transformer.h.2.ln_2.bias.bin",
+        "transformer.h.2.ln_2.weight.bin",
+        "transformer.h.2.mlp.c_fc.bias.bin",
+        "transformer.h.2.mlp.c_proj.bias.bin",
+        "transformer.h.3.attn.c_attn.bias.bin",
+        "transformer.h.3.attn.c_proj.bias.bin",
+        "transformer.h.3.ln_1.bias.bin",
+        "transformer.h.3.ln_1.weight.bin",
+        "transformer.h.3.ln_2.bias.bin",
+        "transformer.h.3.ln_2.weight.bin",
+        "transformer.h.3.mlp.c_fc.bias.bin",
+        "transformer.h.3.mlp.c_proj.bias.bin",
+        "transformer.h.4.attn.c_attn.bias.bin",
+        "transformer.h.4.attn.c_proj.bias.bin",
+        "transformer.h.4.ln_1.bias.bin",
+        "transformer.h.4.ln_1.weight.bin",
+        "transformer.h.4.ln_2.bias.bin",
+        "transformer.h.4.ln_2.weight.bin",
+        "transformer.h.4.mlp.c_fc.bias.bin",
+        "transformer.h.4.mlp.c_proj.bias.bin",
+        "transformer.h.5.attn.c_attn.bias.bin",
+        "transformer.h.5.attn.c_proj.bias.bin",
+        "transformer.h.5.ln_1.bias.bin",
+        "transformer.h.5.ln_1.weight.bin",
+        "transformer.h.5.ln_2.bias.bin",
+        "transformer.h.5.ln_2.weight.bin",
+        "transformer.h.5.mlp.c_fc.bias.bin",
+        "transformer.h.5.mlp.c_proj.bias.bin",
+        "transformer.ln_f.bias.bin",
+        "transformer.ln_f.weight.bin",
+        "transformer.wpe.weight.bin",
+        "transformer.wte.weight.bin"
+      ],
+      "native_extra_prepack_payload_bytes": 0
+    }
+  },
+  "artifacts": [
+    {
+      "file": "__blucca_whole_q8_00_B.bin",
+      "bytes": 1769472,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_00_S.bin",
+      "bytes": 221184,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_00_split_BH.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_00_split_BL.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_00_split_SH.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_00_split_SL.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_00_split_ZL.bin",
+      "bytes": 27648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_01_B.bin",
+      "bytes": 589824,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_01_S.bin",
+      "bytes": 73728,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_01_split_BH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_01_split_BL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_01_split_SH.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_01_split_SL.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_01_split_ZL.bin",
+      "bytes": 9216,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_02_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_02_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_02_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_02_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_02_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_02_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_02_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_03_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_03_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_03_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_03_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_03_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_03_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_03_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_04_B.bin",
+      "bytes": 1769472,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_04_S.bin",
+      "bytes": 221184,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_04_split_BH.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_04_split_BL.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_04_split_SH.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_04_split_SL.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_04_split_ZL.bin",
+      "bytes": 27648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_05_B.bin",
+      "bytes": 589824,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_05_S.bin",
+      "bytes": 73728,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_05_split_BH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_05_split_BL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_05_split_SH.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_05_split_SL.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_05_split_ZL.bin",
+      "bytes": 9216,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_06_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_06_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_06_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_06_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_06_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_06_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_06_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_07_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_07_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_07_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_07_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_07_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_07_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_07_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_08_B.bin",
+      "bytes": 1769472,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_08_S.bin",
+      "bytes": 221184,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_08_split_BH.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_08_split_BL.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_08_split_SH.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_08_split_SL.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_08_split_ZL.bin",
+      "bytes": 27648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_09_B.bin",
+      "bytes": 589824,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_09_S.bin",
+      "bytes": 73728,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_09_split_BH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_09_split_BL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_09_split_SH.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_09_split_SL.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_09_split_ZL.bin",
+      "bytes": 9216,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_10_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_10_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_10_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_10_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_10_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_10_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_10_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_11_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_11_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_11_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_11_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_11_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_11_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_11_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_12_B.bin",
+      "bytes": 1769472,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_12_S.bin",
+      "bytes": 221184,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_12_split_BH.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_12_split_BL.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_12_split_SH.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_12_split_SL.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_12_split_ZL.bin",
+      "bytes": 27648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_13_B.bin",
+      "bytes": 589824,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_13_S.bin",
+      "bytes": 73728,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_13_split_BH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_13_split_BL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_13_split_SH.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_13_split_SL.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_13_split_ZL.bin",
+      "bytes": 9216,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_14_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_14_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_14_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_14_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_14_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_14_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_14_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_15_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_15_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_15_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_15_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_15_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_15_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_15_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_16_B.bin",
+      "bytes": 1769472,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_16_S.bin",
+      "bytes": 221184,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_16_split_BH.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_16_split_BL.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_16_split_SH.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_16_split_SL.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_16_split_ZL.bin",
+      "bytes": 27648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_17_B.bin",
+      "bytes": 589824,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_17_S.bin",
+      "bytes": 73728,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_17_split_BH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_17_split_BL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_17_split_SH.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_17_split_SL.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_17_split_ZL.bin",
+      "bytes": 9216,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_18_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_18_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_18_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_18_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_18_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_18_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_18_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_19_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_19_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_19_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_19_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_19_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_19_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_19_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_20_B.bin",
+      "bytes": 1769472,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_20_S.bin",
+      "bytes": 221184,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_20_split_BH.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_20_split_BL.bin",
+      "bytes": 884736,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_20_split_SH.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_20_split_SL.bin",
+      "bytes": 221184,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_20_split_ZL.bin",
+      "bytes": 27648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_21_B.bin",
+      "bytes": 589824,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_21_S.bin",
+      "bytes": 73728,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_21_split_BH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_21_split_BL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_21_split_SH.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_21_split_SL.bin",
+      "bytes": 73728,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_21_split_ZL.bin",
+      "bytes": 9216,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_22_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_22_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_22_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_22_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_22_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_22_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_22_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_23_B.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_23_S.bin",
+      "bytes": 294912,
+      "used_by": [
+        "native",
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_23_split_BH.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_23_split_BL.bin",
+      "bytes": 1179648,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_23_split_SH.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_23_split_SL.bin",
+      "bytes": 294912,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "__blucca_whole_q8_23_split_ZL.bin",
+      "bytes": 36864,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "dense.onnx",
+      "bytes": 1295237,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.0.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.0.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.0.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.0.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.1.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.1.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.1.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.1.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.2.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.2.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.2.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.2.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.3.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.3.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.3.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.3.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.4.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.4.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.4.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.4.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.5.attn.c_attn.weight.bin",
+      "bytes": 7077888,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.5.attn.c_proj.weight.bin",
+      "bytes": 2359296,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.5.mlp.c_fc.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "dense__transformer.h.5.mlp.c_proj.weight.bin",
+      "bytes": 9437184,
+      "used_by": [
+        "dense"
+      ]
+    },
+    {
+      "file": "native.onnx",
+      "bytes": 1307337,
+      "used_by": [
+        "native"
+      ]
+    },
+    {
+      "file": "q8_acc0.onnx",
+      "bytes": 1308756,
+      "used_by": [
+        "q8_acc0"
+      ]
+    },
+    {
+      "file": "split8.onnx",
+      "bytes": 1330878,
+      "used_by": [
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.ln_1.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.ln_1.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.ln_2.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.ln_2.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.0.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.ln_1.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.ln_1.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.ln_2.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.ln_2.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.1.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.ln_1.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.ln_1.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.ln_2.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.ln_2.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.2.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.ln_1.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.ln_1.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.ln_2.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.ln_2.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.3.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.ln_1.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.ln_1.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.ln_2.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.ln_2.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.4.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.ln_1.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.ln_1.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.ln_2.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.ln_2.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.h.5.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.ln_f.bias.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.ln_f.weight.bin",
+      "bytes": 3072,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.wpe.weight.bin",
+      "bytes": 3145728,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    },
+    {
+      "file": "transformer.wte.weight.bin",
+      "bytes": 154389504,
+      "used_by": [
+        "dense",
+        "native",
+        "q8_acc0",
+        "split8"
+      ]
+    }
+  ],
+  "artifact_total_scope": "four ONNX graphs and unique external initializer files; manifest excluded",
+  "unique_artifact_bytes": 434415968
+}
