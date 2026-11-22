@@ -142,6 +142,17 @@ or dense/stock matrix is needed for first Run.
 [`demo_packed_prompt.py`](demo_packed_prompt.py) ·
 [Small boundary/loop fixture](check_demo_packed_prompt.py).
 
+The public ZIP is **91,056,214 B**, with **165 members**. An anonymous public
+transport compared byte-for-byte with the accepted archive, and one cold
+first Run from its independently extracted files passed: the fictional
+eight-token prompt plus BOS produced `[379, 262, 2059, 286]` in twelve
+complete 13-output calls. That separate AVX-512/VNNI host reported
+**169,240 KiB peak RSS / 0.537549 s whole cold Run**. This internal QA proves
+the delivered first-Run path; external OwnModel/OwnRun and paid scope are
+measured separately.
+[Actual public first-Run receipt](results/package/public-first-run-receipt.json) ·
+[Full own-prompt JSON](results/package/public-own-run.json).
+
 For a complete model-specific memory/latency scope, send your model/host,
 observed result or goal, allowed tolerance and release date to
 [@blucca_ai](https://t.me/blucca_ai).

@@ -21,6 +21,12 @@ walks through the complete causal result, direct-update exposure and package cha
 
 ## Reusable tools
 
+[Single-copy packed Q8, complete CPU decode](ort-q8-single-copy-packed-input/):
+one packed initializer representation, 25.08% lower fresh-worker RSS at
++0.43–1.15% whole-call p50 versus faster fresh tied-Q8 controls on AVX2/noVNNI.
+All thirteen outputs are bitwise identical at three caches; fresh NIST2048
+loss and four greedy continuations match. [Run your own prompt](https://github.com/blucca/fx2-cmix-transformer-v1/releases/tag/ort-single-copy-packed-q8-v0.1.0).
+
 [Shared-Q8 vocabulary, complete DistilGPT2](ort-q8-tied-vocabulary/):
 one embedding/head code-and-scale pair, FP32 activations, complete fresh
 whole-call/RSS and fixed-text language gates, with a native-only own-prompt

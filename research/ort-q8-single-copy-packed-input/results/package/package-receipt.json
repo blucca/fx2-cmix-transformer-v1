@@ -1,0 +1,16 @@
+{
+  "status": "PRIVATE_ARCHIVE_WRITTEN",
+  "members": 165,
+  "full_native_graph_external_bin_count": 101,
+  "runtime_graph_bins_library_tokenizer_bytes": 98064033,
+  "total_member_payload_bytes": 99421101,
+  "missing_required_files": [],
+  "archive_written": true,
+  "complete_runtime_gates": "PASS",
+  "public_qualification": "complete_target_compute_and_language_gates_PASS_public_bundle_first_Run_pending",
+  "complete_root_gate_receipt_passed": true,
+  "scope": "Explicit member names and byte counts; complete freeze/first Run/public decision belong to root",
+  "archive": "/data/workspace/temp/round737-packed-q8/distilgpt2-single-copy-packed-q8-native-linux-x64.zip",
+  "zip_bytes": 91056214,
+  "ZIP_CRC_and_member_sizes": "PASS"
+}

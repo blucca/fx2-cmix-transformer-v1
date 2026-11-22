@@ -23,5 +23,10 @@
   "scope": "Pinned DistilGPT2 batch1 M1 FP32-activation CPU decode; no new quantization, kernel arithmetic, model or API.",
   "quality_scope": "Two fresh independently chained old/packed workers on target, both compared to preserved complete same-Q8 dense oracle. Same fixed NIST2048 target IDs as reused original FP32 report on separate host.",
   "internal_qa_external_own_run": 0,
-  "own_prompt_package_status": "pending_complete_public_first_run"
+  "own_prompt_package_status": "actual_public_complete_first_Run_PASS",
+  "public_package_first_run": "package/public-first-run-receipt.json",
+  "public_zip_bytes": 91056214,
+  "public_release_tag": "ort-single-copy-packed-q8-v0.1.0",
+  "public_release_id": 454565833,
+  "public_asset_id": 779599196
 }

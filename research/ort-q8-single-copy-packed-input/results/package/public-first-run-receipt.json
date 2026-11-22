@@ -1,0 +1,39 @@
+{
+  "status": "ACTUAL_PUBLIC_BUNDLE_FIRST_RUN_PASS",
+  "public_url": "https://github.com/blucca/fx2-cmix-transformer-v1/releases/download/ort-single-copy-packed-q8-v0.1.0/distilgpt2-single-copy-packed-q8-native-linux-x64.zip",
+  "public_transport_byte_equal": true,
+  "public_asset_bytes": 91056214,
+  "target_canonical_library_bytes": 43056,
+  "full_outputs_per_call": 13,
+  "source_ref": "Xenova/distilgpt2@a41c10485c18a64b6606729b6a082330cbd8f49e",
+  "generated_token_ids": [
+    379,
+    262,
+    2059,
+    286
+  ],
+  "session_run_calls": 12,
+  "decoded_text": "In a small research lab, the engineer at the University of",
+  "peak_rss_kib": 169240,
+  "elapsed_seconds": 0.5375493679894134,
+  "host": {
+    "cpu": "AMD EPYC",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": true,
+      "avx512_vnni": true,
+      "avx_vnni": true
+    },
+    "platform": "Linux-6.18.54-instabox-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+    "numpy": "2.5.5",
+    "ort": "1.31.1",
+    "tokenizers": "0.22.1",
+    "threads": 1,
+    "allowed_cpu": [
+      0
+    ]
+  },
+  "scope": "One cold full-output first Run from the actual public ZIP, internal QA. Controlled target timing/RSS and external OwnRun retain their own scopes."
+}

@@ -1,0 +1,56 @@
+{
+  "generated_token_ids": [
+    379,
+    262,
+    2059,
+    286
+  ],
+  "generated_tokens": 4,
+  "stopped_at_eos": false,
+  "session_run_calls": 12,
+  "cache_tokens_at_end": 12,
+  "session_run_whole_seconds": 0.08644089492736384,
+  "status": "complete",
+  "source_ref": "Xenova/distilgpt2@a41c10485c18a64b6606729b6a082330cbd8f49e",
+  "tokenizer_source": "https://huggingface.co/Xenova/distilgpt2/resolve/a41c10485c18a64b6606729b6a082330cbd8f49e/tokenizer.json",
+  "custom_operator": "org.blucca::Q8MatMulM1Packed",
+  "weight_layout": {
+    "P": "INT8[T,KB,32,16]",
+    "PS": "FLOAT[T,KB,16]",
+    "T": "N/16",
+    "KB": "K/32"
+  },
+  "text": "In a small research lab, the engineer at the University of",
+  "continuation": " at the University of",
+  "prompt_tokens": 8,
+  "bos_condition_tokens": 1,
+  "total_context_tokens": 13,
+  "requested_max_new_tokens": 4,
+  "all_outputs_finite_correct_shape": true,
+  "prefix_bits_preserved": true,
+  "session_initialization_seconds": 0.2620125240064226,
+  "generation_wall_seconds": 0.09561730496352538,
+  "elapsed_whole_seconds": 0.5375493679894134,
+  "timing_scope": "One cold own-prompt Run; whole Session.run returns logits + 12 full KV. Generation wall includes feed construction and checks. No benchmark warmups.",
+  "peak_rss_kib": 169240,
+  "completed_at": "2026-11-22T16:06:52.041473+00:00",
+  "host": {
+    "cpu": "AMD EPYC",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": true,
+      "avx512_vnni": true,
+      "avx_vnni": true
+    },
+    "platform": "Linux-6.18.54-instabox-x86_64-with-glibc2.41",
+    "python": "3.13.5 (main, Aug 10 2026, 12:06:59) [GCC 14.2.0]",
+    "numpy": "2.5.5",
+    "ort": "1.31.1",
+    "tokenizers": "0.22.1",
+    "threads": 1,
+    "allowed_cpu": [
+      0
+    ]
+  }
+}

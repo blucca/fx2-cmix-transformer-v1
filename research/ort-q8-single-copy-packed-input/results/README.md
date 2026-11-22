@@ -14,5 +14,5 @@
   failures are preserved alongside their successful focused continuation.
 
 Current controlled performance comes from the AVX2/FMA/noVNNI target;
-fixed FP32 loss uses the explicitly identified separate host. Actual public
-OwnPrompt transport/first-Run QA will be recorded separately from external use.
+fixed FP32 loss uses the explicitly identified separate host. `package/` records the actual public ZIP byte-equal transport and one cold
+complete OwnPrompt Run; this internal QA is separate from external use.
