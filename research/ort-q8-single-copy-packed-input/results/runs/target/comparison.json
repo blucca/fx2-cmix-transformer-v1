@@ -1,0 +1,64 @@
+{
+  "host": {
+    "cpu": "AMD EPYC 7K62 48-Core Processor",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": false,
+      "avx512_vnni": false,
+      "avx_vnni": false
+    },
+    "python": "3.14.8 (main, Oct  2 2026, 10:23:31) [GCC 16.2.1 20260810]",
+    "numpy": "2.5.3",
+    "ort": "1.31.1"
+  },
+  "rows": [
+    {
+      "past": 16,
+      "old_before_p50_ms": 7.620629388839006,
+      "old_after_p50_ms": 7.627642014995217,
+      "old_conservative_p50_ms": 7.620629388839006,
+      "packed_p50_ms": 7.661385927349329,
+      "time_reduction": -0.005348185357237467,
+      "all_13_output_bits_same": true
+    },
+    {
+      "past": 128,
+      "old_before_p50_ms": 8.308793418109417,
+      "old_after_p50_ms": 8.161045610904694,
+      "old_conservative_p50_ms": 8.161045610904694,
+      "packed_p50_ms": 8.196321548894048,
+      "time_reduction": -0.004322477740134056,
+      "all_13_output_bits_same": true
+    },
+    {
+      "past": 512,
+      "old_before_p50_ms": 10.145931970328093,
+      "old_after_p50_ms": 10.02443884499371,
+      "old_conservative_p50_ms": 10.02443884499371,
+      "packed_p50_ms": 10.140035999938846,
+      "time_reduction": -0.011531533757908496,
+      "all_13_output_bits_same": true
+    }
+  ],
+  "old_conservative_peak_rss_kib": 298112,
+  "packed_peak_rss_kib": 223336,
+  "rss_reduction": 0.25083190210390727,
+  "all_13_output_bits_same_by_past": {
+    "16": true,
+    "128": true,
+    "512": true
+  },
+  "packed_native_owned_bytes": 0,
+  "full_reports": {
+    "old-before": "old-before/result.json",
+    "packed": "packed/result.json",
+    "old-after": "old-after/result.json"
+  },
+  "quality_gate": "separate fixed NIST2048 independent chain and 4x64 greedy",
+  "numerical_pass": true,
+  "performance_pass": true,
+  "memory_pass": true,
+  "target_avx2_no_vnni": true,
+  "target_compute_gate_passed": true
+}

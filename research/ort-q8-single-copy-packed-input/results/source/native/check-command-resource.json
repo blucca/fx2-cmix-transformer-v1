@@ -1,0 +1,10 @@
+{
+  "command": [
+    "temp/round736/packed-q8/native/check_packed.sh"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 1.6352240438573062,
+  "child_peak_rss_kib": 228576,
+  "timeout_seconds": 180,
+  "status": "passed"
+}

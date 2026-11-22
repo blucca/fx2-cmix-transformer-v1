@@ -1,0 +1,10 @@
+{
+  "command": [
+    "temp/round736/packed-q8/native/build.sh"
+  ],
+  "exit_code": 0,
+  "elapsed_seconds": 2.749572742264718,
+  "child_peak_rss_kib": 343184,
+  "timeout_seconds": 180,
+  "status": "compiled"
+}

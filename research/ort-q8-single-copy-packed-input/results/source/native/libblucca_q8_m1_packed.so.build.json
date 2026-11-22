@@ -1,0 +1,44 @@
+{
+  "status": "compiled",
+  "platform": "Linux-7.2.11-arch1-1-x86_64-with-glibc2.44",
+  "ort_sdk": "1.31.1",
+  "ort_api": 31,
+  "compiler": "g++ (GCC) 16.2.1 20260810",
+  "command": [
+    "g++",
+    "-O3",
+    "-mavx2",
+    "-mfma",
+    "-shared",
+    "-fPIC",
+    "-std=c++17",
+    "-I/home/ima/repos/gain/products/hutter-research/research/ort-q8-m1-native/sdk-1.31.1",
+    "/home/ima/repos/gain/temp/round736/packed-q8/native/q8_m1_packed_ort.cpp",
+    "-o",
+    "/home/ima/repos/gain/temp/round736/packed-q8/native/libblucca_q8_m1_packed.so"
+  ],
+  "limits": {
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_bytes": 536870912,
+    "compiler_wall_timeout_seconds": 175,
+    "cpu_seconds": 180
+  },
+  "library": "libblucca_q8_m1_packed.so",
+  "bytes": 43056,
+  "sha256": "38bed5257fdd81200c3ad88931e645c237c1dae2a39431c4dcae6fd8b8142b6b",
+  "sources": {
+    "q8_m1_packed_kernel.hpp": "17b6208bcfa6032e45e62cf19179801fa6fed4d2077504b06658e314611087f6",
+    "q8_m1_packed_ort.cpp": "de7983d6a082d3e97c23496c2f30ee7372dc57a87090fc1b3783a4674e57c99f",
+    "build.sh": "ebcfe17130c247109eef1f894b683aa10bb5084cf91a42849b034a9c680a3788"
+  },
+  "sdk_sha256": {
+    "onnxruntime_c_api.h": "43d584f596ef66820421317df32a79a95fc1d39ee46cb3971a870c08d8ba4baa",
+    "onnxruntime_cxx_api.h": "1e80d494c47091b07d84de60ad570326f82ed841c6de66e5b3eb7dce17bfc467",
+    "onnxruntime_cxx_inline.h": "908a50414c3f67f32fd556cd16f7779fa78380e12e9d08e44f5e6f66b965a7be",
+    "onnxruntime_float16.h": "88b242845d25981633a0bbd1c148e273cf8bfb016ea3f57c4af41a06530f72b0",
+    "onnxruntime_error_code.h": "5ce3b054e798eced8d14f5b86e98692fd33470463f96194ce0700a2d53dd8721",
+    "onnxruntime_ep_c_api.h": "b64036772115dbc6f06a900487ce22d34e862100db03e2ad62210758e27a19b2"
+  }
+}

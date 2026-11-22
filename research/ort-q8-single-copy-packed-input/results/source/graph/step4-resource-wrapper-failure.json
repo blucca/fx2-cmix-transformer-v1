@@ -1,0 +1,9 @@
+{
+  "status": "FAILED_resource_wrapper_before_converter",
+  "failure": "/usr/bin/time absent",
+  "exit_code": 127,
+  "converter_started": false,
+  "model_output_directory_created": false,
+  "weights_loaded": false,
+  "retry": "omit unavailable /usr/bin/time; use existing in-script resource.getrusage receipt"
+}

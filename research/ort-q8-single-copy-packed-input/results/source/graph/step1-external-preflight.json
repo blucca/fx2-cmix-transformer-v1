@@ -1,0 +1,519 @@
+{
+  "status": "PASS_complete_external_data_pre_model_parse",
+  "source": "/home/ima/repos/gain/temp/round729/tied-q8/target/models/native.onnx",
+  "source_model_bytes": 1310016,
+  "authority": "/home/ima/repos/gain/temp/round729/tied-q8/target/manifest.json",
+  "external_file_count": 101,
+  "external_total_bytes": 94602240,
+  "all_required_files": [
+    {
+      "file": "__blucca_tied_vocab_q8_B.bin",
+      "bytes": 38608896,
+      "exists": true
+    },
+    {
+      "file": "__blucca_tied_vocab_q8_S.bin",
+      "bytes": 4826112,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_00_B.bin",
+      "bytes": 1769472,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_00_S.bin",
+      "bytes": 221184,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_01_B.bin",
+      "bytes": 589824,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_01_S.bin",
+      "bytes": 73728,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_02_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_02_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_03_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_03_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_04_B.bin",
+      "bytes": 1769472,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_04_S.bin",
+      "bytes": 221184,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_05_B.bin",
+      "bytes": 589824,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_05_S.bin",
+      "bytes": 73728,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_06_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_06_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_07_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_07_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_08_B.bin",
+      "bytes": 1769472,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_08_S.bin",
+      "bytes": 221184,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_09_B.bin",
+      "bytes": 589824,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_09_S.bin",
+      "bytes": 73728,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_10_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_10_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_11_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_11_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_12_B.bin",
+      "bytes": 1769472,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_12_S.bin",
+      "bytes": 221184,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_13_B.bin",
+      "bytes": 589824,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_13_S.bin",
+      "bytes": 73728,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_14_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_14_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_15_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_15_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_16_B.bin",
+      "bytes": 1769472,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_16_S.bin",
+      "bytes": 221184,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_17_B.bin",
+      "bytes": 589824,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_17_S.bin",
+      "bytes": 73728,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_18_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_18_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_19_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_19_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_20_B.bin",
+      "bytes": 1769472,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_20_S.bin",
+      "bytes": 221184,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_21_B.bin",
+      "bytes": 589824,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_21_S.bin",
+      "bytes": 73728,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_22_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_22_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_23_B.bin",
+      "bytes": 2359296,
+      "exists": true
+    },
+    {
+      "file": "__blucca_whole_q8_23_S.bin",
+      "bytes": 294912,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.ln_1.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.ln_1.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.ln_2.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.ln_2.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.0.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.ln_1.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.ln_1.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.ln_2.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.ln_2.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.1.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.ln_1.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.ln_1.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.ln_2.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.ln_2.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.2.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.ln_1.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.ln_1.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.ln_2.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.ln_2.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.3.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.ln_1.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.ln_1.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.ln_2.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.ln_2.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.4.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.ln_1.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.ln_1.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.ln_2.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.ln_2.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "exists": true
+    },
+    {
+      "file": "transformer.h.5.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.ln_f.bias.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.ln_f.weight.bin",
+      "bytes": 3072,
+      "exists": true
+    },
+    {
+      "file": "transformer.wpe.weight.bin",
+      "bytes": 3145728,
+      "exists": true
+    }
+  ],
+  "weights_read": false,
+  "model_parsed": false,
+  "downloads": 0,
+  "new_dependencies": 0
+}

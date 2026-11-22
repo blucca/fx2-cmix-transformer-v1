@@ -1,0 +1,277 @@
+{
+  "status": "PASS",
+  "phase": "complete",
+  "past": 16,
+  "fresh_session": true,
+  "reference": "/home/ima/repos/gain/temp/round729/tied-q8/target/runs/target/native/past-16-outputs.npz",
+  "host": {
+    "cpu": "AMD EPYC 7K62 48-Core Processor",
+    "features": {
+      "avx2": true,
+      "fma": true,
+      "avx512f": false,
+      "avx512_vnni": false,
+      "avx_vnni": false
+    },
+    "python": "3.14.8 (main, Oct  2 2026, 10:23:31) [GCC 16.2.1 20260810]",
+    "numpy": "2.5.3",
+    "ort": "1.31.1"
+  },
+  "model": "/home/ima/repos/gain/temp/round736/packed-q8/graph/model/native.onnx",
+  "initialization_seconds": 0.0936088589951396,
+  "constructor_delta": 25,
+  "native_owned_packed_bytes": 0,
+  "first_full_call_seconds": 0.012343534734100103,
+  "check": {
+    "all_outputs_passed": true,
+    "top1": 32616,
+    "reference_top1": 32616,
+    "outputs": {
+      "logits": {
+        "shape": [
+          1,
+          1,
+          50257
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.0.key": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.0.value": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.1.key": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.1.value": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.2.key": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.2.value": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.3.key": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.3.value": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.4.key": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.4.value": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.5.key": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      },
+      "present.5.value": {
+        "shape": [
+          1,
+          12,
+          17,
+          64
+        ],
+        "whole": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        },
+        "prefix_bits_preserved": true,
+        "new_slice": {
+          "max_abs_error": 0.0,
+          "norm_max_error": 0.0,
+          "passed": true
+        }
+      }
+    }
+  },
+  "all_output_bits_same": true,
+  "target_avx2_no_vnni": true,
+  "peak_rss_kib": 159160,
+  "whole_seconds": 0.2564343507401645,
+  "scope": "cache16 complete all13 outputs; full paired timing/RSS/language gates still pending"
+}

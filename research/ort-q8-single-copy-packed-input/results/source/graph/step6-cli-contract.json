@@ -1,0 +1,17 @@
+{
+  "status": "PASS_CLI_material_and_fresh_contract",
+  "fresh": {
+    "status": "PASS_fresh_directory_guard",
+    "failure_type": "FileExistsError",
+    "message": "fresh output directory required: /home/ima/repos/gain/temp/round736/packed-q8/graph/model"
+  },
+  "missing_external": {
+    "status": "PASS_precise_missing_external_path_before_parser",
+    "failure_type": "FileNotFoundError",
+    "exact_missing_path": "/home/ima/repos/gain/temp/round736/packed-q8/graph/__blucca_whole_q8_00_B.bin"
+  },
+  "parser_calls": 0,
+  "native_or_model_inference_runs": 0,
+  "downloads": 0,
+  "guard_checks_only": true
+}

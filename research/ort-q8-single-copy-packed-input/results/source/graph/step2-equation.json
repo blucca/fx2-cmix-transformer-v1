@@ -1,0 +1,33 @@
+{
+  "status": "PASS_equation_sign_scales_embedding_padding",
+  "synthetic_N": 64,
+  "synthetic_K": 96,
+  "codes_checked": 6144,
+  "all_256_source_codes": true,
+  "signed_range": [
+    -128,
+    127
+  ],
+  "zero_128_maps_to_0": true,
+  "scales_distinct_tile_block_lane_and_bits_preserved": true,
+  "scalar_native_offsets_checked": true,
+  "embedding_checked_tokens": [
+    0,
+    1,
+    15,
+    16,
+    17,
+    31,
+    32,
+    48,
+    49,
+    63
+  ],
+  "embedding_FP32_bits_equal": true,
+  "padding_rows": 15,
+  "padding_embedding_zero": true,
+  "weight_quantizer_calls": 0,
+  "model_inference_runs": 0,
+  "P_equation": "P[t,b,i,l] = INT8(INT16(B[t*16+l,b,i])-128)",
+  "PS_equation": "PS[t,b,l] = S[(t*16+l)*KB+b]"
+}

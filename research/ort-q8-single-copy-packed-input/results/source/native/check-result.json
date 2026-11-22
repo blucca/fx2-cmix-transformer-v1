@@ -1,0 +1,1 @@
+{"status":"passed","oracle":"unchanged published Q8M1 owner, bitwise","signed_codes_covered":256,"shapes":[[32,16],[96,48],[128,64],[64,48]],"activation_cases_per_shape":3,"bitwise_runs":12,"distinct_tile_block_lane_scales":true,"padding_lanes":15,"offset_unaligned_storage":true,"new_native_owned_packed_bytes":0}

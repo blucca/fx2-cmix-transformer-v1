@@ -1,0 +1,62 @@
+{
+  "status": "compiled-and-passed",
+  "compiler": "g++ (GCC) 16.2.1 20260810",
+  "command": [
+    "g++",
+    "-O3",
+    "-mavx2",
+    "-mfma",
+    "-std=c++17",
+    "-I/home/ima/repos/gain/products/hutter-research/research/ort-q8-m1-native",
+    "-I/home/ima/repos/gain/temp/round736/packed-q8/native",
+    "/home/ima/repos/gain/temp/round736/packed-q8/native/check_packed.cpp",
+    "-o",
+    "/home/ima/repos/gain/temp/round736/packed-q8/native/check_packed"
+  ],
+  "limits": {
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_bytes": 536870912,
+    "compiler_wall_timeout_seconds": 175,
+    "fixture_wall_timeout_seconds": 10
+  },
+  "fixture_sha256": "6dc8c3de846bdeefc07c345157c4cfe84dcf9f11c2123bc7bb6126ba27cdef23",
+  "check_driver_sha256": "90674fa92507c8308f8c90b16572e41b0699869b1667706e877a137fc4ed556f",
+  "old_core_sha256_after_fixture": "0c02aa624969058e09f1a4c6caadf44e9d8b7f464f110a24d3774fe5df5da430",
+  "result": {
+    "status": "passed",
+    "oracle": "unchanged published Q8M1 owner, bitwise",
+    "signed_codes_covered": 256,
+    "shapes": [
+      [
+        32,
+        16
+      ],
+      [
+        96,
+        48
+      ],
+      [
+        128,
+        64
+      ],
+      [
+        64,
+        48
+      ]
+    ],
+    "activation_cases_per_shape": 3,
+    "bitwise_runs": 12,
+    "distinct_tile_block_lane_scales": true,
+    "padding_lanes": 15,
+    "offset_unaligned_storage": true,
+    "new_native_owned_packed_bytes": 0
+  },
+  "arithmetic_source": {
+    "status": "passed",
+    "Run_FmaPair_exact_source_except_data_source": true,
+    "old_core_sha256": "0c02aa624969058e09f1a4c6caadf44e9d8b7f464f110a24d3774fe5df5da430",
+    "new_core_sha256": "17b6208bcfa6032e45e62cf19179801fa6fed4d2077504b06658e314611087f6"
+  }
+}

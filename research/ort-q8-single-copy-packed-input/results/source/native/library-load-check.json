@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "library_sha256": "38bed5257fdd81200c3ad88931e645c237c1dae2a39431c4dcae6fd8b8142b6b",
+  "registration_export_present": true,
+  "unregistered_library_hooks": {
+    "BluccaQ8M1PackedCtorCount": 0,
+    "BluccaQ8M1PackedOwnedPackedBytes": 0
+  },
+  "scope": "load + export smoke; no ORT initialization/inference",
+  "python_peak_rss_kib": 19984
+}

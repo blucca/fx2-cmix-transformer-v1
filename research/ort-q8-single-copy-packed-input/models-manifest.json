@@ -1,0 +1,1509 @@
+{
+  "status": "converted_checked_runtime_pending",
+  "source": "/home/ima/repos/gain/temp/round729/tied-q8/target/models/native.onnx",
+  "source_identity": "existing fixed tied-Q8; original Xenova/distilgpt2@a41c10485c18a64b6606729b6a082330cbd8f49e",
+  "source_preflight": {
+    "status": "PASS_complete_external_data_pre_model_parse",
+    "source": "/home/ima/repos/gain/temp/round729/tied-q8/target/models/native.onnx",
+    "metadata_bytes": 1310016,
+    "external_file_count": 101,
+    "external_bytes": 94602240,
+    "weights_loaded_at_preflight": false
+  },
+  "source_modified": false,
+  "conversion": "offline signed centering and exact scale-byte reordering of existing Q8 only",
+  "quantizer_calls": 0,
+  "native_or_model_inference_runs": 0,
+  "downloads": 0,
+  "new_dependencies": 0,
+  "op": {
+    "domain": "org.blucca",
+    "name": "Q8MatMulM1Packed",
+    "version": 1,
+    "attrs": [
+      "k",
+      "n"
+    ],
+    "input_types": [
+      "FLOAT",
+      "INT8",
+      "FLOAT"
+    ],
+    "output_type": "FLOAT",
+    "kernel_API": 31
+  },
+  "numpy": "2.5.3",
+  "onnx": "1.23.2",
+  "equation_check": {
+    "status": "PASS_equation_sign_scales_embedding_padding",
+    "synthetic_N": 64,
+    "synthetic_K": 96,
+    "codes_checked": 6144,
+    "all_256_source_codes": true,
+    "signed_range": [
+      -128,
+      127
+    ],
+    "zero_128_maps_to_0": true,
+    "scales_distinct_tile_block_lane_and_bits_preserved": true,
+    "scalar_native_offsets_checked": true,
+    "embedding_checked_tokens": [
+      0,
+      1,
+      15,
+      16,
+      17,
+      31,
+      32,
+      48,
+      49,
+      63
+    ],
+    "embedding_FP32_bits_equal": true,
+    "padding_rows": 15,
+    "padding_embedding_zero": true,
+    "weight_quantizer_calls": 0,
+    "model_inference_runs": 0,
+    "P_equation": "P[t,b,i,l] = INT8(INT16(B[t*16+l,b,i])-128)",
+    "PS_equation": "PS[t,b,l] = S[(t*16+l)*KB+b]"
+  },
+  "all_25_weights": [
+    {
+      "index": 0,
+      "node": "__blucca_whole_q8_00_matmul",
+      "k": 768,
+      "n": 2304,
+      "B": "__blucca_whole_q8_00_B",
+      "S": "__blucca_whole_q8_00_S",
+      "P": "__blucca_whole_q8_00_P",
+      "PS": "__blucca_whole_q8_00_PS",
+      "A": "__blucca_whole_q8_00_A2D",
+      "Y": "__blucca_whole_q8_00_Y2D",
+      "old_B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        55296
+      ],
+      "P_shape": [
+        144,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        144,
+        24,
+        16
+      ],
+      "P_bytes": 1769472,
+      "PS_bytes": 221184,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 1769472,
+        "all_scale_bytes_bitwise_checked": 221184,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 1,
+      "node": "__blucca_whole_q8_01_matmul",
+      "k": 768,
+      "n": 768,
+      "B": "__blucca_whole_q8_01_B",
+      "S": "__blucca_whole_q8_01_S",
+      "P": "__blucca_whole_q8_01_P",
+      "PS": "__blucca_whole_q8_01_PS",
+      "A": "__blucca_whole_q8_01_A2D",
+      "Y": "__blucca_whole_q8_01_Y2D",
+      "old_B_shape": [
+        768,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        18432
+      ],
+      "P_shape": [
+        48,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        24,
+        16
+      ],
+      "P_bytes": 589824,
+      "PS_bytes": 73728,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 589824,
+        "all_scale_bytes_bitwise_checked": 73728,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 2,
+      "node": "__blucca_whole_q8_02_matmul",
+      "k": 768,
+      "n": 3072,
+      "B": "__blucca_whole_q8_02_B",
+      "S": "__blucca_whole_q8_02_S",
+      "P": "__blucca_whole_q8_02_P",
+      "PS": "__blucca_whole_q8_02_PS",
+      "A": "__blucca_whole_q8_02_A2D",
+      "Y": "__blucca_whole_q8_02_Y2D",
+      "old_B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        192,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        192,
+        24,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 3,
+      "node": "__blucca_whole_q8_03_matmul",
+      "k": 3072,
+      "n": 768,
+      "B": "__blucca_whole_q8_03_B",
+      "S": "__blucca_whole_q8_03_S",
+      "P": "__blucca_whole_q8_03_P",
+      "PS": "__blucca_whole_q8_03_PS",
+      "A": "__blucca_whole_q8_03_A2D",
+      "Y": "__blucca_whole_q8_03_Y2D",
+      "old_B_shape": [
+        768,
+        96,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        48,
+        96,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        96,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 4,
+      "node": "__blucca_whole_q8_04_matmul",
+      "k": 768,
+      "n": 2304,
+      "B": "__blucca_whole_q8_04_B",
+      "S": "__blucca_whole_q8_04_S",
+      "P": "__blucca_whole_q8_04_P",
+      "PS": "__blucca_whole_q8_04_PS",
+      "A": "__blucca_whole_q8_04_A2D",
+      "Y": "__blucca_whole_q8_04_Y2D",
+      "old_B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        55296
+      ],
+      "P_shape": [
+        144,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        144,
+        24,
+        16
+      ],
+      "P_bytes": 1769472,
+      "PS_bytes": 221184,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 1769472,
+        "all_scale_bytes_bitwise_checked": 221184,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 5,
+      "node": "__blucca_whole_q8_05_matmul",
+      "k": 768,
+      "n": 768,
+      "B": "__blucca_whole_q8_05_B",
+      "S": "__blucca_whole_q8_05_S",
+      "P": "__blucca_whole_q8_05_P",
+      "PS": "__blucca_whole_q8_05_PS",
+      "A": "__blucca_whole_q8_05_A2D",
+      "Y": "__blucca_whole_q8_05_Y2D",
+      "old_B_shape": [
+        768,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        18432
+      ],
+      "P_shape": [
+        48,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        24,
+        16
+      ],
+      "P_bytes": 589824,
+      "PS_bytes": 73728,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 589824,
+        "all_scale_bytes_bitwise_checked": 73728,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 6,
+      "node": "__blucca_whole_q8_06_matmul",
+      "k": 768,
+      "n": 3072,
+      "B": "__blucca_whole_q8_06_B",
+      "S": "__blucca_whole_q8_06_S",
+      "P": "__blucca_whole_q8_06_P",
+      "PS": "__blucca_whole_q8_06_PS",
+      "A": "__blucca_whole_q8_06_A2D",
+      "Y": "__blucca_whole_q8_06_Y2D",
+      "old_B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        192,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        192,
+        24,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 7,
+      "node": "__blucca_whole_q8_07_matmul",
+      "k": 3072,
+      "n": 768,
+      "B": "__blucca_whole_q8_07_B",
+      "S": "__blucca_whole_q8_07_S",
+      "P": "__blucca_whole_q8_07_P",
+      "PS": "__blucca_whole_q8_07_PS",
+      "A": "__blucca_whole_q8_07_A2D",
+      "Y": "__blucca_whole_q8_07_Y2D",
+      "old_B_shape": [
+        768,
+        96,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        48,
+        96,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        96,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 8,
+      "node": "__blucca_whole_q8_08_matmul",
+      "k": 768,
+      "n": 2304,
+      "B": "__blucca_whole_q8_08_B",
+      "S": "__blucca_whole_q8_08_S",
+      "P": "__blucca_whole_q8_08_P",
+      "PS": "__blucca_whole_q8_08_PS",
+      "A": "__blucca_whole_q8_08_A2D",
+      "Y": "__blucca_whole_q8_08_Y2D",
+      "old_B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        55296
+      ],
+      "P_shape": [
+        144,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        144,
+        24,
+        16
+      ],
+      "P_bytes": 1769472,
+      "PS_bytes": 221184,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 1769472,
+        "all_scale_bytes_bitwise_checked": 221184,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 9,
+      "node": "__blucca_whole_q8_09_matmul",
+      "k": 768,
+      "n": 768,
+      "B": "__blucca_whole_q8_09_B",
+      "S": "__blucca_whole_q8_09_S",
+      "P": "__blucca_whole_q8_09_P",
+      "PS": "__blucca_whole_q8_09_PS",
+      "A": "__blucca_whole_q8_09_A2D",
+      "Y": "__blucca_whole_q8_09_Y2D",
+      "old_B_shape": [
+        768,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        18432
+      ],
+      "P_shape": [
+        48,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        24,
+        16
+      ],
+      "P_bytes": 589824,
+      "PS_bytes": 73728,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 589824,
+        "all_scale_bytes_bitwise_checked": 73728,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 10,
+      "node": "__blucca_whole_q8_10_matmul",
+      "k": 768,
+      "n": 3072,
+      "B": "__blucca_whole_q8_10_B",
+      "S": "__blucca_whole_q8_10_S",
+      "P": "__blucca_whole_q8_10_P",
+      "PS": "__blucca_whole_q8_10_PS",
+      "A": "__blucca_whole_q8_10_A2D",
+      "Y": "__blucca_whole_q8_10_Y2D",
+      "old_B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        192,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        192,
+        24,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 11,
+      "node": "__blucca_whole_q8_11_matmul",
+      "k": 3072,
+      "n": 768,
+      "B": "__blucca_whole_q8_11_B",
+      "S": "__blucca_whole_q8_11_S",
+      "P": "__blucca_whole_q8_11_P",
+      "PS": "__blucca_whole_q8_11_PS",
+      "A": "__blucca_whole_q8_11_A2D",
+      "Y": "__blucca_whole_q8_11_Y2D",
+      "old_B_shape": [
+        768,
+        96,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        48,
+        96,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        96,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 12,
+      "node": "__blucca_whole_q8_12_matmul",
+      "k": 768,
+      "n": 2304,
+      "B": "__blucca_whole_q8_12_B",
+      "S": "__blucca_whole_q8_12_S",
+      "P": "__blucca_whole_q8_12_P",
+      "PS": "__blucca_whole_q8_12_PS",
+      "A": "__blucca_whole_q8_12_A2D",
+      "Y": "__blucca_whole_q8_12_Y2D",
+      "old_B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        55296
+      ],
+      "P_shape": [
+        144,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        144,
+        24,
+        16
+      ],
+      "P_bytes": 1769472,
+      "PS_bytes": 221184,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 1769472,
+        "all_scale_bytes_bitwise_checked": 221184,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 13,
+      "node": "__blucca_whole_q8_13_matmul",
+      "k": 768,
+      "n": 768,
+      "B": "__blucca_whole_q8_13_B",
+      "S": "__blucca_whole_q8_13_S",
+      "P": "__blucca_whole_q8_13_P",
+      "PS": "__blucca_whole_q8_13_PS",
+      "A": "__blucca_whole_q8_13_A2D",
+      "Y": "__blucca_whole_q8_13_Y2D",
+      "old_B_shape": [
+        768,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        18432
+      ],
+      "P_shape": [
+        48,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        24,
+        16
+      ],
+      "P_bytes": 589824,
+      "PS_bytes": 73728,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 589824,
+        "all_scale_bytes_bitwise_checked": 73728,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 14,
+      "node": "__blucca_whole_q8_14_matmul",
+      "k": 768,
+      "n": 3072,
+      "B": "__blucca_whole_q8_14_B",
+      "S": "__blucca_whole_q8_14_S",
+      "P": "__blucca_whole_q8_14_P",
+      "PS": "__blucca_whole_q8_14_PS",
+      "A": "__blucca_whole_q8_14_A2D",
+      "Y": "__blucca_whole_q8_14_Y2D",
+      "old_B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        192,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        192,
+        24,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 15,
+      "node": "__blucca_whole_q8_15_matmul",
+      "k": 3072,
+      "n": 768,
+      "B": "__blucca_whole_q8_15_B",
+      "S": "__blucca_whole_q8_15_S",
+      "P": "__blucca_whole_q8_15_P",
+      "PS": "__blucca_whole_q8_15_PS",
+      "A": "__blucca_whole_q8_15_A2D",
+      "Y": "__blucca_whole_q8_15_Y2D",
+      "old_B_shape": [
+        768,
+        96,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        48,
+        96,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        96,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 16,
+      "node": "__blucca_whole_q8_16_matmul",
+      "k": 768,
+      "n": 2304,
+      "B": "__blucca_whole_q8_16_B",
+      "S": "__blucca_whole_q8_16_S",
+      "P": "__blucca_whole_q8_16_P",
+      "PS": "__blucca_whole_q8_16_PS",
+      "A": "__blucca_whole_q8_16_A2D",
+      "Y": "__blucca_whole_q8_16_Y2D",
+      "old_B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        55296
+      ],
+      "P_shape": [
+        144,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        144,
+        24,
+        16
+      ],
+      "P_bytes": 1769472,
+      "PS_bytes": 221184,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 1769472,
+        "all_scale_bytes_bitwise_checked": 221184,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 17,
+      "node": "__blucca_whole_q8_17_matmul",
+      "k": 768,
+      "n": 768,
+      "B": "__blucca_whole_q8_17_B",
+      "S": "__blucca_whole_q8_17_S",
+      "P": "__blucca_whole_q8_17_P",
+      "PS": "__blucca_whole_q8_17_PS",
+      "A": "__blucca_whole_q8_17_A2D",
+      "Y": "__blucca_whole_q8_17_Y2D",
+      "old_B_shape": [
+        768,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        18432
+      ],
+      "P_shape": [
+        48,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        24,
+        16
+      ],
+      "P_bytes": 589824,
+      "PS_bytes": 73728,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 589824,
+        "all_scale_bytes_bitwise_checked": 73728,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 18,
+      "node": "__blucca_whole_q8_18_matmul",
+      "k": 768,
+      "n": 3072,
+      "B": "__blucca_whole_q8_18_B",
+      "S": "__blucca_whole_q8_18_S",
+      "P": "__blucca_whole_q8_18_P",
+      "PS": "__blucca_whole_q8_18_PS",
+      "A": "__blucca_whole_q8_18_A2D",
+      "Y": "__blucca_whole_q8_18_Y2D",
+      "old_B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        192,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        192,
+        24,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 19,
+      "node": "__blucca_whole_q8_19_matmul",
+      "k": 3072,
+      "n": 768,
+      "B": "__blucca_whole_q8_19_B",
+      "S": "__blucca_whole_q8_19_S",
+      "P": "__blucca_whole_q8_19_P",
+      "PS": "__blucca_whole_q8_19_PS",
+      "A": "__blucca_whole_q8_19_A2D",
+      "Y": "__blucca_whole_q8_19_Y2D",
+      "old_B_shape": [
+        768,
+        96,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        48,
+        96,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        96,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 20,
+      "node": "__blucca_whole_q8_20_matmul",
+      "k": 768,
+      "n": 2304,
+      "B": "__blucca_whole_q8_20_B",
+      "S": "__blucca_whole_q8_20_S",
+      "P": "__blucca_whole_q8_20_P",
+      "PS": "__blucca_whole_q8_20_PS",
+      "A": "__blucca_whole_q8_20_A2D",
+      "Y": "__blucca_whole_q8_20_Y2D",
+      "old_B_shape": [
+        2304,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        55296
+      ],
+      "P_shape": [
+        144,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        144,
+        24,
+        16
+      ],
+      "P_bytes": 1769472,
+      "PS_bytes": 221184,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 1769472,
+        "all_scale_bytes_bitwise_checked": 221184,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 21,
+      "node": "__blucca_whole_q8_21_matmul",
+      "k": 768,
+      "n": 768,
+      "B": "__blucca_whole_q8_21_B",
+      "S": "__blucca_whole_q8_21_S",
+      "P": "__blucca_whole_q8_21_P",
+      "PS": "__blucca_whole_q8_21_PS",
+      "A": "__blucca_whole_q8_21_A2D",
+      "Y": "__blucca_whole_q8_21_Y2D",
+      "old_B_shape": [
+        768,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        18432
+      ],
+      "P_shape": [
+        48,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        24,
+        16
+      ],
+      "P_bytes": 589824,
+      "PS_bytes": 73728,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 589824,
+        "all_scale_bytes_bitwise_checked": 73728,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 22,
+      "node": "__blucca_whole_q8_22_matmul",
+      "k": 768,
+      "n": 3072,
+      "B": "__blucca_whole_q8_22_B",
+      "S": "__blucca_whole_q8_22_S",
+      "P": "__blucca_whole_q8_22_P",
+      "PS": "__blucca_whole_q8_22_PS",
+      "A": "__blucca_whole_q8_22_A2D",
+      "Y": "__blucca_whole_q8_22_Y2D",
+      "old_B_shape": [
+        3072,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        192,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        192,
+        24,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 23,
+      "node": "__blucca_whole_q8_23_matmul",
+      "k": 3072,
+      "n": 768,
+      "B": "__blucca_whole_q8_23_B",
+      "S": "__blucca_whole_q8_23_S",
+      "P": "__blucca_whole_q8_23_P",
+      "PS": "__blucca_whole_q8_23_PS",
+      "A": "__blucca_whole_q8_23_A2D",
+      "Y": "__blucca_whole_q8_23_Y2D",
+      "old_B_shape": [
+        768,
+        96,
+        32
+      ],
+      "old_S_shape": [
+        73728
+      ],
+      "P_shape": [
+        48,
+        96,
+        32,
+        16
+      ],
+      "PS_shape": [
+        48,
+        96,
+        16
+      ],
+      "P_bytes": 2359296,
+      "PS_bytes": 294912,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 2359296,
+        "all_scale_bytes_bitwise_checked": 294912,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true
+      }
+    },
+    {
+      "index": 24,
+      "node": "__blucca_tied_vocab_q8_head_matmul",
+      "k": 768,
+      "n": 50272,
+      "B": "__blucca_tied_vocab_q8_B",
+      "S": "__blucca_tied_vocab_q8_S",
+      "P": "__blucca_tied_vocab_q8_P",
+      "PS": "__blucca_tied_vocab_q8_PS",
+      "A": "__blucca_tied_vocab_q8_A2D",
+      "Y": "__blucca_tied_vocab_q8_Ypad",
+      "old_B_shape": [
+        50272,
+        24,
+        32
+      ],
+      "old_S_shape": [
+        1206528
+      ],
+      "P_shape": [
+        3142,
+        24,
+        32,
+        16
+      ],
+      "PS_shape": [
+        3142,
+        24,
+        16
+      ],
+      "P_bytes": 38608896,
+      "PS_bytes": 4826112,
+      "byte_checks": {
+        "all_code_bytes_equation_checked": 38608896,
+        "all_scale_bytes_bitwise_checked": 4826112,
+        "scales_finite_positive": true,
+        "persisted_file_layout_checked": true,
+        "embedding_checked_tokens": [
+          0,
+          1,
+          15,
+          16,
+          17,
+          31,
+          32,
+          50240,
+          50255,
+          50256,
+          50257,
+          50258,
+          50259,
+          50260,
+          50261,
+          50262,
+          50263,
+          50264,
+          50265,
+          50266,
+          50267,
+          50268,
+          50269,
+          50270,
+          50271
+        ],
+        "embedding_FP32_bits_equal": true,
+        "padding_rows": 15,
+        "all_padding_P_zero_and_S_finite_positive": true
+      }
+    }
+  ],
+  "graph": {
+    "nodes": 1660,
+    "initializer_count": 135,
+    "initializer_payload_bytes": 94602744,
+    "op_counts": {
+      "Shape": 142,
+      "Constant": 623,
+      "Gather": 103,
+      "Unsqueeze": 146,
+      "Concat": 88,
+      "Reshape": 105,
+      "Slice": 57,
+      "Squeeze": 44,
+      "Add": 88,
+      "Cast": 22,
+      "Range": 1,
+      "Sub": 20,
+      "Mul": 39,
+      "Div": 20,
+      "Mod": 1,
+      "ReduceMean": 26,
+      "Pow": 25,
+      "Sqrt": 13,
+      "Q8MatMulM1Packed": 25,
+      "Split": 6,
+      "Transpose": 30,
+      "MatMul": 12,
+      "ConstantOfShape": 6,
+      "Where": 6,
+      "Softmax": 6,
+      "Tanh": 6
+    },
+    "unchanged_nodes_bytewise": 1624,
+    "unchanged_initializer_metadata_bytewise": 82,
+    "unchanged_value_info_bytewise": 76,
+    "all_IO_model_header_graph_header_bytewise": true,
+    "exact_owned_embedding_nodes_removed": [
+      "__blucca_tied_vocab_q8_embed_cast",
+      "__blucca_tied_vocab_q8_embed_center",
+      "__blucca_tied_vocab_q8_embed_gather_B",
+      "__blucca_tied_vocab_q8_embed_gather_S",
+      "__blucca_tied_vocab_q8_embed_multiply",
+      "__blucca_tied_vocab_q8_embed_reshape",
+      "__blucca_tied_vocab_q8_scale_reshape"
+    ],
+    "exact_owned_constants_removed": [
+      "__blucca_tied_vocab_q8_scale_shape",
+      "__blucca_tied_vocab_q8_zero_point"
+    ],
+    "old_B_S_initializer_names_removed": [
+      "__blucca_tied_vocab_q8_B",
+      "__blucca_tied_vocab_q8_S",
+      "__blucca_whole_q8_00_B",
+      "__blucca_whole_q8_00_S",
+      "__blucca_whole_q8_01_B",
+      "__blucca_whole_q8_01_S",
+      "__blucca_whole_q8_02_B",
+      "__blucca_whole_q8_02_S",
+      "__blucca_whole_q8_03_B",
+      "__blucca_whole_q8_03_S",
+      "__blucca_whole_q8_04_B",
+      "__blucca_whole_q8_04_S",
+      "__blucca_whole_q8_05_B",
+      "__blucca_whole_q8_05_S",
+      "__blucca_whole_q8_06_B",
+      "__blucca_whole_q8_06_S",
+      "__blucca_whole_q8_07_B",
+      "__blucca_whole_q8_07_S",
+      "__blucca_whole_q8_08_B",
+      "__blucca_whole_q8_08_S",
+      "__blucca_whole_q8_09_B",
+      "__blucca_whole_q8_09_S",
+      "__blucca_whole_q8_10_B",
+      "__blucca_whole_q8_10_S",
+      "__blucca_whole_q8_11_B",
+      "__blucca_whole_q8_11_S",
+      "__blucca_whole_q8_12_B",
+      "__blucca_whole_q8_12_S",
+      "__blucca_whole_q8_13_B",
+      "__blucca_whole_q8_13_S",
+      "__blucca_whole_q8_14_B",
+      "__blucca_whole_q8_14_S",
+      "__blucca_whole_q8_15_B",
+      "__blucca_whole_q8_15_S",
+      "__blucca_whole_q8_16_B",
+      "__blucca_whole_q8_16_S",
+      "__blucca_whole_q8_17_B",
+      "__blucca_whole_q8_17_S",
+      "__blucca_whole_q8_18_B",
+      "__blucca_whole_q8_18_S",
+      "__blucca_whole_q8_19_B",
+      "__blucca_whole_q8_19_S",
+      "__blucca_whole_q8_20_B",
+      "__blucca_whole_q8_20_S",
+      "__blucca_whole_q8_21_B",
+      "__blucca_whole_q8_21_S",
+      "__blucca_whole_q8_22_B",
+      "__blucca_whole_q8_22_S",
+      "__blucca_whole_q8_23_B",
+      "__blucca_whole_q8_23_S"
+    ],
+    "all_25_B_S_pairs_replaced": true,
+    "head_reshape_Slice_logits_reshape_preserved_bytewise": true,
+    "native_additional_weight_owner_payload_bytes_by_new_contract": 0,
+    "physical_P_PS_payload_bytes": 91210752,
+    "new_full_vocabulary_embedding_Transpose_dequant_table_bytes": 0,
+    "embedding_local_tile_output_bytes": 13824,
+    "weight_tie": {
+      "kind": "same_physical_P_PS_pair",
+      "canonical_initializers": [
+        "__blucca_tied_vocab_q8_P",
+        "__blucca_tied_vocab_q8_PS"
+      ],
+      "consumers": {
+        "__blucca_tied_vocab_q8_P": [
+          "__blucca_packed_q8_embed_P_tile_node",
+          "__blucca_tied_vocab_q8_head_matmul"
+        ],
+        "__blucca_tied_vocab_q8_PS": [
+          "__blucca_packed_q8_embed_PS_tile_node",
+          "__blucca_tied_vocab_q8_head_matmul"
+        ]
+      },
+      "consumer_count_each": 2,
+      "input_id_domain": [
+        0,
+        50256
+      ],
+      "dynamic_input_id_scalar_Div16_Mod16": true,
+      "embedding_result_shape": [
+        1,
+        1,
+        768
+      ],
+      "head_pad": 50272,
+      "Slice_end_exclusive": 50257
+    },
+    "file": "native.onnx",
+    "file_bytes": 1311084,
+    "onnx_checker_passed": true,
+    "saved_metadata_bytewise_checked": true
+  },
+  "packed_initializer_bytes": 91210752,
+  "source_old_B_S_weight_bytes_actually_read": 91210752,
+  "copied_unchanged_files": [
+    {
+      "file": "transformer.wpe.weight.bin",
+      "bytes": 3145728,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.ln_1.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.ln_1.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.ln_2.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.ln_2.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.0.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.ln_1.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.ln_1.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.ln_2.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.ln_2.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.1.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.ln_1.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.ln_1.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.ln_2.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.ln_2.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.2.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.ln_1.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.ln_1.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.ln_2.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.ln_2.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.3.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.ln_1.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.ln_1.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.ln_2.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.ln_2.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.4.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.ln_1.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.ln_1.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.attn.c_attn.bias.bin",
+      "bytes": 9216,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.attn.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.ln_2.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.ln_2.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.mlp.c_fc.bias.bin",
+      "bytes": 12288,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.h.5.mlp.c_proj.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.ln_f.weight.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    },
+    {
+      "file": "transformer.ln_f.bias.bin",
+      "bytes": 3072,
+      "source_destination_bytes_equal": true
+    }
+  ],
+  "copied_unchanged_external_bytes": 3391488,
+  "source_initializer_payload_bytes": 94602748,
+  "new_initializer_payload_bytes": 94602744,
+  "initializer_payload_delta_bytes": -4,
+  "outputs": [
+    "logits",
+    "present.0.key",
+    "present.0.value",
+    "present.1.key",
+    "present.1.value",
+    "present.2.key",
+    "present.2.value",
+    "present.3.key",
+    "present.3.value",
+    "present.4.key",
+    "present.4.value",
+    "present.5.key",
+    "present.5.value"
+  ],
+  "runtime_gate_status": "pending_root_native_admission",
+  "resource_receipt": {
+    "wall_seconds": 1.5439645908772945,
+    "user_system_cpu_seconds": 1.529913,
+    "peak_RSS_KiB": 262552,
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_limit_bytes": 734003200,
+    "model_and_initializer_files_bytes": 95913324,
+    "disk_accounting_scope": "native.onnx plus all 101 required initializer files; receipts excluded"
+  }
+}

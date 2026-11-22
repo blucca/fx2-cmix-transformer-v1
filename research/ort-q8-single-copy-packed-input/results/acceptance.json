@@ -1,0 +1,27 @@
+{
+  "complete_all_gates_passed": true,
+  "target_compute_gate_passed": true,
+  "complete_language_gate_passed": true,
+  "source_first_cache_gate_passed": true,
+  "source_25_ops_checked": true,
+  "source_persistent_native_weight_bytes": 0,
+  "target_compute": "runs/target/comparison.json",
+  "target_language": "language/target/comparison.json",
+  "original_fp32_report": "language/reused-original/original.json",
+  "fixed_token_ids": "language/target/tokens.json",
+  "frozen_per_cache_max_slowdown_fraction": 0.05,
+  "frozen_min_peak_rss_reduction_fraction": 0.2,
+  "frozen_same_q8_nll_absolute_delta_max": 1e-05,
+  "frozen_total_q8_minus_fp32_nll_max": 0.03,
+  "numerical_tolerance": 2e-05,
+  "whole_outputs": 13,
+  "past_lengths": [
+    16,
+    128,
+    512
+  ],
+  "scope": "Pinned DistilGPT2 batch1 M1 FP32-activation CPU decode; no new quantization, kernel arithmetic, model or API.",
+  "quality_scope": "Two fresh independently chained old/packed workers on target, both compared to preserved complete same-Q8 dense oracle. Same fixed NIST2048 target IDs as reused original FP32 report on separate host.",
+  "internal_qa_external_own_run": 0,
+  "own_prompt_package_status": "pending_complete_public_first_run"
+}

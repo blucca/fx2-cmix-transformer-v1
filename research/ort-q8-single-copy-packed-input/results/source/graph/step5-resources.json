@@ -1,0 +1,32 @@
+{
+  "status": "PASS_local_serializer_resource_budget",
+  "graph_total_file_count": 126,
+  "new_disk_logical_bytes": 96130087,
+  "new_disk_MiB": 91.67679500579834,
+  "fresh_model_created": true,
+  "conversion": {
+    "wall_seconds": 1.5439645908772945,
+    "user_system_cpu_seconds": 1.529913,
+    "peak_RSS_KiB": 262552,
+    "cpu_affinity": [
+      0
+    ],
+    "address_space_limit_bytes": 734003200,
+    "model_and_initializer_files_bytes": 95913324,
+    "disk_accounting_scope": "native.onnx plus all 101 required initializer files; receipts excluded"
+  },
+  "independent_check": {
+    "wall_seconds": 0.7897017411887646,
+    "peak_RSS_KiB": 149180
+  },
+  "budget": {
+    "cpu_count": 1,
+    "address_space_MiB": 700,
+    "conversion_max_wall_seconds": 300,
+    "new_disk_max_MiB": 200
+  },
+  "native_inference_runs": 0,
+  "downloads": 0,
+  "new_dependencies": 0,
+  "measurement": "final graph working files after README/readback/CLI checks; receipt rewrite may change a few bytes"
+}

@@ -1,0 +1,11 @@
+{
+  "status": "FAILED",
+  "phase": "imports",
+  "past": 16,
+  "fresh_session": true,
+  "reference": "/home/ima/repos/gain/temp/round729/tied-q8/target/runs/target/native/past-16-outputs.npz",
+  "failure": "ModuleNotFoundError: No module named 'numpy'",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/ima/repos/gain/temp/round736/packed-q8/first_cache_gate.py\", line 31, in <module>\n    import native_runner as common\n  File \"/home/ima/repos/gain/products/hutter-research/research/ort-q8-whole-decode/native_runner.py\", line 18, in <module>\n    import numpy as np\nModuleNotFoundError: No module named 'numpy'\n",
+  "peak_rss_kib": 17288,
+  "whole_seconds": 0.010834044311195612
+}
